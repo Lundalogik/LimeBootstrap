@@ -5,6 +5,14 @@ The LIME-bootstrap is made to make it easier, better and faster working with Act
 bootstrap but with custom styling and a simple, yet powerful script called limejs.js. The framework contains several built in functions and third 
 party libraries, but is also expandable through plugin in custom apps. 
 
+The bundled library contains:
+
+*	jQuery
+*	Underscore.js
+*	Moment.js
+*	Handelbars.js
+*	Bootstrap.js
+
 
 ##HTML Elements
 LIME bootstrap supports all Twitter boostrap elements but has also a few special elements
@@ -28,7 +36,8 @@ __Expandable:__ The menu can be collapsed by clicking the header
 __Hidden:__ The menu is collapsed when the actionpad is loaded. Stupid to use without using Expandable...
 
 
-##Functions
+##Components
+All Twitter bootstrao
 
 ### Translation: Handeling multiple languages
 By adding language specific tags the actionpads can support multiple languages. The same language as the loged in user uses is automatically used.
