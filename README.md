@@ -103,9 +103,19 @@ LIME bootstrap supports all Twitter boostrap elements but has also a few special
 
 ###The header section colors
 The header section is the colorfull header of each actionpad. The following colors are provided:
-<span style="background:#00C000"> This text will be on a green background </span>
 
+*	red
+*	green
+*	blue
+*	yellow
+*	orange
+*	darkgrey
+*	white
+*	purple
 
+```html
+<div class="header-container [insert color here]">
+```
 ###The menu
 
 A menu can be created by the following HTML: 
@@ -171,12 +181,19 @@ __false:__ Element hidden
 In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required. 
 
 ###Data-action: Executing VBA-functions and specific actions
-Data-action is used to trigger VBA-functions and specific actions on click.
+Data-action is used to trigger VBA-functions and specific actions on click. To call a VBA function simply:
 
 ```html
-<li data-visibility="ActionPad_Helpdesk.HideLinks, take" sv="Ta ärende" fi="Ota tehtäväksi" title-fi="Ota tehtäväksi" en-us="Take case" no="Ta saken" title-no"Ta saken" title-sv="Ta ärende" title-en-us="Take Case" data-action="ActionPad_Helpdesk.Take" > <i class="icon-rocket"></i></li>
+<li data-action="ActionPad_Helpdesk.Take"></li>
  ```
+ 
+Input parameters are provided by simply providing them seperated by commas.
 
+```html
+<li data-action="ActionPad_Helpdesk.Park, 1, t_park_1_hour"></li>
+ ```
+ 
+ 
 ##Technical
 ### The core: limejs.js
 Bla bla bla
