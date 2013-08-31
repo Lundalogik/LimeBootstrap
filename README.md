@@ -5,7 +5,6 @@ The LIME-bootstrap is made to make it easier, better and faster working with Act
 bootstrap but with custom styling and a simple, yet powerful script called limejs.js. The framework contains several built in functions and third 
 party libraries, but is also expandable through plugin in custom apps. 
 
---------------------------------
 
 ##HTML Elements
 LIME bootstrap supports all Twitter boostrap elements but has also a few special elements
@@ -13,13 +12,13 @@ LIME bootstrap supports all Twitter boostrap elements but has also a few special
 
 A menu can be created by the following HTML: 
 
-	```html
-	<ul class="menu">
-             	<li class="nav-header"> Commands</li>
-             	<li class="divider"></li>
-			 	...
-	</ul>
-	```
+```html
+<ul class="menu">
+	<li class="nav-header"> Commands</li>
+    <li class="divider"></li>
+	...
+</ul>
+```
 
 A menu has two properties, __Expandable__ and __Hidden__. The are added in the `<ul>` class:
 `<ul class="menu expandable hidden">`	
