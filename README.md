@@ -70,7 +70,6 @@ It is common that some elements only should be visible for certain users or when
 A VBA function is called, handeling the logic wether the elemet should be visible or not, returing an boolean.   
 __true:__ Element is visible   
 __fales:__ Element hidden
-
 In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required. 
 
 ###Data-action: Executing VBA-functions and specific actions
