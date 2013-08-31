@@ -168,7 +168,7 @@ Please note that accessing information on linked records will be slow, as the in
 ```
 Consider using an Information rendering app instead and provide the data required via XML (refer to the app section).
 
-### Data-visibility: Hiding or showing elements depending
+### Data-visibility: Hiding or showing elements
 It is common that some elements only should be visible for certain users or when specific conditions apply. The Data-visibility is used as follows:
 
 ```html
@@ -195,24 +195,24 @@ Input parameters are provided by simply seperateing them by commas.
  
  There are four included special actions:
  
-*	ShowOnMap, [address]. Searches Google Maps for the provided address.
+*	__ShowOnMap, [address]__ - Searches Google Maps for the provided address.
  
  	```html
  	<li data-field="postalcity" data-action="showOnMap, fullpostaladdress"><i class="icon-map-marker"> </i> </li>
 	```
 	
-*	call. Ads an tel: link to the HTML, In advantage used in compination with the Data-field function  
+*	__call__ - Ads an tel: link to the HTML, In advantage used in compination with the Data-field function  
 	
 	```html
 	<li data-field="phone" data-action="call"><i class="icon-phone"> </i> </li>
 	```
 	
-*	www. Opens the suplied URL in an external browser
+*	__www__ - Opens the suplied URL in an external browser
 	
 	```html
 	 <li data-field="www" data-action="openUrl"><i class="icon-globe"> </i> </li>
 	```
-*	lime-link. Tries to create an LIME link to the object provided by the Data-field.
+*	__lime-link__ - Tries to create an LIME link to the object provided by the Data-field.
 	
 	```html
 	<li data-field="company" data-action="lime-link"><i class="icon-building"></i></li>
