@@ -44,16 +44,38 @@ The string is added with `$.append()`, hence the string will always end up at th
 ```
 will render into "icon New todo" 
 
--------------------------------
 
 ### Data-field: Fetching data from fields in LIME Pro
 The data-field attribute fetches data from the specified field from the ActiveInspector.
 
-`<li data-field="name"></li> `
+```html
+<li data-field="name"></li> `
+```
 
+Please note that accessing information on linked records will be slow, as the information must be fetched from the server and not the Inspector, i.e calling the company name from a person:
 
--
+```html
+<li data-field="company.name"></li> `
+```
 
+will be slow. Consider using an Information rendering app instead and provide the data required via XML.
+
+### Data-visibility: Hiding or showing elements depending
+It is common that some elements only should be visible for certain users or when specific conditions apply. The Data-visibility is used as follows:
+
+```html
+<li data-visibility="ActionPad_Helpdesk.HideLinks, take" sv="Ta ärende" fi="Ota tehtäväksi" title-fi="Ota tehtäväksi" en-us="Take case" no="Ta saken" title-no"Ta saken" title-sv="Ta ärende" title-en-us="Take Case" data-action="ActionPad_Helpdesk.Take" > <i class="icon-rocket"></i></li>
+```
+
+A VBA function is called, handeling the logic wether the elemet should be visible or not, returing an boolean.   
+__true:__ Element is visible   
+__fales:__ Element hidden
+
+In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required. 
+
+###Data-action: Executing VBA-functions and specific actions
+
+ 
 
 ##Technical
 ### The core: limejs.js
