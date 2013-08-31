@@ -3,8 +3,16 @@
 Welcome to the LIME Pro Actionpad framework called LIME-bootstrap. 
 The LIME-bootstrap is made to make it easier, better and faster working with Actionpads in LIME pro. The framework relies heavily on Twitter 
 bootstrap but with custom styling and a simple, yet powerful script called limejs.js. The framework contains several built in functions and third 
-party libraries, but is also expandable through plugin in custom apps. 
+party libraries, but is also expandable through plugin in custom apps.The actual actionpads used in the LIME basic database are also included.  
 
+LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reasons all functionallity (exept the data connections) should work in any browser. In LIME Pro the supporter browser versions are:
+
+*	Internet Explorer 9
+*	Internet Explorer 10
+
+Older versions of IE _may_ work, but the ActionPads will surely not look so great. 
+
+### Included javascript frameworks
 The bundled library contains:
 
 *	[jQuery](http://jquery.com)
@@ -13,7 +21,20 @@ The bundled library contains:
 *	[Handelbars.js](http://handlebarsjs.com)
 *	[Bootstrap.js](http://getbootstrap.com)
 
-The actual actionpads used in 
+###Icons
+[Font awesome](http://fortawesome.github.io/Font-Awesome/) is include. Please see 
+
+###Structure of the framework
+The framework has the following framework
+
+*	apps - small selfdependent html apps that can be dynamically loaded into the Actionpads.
+	*	...
+*	custom - A good place to put custoner customizations that's to small to be an app, yet is imposible to achive with the components
+*	lib - READ ONLY! This is the base of the framework and should never be modified.
+	*	css
+		*	lime.css - styling for the framework. Overrides several Twitter Bootstrap stylings.
+		*	font-awesome.css - 
+
 
 ##HTML Elements
 LIME bootstrap supports all Twitter boostrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for additional info
