@@ -223,7 +223,7 @@ The input parameters are evaluated at load and the string to be executed is stor
  
 ##Technical
 ### The core: limejs.js
-Bla bla bla
+It's all very technical and smart!
 
 ### Building apps
-bla bla bka
+Please see the readme file in the apps folder 
