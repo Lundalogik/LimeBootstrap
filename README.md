@@ -136,8 +136,8 @@ __Expandable:__ The menu can be collapsed by clicking the header
 __Hidden:__ The menu is collapsed when the actionpad is loaded. Stupid to use without using Expandable...
 
 
-##Components
-All Twitter bootstrao
+##Functions
+All Twitter bootstrap functions are included, please see the [Twitter bootstrap documentation](http://getbootstrap.com/2.3.2/javascript.html) 
 
 ### Translation: Handeling multiple languages
 By adding language specific tags the actionpads can support multiple languages. The same language as the loged in user uses is automatically used.
@@ -181,18 +181,44 @@ __false:__ Element hidden
 In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required. 
 
 ###Data-action: Executing VBA-functions and specific actions
-Data-action is used to trigger VBA-functions and specific actions on click. To call a VBA function simply:
+Data-action is used to trigger VBA-functions and specific actions on click. To call a VBA function simply use:
 
 ```html
 <li data-action="ActionPad_Helpdesk.Take"></li>
  ```
  
-Input parameters are provided by simply providing them seperated by commas.
+Input parameters are provided by simply seperateing them by commas.
 
 ```html
 <li data-action="ActionPad_Helpdesk.Park, 1, t_park_1_hour"></li>
  ```
  
+ There are four included special actions:
+ 
+*	ShowOnMap, [address]. Searches Google Maps for the provided address.
+ 
+ 	```html
+ 	<li data-field="postalcity" data-action="showOnMap, fullpostaladdress"><i class="icon-map-marker"> </i> </li>
+	```
+	
+*	call. Ads an tel: link to the HTML, In advantage used in compination with the Data-field function  
+	
+	```html
+	<li data-field="phone" data-action="call"><i class="icon-phone"> </i> </li>
+	```
+	
+*	www. Opens the suplied URL in an external browser
+	
+	```html
+	 <li data-field="www" data-action="openUrl"><i class="icon-globe"> </i> </li>
+	```
+*	lime-link. Tries to create an LIME link to the object provided by the Data-field.
+	
+	```html
+	<li data-field="company" data-action="lime-link"><i class="icon-building"></i></li>
+	```
+
+
  
 ##Technical
 ### The core: limejs.js
