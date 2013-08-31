@@ -27,19 +27,19 @@ The bundled library contains:
 ###Structure of the framework
 The framework has the following file structure
 
-*	apps - _small selfdependent html apps that can be dynamically loaded into the Actionpads_
+*	__apps__ - _small selfdependent html apps that can be dynamically loaded into the Actionpads_
 	*	...
-*	custom - _A good place to put customer customizations that's to small to be an app_
-*	lib - _READ ONLY! This is the base of the framework and should never be modified_
-	*	css
+*	__custom__ - _A good place to put customer customizations that's to small to be an app_
+*	__lib__ - _READ ONLY! This is the base of the framework and should never be modified_
+	*	__css__
 		*	lime.css - _styling for the framework. Overrides several Twitter Bootstrap stylings_
 		*	font-awesome.css
 		*	bootstrap.css
-	*	font - _Font files for Font awesome_
+	*	__font__ - _Font files for Font awesome_
 		*	... 
-	*	img - _images used in the framework which aren't from Font Awesom_
+	*	__img__ - _images used in the framework which aren't from Font Awesom_
 		*	...
-	*	js - _all javacript used in the framework_
+	*	__js__ - _all javacript used in the framework_
 		*	limejs.js - _Frameworks main javascript_
 		*	... Third party frameworks ...
 *	Actionpads.html
@@ -53,7 +53,7 @@ An Actionpad built with LIME-bootstrap has the following structure
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>	<!-- Force IE to use the lates renderingmode -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Lime Helpdesk Actionpad</title> <!-- Give the actionpad an title -->
+    <title>Lime Helpdesk Actionpad</title> <!-- Give the actionpad a title -->
     <meta name="author" content="Lundalogik" />
     <!-- Inculude styles -->
     <link rel="stylesheet" href="lib/css/bootstrap.min.css" type="text/css"  charset="utf-8" />
@@ -80,7 +80,7 @@ An Actionpad built with LIME-bootstrap has the following structure
     <!-- Body section  -->
     <div class="content-container">
       		
-			<!-- Menues and apps goes here!  -->
+			<!-- Menus and apps goes here!  -->
 		 
     </div>
 	<!-- /Body section  -->
@@ -101,15 +101,10 @@ An Actionpad built with LIME-bootstrap has the following structure
 ##HTML Elements
 LIME bootstrap supports all Twitter boostrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for additional info
 
-###The header section
-The header section is the colorfull header of each actionpad.
-```html
-<ul class="menu">
-	<li class="nav-header"> Commands</li>
-    <li class="divider"></li>
-	...
-</ul>
-```
+###The header section colors
+The header section is the colorfull header of each actionpad. The following colors are provided:
+<span style="background:#00C000"> This text will be on a green background </span>
+
 
 ###The menu
 
@@ -177,7 +172,10 @@ In complex cases the VBA-function can take input parameters to reduce the number
 
 ###Data-action: Executing VBA-functions and specific actions
 Data-action is used to trigger VBA-functions and specific actions on click.
- 
+
+```html
+<li data-visibility="ActionPad_Helpdesk.HideLinks, take" sv="Ta ärende" fi="Ota tehtäväksi" title-fi="Ota tehtäväksi" en-us="Take case" no="Ta saken" title-no"Ta saken" title-sv="Ta ärende" title-en-us="Take Case" data-action="ActionPad_Helpdesk.Take" > <i class="icon-rocket"></i></li>
+ ```
 
 ##Technical
 ### The core: limejs.js
