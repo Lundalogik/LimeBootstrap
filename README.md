@@ -27,13 +27,23 @@ The bundled library contains:
 ###Structure of the framework
 The framework has the following framework
 
-*	apps - small selfdependent html apps that can be dynamically loaded into the Actionpads.
+*	apps - _small selfdependent html apps that can be dynamically loaded into the Actionpads_
 	*	...
-*	custom - A good place to put custoner customizations that's to small to be an app, yet is imposible to achive with the components
-*	lib - READ ONLY! This is the base of the framework and should never be modified.
+*	custom - _A good place to put custoner customizations that's to small to be an app, yet is imposible to achive with the components_
+*	lib - _READ ONLY! This is the base of the framework and should never be modified_
 	*	css
-		*	lime.css - styling for the framework. Overrides several Twitter Bootstrap stylings.
-		*	font-awesome.css - 
+		*	lime.css - _styling for the framework. Overrides several Twitter Bootstrap stylings_
+		*	font-awesome.css
+		*	bootstrap.css
+	*	font - _Font files for Font awesome_
+		*	... 
+	*	img - _images used in the framework which aren't from Font Awesom_
+		*	...
+	*	js - _all javacript used in the framework_
+		*	limejs.js - _Frameworks main javascript_
+		*	... Third party frameworks ...
+*	Actionpads.html
+		
 
 
 ##HTML Elements
