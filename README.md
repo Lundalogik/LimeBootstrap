@@ -7,15 +7,27 @@ party libraries, but is also expandable through plugin in custom apps.
 
 The bundled library contains:
 
-*	jQuery
-*	Underscore.js
-*	Moment.js
-*	Handelbars.js
-*	Bootstrap.js
+*	[jQuery](http://jquery.com)
+*	[Underscore.js](http://underscorejs.org)
+*	[Moment.js](http://momentjs.com)
+*	[Handelbars.js](http://handlebarsjs.com)
+*	[Bootstrap.js](http://getbootstrap.com)
 
+The actual actionpads used in 
 
 ##HTML Elements
-LIME bootstrap supports all Twitter boostrap elements but has also a few special elements
+LIME bootstrap supports all Twitter boostrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for additional info
+
+###The header section
+The header section is the colorfull header of each actionpad.
+```html
+<ul class="menu">
+	<li class="nav-header"> Commands</li>
+    <li class="divider"></li>
+	...
+</ul>
+```
+
 ###The menu
 
 A menu can be created by the following HTML: 
@@ -61,13 +73,12 @@ The data-field attribute fetches data from the specified field from the ActiveIn
 <li data-field="name"></li> `
 ```
 
-Please note that accessing information on linked records will be slow, as the information must be fetched from the server and not the Inspector, i.e calling the company name from a person:
+Please note that accessing information on linked records will be slow, as the information must be fetched from the server and not the Inspector, i.e calling the company name from a person will be slow:
 
 ```html
 <li data-field="company.name"></li> `
 ```
-
-will be slow. Consider using an Information rendering app instead and provide the data required via XML.
+Consider using an Information rendering app instead and provide the data required via XML (refer to the app section).
 
 ### Data-visibility: Hiding or showing elements depending
 It is common that some elements only should be visible for certain users or when specific conditions apply. The Data-visibility is used as follows:
@@ -78,11 +89,11 @@ It is common that some elements only should be visible for certain users or when
 
 A VBA function is called, handeling the logic wether the elemet should be visible or not, returing an boolean.   
 __true:__ Element is visible   
-__fales:__ Element hidden
+__false:__ Element hidden
 In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required. 
 
 ###Data-action: Executing VBA-functions and specific actions
-
+Data-action is used to trigger VBA-functions and specific actions on click.
  
 
 ##Technical
