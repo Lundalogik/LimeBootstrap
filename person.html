@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Lime Company Actionpad</title>
+    <meta name="author" content="Lundalogik" />
+    <!-- STYLE -->
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css" type="text/css"  charset="utf-8" />
+    <link rel="stylesheet" href="lib/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="lib/css/lime.css" /> 
+    <!--/STYLE -->
+</head>
+<body>
+    <!-- INFO HEADER  -->
+        <div class="header-container yellow">
+            <div class="header-icon-container person">
+               
+            </div>
+            <div id="header-info"> 
+                <h2 data-field="Name"></h2>
+				
+                    <ul >						
+                        <li data-field="company" data-action="lime-link"><i class="icon-building"></i></li>
+                        <li data-field="phone" data-action="call" ><i class="icon-phone"></i></li>
+                        <li data-field="mobilephone" data-action="openUrl"><i class="icon-mobile-phone"></i></li>
+                    </ul> 
+            </div>
+        </div>
+    <!-- /INFO HEADER  -->
+    <!-- ACTIONS   -->
+    <div class="content-container">
+      		
+        <ul class="menu expandable">
+             <li class="nav-header" sv="Kommando" fi="Komentoja" en-us="Commands" no="Kommando"></li>
+             <li class="divider"></li>
+             <li sv="Ny att göra" fi="Uusi tehtävä" en-us="New todo" no="Ny oppgave" title-no="Ny oppgave" title-fi="Uusi tehtävä" title-sv="Ny att göra uppgift"  title-en-us="New todo" data-action="ActionPadTools.NewInspectorFromInspector, todo"> <i class="icon-calendar"></i></li>
+             <li sv="Ny historiknotering" fi="Uusi historiamerkintä" en-us="New history" no="Ny historikk" title-fi="Uusi historiamerkintä" title-no="Ny historikk" title-sv="Ny historiknotering" title-en-us="New notation" data-action="ActionPadTools.NewInspectorFromInspector, history"> <i class="icon-pencil"></i></li>
+             <li sv="Nytt dokument" fi="Uusi asiakirja" en-us="New document" no="Nytt dokument" title-no="Nytt dokument" title-fi="Uusi asiakirja" title-sv="Nytt dokument" title-en-us="New document" data-action="ActionPadTools.NewInspectorFromInspector, document"> <i class="icon-file-text-alt"></i></li>
+         </ul>
+        <div class="info" data-info="ActionPad_Person.IsActive,warning,icon-signout"></div>	
+    </div>
+	
+    <!-- /ACTIONS  -->
+    <!--  ================================================== Le javascript ================================================== -->   
+    <!-- LIME ACTIONPAD STANDARD TOOLS -->
+	<!-- DO NOT CHANGE ANYTHING HERE!!! -->
+    <script src="lib/js/jquery-1.9.1.min.js" charset="utf-8" type="text/javascript"></script>
+    <script src="lib/js/bootstrap.min.js" charset="utf-8" type="text/javascript"></script>
+    <script src="lib/js/limejs.js" type="text/javascript"></script>
+     <!-- /LIME ACTIONPAD STANDARD TOOLS -->
+     <!-- CUSTOM THINGS -->
+    <script type="text/javascript" >
+        $(document).ready(function () {
+            //Add custom Javascript here.
+        });
+    </script>
+       <!-- /CUSTOM THINGS -->    
+     <!--  ================================================== /Le javascript ================================================== -->             
+  
+</body>
+</html>

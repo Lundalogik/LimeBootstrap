@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html debug="true">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Lime Company Actionpad</title>
+    <meta name="author" content="Lundalogik" />
+    <!-- STYLE -->
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css" type="text/css"  charset="utf-8" />
+    <link rel="stylesheet" href="lib/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="lib/css/lime.css" /> 
+    <!--/STYLE -->
+</head>
+<body>
+
+    <!-- ACTIONS   -->
+<div class="content-container">
+<!-- Add your code here -->
+
+	<ul class="nav nav-list expandable">
+		<li class="nav-header" sv="Länkar" fi="Links" en-us="Links" no="Links"></li>
+              <li class="divider"></li>		
+			<li data-action="shell, www.lundalogik.se"
+ sv="Lundalogik.se" fi="Lundalogik.se" en-us="Lundalogik.se" no="Lundalogik.se" title-no="Lundalogik.se" title-fi="Lundalogik.se" title-sv="Lundalogik.se" title-en-us="Lundalogik.se"><i class="icon-building"></i></li>
+            <li data-action="shell, http://www.lundalogik.se/support/"
+ sv="LLAB Intranet" fi="LLAB Intranet" en-us="LLAB Intranet" no="LLAB Intranet" title-no="LLAB Intranet" title-fi="LLAB Intranet" title-sv="LLAB Intranet" title-en-us="LLAB Intranet"><i class="icon-home"></i></li>
+			<li data-action="shell, http://www.lundalogik.se/support/"
+ sv="Lundalogik Support" fi="Lundalogik Support" en-us="Lundalogik Support" no="Lundalogik Support" title-no="Lundalogik Support" title-fi="Lundalogik Support" title-sv="Lundalogik Support" title-en-us="Lundalogik Support"><i class="icon-heart"></i></li>        
+	   </ul>
+	
+	<ul class="nav nav-list expandable">
+              <li class="nav-header" sv="LIME BI Dashboard" fi="LIME BI Dashboard" en-us="LIME BI Dashboard" no="LIME BI Dashboard"></li>
+              <li class="divider"></li>			  
+              <li sv="Öppna LIME BI" fi="Open LIME BI" en-us="Open LIME BI" no="Open LIME BI" title-no="Open LIME BI" title-fi="Open LIME BI" title-sv="Öppnar LIME BI" title-en-us="lINK 1" data-action="ActionPadTools.OpenDocument"><i class="icon-dashboard"></i></li>
+              <li sv="Stäng LIME BI" fi="Close LIME BI" en-us="Close LIME BI" no="Close LIME BI" title-no="Close LIME BI" title-fi="Close LIME BI" title-sv="Stänger LIME BI" title-en-us="Close LIME BI" data-action="ActionPadTools.ClosePane"><i class="icon-dashboard"></i></li>
+		</ul>
+		
+
+	
+	<!-- GADGET AREA IN THE BOTTOM-->
+	<div class="app-area">
+		<div id="shoutbox" class="carousel slide">
+		<!-- Carousel items -->
+			<div class="carousel-inner">
+				<div class="active item"> <h3><i class="icon-money"> </i> Sales conferense</h3>Lets go out and sell some LIME Pro</div>
+				<div class="item"><h3><i class="icon-info-sign"> </i> News today</h3>It is possible to write som news here which will be displayed for everyone</div>
+				<div class="item"><h3><i class="icon-rss"> </i> LIME Hosting</h3>This makes it possible for customers to only download a client and start kicking LIME pro for real!</div>
+			</div>
+        </div>
+    </div>
+</div>
+
+<div data-app="limegraphs"></div>
+
+    <!-- /ACTIONS  -->
+    <!--  ================================================== Le javascript ================================================== -->   
+    <!-- LIME ACTIONPAD STANDARD TOOLS -->
+
+    <script src="lib/js/jquery-1.9.1.min.js" charset="utf-8" type="text/javascript"></script>
+    <script src="lib/js/bootstrap.min.js" charset="utf-8" type="text/javascript"></script>
+    <script src="lib/js/limejs.js" type="text/javascript"></script>
+     <!-- /LIME ACTIONPAD STANDARD TOOLS -->
+     <!-- CUSTOM THINGS -->
+    <script type="text/javascript" >
+        $(document).ready(function () {
+            //Add custom Javascript here.
+            $("#shoutbox").carousel('cycle')
+        });
+    </script>
+       <!-- /CUSTOM THINGS -->    
+     <!--  ================================================== /Le javascript ================================================== -->             
+  
+</body>
+</html>

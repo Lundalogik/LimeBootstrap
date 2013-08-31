@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Lime Company Actionpad</title>
+    <meta name="author" content="Lundalogik" />
+    <!-- STYLE -->
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css" type="text/css"  charset="utf-8" />
+    <link rel="stylesheet" href="lib/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="lib/css/lime.css" /> 
+    <!--/STYLE -->
+</head>
+<body>
+    <!-- INFO HEADER  -->
+        <div class="header-container blue">
+            <div class="header-icon-container company">
+				
+            </div>
+            <div id="header-info"> 
+                <h2 data-field="Name"></h2>
+                    <ul >
+                        <li data-field="postalcity" data-action="showOnMap, fullpostaladdress"><i class="icon-map-marker"> </i> </li>
+                        <li data-field="phone" data-action="call"><i class="icon-phone"> </i> </li>
+                        <li data-field="www" data-action="openUrl"><i class="icon-globe"> </i> </li>
+                    </ul> 
+            </div>
+        </div>
+    <!-- /INFO HEADER  -->
+    <!-- ACTIONS   -->
+    <div class="content-container">
+      		
+        <ul class="menu expandable">
+              <li class="nav-header" sv="Historik" fi="Historia" en-us="History" no="Historikk" ></li>
+              <li class="divider"></li>
+              <li sv="Fått e-post" fi="Vastaanotettu email" en-us="Recieved email" no="Fått e-post" title-no="Fått e-post" title-fi="Vastaanotettu email" title-sv="Fått e-post" title-en-us="Recieved email" data-action="ActionPad_Company.NewHistory, receivedemail"><i class="icon-pencil"></i></li>
+              <li sv="Pratat med" fi="Keskustelu" en-us="Talked to" no="Pratet med" title-no="Pratet med" title-fi="Keskustelu" title-sv="Pratat med" title-en-us="Talked to" data-action="ActionPad_Company.NewHistory, talkedto"> <i class="icon-pencil"></i></li>
+              <li sv="Skickat e-post" fi="Lähetetty email" en-us="Sent email" no="Sendt e-post" title-fi="Lähetetty email" title-no="Sendt e-post" title-sv="Skickat e-post" title-en-us="Sent email" data-action="ActionPad_Company.NewHistory, sentemail"><i class="icon-pencil"></i></li>
+              <li sv="Säljsamtal" fi="Myyntipuhelu" en-us="Sales call" no="Salgssamtale" title-no="Salgssamtale" title-fi="Myyntipuhelu" title-sv="Säljsamtal" title-en-us="Sales call" data-action="ActionPad_Company.NewHistory, salescall"><i class="icon-pencil"></i></li>
+              <li sv="Sökt, ej på plats" fi="Tavoiteltu, ei paikalla" en-us="No answer" no="Søkt, ikke på plass" title-fi="Tavoiteltu, ei paikalla" title-no="Søkt, ikke på plass" title-sv="Sökt, ej på plats" title-en-us="No answer" data-action="ActionPad_Company.NewHistory, noanswer"><i class="icon-pencil"></i></li>        
+        </ul>
+
+    </div>
+	
+    <!-- /ACTIONS  -->
+    <!--  ================================================== Le javascript ================================================== -->   
+    <!-- LIME ACTIONPAD STANDARD TOOLS -->
+	<!-- DO NOT CHANGE ANYTHING HERE!!! -->
+    <script src="lib/js/jquery-1.9.1.min.js" charset="utf-8" type="text/javascript"></script>
+    <script src="lib/js/bootstrap.min.js" charset="utf-8" type="text/javascript"></script>
+    <script src="lib/js/limejs.js" type="text/javascript"></script>
+     <!-- /LIME ACTIONPAD STANDARD TOOLS -->
+     <!-- CUSTOM THINGS -->
+    <script type="text/javascript" >
+        $(document).ready(function () {
+            //Add custom Javascript here.
+        });
+    </script>
+       <!-- /CUSTOM THINGS -->    
+     <!--  ================================================== /Le javascript ================================================== -->             
+  
+</body>
+</html>

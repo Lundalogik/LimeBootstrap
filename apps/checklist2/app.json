@@ -1,0 +1,14 @@
+app(
+	{
+	    "scripts": [
+	    	"checklist.js"
+	    ],
+	    "styles": [
+	    	"checklist.css"
+	    ],
+	    "libs": [
+	        "json2xml.js",
+	        "handlebars.js"
+	    ]
+	}
+ );
