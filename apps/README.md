@@ -30,6 +30,20 @@ app(
 Actually the format is JSONP to avoid cross scripting errors when fetching local files.
 
 ##The javascript app structure
+	
+```javascript
+var app = {
 
+	"data":"", // Holds the LIME Data in JSON format
 
+	"main":function(){ //Called when the rest of the actionpad is loaded
+		//The main app
+	},
+	"initalize":function(inputData){ //Called 
+		// Recive and modify data
+		app.data = inputData
+	}
+}
+
+```
 ##The VBA app structure
