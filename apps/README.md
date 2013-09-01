@@ -34,7 +34,7 @@ Actually the format is JSONP to avoid cross scripting errors when fetching local
 ```javascript
 var app = {
 
-	"data":"", // Holds the LIME Data in JSON format
+	"data":{}, // Holds the LIME Data in JSON format
 
 	"main":function(){ //Called when the rest of the actionpad is loaded
 		//The main app
