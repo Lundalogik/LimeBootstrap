@@ -1,20 +1,17 @@
-ï»¿
-$(document).load(function () {
-    
-});
 
-$(document).ready(function () {
+function hepp(hej){
+	alert(hej);
+	return true;
+}
+
 
     var dummyXML = '<checklist><businesstypeactivity order="10" name="Lead" required="0" multiplecheck="0" validatemandatoryfields="0" activitytype="173101" autocreatehistory="1" historytext="Lead avprickat" vbacode="ActionPad_Business.FormUploadFile, Lead" visibilitycondition=""/> <businesstypeactivity order="20" name="BesÃ¶k" required="0" multiplecheck="0" validatemandatoryfields="0" activitytype="159601" autocreatehistory="0" historytext="Kundbesök genomfört." vbacode="" visibilitycondition="" checked="1" /></checklist>';
 
-    //TODO: check if the Checklist should be created
-    if (window.external) {
-        var lime = window.external;
-    }
 
-    if ($(".checklist").attr("LimeTriggerOptionKey")) {
-        var a = $(".checklist").attr("LimeTriggerOptionKey").split("=");
-    }
+
+var checklist = {
+	"data":{},
+	"main":function(){
 
     // Load the XML
     if (window.external) {
@@ -77,5 +74,11 @@ $(document).ready(function () {
             return true; // should be false in prod
         }
     }
-
-});
+		
+	},
+	"initalize":function(inputData, element){
+		if(inputData == null){
+			
+		}	
+	}
+}
