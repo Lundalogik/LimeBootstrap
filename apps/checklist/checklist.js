@@ -1,5 +1,5 @@
 
-function hepp(hej){
+function checklistErs(hej){
 	alert(hej);
 	return true;
 }
