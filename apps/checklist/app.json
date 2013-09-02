@@ -7,8 +7,8 @@ app(
 	    	"checklist.css"
 	    ],
 	    "libs": [
-	        "json2xml.js",
-	        "handlebars.js"
+	        "json2xml.js"
+
 	    ]
 	}
  );

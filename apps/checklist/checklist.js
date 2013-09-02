@@ -1,32 +1,39 @@
 
 
-window.checklist =  {
+checklist =  {
         "data": {},
-        "main": function () {
-
+        "element":{},
+        "main": function (data, element) {
+		console.log(this.data.checklist.businesstypeactivity[1].order)
             // Load the XML
-            if (window.external) {
-                try {
-                    var xml = lime.run("Checklist.CreateChecklist");
-                } catch (err) {
-                    var xml = dummyXML;
-                }
-            } else {
-                var xml = dummyXML;
-            }
-            var checklist = $($.parseXML(xml)); // parse the XML and make it to a magic jQuery object
-
+			var a = "{{#each businesstypeactivity}} \
+			 <div class='task' id={{order}}> \
+				<input type='checkbox' value='None' id='inp_{{order}}' name='check' /> \
+				<label for=inp_'{{order}}'></label> {{name}} \
+			<div> \
+			{{/each}}"
+			
+			var template = Handlebars.compile(a);
+			
+			var b = template(this.data.checklist);
+			this.element.append(b)
+			//alert(b)
             //Create the Checklist DOM
-            checklist.find("businesstypeactivity").each(function () {
-                var id = $(this).attr("order");
-                $(".checklist").append("<div class='task' id=" + id + "><div>");
-                $(".checklist").find("#" + id).append("<input type='checkbox' value='None' id='inp_" + id + "' name='check' />");
-                $(".checklist").find("#" + id).append("<label for=inp_'" + id + "'></label> " + $(this).attr("name"));
-                if ($(this).attr("checked") == 1) {
-                    $(".checklist").find("#" + id).find("input").attr('checked', true);
+/*
+            $.each(this.data.checklist.businesstypeactivity,function () {
+                var id = $(this).order;
+                checklist.element.append("<div class='task' id=" + id + "><div>");
+                checklist.element.find("#" + id).append("<input type='checkbox' value='None' id='inp_" + id + "' name='check' />");
+                checklist.element.find("#" + id).append("<label for=inp_'" + id + "'></label> " + $(this).attr("name"));
+                if ($(this).checked == 1) {
+                    checklist.element.find("#" + id).find("input").attr('checked', true);
                 }
             });
-
+*/
+            
+            
+            
+            	console.log(this.element.html)
             //Onclick
             $(".checklist").find(".task").click(function () {
                 var task = findNodeOnOrder($(this).attr("id"));
@@ -67,10 +74,13 @@ window.checklist =  {
             }
 
         },
-        "initalize": function (inputData, element) {
-            if (inputData == null) {
-                console.log("hepp");
-            }
+        "initalize": function (data, element) {
+        
+				this.data = data;
+				this.element = element;
+				this.main();
+				
+				
         }
     
 }

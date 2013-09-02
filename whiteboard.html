@@ -1,62 +1,30 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Lime Company Actionpad</title>
-    <meta name="author" content="Lundalogik" />
-    <!-- STYLE -->
-    <link rel="stylesheet" href="lib/css/bootstrap.min.css" type="text/css"  charset="utf-8" />
-    <link rel="stylesheet" href="lib/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="lib/css/lime.css" /> 
-    <!--/STYLE -->
-</head>
-<body>
-    <!-- INFO HEADER  -->
-        <div class="header-container darkgrey">
-            <div class="header-icon-container whiteboard">
-                
-            </div>
-            <div id="header-info"> 
-                <h2 data-field="title"></h2>
-				
-                    <ul >			
-                        <li data-field="coworker"><i class="icon-user"> </i> </li>
-                        <li data-field="whiteboardstatus" ><i class="icon-flag"> </i> </li>
-                    </ul> 
-            </div>
+﻿<!-- INFO HEADER  -->
+    <div class="header-container darkgrey">
+        <div class="header-icon-container whiteboard">
+            
         </div>
-    <!-- /INFO HEADER  -->
-    <!-- ACTIONS   -->
-    <div class="content-container">
-      		
-        <ul class="nav nav-list expandable">
-             <li class="nav-header" sv="Kommando" fi="Komentoja" en-us="Commands" no="Kommando" ></li>
-             <li class="divider"></li>
-             <li sv="Påbörja uppgift" fi="Ota tehtäväksi" en-us="Start Task" no="Ta og start oppgaven" title-fi="Ota ja aloita tehtävä" title-no"Ta og start oppgaven" title-sv="Ta och påbörja uppgiften!" title-en-us="Take and start the tast" data-action="Actionpad_Whiteboard.TakeOwnership"> <i class="icon-calendar"></i> </li>
-             <li sv="Utförd" en-us="Done" fi="Valmis" no="Utført" title-no="Her klikker du når oppgaven er utført" title-fi="Klikkaa tähän kun tehtävä on valmis" title-sv="Här klickar du när uppgiften är avklarad" title-en-us="Click here when the task is completed" data-action="Actionpad_Whiteboard.setDone"> <i class="icon-thumbs-up"></i></li>
-             <li sv="Avslag" en-us="Deny" fi="Kieltäydy" no="Avslag" title-no="Oppgaven vil ikke utføres" title-fi="Tehtävää ei voida suorittaa" title-sv="Uppgiften kommer ej att utföras" title-en-us="Task will not be done" data-action="Actionpad_Whiteboard.Deny"> <i class="icon-thumbs-down"></i></li>
-			 <li sv="Krävs mer info" fi="Lisätietoja kaivataan" en-us="More info needed" no="Trenger mer informasjon" title-fi="Lisää tietoja tarvitaan tehtävän suorittamiseksi" title-no"Trenger mer informasjon" title="Avvakta. Här krävs det mer information" title-en-us="Await. More information is required" data-action="Actionpad_Whiteboard.Postpone"> <i class="icon-info-sign"></i></li>
-         </ul>
-
+        <div id="header-info"> 
+            <h2 data-field="title"></h2>
+			
+                <ul >			
+                    <li data-field="coworker"><i class="icon-user"> </i> </li>
+                    <li data-field="whiteboardstatus" ><i class="icon-flag"> </i> </li>
+                </ul> 
+        </div>
     </div>
+<!-- /INFO HEADER  -->
+<!-- ACTIONS   -->
+<div class="content-container">
+  		
+    <ul class="nav nav-list expandable">
+         <li class="nav-header" sv="Kommando" fi="Komentoja" en-us="Commands" no="Kommando" ></li>
+         <li class="divider"></li>
+         <li sv="Påbörja uppgift" fi="Ota tehtäväksi" en-us="Start Task" no="Ta og start oppgaven" title-fi="Ota ja aloita tehtävä" title-no"Ta og start oppgaven" title-sv="Ta och påbörja uppgiften!" title-en-us="Take and start the tast" data-action="Actionpad_Whiteboard.TakeOwnership"> <i class="icon-calendar"></i> </li>
+         <li sv="Utförd" en-us="Done" fi="Valmis" no="Utført" title-no="Her klikker du når oppgaven er utført" title-fi="Klikkaa tähän kun tehtävä on valmis" title-sv="Här klickar du när uppgiften är avklarad" title-en-us="Click here when the task is completed" data-action="Actionpad_Whiteboard.setDone"> <i class="icon-thumbs-up"></i></li>
+         <li sv="Avslag" en-us="Deny" fi="Kieltäydy" no="Avslag" title-no="Oppgaven vil ikke utføres" title-fi="Tehtävää ei voida suorittaa" title-sv="Uppgiften kommer ej att utföras" title-en-us="Task will not be done" data-action="Actionpad_Whiteboard.Deny"> <i class="icon-thumbs-down"></i></li>
+		 <li sv="Krävs mer info" fi="Lisätietoja kaivataan" en-us="More info needed" no="Trenger mer informasjon" title-fi="Lisää tietoja tarvitaan tehtävän suorittamiseksi" title-no"Trenger mer informasjon" title="Avvakta. Här krävs det mer information" title-en-us="Await. More information is required" data-action="Actionpad_Whiteboard.Postpone"> <i class="icon-info-sign"></i></li>
+     </ul>
+
+</div>
 	
-    <!-- /ACTIONS  -->
-    <!--  ================================================== Le javascript ================================================== -->   
-    <!-- LIME ACTIONPAD STANDARD TOOLS -->
-	<!-- DO NOT CHANGE ANYTHING HERE!!! -->
-    <script src="lib/js/jquery-1.9.1.min.js" charset="utf-8" type="text/javascript"></script>
-    <script src="lib/js/bootstrap.min.js" charset="utf-8" type="text/javascript"></script>
-    <script src="lib/js/limejs.js" type="text/javascript"></script>
-     <!-- /LIME ACTIONPAD STANDARD TOOLS -->
-     <!-- CUSTOM THINGS -->
-    <script type="text/javascript" >
-        $(document).ready(function () {
-            //Add custom Javascript here.
-        });
-    </script>
-       <!-- /CUSTOM THINGS -->    
-     <!--  ================================================== /Le javascript ================================================== -->             
-  
-</body>
-</html>
+ 

@@ -1,87 +1,56 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Lime Todo Actionpad</title>
-    <meta name="author" content="Lundalogik" />
-    <!-- STYLE -->
-    <link rel="stylesheet" href="lib/css/bootstrap.min.css" type="text/css"  charset="utf-8" />
-    <link rel="stylesheet" href="lib/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="lib/css/lime.css" /> 
-    <!--/STYLE -->
-</head>
-<body>
-    <!-- INFO HEADER  -->
-        <div class="header-container orange">
-            <div class="header-icon-container todo">
-                
-            </div>
-            <div id="header-info"> 
-                <h2 data-field="subject"></h2>
-				
-                    <ul >			
-						<li data-field="person" data-action="lime-link"><i class="icon-user"></i></li>
-                        <li data-field="company" data-action="lime-link"><i class="icon-flag"></i></li>
-						<li data-field="person.phone" data-action="call" ><i class="icon-phone"></i></li>
-						<li data-field="person.mobilephone" data-action="call"><i class="icon-mobile-phone"></i></li>						
-						<li data-field="company.phone" data-action="call"><i class="icon-phone"></i></li>
-                    </ul> 
-            </div>
-        </div>		
+﻿<!-- INFO HEADER  -->
+    <div class="header-container orange">
+        <div class="header-icon-container todo">
+            
+        </div>
+        <div id="header-info"> 
+            <h2 data-field="subject"></h2>
+			
+                <ul >			
+					<li data-field="person" data-action="lime-link"><i class="icon-user"></i></li>
+                    <li data-field="company" data-action="lime-link"><i class="icon-flag"></i></li>
+					<li data-field="person.phone" data-action="call" ><i class="icon-phone"></i></li>
+					<li data-field="person.mobilephone" data-action="call"><i class="icon-mobile-phone"></i></li>						
+					<li data-field="company.phone" data-action="call"><i class="icon-phone"></i></li>
+                </ul> 
+        </div>
+    </div>		
+	
+<!-- /INFO HEADER  -->
+<!-- ACTIONS   -->
+<div class="content-container">
+  		
+    <ul class="nav nav-list expandable">
+         <li class="nav-header" sv="Kommando" fi="Komentoja" en-us="Commands" no="Kommando"></li>
+         <li class="divider"></li>
+         <li sv="Pricka av & stäng" fi="Merkitse valmiiksi & sulje" en-us="Set done & close" no="Sett som utført og steng" title-fi="Merkitse valmiiksi & sulje" title-no"Sett som utført og steng" title-sv="Pricka av att göra och stäng kortet." title-en-us="Set done and close the card" data-action="Actionpad_Todo.SetDone"> <i class="icon-check"></i></li>
+         <li sv="Pricka av & skapa Att-göra" fi="Merkitse valmiiksi & luo uusi tehtävä" en-us="Set done & create todo" no="Sett som utført og skap en oppgave" title-fi="Merkitse valmiiksi & luo uusi tehtävä" title-no"Sett som utført og skap en oppgave" title-sv="Pricka av att göra och skapa en att-göra." title-en-us="Set done and create a todo task"	data-action="Actionpad_Todo.SetDone, true, false"><i class="icon-calendar"></i></li>
+         <li sv="Pricka av & skapa historik" fi="Merkitse valmiiksi & luo historiamerkintä" en-us="Set done & create history" no="Sett som utført og skap historikk" title-fi="Merkitse valmiiksi & luo historiamerkintä" title-no="Sett som utført og skap historikk" title-sv="Pricka av att göra och skapa en historiknotering." title-en-us="Set done and create a history note" data-action="Actionpad_Todo.SetDone, false, true"> <i class="icon-calendar"></i></li>
+		 <li sv="Skapa historiknotering" fi="Tee uusi historiamerkintä" en-us="Create a history note" no="Skap historikk" title-no="Skap historikk" title-fi="Tee uusi historiamerkintä" title-sv="Skapa historiknotering" title-en-us="Create a history note"	data-action="ActionpadTools.NewInspectorFromInspector, history"> <i class="icon-file-text-alt"></i></li>
+     </ul> 
+	 
+<div class="btn-group">
+	<a class="btn dropdown-toggle" data-toggle="dropdown" sv="Flytta fram", en-us="Move forward", no="Flytt fremover" fi="Siirrä eteenpäin" href="#">
+	<i class="icon-caret-down"></i>
+	</a>
+	<ul class="dropdown-menu">
+		<li sv="+ 1 dag" fi="+ 1 päivä" en-us= "+ 1 day" no="+ 1 dag" title-no"Flytt frem 1 dag" title-fi="Siirrä eteenpäin 1 päivä" title-sv="Flytta fram 1 dag" title-en-us="Move forward one day" data-action="ActionPad_todo.Postpone, d, 1"></li>
+	    <li class="divider"></li>
+        <li sv="+ 1 veckor" fi="+ 1 viikko" en-us="+ 1w" no="+ 1 uke" title-no="Flytt frem 1 uke" title-fi="Siirrä eteenpäin 1 viikko" title-sv="Flytta fram 1 vecka" title-en-us="Move forward 1 week" data-action="ActionPad_todo.Postpone, ww, 1"></li>
+		<li sv="+ 2 veckor" fi="+ 2 viikkoa" en-us="+ 2w" no="+ 2 uker" title-no="Flytt frem 2 uker" title-fi="Siirrä eteenpäin 2 viikkoa" title-sv="Flytta fram 2 veckor" title-en-us="Move forward 2 Weeks" data-action="ActionPad_todo.Postpone, ww, 2"></li>
+        <li class="divider"></li>
+        <li sv="+ 1 månad" fi="+ 1 kuukausi" en-us="+ 1 month" no="+ 1 måned" title-no="Flytt frem 1 måned" title-fi="Siirrä eteenpäin 1 kuukausi" title-sv="Flytta fram 1 månad" title-en-us="Move forward one month" data-action="ActionPad_todo.Postpone, m, 1"></li>
+		<li sv="+ 6 månader" fi="+ 6 kuukautta" en-us="+ 6 months" no="+ 6 måneder" title-no="Flytt frem 6 måneder" title-fi="Siirrä eteenpäin 6 kuukautta" title-sv="Flytta fram 6 månader" title-en-us="Move forward 6 months" data-action="ActionPad_todo.Postpone, m, 6"></li>
+		<li class="divider"></li>
+        <li sv="+ 1 år" fi="+ 1 vuosi" en-us="+ 1 year" no="+ 1 år" title-no"Flytt frem 1 år" title-fi="Siirrä eteenpäin 1 vuosi" title-sv="Flytta fram 1 år" title-en-us="Move forward 1 year" data-action="ActionPad_todo.Postpone, yyyy, 1"></li>
 		
-    <!-- /INFO HEADER  -->
-    <!-- ACTIONS   -->
-    <div class="content-container">
-      		
-        <ul class="nav nav-list expandable">
-             <li class="nav-header" sv="Kommando" fi="Komentoja" en-us="Commands" no="Kommando"></li>
-             <li class="divider"></li>
-             <li sv="Pricka av & stäng" fi="Merkitse valmiiksi & sulje" en-us="Set done & close" no="Sett som utført og steng" title-fi="Merkitse valmiiksi & sulje" title-no"Sett som utført og steng" title-sv="Pricka av att göra och stäng kortet." title-en-us="Set done and close the card" data-action="Actionpad_Todo.SetDone"> <i class="icon-check"></i></li>
-             <li sv="Pricka av & skapa Att-göra" fi="Merkitse valmiiksi & luo uusi tehtävä" en-us="Set done & create todo" no="Sett som utført og skap en oppgave" title-fi="Merkitse valmiiksi & luo uusi tehtävä" title-no"Sett som utført og skap en oppgave" title-sv="Pricka av att göra och skapa en att-göra." title-en-us="Set done and create a todo task"	data-action="Actionpad_Todo.SetDone, true, false"><i class="icon-calendar"></i></li>
-             <li sv="Pricka av & skapa historik" fi="Merkitse valmiiksi & luo historiamerkintä" en-us="Set done & create history" no="Sett som utført og skap historikk" title-fi="Merkitse valmiiksi & luo historiamerkintä" title-no="Sett som utført og skap historikk" title-sv="Pricka av att göra och skapa en historiknotering." title-en-us="Set done and create a history note" data-action="Actionpad_Todo.SetDone, false, true"> <i class="icon-calendar"></i></li>
-			 <li sv="Skapa historiknotering" fi="Tee uusi historiamerkintä" en-us="Create a history note" no="Skap historikk" title-no="Skap historikk" title-fi="Tee uusi historiamerkintä" title-sv="Skapa historiknotering" title-en-us="Create a history note"	data-action="ActionpadTools.NewInspectorFromInspector, history"> <i class="icon-file-text-alt"></i></li>
-         </ul> 
-		 
-	<div class="btn-group">
-		<a class="btn dropdown-toggle" data-toggle="dropdown" sv="Flytta fram", en-us="Move forward", no="Flytt fremover" fi="Siirrä eteenpäin" href="#">
-		<i class="icon-caret-down"></i>
-		</a>
-		<ul class="dropdown-menu">
-			<li sv="+ 1 dag" fi="+ 1 päivä" en-us= "+ 1 day" no="+ 1 dag" title-no"Flytt frem 1 dag" title-fi="Siirrä eteenpäin 1 päivä" title-sv="Flytta fram 1 dag" title-en-us="Move forward one day" data-action="ActionPad_todo.Postpone, d, 1"></li>
-		    <li class="divider"></li>
-            <li sv="+ 1 veckor" fi="+ 1 viikko" en-us="+ 1w" no="+ 1 uke" title-no="Flytt frem 1 uke" title-fi="Siirrä eteenpäin 1 viikko" title-sv="Flytta fram 1 vecka" title-en-us="Move forward 1 week" data-action="ActionPad_todo.Postpone, ww, 1"></li>
-			<li sv="+ 2 veckor" fi="+ 2 viikkoa" en-us="+ 2w" no="+ 2 uker" title-no="Flytt frem 2 uker" title-fi="Siirrä eteenpäin 2 viikkoa" title-sv="Flytta fram 2 veckor" title-en-us="Move forward 2 Weeks" data-action="ActionPad_todo.Postpone, ww, 2"></li>
-            <li class="divider"></li>
-            <li sv="+ 1 månad" fi="+ 1 kuukausi" en-us="+ 1 month" no="+ 1 måned" title-no="Flytt frem 1 måned" title-fi="Siirrä eteenpäin 1 kuukausi" title-sv="Flytta fram 1 månad" title-en-us="Move forward one month" data-action="ActionPad_todo.Postpone, m, 1"></li>
-			<li sv="+ 6 månader" fi="+ 6 kuukautta" en-us="+ 6 months" no="+ 6 måneder" title-no="Flytt frem 6 måneder" title-fi="Siirrä eteenpäin 6 kuukautta" title-sv="Flytta fram 6 månader" title-en-us="Move forward 6 months" data-action="ActionPad_todo.Postpone, m, 6"></li>
-			<li class="divider"></li>
-            <li sv="+ 1 år" fi="+ 1 vuosi" en-us="+ 1 year" no="+ 1 år" title-no"Flytt frem 1 år" title-fi="Siirrä eteenpäin 1 vuosi" title-sv="Flytta fram 1 år" title-en-us="Move forward 1 year" data-action="ActionPad_todo.Postpone, yyyy, 1"></li>
-			
-		</ul>
-	</div>	
-        
-        <div class="info" data-info="ActionPad_Todo.IsLate,error,icon-warning-sign"></div>		
-			
-</div>
-		 
+	</ul>
+</div>	
     
-    <!-- /ACTIONS  -->
-    <!--  ================================================== Le javascript ================================================== -->   
-    <!-- LIME ACTIONPAD STANDARD TOOLS -->
-	<!-- DO NOT CHANGE ANYTHING HERE!!! -->
-    <script src="lib/js/jquery-1.9.1.min.js" charset="utf-8" type="text/javascript"></script>
-    <script src="lib/js/bootstrap.min.js" charset="utf-8" type="text/javascript"></script>
-    <script src="lib/js/limejs.js" type="text/javascript"></script>
-     <!-- /LIME ACTIONPAD STANDARD TOOLS -->
-     <!-- CUSTOM THINGS -->
-    <script type="text/javascript" >
-        $(document).ready(function () {
-            //Add custom Javascript here.
-        });
-    </script>
-       <!-- /CUSTOM THINGS -->    
-     <!--  ================================================== /Le javascript ================================================== -->             
-  
-</body>
-</html>
+    <div class="info" data-info="ActionPad_Todo.IsLate,error,icon-warning-sign"></div>		
+		
+</div>
+	 
+
+<!-- /ACTIONS  -->
+   
