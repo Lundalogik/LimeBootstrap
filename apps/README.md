@@ -32,7 +32,7 @@ Actually the format is JSONP to avoid cross scripting errors when fetching local
 ##The javascript app structure
 	
 ```javascript
-var app = {
+window.[insert_app_name_here] = {
 
 	"data":{}, // Holds the LIME Data in JSON format
 
