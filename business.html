@@ -2,14 +2,17 @@
     <div class="header-container green">
         <div class="header-icon-container business"></div>
         <div id="header-info"> 
-            <h2 data-bind="limeData: business.name.text"></h2>
+            <h2 ></h2>
                 <ul>
-                    <li data-bind="limeData: business.company.text, limeAction:{limeLink:business.company}, icon: 'icon-building'"></li>
-                    <li data-bind="limeData: business.coworker.text, limeAction: { limeLink:business.coworker }, icon: 'icon-user'"></li>
-					<li data-bind="limeData: business.businesstatus.text,limeAction:{showOnMap:business.name.text}, icon: 'icon-flag'"></li>
+                    <li data-bind="text: business.company.text, limeAction: { limeLink: business.company }, icon: 'icon-building'"></li>
+                    <li data-bind="text: business.coworker.text, limeAction: { limeLink: business.coworker }, icon: 'icon-user'"></li>
+					<li data-bind="text: business.businesstatus.text, limeAction: { showOnMap: business.name.text }, icon: 'icon-flag'"></li>
+                    <li data-bind="loc: business.businesstatus.text">test</li>
+
                 </ul> 
         </div>		
 	</div>
+
     <!-- /INFO HEADER  -->
     <!-- ACTIONS   -->
     <div class="content-container">		
@@ -20,6 +23,6 @@
              <li data-bind="limeAction: { VBA: 'ActionPadTools.NewInspectorFromInspector, history' }, icon:'icon-pencil'">Ny historiknotering</li>
              <li data-bind="limeAction: { VBA: 'ActionPadTools.NewInspectorFromInspector, document' }, icon: 'icon-file-text-alt'">Nytt dokument</li>
 		</ul>	
-	    <div data-app="checklist" data-object="ACtionpad.GetInfo"></div>	  
+	    <div data-app="checklist"></div>	  
     </div>
     <!-- /ACTIONS   -->

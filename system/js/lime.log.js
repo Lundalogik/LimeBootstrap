@@ -1,99 +1,106 @@
 ﻿limejs = limejs || {};
+
+//Log
 limejs.log = {
 
+    //view model
     "vm": null,
 
-    "setup" : function(){
-        if (limejs.debug) {
-            function logVm() {
-                this.logItems = ko.observableArray([]);
-                this.maxNbrOfItems = 25;
+    //init
+    "setup": function (enabled) {
+        //loadViewScript
+        limejs.loader.loadView('system/view/debugLog',$("#debug"))
+        //create viewModel
+        this.vm = new limejs.log.vmFactory();
+        this.vm.enabled(enabled);
 
-                this.addEntry = function (lev, item) {
-                    ico = 'icon-exclamation';
-                    rowclass = 'alert-info';
-                    switch (lev) {
-                        case 'DEBUG':
-                            ico = 'icon-comment-alt';
-                            rowclass = 'alert-warning';
-                            break;
-                        case 'INFO':
-                            ico = 'icon-info-sign';
-                            rowclass = 'alert-info';
-                            break;
-                        case 'WARN':
-                            ico = 'icon-warning-sign';
-                            rowclass = 'alert-danger';
-                            break;
-                        case 'ERROR':
-                            icon = 'icon-remove';
-                            rowclass = 'alert-error';
-                            item[1].stack = item[1].stack.replace(/\n/g, "<br />");
-                            break;
-                    }
-
-                    //remove first item if to meny in log
-                    if (this.logItems().length >= this.maxNbrOfItems) {
-                        this.logItems.shift();
-                    }
-                    
-                    this.logItems.push({ level: lev, text: item, icon: ico, liclass: rowclass });
-
-                };
-
-            };
-
-            limejs.loader.loadView('debug',$("#debug"))
-            this.vm = new logVm();
-            ko.applyBindings(this.vm, $("#debugConsole").get(0));
-        }
+        //ApplyBindings
+        ko.applyBindings(this.vm, $("#debug").get(0));
     },
 
+    //log to the dom
     "logToDom": function (type, msg) {
-        arguments = $.makeArray(msg);
-
-        if (limejs.debug == true) {
-           
-            if (limejs.log.vm) {
-                limejs.log.vm.addEntry(type.toUpperCase(),arguments);
-            }
-            
+        if (!limejs.debug) { return; };
+        if (limejs.log.vm) {
+            limejs.log.vm.addEntry(type.toUpperCase(), msg);
         }
     },
 
-    logToConsole : {
+    //log to console
+    logToConsole: {
         debug : function(msg){
-            try { console.debug(msg[0]) } catch (e) { };
+            try { console.debug(msg) } catch (e) { };
         },
         info: function (msg) {
-            try { console.info(msg[0]) } catch (e) { };
+            try { console.info(msg) } catch (e) { };
         },
         warn: function (msg) {
-            try { console.warn(msg[0]) } catch (e) { };
+            try { console.warn(msg) } catch (e) { };
         },
         error: function (msg) {
             limejs.error = true;
-            try { console.error(msg[0], msg[1]) } catch (e) { };
+            try { console.error(msg) } catch (e) { };
         },
     },
 
     //TODO: implement limitation depending on theshold
-    "debug" : function(){
-        limejs.log.logToDom('DEBUG', arguments);
-        limejs.log.logToConsole.debug(arguments);  
+    "debug": function (msg) {
+        limejs.log.logToDom('DEBUG', msg);
+        limejs.log.logToConsole.debug(msg);
     },
-    "info" : function(){
-        limejs.log.logToDom('INFO', arguments);
-        limejs.log.logToConsole.info(arguments);
+    "info": function (msg) {
+        limejs.log.logToDom('INFO', msg);
+        limejs.log.logToConsole.info(msg);
     },
-    "warn" : function(){
-        limejs.log.logToDom('WARN', arguments);
-        limejs.log.logToConsole.warn(arguments);
+    "warn": function (msg) {
+        limejs.log.logToDom('WARN', msg);
+        limejs.log.logToConsole.warn(msg);
     },
-    "error" : function(){
-        limejs.log.logToDom('ERROR', arguments);
-        limejs.log.logToConsole.error(arguments);
+    "error": function (msg) {
+        limejs.log.logToDom('ERROR', msg);
+        limejs.log.logToConsole.error(msg);
+    },
+    "exception": function (e) {
+        limejs.log.logToDom('ERROR', e.message + limejs.common.nl2br("\n"+e.stack));
+        limejs.log.logToConsole.error(e.message, e);
     },
 }
 
 
+//ViewModel
+limejs.log.vmFactory = function() {
+    this.logItems = ko.observableArray([]);
+    this.maxNbrOfItems = 25;
+    this.enabled = ko.observable(false);
+
+    this.addEntry = function (lev, item) {
+        ico = 'icon-exclamation';
+        rowclass = 'alert-info';
+        switch (lev) {
+            case 'DEBUG':
+                ico = 'icon-comment-alt';
+                rowclass = 'alert-warning';
+                break;
+            case 'INFO':
+                ico = 'icon-info-sign';
+                rowclass = 'alert-info';
+                break;
+            case 'WARN':
+                ico = 'icon-warning-sign';
+                rowclass = 'alert-danger';
+                break;
+            case 'ERROR':
+                console.log(item);
+                icon = 'icon-remove';
+                rowclass = 'alert-error';
+                break;
+        }
+
+        //remove first item if to meny in log
+        if (this.logItems().length >= this.maxNbrOfItems) {
+            this.logItems.shift();
+        }
+                    
+        this.logItems.push({ level: lev, text: item, icon: ico, liclass: rowclass });
+    }
+}

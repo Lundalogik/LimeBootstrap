@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html debug="true">
+<html data-debug="true">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -11,9 +11,7 @@
     <link rel="stylesheet" type="text/css" href="system/css/lime.css" />
 </head>
 <body>
-
-    <div id="debug"></div>
-
+    <div id="debug" data-bind="visible: enabled"></div>
     <div id="content"></div>
 
     <script src="system/js/jquery-1.9.1.min.js" type="text/javascript"></script>
@@ -23,5 +21,6 @@
     <script src="system/js/lime.loader.js" type="text/javascript"></script>
     <script src="system/js/lime.app.js" type="text/javascript"></script>
     <script src="system/js/lime.common.js" type="text/javascript"></script>
+    <script src="system/js/lime.bindings.js" type="text/javascript"></script>
 </body>
 </html>

@@ -20,14 +20,14 @@ limejs.loader = {
         })
         .error(function (jqxhr, textStatus, error) {
             if (require == true) {
-                limejs.log.error("Config failed to load: " + file.toString(), error);
-                alert(data)
+                limejs.log.error(error)
+                limejs.log.error("Config failed to load: " + file.toString());
             } else {
                 limejs.log.info("Config not loaded: " + file.toString());
             }
         })
         .complete(function () {
-            limejs.log.debug("Content of config file " + file + ": " + JSON.stringify(data));
+            //limejs.log.debug("Content of config file " + file + ": " + JSON.stringify(data));
             callback(data);
         });
     },
@@ -97,26 +97,20 @@ limejs.loader = {
 
     "loadData": function () {
         try {
-         //   var record = limejs.limeDataConnection.ActiveInspector.Record
-           // limejs.actionPadData = limejs.loader.recordToJSON(record);
-            limejs.actionPadData = limejs.loader.controlsToJSON(limejs.limeDataConnection.ActiveControls);
+            var record = limejs.limeDataConnection.ActiveInspector.Record
+            //limejs.actionPadData = limejs.loader.recordToJSON(record);
+            limejs.vm[limejs.activeClass] = limejs.loader.controlsToJSON(limejs.limeDataConnection.ActiveControls);
             limejs.log.info('Data from ActiveInspector.record loaded successfully');
-           
         } catch (e) {
-            limejs.log.error("Data could not be loaded. Make sure you are running in LIME", e);
+            limejs.log.warn("ActiveInspector could not be loaded. Make sure you are running in LIME");
         }
     },
 
     "loadSiteConfig": function () {
         
-        this.loadConfig(limejs.loader.systemLibPath + 'config/app.config.json', true, function (config) {
+        this.loadConfig(limejs.loader.systemLibPath + 'config/config.json', true, function (config) {
             limejs.loader.pushResources(config, '/');
         });
-
-        //this.loadConfig(limejs.activeClass + '.config.json', false, function (config) {
-        //    limejs.loader.pushResources(config, '/');
-        //});
-
     },
 
     "uniqueFilter": function (e, i, arr) {
@@ -169,6 +163,41 @@ limejs.loader = {
         }
         return json;
 
-    }
+    },
+
+    setFallBackDummyData: function (node) {
+        //set text
+        var reg = new RegExp("text\:[^\,\}]*");
+        $('[data-bind]').each(function () {
+            var match = reg.exec($(this).attr('data-bind'))
+            var value = '';
+            if (match) {
+                value = 'Text: ' + match[0].split(":")[1].trim();
+                $(this).html(value);
+            }
+        });
+
+        //set value
+        var reg = new RegExp("value\:[^\,\}]*");
+        $('[data-bind]').each(function () {
+            var match = reg.exec($(this).attr('data-bind'))
+            var value = '';
+            if (match) {
+                value = 'Value: ' + match[0].split(":")[1].trim();
+                $(this).attr('value', value);
+            }
+        });
+
+        //set value
+        var reg = new RegExp("loc\:[^\,\}]*");
+        $('[data-bind]').each(function () {
+            var match = reg.exec($(this).attr('data-bind'))
+            var value = '';
+            if (match) {
+                value = 'LOC: ' + match[0].split(":")[1].trim();
+                $(this).html(value);
+            }
+        });
+    },
 
 }

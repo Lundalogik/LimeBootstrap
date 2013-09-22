@@ -8,16 +8,16 @@ limejs.app = {
         var config;
         $("[data-app]").each(function () {
             appName = $(this).attr("data-app")
-            path = "../apps/" + appName + "/";
+            path = "apps/" + appName + "/";
             htmlNode = $(this);
-
+            
             limejs.loader.loadConfig(path + 'config.json', true, function (config) {
-                limejs.loader.pushResources(config, path);
+                console.log(config);
+                limejs.loader.pushResources(config.resources, path);
             });
 
             limejs.apps.push({
                 "name": appName,
-                "dataObject": $(this).attr("data-object"),
                 "config": config,
                 "path": path,
                 "node": htmlNode
@@ -35,14 +35,47 @@ limejs.app = {
             appName = limejs.apps[i].name
             path = limejs.apps[i].path
             htmlNode = limejs.apps[i].node
+            dataType = limejs.apps[i].config.data.type
+            dataSource = limejs.apps[i].config.data.source
+            var data;
 
-            var data = limejs.executeVba(limejs.apps[i].dataObject);
-            if (data != null) {
-                data = $.parseJSON(xml2json($.parseXML(data), ""));
-                limejs.log.info("App loaded: " + appName)
-                //console.log(appName + ".initalize(" + data + ","+ htmlNode +")");
-                //eval(appName + ".initalize(" + "test" + ","+ "test2" +")");
+            switch (dataSource){
+                case 'xml':
+                    data = limejs.executeVba(dataSource);
+                    if (data != null) {
+                        data = $.parseJSON(xml2json($.parseXML(data), ""));
+                        window[appName].initalize(data);
+                        limejs.log.info("App loaded: " + appName)
+                    } else {
+                        limejs.log.warn("App failed to load data: " + appName)
+                    }
+                    break;
+                case 'record':
+                    data = limejs.executeVba(dataSource);
+                    if (data != null) {
+                        data = limejs.loader.recordToJSON(data);
+                        window[appName].initalize(data);
+                        limejs.log.info("App loaded: " + appName)
+                    } else {
+                        limejs.log.warn("App failed to load data: " + appName)
+                    }
+                    break;
+                case 'records':
+                    data = limejs.executeVba(dataSource);
+                    if (data != null) {
+                        data = limejs.loader.recordsToJSON(data);
+                        window[appName].initalize(data);
+                        limejs.log.info("App loaded: " + appName)
+                    } else {
+                        limejs.log.warn("App failed to load data: " + appName)
+                    }
+                    break;
+                case 'none':
+                    window[appName].initalize();
+                    break;
             }
+
+
         });
 
         return this;

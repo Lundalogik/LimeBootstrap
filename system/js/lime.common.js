@@ -39,5 +39,45 @@ limejs.common = {
             (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
         );
     },
+
+    /**
+    * Helperfunction to run LIME functions from JS
+    */
+    "executeVba": function (inString) {
+        try {
+            limejs.log.debug("Trying to execute VBA:" + inString);
+
+            var inArgs = inString.split(',');
+
+            if (inArgs.length > 1) {
+
+                var args = "";
+                var vbaline = "limejs.limeDataConnection.Run('" + inArgs[0] + "', ";
+                for (var i = 1; i < inArgs.length; i++) {
+                    while (inArgs[i].charAt(0) === ' ') {
+                        inArgs[i] = inArgs[i].substr(1);
+                    }
+                    args += "'" + inArgs[i] + "'";
+                    if (i != inArgs.length - 1)
+                        args += ",";
+                }
+                vbaline += args + ")";
+                //alert(vbaline)
+                eval(vbaline);
+            }
+            else {
+                return limejs.limeDataConnection.Run(arguments[0]);
+            }
+
+        } catch (e) {
+            return null;
+            limejs.log.error("executeVBA:" + vbaline, e);
+
+        }
+    },
+
+    nl2br: function (input) {
+        return input.replace(/\n/g, '<br />');
+    }
     
 }
