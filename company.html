@@ -1,15 +1,14 @@
 ﻿
 <!-- INFO HEADER  -->
     <div class="header-container blue">
-        <div class="header-icon-container company">
-				
+        <div class="header-icon-container company">		
         </div>
         <div id="header-info"> 
-            <h2 data-field="Name"></h2>
+            <h2 data-bind="limeData: company.name.text"></h2>
                 <ul >
-                    <li data-field="postalcity" data-action="showOnMap, fullpostaladdress"><i class="icon-map-marker"> </i> </li>
-                    <li data-field="phone" data-action="call"><i class="icon-phone"> </i> </li>
-                    <li data-field="www" data-action="openUrl"><i class="icon-globe"> </i> </li>
+                    <li data-bind="limeData:company.postalcity.text, limeAction:{ showOnMap: company.fullpostaladdress.text}, icon: 'icon-map-marker'"> </li>
+                    <li data-bind="limeData: company.phone.text, limeAction: { call: company.phone.text }, icon: 'icon-phone'"></li>
+                    <li data-bind="limeData: company.www.text, limeAction: { openURL: company.www.text }, icon: 'icon-globe'"></li>
                 </ul> 
         </div>
     </div>
@@ -18,13 +17,12 @@
 <div class="content-container">
       		
     <ul class="menu expandable">
-            <li class="nav-header" sv="Historik" fi="Historia" en-us="History" no="Historikk" ></li>
+            <li class="nav-header">Historik</li>
             <li class="divider"></li>
-            <li sv="Fått e-post" fi="Vastaanotettu email" en-us="Recieved email" no="Fått e-post" title-no="Fått e-post" title-fi="Vastaanotettu email" title-sv="Fått e-post" title-en-us="Recieved email" data-action="ActionPad_Company.NewHistory, receivedemail"><i class="icon-pencil"></i></li>
-            <li sv="Pratat med" fi="Keskustelu" en-us="Talked to" no="Pratet med" title-no="Pratet med" title-fi="Keskustelu" title-sv="Pratat med" title-en-us="Talked to" data-action="ActionPad_Company.NewHistory, talkedto"> <i class="icon-pencil"></i></li>
-            <li sv="Skickat e-post" fi="Lähetetty email" en-us="Sent email" no="Sendt e-post" title-fi="Lähetetty email" title-no="Sendt e-post" title-sv="Skickat e-post" title-en-us="Sent email" data-action="ActionPad_Company.NewHistory, sentemail"><i class="icon-pencil"></i></li>
-            <li sv="Säljsamtal" fi="Myyntipuhelu" en-us="Sales call" no="Salgssamtale" title-no="Salgssamtale" title-fi="Myyntipuhelu" title-sv="Säljsamtal" title-en-us="Sales call" data-action="ActionPad_Company.NewHistory, salescall"><i class="icon-pencil"></i></li>
-            <li sv="Sökt, ej på plats" fi="Tavoiteltu, ei paikalla" en-us="No answer" no="Søkt, ikke på plass" title-fi="Tavoiteltu, ei paikalla" title-no="Søkt, ikke på plass" title-sv="Sökt, ej på plats" title-en-us="No answer" data-action="ActionPad_Company.NewHistory, noanswer"><i class="icon-pencil"></i></li>        
+            <li data-bind="limeAction:{VBA:'ActionPad_Company.NewHistory, receivedemail'}, icon:'icon-pencil'">Fått e-post</li>
+            <li data-bind="limeAction:{VBA:'ActionPad_Company.NewHistory, sentemail'}, icon:'icon-pencil'">Pratat med</li>
+            <li data-bind="limeAction: {VBA: 'ActionPad_Company.NewHistory, salescall' }, icon:'icon-pencil'">Säljsamtal</li>
+            <li data-bind="limeAction: { VBA: 'ActionPad_Company.NewHistory, noanswer' },icon:'icon-pencil'">Sökt, ej på plats</li>        
     </ul>
 
 </div>

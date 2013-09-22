@@ -1,34 +1,25 @@
-﻿
-    <!-- INFO HEADER  -->
-        <div class="header-container green">
-            <div class="header-icon-container business">                
-            </div>
-            <div id="header-info"> 
-                <h2 data-field="Name"></h2>
-                    <ul >
-                        <li data-field="company"><i class="icon-building"></i></li>
-                        <li data-field="coworker" data-action="lime-link"><i class="icon-user"></i></li>
-						<li data-field="businesstatus"><i class="icon-flag"></i></li>
-                    </ul> 
-            </div>		
-
-		</div>
+﻿<!-- INFO HEADER  -->
+    <div class="header-container green">
+        <div class="header-icon-container business"></div>
+        <div id="header-info"> 
+            <h2 data-bind="limeData: business.name.text"></h2>
+                <ul>
+                    <li data-bind="limeData: business.company.text, limeAction:{limeLink:business.company}, icon: 'icon-building'"></li>
+                    <li data-bind="limeData: business.coworker.text, limeAction: { limeLink:business.coworker }, icon: 'icon-user'"></li>
+					<li data-bind="limeData: business.businesstatus.text,limeAction:{showOnMap:business.name.text}, icon: 'icon-flag'"></li>
+                </ul> 
+        </div>		
+	</div>
     <!-- /INFO HEADER  -->
     <!-- ACTIONS   -->
-    <div class="content-container">
-      		
+    <div class="content-container">		
         <ul class="nav nav-list expandable">
-             <li class="nav-header" sv="Kommando" fi="Komentoja" en-us="Commands" no="Kommando" ></li>
+             <li class="nav-header">Kommando</li>
              <li class="divider"></li>
-             <li sv="Ny att göra" fi="Uusi tehtävä" en-us="New todo" no="Ny oppgave" title-no="Ny oppgave" title-fi="Uusi tehtävä" title-sv="Ny att göra uppgift"  title-en-us="New todo" data-action="ActionPadTools.NewInspectorFromInspector, todo"> <i class="icon-calendar"></i></li>
-             <li sv="Ny historiknotering" fi="Uusi historiamerkintä" en-us="New history" no="Ny historikk" title-fi="Uusi historiamerkintä" title-no="Ny historikk" title-sv="Ny historiknotering" title-en-us="New notation" data-action="ActionPadTools.NewInspectorFromInspector, history"> <i class="icon-pencil"></i></li>
-             <li sv="Nytt dokument" fi="Uusi asiakirja" en-us="New document" no="Nytt dokument" title-no="Nytt dokument" title-fi="Uusi asiakirja" title-sv="Nytt dokument" title-en-us="New document" data-action="ActionPadTools.NewInspectorFromInspector, document"> <i class="icon-file-text-alt"></i></li>
-		</ul>
-		
-		
-	<div data-app="checklist" class="checklist"></div>	  
-
-
+             <li data-bind="limeAction: { VBA: 'ActionPadTools.NewInspectorFromInspector, todo' }, icon: 'icon-calendar'">Ny Att-göra</li>
+             <li data-bind="limeAction: { VBA: 'ActionPadTools.NewInspectorFromInspector, history' }, icon:'icon-pencil'">Ny historiknotering</li>
+             <li data-bind="limeAction: { VBA: 'ActionPadTools.NewInspectorFromInspector, document' }, icon: 'icon-file-text-alt'">Nytt dokument</li>
+		</ul>	
+	    <div data-app="checklist" data-object="ACtionpad.GetInfo"></div>	  
     </div>
-	
-    
+    <!-- /ACTIONS   -->

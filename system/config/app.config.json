@@ -1,0 +1,12 @@
+{
+	"scripts": [
+	    
+	],
+	"styles": [
+
+	],
+	"libs": [
+		"xml2json.js",
+		"bootstrap.min.js"
+	]
+}

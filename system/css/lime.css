@@ -1,0 +1,503 @@
+/*******************
+STANDARDIZED ITEMS
+*******************/
+
+html {
+    height: 100%;
+    width: 100%;
+    padding:0 !important;
+    margin:0 !important;
+}
+
+body {
+    padding: 0 !important;
+    margin:0 !important;
+    height: inherit !important;
+    overflow: hidden;
+    background-color: #E0EEFF;
+    color: #6985B7;
+    font-size: 13px;
+    font-weight: lighter;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+a {
+    color: white;
+}
+
+ a:hover {
+        text-decoration: none;
+        color: white;
+        cursor: default;
+ }
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+i {
+    padding-right: 5px;
+}
+#content {
+    height:100%;
+
+}
+
+/********
+BUTTONS**
+********/
+
+.btn {
+    background-image:none;
+    background-color:#F1F6FF;
+    box-shadow:none;
+     color: #6985B7;
+    font-size: 11px;
+    font-weight: lighter;
+    border:1px solid #F1F6FF;
+    padding-left:5px;
+}
+
+.btn:hover {
+    color: #6985B7;
+    background-image:none;
+    background-color:#CCE0FF;
+    border: 1px solid #81A9E1; 
+}
+
+.btn:active {
+    color: #8fa6cf;
+    background-image:none;
+    background-color:#ADD1FF;
+    border: 1px solid #81A9E1;
+    
+}
+
+.btn-group.open .btn.dropdown-toggle {
+    background-image:none;
+    background-color:#ADD1FF;
+    border: 1px solid #81A9E1;
+    color: #8fa6cf;
+}
+
+.btn-group {
+    padding: 15px 0 0 10px;
+}
+
+.dropdown-menu {
+    margin: 0px 0 0 10px;
+    width: 120%;
+    min-width:60%;
+}
+
+.dropdown-menu li {
+    padding-left: 10px;
+    cursor: default;
+     font-size: 12px;
+}
+
+.dropdown-menu .divider {
+  margin:3px 1px
+}
+
+.dropdown-menu li:hover {
+    background-image: none;
+    background-color: #EEEEEE;
+}
+
+/*******************
+COLORS
+*******************/
+.blue {
+    background-color: #2693FF;
+    color: white;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+    border-bottom: 1px solid #2469C3;
+}
+
+.header-container.blue:before {
+    border-color: #124985 transparent transparent transparent;
+}
+
+.header-container.blue #header-info li:hover {
+    background-color: #51A9FF;
+}
+
+.yellow {
+    background-color: #D39D09;
+    color: white;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#D39D09')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#D39D09');
+    border-bottom: 1px solid #B98B08;
+}
+
+.header-container.yellow:before {
+    border-color: #5D4D00 transparent transparent transparent;
+}
+
+.header-container.yellow #header-info li:hover {
+    background-color: #B98B08;
+}
+
+.green {
+    background-color: #83BA1F;
+    color: white;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#83BA1F')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#83BA1F');
+    border-bottom: 1px solid #76A51C;
+}
+
+.header-container.green:before {
+    border-color: #4B6712 transparent transparent transparent;
+}
+
+.header-container.green #header-info li:hover {
+    background-color: #76A51C;
+}
+
+.orange {
+    background-color: #E56C19;
+    color: white;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#E56C19')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#E56C19');
+    border-bottom: 1px solid #B95815;
+}
+
+.header-container.orange:before {
+    border-color: #813E0F transparent transparent transparent;
+}
+
+.header-container.orange #header-info li:hover {
+    background-color: #B95815;
+}
+
+.darkgrey {
+    background-color: #464646;
+    color: white;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#464646')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#464646');
+    border-bottom: 1px solid #1E1E1E;
+}
+
+.header-container.darkgrey:before {
+    border-color: #1E1E1E transparent transparent transparent;
+}
+
+.header-container.darkgrey #header-info li:hover {
+    background-color: #1E1E1E;
+}
+
+.white {
+    background-color: #FFFFFF;
+    color: white;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#FFFFFF')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#FFFFFF');
+    border-bottom: 1px solid #7E7E7E;
+}
+
+.header-container.white:before {
+    border-color: #7E7E7E transparent transparent transparent;
+}
+
+.header-container.white #header-info li:hover {
+    background-color: #7E7E7E;
+}
+
+
+.purple {
+    background-color: #981BB6;
+    color: white;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#981BB6')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#981BB6');
+    border-bottom: 1px solid #791790;
+}
+
+.header-container.purple:before {
+    border-color: #360A40 transparent transparent transparent;
+}
+
+.header-container.purple #header-info li:hover {
+    background-color: #791790;
+}
+
+.red {
+    background-color: #BF3B26;
+    color: white;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#BF3B26')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#BF3B26');
+    border-bottom: 1px solid #A73624;
+}
+
+.header-container.red:before {
+    border-color: #5F1F15 transparent transparent transparent;
+}
+
+.header-container.red #header-info li:hover {
+    background-color: #A73624;
+}
+
+/*******************
+HEADER
+*******************/
+.header-container {
+    position: relative;
+    box-shadow: -2px 1px 2px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    padding: 30px 0 15px 0;
+    cursor:default;
+    /*border-bottom: 1px solid #2469C3*/
+}
+
+.header-container:before {
+    content: " ";
+    background-color: #E0EEFF;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 0;
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+}
+
+.header-container .header-icon-container {
+    padding-left: 60px;
+    padding-bottom: 10px;
+    padding-top: 64px;
+}
+/*******************************/
+/**USED TO SET HEADER PICTURES**/
+/*******************************/
+.company {
+    background: url(../img/company.png) no-repeat 64px top;
+}
+
+.person {
+    background: url(../img/person.png) no-repeat 64px top;
+}
+
+.business {
+    background: url(../img/business.png) no-repeat 64px top;
+}
+
+.campaign {
+    background: url(../img/campaign.png) no-repeat 64px top;
+}
+
+.todo {
+    background: url(../img/todo.png) no-repeat 64px top;
+}
+
+.whiteboard {
+    background: url(../img/whiteboard.png) no-repeat 64px top;
+}
+
+.helpdesk {
+    background: url(../img/helpdesk.png) no-repeat 64px top;
+}
+
+
+.header-container #header-icon {
+    height: 70px;
+    font-size: 65px;
+}
+
+.header-container #header-info li:hover {
+    cursor: default;
+}
+
+.header-container #header-info {
+    text-decoration: none;
+}
+
+.header-container #header-info h2 {
+    font-size: 18px;
+    letter-spacing: -3;
+    margin: 0;
+    padding: 0 0 0 20px;
+    font-weight: lighter;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header-container #header-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.header-container #header-info ul > li {
+    width: 50%;
+    list-style-position: inside;
+    width: 100%;
+    padding: 0 0 0 15px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/*******************
+CONTENT
+*******************/
+.content-container {
+    position: relative;
+    padding-top: 10px;
+    background-color: #F1F6FF;
+    height: 100%;
+    margin-right: 10px;
+    box-shadow: 1px 0 2px #BEC8D5;
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5');
+}
+
+.nav-list {
+    padding-top: 10px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+    .nav-list > li {
+        padding-left: 15px;
+        cursor: default;
+    }
+
+.nav-header {
+    text-transform: none;
+    color: #425899;
+    font-weight: lighter;
+    padding: 3px 15px 0;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: default;
+    margin-left: 0 !important;
+}
+
+.nav-list .divider {
+    margin: 0 15px 0 15px;
+    background-color: #D2E4FF;
+    margin-bottom: 3px;
+}
+
+.nav-list > li:not(.nav-header):not(.divider) {
+    color: #6985B7;
+    font-size: 11px;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-weight: lighter;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nav-list > li:not(.nav-header):not(.divider):hover {
+    background-color: #E0EEFF;
+}
+
+/*******************
+Debug
+*******************/
+#debugConsole {
+    padding:0px;
+}
+#debugConsole .nav-header {
+    list-style:none;
+    background-color:#FF0000;
+    color:#FFF;
+}
+
+#console {
+     padding-left:5px;
+     margin-left:0px;
+    background-color:#000;
+}
+
+#console li  {
+    background-color:#000;
+    
+}
+#console p  {
+    padding-left:15px;
+    margin-bottom:0;
+    
+}
+/*******************
+APP AREA
+*******************/
+.app-area {
+    color: #FFF;
+    background-image: -ms-linear-gradient(left, #A8A8A8 0%, #A8A8A8 100%);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    background-color: #A8A8A8;
+    margin-right: 10px;
+}
+
+.carousel {
+    margin-left: 8px;
+    width: 90%;
+    white-space: normal;
+}
+
+.carousel h3 {
+    white-space: nowrap;
+}
+
+
+/*******************
+INFO
+*******************/
+.alert {
+     white-space:normal;
+}
+
+
+.info {
+    
+    position:fixed;
+    bottom:0;
+    margin:0;
+    margin-bottom: 0px !important;
+}
+
+    .info p {
+   
+    }
+
+
+    
+.info i {
+   
+   font-size:30px;
+   margin-right:5px;
+   float:left;
+}
+
+
+/*******************
+LIME GRAPH
+*******************/
+
+.limegraph {
+
+    margin-top:40px;
+}

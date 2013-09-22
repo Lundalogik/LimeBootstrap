@@ -4,8 +4,10 @@ checklist =  {
         "data": {},
         "element":{},
         "main": function (data, element) {
-		console.log(this.data.checklist.businesstypeactivity[1].order)
+		//console.log(this.data.checklist.businesstypeactivity[1].order)
             // Load the XML
+
+
 			var a = "{{#each businesstypeactivity}} \
 			 <div class='task' id={{order}}> \
 				<input type='checkbox' value='None' id='inp_{{order}}' name='check' /> \

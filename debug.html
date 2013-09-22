@@ -1,0 +1,15 @@
+﻿    <ul id="debugConsole" class="nav nav-list expandable hidden" >
+        <li class="nav-header alert-error">Debug</li>
+        <li id="console">
+            <ul data-bind="foreach: logItems">
+                <li data-bind="attr: { class: liclass }">
+                    <i data-bind="attr: { class: icon }"> </i> <span data-bind="text: text[0]"></span>
+                     <!-- ko if: level ==="ERROR" -->
+                    <p>Description: <span  data-bind="text: text[1].description"></span></p>
+                    <p><span  data-bind="html: text[1].stack"></span></p>
+                    <!-- /ko  -->
+
+                </li>
+            </ul>
+        </li>
+	</ul>	
