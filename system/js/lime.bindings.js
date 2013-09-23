@@ -1,52 +1,54 @@
-﻿//limeData
-//ko.bindingHandlers.limeData = {
-//    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-//        $(element).append(valueAccessor);
-//    }
-//};
-
-//limeActions
-ko.bindingHandlers.limeAction = {
+﻿
+ko.bindingHandlers.limeLink = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        //LimeLink
-        if (valueAccessor().limeLink) {
+       
             $(element).click(function () {
                 limejs.executeVba("shell," + limejs.common.createLimeLink(valueAccessor().limeLink.class, valueAccessor().limeLink.value));
             });
-        }
-        //VBA
-        if (valueAccessor().VBA) {
+        
+    },
+};
+
+ko.bindingHandlers.vba = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             $(element).click(function () {
                 limejs.common.executeVba(valueAccessor().VBA);
             });
-        }
-        //showOnMap
-        if (valueAccessor().showOnMap) {
-            try {
-                $(element).click(function () {
-                    limejs.executeVba("shell,https://www.google.com/maps?q=" + valueAccessor().showOnMap.replace(/\r?\n|\r/g, ' '));
-                });
-            } catch (e) {
-                limejs.log.error("ShowOnMap", e);
-            }
-        }
-        //call
-        if (valueAccessor().call) {
+    },
+};
+
+ko.bindingHandlers.showOnMap = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        try {
             $(element).click(function () {
-                limejs.executeVba("shell,tel:" + valueAccessor().call);
+                limejs.executeVba("shell,https://www.google.com/maps?q=" + valueAccessor().showOnMap.replace(/\r?\n|\r/g, ' '));
             });
+        } catch (e) {
+            limejs.log.exception(e);
+            limejs.log.error("ShowOnMap failed");
         }
-        //openURL
-        if (valueAccessor().openURL) {
+    },
+};
+
+ko.bindingHandlers.call = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        $(element).click(function () {
+            limejs.executeVba("shell,tel:" + valueAccessor());
+        });
+    },
+};
+
+ko.bindingHandlers.openURL = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             $(element).click(function () {
-                limejs.executeVba("shell," + valueAccessor().openURL);
+                limejs.executeVba("shell," + valueAccessor());
             });
-        }
-    }
+        
+    },
 };
 
 //limeVisibility
-ko.bindingHandlers.limeVisibility = {
+ko.bindingHandlers.vbaVisibility = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         $(element).click(function () {
             var visible = limejs.executeVba(valueAccessor);
