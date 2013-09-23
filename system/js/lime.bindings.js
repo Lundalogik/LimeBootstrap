@@ -1,19 +1,19 @@
 ﻿
 ko.bindingHandlers.limeLink = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-       
-            $(element).click(function () {
-                limejs.executeVba("shell," + limejs.common.createLimeLink(valueAccessor().limeLink.class, valueAccessor().limeLink.value));
-            });
-        
+
+        $(element).click(function () {
+            limejs.executeVba("shell," + limejs.common.createLimeLink(valueAccessor().limeLink.class, valueAccessor().value));
+        });
+
     },
 };
 
 ko.bindingHandlers.vba = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-            $(element).click(function () {
-                limejs.common.executeVba(valueAccessor().VBA);
-            });
+        $(element).click(function () {
+            limejs.common.executeVba(valueAccessor());
+        });
     },
 };
 
@@ -21,7 +21,7 @@ ko.bindingHandlers.showOnMap = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         try {
             $(element).click(function () {
-                limejs.executeVba("shell,https://www.google.com/maps?q=" + valueAccessor().showOnMap.replace(/\r?\n|\r/g, ' '));
+                limejs.executeVba("shell,https://www.google.com/maps?q=" + valueAccessor().replace(/\r?\n|\r/g, ' '));
             });
         } catch (e) {
             limejs.log.exception(e);
@@ -40,10 +40,10 @@ ko.bindingHandlers.call = {
 
 ko.bindingHandlers.openURL = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-            $(element).click(function () {
-                limejs.executeVba("shell," + valueAccessor());
-            });
-        
+        $(element).click(function () {
+            limejs.executeVba("shell," + valueAccessor());
+        });
+
     },
 };
 
