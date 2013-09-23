@@ -1,6 +1,6 @@
 {
 	"data": {
-		"type": "none",
+		"type": "xml",
 		"source" : "checklistmodule_getdata"
 	},
 	"resources" : {

@@ -1,6 +1,7 @@
 ﻿limejs = limejs || {};
 limejs.app = {
 
+    //load all app configurations
     "loadApps": function () {
         var path;
         var appName;
@@ -25,6 +26,7 @@ limejs.app = {
         return this;
     },
 
+    //initialize apps and get viewmodels
     "InitializeApps": function () {
         var path;
         var appName;
@@ -47,13 +49,16 @@ limejs.app = {
             //load data
             vm = limejs.app.getAppModelData(appName, dataType, dataSource);
 
+            limejs.log.debug('App ' + appName + ' model data: ' + (JSON.stringify(vm)));
+
             //run initialize
             try{
                 limejs.appsMetaData[key].vm = limejs.apps[appName].initialize(vm);
             } catch (e) {
                 limejs.appsMetaData[key].vm = vm;
-                limejs.log.error("Could not intialize app: " + appName);
                 limejs.log.exception(e);
+                limejs.log.error("Could not intialize app: " + appName);
+                
             }
 
             //apply bindings
@@ -67,20 +72,20 @@ limejs.app = {
 
         });
 
-        console.log(limejs.appsMetaData);
-
         return this;
     },
 
+    //get data requested by app
     getAppModelData: function (appName, dataType, dataSource) {
         var data = {};
+        var vm = limejs.vm;
 
         switch (dataType) {
             case 'xml':
-                data = limejs.executeVba(dataSource);
+                data = limejs.common.executeVba(dataSource);
                 if (data != null) {
                     data = $.parseJSON(xml2json($.parseXML(data), ""));
-                    data = limejs.common.mergeOptions(limejs.vm, data);
+                    vm = limejs.common.mergeOptions(limejs.vm, data);
                     limejs.log.info("App data loaded: " + appName)
                 } else {
                     limejs.log.warn("App failed to load data: " + appName)
@@ -90,7 +95,7 @@ limejs.app = {
                 data = limejs.executeVba(dataSource);
                 if (data != null) {
                     data = limejs.loader.recordToJSON(data);
-                    data = limejs.common.mergeOptions(limejs.vm, data);
+                    vm = limejs.common.mergeOptions(limejs.vm, data);
                     limejs.log.info("App data loaded: " + appName)
                 } else {
                     limejs.log.warn("App failed to load data: " + appName)
@@ -100,7 +105,7 @@ limejs.app = {
                 data = limejs.executeVba(dataSource);
                 if (data != null) {
                     data = limejs.loader.recordsToJSON(data);
-                    data = limejs.common.mergeOptions(limejs.vm, data);
+                    vm = limejs.common.mergeOptions(limejs.vm, data);
                     limejs.log.info("App data loaded: " + appName)
                 } else {
                     limejs.log.warn("App failed to load data: " + appName)
@@ -111,6 +116,6 @@ limejs.app = {
                 break;
         }
 
-        return data;
+        return vm;
     }
 }

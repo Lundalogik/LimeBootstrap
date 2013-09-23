@@ -61,7 +61,7 @@ limejs.loader = {
         limejs.loader.scripts = limejs.loader.scripts.filter(this.uniqueFilter)
         limejs.loader.styles = limejs.loader.styles.filter(this.uniqueFilter)
         limejs.loader.libs = limejs.loader.libs.filter(this.uniqueFilter)
-       // limejs.log.debug(limejs.loader.libs);
+
         limejs.log.debug("Scripts to load:" + limejs.loader.scripts);
         limejs.log.debug("Styles to load: " + limejs.loader.styles);
         limejs.log.debug("Libs to load: " + limejs.loader.libs);
@@ -189,7 +189,7 @@ limejs.loader = {
             }
         });
 
-        //set value
+        //set loc
         var reg = new RegExp("loc\:[^\,\}]*");
         $('[data-bind]').each(function () {
             var match = reg.exec($(this).attr('data-bind'))

@@ -76,8 +76,14 @@ limejs.common = {
         }
     },
 
+    //replace newline with br
     nl2br: function (input) {
         return input.replace(/\n/g, '<br />');
+    },
+
+    //break for newline if braket
+    brak2br: function (input) {
+        return input.replace(/{/g, '<br />').replace(/}/g, '<br />');
     },
 
     merge_options : function (obj1,obj2){

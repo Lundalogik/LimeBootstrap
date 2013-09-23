@@ -45,24 +45,25 @@ limejs.log = {
 
     //TODO: implement limitation depending on theshold
     "debug": function (msg) {
-        limejs.log.logToDom('DEBUG', msg);
-        limejs.log.logToConsole.debug(msg);
+        limejs.log.logToDom('DEBUG', limejs.common.nl2br(msg));
+        limejs.log.logToConsole.debug(limejs.common.nl2br(msg));
     },
     "info": function (msg) {
-        limejs.log.logToDom('INFO', msg);
-        limejs.log.logToConsole.info(msg);
+        limejs.log.logToDom('INFO', limejs.common.nl2br(msg));
+        limejs.log.logToConsole.info(limejs.common.nl2br(msg));
     },
     "warn": function (msg) {
-        limejs.log.logToDom('WARN', msg);
-        limejs.log.logToConsole.warn(msg);
+        limejs.log.logToDom('WARN', limejs.common.nl2br(msg));
+        limejs.log.logToConsole.warn(limejs.common.nl2br(msg));
     },
     "error": function (msg) {
-        limejs.log.logToDom('ERROR', msg);
-        limejs.log.logToConsole.error(msg);
+        limejs.log.logToDom('ERROR', limejs.common.nl2br(msg));
+        limejs.log.logToConsole.error(limejs.common.nl2br(msg));
     },
     "exception": function (e) {
-        limejs.log.logToDom('ERROR', e.message + limejs.common.nl2br("\n"+e.stack));
-        limejs.log.logToConsole.error(e.message, e);
+        //limejs.log.logToDom('ERROR', e.message + limejs.common.nl2br("\n" + e.stack));
+        limejs.log.logToDom('ERROR',limejs.common.nl2br(e.message));
+        limejs.log.logToConsole.error(limejs.common.nl2br(e.message), e);
     },
 }
 
@@ -90,7 +91,6 @@ limejs.log.vmFactory = function() {
                 rowclass = 'alert-danger';
                 break;
             case 'ERROR':
-                console.log(item);
                 icon = 'icon-remove';
                 rowclass = 'alert-error';
                 break;
