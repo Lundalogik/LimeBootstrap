@@ -15,7 +15,8 @@ var limejs = {
     "activeClass": "",
     "activeDatabase": "",
     "activeServer": "",
-    "apps": [],
+    "appsMetaData": {},
+    "apps" : {},
     "error": false,
     "vm": {},
 
@@ -54,6 +55,9 @@ var limejs = {
         //load resources
         this.loader.loadResources();
 
+        //setup bindings
+        this.applyBindings();
+
         //init apps
         this.app.InitializeApps();
 
@@ -66,8 +70,6 @@ var limejs = {
         //Localize page
         this.setupLocalization();
 
-        //setup bindings
-        this.applyBindings()
     },
 
     "setSystemOperationParameters": function () {

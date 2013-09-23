@@ -11,7 +11,6 @@ limejs.loader = {
         
         $.getJSON(file, function (json) {
             data = json;
-            
         })
         //feel free to use chained handlers, or even make custom events out of them!
         .success(function () {
@@ -30,6 +29,8 @@ limejs.loader = {
             //limejs.log.debug("Content of config file " + file + ": " + JSON.stringify(data));
             callback(data);
         });
+
+        return data;
     },
     "pushResources": function (data, appPath) {
         var path;
