@@ -55,6 +55,9 @@ var limejs = {
         //load resources
         this.loader.loadResources();
 
+        //Localize page
+        this.setupLocalization();
+
         //setup bindings
         this.applyBindings();
 
@@ -67,8 +70,7 @@ var limejs = {
         //setOnclickEvents
         this.SetOnclickEvents();
 
-        //Localize page
-        this.setupLocalization();
+        
 
     },
 
@@ -170,7 +172,7 @@ var limejs = {
     },
 
     "setupLocalization"  :  function() {
-
+        limejs.loader.loadLocalization();
     },
 
 }

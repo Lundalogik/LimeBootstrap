@@ -38,7 +38,6 @@ limejs.loader = {
         if (typeof data == 'undefined') {
             return;
         }
-        console.log(path + data.libs);
         $.each(data.scripts, function (i) {
             path = appPath == '/' ? limejs.loader.systemLibPath+'js/' : appPath;
             limejs.loader.scripts.push(path + data.scripts[i]);
@@ -114,8 +113,44 @@ limejs.loader = {
         });
     },
 
+    "loadLocalization": function () {
+        var keys = limejs.common.executeVba("Localize.getDictionaryKeys");
+        var data = limejs.common.executeVba("Localize.getDictionary");
+        var parsedData;
+        var vm = {};
+        //return empty object if missing or no language support
+        if (!data || !keys) {
+            limejs.log.warn("Localization dictionary could not be loaded");
+            parsedData = {};
+        } else {
+            parsedData = limejs.loader.dictionaryToJSON(keys, data);
+
+            $.each(parsedData, function (key, value) {
+                keysplit = key.split("$$");
+                vm[keysplit[0]] =  vm[keysplit[0]] || {};
+                vm[keysplit[0]][keysplit[1]] = value
+            })
+        }
+        limejs.vm.localize = vm;
+        limejs.log.debug('Localizaton model: ' + (JSON.stringify(vm)));
+    },
+
     "uniqueFilter": function (e, i, arr) {
         return arr.lastIndexOf(e) === i;
+    },
+
+    "dictionaryToJSON": function (keys,dic) {
+        var key,value;
+        var json = {};
+      
+        for (var i = 1; i <= dic.count; i++) {
+            key = keys(i);
+            value = dic.item(key);
+            json[key] = value;
+        }
+  
+        return json;
+
     },
 
     "recordToJSON": function (record) {

@@ -67,10 +67,3 @@ ko.bindingHandlers.icon = {
         $(element).html("<i class='" + valueAccessor() + "'></i>");
     }
 };
-
-//localization
-ko.bindingHandlers.loc = {
-    update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        $(element).html("Not implemented");
-    }
-};
