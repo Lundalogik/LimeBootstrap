@@ -202,38 +202,24 @@ limejs.loader = {
     },
 
     setFallBackDummyData: function (node) {
+        var value = '';
+
         //set text
-        var reg = new RegExp("text\:[^\,\}]*");
         $('[data-bind]').each(function () {
-            var match = reg.exec($(this).attr('data-bind'))
-            var value = '';
+            var match = new RegExp("text\:[^\,\}]*").exec($(this).attr('data-bind'))
             if (match) {
-                value = 'Text: ' + match[0].split(":")[1].trim();
-                $(this).html(value);
+                $(this).html('Text: ' + match[0].split(":")[1].trim());
             }
         });
 
         //set value
-        var reg = new RegExp("value\:[^\,\}]*");
         $('[data-bind]').each(function () {
-            var match = reg.exec($(this).attr('data-bind'))
-            var value = '';
+            var match = new RegExp("value\:[^\,\}]*").exec($(this).attr('data-bind'))
             if (match) {
-                value = 'Value: ' + match[0].split(":")[1].trim();
-                $(this).attr('value', value);
+                $(this).attr('value', ('Value: ' + match[0].split(":")[1].trim()));
             }
         });
 
-        //set loc
-        var reg = new RegExp("loc\:[^\,\}]*");
-        $('[data-bind]').each(function () {
-            var match = reg.exec($(this).attr('data-bind'))
-            var value = '';
-            if (match) {
-                value = 'LOC: ' + match[0].split(":")[1].trim();
-                $(this).html(value);
-            }
-        });
     },
 
 }
