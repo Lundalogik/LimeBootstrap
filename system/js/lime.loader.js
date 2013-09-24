@@ -1,11 +1,17 @@
 ﻿limejs = limejs || {};
 limejs.loader = {
-    "systemLibPath" : "system/",
 
+    /**
+    Attrbutes
+    */
+    "systemLibPath" : "system/",
     "scripts": [],
     "styles": [],
     "libs": [],
 
+    /**
+    Add resources from config to load-lists
+    */
     "pushResources": function (data, appPath) {
         var path;
 
@@ -28,24 +34,11 @@ limejs.loader = {
         })
     },
 
-    "loadScript" : function(val){
-        var success = false;
-        $.getScript(val)
-          .done(function( script, textStatus ) {
-              success = true;
-          })
-          .fail(function( jqxhr, settings, exception ) {
-              //limejs.log.exception(exception);
-              limejs.log.error('failed to load script: ' + val);
-          });
-        return success;
-    },
-    "loadStyle": function (val) {
-        $('<link/>', { rel: 'stylesheet', type: 'text/css', href: val }).appendTo('head');
-    },
-
+    /**
+    Process load-list and fetch all resources
+    */
     "loadResources": function () {
-        
+
         limejs.loader.scripts = limejs.loader.scripts.filter(this.uniqueFilter)
         limejs.loader.styles = limejs.loader.styles.filter(this.uniqueFilter)
         limejs.loader.libs = limejs.loader.libs.filter(this.uniqueFilter)
@@ -68,6 +61,32 @@ limejs.loader = {
 
     },
 
+    /**
+    Fetch and run a script from disk
+    */
+    "loadScript" : function(val){
+        var success = false;
+        $.getScript(val)
+          .done(function( script, textStatus ) {
+              success = true;
+          })
+          .fail(function( jqxhr, settings, exception ) {
+              //limejs.log.exception(exception);
+              limejs.log.error('failed to load script: ' + val);
+          });
+        return success;
+    },
+
+    /**
+    Fetch and load a style from disk
+    */
+    "loadStyle": function (val) {
+        $('<link/>', { rel: 'stylesheet', type: 'text/css', href: val }).appendTo('head');
+    },
+
+    /**
+    Fetch template from disk and insert into selected element
+    */
     "loadView": function (file, element) {
         try {
              file = file+".html";
@@ -84,6 +103,9 @@ limejs.loader = {
 
     },
 
+    /**
+    Load all datasources in set to the selected viewmodel
+    */
     loadDataSources: function (vm, dataSources) {
         $.each(dataSources, function (key,source) {
             vm = limejs.loader.loadDataSource(vm, source);
@@ -91,6 +113,9 @@ limejs.loader = {
         return vm;
     },
 
+    /**
+    Load a datasource to the selected viewmodel
+    */
     loadDataSource: function (vm, dataSource) {
         var data = {};
 
@@ -115,7 +140,7 @@ limejs.loader = {
                     }
                     break;
                 case 'record':
-                    data = limejs.executeVba(dataSource.source);
+                    data = limejs.common.executeVba(dataSource.source);
                     if (data != null) {
                         data = limejs.loader.recordToJSON(data);
                     } else {
@@ -123,7 +148,7 @@ limejs.loader = {
                     }
                     break;
                 case 'records':
-                    data = limejs.executeVba(dataSource.source);
+                    data = limejs.common.executeVba(dataSource.source);
                     if (data != null) {
                         data = limejs.loader.recordsToJSON(data);
                     } else {
@@ -151,11 +176,9 @@ limejs.loader = {
                     }
                     data.localize = collecton;
                     break;
-                case 'none':
-
-                    break;
             }
  
+            //merge options into the viewModel
             vm = limejs.common.mergeOptions(vm, data || {});
         }catch(e){
             limejs.log.exception(e);
@@ -165,10 +188,16 @@ limejs.loader = {
         return vm;
     },
 
+    /**
+    Only return unique values
+    */
     "uniqueFilter": function (e, i, arr) {
         return arr.lastIndexOf(e) === i;
     },
 
+    /**
+    Set all text and value bindings to the binding valus. Used if bindings failed to display helper data.
+    */
     setFallBackDummyData: function (node) {
         var value = '';
 
@@ -190,6 +219,10 @@ limejs.loader = {
 
     },
 
+    /**
+    Transform a VBA dictionary to JSON.
+    A collection with keys is needed as the keys method is not transported to JS
+    */
     "dictionaryToJSON": function (keys,dic) {
         var key,value;
         var json = {};
@@ -204,6 +237,9 @@ limejs.loader = {
 
     },
 
+    /**
+    Transform a VBA record to JSON
+    */
     "recordToJSON": function (record) {
         var nbrOfFields = record.Fields.Count;
         var className = record.Class.Name 
@@ -228,6 +264,9 @@ limejs.loader = {
 
     },
 
+    /**
+    Transform controls on activeInspector to JSON
+    */
     "controlsToJSON": function (controls) {
         var nbrOfControls = controls.Count;
         var className = controls.Class.Name

@@ -1,4 +1,7 @@
-﻿ko.bindingHandlers.limeLink = {
+﻿/**
+LimeLink    
+*/
+ko.bindingHandlers.limeLink = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         $(element).click(function () {
             limejs.common.executeVba("shell," + limejs.common.createLimeLink(ko.unwrap(valueAccessor().class),ko.unwrap(valueAccessor().value)));
@@ -7,6 +10,9 @@
     },
 };
 
+/**
+VBA call  
+*/
 ko.bindingHandlers.vba = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         $(element).click(function () {
@@ -15,6 +21,9 @@ ko.bindingHandlers.vba = {
     },
 };
 
+/**
+Show on google map  
+*/
 ko.bindingHandlers.showOnMap = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         try {
@@ -28,6 +37,9 @@ ko.bindingHandlers.showOnMap = {
     },
 };
 
+/**
+Call phone (simply drop to shell)
+*/
 ko.bindingHandlers.call = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         $(element).click(function () {
@@ -36,6 +48,9 @@ ko.bindingHandlers.call = {
     },
 };
 
+/**
+Open URL (simply drop to shell)
+*/
 ko.bindingHandlers.openURL = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         $(element).click(function () {
@@ -45,7 +60,9 @@ ko.bindingHandlers.openURL = {
     },
 };
 
-//limeVisibility
+/**
+Call VBA function to check if item should be visible 
+*/
 ko.bindingHandlers.vbaVisibility = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         $(element).click(function () {
@@ -61,9 +78,22 @@ ko.bindingHandlers.vbaVisibility = {
     }
 };
 
-//icon
+/**
+Prepend icon
+*/
 ko.bindingHandlers.icon = {
     update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         $(element).prepend("<i class='" + ko.unwrap(valueAccessor()) + "'></i>");
     }
 };
+
+/**
+Load datasources by annotation from actionpad view. Not applicable in apps.
+*/
+ko.bindingHandlers.dataSources = {
+    init: function (elem, valueAccessor) {
+        var sources = ko.unwrap(valueAccessor());
+        limejs.loader.loadDataSources(limejs.vm,sources);
+    }
+};
+ko.virtualElements.allowedBindings.dataSources = true;

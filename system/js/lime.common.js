@@ -1,6 +1,9 @@
 ﻿var limejs = limejs || {};
 limejs.common = {
 
+    /**
+    Fetch a random funny error text
+    */
     "getErrorText": function () {
         var nbr = Math.floor((Math.random() * 5) + 1);
         switch (nbr) {
@@ -21,6 +24,10 @@ limejs.common = {
                 break;
         }
     },
+
+    /**
+    URLencode sensitive strings
+    */
     "escapeHtml": function (unsafe) {
         return unsafe
              .replace(/&/g, "&amp;")
@@ -30,10 +37,16 @@ limejs.common = {
              .replace(/'/g, "&#039;");
     },
 
+    /**
+    Create a limelink from class, id, server and database properties
+    */
     "createLimeLink": function (limeClass, limeId) {
         return "limecrm:"+limeClass+"."+limejs.activeDatabase + "." + limejs.activeServer + "?" + limeId
     },
 
+    /**
+    Fetch the url parameters from the GET-URL
+    */
     "getURLParameter": function (name) {
         return decodeURI(
             (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
@@ -41,7 +54,7 @@ limejs.common = {
     },
 
     /**
-    * Helperfunction to run LIME functions from JS
+    * Helperfunction to run VBA functions from JS
     */
     "executeVba": function (inString) {
         try {
@@ -76,25 +89,33 @@ limejs.common = {
         }
     },
 
-    //replace newline with br
+    /**
+    replace newline with br
+    */
     nl2br: function (input) {
         return input.replace(/\n/g, '<br />');
     },
 
-    //break for newline if braket
+ 
+    /**
+    Add newline if braket
+    */
     brak2br: function (input) {
         return input.replace(/{/g, '<br />').replace(/}/g, '<br />');
     },
 
+    /**
+    Add attributes from one JS objekt to another. Duplicates are discarded.
+    */
     mergeOptions: function (obj1, obj2) {
-        var obj3 = {};
-        $.each(obj1, function (key,value) {
-            obj3[key] = value;
-        })
         $.each(obj2, function (key, value) {
-            obj3[key] = value;
+            if (!obj1[key]) {
+                obj1[key] = value;
+            } else {
+                limejs.log.warn("Key " + key + ' was not added to the view model. Key already exists');
+            }
         })
-        return obj3;
+        return obj1;
    },
     
 }

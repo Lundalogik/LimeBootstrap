@@ -1,7 +1,9 @@
 ﻿limejs = limejs || {};
 limejs.app = {
 
-    //load all app configurations
+    /**
+    load all app configurations
+    */
     "IdentifyApps": function () {
         var path;
         var appName;
@@ -30,6 +32,9 @@ limejs.app = {
         return this;
     },
 
+    /**
+    Copy global viewmodel to app and add the datasources for the app
+    */
     "buildAppViewModels": function () {
         var path;
         var appName;
@@ -53,7 +58,11 @@ limejs.app = {
 
     },
 
-    //initialize apps and get viewmodels
+    /**
+    Initialize the app
+    Make variables observable
+    Apply bindings
+    */
     "InitializeApps": function () {
         var path;
         var appName;

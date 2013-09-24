@@ -1,18 +1,18 @@
 ﻿/**
-* limejs.js is the default LIME Pro javascript lib for actionpad functions.
+* This is the default LIME Pro javascript lib for actionpad functions.
 * It contains many functions to make the world a little better place.
 */
 
-
-//declare limejs container
+/**
+Objekt container
+*/
 var limejs = limejs || {
-
-    //config
+    /**
+    Properties
+    */
     "debug": false,
     "limeDataConnection": window.external,
-    "hasLimeConnection" : true,
-
-    //props
+    "hasLimeConnection": true,
     "activeClass": "",
     "activeDatabase": "",
     "activeServer": "",
@@ -21,7 +21,9 @@ var limejs = limejs || {
     "error": false,
     "vm": {},
 
-    //config
+    /**
+    config
+    */
     config : {
         dataSources: [
              { type: 'activeInspector', source: '' },
@@ -30,11 +32,13 @@ var limejs = limejs || {
         resources: {
             scripts: [],
             styles: [],
-            libs: ['json2xml.js']
+            libs: ['json2xml.js', 'moment.min.js']
         }
     },
 
-    //setup
+    /**
+    Setup
+    */
     setup: function () {
 
         //system param
@@ -80,6 +84,10 @@ var limejs = limejs || {
         this.SetOnclickEvents();
 
     },
+
+    /**
+    Fetch variables required to run system
+    */
     "setSystemOperationParameters": function () {
 
         //ajax should be async
@@ -94,6 +102,9 @@ var limejs = limejs || {
         this.hasLimeConnection = (typeof limejs.limeDataConnection.Application != 'undefined');
     },
 
+    /**
+    Find debug flags
+    */
     "setDebugStatus": function () {
         if ($("html").attr("data-debug").toLowerCase() === "true") {
             limejs.debug = true
@@ -102,6 +113,9 @@ var limejs = limejs || {
         }
     },
 
+    /**
+    Find active actionpad view
+    */
     "setActionPadClass": function () {
         if (limejs.common.getURLParameter("ap") != 'null') {
             this.activeClass = limejs.common.getURLParameter("ap");
@@ -118,7 +132,9 @@ var limejs = limejs || {
         limejs.log.info("Using view: " + limejs.activeClass);
     },
 
-
+    /**
+    Find database and server
+    */
     "setActiveDBandServer": function () {
        
         try {
@@ -147,11 +163,11 @@ var limejs = limejs || {
             }
         )
     },
+
     /**
     * On load handler. Executes events when the actionpad is loaded, such as running setting up the DOM, hideing things and setting up 
     * 
     **/
-
     "ExecuteOnloadEvents": function () {
 
         $(".menu").addClass("nav nav-list")
@@ -165,6 +181,9 @@ var limejs = limejs || {
         });
     },
 
+    /**
+    Apply knockout bindings to actionpad, note: no apps will be effected
+    */
     "applyBindings": function () {
         try {
             limejs.log.debug('ViewModel: ' + JSON.stringify(limejs.vm));
@@ -178,10 +197,12 @@ var limejs = limejs || {
     },
 }
 
-//ViewModel
-limejs.vmFactory = function () {
+/**
+ViewModel factory, extend this to add knockout functionality to actionpads
+*/
+limejs.vmFactory = function () {}
 
-}
-
-//run the awesomeness
+/**
+Every this is loaded, run the awesomeness!
+*/
 $(document).ready(function () { window.limejs = limejs; limejs.setup();})
