@@ -1,8 +1,7 @@
 {
-	"data": {
-		"type": "xml",
-		"source" : "checklistmodule_getdata"
-	},
+	"dataSources": [
+		{"type": "xml", "source" : "checklistmodule_getdata"}
+	],
 	"resources" : {
 		"scripts": [
 	    	"template.js"
