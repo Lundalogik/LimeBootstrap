@@ -25,5 +25,5 @@ limejs.apps.template = {
 
 
         return viewModel;
-    }
+   }
 }

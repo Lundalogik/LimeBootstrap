@@ -1,31 +1,32 @@
 ﻿<!-- INFO HEADER  -->
-    <div class="header-container green">
-        <div class="header-icon-container business"></div>
-        <div id="header-info"> 
-            <h2 ></h2>
-                <ul>
-                    <li data-bind="text: business.company.text, limeAction: { limeLink: business.company }, icon: 'icon-building'"></li>
-                    <li data-bind="text: business.coworker.text, limeAction: { limeLink: business.coworker }, icon: 'icon-user'"></li>
-					<li data-bind="text: business.businesstatus.text, limeAction: { showOnMap: business.name.text }, icon: 'icon-flag'"></li>
-                    <li data-bind="loc: business.businesstatus.text">test</li>
+<div class="header-container green">
+    <div class="header-icon-container business"></div>
+    <div id="header-info">
+        <h2></h2>
+        <ul>
+            <li data-bind="text: business.company.text, limeLink: business.company, icon: 'icon-building'"></li>
+            <li data-bind="text: business.businesstatus.text, showOnMap: business.name.text, icon: 'icon-flag'"></li>
+            <li data-bind="text: business.businesstatus.text, vba: 'ActionPadTools.NewInspectorFromInspector, history', icon:'icon-pencil'">Ny historiknotering</li>
+            <li data-bind="text: business.company.text, limeLink: business.company, icon:'icon-pencil'"></li>
+            <li data-bind="text: business.company.text, openURL: 'www.test.com', icon:'icon-pencil'"></li>
+            <li data-bind="text: business.company.text, call: '070111111', icon:'icon-pencil'"></li>
+        
+            
+        </ul>
+    </div>
+</div>
 
-                </ul> 
-        </div>		
-	</div>
+<!-- /INFO HEADER  -->
 
-    <!-- /INFO HEADER  -->
-
-<div data-app="template"></div>	     
+<div data-app="template"></div>
 
 <!-- ACTIONS   -->
-    <div class="content-container">		
-        <ul class="nav nav-list expandable">
-             <li class="nav-header">Kommando</li>
-             <li class="divider"></li>
-             <li data-bind="limeAction: { VBA: 'ActionPadTools.NewInspectorFromInspector, todo' }, icon: 'icon-calendar'">Ny Att-göra</li>
-             <li data-bind="limeAction: { VBA: 'ActionPadTools.NewInspectorFromInspector, history' }, icon:'icon-pencil'">Ny historiknotering</li>
-             <li data-bind="limeAction: { VBA: 'ActionPadTools.NewInspectorFromInspector, document' }, icon: 'icon-file-text-alt'">Nytt dokument</li>
-		</ul>	
-	     
-    </div>
-    <!-- /ACTIONS   -->
+<div class="content-container">
+    <ul class="nav nav-list expandable">
+        <li class="nav-header">Kommando</li>
+        <li class="divider"></li>
+
+    </ul>
+
+</div>
+<!-- /ACTIONS   -->

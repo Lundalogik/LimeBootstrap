@@ -46,9 +46,6 @@ var limejs = limejs || {
         //init the log
         this.log.setup(limejs.debug);
 
-        //check Lime connection
-        this.setHasLimeConnection();
-
         //get AP class
         this.setActionPadClass();
 
@@ -84,11 +81,17 @@ var limejs = limejs || {
 
     },
     "setSystemOperationParameters": function () {
+
+        //ajax should be async
         $.ajaxSetup({
             async: false
         });
 
-        limejs.vm = new limejs.vmFactory();
+        //create viewmodel container
+        this.vm = new limejs.vmFactory();
+
+        //check connection to Lime
+        this.hasLimeConnection = (typeof limejs.limeDataConnection.Application != 'undefined');
     },
 
     "setDebugStatus": function () {
@@ -99,16 +102,12 @@ var limejs = limejs || {
         }
     },
 
-    "setHasLimeConnection" : function(){
-        this.hasLimeConnection = (typeof limejs.limeDataConnection.Application != 'undefined'); 
-    },
-
     "setActionPadClass": function () {
         if (limejs.common.getURLParameter("ap") != 'null') {
-            limejs.activeClass = limejs.common.getURLParameter("ap");
+            this.activeClass = limejs.common.getURLParameter("ap");
         } else {
             try {
-                limejs.activeClass = eval('limejs.limeDataConnection.ActiveInspector.Class.Name');
+                this.activeClass = eval('limejs.limeDataConnection.ActiveInspector.Class.Name');
             }
             catch (e) {
                 limejs.log.warn("Could not determine inspector class, assuming index", e);
