@@ -10,7 +10,7 @@ echo.
 pause
 
 set filepath=%~dp0
-set url="%filepath%application.html"
+set url="%filepath%../../application.html"
 
 taskkill /F /IM Chrome.exe /T
 start "Chrome" chrome --new-window %url% --allow-file-access-from-files
