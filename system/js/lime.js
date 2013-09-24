@@ -3,8 +3,9 @@
 * It contains many functions to make the world a little better place.
 */
 
+
 //declare limejs container
-var limejs = {
+var limejs = limejs || {
 
     //config
     "debug": false,
@@ -20,7 +21,21 @@ var limejs = {
     "error": false,
     "vm": {},
 
-    "setup": function () {
+    //config
+    config : {
+        dataSources: [
+             { type: 'activeInspector', source: '' },
+             { type: 'xml', source: 'testfelquery' }
+        ],
+        resources: {
+            scripts: [],
+            styles: [],
+            libs: ['json2xml.js']
+        }
+    },
+
+    //setup
+    setup: function () {
 
         //system param
         this.setSystemOperationParameters();
@@ -40,23 +55,23 @@ var limejs = {
         //get Server and Database
         this.setActiveDBandServer();
 
-        //load config
-        this.loader.loadSiteConfig(); 
-
         //load view
         this.loader.loadView(limejs.activeClass, $("#content"));
 
-        //load view
-        this.loader.loadData();
+        //load datasources
+        limejs.loader.loadDataSources(this.vm, this.config.dataSources);
 
         //load apps
-        this.app.loadApps();
+        this.app.IdentifyApps();
 
         //load resources
         this.loader.loadResources();
 
         //Localize page
         this.setupLocalization();
+
+        //apps vm
+        this.app.buildAppViewModels();
 
         //setup bindings
         this.applyBindings();
@@ -70,10 +85,7 @@ var limejs = {
         //setOnclickEvents
         this.SetOnclickEvents();
 
-        
-
     },
-
     "setSystemOperationParameters": function () {
         $.ajaxSetup({
             async: false
@@ -167,13 +179,10 @@ var limejs = {
         }
     },
 
-    "setDebug" : function(bool){
-        limejs.debug = bool;
-    },
-
     "setupLocalization"  :  function() {
         limejs.loader.loadLocalization();
     },
+
 
 }
 

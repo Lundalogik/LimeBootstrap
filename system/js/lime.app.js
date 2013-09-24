@@ -2,7 +2,7 @@
 limejs.app = {
 
     //load all app configurations
-    "loadApps": function () {
+    "IdentifyApps": function () {
         var path;
         var appName;
         var htmlNode;
@@ -12,8 +12,12 @@ limejs.app = {
             appName = $(this).attr("data-app")
             path = "apps/" + appName + "/";
             htmlNode = $(this);
-
-            config = limejs.loader.loadConfig(path + 'config.json', true, function (config) { });
+           
+            if(!limejs.loader.loadScript(path+appName+'.js')){
+                limejs.log.error("Could not find app " + appName);
+            }
+         
+            config = limejs.apps[appName].config;
             limejs.loader.pushResources(config.resources, path);
 
             limejs.appsMetaData[appName] = limejs.appsMetaData[appName] || {};
@@ -34,31 +38,20 @@ limejs.app = {
 
         $.each(limejs.appsMetaData, function (key, value) {
 
-            appName = value.name
-            path = value.path
-            htmlNode = value.node
-            dataType = value.config.data.type
-            dataSource = value.config.data.source
-
-            //to-be viewmodel
-            var vm = {};
-
-            //load view
-            limejs.loader.loadView(path + appName, htmlNode);
-
-            //load data
-            vm = limejs.app.getAppModelData(appName, dataType, dataSource);
-
-            limejs.log.debug('App ' + appName + ' model data: ' + (JSON.stringify(vm)));
-
+            appName = value.name;
+            path = value.path;
+            htmlNode = value.node;
+            config = value.config;
+            vm = limejs.appsMetaData[key].vm;
+          
             //run initialize
-            try{
+            try {
+                vm = ko.mapping.fromJS(vm);
                 limejs.appsMetaData[key].vm = limejs.apps[appName].initialize(vm);
             } catch (e) {
                 limejs.appsMetaData[key].vm = vm;
                 limejs.log.exception(e);
                 limejs.log.error("Could not intialize app: " + appName);
-                
             }
 
             //apply bindings
@@ -72,50 +65,33 @@ limejs.app = {
 
         });
 
-        return this;
     },
 
-    //get data requested by app
-    getAppModelData: function (appName, dataType, dataSource) {
-        var data = {};
-        var vm = limejs.vm;
+    "buildAppViewModels": function () {
+        var path;
+        var appName;
+        var htmlNode;
 
-        switch (dataType) {
-            case 'xml':
-                data = limejs.common.executeVba(dataSource);
-                if (data != null) {
-                    data = $.parseJSON(xml2json($.parseXML(data), ""));
-                    vm = limejs.common.mergeOptions(limejs.vm, data);
-                    limejs.log.info("App data loaded: " + appName)
-                } else {
-                    limejs.log.warn("App failed to load data: " + appName)
-                }
-                break;
-            case 'record':
-                data = limejs.executeVba(dataSource);
-                if (data != null) {
-                    data = limejs.loader.recordToJSON(data);
-                    vm = limejs.common.mergeOptions(limejs.vm, data);
-                    limejs.log.info("App data loaded: " + appName)
-                } else {
-                    limejs.log.warn("App failed to load data: " + appName)
-                }
-                break;
-            case 'records':
-                data = limejs.executeVba(dataSource);
-                if (data != null) {
-                    data = limejs.loader.recordsToJSON(data);
-                    vm = limejs.common.mergeOptions(limejs.vm, data);
-                    limejs.log.info("App data loaded: " + appName)
-                } else {
-                    limejs.log.warn("App failed to load data: " + appName)
-                }
-                break;
-            case 'none':
+        $.each(limejs.appsMetaData, function (key, value) {
 
-                break;
-        }
+            appName = value.name;
+            path = value.path;
+            htmlNode = value.node;
+            config = value.config;
 
-        return vm;
+            //to-be viewmodel
+            var vm = limejs.vm;
+
+            //load view
+            limejs.loader.loadView(path + appName, htmlNode);
+
+            //load data
+            vm = limejs.loader.loadDataSources(vm, config.dataSources);
+            limejs.appsMetaData[key].vm = vm;
+
+        });
+
     }
+
+    
 }

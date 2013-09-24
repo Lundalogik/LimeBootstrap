@@ -6,32 +6,6 @@ limejs.loader = {
     "styles": [],
     "libs": [],
 
-    "loadConfig": function (file, require, callback) {
-        var data;
-        
-        $.getJSON(file, function (json) {
-            data = json;
-        })
-        //feel free to use chained handlers, or even make custom events out of them!
-        .success(function () {
-            limejs.log.info("Config loaded: " + file.toString());
-           
-        })
-        .error(function (jqxhr, textStatus, error) {
-            if (require == true) {
-                limejs.log.error(error)
-                limejs.log.error("Config failed to load: " + file.toString());
-            } else {
-                limejs.log.info("Config not loaded: " + file.toString());
-            }
-        })
-        .complete(function () {
-            //limejs.log.debug("Content of config file " + file + ": " + JSON.stringify(data));
-            callback(data);
-        });
-
-        return data;
-    },
     "pushResources": function (data, appPath) {
         var path;
 
@@ -54,6 +28,21 @@ limejs.loader = {
         })
     },
 
+    "loadScript" : function(val){
+        var success = false;
+        $.getScript(val)
+          .done(function( script, textStatus ) {
+              success = true;
+          })
+          .fail(function( jqxhr, settings, exception ) {
+              //limejs.log.exception(exception);
+              limejs.log.error('failed to load script: ' + val);
+          });
+        return success;
+    },
+    "loadStyle": function (val) {
+        $('<link/>', { rel: 'stylesheet', type: 'text/css', href: val }).appendTo('head');
+    },
 
     "loadResources": function () {
         
@@ -66,15 +55,15 @@ limejs.loader = {
         limejs.log.debug("Libs to load: " + limejs.loader.libs);
 
         $.each(limejs.loader.scripts, function (i) {
-            $.getScript(limejs.loader.scripts[i]);
+            limejs.loader.loadScript(limejs.loader.scripts[i]);
         })
 
         $.each(limejs.loader.styles, function (i) {
-            $('<link/>', { rel: 'stylesheet', type: 'text/css', href: limejs.loader.styles[i] }).appendTo('head');
+            limejs.loader.loadStyle(limejs.loader.styles[i]);
         })
 
         $.each(limejs.loader.libs, function (i) {
-            $.getScript(limejs.loader.libs[i]);
+            limejs.loader.loadScript(limejs.loader.libs[i]);
         })
 
     },
@@ -95,22 +84,62 @@ limejs.loader = {
 
     },
 
-    "loadData": function () {
-        try {
-            var record = limejs.limeDataConnection.ActiveInspector.Record
-            //limejs.actionPadData = limejs.loader.recordToJSON(record);
-            limejs.vm[limejs.activeClass] = limejs.loader.controlsToJSON(limejs.limeDataConnection.ActiveControls);
-            limejs.log.info('Data from ActiveInspector.record loaded successfully');
-        } catch (e) {
-            limejs.log.warn("ActiveInspector could not be loaded. Make sure you are running in LIME");
-        }
+    loadDataSources: function (vm, dataSources) {
+        $.each(dataSources, function (key,source) {
+            limejs.loader.loadDataSource(vm,source);
+        })
+        return vm;
     },
 
-    "loadSiteConfig": function () {
-        
-        this.loadConfig(limejs.loader.systemLibPath + 'config/config.json', true, function (config) {
-            limejs.loader.pushResources(config, '/');
-        });
+    loadDataSource: function (vm, dataSource) {
+        var data = {};
+
+        try{
+            switch (dataSource.type) {
+                case 'activeInspector':
+                    try{
+                        var record = limejs.limeDataConnection.ActiveInspector.Record
+                        data = limejs.loader.controlsToJSON(limejs.limeDataConnection.ActiveControls);
+                    } catch (e) {
+                        limejs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                    }
+                    break;
+                case 'xml':
+                    data = limejs.common.executeVba(dataSource.source);
+                    if (data != null) {
+                        data = $.parseJSON(xml2json($.parseXML(data), ""));
+                    } else {
+                        limejs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                    }
+                    break;
+                case 'record':
+                    data = limejs.executeVba(dataSource.source);
+                    if (data != null) {
+                        data = limejs.loader.recordToJSON(data);
+                    } else {
+                        limejs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                    }
+                    break;
+                case 'records':
+                    data = limejs.executeVba(dataSource.source);
+                    if (data != null) {
+                        data = limejs.loader.recordsToJSON(data);
+                    } else {
+                        limejs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                    }
+                    break;
+                case 'none':
+
+                    break;
+            }
+
+            vm = limejs.common.mergeOptions(limejs.vm, data || {});
+        }catch(e){
+            limejs.log.exception(e);
+            limejs.log.error("Failed to load datasource: " + dataSource.type+':'+dataSource.source)
+        }
+
+        return vm;
     },
 
     "loadLocalization": function () {
@@ -137,6 +166,27 @@ limejs.loader = {
 
     "uniqueFilter": function (e, i, arr) {
         return arr.lastIndexOf(e) === i;
+    },
+
+    setFallBackDummyData: function (node) {
+        var value = '';
+
+        //set text
+        $('[data-bind]').each(function () {
+            var match = new RegExp("text\:[^\,\}]*").exec($(this).attr('data-bind'))
+            if (match) {
+                $(this).html('Text: ' + match[0].split(":")[1].trim());
+            }
+        });
+
+        //set value
+        $('[data-bind]').each(function () {
+            var match = new RegExp("value\:[^\,\}]*").exec($(this).attr('data-bind'))
+            if (match) {
+                $(this).attr('value', ('Value: ' + match[0].split(":")[1].trim()));
+            }
+        });
+
     },
 
     "dictionaryToJSON": function (keys,dic) {
@@ -201,25 +251,6 @@ limejs.loader = {
 
     },
 
-    setFallBackDummyData: function (node) {
-        var value = '';
-
-        //set text
-        $('[data-bind]').each(function () {
-            var match = new RegExp("text\:[^\,\}]*").exec($(this).attr('data-bind'))
-            if (match) {
-                $(this).html('Text: ' + match[0].split(":")[1].trim());
-            }
-        });
-
-        //set value
-        $('[data-bind]').each(function () {
-            var match = new RegExp("value\:[^\,\}]*").exec($(this).attr('data-bind'))
-            if (match) {
-                $(this).attr('value', ('Value: ' + match[0].split(":")[1].trim()));
-            }
-        });
-
-    },
+    
 
 }
