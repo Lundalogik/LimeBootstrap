@@ -1,9 +1,9 @@
-﻿
-ko.bindingHandlers.limeLink = {
+﻿ko.bindingHandlers.limeLink = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
 
         $(element).click(function () {
-            limejs.executeVba("shell," + limejs.common.createLimeLink(valueAccessor().limeLink.class, valueAccessor().value));
+
+            limejs.common.executeVba("shell," + limejs.common.createLimeLink(valueAccessor().class, valueAccessor().value));
         });
 
     },
@@ -21,7 +21,7 @@ ko.bindingHandlers.showOnMap = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         try {
             $(element).click(function () {
-                limejs.executeVba("shell,https://www.google.com/maps?q=" + valueAccessor().replace(/\r?\n|\r/g, ' '));
+                limejs.common.executeVba("shell,https://www.google.com/maps?q=" + valueAccessor().replace(/\r?\n|\r/g, ' '));
             });
         } catch (e) {
             limejs.log.exception(e);
@@ -33,7 +33,7 @@ ko.bindingHandlers.showOnMap = {
 ko.bindingHandlers.call = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         $(element).click(function () {
-            limejs.executeVba("shell,tel:" + valueAccessor());
+            limejs.common.executeVba("shell,tel:" + valueAccessor());
         });
     },
 };
@@ -41,7 +41,7 @@ ko.bindingHandlers.call = {
 ko.bindingHandlers.openURL = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         $(element).click(function () {
-            limejs.executeVba("shell," + valueAccessor());
+            limejs.common.executeVba("shell," + valueAccessor());
         });
 
     },
@@ -51,7 +51,7 @@ ko.bindingHandlers.openURL = {
 ko.bindingHandlers.vbaVisibility = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         $(element).click(function () {
-            var visible = limejs.executeVba(valueAccessor);
+            var visible = limejs.common.executeVba(valueAccessor);
             if (visible == true) {
                 $(this).show();
                 $(this).removeClass("hidden")

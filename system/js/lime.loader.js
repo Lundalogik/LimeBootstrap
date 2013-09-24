@@ -86,13 +86,15 @@ limejs.loader = {
 
     loadDataSources: function (vm, dataSources) {
         $.each(dataSources, function (key,source) {
-            limejs.loader.loadDataSource(vm,source);
+            vm = limejs.loader.loadDataSource(vm, source);
         })
         return vm;
     },
 
     loadDataSource: function (vm, dataSource) {
         var data = {};
+
+        limejs.log.debug('Loading data source: ' + dataSource.type + ':' + dataSource.source)
 
         try{
             switch (dataSource.type) {
@@ -128,40 +130,39 @@ limejs.loader = {
                         limejs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
                     break;
+                case 'localization':
+                    var k = limejs.common.executeVba("Localize.getDictionaryKeys");
+                    var d = limejs.common.executeVba("Localize.getDictionary");
+                    var parsedData
+                    var collecton = {};
+
+                    //return empty object if missing or no language support
+                    if (!d || !k) {
+                        limejs.log.warn("Localization dictionary could not be loaded");
+                        parsedData = {};
+                    } else {
+                        parsedData = limejs.loader.dictionaryToJSON(k, d);
+
+                        $.each(parsedData, function (key, value) {
+                            keysplit = key.split("$$");
+                            collecton[keysplit[0]] = collecton[keysplit[0]] || {};
+                            collecton[keysplit[0]][keysplit[1]] = value
+                        })
+                    }
+                    data.localize = collecton;
+                    break;
                 case 'none':
 
                     break;
             }
-
-            vm = limejs.common.mergeOptions(limejs.vm, data || {});
+ 
+            vm = limejs.common.mergeOptions(vm, data || {});
         }catch(e){
             limejs.log.exception(e);
             limejs.log.error("Failed to load datasource: " + dataSource.type+':'+dataSource.source)
         }
 
         return vm;
-    },
-
-    "loadLocalization": function () {
-        var keys = limejs.common.executeVba("Localize.getDictionaryKeys");
-        var data = limejs.common.executeVba("Localize.getDictionary");
-        var parsedData;
-        var vm = {};
-        //return empty object if missing or no language support
-        if (!data || !keys) {
-            limejs.log.warn("Localization dictionary could not be loaded");
-            parsedData = {};
-        } else {
-            parsedData = limejs.loader.dictionaryToJSON(keys, data);
-
-            $.each(parsedData, function (key, value) {
-                keysplit = key.split("$$");
-                vm[keysplit[0]] =  vm[keysplit[0]] || {};
-                vm[keysplit[0]][keysplit[1]] = value
-            })
-        }
-        limejs.vm.localize = vm;
-        limejs.log.debug('Localizaton model: ' + (JSON.stringify(vm)));
     },
 
     "uniqueFilter": function (e, i, arr) {

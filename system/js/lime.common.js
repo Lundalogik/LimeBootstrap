@@ -88,8 +88,12 @@ limejs.common = {
 
     mergeOptions: function (obj1, obj2) {
         var obj3 = {};
-        for (var attrname in obj1) { obj3[attrname] = obj1[attrname]; }
-        for (var attrname in obj2) { obj3[attrname] = obj2[attrname]; }
+        $.each(obj1, function (key,value) {
+            obj3[key] = value;
+        })
+        $.each(obj2, function (key, value) {
+            obj3[key] = value;
+        })
         return obj3;
    },
     

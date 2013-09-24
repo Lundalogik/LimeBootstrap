@@ -3,7 +3,7 @@ limejs.apps.template = {
     //config
     config: {
         dataSources: [
-            { type: 'xml', source: 'checklistmodule_getdata' }
+            
         ],
         resources: {
             scripts: ['template.js'],

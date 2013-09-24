@@ -25,7 +25,7 @@ var limejs = limejs || {
     config : {
         dataSources: [
              { type: 'activeInspector', source: '' },
-             { type: 'xml', source: 'testfelquery' }
+             { type: 'localization', source: '' },
         ],
         resources: {
             scripts: [],
@@ -59,16 +59,13 @@ var limejs = limejs || {
         this.loader.loadView(limejs.activeClass, $("#content"));
 
         //load datasources
-        limejs.loader.loadDataSources(this.vm, this.config.dataSources);
+        this.vm = limejs.loader.loadDataSources(this.vm, this.config.dataSources);
 
         //load apps
         this.app.IdentifyApps();
 
         //load resources
         this.loader.loadResources();
-
-        //Localize page
-        this.setupLocalization();
 
         //apps vm
         this.app.buildAppViewModels();
@@ -171,6 +168,8 @@ var limejs = limejs || {
 
     "applyBindings": function () {
         try {
+            limejs.log.debug('ViewModel: ' + JSON.stringify(limejs.vm));
+            limejs.vm = ko.mapping.fromJS(limejs.vm);
             ko.applyBindings(limejs.vm, $("#content").get(0));
         } catch (e) {
             limejs.log.warn("Binding of data to view failed! \n Displaying mapping attributes");
@@ -178,12 +177,6 @@ var limejs = limejs || {
             limejs.loader.setFallBackDummyData($("#content").get(0));
         }
     },
-
-    "setupLocalization"  :  function() {
-        limejs.loader.loadLocalization();
-    },
-
-
 }
 
 //ViewModel
