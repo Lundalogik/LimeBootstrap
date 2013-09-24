@@ -90,14 +90,20 @@
         try {
              file = file+".html";
              element.load(file, function (response, status, xhr) {
-                if (status == "error") {
+                 if (response.indexOf('<script') != -1) {
+                     lbs.log.error('View "' + file + '" containes scripts, it is not allowed to be loaded')
+                     //clear element
+                     element.html('');
+                 }
+                 else if (status == "error") {
                     lbs.log.error('View "' + file + '" could not be loaded')
                 } else {
                     lbs.log.info('View "' + file + '" loaded successfully');
                 }
             })
         } catch (e) {
-            lbs.log.error("Resource could not be found. If using Chrome, make sure --file-access-from-file is enabled", e);
+            lbs.log.exception(e);
+            lbs.log.error("Resource could not be found. If using Chrome, make sure --file-access-from-file is enabled");
         }
 
     },
