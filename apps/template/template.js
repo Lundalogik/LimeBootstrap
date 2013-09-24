@@ -1,4 +1,4 @@
-limejs.apps.template = {
+lbs.apps.template = {
 
     //config
     config: {
@@ -21,7 +21,8 @@ limejs.apps.template = {
         //You may make any modifications you please to it or replace is with a entirely new one before returning it.
         //The returned viewmodel will be used to build your app.
 
-        viewModel.myappname = 'Min App heter Template';
+        viewModel.myappname = 'This is an example app';
+        viewModel.myapptext = 'The JS solution whould work nicely as <br />a template you know ;)';
 
 
         return viewModel;

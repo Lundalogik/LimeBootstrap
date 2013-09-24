@@ -1,4 +1,4 @@
-﻿limejs.log = {
+﻿lbs.log = {
 
     /**
     active viewModel instance
@@ -11,9 +11,9 @@
     */
     setup: function (enabled) {
         //loadViewScript
-        limejs.loader.loadView('system/view/debugLog',$("#debug"))
+        lbs.loader.loadView('system/view/debugLog',$("#debug"))
         //create viewModel
-        this.vm = new limejs.log.vmFactory();
+        this.vm = new lbs.log.vmFactory();
         this.vm.enabled(enabled);
 
         //ApplyBindings
@@ -26,9 +26,9 @@
     TODO: implement limitation depending on theshold
     */
     logToDom: function (type, msg) {
-        if (!limejs.debug) { return; };
-        if (limejs.log.vm) {
-            limejs.log.vm.addEntry(type.toUpperCase(), msg);
+        if (!lbs.debug) { return; };
+        if (lbs.log.vm) {
+            lbs.log.vm.addEntry(type.toUpperCase(), msg);
         }
     },
 
@@ -48,7 +48,7 @@
             try { console.warn(msg) } catch (e) { };
         },
         error: function (msg) {
-            limejs.error = true;
+            lbs.error = true;
             try { console.error(msg) } catch (e) { };
         },
     },
@@ -57,48 +57,48 @@
     Log entry function for debug
     */
     "debug": function (msg) {
-        limejs.log.logToDom('DEBUG', limejs.common.nl2br(msg));
-        limejs.log.logToConsole.debug(limejs.common.nl2br(msg));
+        lbs.log.logToDom('DEBUG', lbs.common.nl2br(msg));
+        lbs.log.logToConsole.debug(lbs.common.nl2br(msg));
     },
 
     /**
     Log entry function for info
     */
     "info": function (msg) {
-        limejs.log.logToDom('INFO', limejs.common.nl2br(msg));
-        limejs.log.logToConsole.info(limejs.common.nl2br(msg));
+        lbs.log.logToDom('INFO', lbs.common.nl2br(msg));
+        lbs.log.logToConsole.info(lbs.common.nl2br(msg));
     },
 
     /**
     Log entry function for warn
     */
     "warn": function (msg) {
-        limejs.log.logToDom('WARN', limejs.common.nl2br(msg));
-        limejs.log.logToConsole.warn(limejs.common.nl2br(msg));
+        lbs.log.logToDom('WARN', lbs.common.nl2br(msg));
+        lbs.log.logToConsole.warn(lbs.common.nl2br(msg));
     },
 
     /**
     Log entry function for error
     */
     "error": function (msg) {
-        limejs.log.logToDom('ERROR', limejs.common.nl2br(msg));
-        limejs.log.logToConsole.error(limejs.common.nl2br(msg));
+        lbs.log.logToDom('ERROR', lbs.common.nl2br(msg));
+        lbs.log.logToConsole.error(lbs.common.nl2br(msg));
     },
 
     /**
     Log entry function for exception
     */
     "exception": function (e) {
-        //limejs.log.logToDom('ERROR', e.message + limejs.common.nl2br("\n" + e.stack));
-        limejs.log.logToDom('ERROR',limejs.common.nl2br(e.message));
-        limejs.log.logToConsole.error(limejs.common.nl2br(e.message), e);
+        //lbs.log.logToDom('ERROR', e.message + lbs.common.nl2br("\n" + e.stack));
+        lbs.log.logToDom('ERROR',lbs.common.nl2br(e.message));
+        lbs.log.logToConsole.error(lbs.common.nl2br(e.message), e);
     },
 }
 
 /**
 ViewModel factory 
 */
-limejs.log.vmFactory = function () {
+lbs.log.vmFactory = function () {
     //Number of items to show in log
     this.maxNbrOfItems = 30;
     this.logItems = ko.observableArray([]);

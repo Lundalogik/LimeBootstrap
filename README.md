@@ -2,7 +2,7 @@
 
 Welcome to the LIME Pro Actionpad framework called LIME-bootstrap. 
 The LIME-bootstrap is made to make it easier, better and faster working with Actionpads in LIME pro. The framework relies heavily on Twitter 
-bootstrap but with custom styling and a simple, yet powerful script called limejs.js. The framework contains several built in functions and third 
+bootstrap but with custom styling and a simple, yet powerful script called lbs.js. The framework contains several built in functions and third 
 party libraries, but is also expandable through plugin in custom apps.The actual actionpads used in the LIME basic database are also included.  
 
 LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reasons all functionallity (exept the data connections) should work in any browser. In LIME Pro the supporter browser versions are:
@@ -40,7 +40,7 @@ The framework has the following file structure
 	*	__img__ - _images used in the framework which aren't from Font Awesom_
 		*	...
 	*	__js__ - _all javacript used in the framework_
-		*	limejs.js - _Frameworks main javascript_
+		*	lbs.js - _Frameworks main javascript_
 		*	... Third party frameworks ...
 *	Actionpads.html
 		
@@ -89,7 +89,7 @@ An Actionpad built with LIME-bootstrap has the following structure
     <!-- LIME ACTIONPAD STANDARD TOOLS -->
     <script src="lib/js/jquery-1.9.1.min.js" charset="utf-8" type="text/javascript"></script>
     <script src="lib/js/bootstrap.min.js" charset="utf-8" type="text/javascript"></script>
-    <script src="lib/js/limejs.js" type="text/javascript"></script>
+    <script src="lib/js/lbs.js" type="text/javascript"></script>
      <!-- /LIME ACTIONPAD STANDARD TOOLS --> 
      <!--  ================================================== /Le javascript ================================================== -->             
   
@@ -222,7 +222,7 @@ The input parameters are evaluated at load and the string to be executed is stor
 
  
 ##Technical
-### The core: limejs.js
+### The core: lbs.js
 It's all very technical and smart!
 
 ### Building apps

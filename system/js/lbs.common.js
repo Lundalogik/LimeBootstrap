@@ -1,5 +1,4 @@
-﻿var limejs = limejs || {};
-limejs.common = {
+﻿lbs.common = {
 
     /**
     Fetch a random funny error text
@@ -41,7 +40,7 @@ limejs.common = {
     Create a limelink from class, id, server and database properties
     */
     "createLimeLink": function (limeClass, limeId) {
-        return "limecrm:"+limeClass+"."+limejs.activeDatabase + "." + limejs.activeServer + "?" + limeId
+        return "limecrm:"+limeClass+"."+lbs.activeDatabase + "." + lbs.activeServer + "?" + limeId
     },
 
     /**
@@ -58,14 +57,14 @@ limejs.common = {
     */
     "executeVba": function (inString) {
         try {
-            limejs.log.debug("Trying to execute VBA:" + inString);
+            lbs.log.debug("Trying to execute VBA:" + inString);
 
             var inArgs = inString.split(',');
 
             if (inArgs.length > 1) {
 
                 var args = "";
-                var vbaline = "limejs.limeDataConnection.Run('" + inArgs[0] + "', ";
+                var vbaline = "lbs.limeDataConnection.Run('" + inArgs[0] + "', ";
                 for (var i = 1; i < inArgs.length; i++) {
                     while (inArgs[i].charAt(0) === ' ') {
                         inArgs[i] = inArgs[i].substr(1);
@@ -79,12 +78,12 @@ limejs.common = {
                 eval(vbaline);
             }
             else {
-                return limejs.limeDataConnection.Run(arguments[0]);
+                return lbs.limeDataConnection.Run(arguments[0]);
             }
 
         } catch (e) {
             return null;
-            limejs.log.error("executeVBA:" + vbaline, e);
+            lbs.log.error("executeVBA:" + vbaline, e);
 
         }
     },
@@ -112,7 +111,7 @@ limejs.common = {
             if (!obj1[key]) {
                 obj1[key] = value;
             } else {
-                limejs.log.warn("Key " + key + ' was not added to the view model. Key already exists');
+                lbs.log.warn("Key " + key + ' was not added to the view model. Key already exists');
             }
         })
         return obj1;

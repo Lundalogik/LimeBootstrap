@@ -1,5 +1,4 @@
-﻿limejs = limejs || {};
-limejs.loader = {
+﻿lbs.loader = {
 
     /**
     Attrbutes
@@ -19,18 +18,18 @@ limejs.loader = {
             return;
         }
         $.each(data.scripts, function (i) {
-            path = appPath == '/' ? limejs.loader.systemLibPath+'js/' : appPath;
-            limejs.loader.scripts.push(path + data.scripts[i]);
+            path = appPath == '/' ? lbs.loader.systemLibPath+'js/' : appPath;
+            lbs.loader.scripts.push(path + data.scripts[i]);
         })
 
         $.each(data.libs, function (i) {
-            path = limejs.loader.systemLibPath+'js/';
-            limejs.loader.libs.push(path + data.libs[i]);
+            path = lbs.loader.systemLibPath+'js/';
+            lbs.loader.libs.push(path + data.libs[i]);
         })
 
         $.each(data.styles, function (i) {
-            path = appPath == '/' ? limejs.loader.systemLibPath + 'css/' : appPath;
-            limejs.loader.styles.push(path + data.styles[i]);
+            path = appPath == '/' ? lbs.loader.systemLibPath + 'css/' : appPath;
+            lbs.loader.styles.push(path + data.styles[i]);
         })
     },
 
@@ -39,24 +38,24 @@ limejs.loader = {
     */
     "loadResources": function () {
 
-        limejs.loader.scripts = limejs.loader.scripts.filter(this.uniqueFilter)
-        limejs.loader.styles = limejs.loader.styles.filter(this.uniqueFilter)
-        limejs.loader.libs = limejs.loader.libs.filter(this.uniqueFilter)
+        lbs.loader.scripts = lbs.loader.scripts.filter(this.uniqueFilter)
+        lbs.loader.styles = lbs.loader.styles.filter(this.uniqueFilter)
+        lbs.loader.libs = lbs.loader.libs.filter(this.uniqueFilter)
 
-        limejs.log.debug("Scripts to load:" + limejs.loader.scripts);
-        limejs.log.debug("Styles to load: " + limejs.loader.styles);
-        limejs.log.debug("Libs to load: " + limejs.loader.libs);
+        lbs.log.debug("Scripts to load:" + lbs.loader.scripts);
+        lbs.log.debug("Styles to load: " + lbs.loader.styles);
+        lbs.log.debug("Libs to load: " + lbs.loader.libs);
 
-        $.each(limejs.loader.scripts, function (i) {
-            limejs.loader.loadScript(limejs.loader.scripts[i]);
+        $.each(lbs.loader.scripts, function (i) {
+            lbs.loader.loadScript(lbs.loader.scripts[i]);
         })
 
-        $.each(limejs.loader.styles, function (i) {
-            limejs.loader.loadStyle(limejs.loader.styles[i]);
+        $.each(lbs.loader.styles, function (i) {
+            lbs.loader.loadStyle(lbs.loader.styles[i]);
         })
 
-        $.each(limejs.loader.libs, function (i) {
-            limejs.loader.loadScript(limejs.loader.libs[i]);
+        $.each(lbs.loader.libs, function (i) {
+            lbs.loader.loadScript(lbs.loader.libs[i]);
         })
 
     },
@@ -71,8 +70,8 @@ limejs.loader = {
               success = true;
           })
           .fail(function( jqxhr, settings, exception ) {
-              //limejs.log.exception(exception);
-              limejs.log.error('failed to load script: ' + val);
+              //lbs.log.exception(exception);
+              lbs.log.error('failed to load script: ' + val);
           });
         return success;
     },
@@ -92,13 +91,13 @@ limejs.loader = {
              file = file+".html";
              element.load(file, function (response, status, xhr) {
                 if (status == "error") {
-                    limejs.log.error('View "' + file + '" could not be loaded')
+                    lbs.log.error('View "' + file + '" could not be loaded')
                 } else {
-                    limejs.log.info('View "' + file + '" loaded successfully');
+                    lbs.log.info('View "' + file + '" loaded successfully');
                 }
             })
         } catch (e) {
-            limejs.log.error("Resource could not be found. If using Chrome, make sure --file-access-from-file is enabled", e);
+            lbs.log.error("Resource could not be found. If using Chrome, make sure --file-access-from-file is enabled", e);
         }
 
     },
@@ -108,7 +107,7 @@ limejs.loader = {
     */
     loadDataSources: function (vm, dataSources) {
         $.each(dataSources, function (key,source) {
-            vm = limejs.loader.loadDataSource(vm, source);
+            vm = lbs.loader.loadDataSource(vm, source);
         })
         return vm;
     },
@@ -119,54 +118,54 @@ limejs.loader = {
     loadDataSource: function (vm, dataSource) {
         var data = {};
 
-        limejs.log.debug('Loading data source: ' + dataSource.type + ':' + dataSource.source)
+        lbs.log.debug('Loading data source: ' + dataSource.type + ':' + dataSource.source)
 
         try{
             switch (dataSource.type) {
                 case 'activeInspector':
                     try{
-                        var record = limejs.limeDataConnection.ActiveInspector.Record
-                        data = limejs.loader.controlsToJSON(limejs.limeDataConnection.ActiveControls);
+                        var record = lbs.limeDataConnection.ActiveInspector.Record
+                        data = lbs.loader.controlsToJSON(lbs.limeDataConnection.ActiveControls);
                     } catch (e) {
-                        limejs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
                     break;
                 case 'xml':
-                    data = limejs.common.executeVba(dataSource.source);
+                    data = lbs.common.executeVba(dataSource.source);
                     if (data != null) {
                         data = $.parseJSON(xml2json($.parseXML(data), ""));
                     } else {
-                        limejs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
                     break;
                 case 'record':
-                    data = limejs.common.executeVba(dataSource.source);
+                    data = lbs.common.executeVba(dataSource.source);
                     if (data != null) {
-                        data = limejs.loader.recordToJSON(data);
+                        data = lbs.loader.recordToJSON(data);
                     } else {
-                        limejs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
                     break;
                 case 'records':
-                    data = limejs.common.executeVba(dataSource.source);
+                    data = lbs.common.executeVba(dataSource.source);
                     if (data != null) {
-                        data = limejs.loader.recordsToJSON(data);
+                        data = lbs.loader.recordsToJSON(data);
                     } else {
-                        limejs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
                     break;
                 case 'localization':
-                    var k = limejs.common.executeVba("Localize.getDictionaryKeys");
-                    var d = limejs.common.executeVba("Localize.getDictionary");
+                    var k = lbs.common.executeVba("Localize.getDictionaryKeys");
+                    var d = lbs.common.executeVba("Localize.getDictionary");
                     var parsedData
                     var collecton = {};
 
                     //return empty object if missing or no language support
                     if (!d || !k) {
-                        limejs.log.warn("Localization dictionary could not be loaded");
+                        lbs.log.warn("Localization dictionary could not be loaded");
                         parsedData = {};
                     } else {
-                        parsedData = limejs.loader.dictionaryToJSON(k, d);
+                        parsedData = lbs.loader.dictionaryToJSON(k, d);
 
                         $.each(parsedData, function (key, value) {
                             keysplit = key.split("$$");
@@ -179,10 +178,10 @@ limejs.loader = {
             }
  
             //merge options into the viewModel
-            vm = limejs.common.mergeOptions(vm, data || {});
+            vm = lbs.common.mergeOptions(vm, data || {});
         }catch(e){
-            limejs.log.exception(e);
-            limejs.log.error("Failed to load datasource: " + dataSource.type+':'+dataSource.source)
+            lbs.log.exception(e);
+            lbs.log.error("Failed to load datasource: " + dataSource.type+':'+dataSource.source)
         }
 
         return vm;

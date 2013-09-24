@@ -6,7 +6,7 @@
 /**
 Objekt container
 */
-var limejs = limejs || {
+var lbs = lbs || {
     /**
     Properties
     */
@@ -48,7 +48,7 @@ var limejs = limejs || {
         this.setDebugStatus();
 
         //init the log
-        this.log.setup(limejs.debug);
+        this.log.setup(lbs.debug);
 
         //get AP class
         this.setActionPadClass();
@@ -57,10 +57,10 @@ var limejs = limejs || {
         this.setActiveDBandServer();
 
         //load view
-        this.loader.loadView(limejs.activeClass, $("#content"));
+        this.loader.loadView(lbs.activeClass, $("#content"));
 
         //load datasources
-        this.vm = limejs.loader.loadDataSources(this.vm, this.config.dataSources);
+        this.vm = lbs.loader.loadDataSources(this.vm, this.config.dataSources);
 
         //load apps
         this.app.IdentifyApps();
@@ -96,10 +96,10 @@ var limejs = limejs || {
         });
 
         //create viewmodel container
-        this.vm = new limejs.vmFactory();
+        this.vm = new lbs.vmFactory();
 
         //check connection to Lime
-        this.hasLimeConnection = (typeof limejs.limeDataConnection.Application != 'undefined');
+        this.hasLimeConnection = (typeof lbs.limeDataConnection.Application != 'undefined');
     },
 
     /**
@@ -107,9 +107,9 @@ var limejs = limejs || {
     */
     "setDebugStatus": function () {
         if ($("html").attr("data-debug").toLowerCase() === "true") {
-            limejs.debug = true
+            lbs.debug = true
         } else {
-            limejs.debug = false
+            lbs.debug = false
         }
     },
 
@@ -117,19 +117,19 @@ var limejs = limejs || {
     Find active actionpad view
     */
     "setActionPadClass": function () {
-        if (limejs.common.getURLParameter("ap") != 'null') {
-            this.activeClass = limejs.common.getURLParameter("ap");
+        if (lbs.common.getURLParameter("ap") != 'null') {
+            this.activeClass = lbs.common.getURLParameter("ap");
         } else {
             try {
-                this.activeClass = eval('limejs.limeDataConnection.ActiveInspector.Class.Name');
+                this.activeClass = eval('lbs.limeDataConnection.ActiveInspector.Class.Name');
             }
             catch (e) {
-                limejs.log.warn("Could not determine inspector class, assuming index", e);
-                limejs.activeClass = 'index';
+                lbs.log.warn("Could not determine inspector class, assuming index", e);
+                lbs.activeClass = 'index';
             }
         }
 
-        limejs.log.info("Using view: " + limejs.activeClass);
+        lbs.log.info("Using view: " + lbs.activeClass);
     },
 
     /**
@@ -138,12 +138,12 @@ var limejs = limejs || {
     "setActiveDBandServer": function () {
        
         try {
-            limejs.activeServer = limejs.limeDataConnection.Database.ActiveServerName;
-            limejs.activeDatabase = limejs.limeDataConnection.Database.Name;
-            limejs.log.info("Active Server, Database: " + limejs.activeServer + ", " + limejs.activeDatabase);
+            lbs.activeServer = lbs.limeDataConnection.Database.ActiveServerName;
+            lbs.activeDatabase = lbs.limeDataConnection.Database.Name;
+            lbs.log.info("Active Server, Database: " + lbs.activeServer + ", " + lbs.activeDatabase);
         }
         catch (e) {
-            limejs.log.warn("Could not set active server and database");
+            lbs.log.warn("Could not set active server and database");
 
         }        
     },
@@ -186,13 +186,13 @@ var limejs = limejs || {
     */
     "applyBindings": function () {
         try {
-            limejs.log.debug('ViewModel: ' + JSON.stringify(limejs.vm));
-            limejs.vm = ko.mapping.fromJS(limejs.vm);
-            ko.applyBindings(limejs.vm, $("#content").get(0));
+            lbs.log.debug('ViewModel: ' + JSON.stringify(lbs.vm));
+            lbs.vm = ko.mapping.fromJS(lbs.vm);
+            ko.applyBindings(lbs.vm, $("#content").get(0));
         } catch (e) {
-            limejs.log.warn("Binding of data to view failed! \n Displaying mapping attributes");
-            limejs.log.exception(e);
-            limejs.loader.setFallBackDummyData($("#content").get(0));
+            lbs.log.warn("Binding of data to view failed! \n Displaying mapping attributes");
+            lbs.log.exception(e);
+            lbs.loader.setFallBackDummyData($("#content").get(0));
         }
     },
 }
@@ -200,9 +200,9 @@ var limejs = limejs || {
 /**
 ViewModel factory, extend this to add knockout functionality to actionpads
 */
-limejs.vmFactory = function () {}
+lbs.vmFactory = function () {}
 
 /**
 Every this is loaded, run the awesomeness!
 */
-$(document).ready(function () { window.limejs = limejs; limejs.setup();})
+$(document).ready(function () { window.lbs = lbs; lbs.setup();})
