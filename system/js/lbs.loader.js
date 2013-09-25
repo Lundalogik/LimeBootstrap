@@ -3,10 +3,10 @@
     /**
     Attrbutes
     */
-    "systemLibPath" : "system/",
-    "scripts": [],
-    "styles": [],
-    "libs": [],
+    systemLibPath : "system/",
+    scripts: [],
+    styles: [],
+    libs: [],
 
     /**
     Add resources from config to load-lists
@@ -93,7 +93,7 @@
                  if (response.indexOf('<script') != -1) {
                      lbs.log.error('View "' + file + '" containes scripts, it is not allowed to be loaded')
                      //clear element
-                     element.html('');
+                     element.html('<img src="' + lbs.loader.systemLibPath + 'img/YouDidntSayTheMagicWord.gif" />');
                  }
                  else if (status == "error") {
                     lbs.log.error('View "' + file + '" could not be loaded')
