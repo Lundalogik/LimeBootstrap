@@ -80,7 +80,9 @@
     /**
     Log entry function for error
     */
-    "error": function (msg) {
+    "error": function (msg, e) {
+        if (e) {lbs.log.exception(e);}
+
         lbs.log.logToDom('ERROR', lbs.common.nl2br(msg));
         lbs.log.logToConsole.error(lbs.common.nl2br(msg));
     },
@@ -90,7 +92,6 @@
     */
     "exception": function (e) {
         lbs.log.logToDom('ERROR', e.message + lbs.common.nl2br(e.message+"\n" + e.stack));
-        //lbs.log.logToDom('ERROR',lbs.common.nl2br(e.message));
         lbs.log.logToConsole.error(lbs.common.nl2br(e.message), e);
     },
 }

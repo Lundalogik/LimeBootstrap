@@ -121,9 +121,14 @@ var lbs = lbs || {
             this.activeClass = lbs.common.getURLParameter("ap");
         } else {
             try {
-                this.activeClass = eval('lbs.limeDataConnection.ActiveInspector.Class.Name');
+                if (lbs.limeDataConnection.ActiveInspector.parent) {
+                    this.activeClass = lbs.limeDataConnection.ActiveInspector.Class.Name;
+                } else {
+                    ths.activeClass = 'index';
+                }
             }
             catch (e) {
+                lbs.log.exception(e);
                 lbs.log.warn("Could not determine inspector class, assuming index", e);
                 lbs.activeClass = 'index';
             }
