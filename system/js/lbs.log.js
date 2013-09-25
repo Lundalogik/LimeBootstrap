@@ -89,8 +89,8 @@
     Log entry function for exception
     */
     "exception": function (e) {
-        //lbs.log.logToDom('ERROR', e.message + lbs.common.nl2br("\n" + e.stack));
-        lbs.log.logToDom('ERROR',lbs.common.nl2br(e.message));
+        lbs.log.logToDom('ERROR', e.message + lbs.common.nl2br(e.message+"\n" + e.stack));
+        //lbs.log.logToDom('ERROR',lbs.common.nl2br(e.message));
         lbs.log.logToConsole.error(lbs.common.nl2br(e.message), e);
     },
 }

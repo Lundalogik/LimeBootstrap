@@ -187,10 +187,9 @@ var lbs = lbs || {
     "applyBindings": function () {
         try {
             lbs.log.debug('ViewModel: ' + JSON.stringify(lbs.vm));
-            lbs.vm = ko.mapping.fromJS(lbs.vm);
             ko.applyBindings(lbs.vm, $("#content").get(0));
         } catch (e) {
-            lbs.log.warn("Binding of data to view failed! \n Displaying mapping attributes");
+            lbs.log.warn("Binding of data ActionPad failed! \n Displaying mapping attributes");
             lbs.log.exception(e);
             lbs.loader.setFallBackDummyData($("#content").get(0));
         }
