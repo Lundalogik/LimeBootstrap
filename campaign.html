@@ -8,8 +8,9 @@
             <h2 data-field="Name"></h2>
 				
                 <ul >			
-					<li data-field="coworker" data-action="lime-link"><i class="icon-user"> </i> </li>
-                    <li data-field="campaignstatus"><i class="icon-flag"> </i> </li>
+					<li data-bind="text:campaign.coworker.text, limeLink: campaign.coworker, icon: 'icon-user'"> </li>
+                   	<li data-bind="text:campaign.campaignstatus.text, icon: 'icon-flag'"> </li>
+                   
                 </ul> 
         </div>
     </div>
@@ -17,7 +18,7 @@
 
 <!-- ACTIONS   -->
 <div class="content-container">
-      		
+<!--      		
     <ul class="menu expandable">
             <li class="nav-header" sv="Kommando" fi="Komentoja" en-us="Commands" no="Kommando" ></li>
             <li class="divider"></li>
@@ -25,6 +26,17 @@
             <li sv="Ny historiknotering" fi="Uusi historiamerkintä" en-us="New history" no="Ny historikk" title-fi="Uusi historiamerkintä" title-no="Ny historikk" title-sv="Ny historiknotering" title-en-us="New notation" data-action="ActionPadTools.NewInspectorFromInspector, history"> <i class="icon-pencil"></i></li>
             <li sv="Nytt dokument" fi="Uusi asiakirja" en-us="New document" no="Nytt dokument" title-no="Nytt dokument" title-fi="Uusi asiakirja" title-sv="Nytt dokument" title-en-us="New document" data-action="ActionPadTools.NewInspectorFromInspector, document"> <i class="icon-file-text-alt"></i></li>
         </ul>
+-->		
+	<ul class="menu expandable">
+		<li class="nav-header">Kommando</li>
+		<li class="divider"></li>
+		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, todo', icon:'icon-calendar'">Ny att-göra</li>
+		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, history', icon:'icon-pencil'">Ny historiknotering</li>
+		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, document', icon:'icon-file-text-alt'">Nytt dokument</li>
+       
+    </ul>
+		
+		
         <div class="limegraph" id="limegraph-pie"></div>
             
 </div>

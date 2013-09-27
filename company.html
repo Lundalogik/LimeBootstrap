@@ -4,11 +4,11 @@
         <div class="header-icon-container company">		
         </div>
         <div id="header-info"> 
-            <h2 data-bind="limeData: company.name.text"></h2>
+            <h2 data-bind="text:company.name.text"></h2>
                 <ul >
-                    <li data-bind="limeData:company.postalcity.text, limeAction:{ showOnMap: company.fullpostaladdress.text}, icon: 'icon-map-marker'"> </li>
-                    <li data-bind="limeData: company.phone.text, limeAction: { call: company.phone.text }, icon: 'icon-phone'"></li>
-                    <li data-bind="limeData: company.www.text, limeAction: { openURL: company.www.text }, icon: 'icon-globe'"></li>
+                    <li data-bind="text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: 'icon-map-marker'"> </li>
+                    <li data-bind="text:company.phone.text, call: company.phone.text, icon: 'icon-phone'"></li>
+                    <li data-bind="text:company.www.text, openURL: company.www.text, icon: 'icon-globe'"></li>
                 </ul> 
         </div>
     </div>
@@ -19,10 +19,10 @@
     <ul class="menu expandable">
             <li class="nav-header">Historik</li>
             <li class="divider"></li>
-            <li data-bind="limeAction:{VBA:'ActionPad_Company.NewHistory, receivedemail'}, icon:'icon-pencil'">Fått e-post</li>
-            <li data-bind="limeAction:{VBA:'ActionPad_Company.NewHistory, sentemail'}, icon:'icon-pencil'">Pratat med</li>
-            <li data-bind="limeAction: {VBA: 'ActionPad_Company.NewHistory, salescall' }, icon:'icon-pencil'">Säljsamtal</li>
-            <li data-bind="limeAction: { VBA: 'ActionPad_Company.NewHistory, noanswer' },icon:'icon-pencil'">Sökt, ej på plats</li>        
+            <li data-bind="vba:'ActionPad_Company.NewHistory, receivedemail', icon:'icon-pencil'">Fått e-post</li>
+            <li data-bind="vba:'ActionPad_Company.NewHistory, talkedto', icon:'icon-pencil'">Pratat med</li>
+            <li data-bind="vba:'ActionPad_Company.NewHistory, salescall', icon:'icon-pencil'">Säljsamtal</li>
+            <li data-bind="vba:'ActionPad_Company.NewHistory, noanswer',icon:'icon-pencil'">Sökt, ej på plats</li>        
     </ul>
 
 </div>
