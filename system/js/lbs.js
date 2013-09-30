@@ -98,6 +98,8 @@ var lbs = lbs || {
         //create viewmodel container
         this.vm = new lbs.vmFactory();
 
+        this.vm.helpdesk = { person: {text2:'a'}}
+       
         //check connection to Lime
         this.hasLimeConnection = (typeof lbs.limeDataConnection.Application != 'undefined');
     },
@@ -121,11 +123,7 @@ var lbs = lbs || {
             this.activeClass = lbs.common.getURLParameter("ap");
         } else {
             try {
-                if (lbs.limeDataConnection.ActiveInspector.parent) {
-                    this.activeClass = lbs.limeDataConnection.ActiveInspector.Class.Name;
-                } else {
-                    ths.activeClass = 'index';
-                }
+                this.activeClass = lbs.limeDataConnection.ActiveInspector.Class.Name;
             }
             catch (e) {
                 lbs.log.exception(e);
@@ -194,9 +192,7 @@ var lbs = lbs || {
             lbs.log.debug('ViewModel: ' + JSON.stringify(lbs.vm));
             ko.applyBindings(lbs.vm, $("#content").get(0));
         } catch (e) {
-            lbs.log.warn("Binding of data ActionPad failed! \n Displaying mapping attributes");
-            lbs.log.exception(e);
-            lbs.loader.setFallBackDummyData($("#content").get(0));
+            lbs.log.warn("Binding of data ActionPad failed! \n Displaying mapping attributes",e);
         }
     },
 }

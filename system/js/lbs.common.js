@@ -58,13 +58,14 @@
     "executeVba": function (inString) {
         try {
             lbs.log.debug("Trying to execute VBA:" + inString);
+            var vbaline;
 
             var inArgs = inString.split(',');
 
             if (inArgs.length > 1) {
 
                 var args = "";
-                var vbaline = "lbs.limeDataConnection.Run('" + inArgs[0] + "', ";
+                vbaline = "lbs.limeDataConnection.Run('" + inArgs[0] + "', ";
                 for (var i = 1; i < inArgs.length; i++) {
                     while (inArgs[i].charAt(0) === ' ') {
                         inArgs[i] = inArgs[i].substr(1);
@@ -74,17 +75,19 @@
                         args += ",";
                 }
                 vbaline += args + ")";
-                //alert(vbaline)
-                eval(vbaline);
+                
+                //lbs.log.debug("Trying to execute multi argument VBA:" + vbaline);
+                return eval(vbaline);
             }
             else {
+                vbaline = "lbs.limeDataConnection.Run('"+arguments[0]+"')";
+                //lbs.log.debug("Trying to execute single argument VBA:" + vbaline);
                 return lbs.limeDataConnection.Run(arguments[0]);
             }
 
         } catch (e) {
             return null;
-            lbs.log.error("executeVBA:" + vbaline, e);
-
+            lbs.log.error("Failed to execute VBA:" + vbaline, e);
         }
     },
 

@@ -26,7 +26,7 @@
     TODO: implement limitation depending on theshold
     */
     logToDom: function (type, msg) {
-        if (!lbs.debug) { return; };
+        //if (!lbs.debug) { return; };
         if (lbs.log.vm) {
             lbs.log.vm.addEntry(type.toUpperCase(), msg);
         }
@@ -72,7 +72,8 @@
     /**
     Log entry function for warn
     */
-    "warn": function (msg) {
+    "warn": function (msg, e) {
+        if(e){lbs.log.exception(e)}
         lbs.log.logToDom('WARN', lbs.common.nl2br(msg));
         lbs.log.logToConsole.warn(lbs.common.nl2br(msg));
     },
@@ -81,8 +82,7 @@
     Log entry function for error
     */
     "error": function (msg, e) {
-        if (e) {lbs.log.exception(e);}
-
+        if(e){lbs.log.exception(e)}
         lbs.log.logToDom('ERROR', lbs.common.nl2br(msg));
         lbs.log.logToConsole.error(lbs.common.nl2br(msg));
     },
@@ -124,6 +124,7 @@ lbs.log.vmFactory = function () {
             case 'ERROR':
                 icon = 'icon-remove';
                 rowclass = 'alert-error';
+                this.enabled(true);
                 break;
         }
 

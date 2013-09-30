@@ -49,6 +49,8 @@
             //to-be viewmodel
             var vm = lbs.vm;
 
+            vm.helpdesk = {person: {text:'a'}}
+
             //load data
             vm = lbs.loader.loadDataSources(vm, config.dataSources);
             lbs.appsMetaData[key].vm = vm;

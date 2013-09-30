@@ -4,19 +4,21 @@
                
             </div>
             <div id="header-info"> 
-                <h2 data-field="Name"></h2>
+                <h2 data-bind="text:person.name.text"></h2>
 				
-                    <ul >						
-                        <li data-field="company" data-action="lime-link"><i class="icon-building"></i></li>
-                        <li data-field="phone" data-action="call" ><i class="icon-phone"></i></li>
-                        <li data-field="mobilephone" data-action="openUrl"><i class="icon-mobile-phone"></i></li>
-                    </ul> 
+                    <ul >		      						
+						<li data-bind="text:person.company.text, limeLink: person.company, icon:'icon-building'"> </li>
+						<li data-bind="text:person.phone.text, call:person.phone.text, icon:'icon-phone'"></li>
+						<li data-bind="text:person.mobilephone.text, call:person.mobilephone.text, icon:'icon-mobile-phone'"></li>
+
+					</ul> 
             </div>
         </div>
     <!-- /INFO HEADER  -->
-    
+    <!--
     <!-- ACTIONS   -->
-    <div class="content-container">
+    <!--
+	<div class="content-container">
       		
         <ul class="menu expandable">
              <li class="nav-header" sv="Kommando" fi="Komentoja" en-us="Commands" no="Kommando"></li>
@@ -25,7 +27,20 @@
              <li sv="Ny historiknotering" fi="Uusi historiamerkintä" en-us="New history" no="Ny historikk" title-fi="Uusi historiamerkintä" title-no="Ny historikk" title-sv="Ny historiknotering" title-en-us="New notation" data-action="ActionPadTools.NewInspectorFromInspector, history"> <i class="icon-pencil"></i></li>
              <li sv="Nytt dokument" fi="Uusi asiakirja" en-us="New document" no="Nytt dokument" title-no="Nytt dokument" title-fi="Uusi asiakirja" title-sv="Nytt dokument" title-en-us="New document" data-action="ActionPadTools.NewInspectorFromInspector, document"> <i class="icon-file-text-alt"></i></li>
          </ul>
+		 -->
+		 
+	<ul class="menu expandable">
+		<li class="nav-header">Kommando</li>
+		<li class="divider"></li>
+		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, todo', icon:'icon-calendar'">Ny att-göra</li>
+		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, history', icon:'icon-pencil'">Ny historiknotering</li>
+		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, document', icon:'icon-file-text-alt'">Nytt dokument</li>
+       
+    </ul>
+
+		 
         <div class="info" data-info="ActionPad_Person.IsActive,warning,icon-signout"></div>	
+		
     </div>
 	
   
