@@ -98,7 +98,8 @@ var lbs = lbs || {
         //create viewmodel container
         this.vm = new lbs.vmFactory();
 
-        this.vm.helpdesk = { person: {text2:'a'}}
+        this.vm.obj = { prop: { exists: 'a', emtpy : '' } }
+
        
         //check connection to Lime
         this.hasLimeConnection = (typeof lbs.limeDataConnection.Application != 'undefined');
