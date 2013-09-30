@@ -14,6 +14,8 @@ LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reaso
 
 Older versions of IE _may_ work, but the ActionPads will surely not look so great. 
 
+As the framework uses Knockout model is a Model-View-View Model, where 
+
 ### Included javascript frameworks
 The bundled library contains:
 
@@ -32,6 +34,7 @@ The framework has the following file structure
 *	__apps__ - _small selfdependent html apps that can be dynamically loaded into the Actionpads_
 	*	...
 *	__System__ - _READ ONLY! This is the base of the framework and should never be modified_
+	*	__bin__ - _launch Google Chrome in Allow Cross Origin mode_
 	*	__css__
 		*	lime.css - _styling for the framework. Overrides several Twitter Bootstrap stylings_
 
@@ -44,7 +47,8 @@ The framework has the following file structure
 	*	__js__ - _all javacript used in the framework_
 		*	lbs.js - _Frameworks main javascript_
 		*	... Third party frameworks ...
-*	Actionpads.html
+	*	__view__ - _Views used by the system, for example the debug view_
+*	application.html
 		
 ### Structure of an Actionpad
 An Actionpad built with LIME-bootstrap has the following structure
@@ -56,9 +60,9 @@ An Actionpad built with LIME-bootstrap has the following structure
                 
             </div>
             <div id="header-info"> 
-                <h2 data-field="helpdeskno"></h2>
+                <h2 data-bind="text: helpdesk.helpdeskno.text"></h2>
 					<ul>
-						<li data-field="person" data-action="lime-link"><i class="icon-user"></i></li>						
+						<li data-bind="text:helpdesk.person.text, limeLink=helpdesk.person", icon='icon-user'></li>						
   					  	...
                     </ul> 
             </div>
