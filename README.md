@@ -1,14 +1,16 @@
 #LIME-bootstrap
 
 Welcome to the LIME Pro Actionpad framework called LIME-bootstrap. 
-The LIME-bootstrap is made to make it easier, better and faster working with Actionpads in LIME pro. The framework relies heavily on Twitter 
-bootstrap but with custom styling and a simple, yet powerful script called lbs.js. The framework contains several built in functions and third 
-party libraries, but is also expandable through plugin in custom apps.The actual actionpads used in the LIME basic database are also included.  
+The LIME-bootstrap is made to make it easier, better and faster working with Actionpads in LIME pro. The framework relies heavily on Knockout.js and Twitter Bootstrap but with custom styling and a simple, yet powerful script called lbs.js. The framework contains several built in functions and third 
+party libraries, but is also expandable through custom apps. Some actual actionpads used in the LIME basic database are also included.  
 
-LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reasons all functionallity (exept the data connections) should work in any browser. In LIME Pro the supporter browser versions are:
+The framework is "convention over configuration", meaning there should be one and only one way to do thing.
+
+LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reasons all functionality (except the data connections) should work in any browser. In LIME Pro the supporter browser versions are:
 
 *	Internet Explorer 9
 *	Internet Explorer 10
+*	Internet Explorer 11
 
 Older versions of IE _may_ work, but the ActionPads will surely not look so great. 
 
@@ -18,7 +20,7 @@ The bundled library contains:
 *	[jQuery](http://jquery.com)
 *	[Underscore.js](http://underscorejs.org)
 *	[Moment.js](http://momentjs.com)
-*	[Handelbars.js](http://handlebarsjs.com)
+*	[Knockout.js](http://knockoutjs.com/)
 *	[Bootstrap.js](http://getbootstrap.com)
 
 ###Icons
@@ -29,10 +31,10 @@ The framework has the following file structure
 
 *	__apps__ - _small selfdependent html apps that can be dynamically loaded into the Actionpads_
 	*	...
-*	__custom__ - _A good place to put customer customizations that's to small to be an app_
-*	__lib__ - _READ ONLY! This is the base of the framework and should never be modified_
+*	__System__ - _READ ONLY! This is the base of the framework and should never be modified_
 	*	__css__
 		*	lime.css - _styling for the framework. Overrides several Twitter Bootstrap stylings_
+
 		*	font-awesome.css
 		*	bootstrap.css
 	*	__font__ - _Font files for Font awesome_
@@ -48,20 +50,6 @@ The framework has the following file structure
 An Actionpad built with LIME-bootstrap has the following structure
 
 ```html
-<!DOCTYPE html> <!-- The ONLY true doctype! -->
-<html>
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>	<!-- Force IE to use the lates renderingmode -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Lime Helpdesk Actionpad</title> <!-- Give the actionpad a title -->
-    <meta name="author" content="Lundalogik" />
-    <!-- Inculude styles -->
-    <link rel="stylesheet" href="lib/css/bootstrap.min.css" type="text/css"  charset="utf-8" />
-    <link rel="stylesheet" href="lib/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="lib/css/lime.css" /> 
-    <!--/STYLE -->
-</head>
-<body>
     <!-- Header section, The colorfull thing at the top  -->
         <div class="header-container red"> <!-- Specify the color of the header. Please see color section for available colors  -->
             <div class="header-icon-container helpdesk"> <!-- Specify the icon of the header. Please see icon section for available special icons  -->
@@ -84,17 +72,6 @@ An Actionpad built with LIME-bootstrap has the following structure
 		 
     </div>
 	<!-- /Body section  -->
-	
-    <!--  ================================================== Le javascript ================================================== -->   
-    <!-- LIME ACTIONPAD STANDARD TOOLS -->
-    <script src="lib/js/jquery-1.9.1.min.js" charset="utf-8" type="text/javascript"></script>
-    <script src="lib/js/bootstrap.min.js" charset="utf-8" type="text/javascript"></script>
-    <script src="lib/js/lbs.js" type="text/javascript"></script>
-     <!-- /LIME ACTIONPAD STANDARD TOOLS --> 
-     <!--  ================================================== /Le javascript ================================================== -->             
-  
-</body>
-</html>
 
 ```
 
