@@ -3,7 +3,7 @@
     /**
     Attrbutes
     */
-    systemLibPath : "system/",
+    systemLibPath: "system/",
     scripts: [],
     styles: [],
     libs: [],
@@ -18,12 +18,12 @@
             return;
         }
         $.each(data.scripts, function (i) {
-            path = appPath == '/' ? lbs.loader.systemLibPath+'js/' : appPath;
+            path = appPath == '/' ? lbs.loader.systemLibPath + 'js/' : appPath;
             lbs.loader.scripts.push(path + data.scripts[i]);
         })
 
         $.each(data.libs, function (i) {
-            path = lbs.loader.systemLibPath+'js/';
+            path = lbs.loader.systemLibPath + 'js/';
             lbs.loader.libs.push(path + data.libs[i]);
         })
 
@@ -63,13 +63,28 @@
     /**
     Fetch and run a script from disk
     */
-    "loadScript" : function(val){
+    "loadScript": function (val) {
         var success = false;
+        //$.getScript(val)
+        //  .done(function( script, textStatus ) {
+        //      success = true;
+        //  })
+        //  .fail(function( jqxhr, settings, exception ) {
+        //      lbs.log.exception(exception);
+        //      lbs.log.error('failed to load script: ' + val);
+        //  });
+
+        var js = document.createElement("script");
+
+        js.type = "text/javascript";
+        js.src = val;
+
+        document.body.appendChild(js);
         $.getScript(val)
-          .done(function( script, textStatus ) {
+          .done(function (script, textStatus) {
               success = true;
           })
-          .fail(function( jqxhr, settings, exception ) {
+          .fail(function (jqxhr, settings, exception) {
               //lbs.log.exception(exception);
               lbs.log.error('failed to load script: ' + val);
           });
@@ -88,15 +103,23 @@
     */
     "loadView": function (file, element) {
         try {
-             file = file+".html";
-             element.load(file, function (response, status, xhr) {
-                 if (response.indexOf('<script') != -1) {
-                     lbs.log.error('View "' + file + '" containes scripts, it is not allowed to be loaded')
-                     //clear element
-                     element.html('<img src="' + lbs.loader.systemLibPath + 'img/YouDidntSayTheMagicWord.gif" />');
-                 }
-                 else if (status == "error") {
-                    lbs.log.error('View "' + file + '" could not be loaded')
+            file = file + ".html";
+            element.load(file, function (response, status, xhr) {
+                if (response.indexOf('<script') != -1) {
+                    lbs.log.error('View "' + file + '" containes scripts, it is not allowed to be loaded')
+                    //clear element
+                    element.html('<img src="' + lbs.loader.systemLibPath + 'img/YouDidntSayTheMagicWord.gif" />');
+                }
+                else if (status == "error") {
+                     lbs.log.error('View "' + file + '" could not be loaded, using fallback loading through LWS');
+                     var s = ""
+                     s = lbs.common.executeVba("LWS.loadHTTPResource," + file);
+                     if (s !== "") {
+                         element.html(s);
+                         lbs.log.info('View "' + file + '" loaded successfully');
+                     } else {
+                         lbs.log.error('View "' + file + '" could not be loaded');
+                     }
                 } else {
                     lbs.log.info('View "' + file + '" loaded successfully');
                 }
@@ -112,7 +135,7 @@
     Load all datasources in set to the selected viewmodel
     */
     loadDataSources: function (vm, dataSources) {
-        $.each(dataSources, function (key,source) {
+        $.each(dataSources, function (key, source) {
             vm = lbs.loader.loadDataSource(vm, source);
         })
         return vm;
@@ -126,10 +149,10 @@
 
         lbs.log.debug('Loading data source: ' + dataSource.type + ':' + dataSource.source)
 
-        try{
+        try {
             switch (dataSource.type) {
                 case 'activeInspector':
-                    try{
+                    try {
                         var record = lbs.limeDataConnection.ActiveInspector.Record
                         data = lbs.loader.controlsToJSON(lbs.limeDataConnection.ActiveControls);
                     } catch (e) {
@@ -182,12 +205,12 @@
                     data.localize = collecton;
                     break;
             }
- 
+
             //merge options into the viewModel
             vm = lbs.common.mergeOptions(vm, data || {});
-        }catch(e){
+        } catch (e) {
             lbs.log.exception(e);
-            lbs.log.error("Failed to load datasource: " + dataSource.type+':'+dataSource.source)
+            lbs.log.error("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
         }
 
         return vm;
@@ -205,39 +228,48 @@
     */
     setFallBackDummyData: function (node) {
         var value = '';
+        var hasContentBinding = false;
 
         //set text
-        $('[data-bind]').each(function () {
-            var match = new RegExp("text\:[^\,\}]*").exec($(this).attr('data-bind'))
-            if (match) {
-                $(this).html('Text: ' + match[0].split(":")[1].trim());
-            }
-        });
+        var match = new RegExp("text\:[^\,\}]*").exec($(node).attr('data-bind'))
+        if (match) { $(node).html('Binding:' + match[0].split(":")[1].trim()) }
 
         //set value
-        $('[data-bind]').each(function () {
-            var match = new RegExp("value\:[^\,\}]*").exec($(this).attr('data-bind'))
-            if (match) {
-                $(this).attr('value', ('Value: ' + match[0].split(":")[1].trim()));
-            }
-        });
+        var match = new RegExp("value\:[^\,\}]*").exec($(node).attr('data-bind'))
+        if (match) { $(node).attr('value', ('Binding:' + match[0].split(":")[1].trim())) }
 
+        //set content
+        var match = new RegExp("content\:[^\,\}]*").exec($(node).attr('data-bind'))
+        if (match) {
+            $(node).html('Binding:' + match[0].split(":")[1].trim());
+            hasContentBinding = true;
+        }
+
+        //icons
+        if (hasContentBinding) {
+            var match = new RegExp("icon\:[^\,\}]*").exec($(node).attr('data-bind'))
+            if (match) {
+                var content = '<i class="' + match[0].split(":")[1].trim().replace(/\'/g, "") + '"></i>';
+                $(node).prepend(content);
+            }
+        }
     },
+
 
     /**
     Transform a VBA dictionary to JSON.
     A collection with keys is needed as the keys method is not transported to JS
     */
-    "dictionaryToJSON": function (keys,dic) {
-        var key,value;
+    "dictionaryToJSON": function (keys, dic) {
+        var key, value;
         var json = {};
-      
+
         for (var i = 1; i <= dic.count; i++) {
             key = keys(i);
             value = dic.item(key);
             json[key] = value;
         }
-  
+
         return json;
 
     },
@@ -247,22 +279,22 @@
     */
     "recordToJSON": function (record) {
         var nbrOfFields = record.Fields.Count;
-        var className = record.Class.Name 
+        var className = record.Class.Name
         var attr;
         var json = {};
         json[className] = {};
-        
+
         for (var i = 1; i <= nbrOfFields; i++) {
             attr = record.Fields(i).Name;
-                json[className][attr] = {};
-                json[className][attr]["text"] = record.Text(i);
-                json[className][attr]['value'] = record.Value(i);
-                if (record.Fields(i).Type == 16) { //Relation
-                    json[className][attr]['class'] = record.Fields(i).LinkedField.Class.Name;
-                }
-                if (record.Fields(i).Type == (19 || 18 ) ) { //Option or Set
-                    json[className][attr]['key'] = record.GetOptionKey(i);
-                }
+            json[className][attr] = {};
+            json[className][attr]["text"] = record.Text(i);
+            json[className][attr]['value'] = record.Value(i);
+            if (record.Fields(i).Type == 16) { //Relation
+                json[className][attr]['class'] = record.Fields(i).LinkedField.Class.Name;
+            }
+            if (record.Fields(i).Type == (19 || 18)) { //Option or Set
+                json[className][attr]['key'] = record.GetOptionKey(i);
+            }
 
         }
         return json;
@@ -278,12 +310,12 @@
         var attr;
         var json = {};
         json[className] = {};
-        
+
         for (var i = 1; i <= nbrOfControls; i++) {
             attr = controls(i).Field.Name;
             json[className][attr] = {};
             json[className][attr]["text"] = controls(i).Text;
-            json[className][attr]['value'] =controls(i).Value;
+            json[className][attr]['value'] = controls(i).Value;
             if (controls(i).Field.Type == 16) { //Relation
                 json[className][attr]['class'] = controls(i).Field.LinkedField.Class.Name;
             }
@@ -296,6 +328,6 @@
 
     },
 
-    
+
 
 }
