@@ -254,43 +254,6 @@
             }
         }
     },
-    //setFallBackDummyData: function (node) {
-    //    var value = '';
-
-    //    //set text
-    //    $('[data-bind]').each(function () {
-    //        var match = new RegExp("text\:[^\,\}]*").exec($(this).attr('data-bind'))
-    //        if (match) {
-    //            $(this).html('Text: ' + match[0].split(":")[1].trim());
-    //        }
-    //    });
-
-    //    //set value
-    //    $('[data-bind]').each(function () {
-    //        var match = new RegExp("value\:[^\,\}]*").exec($(this).attr('data-bind'))
-    //        if (match) {
-    //            $(this).attr('value', ('Value: ' + match[0].split(":")[1].trim()));
-    //        }
-    //    });
-
-    //    //set data
-    //    $('[data-bind]').each(function () {
-    //        var match = new RegExp("content\:[^\,\}]*").exec($(this).attr('data-bind'))
-    //        if (match) {
-    //            $(this).html('Content: ' + match[0].split(":")[1].trim());
-    //        }
-    //    });
-
-    //    //icons
-    //    $('[data-bind]').each(function () {
-    //        var match = new RegExp("icon\:[^\,\}]*").exec($(this).attr('data-bind'))
-    //        if (match) {
-    //            content = "<i class='" + match[0].split(":")[1].trim().replace("'","") + "'></i>";
-    //            $(this).prepend(content);
-    //        }
-    //    });
-
-    //},
 
 
     /**
