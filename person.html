@@ -9,26 +9,15 @@
                     <ul >		      						
 						<li data-bind="text:person.company.text, limeLink: person.company, icon:'icon-building'"> </li>
 						<li data-bind="text:person.phone.text, call:person.phone.text, icon:'icon-phone'"></li>
-						<li data-bind="text:person.mobilephone.text, call:person.mobilephone.text, icon:'icon-mobile-phone'"></li>
+						<li data-bind="text:moment(), call:person.mobilephone.text, icon:'icon-mobile-phone'"></li>
 
 					</ul> 
             </div>
         </div>
     <!-- /INFO HEADER  -->
-    <!--
     <!-- ACTIONS   -->
-    <!--
-	<div class="content-container">
-      		
-        <ul class="menu expandable">
-             <li class="nav-header" sv="Kommando" fi="Komentoja" en-us="Commands" no="Kommando"></li>
-             <li class="divider"></li>
-             <li sv="Ny att göra" fi="Uusi tehtävä" en-us="New todo" no="Ny oppgave" title-no="Ny oppgave" title-fi="Uusi tehtävä" title-sv="Ny att göra uppgift"  title-en-us="New todo" data-action="ActionPadTools.NewInspectorFromInspector, todo"> <i class="icon-calendar"></i></li>
-             <li sv="Ny historiknotering" fi="Uusi historiamerkintä" en-us="New history" no="Ny historikk" title-fi="Uusi historiamerkintä" title-no="Ny historikk" title-sv="Ny historiknotering" title-en-us="New notation" data-action="ActionPadTools.NewInspectorFromInspector, history"> <i class="icon-pencil"></i></li>
-             <li sv="Nytt dokument" fi="Uusi asiakirja" en-us="New document" no="Nytt dokument" title-no="Nytt dokument" title-fi="Uusi asiakirja" title-sv="Nytt dokument" title-en-us="New document" data-action="ActionPadTools.NewInspectorFromInspector, document"> <i class="icon-file-text-alt"></i></li>
-         </ul>
-		 -->
-		 
+
+	<div class="content-container">	 
 	<ul class="menu expandable">
 		<li class="nav-header">Kommando</li>
 		<li class="divider"></li>

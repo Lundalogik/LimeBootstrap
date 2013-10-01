@@ -65,6 +65,21 @@
     */
     "loadScript": function (val) {
         var success = false;
+        //$.getScript(val)
+        //  .done(function( script, textStatus ) {
+        //      success = true;
+        //  })
+        //  .fail(function( jqxhr, settings, exception ) {
+        //      lbs.log.exception(exception);
+        //      lbs.log.error('failed to load script: ' + val);
+        //  });
+
+        var js = document.createElement("script");
+
+        js.type = "text/javascript";
+        js.src = val;
+
+        document.body.appendChild(js);
         $.getScript(val)
           .done(function (script, textStatus) {
               success = true;
@@ -96,7 +111,15 @@
                     element.html('<img src="' + lbs.loader.systemLibPath + 'img/YouDidntSayTheMagicWord.gif" />');
                 }
                 else if (status == "error") {
-                    lbs.log.error('View "' + file + '" could not be loaded')
+                     lbs.log.error('View "' + file + '" could not be loaded, using fallback loading through LWS');
+                     var s = ""
+                     s = lbs.common.executeVba("LWS.loadHTTPResource," + file);
+                     if (s !== "") {
+                         element.html(s);
+                         lbs.log.info('View "' + file + '" loaded successfully');
+                     } else {
+                         lbs.log.error('View "' + file + '" could not be loaded');
+                     }
                 } else {
                     lbs.log.info('View "' + file + '" loaded successfully');
                 }
