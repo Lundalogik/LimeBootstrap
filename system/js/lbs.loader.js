@@ -107,7 +107,7 @@
             element.load(file, function (response, status, xhr) {
                 if (response.indexOf('<script') != -1) {
                     lbs.log.error('View "' + file + '" containes scripts, it is not allowed to be loaded')
-                    //clear element
+                    //replace element with funnt image
                     element.html('<img src="' + lbs.loader.systemLibPath + 'img/YouDidntSayTheMagicWord.gif" />');
                 }
                 else if (status == "error") {
@@ -125,10 +125,8 @@
                 }
             })
         } catch (e) {
-            lbs.log.exception(e);
-            lbs.log.error("Resource could not be found. If using Chrome, make sure --file-access-from-file is enabled");
+            lbs.log.error("Resource could not be found. If using Chrome, make sure --file-access-from-file is enabled",e);
         }
-
     },
 
     /**
@@ -209,8 +207,7 @@
             //merge options into the viewModel
             vm = lbs.common.mergeOptions(vm, data || {});
         } catch (e) {
-            lbs.log.exception(e);
-            lbs.log.error("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+            lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
         }
 
         return vm;
@@ -222,39 +219,6 @@
     "uniqueFilter": function (e, i, arr) {
         return arr.lastIndexOf(e) === i;
     },
-
-    /**
-    Set all text and value bindings to the binding valus. Used if bindings failed to display helper data.
-    */
-    setFallBackDummyData: function (node) {
-        var value = '';
-        var hasContentBinding = false;
-
-        //set text
-        var match = new RegExp("text\:[^\,\}]*").exec($(node).attr('data-bind'))
-        if (match) { $(node).html('Binding:' + match[0].split(":")[1].trim()) }
-
-        //set value
-        var match = new RegExp("value\:[^\,\}]*").exec($(node).attr('data-bind'))
-        if (match) { $(node).attr('value', ('Binding:' + match[0].split(":")[1].trim())) }
-
-        //set content
-        var match = new RegExp("content\:[^\,\}]*").exec($(node).attr('data-bind'))
-        if (match) {
-            $(node).html('Binding:' + match[0].split(":")[1].trim());
-            hasContentBinding = true;
-        }
-
-        //icons
-        if (hasContentBinding) {
-            var match = new RegExp("icon\:[^\,\}]*").exec($(node).attr('data-bind'))
-            if (match) {
-                var content = '<i class="' + match[0].split(":")[1].trim().replace(/\'/g, "") + '"></i>';
-                $(node).prepend(content);
-            }
-        }
-    },
-
 
     /**
     Transform a VBA dictionary to JSON.
