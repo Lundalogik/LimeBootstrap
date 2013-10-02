@@ -12,12 +12,10 @@
 				
 					<ul>
 						<li data-bind="text:helpdesk.person.text, limeLink:helpdesk.person, icon:'icon-user'"></li>						
-                        <li data-bind="text:helpdesk.company.text, limeLink:helpdesk.company, icon:'icon-building'"></li>
-						
+                        <li data-bind="text:helpdesk.company.text, limeLink:helpdesk.company, icon:'icon-building'"></li>					
 						<li data-bind="text:person.phone.text, call:person.phone.text, icon:'icon-phone'"></li>
 						<li data-bind="text:person.mobilephone.text, call:person.phone.text, icon:'icon-mobile-phone'"></li>						
-						<li data-bind="text:company.phone.text, call:company.phone.text, icon:'icon-phone'"></li>
-						
+						<li data-bind="text:company.phone.text, call:company.phone.text, icon:'icon-phone'"></li>	
                     </ul> 
 				
             </div>
@@ -27,43 +25,32 @@
     <!-- ACTIONS   -->
     <div class="content-container">
       		
-        <ul class="menu expandable">
-             <li class="nav-header" sv="Kommando" fi="Komentoja" en-us="Commands" no="Kommando" ></li>
-             <li class="divider"></li>
-             <li data-visibility="ActionPad_Helpdesk.HideLinks, take" sv="Ta ärende" fi="Ota tehtäväksi" title-fi="Ota tehtäväksi" en-us="Take case" no="Ta saken" title-no"Ta saken" title-sv="Ta ärende" title-en-us="Take Case" data-action="ActionPad_Helpdesk.Take" > <i class="icon-rocket"></i></li>
-             <li data-visibility="ActionPad_Helpdesk.HideLinks, putback" sv="Lägg tillbaka ärendet" fi="Laita takaisin" title-fi="Laita takaisin" en-us="Put back case" no="Legg tilbake saken" title-no"Legg tilbake saken" title-sv="Lägg tillbaka ärendet" title-en-us="Put back case" data-action="ActionPad_Helpdesk.PutBack"><i class="icon-minus-sign"></i></li>
-             <li data-visibility="ActionPad_Helpdesk.HideLinks, done" sv= "Pricka av ärende" fi="Merkitse suoritetuksi" title-fi="Merkitse suoritetuksi" en-us="Set done" no="Marker som utført" title-no"Marker som utført" title-sv="Pricka av ärendet" title-en-us="Set case as done" data-action="ActionPad_Helpdesk.Done"><i class="icon-ok"></i></li>
-			 <li data-visibility="ActionPad_Helpdesk.HideLinks, undo" sv= "Återuppta" fi="Avaa uudestaan" title-fi="Avaa uudestaan" en-us="Reopen" no="Gjenoppta" title-no"Gjenoppta" title-sv="Återuppta ärendet" title-en-us="Set case as done" data-action="ActionPad_Helpdesk.Take" > <i class="icon-repeat"></i></li>
-			 <li sv= "Ny historiknotering" fi="Uusi historiamerkintä" title-fi="Uusi historiamerkintä" en-us="New history" no="Ny historikk" title-no"Ny historikk" title-sv="Lägg till historik" title-en-us="New history" data-action="ActionPad_Helpdesk.NewHistory, comment"><i class="icon-file-text-alt"></i></li>
-         
-		   <ul class="menu expandable">
+
+		<ul class="menu expandable">
             <li class="nav-header">Kommando</li>
             <li class="divider"></li>
             <li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, take', vba:'ActionPad_Helpdesk.Take',  icon:'icon-pencil'">Ta ärende</li>
 			<li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, putback', vba:'ActionPad_Helpdesk.Putback',  icon:'icon-pencil'">Lägg tillbaka ärende</li>
 			<li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, done', vba:'ActionPad_Helpdesk.Done',  icon:'icon-pencil'">Pricka av ärende</li>
 			<li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, undo', vba:'ActionPad_Helpdesk.take',  icon:'icon-pencil'">Återuppta ärende</li>
-			<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, history', icon:'icon-pencil'">Ny historiknotering</li>
-    </ul>
-		 
-		 </ul> 
+		</ul> 
 		 
 		 
 		<div class="btn-group">
-			<a class="btn dropdown-toggle" data-toggle="dropdown" sv="Parkera fram" en-us="Park" no="Parker frem" fi="Park" href="#">
-				<i class="icon-caret-down"></i>
+			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+				<i class="icon-caret-down"></i> Parkera fram
 			</a>
 			<ul class="dropdown-menu">
-				<li sv="+ 1h" fi="+ 1 tunti" en-us="+ 1h" no="+ 1h" title-no="Parker saken 1 time" title-fi="Siirrä 1 tunti" title-sv="Parkera ärendet 1 timme" title-en-us="Park case 1 hour" data-action="ActionPad_Helpdesk.Park, 1, t_park_1_hour"></li>
-				<li sv="+ 2h" fi="+ 2 tuntia" en-us="+ 2h" no="+ 2h" title-no="Parker frem 2 timer" title-fi="Siirrä 2 tuntia" title-sv="Parkera ärendet 2 timmar" title-en-us="Park case 2 hours" data.action="ActionPad_Helpdesk.Park, 2, t_park_2_hour"></li>
-				<li sv="+ 4h" fi="+ 4 tuntia" en-us="+ 4h" no="+ 4h" title-no="Parker frem 4 timer" title-fi="Siirrä 4 tuntia" title-sv="Parkera ärendet 4 timmar" title-en-us=" Park case 4 hours" data-action="ActionPad_Helpdesk.Park, 4, t_park_4_hours"></li>
+				<li data-bind="vba:'ActionPad_Helpdesk.Park, 1, t_park_1_hour'">+ 1h</li>
+				<li data-bind="vba:'ActionPad_Helpdesk.Park, 2, t_park_2_hour'">+ 2h</li>
+				<li data-bind="vba:'ActionPad_Helpdesk.Park, 4, t_park_4_hours'">+ 4h</li>
 				<li class="divider"></li>
-				<li sv="+ 1 dag" fi="+ 1 päivä" en-us="+ 1 day" no="+1 dag" title-no="Parker frem 1 dag" title-fi"Siirrä 1 päivä" title-sv="Parkera ärendet 1 dag" title-en-us="Park case 1 day" data-action="ActionPad_Helpdesk.Park, 8, t_park_1_day)"></li>
-				<li sv="+ 2 dagar" fi="+ 2 päivää" en-us="+ 2 days" no="+ 2 dager" title-no="Parker frem 2 dager" title-fi="Siirrä 2 päivää" title-sv="Parkera ärendet 2 dagar" title-en-us="Park case 2 days" data-action="ActionPad_Helpdesk.Park, 16, t_park_2_day"></li>
-				<li sv="+ 5 dagar" fi="+ 5 päivää" en-us="+ 5 days" no="+ 5 dager" title-no="Parker frem 5 dager" title-fi="Siirrä 5 päivää" title-sv="Parkera ärendet 5 dagar" title-en-us="Park case 5 days" data-action="ActionPad_Helpdesk.Park, 40, t_park_5_day"> </li>
+				<li data-bind="vba:'ActionPad_Helpdesk.Park, 8, t_park_1_day'">+ 1 dag</li>
+				<li data-bind="vba: 'ActionPad_Helpdesk.Park, 16, t_park_2_day'">+ 2 dagar</li>
+				<li data-bind="vba: 'ActionPad_Helpdesk.Park, 40, t_park_5_day'">+ 5 dagar</li>
 				<li class="divider"></li>
-				<li sv="Sökt, ej på plats + 1h" fi="Tavoiteltu, ei paikalla + 1 tunti" en-us="Called, unreachable + 1h" no="Søkt, ikke på plass" title-fi="Tavoiteltu, ei paikalla" title-no"Søkt, ikke på plass" title-sv="Sökt, ej på plats, parkera fram en timme" title-en-us="Called, not available, park one hour" data-action="ActionPad_Helpdesk.Park, 1, t_park_searched)"></li>
-				<li sv="Sökt, lämnat mdl. +4h" fi="Tavoiteltu, jätetty viesti + 4 tuntia" en-us="Called, left mes. + 4h" no="Ringt, lagt igjen beskjed" title-fi="Soitettu ja jätetty viesti" title-no"Ringt, lagt igjen beskjed" title-sv="Sökt, lämnat meddelande. Parker fram fyra timmar" title-en-us="Called, left message. Park four hours" data-action="ActionPad_Helpdesk.Park, 4, t_park_searched_mes)"></li>
+				<li data-bind="vba:'ActionPad_Helpdesk.Park, 1, t_park_searched')">Sökt, ej på plats + 1h</li>
+				<li data-bind="vba:'ActionPad_Helpdesk.Park, 4, t_park_searched_mes')">Sökt, lämnat mdl. +4h</li>
 			</ul>
 			
 		</div>
