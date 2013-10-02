@@ -65,29 +65,28 @@
     */
     "loadScript": function (val) {
         var success = false;
-        //$.getScript(val)
-        //  .done(function( script, textStatus ) {
-        //      success = true;
-        //  })
-        //  .fail(function( jqxhr, settings, exception ) {
-        //      lbs.log.exception(exception);
-        //      lbs.log.error('failed to load script: ' + val);
-        //  });
-
-        var js = document.createElement("script");
-
-        js.type = "text/javascript";
-        js.src = val;
-
-        document.body.appendChild(js);
         $.getScript(val)
-          .done(function (script, textStatus) {
+          .done(function( script, textStatus ) {
               success = true;
           })
-          .fail(function (jqxhr, settings, exception) {
-              //lbs.log.exception(exception);
-              lbs.log.error('failed to load script: ' + val);
+          .fail(function( jqxhr, settings, exception ) {
+              lbs.log.error('failed to load script: ' + val, exception);
           });
+
+        //var js = document.createElement("script");
+
+        //js.type = "text/javascript";
+        //js.src = val;
+
+        //document.body.appendChild(js);
+        //$.getScript(val)
+        //  .done(function (script, textStatus) {
+        //      success = true;
+        //  })
+        //  .fail(function (jqxhr, settings, exception) {
+        //      //lbs.log.exception(exception);
+        //      lbs.log.error('failed to load script: ' + val);
+        //  });
         return success;
     },
 

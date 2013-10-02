@@ -16,7 +16,6 @@ var lbs = lbs || {
     "activeClass": "",
     "activeDatabase": "",
     "activeServer": "",
-    "appsMetaData": {},
     "apps" : {},
     "error": false,
     "vm": {},
@@ -63,19 +62,19 @@ var lbs = lbs || {
         this.vm = lbs.loader.loadDataSources(this.vm, this.config.dataSources);
 
         //load apps
-        this.app.IdentifyApps();
+        this.apploader.identifyApps();
 
         //load resources
         this.loader.loadResources();
 
         //apps vm
-        this.app.buildAppViewModels();
+        this.apploader.buildApps();
 
         //setup bindings
         this.applyBindings();
 
         //init apps
-        this.app.InitializeApps();
+        this.apploader.initializeApps();
 
         //push delayed logitems
         this.log.vm.enableConsole();

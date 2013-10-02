@@ -1,3 +1,1 @@
-#Checklist
-This is the checklist
-
+#Template project

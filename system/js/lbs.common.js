@@ -131,12 +131,26 @@ lbs.common = {
         $.each(obj2, function (key, value) {
             if (!obj1[key]) {
                 obj1[key] = value;
-            } else {
+            }
+            else if (obj1[key] instanceof Array && value instanceof Array) {
+                obj1[key] = obj1[key].concat(value);
+            }
+            else {
                 lbs.log.warn("Key " + key + ' was not added to the view model. Key already exists');
             }
         })
         return obj1;
-   },
+    },
+
+    /**
+    Generate GUID
+    */
+    generateGuid: function () {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        })
+    },
     
 }
 

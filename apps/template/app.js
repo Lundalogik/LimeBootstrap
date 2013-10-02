@@ -1,19 +1,20 @@
-lbs.apps.template = {
+lbs.apploader.register('template', function () {
+    var self = this;
 
     //config
-    config: {
+    this.config = {
         dataSources: [
-            
+
         ],
         resources: {
-            scripts: ['template.js'],
-            styles: ['template.css'],
+            scripts: [],
+            styles: ['app.css'],
             libs: ['json2xml.js']
         }
     },
 
     //initialize
-    initialize: function (viewModel) {
+    this.initialize = function (viewModel,node) {
 
         //Use this method to setup you app. 
         //
@@ -26,5 +27,5 @@ lbs.apps.template = {
 
 
         return viewModel;
-   }
-}
+    }
+});

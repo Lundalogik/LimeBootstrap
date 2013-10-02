@@ -9,13 +9,10 @@
         <h2 data-bind="text: helpdesk.helpdeskno.text"></h2>
 
         <ul>
-
             <li data-bind="text: doesnotexist, icon: 'icon-user'"></li>
             <li data-bind="text: obj.prop.doesnotexist, icon: 'icon-building'"></li>
             <li data-bind="text: obj.prop.exists, icon: 'icon-phone'"></li>
             <li data-bind="text: obj.prop.empty, icon: 'icon-pencil'"></li>
-
-
         </ul>
 
     </div>
@@ -25,16 +22,7 @@
 <!-- ACTIONS   -->
 <div class="content-container">
 
+    <div data-app="{ app: 'template' }" />
 
-    <ul class="menu expandable">
-        <li class="nav-header">Kommando</li>
-        <li class="divider"></li>
-        
-        <li data-bind="vbaVisibility: 'ActionPad_Helpdesk.HideLinks, take', vba: 'ActionPad_Helpdesk.Take', icon: 'icon-pencil'">Ta ärende</li>
-        <li data-bind="vbaVisibility: 'ActionPad_Helpdesk.HideLinks, putback', vba: 'ActionPad_Helpdesk.Putback', icon: 'icon-pencil'">Lägg tillbaka ärende</li>
-        <li data-bind="vbaVisibility: 'ActionPad_Helpdesk.HideLinks, done', vba: 'ActionPad_Helpdesk.Done', icon: 'icon-pencil'">Pricka av ärende</li>
-        <li data-bind="vbaVisibility: 'ActionPad_Helpdesk.HideLinks, undo', vba: 'ActionPad_Helpdesk.take', icon: 'icon-pencil'">Återuppta ärende</li>
-        <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, history', icon: 'icon-pencil'">Ny historiknotering</li>
-    </ul>
 
 </div>
