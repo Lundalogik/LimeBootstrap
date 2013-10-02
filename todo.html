@@ -2,17 +2,14 @@
 
 <!-- INFO HEADER  -->
 <div class="header-container orange">
-    <div class="header-icon-container todo">
-            
-    </div>
+    <div class="header-icon-container todo"></div>
     <div id="header-info"> 
-        <h2 data-bind="text: todo.subject.text"></h2>
-			
+        <h2 data-bind="text: todo.subject.text"></h2>	
             <ul >			
 				<li data-bind="text:todo.person.text, limeLink: todo.person, icon:'icon-user'" </li>
                 <li data-bind="text:todo.company.text, limeLink:todo.company, icon:'icon-flag'"</li>
 				<li data-bind="text: person.phone.text, call: person.phone.text, icon: 'icon-phone' "</li>
-				<li data-bind="text: person.mobilephone.text, call: person.mobilephone.text, icon:'icon-mobile-phone'"</li>						
+				<li data-bind="text: person.mobilephone.text, call: person.mobilephone.text, icon:'icon-mobile-phone'"</li>	
 				<li data-bind="text: company.phone.text, call: company.phone.text, icon: 'icon-phone'"</li>
             </ul> 
     </div>
@@ -43,7 +40,6 @@
 		<li sv="+ 6 månader" fi="+ 6 kuukautta" en-us="+ 6 months" no="+ 6 måneder" title-no="Flytt frem 6 måneder" title-fi="Siirrä eteenpäin 6 kuukautta" title-sv="Flytta fram 6 månader" title-en-us="Move forward 6 months" data-action="ActionPad_todo.Postpone, m, 6"></li>
 		<li class="divider"></li>
         <li sv="+ 1 år" fi="+ 1 vuosi" en-us="+ 1 year" no="+ 1 år" title-no"Flytt frem 1 år" title-fi="Siirrä eteenpäin 1 vuosi" title-sv="Flytta fram 1 år" title-en-us="Move forward 1 year" data-action="ActionPad_todo.Postpone, yyyy, 1"></li>
-		
 	</ul>
 </div>	
     
