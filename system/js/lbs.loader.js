@@ -107,7 +107,7 @@
             element.load(file, function (response, status, xhr) {
                 if (response.indexOf('<script') != -1) {
                     lbs.log.error('View "' + file + '" containes scripts, it is not allowed to be loaded')
-                    //clear element
+                    //replace element with funnt image
                     element.html('<img src="' + lbs.loader.systemLibPath + 'img/YouDidntSayTheMagicWord.gif" />');
                 }
                 else if (status == "error") {
@@ -125,10 +125,8 @@
                 }
             })
         } catch (e) {
-            lbs.log.exception(e);
-            lbs.log.error("Resource could not be found. If using Chrome, make sure --file-access-from-file is enabled");
+            lbs.log.error("Resource could not be found. If using Chrome, make sure --file-access-from-file is enabled",e);
         }
-
     },
 
     /**
@@ -209,8 +207,7 @@
             //merge options into the viewModel
             vm = lbs.common.mergeOptions(vm, data || {});
         } catch (e) {
-            lbs.log.exception(e);
-            lbs.log.error("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+            lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
         }
 
         return vm;

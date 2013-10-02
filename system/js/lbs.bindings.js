@@ -11,7 +11,6 @@ ko.bindingProvider.instance = {
             bindings = ko.defaultBindingProvider.getBindings(node, bindingContext);
             
             //check validity
-            //this.checkValue(bindings, 'content', node);
             this.checkValue(bindings, 'text', node);
             this.checkValue(bindings, 'value', node);
 
@@ -82,10 +81,10 @@ Text with icon
 ko.bindingHandlers.textWithIcon = {
     update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var value = ko.unwrap(valueAccessor());
-        var icon = lbs.common.iconTemplate.format(value['icon']);
-        var text = value['text'];
-        var html = icon + text
-        ko.bindingHandlers.html.update(element, function () { return html }, allBindingsAccessor, viewModel, bindingContext)
+        var iconHtml = lbs.common.iconTemplate.format(value['icon']);
+
+        $(element).html(iconHtml + '<span></span>')
+        ko.bindingHandlers.text.update($(element).find('span').get(0), function () { return value['text'] }, allBindingsAccessor, viewModel, bindingContext)
     }
 };
 

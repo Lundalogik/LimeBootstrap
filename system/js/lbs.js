@@ -131,8 +131,7 @@ var lbs = lbs || {
                 this.activeClass = lbs.limeDataConnection.ActiveInspector.Class.Name;
             }
             catch (e) {
-                lbs.log.exception(e);
-                lbs.log.warn("Could not determine inspector class, assuming index", e);
+                lbs.log.warn("Could not determine inspector class, assuming index",e);
                 lbs.activeClass = 'index';
             }
         }

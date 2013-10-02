@@ -72,7 +72,7 @@
     Log entry function for warn
     */
     "warn": function (msg, e) {
-        if(e){lbs.log.exception(e)}
+        if(e){lbs.log.exception(e,'WARN')}
         lbs.log.logToDom('WARN', lbs.common.nl2brIndent(msg));
         lbs.log.logToConsole.warn((msg));
     },
@@ -89,8 +89,9 @@
     /**
     Log entry function for exception
     */
-    "exception": function (e) {
-        lbs.log.logToDom('ERROR', e.message + lbs.common.nl2brIndent(e.message + "\n" + e.stack));
+    "exception": function (e, level) {
+        if (!level) {level = 'ERROR'}
+        lbs.log.logToDom(level, e.message + lbs.common.nl2brIndent(e.message + "\n" + e.stack));
         lbs.log.logToConsole.error((e.message), e);
     },
 }
