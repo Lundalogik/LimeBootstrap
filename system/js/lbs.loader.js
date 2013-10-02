@@ -224,39 +224,6 @@
     },
 
     /**
-    Set all text and value bindings to the binding valus. Used if bindings failed to display helper data.
-    */
-    setFallBackDummyData: function (node) {
-        var value = '';
-        var hasContentBinding = false;
-
-        //set text
-        var match = new RegExp("text\:[^\,\}]*").exec($(node).attr('data-bind'))
-        if (match) { $(node).html('Binding:' + match[0].split(":")[1].trim()) }
-
-        //set value
-        var match = new RegExp("value\:[^\,\}]*").exec($(node).attr('data-bind'))
-        if (match) { $(node).attr('value', ('Binding:' + match[0].split(":")[1].trim())) }
-
-        //set content
-        var match = new RegExp("content\:[^\,\}]*").exec($(node).attr('data-bind'))
-        if (match) {
-            $(node).html('Binding:' + match[0].split(":")[1].trim());
-            hasContentBinding = true;
-        }
-
-        //icons
-        if (hasContentBinding) {
-            var match = new RegExp("icon\:[^\,\}]*").exec($(node).attr('data-bind'))
-            if (match) {
-                var content = '<i class="' + match[0].split(":")[1].trim().replace(/\'/g, "") + '"></i>';
-                $(node).prepend(content);
-            }
-        }
-    },
-
-
-    /**
     Transform a VBA dictionary to JSON.
     A collection with keys is needed as the keys method is not transported to JS
     */

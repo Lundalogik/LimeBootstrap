@@ -56,7 +56,7 @@
     Log entry function for debug
     */
     "debug": function (msg) {
-        lbs.log.logToDom('DEBUG', lbs.common.nl2br(msg));
+        lbs.log.logToDom('DEBUG', lbs.common.nl2brIndent(msg));
         lbs.log.logToConsole.debug((msg));
     },
 
@@ -64,7 +64,7 @@
     Log entry function for info
     */
     "info": function (msg) {
-        lbs.log.logToDom('INFO', lbs.common.nl2br(msg));
+        lbs.log.logToDom('INFO', lbs.common.nl2brIndent(msg));
         lbs.log.logToConsole.info((msg));
     },
 
@@ -73,7 +73,7 @@
     */
     "warn": function (msg, e) {
         if(e){lbs.log.exception(e)}
-        lbs.log.logToDom('WARN', lbs.common.nl2br(msg));
+        lbs.log.logToDom('WARN', lbs.common.nl2brIndent(msg));
         lbs.log.logToConsole.warn((msg));
     },
 
@@ -82,7 +82,7 @@
     */
     "error": function (msg, e) {
         if(e){lbs.log.exception(e)}
-        lbs.log.logToDom('ERROR', lbs.common.nl2br(msg));
+        lbs.log.logToDom('ERROR', lbs.common.nl2brIndent(msg));
         lbs.log.logToConsole.error((msg));
     },
 
@@ -90,7 +90,7 @@
     Log entry function for exception
     */
     "exception": function (e) {
-        lbs.log.logToDom('ERROR', e.message + lbs.common.nl2br(e.message+"\n" + e.stack));
+        lbs.log.logToDom('ERROR', e.message + lbs.common.nl2brIndent(e.message + "\n" + e.stack));
         lbs.log.logToConsole.error((e.message), e);
     },
 }

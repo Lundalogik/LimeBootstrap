@@ -31,6 +31,11 @@ lbs.common = {
     },
 
     /**
+    Get icon html
+    */
+    iconTemplate : "<i class='{0}'></i>",
+
+    /**
     URLencode sensitive strings
     */
     "escapeHtml": function (unsafe) {
@@ -104,6 +109,13 @@ lbs.common = {
         return input.replace(/\n/g, '<br />');
     },
 
+    /**
+    replace newline with br + tab
+    */
+    nl2brIndent: function (input) {
+        return input.replace(/\n/g, '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+    },
+    
  
     /**
     Add newline if braket

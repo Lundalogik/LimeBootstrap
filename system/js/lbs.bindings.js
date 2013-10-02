@@ -9,16 +9,18 @@ ko.bindingProvider.instance = {
         var bindings;
         try {
             bindings = ko.defaultBindingProvider.getBindings(node, bindingContext);
-
+            
             //check validity
-            this.checkValue(bindings, 'content', node);
+            //this.checkValue(bindings, 'content', node);
             this.checkValue(bindings, 'text', node);
             this.checkValue(bindings, 'value', node);
+
+            bindings = this.processDependentBindings(bindings);
         }
         catch (ex) {
             lbs.log.error(ex.message);
-            bindings = undefined
-            lbs.loader.setFallBackDummyData(node);
+            bindings = this.getDummyBindings(node);
+            bindings = this.processDependentBindings(bindings);
         }
 
         return bindings;
@@ -31,10 +33,60 @@ ko.bindingProvider.instance = {
         if (data[val]) { return }
         if (data[val] === "") { return }
 
-        var errorMsgForUndefined = "Unable to set binding '{0}'.\nBindings value: {1}\nMessage: Property is undefined"
-        throw new ReferenceError(errorMsgForUndefined.format('content', $(node).attr('data-bind')));
+        throw new ReferenceError("Unable to set binding '{0}'.\nBindings value: {1}\nMessage: Property is undefined".format(val, $(node).attr('data-bind')));
     },
 
+    //replace dependent bindings with another that can handle the isses
+    processDependentBindings: function (bindings) {
+
+        //no bindings, nothing to do
+        if (!bindings) { return }
+
+        //text and icon in same binding
+        if (bindings.hasOwnProperty('text') && bindings.hasOwnProperty('icon')) {
+            //dont run if text is empty
+            if (bindings['text'] !== "") {
+                bindings['textWithIcon'] = { icon: bindings['icon'], text: bindings['text'] };
+                delete bindings['text'];
+                delete bindings['icon'];
+            }
+        }
+        return bindings;
+    },
+
+   
+    //set visible bindings to the binding values. Used if bindings failed to display helper data.
+    getDummyBindings: function (node) {
+        var bindings = {};
+
+        //set text
+        var match = new RegExp("text\:[^\,\}]*").exec($(node).attr('data-bind'))
+        if (match) {bindings['text'] = 'Binding: ' + match[0].split(":")[1].trim()}
+           
+        //set value
+        var match = new RegExp("value\:[^\,\}]*").exec($(node).attr('data-bind'))
+        if (match) { bindings['value'] = 'Binding: ' + match[0].split(":")[1].trim() }
+
+        //icons
+        var match = new RegExp("icon\:[^\,\}]*").exec($(node).attr('data-bind'))
+        if (match) { bindings['icon'] = match[0].split(":")[1].trim().replace(/\'/g, "") }
+
+        return bindings;
+    },
+
+};
+
+/**
+Text with icon
+*/
+ko.bindingHandlers.textWithIcon = {
+    update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var value = ko.unwrap(valueAccessor());
+        var icon = lbs.common.iconTemplate.format(value['icon']);
+        var text = value['text'];
+        var html = icon + text
+        ko.bindingHandlers.html.update(element, function () { return html }, allBindingsAccessor, viewModel, bindingContext)
+    }
 };
 
 /**
@@ -116,21 +168,12 @@ Prepend icon
 */
 ko.bindingHandlers.icon = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        var content = "<i class='" + ko.unwrap(valueAccessor()) + "'></i>";
+        var content = lbs.common.iconTemplate.format(ko.unwrap(valueAccessor()));
         if (
             $(element).text() != '' && $(element).text().substring(0, content.length) != content) {
             $(element).prepend(content);
             element = $(element).get(0);
         }
-    }
-};
-
-/**
-Static text
-*/
-ko.bindingHandlers.content = {
-    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        ko.bindingHandlers.text.update(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext)
     }
 };
 
