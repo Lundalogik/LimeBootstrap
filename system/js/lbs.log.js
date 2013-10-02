@@ -15,8 +15,7 @@
         //create viewModel
         this.vm = new lbs.log.vmFactory();
         this.vm.enabled(enabled);
-
-        //ApplyBindings
+        
         ko.applyBindings(this.vm, $("#debug").get(0));
     },
 
@@ -58,7 +57,7 @@
     */
     "debug": function (msg) {
         lbs.log.logToDom('DEBUG', lbs.common.nl2br(msg));
-        lbs.log.logToConsole.debug(lbs.common.nl2br(msg));
+        lbs.log.logToConsole.debug((msg));
     },
 
     /**
@@ -66,7 +65,7 @@
     */
     "info": function (msg) {
         lbs.log.logToDom('INFO', lbs.common.nl2br(msg));
-        lbs.log.logToConsole.info(lbs.common.nl2br(msg));
+        lbs.log.logToConsole.info((msg));
     },
 
     /**
@@ -75,7 +74,7 @@
     "warn": function (msg, e) {
         if(e){lbs.log.exception(e)}
         lbs.log.logToDom('WARN', lbs.common.nl2br(msg));
-        lbs.log.logToConsole.warn(lbs.common.nl2br(msg));
+        lbs.log.logToConsole.warn((msg));
     },
 
     /**
@@ -84,7 +83,7 @@
     "error": function (msg, e) {
         if(e){lbs.log.exception(e)}
         lbs.log.logToDom('ERROR', lbs.common.nl2br(msg));
-        lbs.log.logToConsole.error(lbs.common.nl2br(msg));
+        lbs.log.logToConsole.error((msg));
     },
 
     /**
@@ -92,7 +91,7 @@
     */
     "exception": function (e) {
         lbs.log.logToDom('ERROR', e.message + lbs.common.nl2br(e.message+"\n" + e.stack));
-        lbs.log.logToConsole.error(lbs.common.nl2br(e.message), e);
+        lbs.log.logToConsole.error((e.message), e);
     },
 }
 
@@ -104,6 +103,13 @@ lbs.log.vmFactory = function () {
     this.maxNbrOfItems = 30;
     this.logItems = ko.observableArray([]);
     this.enabled = ko.observable(false);
+    this.delayedLogItems = [];
+    this.delayedLoggingEnabled = true;
+
+    this.enableConsole = function () {
+        this.delayedLoggingEnabled = false;
+        this.pushDelayedLogItems();
+    }
 
     this.addEntry = function (lev, item) {
         ico = 'icon-exclamation';
@@ -128,11 +134,28 @@ lbs.log.vmFactory = function () {
                 break;
         }
 
-        //remove first item if to meny in log
-        if (this.logItems().length >= this.maxNbrOfItems) {
-            this.logItems.shift();
+        //log to delayed list
+        if (this.delayedLoggingEnabled) {
+            this.delayedLogItems.push({ level: lev, text: item, icon: ico, liclass: rowclass });
         }
-                    
-        this.logItems.push({ level: lev, text: item, icon: ico, liclass: rowclass });
+        //log to real log
+        else
+        {
+            //remove first item if to meny in log
+            if (this.logItems().length >= this.maxNbrOfItems) {
+                this.logItems.shift();
+            }
+            this.logItems.push({ level: lev, text: item, icon: ico, liclass: rowclass });
+        }
+    },
+
+    /*
+    push delayed items into log
+    */
+    this.pushDelayedLogItems = function(){
+        var key;
+        for (key in this.delayedLogItems) {
+            this.logItems.push(this.delayedLogItems[key]);
+        };
     }
 }

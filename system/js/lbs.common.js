@@ -1,4 +1,10 @@
-﻿lbs.common = {
+﻿
+/**
+--------------------------------------------------------
+Common functions used in lbs
+--------------------------------------------------------
+*/
+lbs.common = {
 
     /**
     Fetch a random funny error text
@@ -87,7 +93,7 @@
 
         } catch (e) {
             return null;
-            lbs.log.error("Failed to execute VBA:" + vbaline, e);
+            //lbs.log.error("Failed to execute VBA:" + vbaline, e);
         }
     },
 
@@ -120,4 +126,25 @@
         return obj1;
    },
     
+}
+
+/**
+--------------------------------------------------------
+Some extensions to standard classes
+--------------------------------------------------------
+*/
+
+/**
+String.format
+*/
+if (!String.prototype.format) {
+    String.prototype.format = function () {
+        var args = arguments;
+        return this.replace(/{(\d+)}/g, function (match, number) {
+            return typeof args[number] != 'undefined'
+              ? args[number]
+              : match
+            ;
+        });
+    };
 }

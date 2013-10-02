@@ -65,6 +65,21 @@
     */
     "loadScript": function (val) {
         var success = false;
+        //$.getScript(val)
+        //  .done(function( script, textStatus ) {
+        //      success = true;
+        //  })
+        //  .fail(function( jqxhr, settings, exception ) {
+        //      lbs.log.exception(exception);
+        //      lbs.log.error('failed to load script: ' + val);
+        //  });
+
+        var js = document.createElement("script");
+
+        js.type = "text/javascript";
+        js.src = val;
+
+        document.body.appendChild(js);
         $.getScript(val)
           .done(function (script, textStatus) {
               success = true;
@@ -96,7 +111,15 @@
                     element.html('<img src="' + lbs.loader.systemLibPath + 'img/YouDidntSayTheMagicWord.gif" />');
                 }
                 else if (status == "error") {
-                    lbs.log.error('View "' + file + '" could not be loaded')
+                     lbs.log.error('View "' + file + '" could not be loaded, using fallback loading through LWS');
+                     var s = ""
+                     s = lbs.common.executeVba("LWS.loadHTTPResource," + file);
+                     if (s !== "") {
+                         element.html(s);
+                         lbs.log.info('View "' + file + '" loaded successfully');
+                     } else {
+                         lbs.log.error('View "' + file + '" could not be loaded');
+                     }
                 } else {
                     lbs.log.info('View "' + file + '" loaded successfully');
                 }
@@ -231,43 +254,6 @@
             }
         }
     },
-    //setFallBackDummyData: function (node) {
-    //    var value = '';
-
-    //    //set text
-    //    $('[data-bind]').each(function () {
-    //        var match = new RegExp("text\:[^\,\}]*").exec($(this).attr('data-bind'))
-    //        if (match) {
-    //            $(this).html('Text: ' + match[0].split(":")[1].trim());
-    //        }
-    //    });
-
-    //    //set value
-    //    $('[data-bind]').each(function () {
-    //        var match = new RegExp("value\:[^\,\}]*").exec($(this).attr('data-bind'))
-    //        if (match) {
-    //            $(this).attr('value', ('Value: ' + match[0].split(":")[1].trim()));
-    //        }
-    //    });
-
-    //    //set data
-    //    $('[data-bind]').each(function () {
-    //        var match = new RegExp("content\:[^\,\}]*").exec($(this).attr('data-bind'))
-    //        if (match) {
-    //            $(this).html('Content: ' + match[0].split(":")[1].trim());
-    //        }
-    //    });
-
-    //    //icons
-    //    $('[data-bind]').each(function () {
-    //        var match = new RegExp("icon\:[^\,\}]*").exec($(this).attr('data-bind'))
-    //        if (match) {
-    //            content = "<i class='" + match[0].split(":")[1].trim().replace("'","") + "'></i>";
-    //            $(this).prepend(content);
-    //        }
-    //    });
-
-    //},
 
 
     /**

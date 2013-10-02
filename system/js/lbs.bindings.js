@@ -9,28 +9,30 @@ ko.bindingProvider.instance = {
         var bindings;
         try {
             bindings = ko.defaultBindingProvider.getBindings(node, bindingContext);
+
             //check validity
-            if (this.checkBindingValidityFailure(bindings)) {
-                bindings = undefined
-                throw new ReferenceError("Unable to parse binding.\nBindings value: " + $(node).att('data-bind') + "\nProperty is undefined");
-            }
+            this.checkValue(bindings, 'content', node);
+            this.checkValue(bindings, 'text', node);
+            this.checkValue(bindings, 'value', node);
         }
         catch (ex) {
-            console.log(ex.message);
+            lbs.log.error(ex.message);
+            bindings = undefined
             lbs.loader.setFallBackDummyData(node);
         }
 
         return bindings;
     },
-    //Check binding validity
-    checkBindingValidityFailure: function (bindings) {
-        return (!this.checkValue(bindings, 'content') || !this.checkValue(bindings, 'text') || !this.checkValue(bindings, 'value'))
-    },
+
     //is value ok to bind to view, empty string is ok, undefined is not
-    checkValue: function (data, val) {
-        if (!data) {return true}
-        if(!data.hasOwnProperty(val)){ return true}
-        return data[val] ? true : (data[val ]=== "")
+    checkValue: function (data, val, node) {
+        if (!data) {return}
+        if (!data.hasOwnProperty(val)) {return}
+        if (data[val]) { return }
+        if (data[val] === "") { return }
+
+        var errorMsgForUndefined = "Unable to set binding '{0}'.\nBindings value: {1}\nMessage: Property is undefined"
+        throw new ReferenceError(errorMsgForUndefined.format('content', $(node).attr('data-bind')));
     },
 
 };
@@ -99,9 +101,6 @@ ko.bindingHandlers.vbaVisibility = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var visible = lbs.common.executeVba(ko.unwrap(valueAccessor()));
 
-        var visible = true;
-
-        ko.unwrap(valueAccessor());
         if (visible) {
             $(element).show()
             $(element).removeClass("hidden")

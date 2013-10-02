@@ -77,6 +77,9 @@ var lbs = lbs || {
         //init apps
         this.app.InitializeApps();
 
+        //push delayed logitems
+        this.log.vm.enableConsole();
+
         //execute onLoad
         this.ExecuteOnloadEvents();
 
@@ -88,7 +91,7 @@ var lbs = lbs || {
     /**
     Fetch variables required to run system
     */
-    "setSystemOperationParameters": function () {
+    setSystemOperationParameters: function () {
 
         //ajax should be async
         $.ajaxSetup({
@@ -98,7 +101,9 @@ var lbs = lbs || {
         //create viewmodel container
         this.vm = new lbs.vmFactory();
 
-        this.vm.helpdesk = { person: {text2:'a'}}
+        //TODO:remove this debug thingy
+        this.vm.obj = { prop: { exists: 'a', empty : '' } }
+
        
         //check connection to Lime
         this.hasLimeConnection = (typeof lbs.limeDataConnection.Application != 'undefined');
@@ -107,7 +112,7 @@ var lbs = lbs || {
     /**
     Find debug flags
     */
-    "setDebugStatus": function () {
+    setDebugStatus: function () {
         if ($("html").attr("data-debug").toLowerCase() === "true") {
             lbs.debug = true
         } else {
@@ -118,7 +123,7 @@ var lbs = lbs || {
     /**
     Find active actionpad view
     */
-    "setActionPadClass": function () {
+    setActionPadClass: function () {
         if (lbs.common.getURLParameter("ap") != 'null') {
             this.activeClass = lbs.common.getURLParameter("ap");
         } else {
@@ -138,7 +143,7 @@ var lbs = lbs || {
     /**
     Find database and server
     */
-    "setActiveDBandServer": function () {
+    setActiveDBandServer: function () {
        
         try {
             lbs.activeServer = lbs.limeDataConnection.Database.ActiveServerName;
@@ -155,7 +160,7 @@ var lbs = lbs || {
     * On click handlers. Executes events when clicked, such as running VBA or manipulating the DOM
     * 
     **/ 
-    "SetOnclickEvents": function () {
+    SetOnclickEvents: function () {
 
         //Expandable: Toggels visibility of child-elements of the element. Used in menues
         $(".expandable").find(".nav-header").click(
@@ -171,7 +176,7 @@ var lbs = lbs || {
     * On load handler. Executes events when the actionpad is loaded, such as running setting up the DOM, hideing things and setting up 
     * 
     **/
-    "ExecuteOnloadEvents": function () {
+    ExecuteOnloadEvents: function () {
 
         $(".menu").addClass("nav nav-list")
         $(".expandable").each(function () {
@@ -187,7 +192,7 @@ var lbs = lbs || {
     /**
     Apply knockout bindings to actionpad, note: no apps will be effected
     */
-    "applyBindings": function () {
+    applyBindings: function () {
         try {
             lbs.log.debug('ViewModel: ' + JSON.stringify(lbs.vm));
             ko.applyBindings(lbs.vm, $("#content").get(0));

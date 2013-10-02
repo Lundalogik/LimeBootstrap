@@ -1,44 +1,55 @@
 ﻿<!-- ko dataSources: [{type: 'record', source: 'ActionPadTools.GetCompanyContactData'}, { type: 'record', source: 'ActionPadTools.GetPersonContactData'}] -->
 <!-- /ko -->
 
-<!-- INFO HEADER  -->
-<div class="header-container red">
-    <div class="header-icon-container helpdesk">
-    </div>
-    <div id="header-info">
-        <h2 data-bind="text:helpdesk.helpdeskno.text"></h2>
-
-        <ul>
-            <li data-bind="content:helpdesk.person.text, limeLink:helpdesk.person, icon:'icon-user'"></li>
-            <li data-bind="content:helpdesk.company.text, limeLink:helpdesk.company, icon:'icon-building'"></li>
-            <li data-bind="content:person.phone.text, call:person.phone.text, icon:'icon-phone'"></li>
-            <li data-bind="content:person.mobilephone.text, call:person.phone.text, icon:'icon-mobile-phone'"></li>
-            <li data-bind="content:company.phone.text, call:company.phone.text, icon:'icon-phone'"></li>
-
-        </ul>
-
-    </div>
-</div>
-
-<!-- /INFO HEADER  -->
-<!-- ACTIONS   -->
-<div class="content-container">
-
-
-    <ul class="menu expandable">
-        <li class="nav-header">Kommando</li>
-        <li class="divider"></li>
-        <li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, take', vba:'ActionPad_Helpdesk.Take',  icon:'icon-pencil'">Ta ärende</li>
-        <li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, putback', vba:'ActionPad_Helpdesk.Putback',  icon:'icon-pencil'">Lägg tillbaka ärende</li>
-        <li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, done', vba:'ActionPad_Helpdesk.Done',  icon:'icon-pencil'">Pricka av ärende</li>
-        <li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, undo', vba:'ActionPad_Helpdesk.take',  icon:'icon-pencil'">Återuppta ärende</li>
-        <li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, history', icon:'icon-pencil'">Ny historiknotering</li>
+<body>
+    <!-- INFO HEADER  -->
+        <div class="header-container red">
+            <div class="header-icon-container helpdesk">
+                
+            </div>
+            <div id="header-info"> 
+                <h2 data-bind="text:helpdesk.helpdeskno.text"></h2>
+				
+					<ul>
+						<li data-bind="text:helpdesk.person.text, limeLink:helpdesk.person, icon:'icon-user'"></li>						
+                        <li data-bind="text:helpdesk.company.text, limeLink:helpdesk.company, icon:'icon-building'"></li>
+						
+						<li data-bind="text:person.phone.text, call:person.phone.text, icon:'icon-phone'"></li>
+						<li data-bind="text:person.mobilephone.text, call:person.phone.text, icon:'icon-mobile-phone'"></li>						
+						<li data-bind="text:company.phone.text, call:company.phone.text, icon:'icon-phone'"></li>
+						
+                    </ul> 
+				
+            </div>
+        </div>		
+		
+    <!-- /INFO HEADER  -->
+    <!-- ACTIONS   -->
+    <div class="content-container">
+      		
+        <ul class="menu expandable">
+             <li class="nav-header" sv="Kommando" fi="Komentoja" en-us="Commands" no="Kommando" ></li>
+             <li class="divider"></li>
+             <li data-visibility="ActionPad_Helpdesk.HideLinks, take" sv="Ta ärende" fi="Ota tehtäväksi" title-fi="Ota tehtäväksi" en-us="Take case" no="Ta saken" title-no"Ta saken" title-sv="Ta ärende" title-en-us="Take Case" data-action="ActionPad_Helpdesk.Take" > <i class="icon-rocket"></i></li>
+             <li data-visibility="ActionPad_Helpdesk.HideLinks, putback" sv="Lägg tillbaka ärendet" fi="Laita takaisin" title-fi="Laita takaisin" en-us="Put back case" no="Legg tilbake saken" title-no"Legg tilbake saken" title-sv="Lägg tillbaka ärendet" title-en-us="Put back case" data-action="ActionPad_Helpdesk.PutBack"><i class="icon-minus-sign"></i></li>
+             <li data-visibility="ActionPad_Helpdesk.HideLinks, done" sv= "Pricka av ärende" fi="Merkitse suoritetuksi" title-fi="Merkitse suoritetuksi" en-us="Set done" no="Marker som utført" title-no"Marker som utført" title-sv="Pricka av ärendet" title-en-us="Set case as done" data-action="ActionPad_Helpdesk.Done"><i class="icon-ok"></i></li>
+			 <li data-visibility="ActionPad_Helpdesk.HideLinks, undo" sv= "Återuppta" fi="Avaa uudestaan" title-fi="Avaa uudestaan" en-us="Reopen" no="Gjenoppta" title-no"Gjenoppta" title-sv="Återuppta ärendet" title-en-us="Set case as done" data-action="ActionPad_Helpdesk.Take" > <i class="icon-repeat"></i></li>
+			 <li sv= "Ny historiknotering" fi="Uusi historiamerkintä" title-fi="Uusi historiamerkintä" en-us="New history" no="Ny historikk" title-no"Ny historikk" title-sv="Lägg till historik" title-en-us="New history" data-action="ActionPad_Helpdesk.NewHistory, comment"><i class="icon-file-text-alt"></i></li>
+         
+		   <ul class="menu expandable">
+            <li class="nav-header">Kommando</li>
+            <li class="divider"></li>
+            <li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, take', vba:'ActionPad_Helpdesk.Take',  icon:'icon-pencil'">Ta ärende</li>
+			<li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, putback', vba:'ActionPad_Helpdesk.Putback',  icon:'icon-pencil'">Lägg tillbaka ärende</li>
+			<li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, done', vba:'ActionPad_Helpdesk.Done',  icon:'icon-pencil'">Pricka av ärende</li>
+			<li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, undo', vba:'ActionPad_Helpdesk.take',  icon:'icon-pencil'">Återuppta ärende</li>
+			<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, history', icon:'icon-pencil'">Ny historiknotering</li>
     </ul>
-
-
-
-
-    <!--<div class="btn-group">
+		 
+		 </ul> 
+		 
+		 
+		<div class="btn-group">
 			<a class="btn dropdown-toggle" data-toggle="dropdown" sv="Parkera fram" en-us="Park" no="Parker frem" fi="Park" href="#">
 				<i class="icon-caret-down"></i>
 			</a>
@@ -55,6 +66,7 @@
 				<li sv="Sökt, lämnat mdl. +4h" fi="Tavoiteltu, jätetty viesti + 4 tuntia" en-us="Called, left mes. + 4h" no="Ringt, lagt igjen beskjed" title-fi="Soitettu ja jätetty viesti" title-no"Ringt, lagt igjen beskjed" title-sv="Sökt, lämnat meddelande. Parker fram fyra timmar" title-en-us="Called, left message. Park four hours" data-action="ActionPad_Helpdesk.Park, 4, t_park_searched_mes)"></li>
 			</ul>
 			
-		</div>-->
+		</div>
+		 
+    </div>
 
-</div>
