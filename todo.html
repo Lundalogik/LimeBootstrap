@@ -19,7 +19,7 @@
 <!-- ACTIONS   -->
 <div class="content-container">
 
-  	<div class="alert alert-error" data-bind="visible: moment(todo.endtime.value) < moment(), text: 'Uppgiften är ' + moment(todo.endtime.value).fromNow(true) + ' försenad!', icon:'icon-bell'" ></div>
+  	<div class="alert alert-error" data-bind="visible: todo.endtime.value !== null && (moment(todo.endtime.value) < moment() && todo.done.value != 1), text: 'Uppgiften är ' + (todo.endtime.value != null ? moment(todo.endtime.value).fromNow(true) : '' )+ ' försenad!', icon:'icon-bell'" ></div>
 
     <ul class="nav nav-list expandable">
          <li class="nav-header"> Kommando</li>
