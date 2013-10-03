@@ -55,6 +55,9 @@ var lbs = lbs || {
         //get Server and Database
         this.setActiveDBandServer();
 
+        //set moment language
+        moment.lang(lbs.common.executeVba('Localize.GetLanguage'));
+        
         //load view
         this.loader.loadView(lbs.activeClass, $("#content"));
 
