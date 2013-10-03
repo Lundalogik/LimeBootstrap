@@ -1,35 +1,29 @@
-﻿    <!-- INFO HEADER  -->
-        <div class="header-container yellow">
-            <div class="header-icon-container person">
-               
-            </div>
-            <div id="header-info"> 
-                <h2 data-bind="text:person.name.text"></h2>
-				
-                    <ul >		      						
-						<li data-bind="text:person.company.text, limeLink: person.company, icon:'icon-building'"> </li>
-						<li data-bind="text:person.phone.text, call:person.phone.text, icon:'icon-phone'"></li>
-						<li data-bind="text:moment(), call:person.mobilephone.text, icon:'icon-mobile-phone'"></li>
+﻿<!-- INFO HEADER  -->
+<div class="header-container yellow">
+    <div class="header-icon-container person"></div>
+    <div id="header-info"> 
+        <h2 data-bind="text:person.name.text"></h2>	
+            <ul >		      						
+				<li data-bind="text:person.company.text, limeLink: person.company, icon:'icon-building'"> </li>
+				<li data-bind="text:person.phone.text, call:person.phone.text, icon:'icon-phone'"></li>
+				<li data-bind="text:person.mobilephone.text, call:person.mobilephone.text, icon:'icon-mobile-phone'"></li>
+			</ul> 
+    </div>
+</div>
+<!-- /INFO HEADER  -->
+<!-- ACTIONS   -->
 
-					</ul> 
-            </div>
-        </div>
-    <!-- /INFO HEADER  -->
-    <!-- ACTIONS   -->
+<div class="content-container">
 
-	<div class="content-container">	 
 	<ul class="menu expandable">
 		<li class="nav-header">Kommando</li>
 		<li class="divider"></li>
 		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, todo', icon:'icon-calendar'">Ny att-göra</li>
 		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, history', icon:'icon-pencil'">Ny historiknotering</li>
 		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, document', icon:'icon-file-text-alt'">Nytt dokument</li>
-       
-    </ul>
+	</ul>
 
-		 
-        <div class="info" data-info="ActionPad_Person.IsActive,warning,icon-signout"></div>	
-		
-    </div>
+	<div class="alert" data-bind="visibility:person.active.text != 0, text: person.firstname.text + ' har slutat!', icon: 'icon-info-sign'"></div>
+</div>
 	
   

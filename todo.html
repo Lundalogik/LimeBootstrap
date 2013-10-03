@@ -2,17 +2,14 @@
 
 <!-- INFO HEADER  -->
 <div class="header-container orange">
-    <div class="header-icon-container todo">
-            
-    </div>
+    <div class="header-icon-container todo"></div>
     <div id="header-info"> 
-        <h2 data-bind="text: todo.subject.text"></h2>
-			
+        <h2 data-bind="text: todo.subject.text"></h2>	
             <ul >			
 				<li data-bind="text:todo.person.text, limeLink: todo.person, icon:'icon-user'" </li>
                 <li data-bind="text:todo.company.text, limeLink:todo.company, icon:'icon-flag'"</li>
 				<li data-bind="text: person.phone.text, call: person.phone.text, icon: 'icon-phone' "</li>
-				<li data-bind="text: person.mobilephone.text, call: person.mobilephone.text, icon:'icon-mobile-phone'"</li>						
+				<li data-bind="text: person.mobilephone.text, call: person.mobilephone.text, icon:'icon-mobile-phone'"</li>	
 				<li data-bind="text: company.phone.text, call: company.phone.text, icon: 'icon-phone'"</li>
             </ul> 
     </div>
@@ -31,23 +28,22 @@
 		 <li data-bind="vba:'ActionpadTools.NewInspectorFromInspector, history', icon:'icon-file-text-alt'">Skapa historiknotering</li>
      </ul> 
 	 
-<div class="btn-group">
-	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" data-bind="icon: 'icon-caret-down'">Flytta fram</a>
-	<ul class="dropdown-menu">
-		<li  data-bind="vba:'ActionPad_todo.Postpone, d, 1'">+ 1 dag</li>
-	    <li class="divider"></li>
-        <li sv="+ 1 veckor" fi="+ 1 viikko" en-us="+ 1w" no="+ 1 uke" title-no="Flytt frem 1 uke" title-fi="Siirrä eteenpäin 1 viikko" title-sv="Flytta fram 1 vecka" title-en-us="Move forward 1 week" data-action="ActionPad_todo.Postpone, ww, 1"></li>
-		<li sv="+ 2 veckor" fi="+ 2 viikkoa" en-us="+ 2w" no="+ 2 uker" title-no="Flytt frem 2 uker" title-fi="Siirrä eteenpäin 2 viikkoa" title-sv="Flytta fram 2 veckor" title-en-us="Move forward 2 Weeks" data-action="ActionPad_todo.Postpone, ww, 2"></li>
-        <li class="divider"></li>
-        <li sv="+ 1 månad" fi="+ 1 kuukausi" en-us="+ 1 month" no="+ 1 måned" title-no="Flytt frem 1 måned" title-fi="Siirrä eteenpäin 1 kuukausi" title-sv="Flytta fram 1 månad" title-en-us="Move forward one month" data-action="ActionPad_todo.Postpone, m, 1"></li>
-		<li sv="+ 6 månader" fi="+ 6 kuukautta" en-us="+ 6 months" no="+ 6 måneder" title-no="Flytt frem 6 måneder" title-fi="Siirrä eteenpäin 6 kuukautta" title-sv="Flytta fram 6 månader" title-en-us="Move forward 6 months" data-action="ActionPad_todo.Postpone, m, 6"></li>
-		<li class="divider"></li>
-        <li sv="+ 1 år" fi="+ 1 vuosi" en-us="+ 1 year" no="+ 1 år" title-no"Flytt frem 1 år" title-fi="Siirrä eteenpäin 1 vuosi" title-sv="Flytta fram 1 år" title-en-us="Move forward 1 year" data-action="ActionPad_todo.Postpone, yyyy, 1"></li>
-		
-	</ul>
-</div>	
+    <div class="btn-group">
+    	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" data-bind="icon: 'icon-caret-down'">Flytta fram</a>
+    	<ul class="dropdown-menu">
+    		<li data-bind="vba:'ActionPad_todo.Postpone, d, 1'">+ 1 dag</li>
+    	    <li class="divider"></li>
+            <li data-bind="vba:'ActionPad_todo.Postpone, ww, 1'">+ 1 vecka</li>
+    		<li data-bind="vba:'ActionPad_todo.Postpone, ww, 2'">+ 2 veckor</li>
+            <li class="divider"></li>
+            <li data-bind="vba:'ActionPad_todo.Postpone, m, 1'">+ 1 månad</li>
+    		<li data-bind="vba:'ActionPad_todo.Postpone, m, 6'">+ 6 månader</li>
+    		<li class="divider"></li>
+            <li data-bind="vba:'ActionPad_todo.Postpone, yyyy, 1'">+ 1 år</li>
+    	</ul>
+    </div>	
     
-   	
+   	<div class="alert alert-error" data-bind="visibility: moment(todo.endtime.text) > moment(), text: 'Uppgiften är försenad!'" ></div>
 		
 </div>
 	 
