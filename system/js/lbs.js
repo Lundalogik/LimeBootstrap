@@ -101,7 +101,7 @@ var lbs = lbs || {
         this.vm = new lbs.vmFactory();
 
         //TODO:remove this debug thingy
-        this.vm.obj = { prop: { exists: 'a', empty : '' } }
+        this.vm.obj = { prop: { exists: 'a', empty: '', falsee: false, zero: 0 } }
 
        
         //check connection to Lime

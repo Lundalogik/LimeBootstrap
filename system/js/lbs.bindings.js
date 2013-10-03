@@ -30,7 +30,7 @@ ko.bindingProvider.instance = {
         if (!data) {return}
         if (!data.hasOwnProperty(val)) {return}
         if (data[val]) { return }
-        if (data[val] === "") { return }
+        if (data[val] === "" || data[val] === false || data[val] === 0) { return }
 
         throw new ReferenceError("Unable to set binding '{0}'.\nBindings value: {1}\nMessage: Property is undefined".format(val, $(node).attr('data-bind')));
     },
