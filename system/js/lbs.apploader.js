@@ -10,6 +10,7 @@
     */
     register: function (name,func) {
         this.appFactory[name] = func;
+        lbs.log.debug("App '{0}' has been succesfully registered".format(name));
     },
 
     /**
@@ -45,8 +46,10 @@
                 guid = lbs.common.generateGuid();
 
                 //load app
-                if (!lbs.loader.loadScript(path + 'app.js')) {
-                    throw new Error("Could not find app " + appName);
+                if (!lbs.apploader.appFactory[appName]){
+                    if (!lbs.loader.loadScript(path + 'app.js')) {
+                        throw new Error("Could not find app " + appName);
+                    }
                 }
                 
                 //create an instance
@@ -58,6 +61,7 @@
                 }
                 
                 //push resources
+                console.log(instance.config.resources)
                 lbs.loader.pushResources(instance.config.resources, path);
 
                 //add app instance to lbs
