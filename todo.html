@@ -18,7 +18,9 @@
 <!-- /INFO HEADER  -->
 <!-- ACTIONS   -->
 <div class="content-container">
-  		
+
+  	<div class="alert alert-error" data-bind="visible: moment(todo.endtime.value) < moment(), text: 'Uppgiften är ' + moment(todo.endtime.value).fromNow(true) + ' försenad!', icon:'icon-bell'" ></div>
+
     <ul class="nav nav-list expandable">
          <li class="nav-header"> Kommando</li>
          <li class="divider"></li>
@@ -43,7 +45,7 @@
     	</ul>
     </div>	
     
-   	<div class="alert alert-error" data-bind="visibility: moment(todo.endtime.text) > moment(), text: 'Uppgiften är försenad!'" ></div>
+   	
 		
 </div>
 	 
