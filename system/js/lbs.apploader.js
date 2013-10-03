@@ -61,7 +61,6 @@
                 }
                 
                 //push resources
-                console.log(instance.config.resources)
                 lbs.loader.pushResources(instance.config.resources, path);
 
                 //add app instance to lbs
