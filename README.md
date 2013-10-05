@@ -120,7 +120,7 @@ __Hidden:__ The menu is collapsed when the actionpad is loaded. Stupid to use wi
 ##Functions
 All Twitter bootstrap functions are included, please see the [Twitter bootstrap documentation](http://getbootstrap.com/2.3.2/javascript.html) 
 
-### Translation: Handeling multiple languages
+### Translation: Handling multiple languages
 By adding language specific tags the actionpads can support multiple languages. The same language as the loged in user uses is automatically used.
 
 ```html
@@ -156,7 +156,7 @@ It is common that some elements only should be visible for certain users or when
 <li data-visibility="ActionPad_Helpdesk.HideLinks, take" sv="Ta ärende" fi="Ota tehtäväksi" title-fi="Ota tehtäväksi" en-us="Take case" no="Ta saken" title-no"Ta saken" title-sv="Ta ärende" title-en-us="Take Case" data-action="ActionPad_Helpdesk.Take" > <i class="icon-rocket"></i></li>
 ```
 
-A VBA function is called, handeling the logic wether the elemet should be visible or not, returing an boolean.   
+A VBA function is called, handling the logic wether the elemet should be visible or not, returing an boolean.   
 __true:__ Element is visible   
 __false:__ Element hidden
 In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required. 
