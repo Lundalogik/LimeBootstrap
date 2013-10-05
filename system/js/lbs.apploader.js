@@ -123,12 +123,11 @@
             //run initialize
             try {
                 vm = ko.mapping.fromJS(vm);
-                vm = app.instance.initialize(vm,htmlNode);
+                vm = app.instance.initialize(htmlNode ,vm);
                 lbs.apps[key].vm = vm;
             } catch (e) {
                 lbs.apps[key].vm = vm;
-                lbs.log.exception(e);
-                lbs.log.error("Could not intialize app: " + appName);
+                lbs.log.error("Could not intialize app: " + appName,e);
             }
 
             //apply bindings
