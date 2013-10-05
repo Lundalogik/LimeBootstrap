@@ -14,8 +14,6 @@ LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reaso
 
 Older versions of IE _may_ work, but the ActionPads will surely not look so great. 
 
-As the framework uses Knockout model is a Model-View-View Model, where 
-
 ### Included javascript frameworks
 The bundled library contains:
 
