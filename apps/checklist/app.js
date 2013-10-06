@@ -27,7 +27,7 @@ lbs.apploader.register('checklist', function () {
             //populate tasks
             for (var i = 0; i < checklist.length; i++) {
                 if(!checklist[i].isChecked){
-                    checklist[i].isChecked = false;
+                    checklist[i].isChecked = ko.observable(false);
                 }
                 else{
                     checklist[i].isChecked = true;
@@ -43,7 +43,7 @@ lbs.apploader.register('checklist', function () {
                 try{
                     alert(self.name);
                     task.isChecked = lbs.common.executeVba("Checklist.PerfromAction," + task.idchecklist);
-                    self.name = "nisse"
+                    
                     task.isChecked = true;
 
                 }catch(e){
