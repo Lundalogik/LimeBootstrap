@@ -1,5 +1,5 @@
 lbs.apploader.register('checklist', function () {
-
+    var self = this;
     //config
     this.config = {
         dataSources: [
@@ -9,7 +9,8 @@ lbs.apploader.register('checklist', function () {
             scripts: [],
             styles: ['checklist.css'],
             libs: ['json2xml.js']
-        }
+        },
+        name: 'Checklista'
     },
 
     //initialize
@@ -19,10 +20,10 @@ lbs.apploader.register('checklist', function () {
         Checklistmodel
         */
         var ChecklistModel = function(checklist){
-            var self = this;
+            
             
             //tasks
-            self.tasks = ko.observableArray();
+            this.tasks = ko.observableArray();
 
             //populate tasks
             for (var i = 0; i < checklist.length; i++) {
@@ -30,22 +31,19 @@ lbs.apploader.register('checklist', function () {
                     checklist[i].isChecked = ko.observable(false);
                 }
                 else{
-                    checklist[i].isChecked = true;
+                    checklist[i].isChecked = ko.observable(true);
                 }
-                self.tasks.push(checklist[i]);
+                this.tasks.push(checklist[i]);
             };
 
             //name
-            self.name = "Kalle"
+            this.name = self.config.name;
 
             //click event
-            self.taskClicked = function(task){
+            this.taskClicked = function(task){
                 try{
-                    alert(self.name);
                     task.isChecked = lbs.common.executeVba("Checklist.PerfromAction," + task.idchecklist);
-                    
                     task.isChecked = true;
-
                 }catch(e){
                     task.isChecked = false;  
                 }
@@ -62,7 +60,8 @@ lbs.apploader.register('checklist', function () {
                     "idchecklist": "1001",
                     "order": "1",
                     "title": "Beställ diarienummer",
-                    "mouseover": "Kontakta diariet och beställ diarienummer med rubrik Avtal om tillträde järnvägsföretag"
+                    "mouseover": "Kontakta diariet och beställ diarienummer med rubrik Avtal om tillträde järnvägsföretag",
+                    "isChecked":true
                   },
                   {
                     "idchecklist": "1101",

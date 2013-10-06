@@ -1,7 +1,6 @@
 .checklist {
     padding-top:10px;
-    background-color: #e9eff5;
-    padding-left: 0;
+    padding-left: 0px;
     margin: :0;
 
 }
@@ -13,10 +12,12 @@
 
 input[type=checkbox] {
 	visibility: hidden;
+	position: absolute;
 }
 
 .checklist label {
-	padding-left: 0;
+
+	margin-left: -5px;
 	cursor: pointer;
 	display:inline-block;
 	width: 20px;
