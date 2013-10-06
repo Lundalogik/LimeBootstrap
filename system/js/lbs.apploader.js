@@ -60,6 +60,7 @@
                     instance.config = lbs.common.mergeOptions(instance.config, instanceConfig);
                 }
                 
+                
                 //push resources
                 lbs.loader.pushResources(instance.config.resources, path);
 
