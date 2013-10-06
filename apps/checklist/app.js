@@ -13,30 +13,32 @@ lbs.apploader.register('checklist', function () {
     },
 
     //initialize
-    this.initialize = function (appData,node) {
+    this.initialize = function (node,appData) {
 
+        /**
+        Checklistmodel
+        */
         var ChecklistModel = function(checklist){
             var self = this;
             
-           
-
-
-            
-
+            //tasks
             self.tasks = ko.observableArray();
 
+            //populate tasks
             for (var i = 0; i < checklist.length; i++) {
                 if(!checklist[i].isChecked){
-                    checklist[i].isChecked = ko.observable(false);
+                    checklist[i].isChecked = false;
                 }
                 else{
-                    checklist[i].isChecked = ko.observable(true);
+                    checklist[i].isChecked = true;
                 }
                 self.tasks.push(checklist[i]);
             };
+
+            //name
             self.name = "Kalle"
 
-
+            //click event
             self.taskClicked = function(task){
                 try{
                     alert(self.name);
@@ -49,8 +51,12 @@ lbs.apploader.register('checklist', function () {
                 }
                
             }
-
         }
+
+
+        /**
+        Dummy data
+        */
         var dummyData =  {"checklist": [
                   {
                     "idchecklist": "1001",
@@ -72,7 +78,11 @@ lbs.apploader.register('checklist', function () {
                   }
                 ]      
             }
-        return ChecklistModel(dummyData.checklist);
+
+        /**
+        Return view model
+        */
+        return new ChecklistModel(dummyData.checklist);
     }
 });
 

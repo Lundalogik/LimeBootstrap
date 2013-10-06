@@ -51,7 +51,7 @@
                         throw new Error("Could not find app " + appName);
                     }
                 }
-                
+
                 //create an instance
                 instance = new lbs.apploader.appFactory[appName]();
 
@@ -122,7 +122,6 @@
 
             //run initialize
             try {
-                vm = ko.mapping.fromJS(vm);
                 vm = app.instance.initialize(htmlNode ,vm);
                 lbs.apps[key].vm = vm;
             } catch (e) {
@@ -132,7 +131,7 @@
 
             //apply bindings
             try {
-                lbs.log.debug('App ' + appName + ' ViewModel: ' + JSON.stringify(ko.mapping.toJS(vm)));
+                lbs.log.debug('App ' + appName + ' ViewModel: ' + JSON.stringify(vm));
                 ko.applyBindings(vm, htmlNode.get(0));
             } catch (e) {
                 lbs.log.warn(lbs.common.nl2br("Binding of data to view failed for app: " + appName + "\n Displaying mapping attributes"));

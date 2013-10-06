@@ -63,12 +63,42 @@ lbs.loader = {
     /**
     Fetch and run a script from disk
     */
-    "loadScript": function (val) {
-        var js = document.createElement("script");
-        js.type = "text/javascript";
-        js.src = val;
-        document.body.appendChild(js);
-        return true;
+    "loadScript": function (filename) {
+        // var js = document.createElement("script");
+        // js.type = "text/javascript";
+        // js.src = val;
+        // document.body.appendChild(js);
+
+        // return true;
+
+        var retval = false;
+         try {
+            $.getScript(filename, function (response, status, xhr) {
+                if (status == "error") {
+                    lbs.log.error('View "' + filename + '" could not be loaded');
+                } else {
+                    lbs.log.info('View "' + filename + '" loaded successfully');
+                }
+            })
+
+            retval = true;
+
+        } catch (e) {
+            lbs.log.warn('Script "' + filename + '" could not be loaded, using fallback loading through LWS',e);
+            var s = ""
+            s = lbs.common.executeVba("LWS.loadHTTPResource," + filename);
+            if (s && s !== "") {
+                eval(s);
+                lbs.log.info('Script "' + filename + '" loaded successfully');
+                retval = true;
+            } else {
+                lbs.log.error('Script "' + filename + '" could not be loaded');
+                retval = false;
+            }
+        }
+
+        return retval;
+
     },
 
     /**
@@ -101,7 +131,7 @@ lbs.loader = {
             lbs.log.warn('View "' + file + '" could not be loaded, using fallback loading through LWS');
             var s = ""
             s = lbs.common.executeVba("LWS.loadHTTPResource," + file);
-            if (s !== "") {
+            if (s && s !== "") {
                 element.html(s);
                 lbs.log.info('View "' + file + '" loaded successfully');
             } else {
