@@ -1,0 +1,8 @@
+<span data-bind="text:name"></span>
+<div class="checklist" data-bind="foreach:tasks">
+	<div class='task' data-bind="click:taskClicked"> 
+		<input type='checkbox' name='check' data-bind="checked: isChecked, attr:{id:'a_' + idchecklist}" /> 
+		<label data-bind="attr:{for:'a_' + idchecklist}"></label> 
+		<span data-bind="text: title + ' - ' + isChecked"></span>
+	<div>
+</div> 

@@ -14,7 +14,7 @@
 <!-- ACTIONS   -->
 
 <div class="content-container">
-
+<div class="alert" data-bind="visible:person.active.value == 0, text: person.firstname.text + ' har slutat på ' + person.company.text, icon: 'icon-info-sign'"></div>
 	<ul class="menu expandable">
 		<li class="nav-header">Kommando</li>
 		<li class="divider"></li>
@@ -23,7 +23,7 @@
 		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, document', icon:'icon-file-text-alt'">Nytt dokument</li>
 	</ul>
 
-	<div class="alert" data-bind="visibility:person.active.text != 0, text: person.firstname.text + ' har slutat!', icon: 'icon-info-sign'"></div>
+	
 </div>
 	
   
