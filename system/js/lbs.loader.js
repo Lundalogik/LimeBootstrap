@@ -64,22 +64,11 @@ lbs.loader = {
     Fetch and run a script from disk
     */
     "loadScript": function (val) {
-        var success = false;
-        // $.getScript(val)
-        //   .done(function( script, textStatus ) {
-        //       success = true;
-        //   })
-        //   .fail(function( jqxhr, settings, exception ) {
-        //       lbs.log.error('failed to load script: ' + val, exception);
-        //   });
-
         var js = document.createElement("script");
         js.type = "text/javascript";
         js.src = val;
-
-        //document.body.appendChild(js);
-
-        return success;
+        document.body.appendChild(js);
+        return true;
     },
 
     /**
