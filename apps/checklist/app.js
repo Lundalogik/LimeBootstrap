@@ -1,7 +1,7 @@
 lbs.apploader.register('checklist', function () {
     var self = this;
     //config
-    this.config = {
+    self.config = {
         dataSources: [
 
         ],
@@ -10,42 +10,47 @@ lbs.apploader.register('checklist', function () {
             styles: ['checklist.css'],
             libs: ['json2xml.js']
         },
-        name: 'Checklista'
+        name: 'Checklista',
+        canBeUnchecked: true
     },
 
     //initialize
-    this.initialize = function (node,appData) {
-
+    self.initialize = function (node,appData) {
+        
         /**
         Checklistmodel
         */
         var ChecklistModel = function(checklist){
-            
-            
-            //tasks
-            this.tasks = ko.observableArray();
-
+            var me = this;
             //populate tasks
             for (var i = 0; i < checklist.length; i++) {
-                if(!checklist[i].isChecked){
-                    checklist[i].isChecked = ko.observable(false);
-                }
-                else{
-                    checklist[i].isChecked = ko.observable(true);
-                }
-                this.tasks.push(checklist[i]);
+                checklist[i].isChecked = ko.observable(checklist[i].isChecked);
             };
 
+            //tasks
+            this.tasks = ko.observableArray(checklist);
             //name
             this.name = self.config.name;
+            //Nbr of checkedItems
+            this.checked =   ko.computed(function(){
+                return ko.utils.arrayFilter(me.tasks(), function(task) {
+                        return task.isChecked() == true;
+                 }).length;
+             });
 
             //click event
             this.taskClicked = function(task){
                 try{
-                    task.isChecked = lbs.common.executeVba("Checklist.PerfromAction," + task.idchecklist);
-                    task.isChecked = true;
+                    if(!task.isChecked()){
+                        task.isChecked (lbs.common.executeVba("Checklist.PerfromAction," + task.idchecklist));
+                        task.isChecked(true);
+                    }else{
+                        if(self.config.canBeUnchecked){
+                            task.isChecked(false);
+                        }
+                    }
                 }catch(e){
-                    task.isChecked = false;  
+                    task.isChecked(false);  
                 }
                
             }
