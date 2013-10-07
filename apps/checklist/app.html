@@ -1,12 +1,15 @@
 
 <ul class="menu expandable checklist">
-	<li class="nav-header" data-bind="text:name + ' (' + checked() + '/' + tasks().length + ')'"></li>
+	<li class="nav-header" >
+		<span data-bind="text:name"></span>
+		<span data-bind="text:' (' + checked() + '/' + tasks().length + ')'" id="counter"></span>
+	</li>
 	<li class="divider"></li>
 	<!-- ko foreach: tasks -->
 		<li class='task' data-bind="click:$parent.taskClicked"> 
 			<input type='checkbox' data-bind="checked: isChecked, attr:{id:'a_' + idchecklist}" /> 
 			<label data-bind="attr:{for:'a_' + idchecklist}"></label> 
-			<span data-bind="text: title + ' - ' + isChecked()"></span>
+			<span data-bind="text: title"></span>
 		</li>
 	<!-- /ko -->
 </ul> 
