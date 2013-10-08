@@ -11,7 +11,8 @@ lbs.apploader.register('checklist', function () {
             libs: ['json2xml.js']
         },
         name: 'Checklista',
-        canBeUnchecked: true
+        canBeUnchecked: false,
+        canAddTask: false
     },
 
     //initialize
@@ -22,28 +23,42 @@ lbs.apploader.register('checklist', function () {
         */
         var ChecklistModel = function(checklist){
             var me = this;
+
+            me.tasks = ko.observableArray();
             //populate tasks
             for (var i = 0; i < checklist.length; i++) {
+                //Is the task checked?
                 checklist[i].isChecked = ko.observable(checklist[i].isChecked);
+                //When and who checked?
+                if (checklist[i].checkedDate) {
+                    checklist[i].checkedDate = ko.observable(checklist[i].checkedDate);
+                    checklist[i].checkedBy = ko.observable(checklist[i].checkedBy);
+                }else{
+                    checklist[i].checkedDate = ko.observable("");
+                    checklist[i].checkedBy = ko.observable("");
+                }; 
+                me.tasks.push(checklist[i])
             };
 
-            //tasks
-            this.tasks = ko.observableArray(checklist);
             //name
-            this.name = self.config.name;
+            me.name = self.config.name;
+            me.canAddTask = self.config.canAddTask;
             //Nbr of checkedItems
-            this.checked =   ko.computed(function(){
+            me.nbrOfChecked =   ko.computed(function(){
                 return ko.utils.arrayFilter(me.tasks(), function(task) {
                         return task.isChecked() == true;
                  }).length;
              });
 
             //click event
-            this.taskClicked = function(task){
+            me.taskClicked = function(task){
                 try{
-                    if(!task.isChecked()){
+                    if(!task.isChecked() && task.idchecklist){
                         task.isChecked (lbs.common.executeVba("Checklist.PerfromAction," + task.idchecklist));
-                        task.isChecked(true);
+                        task.checkedDate(moment());
+                        task.checkedBy(lbs.limeDataConnection.ActiveUser.Name);
+                        me.save();
+
                     }else{
                         if(self.config.canBeUnchecked){
                             task.isChecked(false);
@@ -52,7 +67,23 @@ lbs.apploader.register('checklist', function () {
                 }catch(e){
                     task.isChecked(false);  
                 }
-               
+            }
+
+            me.addTask = function(){
+                me.tasks.push({              
+                    "idchecklist": "1001",
+                    "order": "1",
+                    "title": "Beställ diarienummer",
+                    "mouseover": "Kontakta diariet och beställ diarienummer med rubrik Avtal om tillträde järnvägsföretag",
+                    "isChecked":true
+                });    
+            }
+
+            me.save = function(){
+                        var tempJSON = JSON.stringify({checklist:ko.toJS(me.tasks)});
+                        var tempXML = json2xml($.parseJSON(tempJSON),'');
+                        lbs.common.executeVba("Checklist.Save," + tempXML) ;
+
             }
         }
 
