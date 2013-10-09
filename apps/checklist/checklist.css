@@ -101,3 +101,19 @@ input[type=checkbox] {
 	color:#A7A7A7 !important;
 
 }
+
+.icon-remove{
+position: absolute;
+right: 5px;
+width: 10px;
+visibility: hidden;
+}
+
+.task:hover > .icon-remove{
+	visibility: visible;
+}
+
+ .icon-remove:hover{
+	color: red;
+	font-size: 15px;
+}

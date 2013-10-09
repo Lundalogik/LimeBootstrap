@@ -12,7 +12,8 @@ lbs.apploader.register('checklist', function () {
         },
         name: 'Checklista',
         canBeUnchecked: true,
-        canAddTask: true
+        canAddTask: true,
+        allowRemove: true
     },
 
     //initialize
@@ -98,6 +99,13 @@ lbs.apploader.register('checklist', function () {
                     me.tasks.push(newTask);
                     me.inputValue(''); 
                     me.save();                   
+                }
+            }
+
+            me.removeTask = function(task){
+                if (confirm('Uppgiften kommer försvinna för evigt! Riktigt, riktigt säker?')) {
+                me.tasks.remove(task);
+                me.save();
                 }
             }
             //Save change to LIME

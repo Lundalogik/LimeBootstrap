@@ -6,10 +6,11 @@
 	</li>
 	<li class="divider" ></li>
 	<!-- ko foreach: tasks -->
-		<li class='task' data-bind="click:$parent.taskClicked, attr:{title: checkedDate() === '' ? mouseover : checkedBy() + ': ' + moment(checkedDate()).format('LLL')}"> 
+		<li class='task' data-bind="attr:{title: checkedDate() === '' ? mouseover : checkedBy() + ': ' + moment(checkedDate()).format('LLL')}"> 
 			<input type='checkbox' data-bind="checked: isChecked, attr:{id:'a_' + order}" /> 
 			<label data-bind="attr:{for:'a_' + order}"></label> 
-			<span data-bind="text: title"></span>
+			<span data-bind="click:$parent.taskClicked, text: title"></span>
+			<div class="icon-remove" data-bind="click:$parent.removeTask, clickBubble: false,icon:'icon-remove'"></div>
 		</li>
 	<!-- /ko -->
 	<!-- ko if: canAddTask -->
@@ -20,3 +21,4 @@
 	<li id="add-new-task" data-bind="visible: inputValue(), click:addTask">Lägg till</li>
 	<!-- /ko -->
 </ul> 
+
