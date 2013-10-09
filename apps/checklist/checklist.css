@@ -2,6 +2,7 @@
     padding-top:10px;
     padding-left: 0px;
     margin: :0;
+    background-color:inherit;
 
 }
 
@@ -26,9 +27,9 @@ input[type=checkbox] {
 	margin-left: -5px;
 	cursor: default;
 	display:inline-block;
-	width: 20px;
-	height: 20px;
-	border-radius: 4px;
+	width: 15px;
+	height: 15px;
+	border-radius: 3px;
 	-webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
 	-moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
 	box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
@@ -48,11 +49,11 @@ input[type=checkbox] {
 	opacity: 0;
 	content: '';
 	display:inline-block;
-	width: 9px;
-	height: 5px;
+	width: 7px;
+	height: 3px;
 	background: transparent;
-    margin:0 0 2px 4px;
-	border: 3px solid #425899;
+    margin:0 0 5px 4px;
+	border: 2px solid #425899;
 	border-top: none;
 	border-right: none;
 	-webkit-transform: rotate(-45deg);
@@ -62,10 +63,41 @@ input[type=checkbox] {
 	transform: rotate(-45deg);
 }
 
-
+.checklist input[type=checkbox]:checked ~ span {
+	text-decoration: line-through;
+}
 
 .checklist input[type=checkbox]:checked + label:after {
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 	filter: alpha(opacity=100);
 	opacity: 1;
+}
+
+#new-task{
+	border: none;
+	width: 100px;
+	height: 100%;
+	color: inherit;
+	background-color: transparent;
+	font-size: inherit;
+	
+	vertical-align: middle;
+	padding:5px 0 10px 0 ;
+
+}
+
+#add-new-task{
+	text-align: center;
+	background-color: #83BA1F ;
+	color: #FFF;
+}
+#add-new-task:hover{
+
+	background-color: #6A951A ;
+
+}
+.notComplete{
+	background-color: #EBEBEB;
+	color:#A7A7A7 !important;
+
 }

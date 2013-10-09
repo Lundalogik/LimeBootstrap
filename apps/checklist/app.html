@@ -13,6 +13,10 @@
 		</li>
 	<!-- /ko -->
 	<!-- ko if: canAddTask -->
-	<li data-bind="click:addTask, icon:'icon-plus-sign'">Lägg till ny</li>
+	<li class="task" data-bind="css: {'notComplete' : !isSelected() && inputValue()}">
+		<label data-bind="visible:isSelected() || inputValue()"></label> 
+		<input id="new-task" data-bind="value: inputValue, valueUpdate: 'afterkeydown', enterKey: addTask, hasFocus: isSelected" placeholder=" + Lägg till ny" />  
+	</li>
+	<li id="add-new-task" data-bind="visible: inputValue(), click:addTask">Lägg till</li>
 	<!-- /ko -->
 </ul> 
