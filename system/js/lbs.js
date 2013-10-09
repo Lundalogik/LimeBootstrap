@@ -168,7 +168,16 @@ var lbs = lbs || {
             function () {
                 $(this).find("i").toggleClass("icon-angle-down"); //expanded
                 $(this).find("i").toggleClass("icon-angle-right"); // Hidden
-                $(this).parent().children("li").not(".nav-header").not(".divider").not(".hidden").fadeToggle();
+                if ($(this).hasClass("hidden")) {
+                    $(this).removeClass("hidden");
+                     $(this).parent().children("li").not(".remainHidden").fadeIn(200);
+                     $(this).parent().find(":hidden").removeClass("remainHidden");
+                }else{
+                    $(this).addClass("hidden");
+                    $(this).parent().find(":hidden").addClass("remainHidden");
+                    $(this).parent().children("li").not(".nav-header").not(".divider").fadeOut(200);
+                }
+               // $(this).parent().children("li").not(".nav-header").not(".divider").not(".remainHidden").fadeToggle(200);
             }
         )
     },
@@ -181,7 +190,9 @@ var lbs = lbs || {
 
         $(".menu").addClass("nav nav-list")
         $(".expandable").each(function () {
+             // if hidden by some reason, don't fuck with it.
             if ($(this).hasClass("hidden")) { //should be hidden if class hidden  exists
+                $(this).find(":hidden").addClass("remainHidden");
                 $(this).find(".nav-header").prepend("<i class='icon-angle-right'> </i>");
                 $(this).children("li").not(".nav-header").not(".divider").hide();
             } else {
