@@ -177,7 +177,6 @@ var lbs = lbs || {
                     $(this).parent().find(":hidden").addClass("remainHidden");
                     $(this).parent().children("li").not(".nav-header").not(".divider").fadeOut(200);
                 }
-               // $(this).parent().children("li").not(".nav-header").not(".divider").not(".remainHidden").fadeToggle(200);
             }
         )
     },
