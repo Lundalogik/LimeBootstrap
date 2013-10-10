@@ -97,7 +97,7 @@ input[type=checkbox] {
 .notComplete{
 	background-color: #EBEBEB;
 	color:#A7A7A7 !important;
-
+	opacity: 0.5;
 }
 
 .icon-remove{

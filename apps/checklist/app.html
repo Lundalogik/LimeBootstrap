@@ -9,10 +9,12 @@
 <!-- List of tasks -->
 	<!-- ko foreach: tasks -->
 		<li class='task' data-bind="attr:{title: checkedDate() === '' ? mouseover : checkedBy() + ': ' + moment(checkedDate()).format('LLL')}"> 
-			<input type='checkbox' data-bind="checked: isChecked, attr:{id:'a_' + order}" /> 
-			<label data-bind="attr:{for:'a_' + order}"></label> 
-			<span data-bind="click:$parent.taskClicked, text: title"></span>
-			<!-- ko if: allowRemove -->
+			<span data-bind="click:$parent.taskClicked">
+				<input type='checkbox' data-bind="checked: isChecked, attr:{id:'a_' + order}" /> 
+				<label data-bind="attr:{for:'a_' + order}"></label> 
+				<span data-bind="text: title"></span>
+			</span>
+			<!-- ko if: $parent.allowRemove -->
 			<div class="icon-remove" data-bind="click:$parent.removeTask, clickBubble: false,icon:'icon-remove'"></div>
 			<!-- /ko -->
 		</li>

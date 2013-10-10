@@ -11,8 +11,8 @@ lbs.apploader.register('checklist', function () {
             libs: ['json2xml.js']
         },
         name: 'Checklista',
-        canBeUnchecked: true,
-        canAddTask: true,
+        canBeUnchecked: false,
+        canAddTask: false,
         allowRemove: false
     },
 
@@ -35,29 +35,35 @@ lbs.apploader.register('checklist', function () {
         /**
         Checklistmodel
         */
-        function ChecklistModel(checklist) {
+        function ChecklistModel(xmlchecklist) {
             var me = this;
+
 
             me.tasks = ko.observableArray();
             //populate tasks
-            for (var i = 0; i < checklist.length; i++) {
-                //When and who checked?
-                var tempTask = task();
-                tempTask.idchecklist = checklist[i].idchecklist;
-                tempTask.order = checklist[i].order;
-                tempTask.title = checklist[i].title;
-                tempTask.mouseover = checklist[i].mouseover;
-                if (checklist[i].isChecked === "true") {
-                    tempTask.isChecked(true);
-                    tempTask.checkedDate(checklist[i].checkedDate);
-                    tempTask.checkedBy(checklist[i].checkedBy);
-                }
-                me.tasks.push(tempTask);
-            };
+            if(xmlchecklist.checklist){
+                var checklist = xmlchecklist.checklist;
+                for (var i = 0; i < checklist.length; i++) {
+                    //When and who checked?
+                    var tempTask = task();
+                    tempTask.idchecklist = checklist[i].idchecklist;
+                    tempTask.order = checklist[i].order;
+                    tempTask.title = checklist[i].title;
+                    tempTask.mouseover = checklist[i].mouseover;
+                    if (checklist[i].isChecked === "true") {
+                        tempTask.isChecked(true);
+                        tempTask.checkedDate(checklist[i].checkedDate);
+                        tempTask.checkedBy(checklist[i].checkedBy);
+                    }
+                    me.tasks.push(tempTask);
+                };
+            }
+
             //name
             me.name = self.config.name;
             me.canAddTask = self.config.canAddTask;
             me.allowRemove = self.config.allowRemove;
+
             //Nbr of checkedItems
             me.nbrOfChecked = ko.computed(function(){
                 return ko.utils.arrayFilter(me.tasks(), function(task) {
@@ -79,6 +85,7 @@ lbs.apploader.register('checklist', function () {
                             task.isChecked(true);
                         }
                     }else{
+
                         if(self.config.canBeUnchecked){
                             task.isChecked(false);
                             task.checkedDate("");
@@ -146,8 +153,9 @@ lbs.apploader.register('checklist', function () {
         /**
         Return view model
         */
+            alert(JSON.stringify(appData.xmlchecklist))
+            return new ChecklistModel(appData);
 
-            return new ChecklistModel(appData.xmlchecklist.checklist);
 
         
     },
