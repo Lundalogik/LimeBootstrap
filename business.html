@@ -15,16 +15,13 @@
 
 <!-- ACTIONS   -->
 <div class="content-container">
-    <ul class="menu expandable hidden">
-        <li class="nav-header">Kommando</li>
+    <ul class="nav nav-list expandable">
+        <li class="nav-header"data-bind=" text:localize.Actionpad_Business.command"></li> 
         <li class="divider"></li>
-        <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, todo' , icon: 'icon-calendar'">Ny Att-göra</li>
-        <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, history' , icon: 'icon-pencil'">Ny historiknotering</li>
-        <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, document' , icon: 'icon-file-text-alt'">Nytt dokument</li>
+        <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, todo', text:localize.Actionpad_Business.newtodo, icon: 'icon-calendar'"></li>
+        <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, history', text:localize.Actionpad_Business.newhistory, icon: 'icon-pencil'"></li>
+        <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, document', text:localize.Actionpad_Business.newdoc, icon: 'icon-file-text-alt'"></li>
 		
     </ul>
-
-    <div data-app="{app:'checklist',config:{canBeUnchecked:true,allowRemove:true, canAddTask:true}}"></div>
-
 </div>
 <!-- /ACTIONS   -->
