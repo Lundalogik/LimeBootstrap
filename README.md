@@ -78,10 +78,10 @@ An Actionpad built with LIME-bootstrap has the following structure
 ```
 
 ##HTML Elements
-LIME bootstrap supports all Twitter boostrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for additional info
+LIME bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for additional info
 
 ###The header section colors
-The header section is the colorfull header of each actionpad. The following colors are provided:
+The header section is the colorful header of each actionpad. The following colors are provided:
 
 *	red
 *	green
@@ -107,7 +107,7 @@ A menu can be created by the following HTML:
 </ul>
 ```
 
-A menu has two properties, __Expandable__ and __Hidden__. The are added in the `<ul>` class:
+A menu has two properties, __Expandable__ and __Hidden__. The are added in the `<ul>`  class:
 `<ul class="menu expandable hidden">`	
 	
 
@@ -119,25 +119,24 @@ __Hidden:__ The menu is collapsed when the actionpad is loaded. Stupid to use wi
 All Twitter bootstrap functions are included, please see the [Twitter bootstrap documentation](http://getbootstrap.com/2.3.2/javascript.html) 
 
 ### Translation: Handling multiple languages
-By adding language specific tags the actionpads can support multiple languages. The same language as the loged in user uses is automatically used.
+All available translations from the Localization table are automatically available in the actionpad context. The same language as the logged in user uses is automatically used. The translations are cached in a dictionary to increase speed, but requires you to run `ThisApplication.Setup` to rebuild the dictionary if you add translations or make changes. 
 
 ```html
-<li sv="Ny att göra" fi="Uusi tehtävä" en-us="New todo" no="Ny oppgave" title-no="Ny oppgave" title-fi="Uusi tehtävä" title-sv="Ny att göra uppgift"  title-en-us="New todo" data-action="ActionPadTools.NewInspectorFromInspector, todo"></li>
+<li data-bind="text:localize.ActionPad_Todo.addTodo"></li>
 ```
+Technical note
+The translations are added to the global view model and thus available in your apps.
 
-The string is added with `$.append()`, hence the string will always end up at the end of any custom html. Example:
-
-```html
-<li en="New todo"> <i class="icon-calendar"></i></li>
-```
-will render into "icon New todo" 
-
-
-### Data-field: Fetching data from fields in LIME Pro
-The data-field attribute fetches data from the specified field from the ActiveInspector.
+###Fetching data from fields in LIME Pro
+All fields from the ActiveInspector are automagically available for you to use in your view. The syntax is `[Record class name].[field database name].[property]`.
 
 ```html
-<li data-field="name"></li> `
+<!-- Company Actionpad showing the name of the company-->
+<li data-bind="text:company.name.text"></li>
+<!-- Person Actionpad using the id of the company relation as a parameter to a VBA-function. Note the Javascript syntax in the Knockout bindning  -->
+<li data-bind="vba:'SomeFunction,' + person.company.value"></li> 
+<!-- Business Actionpad showing the optionKey from a set-list -->
+<li data-bind="text:business.businesstatus.key"></li> 
 ```
 
 Please note that accessing information on linked records will be slow, as the information must be fetched from the server and not the Inspector, i.e calling the company name from a person will be slow:
@@ -154,7 +153,7 @@ It is common that some elements only should be visible for certain users or when
 <li data-visibility="ActionPad_Helpdesk.HideLinks, take" sv="Ta ärende" fi="Ota tehtäväksi" title-fi="Ota tehtäväksi" en-us="Take case" no="Ta saken" title-no"Ta saken" title-sv="Ta ärende" title-en-us="Take Case" data-action="ActionPad_Helpdesk.Take" > <i class="icon-rocket"></i></li>
 ```
 
-A VBA function is called, handling the logic wether the elemet should be visible or not, returing an boolean.   
+A VBA function is called, handling the logic whether the element should be visible or not, returning an boolean.   
 __true:__ Element is visible   
 __false:__ Element hidden
 In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required. 
@@ -166,7 +165,7 @@ Data-action is used to trigger VBA-functions and specific actions on click. To c
 <li data-action="ActionPad_Helpdesk.Take"></li>
  ```
  
-Input parameters are provided by simply seperateing them by commas.
+Input parameters are provided by simply separating them by commas.
 
 ```html
 <li data-action="ActionPad_Helpdesk.Park, 1, t_park_1_hour"></li>
