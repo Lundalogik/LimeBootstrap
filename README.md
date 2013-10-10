@@ -122,9 +122,10 @@ Read more about bindings and Knockout [here](http://knockoutjs.com/documentation
 List of custom handlers:
 *	__call:__ - _Tries to call the provided phone number_
 *	__email:__ - _Tries to email the provided address_
-*	__vba:__ - _Provide an string of an VBA function with it's parameters separated by commas_
 *	__limeLink:__ - _Creates an LIME link from a provided relationship field, for example person.company_
+*	__openURL:__ - _Opens the supplied URL in a external browser_
 *	__showOnMap:__ - _Opens Google Maps with the supplied data as a search query_
+*	__vba:__ - _Provide an string of an VBA function with it's parameters separated by commas_
 *	__vbaVisible:__ - _Extends knockouts 'visible:' by executing the supplied Boolean VBA function_
 
 ### Translation: Handling multiple languages
@@ -139,7 +140,7 @@ The translations are added to the global view model and thus available in your a
 ###Fetching data from fields in LIME Pro
 All fields from the ActiveInspector are automagically available for you to use in your view. The syntax is `[Record class name].[field database name].[property]`.
 
-The available properties are:
+The available properties are (in order of relevance):
 *	__.text__ 
 *	__.value__
 *	__.key_  - __available for set and list fields_
