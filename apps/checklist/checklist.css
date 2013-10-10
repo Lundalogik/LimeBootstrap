@@ -79,11 +79,9 @@ input[type=checkbox] {
 	height: 100%;
 	color: inherit;
 	background-color: transparent;
-	font-size: inherit;
-	
-	vertical-align: middle;
+	font-size: inherit;	
+	vertical-align: baseline;
 	padding:5px 0 10px 0 ;
-
 }
 
 #add-new-task{

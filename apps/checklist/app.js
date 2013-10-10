@@ -13,7 +13,7 @@ lbs.apploader.register('checklist', function () {
         name: 'Checklista',
         canBeUnchecked: true,
         canAddTask: true,
-        allowRemove: true
+        allowRemove: false
     },
 
     //initialize
@@ -57,6 +57,7 @@ lbs.apploader.register('checklist', function () {
             //name
             me.name = self.config.name;
             me.canAddTask = self.config.canAddTask;
+            me.allowRemove = self.config.allowRemove;
             //Nbr of checkedItems
             me.nbrOfChecked = ko.computed(function(){
                 return ko.utils.arrayFilter(me.tasks(), function(task) {

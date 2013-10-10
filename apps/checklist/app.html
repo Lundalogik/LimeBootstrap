@@ -1,18 +1,24 @@
-
+<!-- Henu header -->
 <ul class="menu expandable checklist">
 	<li class="nav-header" >
 		<span data-bind="text:name"></span>
 		<span data-bind="text:' (' + nbrOfChecked() + '/' + tasks().length + ')'" id="counter"></span>
 	</li>
 	<li class="divider" ></li>
+
+<!-- List of tasks -->
 	<!-- ko foreach: tasks -->
 		<li class='task' data-bind="attr:{title: checkedDate() === '' ? mouseover : checkedBy() + ': ' + moment(checkedDate()).format('LLL')}"> 
 			<input type='checkbox' data-bind="checked: isChecked, attr:{id:'a_' + order}" /> 
 			<label data-bind="attr:{for:'a_' + order}"></label> 
 			<span data-bind="click:$parent.taskClicked, text: title"></span>
+			<!-- ko if: allowRemove -->
 			<div class="icon-remove" data-bind="click:$parent.removeTask, clickBubble: false,icon:'icon-remove'"></div>
+			<!-- /ko -->
 		</li>
 	<!-- /ko -->
+
+<!-- Controls to add new task -->
 	<!-- ko if: canAddTask -->
 	<li class="task" data-bind="css: {'notComplete' : !isSelected() && inputValue()}">
 		<label data-bind="visible:isSelected() || inputValue()"></label> 
