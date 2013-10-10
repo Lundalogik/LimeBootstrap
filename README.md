@@ -120,12 +120,12 @@ All Twitter bootstrap functions are included, please see the [Twitter bootstrap 
 As we relay heavily on knockout their `data-bind:""` syntax is used through out the framework. The `data-bind:""` syntax is a used as a property on an html element. In a `data-bind` you add `bindings`, actions or triggers, to perform actions. All Knockout bindings are available, but also a few custom bindings to make your life easier. 
 Read more about bindings and Knockout [here](http://knockoutjs.com/documentation/introduction.html) and try the tutorial [here](http://learn.knockoutjs.com)
 List of custom handlers:
-*	_call:_ - __Tries to call the provided phone number__
-*	_email:_ - __Tries to email the provided address__
-*	_vba:_ - __Provide an string of an VBA function with it's parameters separated by commas__
-*	_limeLink:_ - __Creates an LIME link from a provided relationship field, for example person.company__
-*	_showOnMap:_ - __Opens Google Maps with the supplied data as a search query__
-*	_vbaVisible:_ - __Extends knockouts 'visible:' by executing the supplied Boolean VBA function__
+*	__call:__ - _Tries to call the provided phone number_
+*	__email:__ - _Tries to email the provided address_
+*	__vba:__ - _Provide an string of an VBA function with it's parameters separated by commas_
+*	__limeLink:__ - _Creates an LIME link from a provided relationship field, for example person.company_
+*	__showOnMap:__ - _Opens Google Maps with the supplied data as a search query_
+*	__vbaVisible:__ - _Extends knockouts 'visible:' by executing the supplied Boolean VBA function_
 
 ### Translation: Handling multiple languages
 All available translations from the Localization table are automatically available in the actionpad context. The same language as the logged in user uses is automatically used. The translations are cached in a dictionary to increase speed, but requires you to run `ThisApplication.Setup` to rebuild the dictionary if you add translations or make changes. 
@@ -140,10 +140,10 @@ The translations are added to the global view model and thus available in your a
 All fields from the ActiveInspector are automagically available for you to use in your view. The syntax is `[Record class name].[field database name].[property]`.
 
 The available properties are:
-*	_text_ 
-*	_value_
-*	_key_  - available for set and list fields
-*	_class_ - available for relation fields 
+*	__.text__ 
+*	__.value__
+*	__.key_  - __available for set and list fields_
+*	__.class__ - _available for relation fields_ 
 
 ```html
 <!-- Company Actionpad showing the name of the company-->
