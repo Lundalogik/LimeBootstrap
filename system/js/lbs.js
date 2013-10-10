@@ -166,16 +166,17 @@ var lbs = lbs || {
         //Expandable: Toggels visibility of child-elements of the element. Used in menues
         $(".expandable").find(".nav-header").click(
             function () {
+                var menuDiv = $(this).parent()
                 $(this).find("i").toggleClass("icon-angle-down"); //expanded
                 $(this).find("i").toggleClass("icon-angle-right"); // Hidden
-                if ($(this).hasClass("hidden")) {
-                    $(this).removeClass("hidden");
-                     $(this).parent().children("li").not(".remainHidden").fadeIn(200);
-                     $(this).parent().find(":hidden").removeClass("remainHidden");
+                if (menuDiv.hasClass("hidden")) {
+                     menuDiv.removeClass("hidden");
+                     menuDiv.children("li").not(".remainHidden").fadeIn(200);
+                     menuDiv.find(":hidden").removeClass("remainHidden");
                 }else{
-                    $(this).addClass("hidden");
-                    $(this).parent().find(":hidden").addClass("remainHidden");
-                    $(this).parent().children("li").not(".nav-header").not(".divider").fadeOut(200);
+                    menuDiv.addClass("hidden");
+                    menuDiv.find(":hidden").addClass("remainHidden");
+                    menuDiv.children("li").not(".nav-header").not(".divider").fadeOut(200);
                 }
             }
         )
