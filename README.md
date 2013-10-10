@@ -117,6 +117,15 @@ __Hidden:__ The menu is collapsed when the actionpad is loaded. Stupid to use wi
 
 ##Functions
 All Twitter bootstrap functions are included, please see the [Twitter bootstrap documentation](http://getbootstrap.com/2.3.2/javascript.html) 
+As we relay heavily on knockout their `data-bind:""` syntax is used through out the framework. The `data-bind:""` syntax is a used as a property on an html element. In a `data-bind` you add `bindings`, actions or triggers, to perform actions. All Knockout bindings are available, but also a few custom bindings to make your life easier. 
+Read more about bindings and Knockout [here](http://knockoutjs.com/documentation/introduction.html) and try the tutorial [here](http://learn.knockoutjs.com)
+List of custom handlers:
+*	_call:_ - __Tries to call the provided phone number__
+*	_email:_ - __Tries to email the provided address__
+*	_vba:_ - __Provide an string of an VBA function with it's parameters separated by commas__
+*	_limeLink:_ - __Creates an LIME link from a provided relationship field, for example person.company__
+*	_showOnMap:_ - __Opens Google Maps with the supplied data as a search query__
+*	_vbaVisible:_ - __Extends knockouts 'visible:' by executing the supplied Boolean VBA function__
 
 ### Translation: Handling multiple languages
 All available translations from the Localization table are automatically available in the actionpad context. The same language as the logged in user uses is automatically used. The translations are cached in a dictionary to increase speed, but requires you to run `ThisApplication.Setup` to rebuild the dictionary if you add translations or make changes. 
@@ -130,6 +139,12 @@ The translations are added to the global view model and thus available in your a
 ###Fetching data from fields in LIME Pro
 All fields from the ActiveInspector are automagically available for you to use in your view. The syntax is `[Record class name].[field database name].[property]`.
 
+The available properties are:
+*	_text_ 
+*	_value_
+*	_key_  - available for set and list fields
+*	_class_ - available for relation fields 
+
 ```html
 <!-- Company Actionpad showing the name of the company-->
 <li data-bind="text:company.name.text"></li>
@@ -139,7 +154,7 @@ All fields from the ActiveInspector are automagically available for you to use i
 <li data-bind="text:business.businesstatus.key"></li> 
 ```
 
-Please note that accessing information on linked records will be slow, as the information must be fetched from the server and not the Inspector, i.e calling the company name from a person will be slow:
+It is common to use data from more than the ActiveInspector and the following syntax will NOT work `<li data-bind="text:person.company.phone.text"></li>`
 
 ```html
 <li data-field="company.name"></li> `
