@@ -42,8 +42,10 @@ lbs.apploader.register('checklist', function () {
             me.tasks = ko.observableArray();
             //populate tasks
             if(xmlchecklist.checklist){
-                var checklist = xmlchecklist.checklist;
+
+                var checklist = [xmlchecklist.checklist];
                 for (var i = 0; i < checklist.length; i++) {
+
                     //When and who checked?
                     var tempTask = task();
                     tempTask.idchecklist = checklist[i].idchecklist;
@@ -102,6 +104,7 @@ lbs.apploader.register('checklist', function () {
                 newTask = task();
                 if(me.inputValue){
                     newTask.title = me.inputValue().trim(); 
+                    newTask.mouseover = me.inputValue().trim();
                     newTask.order = me.tasks().length + 1; 
                 
                     me.tasks.push(newTask);
@@ -153,8 +156,7 @@ lbs.apploader.register('checklist', function () {
         /**
         Return view model
         */
-            alert(JSON.stringify(appData.xmlchecklist))
-            return new ChecklistModel(appData);
+            return new ChecklistModel(appData.xmlchecklist);
 
 
         

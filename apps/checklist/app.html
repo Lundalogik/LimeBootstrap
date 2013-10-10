@@ -1,4 +1,5 @@
 <!-- Henu header -->
+<!-- ko if: canAddTask || tasks().length > 0 -->
 <ul class="menu expandable checklist">
 	<li class="nav-header" >
 		<span data-bind="text:name"></span>
@@ -29,4 +30,4 @@
 	<li id="add-new-task" data-bind="visible: inputValue(), click:addTask">Lägg till</li>
 	<!-- /ko -->
 </ul> 
-
+<!-- /ko -->
