@@ -2,9 +2,9 @@
 <div class="content-container">
 
 	<ul class="menu expandable">
-		<li class="nav-header">Länkar</li>
+		<li class="nav-header"data-bind="text:localize.Actionpad_Index.links"></li> 
         <li class="divider"></li>		
-		<li data-bind="openURL: 'www.lundalogik.se', icon:'icon-building'">Lundalogik.se</li>
+		<li data-bind="openURL: 'www.lundalogik.se', text:localize.Actionpad_Index.llhomepage, icon:'icon-building'"></li>
         <li data-bind="openURL: 'http://www.lundalogik.se/support/', icon: 'icon-home'">LLAB Intranet</li>
 		<li data-bind="openURL: 'http://www.lundalogik.se/support/', icon:'icon-heart'">Lundalogik Support</li>        
 	</ul>
@@ -12,8 +12,8 @@
 	<ul class="menu expandable">
             <li class="nav-header">LIME BI Dashboard</li> 
             <li class="divider"></li>			  
-            <li data-bind="vba: 'ActionPadTools.OpenDocument', icon:'icon-dashboard'">Öppna LIME BI</li>
-            <li data-bind="vba: 'ActionPadTools.ClosePane', icon:'icon-dashboard'">Stäng LIME BI</li>
+            <li data-bind="vba: 'ActionPadTools.OpenDocument',  text:localize.Actionpad_Index.openlimebi, icon:'icon-dashboard'"></li>
+            <li data-bind="vba: 'ActionPadTools.ClosePane',  text:localize.Actionpad_Index.closelimebi, icon:'icon-dashboard'"></li>
 	</ul>
 
 </div>

@@ -22,26 +22,26 @@
   	<div class="alert alert-error" data-bind="visible: todo.endtime.value !== null && (moment(todo.endtime.value) < moment() && todo.done.value != 1), text: 'Uppgiften är ' + (todo.endtime.value != null ? moment(todo.endtime.value).fromNow(true) : '' )+ ' försenad!', icon:'icon-bell'" ></div>
 
     <ul class="nav nav-list expandable">
-         <li class="nav-header"> Kommando</li>
+         <li class="nav-header"data-bind=" text:localize.Actionpad_Todo.command"></li>
          <li class="divider"></li>
-         <li data-bind="vba:'Actionpad_Todo.SetDone', icon:'icon-check'">Pricka av & stäng</li>
-         <li data-bind="vba:'Actionpad_Todo.SetDone, true, false', icon:'icon-calendar'">Pricka av & skapa Att-göra</li>
-         <li data-bind="vba:'Actionpad_Todo.SetDone, false, true', icon:'icon-calendar'">Pricka av & skapa historik</li>
-		 <li data-bind="vba:'ActionpadTools.NewInspectorFromInspector, history', icon:'icon-file-text-alt'">Skapa historiknotering</li>
+         <li data-bind="vba:'Actionpad_Todo.SetDone', text:localize.Actionpad_Todo.check, icon:'icon-check'"></li>
+         <li data-bind="vba:'Actionpad_Todo.SetDone, true, false', text:localize.Actionpad_Todo.checktodo, icon:'icon-calendar'"></li>
+         <li data-bind="vba:'Actionpad_Todo.SetDone, false, true', text:localize.Actionpad_Todo.checkhistory, icon:'icon-calendar'"></li>
+		 <li data-bind="vba:'ActionpadTools.NewInspectorFromInspector, history', text:localize.Actionpad_Todo.note, icon:'icon-file-text-alt'"></li>
      </ul> 
 	 
     <div class="btn-group">
-    	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" data-bind="icon: 'icon-caret-down'">Flytta fram</a>
+    	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" data-bind=" text:localize.Actionpad_Todo.headermoveforward, icon: 'icon-caret-down'"></a>
     	<ul class="dropdown-menu">
-    		<li data-bind="vba:'ActionPad_todo.Postpone, d, 1'">+ 1 dag</li>
+    		<li data-bind="vba:'ActionPad_todo.Postpone, d, 1', text:localize.Actionpad_Todo.mf1d"></li>
     	    <li class="divider"></li>
-            <li data-bind="vba:'ActionPad_todo.Postpone, ww, 1'">+ 1 vecka</li>
-    		<li data-bind="vba:'ActionPad_todo.Postpone, ww, 2'">+ 2 veckor</li>
+            <li data-bind="vba:'ActionPad_todo.Postpone, ww, 1', text:localize.Actionpad_Todo.mf1w"></li>
+    		<li data-bind="vba:'ActionPad_todo.Postpone, ww, 2', text:localize.Actionpad_Todo.mf2w"></li>
             <li class="divider"></li>
-            <li data-bind="vba:'ActionPad_todo.Postpone, m, 1'">+ 1 månad</li>
-    		<li data-bind="vba:'ActionPad_todo.Postpone, m, 6'">+ 6 månader</li>
+            <li data-bind="vba:'ActionPad_todo.Postpone, m, 1', text:localize.Actionpad_Todo.mf1m"></li>
+    		<li data-bind="vba:'ActionPad_todo.Postpone, m, 6', text:localize.Actionpad_Todo.mf6m"></li>
     		<li class="divider"></li>
-            <li data-bind="vba:'ActionPad_todo.Postpone, yyyy, 1'">+ 1 år</li>
+            <li data-bind="vba:'ActionPad_todo.Postpone, yyyy, 1', text:localize.Actionpad_Todo.mf1y"></li>
     	</ul>
     </div>	
     

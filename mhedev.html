@@ -1,36 +1,35 @@
-﻿
+﻿<!-- ko dataSources: [{type: 'record', source: 'ActionPadTools.GetCompanyContactData'}, { type: 'record', source: 'ActionPadTools.GetPersonContactData'}] -->
+<!-- /ko -->
 
 <!-- INFO HEADER  -->
-    <div class="header-container blue">
-        <div class="header-icon-container company">		
-        </div>
-        <div id="header-info"> 
-            <h2 data-bind="text:company.name.text"></h2>
-                <ul >
-                    <li data-bind="text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: 'icon-map-marker'"> </li>
-                    <li data-bind="text:company.phone.text, call: company.phone.text, icon: 'icon-phone'"></li>
-                    <li data-bind="text:company.www.text, openURL: company.www.text, icon: 'icon-globe'"></li>
-                </ul> 
-        </div>
+<div class="header-container red">
+    <div class="header-icon-container helpdesk">
     </div>
+    <div id="header-info">
+        <h2 data-bind="text: helpdesk.helpdeskno.text"></h2>
+
+        <ul>
+            <li data-bind="text: doesnotexist, icon: 'icon-user'"></li>
+            <li data-bind="text: obj.prop.doesnotexist, icon: 'icon-building'"></li>
+            <li data-bind="text: obj.prop.exists, icon: 'icon-phone'"></li>
+            <li data-bind="text: obj.prop.empty, icon: 'icon-pencil'"></li>
+            <li data-bind="text: obj.prop.falsee, icon: 'icon-phone'"></li>
+            <li data-bind="text: obj.prop.zero, icon: 'icon-phone'"></li>
+        </ul>
+
+    </div>
+</div>
+
 <!-- /INFO HEADER  -->
 <!-- ACTIONS   -->
 <div class="content-container">
-      		
-     <div data-app="{ app: 'd3_charts_donut' }" />
-		 
 
-    <ul class="menu expandable">
-            <li class="nav-header">Historik</li>
-            <li class="divider"></li>
-            <li data-bind="vba:'ActionPad_Company.NewHistory, receivedemail', icon:'icon-pencil'">Fått e-post</li>
-            <li data-bind="vba:'ActionPad_Company.NewHistory, talkedto', icon:'icon-pencil'">Pratat med</li>
-            <li data-bind="vba:'ActionPad_Company.NewHistory, salescall', icon:'icon-pencil'">Säljsamtal</li>
-            <li data-bind="vba:'ActionPad_Company.NewHistory, noanswer',icon:'icon-pencil'">Sökt, ej på plats</li>        
+    <div data-app="{ app: 'template' }" />
+	
+    <div data-app="{ app: 'template' }" />
+
+    <ul data-bind="foreach:obj.prop.doesnotexist">
+
     </ul>
 
 </div>
-	
-
-
-		 

@@ -20,11 +20,11 @@
 <div class="content-container">
 
 	<ul class="menu expandable">
-		<li class="nav-header">Kommando</li>
+		<li class="nav-header"data-bind=" text:localize.Actionpad_Campaign.command"></li>  
 		<li class="divider"></li>
-		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, todo', icon:'icon-calendar'">Ny att-göra</li>
-		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, history', icon:'icon-pencil'">Ny historiknotering</li>
-		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, document', icon:'icon-file-text-alt'">Nytt dokument</li>
+		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, todo',  text:localize.Actionpad_Campaign.newtodo, icon:'icon-calendar'"></li>
+		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, history', text:localize.Actionpad_Campaign.newhistory, icon:'icon-pencil'"></li>
+		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, document', text:localize.Actionpad_Campaign.newdoc, icon:'icon-file-text-alt'"></li>
        
     </ul>
 		
