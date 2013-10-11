@@ -10,18 +10,20 @@
         </ul>
     </div>
 </div>
-
 <!-- /INFO HEADER  -->
 
 <!-- ACTIONS   -->
 <div class="content-container">
-    <ul class="nav nav-list expandable">
+    <ul class="menu expandable">
         <li class="nav-header"data-bind=" text:localize.Actionpad_Business.command"></li> 
         <li class="divider"></li>
         <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, todo', text:localize.Actionpad_Business.newtodo, icon: 'icon-calendar'"></li>
         <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, history', text:localize.Actionpad_Business.newhistory, icon: 'icon-pencil'"></li>
         <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, document', text:localize.Actionpad_Business.newdoc, icon: 'icon-file-text-alt'"></li>
-		
     </ul>
+
+    <div data-app="{app:'checklist',config:{canBeUnchecked:true,allowRemove:true, canAddTask:true}}"></div>
 </div>
+
+
 <!-- /ACTIONS   -->

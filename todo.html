@@ -21,7 +21,7 @@
 
   	<div class="alert alert-error" data-bind="visible: todo.endtime.value !== null && (moment(todo.endtime.value) < moment() && todo.done.value != 1), text: 'Uppgiften är ' + (todo.endtime.value != null ? moment(todo.endtime.value).fromNow(true) : '' )+ ' försenad!', icon:'icon-bell'" ></div>
 
-    <ul class="nav nav-list expandable">
+    <ul class="menu expandable">
          <li class="nav-header"data-bind=" text:localize.Actionpad_Todo.command"></li>
          <li class="divider"></li>
          <li data-bind="vba:'Actionpad_Todo.SetDone', text:localize.Actionpad_Todo.check, icon:'icon-check'"></li>
