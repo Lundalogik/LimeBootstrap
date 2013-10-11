@@ -1,6 +1,29 @@
 Option Explicit
 Public Const AutoCreate As Boolean = False
 
+Private Sub Install()
+    Dim Warn As Boolean
+    Warn = False
+    'Is the appfolder there?
+     Warn = AppInstaller.FileFolderExists(WebFolder + "apps\checklist2")
+    ' Do we have a checklist table?
+    Warn = AppInstaller.TableExists("checklist")
+    If Not Warn Then
+        'Title
+        Warn = AppInstaller.FieldExists("checklist", "title")
+        'mouseover
+        Warn = AppInstaller.FieldExists("checklist", "mouseover")
+        'order
+        Warn = AppInstaller.FieldExists("checklist", "order")
+        'origin
+        Warn = AppInstaller.FieldExists("checklist", "origin")
+    End If
+    
+    If Warn = False Then
+        Debug.Print ("Everything looks good! You're good to go!")
+    End If
+End Sub
+
 Private Sub CreateChecklist()
 On Error GoTo ErrorHandler
 Dim oRecs As New LDE.Records
@@ -52,7 +75,7 @@ On Error GoTo ErrorHandler
     If ActiveControls.GetText("checklist") <> "" Then
         Initialize = ActiveControls.GetText("checklist")
     Else
-        Initialize = "<xmlchecklist><checklist></checklist></xmlchecklist>"
+        Initialize = "<xmlchecklist></xmlchecklist>"
     End If
 Exit Function
 ErrorHandler:
