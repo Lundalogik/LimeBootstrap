@@ -212,7 +212,7 @@ Input parameters are provided by simply separating them by commas.
 	<li data-field="company" data-action="lime-link"><i class="icon-building"></i></li>
 	```
 	
-The major input parameters are evaluated at load and the string to be executed is stored in a Data-args attribute. 
+The input parameters are evaluated at load and the string to be executed is stored in a Data-args attribute. 
 
  
 ##Technical
