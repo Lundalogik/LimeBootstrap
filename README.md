@@ -92,6 +92,8 @@ The header section is the colorful header of each actionpad. The following color
 *	white
 *	purple
 
+Usage: 
+
 ```html
 <div class="header-container [insert color here]">
 ```
@@ -150,7 +152,7 @@ All fields from the ActiveInspector are automagically available for you to use i
 The available properties are (in order of relevance):
 *	__.text__ 
 *	__.value__
-*	__.key_  - __available for set and list fields_
+*	__.key__  - __available for set and list fields_
 *	__.class__ - _available for relation fields_ 
 
 ```html
