@@ -163,9 +163,10 @@ Invoke old-style app
 */
 ko.bindingHandlers.appInvoke = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        
         var newValueAccessor = function() {
             return function() {
-                Invoker.invokeWebApplication(ko.unwrap(valueAccessor));
+                Invoker.invokeWebApplication(ko.unwrap(valueAccessor()));
             };
         };
         ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
