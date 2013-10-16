@@ -119,9 +119,16 @@ __Hidden:__ The menu is collapsed when the actionpad is loaded. Stupid to use wi
 All Twitter bootstrap functions are included, please see the [Twitter bootstrap documentation](http://getbootstrap.com/2.3.2/javascript.html) 
 As we relay heavily on knockout their `data-bind:""` syntax is used through out the framework. The `data-bind:""` syntax is a used as a property on an html element. In a `data-bind` you add `bindings`, actions or triggers, to perform actions. All Knockout bindings are available, but also a few custom bindings to make your life easier. 
 Read more about bindings and Knockout [here](http://knockoutjs.com/documentation/introduction.html) and try the tutorial [here](http://learn.knockoutjs.com)
+
+A basic example of use of a knockout binding:
+```html
+<li data-bind="text:company.name"></li> `
+```
+
 List of custom handlers:
 *	__call:__ - _Tries to call the provided phone number_
 *	__email:__ - _Tries to email the provided address_
+*	__icon:__ - _Prepends the supplied font awesome icon to the html element_
 *	__limeLink:__ - _Creates an LIME link from a provided relationship field, for example person.company_
 *	__openURL:__ - _Opens the supplied URL in a external browser_
 *	__showOnMap:__ - _Opens Google Maps with the supplied data as a search query_
