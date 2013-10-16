@@ -93,7 +93,7 @@ var TextFileImport = null;
         var pExplorer = null;
         var pXmlImport = null;
         var windowHeight = screen.availHeight - 150;
-        alert
+        
         
         try {
             pExplorer = window.external.ActiveExplorer;

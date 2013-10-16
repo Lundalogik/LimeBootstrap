@@ -62,7 +62,6 @@ var Invoker = null;
 
                 break;
             case "vbs":
-                alert(strSrc);
                 if (!isFileIncluded("script", strSrc)) {
                     pNewTag = document.createElement("script");
                     pNewTag.type = "text/vbscript";
