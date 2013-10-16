@@ -6,8 +6,16 @@
         <li class="divider"></li>		
 		<li data-bind="openURL: 'www.lundalogik.se', text:localize.Actionpad_Index.llhomepage, icon:'icon-building'"></li>
         <li data-bind="openURL: 'http://www.lundalogik.se/support/', icon: 'icon-home'">LLAB Intranet</li>
-		<li data-bind="openURL: 'http://www.lundalogik.se/support/', icon:'icon-heart'">Lundalogik Support</li>        
+		<li data-bind="openURL: 'http://www.lundalogik.se/support/', icon:'icon-heart'">Lundalogik Support</li>     
 	</ul>
+
+	<ul class="menu expandable">
+		<li class="nav-header"data-bind="text:'Data'"></li> 
+        <li class="divider"></li>		
+		<li data-bind="appInvoke: 'textfileimport', text: 'Importera textfil', icon:'icon-file'"></li>   
+		<li data-bind="appInvoke: 'mergedoubles', text: 'Dubblettsammanslagning', icon:'icon-signin'"></li>
+	</ul>
+
 
 	<ul class="menu expandable">
             <li class="nav-header">LIME BI Dashboard</li> 

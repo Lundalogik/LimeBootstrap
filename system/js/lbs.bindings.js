@@ -93,10 +93,12 @@ LimeLink
 */
 ko.bindingHandlers.limeLink = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        $(element).click(function () {
-            lbs.common.executeVba("shell," + lbs.common.createLimeLink(ko.unwrap(valueAccessor().class), ko.unwrap(valueAccessor().value)));
-        });
-
+        var newValueAccessor = function() {
+            return function() {
+                 lbs.common.executeVba("shell," + lbs.common.createLimeLink(ko.unwrap(valueAccessor().class), ko.unwrap(valueAccessor().value)));
+            };
+         };
+        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
     },
 };
 
@@ -105,9 +107,12 @@ VBA call
 */
 ko.bindingHandlers.vba = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        $(element).click(function () {
-            lbs.common.executeVba(valueAccessor());
-        });
+        var newValueAccessor = function() {
+            return function() {
+                 lbs.common.executeVba(valueAccessor());
+            };
+         };
+        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
     },
 };
 
@@ -116,9 +121,12 @@ Show on google map
 */
 ko.bindingHandlers.showOnMap = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        $(element).click(function () {
-            lbs.common.executeVba("shell,https://www.google.com/maps?q=" + ko.unwrap(valueAccessor()).replace(/\r?\n|\r/g, ' '));
-        });
+        var newValueAccessor = function() {
+            return function() {
+                lbs.common.executeVba("shell,https://www.google.com/maps?q=" + ko.unwrap(valueAccessor()).replace(/\r?\n|\r/g, ' '));
+            };
+         };
+        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
     },
 };
 
@@ -126,10 +134,13 @@ ko.bindingHandlers.showOnMap = {
 Call phone (simply drop to shell)
 */
 ko.bindingHandlers.call = {
-    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        $(element).click(function () {
-            lbs.common.executeVba("shell,tel:" + ko.unwrap(valueAccessor()));
-        });
+     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var newValueAccessor = function() {
+            return function() {
+               lbs.common.executeVba("shell,tel:" + ko.unwrap(valueAccessor()));
+            };
+         };
+        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
     },
 };
 
@@ -138,10 +149,33 @@ Open URL (simply drop to shell)
 */
 ko.bindingHandlers.openURL = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        $(element).click(function () {
-            lbs.common.executeVba("shell," + ko.unwrap(valueAccessor()));
-        });
+        var newValueAccessor = function() {
+            return function() {
+                lbs.common.executeVba("shell," + ko.unwrap(valueAccessor()));
+            };
+         };
+        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
+    },
+};
 
+/**
+Invoke old-style app
+*/
+ko.bindingHandlers.appInvoke = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        
+        var newValueAccessor = function() {
+            if(lbs.hasLimeConnection == true){
+                return function() {
+                    Invoker.invokeWebApplication(ko.unwrap(valueAccessor()));
+                };
+            }else{
+                return function(){
+                    alert("AppInvoker is not avalible outside of lime");
+                }
+            }
+        };
+        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
     },
 };
 
@@ -164,10 +198,13 @@ ko.bindingHandlers.vbaVisible = {
 
 ko.bindingHandlers.email = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-     $(element).click(function () {
+        var newValueAccessor = function() {
+            return function() {
                 lbs.common.executeVba("shell,mailto:" + ko.unwrap(valueAccessor()));
-            });
-        }
+            };
+        };
+        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
+    },
 };
 
 /**

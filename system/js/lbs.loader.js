@@ -64,40 +64,33 @@ lbs.loader = {
     Fetch and run a script from disk
     */
     "loadScript": function (filename) {
-        // var js = document.createElement("script");
-        // js.type = "text/javascript";
-        // js.src = val;
-        // document.body.appendChild(js);
 
-        // return true;
-        
         
          try {
-            
-
-//TODO: MAke it less ugly
             $.getScript( filename )
 
               .done(function( script, textStatus ) {
-                    lbs.log.info('View "' + filename + '" loaded successfully');
+                    lbs.log.info('Script "' + filename + '" loaded successfully');
               })
               .fail(function( jqxhr, settings, exception ) {
-                    lbs.log.error('View "' + filename + '" could not be loaded');
-                    throw new Error("hepp");
+                    throw new Error('Script "' + filename + '" could not be loaded');
             });
-
 
             retval = true;
 
         } catch (e) {
-            lbs.log.warn('Script "' + filename + '" could not be loaded, using fallback loading through LWS',e);
-            var s = ""
-            s = lbs.common.executeVba("LWS.loadHTTPResource," + filename);
-            if (s && s !== "") {
-                eval(s);
-                lbs.log.info('Script "' + filename + '" loaded successfully');
-                retval = true;
-            } else {
+           try{
+                lbs.log.warn('Script "' + filename + '" could not be loaded, using fallback loading through LWS');
+                var s = ""
+                s = lbs.common.executeVba("LWS.loadHTTPResource," + filename);
+                if (s && s !== "") {
+                    eval(s);
+                    lbs.log.info('Script "' + filename + '" loaded successfully');
+                    retval = true;
+                } else {
+                    throw new Error('Script "' + filename + '" could not be loaded');
+                }
+            }catch(e2){
                 lbs.log.error('Script "' + filename + '" could not be loaded');
                 retval = false;
             }
