@@ -164,12 +164,22 @@ The available properties are (in order of relevance):
 <li data-bind="text:business.businesstatus.key"></li> 
 ```
 
+####Loading additional data
 It is common to use data from more than the ActiveInspector and the following syntax will NOT work `<li data-bind="text:person.company.phone.text"></li>`
 
+Instead you can load additional data by using a knockout virtual element:
+
+
 ```html
-<li data-field="company.name"></li> `
+<!-- ko dataSources: [
+	{type:'record', source: 'ActionPadTools.GetPersonContactData' },
+	{type:'record', source:'ActionPadTools.GetCompanyContactData'}] 
+--><!-- /ko -->
 ```
-Consider using an Information rendering app instead and provide the data required via XML (refer to the app section).
+
+Put the virtual element in the absolute beginning of your view. The dataSource binding takes an element with properties "type" and "source".
+_type_: Specifies the datatype, can be "record", "records" or "xml"
+_source_: The vba function witch supplies the data. Must be a public function. 
 
 ### Data-visibility: Hiding or showing elements
 It is common that some elements only should be visible for certain users or when specific conditions apply. The Data-visibility is used as follows:
