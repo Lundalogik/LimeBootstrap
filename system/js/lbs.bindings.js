@@ -162,6 +162,14 @@ ko.bindingHandlers.vbaVisibility = {
     }
 };
 
+ko.bindingHandlers.email = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+     $(element).click(function () {
+                lbs.common.executeVba("shell,mailto:" + ko.unwrap(valueAccessor()));
+            });
+        }
+};
+
 /**
 Prepend icon
 */

@@ -1,8 +1,33 @@
-<span data-bind="text:name"></span>
-<div class="checklist" data-bind="foreach:tasks">
-	<div class='task' data-bind="click:$parent.taskClicked"> 
-		<input type='checkbox' name='check' data-bind="checked: isChecked, attr:{id:'a_' + idchecklist}" /> 
-		<label data-bind="attr:{for:'a_' + idchecklist}"></label> 
-		<span data-bind="text: title + ' - ' + isChecked"></span>
-	<div>
-</div> 
+<!-- Henu header -->
+<!-- ko if: canAddTask || tasks().length > 0 -->
+<ul class="menu expandable checklist">
+	<li class="nav-header" >
+		<span data-bind="text:name"></span>
+		<span data-bind="text:' (' + nbrOfChecked() + '/' + tasks().length + ')'" id="counter"></span>
+	</li>
+	<li class="divider" ></li>
+
+<!-- List of tasks -->
+	<!-- ko foreach: tasks -->
+		<li class='task' data-bind="attr:{title: checkedDate() === '' ? mouseover : checkedBy() + ': ' + moment(checkedDate()).format('LLL')}"> 
+			<span data-bind="click:$parent.taskClicked">
+				<input type='checkbox' data-bind="checked: isChecked, attr:{id:'a_' + order}" /> 
+				<label data-bind="attr:{for:'a_' + order}"></label> 
+				<span data-bind="text: title"></span>
+			</span>
+			<!-- ko if: $parent.allowRemove -->
+			<div class="icon-remove" data-bind="click:$parent.removeTask, clickBubble: false,icon:'icon-remove'"></div>
+			<!-- /ko -->
+		</li>
+	<!-- /ko -->
+
+<!-- Controls to add new task -->
+	<!-- ko if: canAddTask -->
+	<li class="task" data-bind="css: {'notComplete' : !isSelected() && inputValue()}">
+		<label data-bind="visible:isSelected() || inputValue()"></label> 
+		<input id="new-task" data-bind="value: inputValue, valueUpdate: 'afterkeydown', enterKey: addTask, hasFocus: isSelected" placeholder=" + Lägg till ny" />  
+	</li>
+	<li id="add-new-task" data-bind="visible: inputValue(), click:addTask">Lägg till</li>
+	<!-- /ko -->
+</ul> 
+<!-- /ko -->

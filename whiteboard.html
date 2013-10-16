@@ -4,11 +4,11 @@
             
         </div>
         <div id="header-info"> 
-            <h2 data-field="title"></h2>
+             <h2 data-bind="text:'Whiteboard'"></h2>
 			
                 <ul >			
-                    <li data-field="coworker"><i class="icon-user"> </i> </li>
-                    <li data-field="whiteboardstatus" ><i class="icon-flag"> </i> </li>
+					<li data-bind="text:whiteboard.coworkercreatedby.text, limeLink:whiteboard.coworkercreatedby, icon:'icon-user'"></li>
+					<li data-bind="text:whiteboard.whiteboardstatus.text, icon:'icon-flag'"></li>
                 </ul> 
         </div>
     </div>
@@ -16,13 +16,13 @@
 <!-- ACTIONS   -->
 <div class="content-container">
   		
-    <ul class="nav nav-list expandable">
-         <li class="nav-header" sv="Kommando" fi="Komentoja" en-us="Commands" no="Kommando" ></li>
+    <ul class="menu expandable">
+         <li class="nav-header"data-bind=" text:localize.Actionpad_Whiteboard.command"></li> 
          <li class="divider"></li>
-         <li sv="Påbörja uppgift" fi="Ota tehtäväksi" en-us="Start Task" no="Ta og start oppgaven" title-fi="Ota ja aloita tehtävä" title-no"Ta og start oppgaven" title-sv="Ta och påbörja uppgiften!" title-en-us="Take and start the tast" data-action="Actionpad_Whiteboard.TakeOwnership"> <i class="icon-calendar"></i> </li>
-         <li sv="Utförd" en-us="Done" fi="Valmis" no="Utført" title-no="Her klikker du når oppgaven er utført" title-fi="Klikkaa tähän kun tehtävä on valmis" title-sv="Här klickar du när uppgiften är avklarad" title-en-us="Click here when the task is completed" data-action="Actionpad_Whiteboard.setDone"> <i class="icon-thumbs-up"></i></li>
-         <li sv="Avslag" en-us="Deny" fi="Kieltäydy" no="Avslag" title-no="Oppgaven vil ikke utføres" title-fi="Tehtävää ei voida suorittaa" title-sv="Uppgiften kommer ej att utföras" title-en-us="Task will not be done" data-action="Actionpad_Whiteboard.Deny"> <i class="icon-thumbs-down"></i></li>
-		 <li sv="Krävs mer info" fi="Lisätietoja kaivataan" en-us="More info needed" no="Trenger mer informasjon" title-fi="Lisää tietoja tarvitaan tehtävän suorittamiseksi" title-no"Trenger mer informasjon" title="Avvakta. Här krävs det mer information" title-en-us="Await. More information is required" data-action="Actionpad_Whiteboard.Postpone"> <i class="icon-info-sign"></i></li>
+		 <li data-bind="vba:'Actionpad_Whiteboard.TakeOwnership', text:localize.Actionpad_Whiteboard.starttask, icon:'icon-calendar'"></li>
+		 <li data-bind="vba:'Actionpad_Whiteboard.setDone', text:localize.Actionpad_Whiteboard.taskcompleted, icon:'icon-thumbs-up'"></li>
+		 <li data-bind="vba:'Actionpad_Whiteboard.Deny', text:localize.Actionpad_Whiteboard.denytask, icon:'icon-thumbs-down'"></li>
+		 <li data-bind="vba:'Actionpad_Whiteboard.Postpone', text:localize.Actionpad_Whiteboard.moreinfo, icon:'icon-info-sign'"></li>
      </ul>
 
 </div>

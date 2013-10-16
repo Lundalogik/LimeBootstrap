@@ -70,16 +70,22 @@ lbs.loader = {
         // document.body.appendChild(js);
 
         // return true;
-
-        var retval = false;
+        
+        
          try {
-            $.getScript(filename, function (response, status, xhr) {
-                if (status == "error") {
-                    lbs.log.error('View "' + filename + '" could not be loaded');
-                } else {
+            
+
+//TODO: MAke it less ugly
+            $.getScript( filename )
+
+              .done(function( script, textStatus ) {
                     lbs.log.info('View "' + filename + '" loaded successfully');
-                }
-            })
+              })
+              .fail(function( jqxhr, settings, exception ) {
+                    lbs.log.error('View "' + filename + '" could not be loaded');
+                    throw new Error("hepp");
+            });
+
 
             retval = true;
 

@@ -27,30 +27,30 @@
       		
 
 		<ul class="menu expandable">
-            <li class="nav-header">Kommando</li>
+            <li class="nav-header"data-bind="text:localize.Actionpad_Helpdesk.command"></li> 
             <li class="divider"></li>
-            <li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, take', vba:'ActionPad_Helpdesk.Take',  icon:'icon-pencil'">Ta ärende</li>
-			<li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, putback', vba:'ActionPad_Helpdesk.Putback',  icon:'icon-pencil'">Lägg tillbaka ärende</li>
-			<li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, done', vba:'ActionPad_Helpdesk.Done',  icon:'icon-pencil'">Pricka av ärende</li>
-			<li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, undo', vba:'ActionPad_Helpdesk.take',  icon:'icon-pencil'">Återuppta ärende</li>
+            <li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, take', vba:'ActionPad_Helpdesk.Take', text:localize.Actionpad_Helpdesk.takecase,   icon:'icon-pencil'"></li>
+			<li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, putback', vba:'ActionPad_Helpdesk.Putback', text:localize.Actionpad_Helpdesk.putbackcase, icon:'icon-pencil'"></li>
+			<li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, done', vba:'ActionPad_Helpdesk.Done', text:localize.Actionpad_Helpdesk.casedone, icon:'icon-pencil'"></li>
+			<li data-bind="vbaVisibility:'ActionPad_Helpdesk.HideLinks, undo', vba:'ActionPad_Helpdesk.take', text:localize.Actionpad_Helpdesk.caseundone,  icon:'icon-pencil'"></li>
 		</ul> 
 		 
 		 
 		<div class="btn-group">
 			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-				<i class="icon-caret-down"></i> Parkera fram
+				<span data-bind="text:localize.Actionpad_Helpdesk.park, icon: 'icon-caret-down'"></span>
 			</a>
 			<ul class="dropdown-menu">
-				<li data-bind="vba:'ActionPad_Helpdesk.Park, 1, t_park_1_hour'">+ 1h</li>
-				<li data-bind="vba:'ActionPad_Helpdesk.Park, 2, t_park_2_hour'">+ 2h</li>
-				<li data-bind="vba:'ActionPad_Helpdesk.Park, 4, t_park_4_hours'">+ 4h</li>
+				<li data-bind="vba:'ActionPad_Helpdesk.Park, 1, t_park_1_hour', text:localize.Actionpad_Helpdesk.pc1h"></li>
+				<li data-bind="vba:'ActionPad_Helpdesk.Park, 2, t_park_2_hour', text:localize.Actionpad_Helpdesk.pc2h "></li>
+				<li data-bind="vba:'ActionPad_Helpdesk.Park, 4, t_park_4_hours', text:localize.Actionpad_Helpdesk.pc4h"></li>
 				<li class="divider"></li>
-				<li data-bind="vba:'ActionPad_Helpdesk.Park, 8, t_park_1_day'">+ 1 dag</li>
-				<li data-bind="vba: 'ActionPad_Helpdesk.Park, 16, t_park_2_day'">+ 2 dagar</li>
-				<li data-bind="vba: 'ActionPad_Helpdesk.Park, 40, t_park_5_day'">+ 5 dagar</li>
+				<li data-bind="vba:'ActionPad_Helpdesk.Park, 8, t_park_1_day', text:localize.Actionpad_Helpdesk.pc1d"></li>
+				<li data-bind="vba: 'ActionPad_Helpdesk.Park, 16, t_park_2_day', text:localize.Actionpad_Helpdesk.pc2d"></li>
+				<li data-bind="vba: 'ActionPad_Helpdesk.Park, 40, t_park_5_day', text:localize.Actionpad_Helpdesk.pc5d"></li>
 				<li class="divider"></li>
-				<li data-bind="vba:'ActionPad_Helpdesk.Park, 1, t_park_searched'">Sökt, ej på plats + 1h</li>
-				<li data-bind="vba:'ActionPad_Helpdesk.Park, 4, t_park_searched_mes'">Sökt, lämnat mdl. +4h</li>
+				<li data-bind="vba:'ActionPad_Helpdesk.Park, 1, t_park_searched', text:localize.Actionpad_Helpdesk.notthere"></li>
+				<li data-bind="vba:'ActionPad_Helpdesk.Park, 4, t_park_searched_mes', text:localize.Actionpad_Helpdesk.nottheremsg"></li>
 			</ul>
 			
 		</div>

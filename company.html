@@ -17,12 +17,12 @@
 <div class="content-container">
       		
     <ul class="menu expandable">
-            <li class="nav-header">Historik</li>
+            <li class="nav-header"data-bind=" text:localize.Actionpad_Company.historyheader"></li>  
             <li class="divider"></li>
-            <li data-bind="vba:'ActionPad_Company.NewHistory, receivedemail', icon:'icon-pencil'">Fått e-post</li>
-            <li data-bind="vba:'ActionPad_Company.NewHistory, talkedto', icon:'icon-pencil'">Pratat med</li>
-            <li data-bind="vba:'ActionPad_Company.NewHistory, salescall', icon:'icon-pencil'">Säljsamtal</li>
-            <li data-bind="vba:'ActionPad_Company.NewHistory, noanswer',icon:'icon-pencil'">Sökt, ej på plats</li>        
+            <li data-bind="vba:'ActionPad_Company.NewHistory, receivedemail', text:localize.Actionpad_Company.recived_email, icon:'icon-pencil'"></li>
+            <li data-bind="vba:'ActionPad_Company.NewHistory, talkedto', text:localize.Actionpad_Company.talked_to, icon:'icon-pencil'"></li>
+            <li data-bind="vba:'ActionPad_Company.NewHistory, salescall', text:localize.Actionpad_Company.salescall, icon:'icon-pencil'"></li>
+            <li data-bind="vba:'ActionPad_Company.NewHistory, noanswer', text:localize.Actionpad_Company.noanswer, icon:'icon-pencil'"></li>        
     </ul>
 
 </div>

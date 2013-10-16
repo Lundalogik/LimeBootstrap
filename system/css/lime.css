@@ -273,7 +273,7 @@ HEADER
 }
 
 .header-container .header-icon-container {
-    padding-left: 60px;
+    padding-left: 40px;
     padding-bottom: 10px;
     padding-top: 64px;
 }
@@ -326,7 +326,7 @@ HEADER
     font-size: 18px;
     letter-spacing: -3;
     margin: 0;
-    padding: 0 0 0 20px;
+    padding: 0 0 0 10px;
     font-weight: lighter;
     white-space: nowrap;
     overflow: hidden;
@@ -342,7 +342,7 @@ HEADER
     width: 50%;
     list-style-position: inside;
     width: 100%;
-    padding: 0 0 0 15px;
+    padding: 0 0 0 10px;
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
@@ -374,7 +374,7 @@ CONTENT
 }
 
     .nav-list > li {
-        padding-left: 15px;
+        padding-left: 10px;
         cursor: default;
     }
 
@@ -392,14 +392,14 @@ CONTENT
 }
 
 .nav-list .divider {
-    margin: 0 15px 0 15px;
+    margin: 0 15px 0 10px;
     background-color: #D2E4FF;
     margin-bottom: 3px;
 }
 
 .nav-list > li:not(.nav-header):not(.divider) {
     color: #6985B7;
-    font-size: 11px;
+    font-size: 12px;
     padding-top: 0;
     padding-bottom: 0;
     font-weight: lighter;
