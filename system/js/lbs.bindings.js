@@ -148,7 +148,7 @@ ko.bindingHandlers.openURL = {
 /**
 Call VBA function to check if item should be visible 
 */
-ko.bindingHandlers.vbaVisibility = {
+ko.bindingHandlers.vbaVisible = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var visible = lbs.common.executeVba(ko.unwrap(valueAccessor()));
 
