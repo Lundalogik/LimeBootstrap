@@ -62,6 +62,7 @@ var Invoker = null;
 
                 break;
             case "vbs":
+                alert(strSrc);
                 if (!isFileIncluded("script", strSrc)) {
                     pNewTag = document.createElement("script");
                     pNewTag.type = "text/vbscript";
@@ -225,6 +226,7 @@ var Invoker = null;
 
         try
         {
+
             strFolder = pApplication.WebFolder + "apps/" + strApplication + "/";
             strIniFile = strFolder + strApplication +  ".ini";
             strUserLangFile = strFolder + strApplication + ".lng";
@@ -459,6 +461,7 @@ var Invoker = null;
 
             // Startup application
             eval (Invoker.getIniString(strApplication, "Application", "exec"));
+
         }
         catch (pError) {
             if (pError.message.toLowerCase() != "nomessage")

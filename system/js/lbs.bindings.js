@@ -165,9 +165,15 @@ ko.bindingHandlers.appInvoke = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         
         var newValueAccessor = function() {
-            return function() {
-                Invoker.invokeWebApplication(ko.unwrap(valueAccessor()));
-            };
+            if(lbs.hasLimeConnection == true){
+                return function() {
+                    Invoker.invokeWebApplication(ko.unwrap(valueAccessor()));
+                };
+            }else{
+                return function(){
+                    alert("AppInvoker is not avalible outside of lime");
+                }
+            }
         };
         ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
     },
