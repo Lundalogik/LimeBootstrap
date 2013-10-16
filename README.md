@@ -178,15 +178,22 @@ Instead you can load additional data by using a knockout virtual element:
 ```
 
 Put the virtual element in the absolute beginning of your view. The dataSource binding takes an element with properties "type" and "source".
-_type_: Specifies the datatype, can be "record", "records" or "xml"
-_source_: The vba function witch supplies the data. Must be a public function. 
+__type__: Specifies the datatype, can be "record", "records" or "xml"
+__source__: The vba function witch supplies the data. Must be a public function. 
+
+The loaded data can then be access by: 
+
+```html
+<!-- Loading person and company info on a helpdesk actionpad-->
+<li data-bind="text:helpdesk.company.text, limeLink:helpdesk.company, icon:'icon-building'"></li>					
+<li data-bind="text:person.phone.text, call:person.phone.text, icon:'icon-phone'"></li>
+<li data-bind="text:person.mobilephone.text, call:person.phone.text, icon:'icon-mobile-phone'"></li>						
+<li data-bind="text:company.phone.text, call:company.phone.text, icon:'icon-phone'"></li>	
+```
 
 ### Data-visibility: Hiding or showing elements
 It is common that some elements only should be visible for certain users or when specific conditions apply. The Data-visibility is used as follows:
 
-```html
-<li data-visibility="ActionPad_Helpdesk.HideLinks, take" sv="Ta ärende" fi="Ota tehtäväksi" title-fi="Ota tehtäväksi" en-us="Take case" no="Ta saken" title-no"Ta saken" title-sv="Ta ärende" title-en-us="Take Case" data-action="ActionPad_Helpdesk.Take" > <i class="icon-rocket"></i></li>
-```
 
 A VBA function is called, handling the logic whether the element should be visible or not, returning an boolean.   
 __true:__ Element is visible   
