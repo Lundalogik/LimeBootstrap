@@ -8,12 +8,13 @@ The general idea of an app is to implement:
 3. A view-model - the viewmodel holds a rednering and frontend logic
 
 An app is initilaized as:
-
-1. Data is loaded from LIME Pro
-2. The data is converted to a view-model (In this case the view model is just a JSON represenation of the data)
-3. The view-model is supplied to the app and cam be modified
-4. The app view is loaded
-5. The view and view-model is rendered and injected to the actionpad 
+1. The app is loaded and the config of the app is parsed
+2. Data is loaded from LIME Pro, from your supplied function
+3. The data is converted to a view-model (In this case the view model is just a JSON represenation of the data)
+4. Additional resources are loaded to the app
+5. The view-model is supplied to the app and cam be modified
+6. The app view is loaded from app.html.
+7. The view and view-model is rendered and injected to the actionpad 
 
 Initiation of an app is executed by the `lbs.apploader.js` module and triggered by an `data-app:`-attribute.
 
@@ -23,26 +24,35 @@ The data can be provided as XML, record or records and limebootstrap will then s
 <div data-app="name:'checklist',config:{canBeUnchecked:true,allowRemove:true, canAddTask:true}} " ></div>
 ```
 
-##App.json
-In the App.json file you provide the js files, css files and library files needed by your app.   
-
-
-
-
 ##The javascript app structure
 	
 ```javascript
-window.[insert_app_name_here] = {
+lbs.apploader.register('template', function () { //Insert name of app here
+    var self = this;
 
-	"data":{}, // Holds the LIME Data in JSON format
+    //config
+    this.config = {
+        dataSources: [ //Either provide your data source here, or let the user of your app supplie it
 
-	"main":function(){ //Called when the rest of the actionpad is loaded
-		//The main app
-	},
-	"initalize":function(inputData){ //Called 
-		// Recive and modify data
-		app.data = inputData
-	}
-}
+        ],
+        resources: { //Add any extra resources that should be loadad. The paths are realtive your app folder, exept libs which are loaded from system/js/
+            scripts: [],
+            styles: ['app.css'],
+            libs: ['json2xml.js']
+        }
+    },
+
+    //initialize
+    this.initialize = function (node, viewModel) {
+
+        //Use this method to setup you app. 
+        //
+        //The data you requested along with activeInspector are delivered in the variable viewModel.
+        //You may make any modifications you please to it or replace is with a entirely new one before returning it.
+        //The returned viewmodel will be used to build your app.
+
+
+        return viewModel;
+    }
 
 ```
