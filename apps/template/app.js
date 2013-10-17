@@ -14,7 +14,7 @@ lbs.apploader.register('template', function () {
     },
 
     //initialize
-    this.initialize = function (viewModel,node) {
+    this.initialize = function (node, viewModel) {
 
         //Use this method to setup you app. 
         //
