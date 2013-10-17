@@ -4,11 +4,11 @@ Welcome to the LIME Pro Actionpad framework called LIME-bootstrap.
 The LIME-bootstrap is made to make it easier, better and faster working with Actionpads in LIME pro. The framework relies heavily on Knockout.js and Twitter Bootstrap but with custom styling and a simple, yet powerful script called lbs.js. The framework contains several built in functions and third 
 party libraries, but is also expandable through custom apps. Some actual actionpads used in the LIME basic database are also included.  
 
-The framework is "convention over configuration", meaning there should be one and only one way to do things. If you find yourself writing lots of code to do something, or god forbid, needing to modify ANY file in the systems folder.
+The framework is "convention over configuration", meaning there should be one and only one way to do things. If you find yourself writing lots of code to do something, or god forbid, needing to modify ANY file in the systems folder, you're propably doing it wrong. Take a deep breath and ask for assistance.
 
 If you want to use the framework I solemnly swear to the following conditions:
 
-1. The systems folder should never, ever be modified. I can achive cool and smart functions without ever touching it. 
+1. The systems folder should never, ever be modified. I can achieve cool and smart functions without ever touching it. 
 2. lbs.html should neither be modified, exept from toggeling debug on and off  
 3. I must unlearn what you have learned! The framework offers a completely different methology of working with ActionPads, I will embrase it. 
 4. I won't ever copy and paste code from old actionpads. A rabbit will die if I even think of coping VBScript...
@@ -34,7 +34,9 @@ Older versions of IE _may_ work, but the ActionPads will surely not look so grea
 The new actionpads are inspired of how a single page applcation work. Views (basically html-templates) and data(usually JSON) are loaded via AJAX (an asyncrounous javacript call) by the the web application. The template is then rendered by applying the data and the result is shown to the user.
 
 In LIME-bootstraps case lbs.html is the main application and all actionpads are pointed to lbs.html. lbs.html contians all included css, js amd meta tags. The actionpads (for example company.html) are now just views, containing no includes or javacript.
-lbs.html will detemine which view to load either by a supplied query string (the thing after the questionmark), `../lbs.html?ap=company` or if nothing is supplied, by trying to load a view with the same name as the class of the LIME inspector.   
+lbs.html will detemine which view to load either by a supplied query string (the thing after the questionmark), `../lbs.html?ap=company` or if nothing is supplied, by trying to load a view with the same name as the class of the LIME inspector.
+
+The active inspectors record is then loaded as data and converted to JSON.    
 
 ###The console
 The framework has been blessed with a virtual console, to use for debugging. It is activated through changing `debug="true"` in lbs.html. The console will automagically appeare if an error is logged. You can easily use the console when building apps, read more abot this in the app readme.
@@ -54,7 +56,7 @@ An Actionpad built with LIME-bootstrap has the following structure:
             <div id="header-info"> 
                 <h2 data-bind="text: helpdesk.helpdeskno.text"></h2>
 					<ul>
-						<li data-bind="text:helpdesk.person.text, limeLink:helpdesk.person", icon='icon-user'"></li>						
+						<li data-bind="text:helpdesk.person.text, limeLink:helpdesk.person, icon='icon-user'"></li>						
   					  	...
                     </ul> 
             </div>
@@ -207,18 +209,18 @@ The loaded data can then be access by:
 It is common that some elements only should be visible for certain users or when specific conditions apply. The Data-visibility is used as follows:
 
 ```html
-            <li data-bind="vbaVisible:'ActionPad_Helpdesk.HideLinks, take'"></li>
+<li data-bind="vbaVisible:'ActionPad_Helpdesk.HideLinks, take'"></li>
 ```
 
 You can also use knockouts built in handler `visible:` to hide or show elements, any valid Javascript will be evaluated. Example:
 
 ```html
-			<!-- Shows an bootstrap alert if the todo is late. Moment.js is used to parse and handle dates.-->
-           <div class="alert alert-error" data-bind="
-	           visible: todo.endtime.value !== null && (moment(todo.endtime.value) < moment() && todo.done.value != 1),
-	           text: 'The task is ' + (todo.endtime.value != null ? moment(todo.endtime.value).fromNow(true) : '' )+ ' late!',
-	           icon:'icon-bell'" >
-           </div>
+<!-- Shows an bootstrap alert if the todo is late. Moment.js is used to parse and handle dates.-->
+<div class="alert alert-error" data-bind="
+   visible: todo.endtime.value !== null && (moment(todo.endtime.value) < moment() && todo.done.value != 1),
+   text: 'The task is ' + (todo.endtime.value != null ? moment(todo.endtime.value).fromNow(true) : '' )+ ' late!',
+   icon:'icon-bell'" >
+</div>
 ```
 
 
