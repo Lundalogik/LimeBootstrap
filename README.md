@@ -8,17 +8,19 @@ The framework is "convention over configuration", meaning there should be one an
 
 If you want to use the framework I solemnly swear to the following conditions:
 
-1. The systems folder should never, ever be modified. I can achive cool and smart functions without ever touching it.  
-2. I must unlearn what you have learned! The framework offers a completely different methology of working with ActionPads, I will embrase it. 
-3. I won't ever copy and paste code from old actionpads. A rabbit will die if I even think of coping VBScript...
-4. I wan't to contribute to a better framework, any improvements, errors or bugfixes will be commited to this git repository. 
-5. I will follow the design guidlines:
+1. The systems folder should never, ever be modified. I can achive cool and smart functions without ever touching it. 
+2. lbs.html should neither be modified, exept from toggeling debug on and off  
+3. I must unlearn what you have learned! The framework offers a completely different methology of working with ActionPads, I will embrase it. 
+4. I won't ever copy and paste code from old actionpads. A rabbit will die if I even think of coping VBScript...
+5. I wan't to contribute to a better framework, any improvements, errors or bugfixes will be commited to this git repository. 
+6. I will follow the design guidlines:
 	1. The design should be flat, free from gradients and focused on content.
 	2. The actionpad is very narrow (~250px), use the height and not the width of the actionpad.
 	3. Font should be dark blue on the deafult blue background. In any other case, white should be used. It white cannot be used, use a darker variant of the background color i.e dark green on green background
 	4. Font awesome is used for all icons exept for the header icons, here we use Icon Experience's new M-icon set.
 	5. Stick to default colors, don't "brand" the solution with customers logo and colors.
-
+7. I will use `lbs.common.executeVBA()` to run any LIME function and `lbs.limeDataConnection` to access any LIME object when building apps
+8. I won't include any scripts and styles in my views.  
 
 LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reasons all functionality (except the data connections) should work in any browser. In LIME Pro the supporter browser versions are:
 
@@ -28,7 +30,14 @@ LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reaso
 
 Older versions of IE _may_ work, but the ActionPads will surely not look so great. 
 
+###How does it work?
+The new actionpads are inspired of how a single page applcation work. Views (basically html-templates) and data(usually JSON) are loaded via AJAX (an asyncrounous javacript call) by the the web application. The template is then rendered by applying the data and the result is shown to the user.
 
+In LIME-bootstraps case lbs.html is the main application and all actionpads are pointed to lbs.html. lbs.html contians all included css, js amd meta tags. The actionpads (for example company.html) are now just views, containing no includes or javacript.
+lbs.html will detemine which view to load either by a supplied query string (the thing after the questionmark), `../lbs.html?ap=company` or if nothing is supplied, by trying to load a view with the same name as the class of the LIME inspector.   
+
+###The console
+The framework has been blessed with a virtual console, to use for debugging. It is activated through changing `debug="true"` in lbs.html. The console will automagically appeare if an error is logged. You can easily use the console when building apps, read more abot this in the app readme.
 
 ##HTML Elements
 LIME bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for additional info
