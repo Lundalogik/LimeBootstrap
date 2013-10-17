@@ -60,7 +60,7 @@ An Actionpad built with LIME-bootstrap has the following structure
             <div id="header-info"> 
                 <h2 data-bind="text: helpdesk.helpdeskno.text"></h2>
 					<ul>
-						<li data-bind="text:helpdesk.person.text, limeLink=helpdesk.person", icon='icon-user'></li>						
+						<li data-bind="text:helpdesk.person.text, limeLink:helpdesk.person", icon='icon-user'></li>						
   					  	...
                     </ul> 
             </div>
@@ -217,41 +217,48 @@ __false:__ Element hidden
 In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required. 
 
 ###Executing VBA-functions and specific actions
-Data-action is used to trigger VBA-functions and specific actions on click. To call a VBA function simply use:
+`vba:` is used to trigger VBA-functions and specific actions on click. To call a VBA function simply use:
 
 ```html
-<li data-action="ActionPad_Helpdesk.Take"></li>
+<li data-bind="vba:'ActionPad_Helpdesk.Take'"></li>
  ```
  
 Input parameters are provided by simply separating them by commas.
 
 ```html
-<li data-action="ActionPad_Helpdesk.Park, 1, t_park_1_hour"></li>
+<li data-bind="vba:'ActionPad_Helpdesk.Park, 1, t_park_1_hour'"></li>
+ ```
+
+ You can also use any available data in the actionpad as an input to the function through concatenating a string  
+
+```html
+<li data-bind="vba:'ActionPad_Helpdesk.DoSomethingWithTheRecord,' + helpdesk.idhelpdesk.value"></li>
  ```
  
- There are four included special actions:
+ ###The built in handlers and how to use them
+
  
 *	__ShowOnMap, [address]__ - Searches Google Maps for the provided address.
  
  	```html
- 	<li data-field="postalcity" data-action="showOnMap, fullpostaladdress"><i class="icon-map-marker"> </i> </li>
+ 	<li data-bind="text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: 'icon-map-marker'"> </li>
 	```
 	
 *	__call__ - Ads an tel: link to the HTML, In advantage used in compination with the Data-field function  
 	
 	```html
-	<li data-field="phone" data-action="call"><i class="icon-phone"> </i> </li>
+	<li data-bind="text: company.phone.text, call: company.phone.text, icon: 'icon-phone'"</li>
 	```
 	
-*	__www__ - Opens the suplied URL in an external browser
+*	__openURL__ - Opens the suplied URL in an external browser
 	
 	```html
-	 <li data-field="www" data-action="openUrl"><i class="icon-globe"> </i> </li>
+	 <li data-bind="text:company.www.text, openURL: company.www.text, icon: 'icon-globe'"></li>
 	```
-*	__lime-link__ - Tries to create an LIME link to the object provided by the Data-field.
+*	__limeLink__ - Tries to create an LIME link to the object provided, please note that the root node of the object is used and not a specific property.
 	
 	```html
-	<li data-field="company" data-action="lime-link"><i class="icon-building"></i></li>
+	<li data-bind="text:todo.company.text, limeLink:todo.company, icon:'icon-flag'"</li>
 	```
 	
 The input parameters are evaluated at load and the string to be executed is stored in a Data-args attribute. 
