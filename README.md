@@ -4,7 +4,18 @@ Welcome to the LIME Pro Actionpad framework called LIME-bootstrap.
 The LIME-bootstrap is made to make it easier, better and faster working with Actionpads in LIME pro. The framework relies heavily on Knockout.js and Twitter Bootstrap but with custom styling and a simple, yet powerful script called lbs.js. The framework contains several built in functions and third 
 party libraries, but is also expandable through custom apps. Some actual actionpads used in the LIME basic database are also included.  
 
-The framework is "convention over configuration", meaning there should be one and only one way to do thing.
+The framework is "convention over configuration", meaning there should be one and only one way to do things. If you find yourself writing lots of code to do something, or god forbid, needing to modify ANY file in the systems folder.
+
+If you want to use the framework I solomly swear to the following conditions:
+1.	The systems folder should never, ever be modified. You can achive cool and smart functions without ever touching it.  
+2. 	You must unlearn what you have learned! The framework offers a completely different methology of working with ActionPads, please try to embrase it. Don't ever copy and paste code from old actionpads.
+3.	Any errors or bugfixes must be commited to this git repository. Emails, IMs and phone calls will be ignored.
+4.	Follow the design guidlines:
+	1.	The design should be flat, free from gradients and content focused
+	2.	The actionpad is very narrow (~250px), use the height and not the width of the actionpad.
+	3.	Font should be dark blue on the deafult blue background. In any other case, white should be used. It white cannot be used, use a darker variant of the background color i.e dark green on green background
+	4.	Font awesome is used for all icons exept for the header icons. Here we use Icon Experience's new M-icon set.
+
 
 LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reasons all functionality (except the data connections) should work in any browser. In LIME Pro the supporter browser versions are:
 
@@ -14,53 +25,24 @@ LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reaso
 
 Older versions of IE _may_ work, but the ActionPads will surely not look so great. 
 
-### Included javascript frameworks
-The bundled library contains:
 
-*	[jQuery](http://jquery.com)
-*	[Underscore.js](http://underscorejs.org)
-*	[Moment.js](http://momentjs.com)
-*	[Knockout.js](http://knockoutjs.com/)
-*	[Bootstrap.js](http://getbootstrap.com)
 
-###Icons
-[Font awesome](http://fortawesome.github.io/Font-Awesome/) is include. Please see the font awesome documentation.
+##HTML Elements
+LIME bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for additional info
 
-###Structure of the framework
-The framework has the following file structure
-
-*	__apps__ - _small selfdependent html apps that can be dynamically loaded into the Actionpads_
-	*	...
-*	__System__ - _READ ONLY! This is the base of the framework and should never be modified_
-	*	__bin__ - _launch Google Chrome in Allow Cross Origin mode_
-	*	__css__
-		*	lime.css - _styling for the framework. Overrides several Twitter Bootstrap stylings_
-
-		*	font-awesome.css
-		*	bootstrap.css
-	*	__font__ - _Font files for Font awesome_
-		*	... 
-	*	__img__ - _images used in the framework which aren't from Font Awesom_
-		*	...
-	*	__js__ - _all javacript used in the framework_
-		*	lbs.js - _Frameworks main javascript_
-		*	... Third party frameworks ...
-	*	__view__ - _Views used by the system, for example the debug view_
-*	application.html
-		
-### Structure of an Actionpad
-An Actionpad built with LIME-bootstrap has the following structure
+### Structure of an actionpad view
+An Actionpad built with LIME-bootstrap has the following structure:
 
 ```html
     <!-- Header section, The colorfull thing at the top  -->
         <div class="header-container red"> <!-- Specify the color of the header. Please see color section for available colors  -->
             <div class="header-icon-container helpdesk"> <!-- Specify the icon of the header. Please see icon section for available special icons  -->
-                
+  
             </div>
             <div id="header-info"> 
                 <h2 data-bind="text: helpdesk.helpdeskno.text"></h2>
 					<ul>
-						<li data-bind="text:helpdesk.person.text, limeLink:helpdesk.person", icon='icon-user'></li>						
+						<li data-bind="text:helpdesk.person.text, limeLink:helpdesk.person", icon='icon-user'"></li>						
   					  	...
                     </ul> 
             </div>
@@ -77,8 +59,6 @@ An Actionpad built with LIME-bootstrap has the following structure
 
 ```
 
-##HTML Elements
-LIME bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for additional info
 
 ###The header section colors
 The header section is the colorful header of each actionpad. The following colors are provided:
@@ -260,13 +240,13 @@ Input parameters are provided by simply separating them by commas.
 *	__showOnMap:__ - Searches Google Maps for the provided address.
  
  	```html
- 	<li data-bind="text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: 'icon-map-marker'"> </li>
+ 	<li data-bind="text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: 'icon-map-marker'"></li>
 	```
 	
 *	__call:__ - Ads an tel: link to the HTML wich triggers an built in softphone software.
 	
 	```html
-	<li data-bind="text: company.phone.text, call: company.phone.text, icon: 'icon-phone'"</li>
+	<li data-bind="text: company.phone.text, call: company.phone.text, icon: 'icon-phone'"></li>
 	```
 	
 *	__openURL:__ - Opens the suplied URL in an external browser
@@ -277,19 +257,59 @@ Input parameters are provided by simply separating them by commas.
 *	__limeLink__ - Tries to create an LIME link to the object provided, please note that the root node of the object is used and not a specific property.
 	
 	```html
-	<li data-bind="text:todo.company.text, limeLink:todo.company, icon:'icon-flag'"</li>
+	<li data-bind="text:todo.company.text, limeLink:todo.company, icon:'icon-flag'"></li>
 	```
 *	__email__ - Creates an email. TODO: Should use LIMES built in email factory
 	
 	```html
-	<li data-bind="text:person.email.text, email:person.email.text, icon:'icon-mail'"</li>
+	<li data-bind="text:person.email.text, email:person.email.text, icon:'icon-mail'"></li>
 	```
 
-##Executing VBA-functions and specific actions
  
 ##Technical
-### The core: lbs.js
-It's all very technical and smart!
+
+### Included javascript frameworks
+The bundled library contains:
+
+*	[jQuery](http://jquery.com)
+*	[Underscore.js](http://underscorejs.org)
+*	[Moment.js](http://momentjs.com)
+*	[Knockout.js](http://knockoutjs.com/)
+*	[Bootstrap.js](http://getbootstrap.com)
+
+###Icons
+[Font awesome](http://fortawesome.github.io/Font-Awesome/) is include. Please see the font awesome documentation.
+
+###Structure of the framework
+
+The framework has the following file structure
+
+*	__apps__ - _small selfdependent html apps that can be dynamically loaded into the Actionpads_
+	*	...
+*	__System__ - _READ ONLY! This is the base of the framework and should never be modified_
+	*	__bin__ - _launch Google Chrome in Allow Cross Origin mode_
+	*	__css__
+		*	lime.css - _styling for the framework. Overrides several Twitter Bootstrap stylings_
+
+		*	font-awesome.css
+		*	bootstrap.css
+	*	__font__ - _Font files for Font awesome_
+		*	... 
+	*	__img__ - _images used in the framework which aren't from Font Awesom_
+		*	...
+	*	__js__ - _all javacript used in the framework_
+		*	lbs.js - _Frameworks main javascript_
+		*	... Third party frameworks ...
+	*	__view__ - _Views used by the system, for example the debug view_
+*	application.html
+		
+
+### The core: lbs.js and it's modules
+lbs.js is the main file of the framework is mainly in charge of setup and delegating tasks. It uses the following modules to accually do stuff:
+*	__lbs.apploader.js__ - Handels the loading of the apps and their initiation 
+*	__lbs.bindings.js__ - The custom knockout bindnings are defined here
+*	__lbs.loader.js__  - Handels loading of scripts, views and styles. 
+*	__lbs.log.js__ - Handels logging to the custom console. 
 
 ### Building apps
 Please see the readme file in the apps folder 
