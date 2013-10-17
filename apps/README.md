@@ -2,16 +2,18 @@
 Apps are small standalone tools, used for customer customisations. They are loaded dynamically and added only through a single line of HTML in the Actionpad. The business logic and dataconnection is allways performed by the VBA. This functionallity should be inside a single module. 
 
 The general idea of an app is to implement:
-1.	A function or procedure to deliver data. VBA or SQL, can deliver data as xml, record or records.
-2.	A view - An html template with the structure of your app.
-3.	A view-model - the viewmodel holds a rednering and frontend logic
+
+1. A function or procedure to deliver data. VBA or SQL, can deliver data as xml, record or records.
+2. A view - An html template with the structure of your app.
+3. A view-model - the viewmodel holds a rednering and frontend logic
 
 An app is initilaized as:
-1.	Data is loaded from LIME Pro
-2.	The data is converted to a view-model (In this case the view model is just a JSON represenation of the data)
-3.	The view-model is supplied to the app and cam be modified
-4.	The app view is loaded
-5.	The view and view-model is rendered and injected to the actionpad 
+
+1. Data is loaded from LIME Pro
+2. The data is converted to a view-model (In this case the view model is just a JSON represenation of the data)
+3. The view-model is supplied to the app and cam be modified
+4. The app view is loaded
+5. The view and view-model is rendered and injected to the actionpad 
 
 Initiation of an app is executed by the `lbs.apploader.js` module and triggered by an `data-app:`-attribute.
 

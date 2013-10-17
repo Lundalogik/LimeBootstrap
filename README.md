@@ -6,15 +6,16 @@ party libraries, but is also expandable through custom apps. Some actual actionp
 
 The framework is "convention over configuration", meaning there should be one and only one way to do things. If you find yourself writing lots of code to do something, or god forbid, needing to modify ANY file in the systems folder.
 
-If you want to use the framework I solomly swear to the following conditions:
-1.	The systems folder should never, ever be modified. You can achive cool and smart functions without ever touching it.  
-2. 	You must unlearn what you have learned! The framework offers a completely different methology of working with ActionPads, please try to embrase it. Don't ever copy and paste code from old actionpads.
-3.	Any errors or bugfixes must be commited to this git repository. Emails, IMs and phone calls will be ignored.
-4.	Follow the design guidlines:
-	1.	The design should be flat, free from gradients and content focused
-	2.	The actionpad is very narrow (~250px), use the height and not the width of the actionpad.
-	3.	Font should be dark blue on the deafult blue background. In any other case, white should be used. It white cannot be used, use a darker variant of the background color i.e dark green on green background
-	4.	Font awesome is used for all icons exept for the header icons. Here we use Icon Experience's new M-icon set.
+If you want to use the framework I solemnly swear to the following conditions:
+
+1. The systems folder should never, ever be modified. You can achive cool and smart functions without ever touching it.  
+2. You must unlearn what you have learned! The framework offers a completely different methology of working with ActionPads, please try to embrase it. Don't ever copy and paste code from old actionpads.
+3. Any errors or bugfixes must be commited to this git repository. Emails, IMs and phone calls will be ignored.
+4. Follow the design guidlines:
+	1. The design should be flat, free from gradients and content focused
+	2. The actionpad is very narrow (~250px), use the height and not the width of the actionpad.
+	3. Font should be dark blue on the deafult blue background. In any other case, white should be used. It white cannot be used, use a darker variant of the background color i.e dark green on green background
+	4. Font awesome is used for all icons exept for the header icons. Here we use Icon Experience's new M-icon set.
 
 
 LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reasons all functionality (except the data connections) should work in any browser. In LIME Pro the supporter browser versions are:
