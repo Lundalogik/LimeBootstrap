@@ -102,20 +102,39 @@ Usage:
 A menu can be created by the following HTML: 
 
 ```html
-<ul class="menu">
-	<li class="nav-header"> Commands</li>
-    <li class="divider"></li>
+ <ul class="menu">
+        <li class="nav-header"data-bind=" text:localize.Actionpad_Business.command"></li> 
+        <li class="divider"></li>
 	...
 </ul>
 ```
 
 A menu has two properties, __Expandable__ and __Hidden__. The are added in the `<ul>`  class:
 `<ul class="menu expandable hidden">`	
-	
 
 __Expandable:__ The menu can be collapsed by clicking the header   
 __Hidden:__ The menu is collapsed when the actionpad is loaded. Stupid to use without using Expandable...
 
+###Dropdown button
+
+A dropdown button can contain many options, while taking up very little space. 
+
+```html
+ <div class="btn-group">
+    	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" data-bind=" text:localize.Actionpad_Todo.headermoveforward, icon: 'icon-caret-down'"></a>
+    	<ul class="dropdown-menu">
+    		<li data-bind="vba:'ActionPad_todo.Postpone, d, 1', text:localize.Actionpad_Todo.mf1d"></li>
+    	    <li class="divider"></li>
+            <li data-bind="vba:'ActionPad_todo.Postpone, ww, 1', text:localize.Actionpad_Todo.mf1w"></li>
+    		<li data-bind="vba:'ActionPad_todo.Postpone, ww, 2', text:localize.Actionpad_Todo.mf2w"></li>
+            <li class="divider"></li>
+            <li data-bind="vba:'ActionPad_todo.Postpone, m, 1', text:localize.Actionpad_Todo.mf1m"></li>
+    		<li data-bind="vba:'ActionPad_todo.Postpone, m, 6', text:localize.Actionpad_Todo.mf6m"></li>
+    		<li class="divider"></li>
+            <li data-bind="vba:'ActionPad_todo.Postpone, yyyy, 1', text:localize.Actionpad_Todo.mf1y"></li>
+    	</ul>
+    </div>
+```
 
 ##Functions
 All Twitter bootstrap functions are included, please see the [Twitter bootstrap documentation](http://getbootstrap.com/2.3.2/javascript.html) 
@@ -238,19 +257,19 @@ Input parameters are provided by simply separating them by commas.
  ###The built in handlers and how to use them
 
  
-*	__ShowOnMap, [address]__ - Searches Google Maps for the provided address.
+*	__showOnMap:__ - Searches Google Maps for the provided address.
  
  	```html
  	<li data-bind="text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: 'icon-map-marker'"> </li>
 	```
 	
-*	__call__ - Ads an tel: link to the HTML, In advantage used in compination with the Data-field function  
+*	__call:__ - Ads an tel: link to the HTML wich triggers an built in softphone software.
 	
 	```html
 	<li data-bind="text: company.phone.text, call: company.phone.text, icon: 'icon-phone'"</li>
 	```
 	
-*	__openURL__ - Opens the suplied URL in an external browser
+*	__openURL:__ - Opens the suplied URL in an external browser
 	
 	```html
 	 <li data-bind="text:company.www.text, openURL: company.www.text, icon: 'icon-globe'"></li>
@@ -260,9 +279,13 @@ Input parameters are provided by simply separating them by commas.
 	```html
 	<li data-bind="text:todo.company.text, limeLink:todo.company, icon:'icon-flag'"</li>
 	```
+*	__email__ - Creates an email. TODO: Should use LIMES built in email factory
 	
-The input parameters are evaluated at load and the string to be executed is stored in a Data-args attribute. 
+	```html
+	<li data-bind="text:person.email.text, email:person.email.text, icon:'icon-mail'"</li>
+	```
 
+##Executing VBA-functions and specific actions
  
 ##Technical
 ### The core: lbs.js
