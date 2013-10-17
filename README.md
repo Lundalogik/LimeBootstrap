@@ -198,10 +198,10 @@ The loaded data can then be access by:
 
 ```html
 <!-- Loading person and company info on a helpdesk actionpad-->
-<li data-bind="text:helpdesk.company.text, limeLink:helpdesk.company, icon:'icon-building'"></li>					
-<li data-bind="text:person.phone.text, call:person.phone.text, icon:'icon-phone'"></li>
-<li data-bind="text:person.mobilephone.text, call:person.phone.text, icon:'icon-mobile-phone'"></li>						
-<li data-bind="text:company.phone.text, call:company.phone.text, icon:'icon-phone'"></li>	
+<li data-bind="text:helpdesk.company.text"></li>					
+<li data-bind="text:person.phone.text"></li>
+<li data-bind="text:person.mobilephone.text"></li>						
+<li data-bind="text:company.phone.text"></li>	
 ```
 
 ###Hiding or showing elements
