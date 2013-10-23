@@ -142,9 +142,17 @@ lbs.loader = {
     /**
     Load all datasources in set to the selected viewmodel
     */
-    loadDataSources: function (vm, dataSources) {
+    loadDataSources: function (vm, dataSources, overrideExisting) {
+        
+        //-- probably not needed as loading of related record works anyway --
+        //make sure active inspector is loaded before any potential dependencies.
+        // if(datasource.hasOwnProperty('activeInspector')){
+        //     vm = lbs.loader.loadDataSource(vm, dataSources['activeInspector']);
+        //     delete dataSources['activeInspector'];
+        // }
+
         $.each(dataSources, function (key, source) {
-            vm = lbs.loader.loadDataSource(vm, source);
+            vm = lbs.loader.loadDataSource(vm, source, overrideExisting);
         })
         return vm;
     },
@@ -152,7 +160,7 @@ lbs.loader = {
     /**
     Load a datasource to the selected viewmodel
     */
-    loadDataSource: function (vm, dataSource) {
+    loadDataSource: function (vm, dataSource, overrideExisting) {
         var data = {};
 
         lbs.log.debug('Loading data source: ' + dataSource.type + ':' + dataSource.source)
@@ -161,8 +169,7 @@ lbs.loader = {
             switch (dataSource.type) {
                 case 'activeInspector':
                     try {
-                        var record = lbs.limeDataConnection.ActiveInspector.Record
-                        data = lbs.loader.controlsToJSON(lbs.limeDataConnection.ActiveControls);
+                        data = lbs.loader.controlsToJSON(lbs.limeDataConnection.ActiveControls,dataSource.alias,dataSource.alias);
                     } catch (e) {
                         lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
@@ -170,7 +177,7 @@ lbs.loader = {
                 case 'xml':
                     data = lbs.common.executeVba(dataSource.source);
                     if (data != null) {
-                        data = $.parseJSON(xml2json($.parseXML(data), ""));
+                        data = lbs.loader.xmlToJSON(data, dataSource.alias);
                     } else {
                         lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
@@ -178,7 +185,7 @@ lbs.loader = {
                 case 'record':
                     data = lbs.common.executeVba(dataSource.source);
                     if (data != null) {
-                        data = lbs.loader.recordToJSON(data);
+                        data = lbs.loader.recordToJSON(data,dataSource.alias);
                     } else {
                         lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
@@ -186,7 +193,7 @@ lbs.loader = {
                 case 'records':
                     data = lbs.common.executeVba(dataSource.source);
                     if (data != null) {
-                        data = lbs.loader.recordsToJSON(data);
+                        data = lbs.loader.recordsToJSON(data,dataSource.alias);
                     } else {
                         lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
@@ -194,28 +201,45 @@ lbs.loader = {
                 case 'localization':
                     var k = lbs.common.executeVba("Localize.getDictionaryKeys");
                     var d = lbs.common.executeVba("Localize.getDictionary");
-                    var parsedData
+                    var parsedData = {};
                     var collecton = {};
 
                     //return empty object if missing or no language support
                     if (!d || !k) {
                         lbs.log.warn("Localization dictionary could not be loaded");
-                        parsedData = {};
                     } else {
-                        parsedData = lbs.loader.dictionaryToJSON(k, d);
+                        parsedData = lbs.loader.dictionaryToJSON(k, d,'loc');
 
-                        $.each(parsedData, function (key, value) {
+                        $.each(parsedData['loc'], function (key, value) {
                             keysplit = key.split("$$");
                             collecton[keysplit[0]] = collecton[keysplit[0]] || {};
                             collecton[keysplit[0]][keysplit[1]] = value
                         })
+
+                        data.localize = collecton;
                     }
-                    data.localize = collecton;
+                    break;
+                case 'storedProcedure':
+                    //TODO: TEST
+                    data = lbs.common.executeVba("lbsHelper.executeProcedure({0})".format(dataSource.source)));
+                    if (data != null) {
+                        data = lbs.loader.xmlToJSON(data,dataSource.alias);
+                    } else {
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                    }
+                    break;
+                case 'relatedRecord':
+                    //TODO: TEST
+                     try {
+                        data = lbs.loader.recordToJSON(lbs.limeDataConnection.ActiveControls.item(dataSource.source).record, dataSource.alias);
+                    } catch (e) {
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                    }
                     break;
             }
 
             //merge options into the viewModel
-            vm = lbs.common.mergeOptions(vm, data || {});
+            vm = lbs.common.mergeOptions(vm, data || {}, overrideExisting);
         } catch (e) {
             lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
         }
@@ -234,9 +258,12 @@ lbs.loader = {
     Transform a VBA dictionary to JSON.
     A collection with keys is needed as the keys method is not transported to JS
     */
-    "dictionaryToJSON": function (keys, dic) {
+    "dictionaryToJSON": function (keys, dic, alias) {
         var key, value;
         var json = {};
+        var r = {};
+
+        var alias = alias ? alias : 'dictionarySource';
 
         for (var i = 1; i <= dic.count; i++) {
             key = keys(i);
@@ -244,30 +271,58 @@ lbs.loader = {
             json[key] = value;
         }
 
-        return json;
+        return r[alias] = json;
 
     },
 
     /**
     Transform a VBA record to JSON
     */
-    "recordToJSON": function (record) {
+    "recordToJSON": function (record, alias) {
         var nbrOfFields = record.Fields.Count;
         var className = record.Class.Name
         var attr;
         var json = {};
-        json[className] = {};
+        var alias = alias ? alias : className;
+        json[alias] = {};
 
         for (var i = 1; i <= nbrOfFields; i++) {
             attr = record.Fields(i).Name;
-            json[className][attr] = {};
-            json[className][attr]["text"] = record.Text(i);
-            json[className][attr]['value'] = record.Value(i);
+            json[alias][attr] = {};
+            json[alias][attr]["text"] = record.Text(i);
+            json[alias][attr]['value'] = record.Value(i);
             if (record.Fields(i).Type == 16) { //Relation
-                json[className][attr]['class'] = record.Fields(i).LinkedField.Class.Name;
+                json[alias][attr]['class'] = record.Fields(i).LinkedField.Class.Name;
             }
             if (record.Fields(i).Type == (19 || 18)) { //Option or Set
-                json[className][attr]['key'] = record.GetOptionKey(i);
+                json[alias][attr]['key'] = record.GetOptionKey(i);
+            }
+
+        }
+        return json;
+    },
+
+    /**
+    Transform controls on activeInspector to JSON
+    */
+    "controlsToJSON": function (controls, alias) {
+        var nbrOfControls = controls.Count;
+        var className = controls.Class.Name
+        var attr;
+        var json = {};
+        var alias = alias ? alias : className;
+        json[alias] = {};
+
+        for (var i = 1; i <= nbrOfControls; i++) {
+            attr = controls(i).Field.Name;
+            json[alias][attr] = {};
+            json[alias][attr]["text"] = controls(i).Text;
+            json[alias][attr]['value'] = controls(i).Value;
+            if (controls(i).Field.Type == 16) { //Relation
+                json[alias][attr]['class'] = controls(i).Field.LinkedField.Class.Name;
+            }
+            if (controls(i).Field.Type == (19 || 18)) { //Option or Set
+                json[alias][attr]['key'] = controls(i).OptionKey;
             }
 
         }
@@ -275,29 +330,15 @@ lbs.loader = {
 
     },
 
-    /**
-    Transform controls on activeInspector to JSON
+     /**
+    Transform XML to JSON
     */
-    "controlsToJSON": function (controls) {
-        var nbrOfControls = controls.Count;
-        var className = controls.Class.Name
-        var attr;
+    "xmlToJSON": function (xml, alias) {
         var json = {};
-        json[className] = {};
+        var alias = alias ? alias : 'xmlSource';
 
-        for (var i = 1; i <= nbrOfControls; i++) {
-            attr = controls(i).Field.Name;
-            json[className][attr] = {};
-            json[className][attr]["text"] = controls(i).Text;
-            json[className][attr]['value'] = controls(i).Value;
-            if (controls(i).Field.Type == 16) { //Relation
-                json[className][attr]['class'] = controls(i).Field.LinkedField.Class.Name;
-            }
-            if (controls(i).Field.Type == (19 || 18)) { //Option or Set
-                json[className][attr]['key'] = controls(i).OptionKey;
-            }
+        json[alias] = $.parseJSON(xml2json($.parseXML(xml), ""));
 
-        }
         return json;
 
     },

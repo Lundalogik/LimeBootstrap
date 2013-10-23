@@ -62,7 +62,7 @@ var lbs = lbs || {
         this.loader.loadView(lbs.activeClass, $("#content"));
 
         //load datasources
-        this.vm = lbs.loader.loadDataSources(this.vm, this.config.dataSources);
+        this.vm = lbs.loader.loadDataSources(this.vm, this.config.dataSources, false);
 
         //load apps
         this.apploader.identifyApps();

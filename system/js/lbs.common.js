@@ -127,7 +127,7 @@ lbs.common = {
     /**
     Add attributes from one JS objekt to another. Duplicates are discarded.
     */
-    mergeOptions: function (obj1, obj2) {
+    mergeOptions: function (obj1, obj2, overrideExisting) {
         $.each(obj2, function (key, value) {
             if (!obj1[key]) {
                 obj1[key] = value;
@@ -136,7 +136,11 @@ lbs.common = {
                 obj1[key] = obj1[key].concat(value);
             }
             else {
-                lbs.log.warn("Key " + key + ' was not added to the view model. Key already exists');
+                if(overrideExisting){
+                    obj1[key] = value;
+                }else{
+                    lbs.log.warn("Key " + key + ' was not added to the view model. Key already exists');
+                }
             }
         })
         return obj1;
