@@ -4,7 +4,23 @@ Welcome to the LIME Pro Actionpad framework called LIME-bootstrap.
 The LIME-bootstrap is made to make it easier, better and faster working with Actionpads in LIME pro. The framework relies heavily on Knockout.js and Twitter Bootstrap but with custom styling and a simple, yet powerful script called lbs.js. The framework contains several built in functions and third 
 party libraries, but is also expandable through custom apps. Some actual actionpads used in the LIME basic database are also included.  
 
-The framework is "convention over configuration", meaning there should be one and only one way to do thing.
+The framework is "convention over configuration", meaning there should be one and only one way to do things. If you find yourself writing lots of code to do something, or god forbid, needing to modify ANY file in the systems folder, you're propably doing it wrong. Take a deep breath and ask for assistance.
+
+If you want to use the framework I solemnly swear to the following conditions:
+
+1. The systems folder should never, ever be modified. I can achieve cool and smart functions without ever touching it. 
+2. lbs.html should neither be modified, exept from toggeling debug on and off  
+3. I must unlearn what you have learned! The framework offers a completely different methology of working with ActionPads, I will embrase it. 
+4. I won't ever copy and paste code from old actionpads. A rabbit will die if I even think of coping VBScript...
+5. I wan't to contribute to a better framework, any improvements, errors or bugfixes will be commited to this git repository. 
+6. I will follow the design guidlines:
+	1. The design should be flat, free from gradients and focused on content.
+	2. The actionpad is very narrow (~250px), use the height and not the width of the actionpad.
+	3. Font should be dark blue on the deafult blue background. In any other case, white should be used. It white cannot be used, use a darker variant of the background color i.e dark green on green background
+	4. Font awesome is used for all icons exept for the header icons, here we use Icon Experience's new M-icon set.
+	5. Stick to default colors, don't "brand" the solution with customers logo and colors.
+7. I will use `lbs.common.executeVBA()` to run any LIME function and `lbs.limeDataConnection` to access any LIME object when building apps
+8. I won't include any scripts and styles in my views.  
 
 LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reasons all functionality (except the data connections) should work in any browser. In LIME Pro the supporter browser versions are:
 
@@ -24,53 +40,33 @@ These are  the changes that you will have to do to upgrade to a specifik version
 *	Remove div with id #header-info and add class .info-links to the list
 *	Remove div with id #content-container
 
-### Included javascript frameworks
-The bundled library contains:
+###How does it work?
+The new actionpads are inspired of how a single page applcation work. Views (basically html-templates) and data(usually JSON) are loaded via AJAX (an asyncrounous javacript call) by the the web application. The template is then rendered by applying the data and the result is shown to the user.
 
-*	[jQuery](http://jquery.com)
-*	[Underscore.js](http://underscorejs.org)
-*	[Moment.js](http://momentjs.com)
-*	[Knockout.js](http://knockoutjs.com/)
-*	[Bootstrap.js](http://getbootstrap.com)
+In LIME-bootstraps case lbs.html is the main application and all actionpads are pointed to lbs.html. lbs.html contians all included css, js amd meta tags. The actionpads (for example company.html) are now just views, containing no includes or javacript.
+lbs.html will detemine which view to load either by a supplied query string (the thing after the questionmark), `../lbs.html?ap=company` or if nothing is supplied, by trying to load a view with the same name as the class of the LIME inspector.
 
-###Icons
-[Font awesome](http://fortawesome.github.io/Font-Awesome/) is include. Please see the font awesome documentation.
+The active inspectors record is then loaded as data and converted to JSON.    
 
-###Structure of the framework
-The framework has the following file structure
+###The console
+The framework has been blessed with a virtual console, to use for debugging. It is activated through changing `debug="true"` in lbs.html. The console will automagically appeare if an error is logged. You can easily use the console when building apps, read more abot this in the app readme.
 
-*	__apps__ - _small selfdependent html apps that can be dynamically loaded into the Actionpads_
-	*	...
-*	__System__ - _READ ONLY! This is the base of the framework and should never be modified_
-	*	__bin__ - _launch Google Chrome in Allow Cross Origin mode_
-	*	__css__
-		*	lime.css - _styling for the framework. Overrides several Twitter Bootstrap stylings_
+##HTML Elements
+LIME bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for additional info
 
-		*	font-awesome.css
-		*	bootstrap.css
-	*	__font__ - _Font files for Font awesome_
-		*	... 
-	*	__img__ - _images used in the framework which aren't from Font Awesom_
-		*	...
-	*	__js__ - _all javacript used in the framework_
-		*	lbs.js - _Frameworks main javascript_
-		*	... Third party frameworks ...
-	*	__view__ - _Views used by the system, for example the debug view_
-*	application.html
-		
-### Structure of an Actionpad
-An Actionpad built with LIME-bootstrap has the following structure
+### Structure of an actionpad view
+An Actionpad built with LIME-bootstrap has the following structure:
 
 ```html
     <!-- Header section, The colorfull thing at the top  -->
         <div class="header-container red"> <!-- Specify the color of the header. Please see color section for available colors  -->
             <div class="header-icon-container helpdesk"> <!-- Specify the icon of the header. Please see icon section for available special icons  -->
-                
+  
             </div>
             <div id="header-info"> 
                 <h2 data-bind="text: helpdesk.helpdeskno.text"></h2>
 					<ul>
-						<li data-bind="text:helpdesk.person.text, limeLink=helpdesk.person", icon='icon-user'></li>						
+						<li data-bind="text:helpdesk.person.text, limeLink:helpdesk.person, icon='icon-user'"></li>						
   					  	...
                     </ul> 
             </div>
@@ -87,8 +83,6 @@ An Actionpad built with LIME-bootstrap has the following structure
 
 ```
 
-##HTML Elements
-LIME bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for additional info
 
 ###The header section colors
 The header section is the colorful header of each actionpad. The following colors are provided:
@@ -112,20 +106,39 @@ Usage:
 A menu can be created by the following HTML: 
 
 ```html
-<ul class="menu">
-	<li class="nav-header"> Commands</li>
-    <li class="divider"></li>
+ <ul class="menu">
+        <li class="nav-header"data-bind=" text:localize.Actionpad_Business.command"></li> 
+        <li class="divider"></li>
 	...
 </ul>
 ```
 
 A menu has two properties, __Expandable__ and __Hidden__. The are added in the `<ul>`  class:
 `<ul class="menu expandable hidden">`	
-	
 
 __Expandable:__ The menu can be collapsed by clicking the header   
 __Hidden:__ The menu is collapsed when the actionpad is loaded. Stupid to use without using Expandable...
 
+###Dropdown button
+
+A dropdown button can contain many options, while taking up very little space. 
+
+```html
+ <div class="btn-group">
+    	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" data-bind=" text:localize.Actionpad_Todo.headermoveforward, icon: 'icon-caret-down'"></a>
+    	<ul class="dropdown-menu">
+    		<li data-bind="vba:'ActionPad_todo.Postpone, d, 1', text:localize.Actionpad_Todo.mf1d"></li>
+    	    <li class="divider"></li>
+            <li data-bind="vba:'ActionPad_todo.Postpone, ww, 1', text:localize.Actionpad_Todo.mf1w"></li>
+    		<li data-bind="vba:'ActionPad_todo.Postpone, ww, 2', text:localize.Actionpad_Todo.mf2w"></li>
+            <li class="divider"></li>
+            <li data-bind="vba:'ActionPad_todo.Postpone, m, 1', text:localize.Actionpad_Todo.mf1m"></li>
+    		<li data-bind="vba:'ActionPad_todo.Postpone, m, 6', text:localize.Actionpad_Todo.mf6m"></li>
+    		<li class="divider"></li>
+            <li data-bind="vba:'ActionPad_todo.Postpone, yyyy, 1', text:localize.Actionpad_Todo.mf1y"></li>
+    	</ul>
+    </div>
+```
 
 ##Functions
 All Twitter bootstrap functions are included, please see the [Twitter bootstrap documentation](http://getbootstrap.com/2.3.2/javascript.html) 
@@ -195,14 +208,30 @@ The loaded data can then be access by:
 
 ```html
 <!-- Loading person and company info on a helpdesk actionpad-->
-<li data-bind="text:helpdesk.company.text, limeLink:helpdesk.company, icon:'icon-building'"></li>					
-<li data-bind="text:person.phone.text, call:person.phone.text, icon:'icon-phone'"></li>
-<li data-bind="text:person.mobilephone.text, call:person.phone.text, icon:'icon-mobile-phone'"></li>						
-<li data-bind="text:company.phone.text, call:company.phone.text, icon:'icon-phone'"></li>	
+<li data-bind="text:helpdesk.company.text"></li>					
+<li data-bind="text:person.phone.text"></li>
+<li data-bind="text:person.mobilephone.text"></li>						
+<li data-bind="text:company.phone.text"></li>	
 ```
 
-### Data-visibility: Hiding or showing elements
+###Hiding or showing elements
+
 It is common that some elements only should be visible for certain users or when specific conditions apply. The Data-visibility is used as follows:
+
+```html
+<li data-bind="vbaVisible:'ActionPad_Helpdesk.HideLinks, take'"></li>
+```
+
+You can also use knockouts built in handler `visible:` to hide or show elements, any valid Javascript will be evaluated. Example:
+
+```html
+<!-- Shows an bootstrap alert if the todo is late. Moment.js is used to parse and handle dates.-->
+<div class="alert alert-error" data-bind="
+   visible: todo.endtime.value !== null && (moment(todo.endtime.value) < moment() && todo.done.value != 1),
+   text: 'The task is ' + (todo.endtime.value != null ? moment(todo.endtime.value).fromNow(true) : '' )+ ' late!',
+   icon:'icon-bell'" >
+</div>
+```
 
 
 A VBA function is called, handling the logic whether the element should be visible or not, returning an boolean.   
@@ -210,50 +239,101 @@ __true:__ Element is visible
 __false:__ Element hidden
 In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required. 
 
-###Data-action: Executing VBA-functions and specific actions
-Data-action is used to trigger VBA-functions and specific actions on click. To call a VBA function simply use:
+###Executing VBA-functions and specific actions
+`vba:` is used to trigger VBA-functions and specific actions on click. To call a VBA function simply use:
 
 ```html
-<li data-action="ActionPad_Helpdesk.Take"></li>
+<li data-bind="vba:'ActionPad_Helpdesk.Take'"></li>
  ```
  
 Input parameters are provided by simply separating them by commas.
 
 ```html
-<li data-action="ActionPad_Helpdesk.Park, 1, t_park_1_hour"></li>
+<li data-bind="vba:'ActionPad_Helpdesk.Park, 1, t_park_1_hour'"></li>
+ ```
+
+ You can also use any available data in the actionpad as an input to the function through concatenating a string  
+
+```html
+<li data-bind="vba:'ActionPad_Helpdesk.DoSomethingWithTheRecord,' + helpdesk.idhelpdesk.value"></li>
  ```
  
- There are four included special actions:
+ ###The built in handlers and how to use them
+
  
-*	__ShowOnMap, [address]__ - Searches Google Maps for the provided address.
+*	__showOnMap:__ - Searches Google Maps for the provided address.
  
  	```html
- 	<li data-field="postalcity" data-action="showOnMap, fullpostaladdress"><i class="icon-map-marker"> </i> </li>
+ 	<li data-bind="text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: 'icon-map-marker'"></li>
 	```
 	
-*	__call__ - Ads an tel: link to the HTML, In advantage used in compination with the Data-field function  
+*	__call:__ - Ads an tel: link to the HTML wich triggers an built in softphone software.
 	
 	```html
-	<li data-field="phone" data-action="call"><i class="icon-phone"> </i> </li>
+	<li data-bind="text: company.phone.text, call: company.phone.text, icon: 'icon-phone'"></li>
 	```
 	
-*	__www__ - Opens the suplied URL in an external browser
+*	__openURL:__ - Opens the suplied URL in an external browser
 	
 	```html
-	 <li data-field="www" data-action="openUrl"><i class="icon-globe"> </i> </li>
+	 <li data-bind="text:company.www.text, openURL: company.www.text, icon: 'icon-globe'"></li>
 	```
-*	__lime-link__ - Tries to create an LIME link to the object provided by the Data-field.
+*	__limeLink__ - Tries to create an LIME link to the object provided, please note that the root node of the object is used and not a specific property.
 	
 	```html
-	<li data-field="company" data-action="lime-link"><i class="icon-building"></i></li>
+	<li data-bind="text:todo.company.text, limeLink:todo.company, icon:'icon-flag'"></li>
 	```
+*	__email__ - Creates an email. TODO: Should use LIMES built in email factory
 	
-The input parameters are evaluated at load and the string to be executed is stored in a Data-args attribute. 
+	```html
+	<li data-bind="text:person.email.text, email:person.email.text, icon:'icon-mail'"></li>
+	```
 
  
 ##Technical
-### The core: lbs.js
-It's all very technical and smart!
+
+### Included javascript frameworks
+The bundled library contains:
+
+*	[jQuery](http://jquery.com)
+*	[Underscore.js](http://underscorejs.org)
+*	[Moment.js](http://momentjs.com)
+*	[Knockout.js](http://knockoutjs.com/)
+*	[Bootstrap.js](http://getbootstrap.com)
+
+###Icons
+[Font awesome](http://fortawesome.github.io/Font-Awesome/) is include. Please see the font awesome documentation.
+
+###Structure of the framework
+
+The framework has the following file structure
+
+*	__apps__ - _small selfdependent html apps that can be dynamically loaded into the Actionpads_
+	*	...
+*	__System__ - _READ ONLY! This is the base of the framework and should never be modified_
+	*	__bin__ - _launch Google Chrome in Allow Cross Origin mode_
+	*	__css__
+		*	lime.css - _styling for the framework. Overrides several Twitter Bootstrap stylings_
+
+		*	font-awesome.css
+		*	bootstrap.css
+	*	__font__ - _Font files for Font awesome_
+		*	... 
+	*	__img__ - _images used in the framework which aren't from Font Awesom_
+		*	...
+	*	__js__ - _all javacript used in the framework_
+		*	lbs.js - _Frameworks main javascript_
+		*	... Third party frameworks ...
+	*	__view__ - _Views used by the system, for example the debug view_
+*	application.html
+		
+
+### The core: lbs.js and it's modules
+lbs.js is the main file of the framework is mainly in charge of setup and delegating tasks. It uses the following modules to accually do stuff:
+*	__lbs.apploader.js__ - Handels the loading of the apps and their initiation 
+*	__lbs.bindings.js__ - The custom knockout bindnings are defined here
+*	__lbs.loader.js__  - Handels loading of scripts, views and styles. 
+*	__lbs.log.js__ - Handels logging to the custom console. 
 
 ### Building apps
 Please see the readme file in the apps folder 
