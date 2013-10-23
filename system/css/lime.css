@@ -124,7 +124,7 @@ COLORS
     border-color: #124985 transparent transparent transparent;
 }
 
-.header-container.blue #header-info li:hover {
+.header-container.blue ul.info-links li:hover {
     background-color: #51A9FF;
 }
 
@@ -141,7 +141,7 @@ COLORS
     border-color: #5D4D00 transparent transparent transparent;
 }
 
-.header-container.yellow #header-info li:hover {
+.header-container.yellow ul.info-links li:hover {
     background-color: #B98B08;
 }
 
@@ -158,7 +158,7 @@ COLORS
     border-color: #4B6712 transparent transparent transparent;
 }
 
-.header-container.green #header-info li:hover {
+.header-container.green ul.info-links li:hover {
     background-color: #76A51C;
 }
 
@@ -175,7 +175,7 @@ COLORS
     border-color: #813E0F transparent transparent transparent;
 }
 
-.header-container.orange #header-info li:hover {
+.header-container.orange ul.info-links li:hover {
     background-color: #B95815;
 }
 
@@ -192,7 +192,7 @@ COLORS
     border-color: #1E1E1E transparent transparent transparent;
 }
 
-.header-container.darkgrey #header-info li:hover {
+.header-container.darkgrey ul.info-links li:hover {
     background-color: #1E1E1E;
 }
 
@@ -209,7 +209,7 @@ COLORS
     border-color: #7E7E7E transparent transparent transparent;
 }
 
-.header-container.white #header-info li:hover {
+.header-container.white ul.info-links li:hover {
     background-color: #7E7E7E;
 }
 
@@ -227,7 +227,7 @@ COLORS
     border-color: #360A40 transparent transparent transparent;
 }
 
-.header-container.purple #header-info li:hover {
+.header-container.purple ul.info-links li:hover {
     background-color: #791790;
 }
 
@@ -244,7 +244,7 @@ COLORS
     border-color: #5F1F15 transparent transparent transparent;
 }
 
-.header-container.red #header-info li:hover {
+.header-container.red ul.info-links li:hover {
     background-color: #A73624;
 }
 
@@ -257,6 +257,7 @@ HEADER
     z-index: 10;
     padding: 30px 0 15px 0;
     cursor:default;
+    margin: -10px -10px 10px 0px;
     /*border-bottom: 1px solid #2469C3*/
 }
 
@@ -276,53 +277,26 @@ HEADER
     padding-left: 40px;
     padding-bottom: 10px;
     padding-top: 64px;
+    background: no-repeat 64px top;
 }
 /*******************************/
 /**USED TO SET HEADER PICTURES**/
 /*******************************/
-.company {
-    background: url(../img/company.png) no-repeat 64px top;
-}
-
-.person {
-    background: url(../img/person.png) no-repeat 64px top;
-}
-
-.business {
-    background: url(../img/business.png) no-repeat 64px top;
-}
-
-.campaign {
-    background: url(../img/campaign.png) no-repeat 64px top;
-}
-
-.todo {
-    background: url(../img/todo.png) no-repeat 64px top;
-}
-
-.whiteboard {
-    background: url(../img/whiteboard.png) no-repeat 64px top;
-}
-
-.helpdesk {
-    background: url(../img/helpdesk.png) no-repeat 64px top;
-}
-
 
 .header-container #header-icon {
     height: 70px;
     font-size: 65px;
 }
 
-.header-container #header-info li:hover {
+.header-container ul.info-links li:hover {
     cursor: default;
 }
 
-.header-container #header-info {
+.header-container ul.info-links {
     text-decoration: none;
 }
 
-.header-container #header-info h2 {
+.header-container h2 {
     font-size: 18px;
     letter-spacing: -3;
     margin: 0;
@@ -333,12 +307,12 @@ HEADER
     text-overflow: ellipsis;
 }
 
-.header-container #header-info ul {
+.header-container ul.info-links {
     list-style: none;
     padding: 0;
 }
 
-.header-container #header-info ul > li {
+.header-container ul.info-links > li {
     width: 50%;
     list-style-position: inside;
     width: 100%;

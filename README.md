@@ -14,6 +14,16 @@ LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reaso
 
 Older versions of IE _may_ work, but the ActionPads will surely not look so great. 
 
+### Upgrade instructions
+These are  the changes that you will have to do to upgrade to a specifik version
+
+#### 0.0.2
+*	Replace header tag <div class="header-icon-container helpdesk"> with <div class="header-icon"></div>. The image to show will sort itself out.
+*	Place any images you may need in the root folder "resources" or a subdirectory of it
+*	Invoke old-school apps with the binding "appInvoke"
+*	Remove div with id #header-info and add class .info-links to the list
+*	Remove div with id #content-container
+
 ### Included javascript frameworks
 The bundled library contains:
 

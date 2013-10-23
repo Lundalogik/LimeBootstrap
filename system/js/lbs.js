@@ -184,6 +184,7 @@ var lbs = lbs || {
     **/
     ExecuteOnloadEvents: function () {
 
+        //menues
         $(".menu").addClass("nav nav-list")
         $(".expandable").each(function () {
              // if hidden by some reason, don't fuck with it.
@@ -195,6 +196,12 @@ var lbs = lbs || {
                 $(this).find(".nav-header").prepend("<i class='icon-angle-down'> </i>");
             };
         });
+
+        //header icons
+        $(".header-icon").each(function(){
+            $(this).addClass("header-icon-container");
+            $(this).css("background-image", "url('resources/"+lbs.activeClass+".png')");
+        })
     },
 
     /**
