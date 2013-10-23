@@ -220,7 +220,6 @@ lbs.loader = {
                     }
                     break;
                 case 'storedProcedure':
-                    //TODO: TEST
                     data = lbs.common.executeVba("lbsHelper.executeProcedure({0})".format(dataSource.source)));
                     if (data != null) {
                         data = lbs.loader.xmlToJSON(data,dataSource.alias);
@@ -229,8 +228,8 @@ lbs.loader = {
                     }
                     break;
                 case 'relatedRecord':
-                    //TODO: TEST
                      try {
+                        
                         data = lbs.loader.recordToJSON(lbs.limeDataConnection.ActiveControls.item(dataSource.source).record, dataSource.alias);
                     } catch (e) {
                         lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
