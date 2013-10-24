@@ -129,7 +129,10 @@ lbs.common = {
     */
     mergeOptions: function (obj1, obj2, overrideExisting) {
         $.each(obj2, function (key, value) {
-            if (!obj1[key]) {
+            if(!value){
+                //dont override with empty
+            }
+            else if (!obj1[key]) {
                 obj1[key] = value;
             }
             else if (obj1[key] instanceof Array && value instanceof Array) {
@@ -138,8 +141,9 @@ lbs.common = {
             else {
                 if(overrideExisting){
                     obj1[key] = value;
+                    lbs.log.debug("Key '{0}' in view model was overriden by dataload".format(key));
                 }else{
-                    lbs.log.warn("Key " + key + ' was not added to the view model. Key already exists');
+                    lbs.log.warn("Key '{0}' was not added to the view model. Key already exists".format(key));
                 }
             }
         })

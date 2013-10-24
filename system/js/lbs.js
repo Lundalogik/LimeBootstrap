@@ -25,7 +25,7 @@ var lbs = lbs || {
     */
     config : {
         dataSources: [
-             { type: 'activeInspector', source: '' },
+             { type: 'activeInspector', source: ''},
              { type: 'localization', source: '' },
         ],
         resources: {

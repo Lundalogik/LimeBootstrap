@@ -90,7 +90,8 @@
         $.each(lbs.apps, function (key, app) {
 
             //to-be viewmodel
-            var vm = lbs.vm;
+            var vm = {};
+            vm.localize = lbs.vm.localize;
 
             //load data
             vm = lbs.loader.loadDataSources(vm, app.instance.config.dataSources);

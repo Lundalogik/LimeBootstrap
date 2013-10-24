@@ -82,7 +82,7 @@ lbs.loader = {
            try{
                 lbs.log.warn('Script "' + filename + '" could not be loaded, using fallback loading through LWS');
                 var s = ""
-                s = lbs.common.executeVba("LWS.loadHTTPResource," + filename);
+                s = lbs.common.executeVba("LBSHelper.loadHTTPResource," + filename);
                 if (s && s !== "") {
                     eval(s);
                     lbs.log.info('Script "' + filename + '" loaded successfully');
@@ -129,7 +129,7 @@ lbs.loader = {
             lbs.log.warn("Resource could not be found. If using Chrome or IE11, make sure --file-access-from-file is enabled");
             lbs.log.warn('View "' + file + '" could not be loaded, using fallback loading through LWS');
             var s = ""
-            s = lbs.common.executeVba("LWS.loadHTTPResource," + file);
+            s = lbs.common.executeVba("LBSHelper.loadHTTPResource," + file);
             if (s && s !== "") {
                 element.html(s);
                 lbs.log.info('View "' + file + '" loaded successfully');
@@ -143,16 +143,37 @@ lbs.loader = {
     Load all datasources in set to the selected viewmodel
     */
     loadDataSources: function (vm, dataSources, overrideExisting) {
-        
-        //-- probably not needed as loading of related record works anyway --
-        //make sure active inspector is loaded before any potential dependencies.
-        // if(datasource.hasOwnProperty('activeInspector')){
-        //     vm = lbs.loader.loadDataSource(vm, dataSources['activeInspector']);
-        //     delete dataSources['activeInspector'];
-        // }
 
+        var filterRemoveRelated = function (item) {return (item.type != 'relatedRecord')};
+        var filterRemoveInspector = function (item) {return (item.type != 'activeInspector')};
+        var filterGetInspector = function (item) {return (item.type === 'activeInspector')};
+        var filterGetRelated = function (item) {return (item.type === 'relatedRecord')};
+        var relatedRecordExists = dataSources.filter(filterRemoveRelated).length != dataSources.length;
+        var activeInspectorExists = dataSources.filter(filterRemoveInspector).length != dataSources.length;
+
+        //check for activeInspector if using relatedRecord
+        if(relatedRecordExists && !activeInspectorExists){
+            //remove related record
+            dataSources = dataSources.filter(filterRemoveRelated)
+            lbs.log.warn("Failed to load datasource 'RelatedRecord', activeInspector is not loaded")
+        }
+        // add properties to inspector source
+        else if(relatedRecordExists){
+            
+            //get inspector source
+            var activeInspector = dataSources.filter(filterGetInspector)[0];
+            //set related sources to inspector source
+            activeInspector.relatedRecords = dataSources.filter(filterGetRelated);
+            //remove previous sources collection
+            dataSources = dataSources.filter(filterRemoveRelated).filter(filterRemoveInspector)
+            //add new source to collection
+            dataSources.push(activeInspector);
+        }
+
+        //load soruces
         $.each(dataSources, function (key, source) {
             vm = lbs.loader.loadDataSource(vm, source, overrideExisting);
+            
         })
         return vm;
     },
@@ -170,7 +191,34 @@ lbs.loader = {
                 case 'activeInspector':
                     try {
                         data = lbs.loader.controlsToJSON(lbs.limeDataConnection.ActiveControls,dataSource.alias,dataSource.alias);
+                        
+                        //find data without alias
+                        dataNode = data[Object.keys(data)[0]];
+                        //check for related records, source is fieldname is this instance
+                        if(dataSource.hasOwnProperty('relatedRecords')){
+                            $.each(dataSource.relatedRecords,function(i, rs){
+                                if(dataNode.hasOwnProperty(rs.source)){
+                                   
+                                    //fetch class and id from inspector
+                                    rs.class = dataNode[rs.source].class;
+                                    rs.idrecord = dataNode[rs.source].value;
+
+                                    //add as subkey to inspector if no alias is specified
+                                    vmToAdd = rs.alias ? vm : dataNode;
+
+                                    //set alias to fieldname if does not exist
+                                    rs.alias = rs.alias ? rs.alias : rs.source;
+                                    
+                                    //call loadData for the related record
+                                    lbs.loader.loadDataSource(vmToAdd,rs,true);
+
+                                }else{
+                                    lbs.log.warn("Failed to load datasource 'RelatedRecord', field '{0}' does not exist".format(rs.source))
+                                }
+                            }); 
+                        }
                     } catch (e) {
+                        lbs.log.exception(e);
                         lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
                     break;
@@ -179,7 +227,7 @@ lbs.loader = {
                     if (data != null) {
                         data = lbs.loader.xmlToJSON(data, dataSource.alias);
                     } else {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
                     }
                     break;
                 case 'record':
@@ -187,7 +235,7 @@ lbs.loader = {
                     if (data != null) {
                         data = lbs.loader.recordToJSON(data,dataSource.alias);
                     } else {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
                     }
                     break;
                 case 'records':
@@ -195,7 +243,7 @@ lbs.loader = {
                     if (data != null) {
                         data = lbs.loader.recordsToJSON(data,dataSource.alias);
                     } else {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
                     }
                     break;
                 case 'localization':
@@ -220,19 +268,19 @@ lbs.loader = {
                     }
                     break;
                 case 'storedProcedure':
-                    data = lbs.common.executeVba("lbsHelper.executeProcedure({0})".format(dataSource.source)));
+                    data = lbs.common.executeVba("lbsHelper.loadXmlFromStoredProcedure, {0}".format(dataSource.source));
                     if (data != null) {
                         data = lbs.loader.xmlToJSON(data,dataSource.alias);
                     } else {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
                     }
                     break;
                 case 'relatedRecord':
                      try {
-                        
-                        data = lbs.loader.recordToJSON(lbs.limeDataConnection.ActiveControls.item(dataSource.source).record, dataSource.alias);
+                        record = lbs.common.executeVba("lbsHelper.loadRelatedRecord, {0}, {1}".format(dataSource.class, dataSource.idrecord));
+                        data = lbs.loader.recordToJSON(record, dataSource.alias);
                     } catch (e) {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
                     }
                     break;
             }
@@ -253,6 +301,7 @@ lbs.loader = {
         return arr.lastIndexOf(e) === i;
     },
 
+
     /**
     Transform a VBA dictionary to JSON.
     A collection with keys is needed as the keys method is not transported to JS
@@ -270,8 +319,8 @@ lbs.loader = {
             json[key] = value;
         }
 
-        return r[alias] = json;
-
+        r[alias] = json;
+        return r;
     },
 
     /**
@@ -289,7 +338,10 @@ lbs.loader = {
             attr = record.Fields(i).Name;
             json[alias][attr] = {};
             json[alias][attr]["text"] = record.Text(i);
-            json[alias][attr]['value'] = record.Value(i);
+        
+            if(typeof record.Value(i) != 'unknown'){
+                json[alias][attr]['value'] = record.Value(i);
+            }
             if (record.Fields(i).Type == 16) { //Relation
                 json[alias][attr]['class'] = record.Fields(i).LinkedField.Class.Name;
             }
