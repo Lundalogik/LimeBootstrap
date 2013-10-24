@@ -226,7 +226,7 @@ lbs.loader = {
                     if (data != null) {
                         data = lbs.loader.xmlToJSON(data, dataSource.alias);
                     } else {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
                     break;
                 case 'record':
@@ -234,7 +234,7 @@ lbs.loader = {
                     if (data != null) {
                         data = lbs.loader.recordToJSON(data,dataSource.alias);
                     } else {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
                     break;
                 case 'records':
@@ -242,7 +242,7 @@ lbs.loader = {
                     if (data != null) {
                         data = lbs.loader.recordsToJSON(data,dataSource.alias);
                     } else {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
                     break;
                 case 'localization':
@@ -271,7 +271,7 @@ lbs.loader = {
                     if (data != null) {
                         data = lbs.loader.xmlToJSON(data,dataSource.alias);
                     } else {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
                     break;
                 case 'relatedRecord':
