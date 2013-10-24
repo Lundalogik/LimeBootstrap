@@ -84,7 +84,9 @@ lbs.loader = {
                 var s = ""
                 s = lbs.common.executeVba("LBSHelper.loadHTTPResource," + filename);
                 if (s && s !== "") {
-                    eval(s);
+                    with(window) {
+                        window.eval(s);
+                    }
                     lbs.log.info('Script "' + filename + '" loaded successfully');
                     retval = true;
                 } else {
