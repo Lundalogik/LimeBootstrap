@@ -218,7 +218,6 @@ lbs.loader = {
                             }); 
                         }
                     } catch (e) {
-                        lbs.log.exception(e);
                         lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
                     break;
