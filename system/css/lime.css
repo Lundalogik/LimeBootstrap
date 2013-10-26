@@ -51,30 +51,22 @@ Added CSS for menu**
 ********/
 
 .menu {
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-bottom: 0;
+
+margin-bottom: 0;
+padding-top: 10px;
+padding-left: 0;
+padding-right: 0;
+padding-bottom: 10px;
 }
  
-.menu > li > a,
+
 .menu .menu-header {
   margin-left: -15px;
   margin-right: -15px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
 }
  
-.menu > li > a {
-  padding: 3px 15px;
-}
- 
-.menu > .active > a,
-.menu > .active > a:hover,
-.menu > .active > a:focus {
-  color: white;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
-  background-color: #08c;
-}
- 
+
 .menu [class^="icon-"],
 .menu [class*=" icon-"] {
   margin-right: 2px;
@@ -86,6 +78,9 @@ Added CSS for menu**
   margin: ((1.428571429 / 2) - 1) 1px; // 8px 1px
   *margin: -5px 0 5px;
   overflow: hidden;
+      margin: 0 15px 0 10px;
+    background-color: #D2E4FF;
+    margin-bottom: 3px;
 
 }
  
@@ -102,6 +97,40 @@ Added CSS for menu**
 // Space them out when they follow another list item (link)
 .menu li + .menu-header {
   margin-top: 9px;
+}
+
+
+.menu > li {
+    padding-left: 10px;
+    cursor: default;
+}
+
+.menu-header {
+    text-transform: none;
+    color: #425899;
+    font-weight: lighter;
+    padding: 3px 15px 0;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: default;
+    margin-left: 0 !important;
+}
+
+.menu > li:not(.menu-header):not(.divider) {
+    color: #6985B7;
+    font-size: 12px;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-weight: lighter;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.menu > li:not(.menu-header):not(.divider):hover {
+    background-color: #E0EEFF;
 }
 
 
@@ -400,51 +429,7 @@ CONTENT
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5');
 }
 
-.menu {
-    padding-top: 10px;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 10px;
-}
 
-    .menu > li {
-        padding-left: 10px;
-        cursor: default;
-    }
-
-.menu-header {
-    text-transform: none;
-    color: #425899;
-    font-weight: lighter;
-    padding: 3px 15px 0;
-    font-size: 14px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    cursor: default;
-    margin-left: 0 !important;
-}
-
-.menu .divider {
-    margin: 0 15px 0 10px;
-    background-color: #D2E4FF;
-    margin-bottom: 3px;
-}
-
-.menu > li:not(.menu-header):not(.divider) {
-    color: #6985B7;
-    font-size: 12px;
-    padding-top: 0;
-    padding-bottom: 0;
-    font-weight: lighter;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.menu > li:not(.menu-header):not(.divider):hover {
-    background-color: #E0EEFF;
-}
 .alert{
     margin-top: 10px;
     border-radius: 0;
