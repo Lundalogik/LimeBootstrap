@@ -33,6 +33,9 @@ Older versions of IE _may_ work, but the ActionPads will surely not look so grea
 ### Upgrade instructions
 These are  the changes that you will have to do to upgrade to a specifik version
 
+#### 0.0.3
+*	Change to font awesome 4.0. All icon bindings must be changed to handel the new "fa-" naming convention
+
 #### 0.0.2
 *	Replace header tag `<div class="header-fa-container helpdesk">` with `<div class="header-icon"></div>`. The image to show will sort itself out.
 *	Place any images you may need in the root folder "resources" or a subdirectory of it
