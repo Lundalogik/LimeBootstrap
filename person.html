@@ -8,11 +8,11 @@
 	</ul> 
 </div>
 
-<div class="alert" data-bind="visible:person.active.value == 0, text: person.firstname.text + ' har slutat på ' + person.company.text, icon: 'fa-info-circle'"></div>
+<div class="alert alert-warning" data-bind="visible:person.active.value == 0, text: person.firstname.text + ' har slutat på ' + person.company.text, icon: 'fa-info-circle'"></div>
 <ul class="menu expandable">
-	<li class="nav-header" data-bind=" text:localize.Actionpad_Person.commands"></li>
+	<li class="menu-header" data-bind=" text:localize.Actionpad_Person.commands"></li>
 	<li class="divider"></li>
 	<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, todo',text:localize.Actionpad_Person.newtodo, icon:'fa-calendar'"></li>
 	<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, history', text:localize.Actionpad_Person.newhistory, icon:'fa-pencil'"></li>
-	<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, document', text:localize.Actionpad_Person.newdoc, icon:'fa-file-text-alt'"></li>
+	<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, document', text:localize.Actionpad_Person.newdoc, icon:'fa-file-text'"></li>
 </ul>

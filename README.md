@@ -35,7 +35,8 @@ These are  the changes that you will have to do to upgrade to a specifik version
 
 #### 0.0.3
 *	Change to font awesome 4.0. All icon bindings must be changed to handel the new "fa-" naming convention
-
+*	.nav-header should be change to .menu-header
+*	.menu property "hidden" should be changed to "collapsed"
 #### 0.0.2
 *	Replace header tag `<div class="header-fa-container helpdesk">` with `<div class="header-icon"></div>`. The image to show will sort itself out.
 *	Place any images you may need in the root folder "resources" or a subdirectory of it
@@ -120,7 +121,7 @@ A menu has two properties, __Expandable__ and __Hidden__. The are added in the `
 `<ul class="menu expandable hidden">`	
 
 __Expandable:__ The menu can be collapsed by clicking the header   
-__Hidden:__ The menu is collapsed when the actionpad is loaded. Stupid to use without using Expandable...
+__Collapsed:__ The menu is collapsed when the actionpad is loaded. Stupid to use without using Expandable...
 
 ###Dropdown button
 
