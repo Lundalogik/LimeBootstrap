@@ -46,37 +46,41 @@ i {
 
 }
 
-.nav-list {
+/********
+Added CSS for menu**
+********/
+
+.menu {
   padding-left: 15px;
   padding-right: 15px;
   margin-bottom: 0;
 }
  
-.nav-list > li > a,
-.nav-list .nav-header {
+.menu > li > a,
+.menu .menu-header {
   margin-left: -15px;
   margin-right: -15px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
 }
  
-.nav-list > li > a {
+.menu > li > a {
   padding: 3px 15px;
 }
  
-.nav-list > .active > a,
-.nav-list > .active > a:hover,
-.nav-list > .active > a:focus {
+.menu > .active > a,
+.menu > .active > a:hover,
+.menu > .active > a:focus {
   color: white;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
   background-color: #08c;
 }
  
-.nav-list [class^="icon-"],
-.nav-list [class*=" icon-"] {
+.menu [class^="icon-"],
+.menu [class*=" icon-"] {
   margin-right: 2px;
 }
  
-.nav-list .divider {
+.menu .divider {
   *width: 100%;
   height: 1px;
   margin: ((1.428571429 / 2) - 1) 1px; // 8px 1px
@@ -85,7 +89,7 @@ i {
 
 }
  
-.nav-header {
+.menu-header {
   display: block;
   padding: 3px 15px;
   font-size: 11px;
@@ -96,7 +100,7 @@ i {
   text-transform: uppercase;
 }
 // Space them out when they follow another list item (link)
-.nav li + .nav-header {
+.menu li + .menu-header {
   margin-top: 9px;
 }
 
@@ -396,19 +400,19 @@ CONTENT
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5');
 }
 
-.nav-list {
+.menu {
     padding-top: 10px;
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 10px;
 }
 
-    .nav-list > li {
+    .menu > li {
         padding-left: 10px;
         cursor: default;
     }
 
-.nav-header {
+.menu-header {
     text-transform: none;
     color: #425899;
     font-weight: lighter;
@@ -421,13 +425,13 @@ CONTENT
     margin-left: 0 !important;
 }
 
-.nav-list .divider {
+.menu .divider {
     margin: 0 15px 0 10px;
     background-color: #D2E4FF;
     margin-bottom: 3px;
 }
 
-.nav-list > li:not(.nav-header):not(.divider) {
+.menu > li:not(.menu-header):not(.divider) {
     color: #6985B7;
     font-size: 12px;
     padding-top: 0;
@@ -438,7 +442,7 @@ CONTENT
     text-overflow: ellipsis;
 }
 
-.nav-list > li:not(.nav-header):not(.divider):hover {
+.menu > li:not(.menu-header):not(.divider):hover {
     background-color: #E0EEFF;
 }
 .alert{

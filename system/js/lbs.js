@@ -160,7 +160,7 @@ var lbs = lbs || {
     SetOnclickEvents: function () {
 
         //Expandable: Toggels visibility of child-elements of the element. Used in menues
-        $(".expandable").find(".nav-header").click(
+        $(".expandable").find(".menu-header").click(
             function () {
                 var menuDiv = $(this).parent()
                 $(this).find("i").toggleClass("fa fa-angle-down"); //expanded
@@ -173,7 +173,7 @@ var lbs = lbs || {
                     
                     menuDiv.addClass("collapsed");
                     menuDiv.find(":hidden").addClass("remainHidden");
-                    menuDiv.children("li").not(".nav-header").not(".divider").fadeOut(200);
+                    menuDiv.children("li").not(".menu-header").not(".divider").fadeOut(200);
                 }
             }
         )
@@ -186,15 +186,15 @@ var lbs = lbs || {
     ExecuteOnloadEvents: function () {
 
         //menues
-        $(".menu").addClass("nav nav-list")
+    
         $(".expandable").each(function () {
              // if hidden by some reason, don't fuck with it.
             if ($(this).hasClass("collapsed")) { //should be hidden if class hidden  exists
                 $(this).find(":hidden").addClass("remainHidden");
-                $(this).find(".nav-header").prepend("<i class='fa fa-angle-right'> </i>");
-                $(this).children("li").not(".nav-header").not(".divider").hide();
+                $(this).find(".menu-header").prepend("<i class='fa fa-angle-right'> </i>");
+                $(this).children("li").not(".menu-header").not(".divider").hide();
             } else {
-                $(this).find(".nav-header").prepend("<i class='fa fa-angle-down'> </i>");
+                $(this).find(".menu-header").prepend("<i class='fa fa-angle-down'> </i>");
             };
         });
 
