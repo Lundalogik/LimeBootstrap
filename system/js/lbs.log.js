@@ -118,7 +118,7 @@ lbs.log.vmFactory = function () {
         switch (lev) {
             case 'DEBUG':
                 ico = 'fa fa-cog';
-                rowclass = 'alert-warning';
+                rowclass = 'alert-info';
                 break;
             case 'INFO':
                 ico = 'fa fa-info-circle';
