@@ -34,7 +34,8 @@ Older versions of IE _may_ work, but the ActionPads will surely not look so grea
 These are  the changes that you will have to do to upgrade to a specifik version
 
 #### 0.0.3
-*	Change to font awesome 4.0. All icon bindings must be changed to handel the new "fa-" naming convention
+*	Updated to font awesome 4.0. All icon bindings must be changed to handel the new "fa-" naming convention
+*	Updated to Twitter Bootstrap 3.0
 *	.nav-header should be change to .menu-header
 *	.menu property "hidden" should be changed to "collapsed"
 
