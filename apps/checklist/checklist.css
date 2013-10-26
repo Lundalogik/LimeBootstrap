@@ -12,9 +12,8 @@
 }
 
 #counter{
-	position: absolute;
-	right: 8px;
-
+	background-color: inherit;
+	color: inherit;
 }
 
 input[type=checkbox] {

@@ -3,7 +3,7 @@ lbs.apploader.register('checklist', function () {
     //config
     self.config = {
         dataSources: [
-            {type: 'xml', source: 'Checklist.Initialize'}
+            {type: 'xml', source: 'Checklist.Initialize', alias:'checklistdata'}
         ],
         resources: {
             scripts: [],
@@ -159,7 +159,7 @@ lbs.apploader.register('checklist', function () {
         /**
         Return view model
         */
-            return new ChecklistModel(appData.xmlchecklist);
+            return new ChecklistModel(appData.checklistdata.xmlchecklist);
 
 
         
