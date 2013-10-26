@@ -33,7 +33,7 @@ lbs.common = {
     /**
     Get icon html
     */
-    iconTemplate : "<i class='{0}'></i>",
+    iconTemplate : "<i class='fa {0}'></i>",
 
     /**
     URLencode sensitive strings

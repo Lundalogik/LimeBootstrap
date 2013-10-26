@@ -34,7 +34,7 @@ Older versions of IE _may_ work, but the ActionPads will surely not look so grea
 These are  the changes that you will have to do to upgrade to a specifik version
 
 #### 0.0.2
-*	Replace header tag `<div class="header-icon-container helpdesk">` with `<div class="header-icon"></div>`. The image to show will sort itself out.
+*	Replace header tag `<div class="header-fa-container helpdesk">` with `<div class="header-icon"></div>`. The image to show will sort itself out.
 *	Place any images you may need in the root folder "resources" or a subdirectory of it
 *	Invoke old-school apps with the binding "appInvoke"
 *	Remove div with id #header-info and add class .info-links to the list of info links in the header
@@ -60,13 +60,13 @@ An Actionpad built with LIME-bootstrap has the following structure:
 ```html
     <!-- Header section, The colorfull thing at the top  -->
         <div class="header-container red"> <!-- Specify the color of the header. Please see color section for available colors  -->
-            <div class="header-icon-container helpdesk"> <!-- Specify the icon of the header. Please see icon section for available special icons  -->
+            <div class="header-fa-container helpdesk"> <!-- Specify the icon of the header. Please see icon section for available special icons  -->
   
             </div>
             <div id="header-info"> 
                 <h2 data-bind="text: helpdesk.helpdeskno.text"></h2>
 					<ul>
-						<li data-bind="text:helpdesk.person.text, limeLink:helpdesk.person, icon='icon-user'"></li>						
+						<li data-bind="text:helpdesk.person.text, limeLink:helpdesk.person, icon='fa-user'"></li>						
   					  	...
                     </ul> 
             </div>
@@ -125,7 +125,7 @@ A dropdown button can contain many options, while taking up very little space.
 
 ```html
  <div class="btn-group">
-    	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" data-bind=" text:localize.Actionpad_Todo.headermoveforward, icon: 'icon-caret-down'"></a>
+    	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" data-bind=" text:localize.Actionpad_Todo.headermoveforward, icon: 'fa-caret-down'"></a>
     	<ul class="dropdown-menu">
     		<li data-bind="vba:'ActionPad_todo.Postpone, d, 1', text:localize.Actionpad_Todo.mf1d"></li>
     	    <li class="divider"></li>
@@ -229,7 +229,7 @@ You can also use knockouts built in handler `visible:` to hide or show elements,
 <div class="alert alert-error" data-bind="
    visible: todo.endtime.value !== null && (moment(todo.endtime.value) < moment() && todo.done.value != 1),
    text: 'The task is ' + (todo.endtime.value != null ? moment(todo.endtime.value).fromNow(true) : '' )+ ' late!',
-   icon:'icon-bell'" >
+   icon:'fa-bell'" >
 </div>
 ```
 
@@ -264,29 +264,29 @@ Input parameters are provided by simply separating them by commas.
 *	__showOnMap:__ - Searches Google Maps for the provided address.
  
  	```html
- 	<li data-bind="text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: 'icon-map-marker'"></li>
+ 	<li data-bind="text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: 'fa-map-marker'"></li>
 	```
 	
 *	__call:__ - Ads an tel: link to the HTML wich triggers an built in softphone software.
 	
 	```html
-	<li data-bind="text: company.phone.text, call: company.phone.text, icon: 'icon-phone'"></li>
+	<li data-bind="text: company.phone.text, call: company.phone.text, icon: 'fa-phone'"></li>
 	```
 	
 *	__openURL:__ - Opens the suplied URL in an external browser
 	
 	```html
-	 <li data-bind="text:company.www.text, openURL: company.www.text, icon: 'icon-globe'"></li>
+	 <li data-bind="text:company.www.text, openURL: company.www.text, icon: 'fa-globe'"></li>
 	```
 *	__limeLink__ - Tries to create an LIME link to the object provided, please note that the root node of the object is used and not a specific property.
 	
 	```html
-	<li data-bind="text:todo.company.text, limeLink:todo.company, icon:'icon-flag'"></li>
+	<li data-bind="text:todo.company.text, limeLink:todo.company, icon:'fa-flag'"></li>
 	```
 *	__email__ - Creates an email. TODO: Should use LIMES built in email factory
 	
 	```html
-	<li data-bind="text:person.email.text, email:person.email.text, icon:'icon-mail'"></li>
+	<li data-bind="text:person.email.text, email:person.email.text, icon:'fa-mail'"></li>
 	```
 
  
