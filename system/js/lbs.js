@@ -165,12 +165,13 @@ var lbs = lbs || {
                 var menuDiv = $(this).parent()
                 $(this).find("i").toggleClass("fa fa-angle-down"); //expanded
                 $(this).find("i").toggleClass("fa fa-angle-right"); // Hidden
-                if (menuDiv.hasClass("hidden")) {
-                     menuDiv.removeClass("hidden");
+                if (menuDiv.hasClass("collapsed")) {
+                     menuDiv.removeClass("collapsed");
                      menuDiv.children("li").not(".remainHidden").fadeIn(200);
                      menuDiv.find(":hidden").removeClass("remainHidden");
                 }else{
-                    menuDiv.addClass("hidden");
+                    
+                    menuDiv.addClass("collapsed");
                     menuDiv.find(":hidden").addClass("remainHidden");
                     menuDiv.children("li").not(".nav-header").not(".divider").fadeOut(200);
                 }
@@ -188,7 +189,7 @@ var lbs = lbs || {
         $(".menu").addClass("nav nav-list")
         $(".expandable").each(function () {
              // if hidden by some reason, don't fuck with it.
-            if ($(this).hasClass("hidden")) { //should be hidden if class hidden  exists
+            if ($(this).hasClass("collapsed")) { //should be hidden if class hidden  exists
                 $(this).find(":hidden").addClass("remainHidden");
                 $(this).find(".nav-header").prepend("<i class='fa fa-angle-right'> </i>");
                 $(this).children("li").not(".nav-header").not(".divider").hide();
