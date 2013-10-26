@@ -1,31 +1,20 @@
 ﻿<!-- INFO HEADER  -->
 <div class="header-container green">
-    <div class="header-icon-container business"></div>
-    <div id="header-info">
-        <h2></h2>
-        <ul>
-            <li data-bind="text: business.company.text, limeLink: business.company, icon: 'icon-building'"></li>
-            <li data-bind="text: business.businesstatus.text, icon: 'icon-flag'"></li>
-            <li data-bind="text: business.businesstatus.text, vba: 'ActionPadTools.NewInspectorFromInspector, history', icon:'icon-pencil'">Ny historiknotering</li>
-        </ul>
-    </div>
-    tyrh
+    <div class="header-icon"></div> 
+        <ul class="info-links"> 
+            <li data-bind="text: business.company.text, limeLink: business.company, icon: 'fa-building'"></li>
+            <li data-bind="text: business.businesstatus.text, icon: 'fa-flag'"></li>
+            <li data-bind="text: business.businesstatus.text, vba: 'ActionPadTools.NewInspectorFromInspector, history', icon:'fa-pencil'"></li>
+        </ul> 
 </div>
 <!-- /INFO HEADER  -->
 
-<!-- ACTIONS   -->
-<div class="content-container">
-    <ul class="menu expandable">
-        <li class="nav-header"data-bind=" text:localize.Actionpad_Business.command"></li> 
-        <li class="divider"></li>
-        <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, todo', text:localize.Actionpad_Business.newtodo, icon: 'icon-calendar'"></li>
-        <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, history', text:localize.Actionpad_Business.newhistory, icon: 'icon-pencil'"></li>
-        <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, document', text:localize.Actionpad_Business.newdoc, icon: 'icon-file-text-alt'"></li>
-    </ul>
+<ul class="menu expandable">
+    <li class="nav-header"data-bind=" text:localize.Actionpad_Business.command"></li> 
+    <li class="divider"></li>
+    <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, todo', text:localize.Actionpad_Business.newtodo, icon: 'fa-calendar'"></li>
+    <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, history', text:localize.Actionpad_Business.newhistory, icon: 'fa-pencil'"></li>
+    <li data-bind="vba: 'ActionPadTools.NewInspectorFromInspector, document', text:localize.Actionpad_Business.newdoc, icon: 'fa-file-text'"></li>
+</ul>
 
-    <div data-app="{app:'checklist',config:{canBeUnchecked:true,allowRemove:true, canAddTask:true}}"></div>
-</div>
-
-
-
-<!-- /ACTIONS   -->
+<div data-app="{app:'checklist',config:{canBeUnchecked:true,allowRemove:true, canAddTask:true}}"></div>

@@ -1,59 +1,47 @@
 <!-- ko dataSources: [{type: 'record', source: 'ActionPadTools.GetCompanyContactData'}, { type: 'record', source: 'ActionPadTools.GetPersonContactData'}] -->
 <!-- /ko -->
 
-<body>
-    <!-- INFO HEADER  -->
-        <div class="header-container red">
-            <div class="header-icon-container helpdesk">
-                
-            </div>
-            <div id="header-info"> 
-                <h2 data-bind="text:helpdesk.helpdeskno.text"></h2>
-				
-					<ul>
-						<li data-bind="text:helpdesk.person.text, limeLink:helpdesk.person, icon:'icon-user'"></li>						
-                        <li data-bind="text:helpdesk.company.text, limeLink:helpdesk.company, icon:'icon-building'"></li>					
-						<li data-bind="text:person.phone.text, call:person.phone.text, icon:'icon-phone'"></li>
-						<li data-bind="text:person.mobilephone.text, call:person.phone.text, icon:'icon-mobile-phone'"></li>						
-						<li data-bind="text:company.phone.text, call:company.phone.text, icon:'icon-phone'"></li>	
-                    </ul> 
-				
-            </div>
-        </div>		
-		
-    <!-- /INFO HEADER  -->
-    <!-- ACTIONS   -->
-    <div class="content-container">
-      		
+ <!-- INFO HEADER  -->
+<div class="header-container red">
+    <div class="header-icon"></div>
+    <h2 data-bind="text:helpdesk.helpdeskno.text"></h2>
+	<ul class="info-links">
+		<li data-bind="text:helpdesk.person.text, limeLink:helpdesk.person, icon:'fa-user'"></li>						
+        <li data-bind="text:helpdesk.company.text, limeLink:helpdesk.company, icon:'fa-building'"></li>					
+		<li data-bind="text:person.phone.text, call:person.phone.text, icon:'fa-phone'"></li>
+		<li data-bind="text:person.mobilephone.text, call:person.phone.text, icon:'fa-mobile-phone'"></li>						
+		<li data-bind="text:company.phone.text, call:company.phone.text, icon:'fa-phone'"></li>	
+    </ul> 
+</div>		
+<!-- /INFO HEADER  -->
+     		
+<ul class="menu expandable">
+    <li class="nav-header"data-bind="text:localize.Actionpad_Helpdesk.command"></li> 
+    <li class="divider"></li>
+    <li data-bind="vbaVisible:'ActionPad_Helpdesk.HideLinks, take', vba:'ActionPad_Helpdesk.Take', text:localize.Actionpad_Helpdesk.takecase,   icon:'fa-pencil'"></li>
+	<li data-bind="vbaVisible:'ActionPad_Helpdesk.HideLinks, putback', vba:'ActionPad_Helpdesk.Putback', text:localize.Actionpad_Helpdesk.putbackcase, icon:'fa-pencil'"></li>
+	<li data-bind="vbaVisible:'ActionPad_Helpdesk.HideLinks, done', vba:'ActionPad_Helpdesk.Done', text:localize.Actionpad_Helpdesk.casedone, icon:'fa-pencil'"></li>
+	<li data-bind="vbaVisible:'ActionPad_Helpdesk.HideLinks, undo', vba:'ActionPad_Helpdesk.take', text:localize.Actionpad_Helpdesk.caseundone,  icon:'fa-pencil'"></li>
+</ul> 
+ 
 
-		<ul class="menu expandable">
-            <li class="nav-header"data-bind="text:localize.Actionpad_Helpdesk.command"></li> 
-            <li class="divider"></li>
-            <li data-bind="vbaVisible:'ActionPad_Helpdesk.HideLinks, take', vba:'ActionPad_Helpdesk.Take', text:localize.Actionpad_Helpdesk.takecase,   icon:'icon-pencil'"></li>
-			<li data-bind="vbaVisible:'ActionPad_Helpdesk.HideLinks, putback', vba:'ActionPad_Helpdesk.Putback', text:localize.Actionpad_Helpdesk.putbackcase, icon:'icon-pencil'"></li>
-			<li data-bind="vbaVisible:'ActionPad_Helpdesk.HideLinks, done', vba:'ActionPad_Helpdesk.Done', text:localize.Actionpad_Helpdesk.casedone, icon:'icon-pencil'"></li>
-			<li data-bind="vbaVisible:'ActionPad_Helpdesk.HideLinks, undo', vba:'ActionPad_Helpdesk.take', text:localize.Actionpad_Helpdesk.caseundone,  icon:'icon-pencil'"></li>
-		</ul> 
+<div class="btn-group">
+	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		<span data-bind="text:localize.Actionpad_Helpdesk.park, icon: 'fa-caret-down'"></span>
+	</a>
+	<ul class="dropdown-menu">
+		<li data-bind="vba:'ActionPad_Helpdesk.Park, 1, t_park_1_hour', text:localize.Actionpad_Helpdesk.pc1h"></li>
+		<li data-bind="vba:'ActionPad_Helpdesk.Park, 2, t_park_2_hour', text:localize.Actionpad_Helpdesk.pc2h "></li>
+		<li data-bind="vba:'ActionPad_Helpdesk.Park, 4, t_park_4_hours', text:localize.Actionpad_Helpdesk.pc4h"></li>
+		<li class="divider"></li>
+		<li data-bind="vba:'ActionPad_Helpdesk.Park, 8, t_park_1_day', text:localize.Actionpad_Helpdesk.pc1d"></li>
+		<li data-bind="vba: 'ActionPad_Helpdesk.Park, 16, t_park_2_day', text:localize.Actionpad_Helpdesk.pc2d"></li>
+		<li data-bind="vba: 'ActionPad_Helpdesk.Park, 40, t_park_5_day', text:localize.Actionpad_Helpdesk.pc5d"></li>
+		<li class="divider"></li>
+		<li data-bind="vba:'ActionPad_Helpdesk.Park, 1, t_park_searched', text:localize.Actionpad_Helpdesk.notthere"></li>
+		<li data-bind="vba:'ActionPad_Helpdesk.Park, 4, t_park_searched_mes', text:localize.Actionpad_Helpdesk.nottheremsg"></li>
+	</ul>
+</div>
 		 
-		 
-		<div class="btn-group">
-			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-				<span data-bind="text:localize.Actionpad_Helpdesk.park, icon: 'icon-caret-down'"></span>
-			</a>
-			<ul class="dropdown-menu">
-				<li data-bind="vba:'ActionPad_Helpdesk.Park, 1, t_park_1_hour', text:localize.Actionpad_Helpdesk.pc1h"></li>
-				<li data-bind="vba:'ActionPad_Helpdesk.Park, 2, t_park_2_hour', text:localize.Actionpad_Helpdesk.pc2h "></li>
-				<li data-bind="vba:'ActionPad_Helpdesk.Park, 4, t_park_4_hours', text:localize.Actionpad_Helpdesk.pc4h"></li>
-				<li class="divider"></li>
-				<li data-bind="vba:'ActionPad_Helpdesk.Park, 8, t_park_1_day', text:localize.Actionpad_Helpdesk.pc1d"></li>
-				<li data-bind="vba: 'ActionPad_Helpdesk.Park, 16, t_park_2_day', text:localize.Actionpad_Helpdesk.pc2d"></li>
-				<li data-bind="vba: 'ActionPad_Helpdesk.Park, 40, t_park_5_day', text:localize.Actionpad_Helpdesk.pc5d"></li>
-				<li class="divider"></li>
-				<li data-bind="vba:'ActionPad_Helpdesk.Park, 1, t_park_searched', text:localize.Actionpad_Helpdesk.notthere"></li>
-				<li data-bind="vba:'ActionPad_Helpdesk.Park, 4, t_park_searched_mes', text:localize.Actionpad_Helpdesk.nottheremsg"></li>
-			</ul>
-			
-		</div>
-		 
-    </div>
+
 
