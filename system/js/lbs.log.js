@@ -117,20 +117,20 @@ lbs.log.vmFactory = function () {
         rowclass = 'alert-info';
         switch (lev) {
             case 'DEBUG':
-                ico = 'icon-comment-alt';
+                ico = 'fa fa-cog';
                 rowclass = 'alert-warning';
                 break;
             case 'INFO':
-                ico = 'icon-info-sign';
+                ico = 'fa fa-info-circle';
                 rowclass = 'alert-info';
                 break;
             case 'WARN':
-                ico = 'icon-warning-sign';
-                rowclass = 'alert-danger';
+                ico = 'fa fa-warning';
+                rowclass = 'alert-warning';
                 break;
             case 'ERROR':
-                icon = 'icon-remove';
-                rowclass = 'alert-error';
+                ico = 'fa fa-times-circle';
+                rowclass = 'alert-danger';
                 this.enabled(true);
                 break;
         }

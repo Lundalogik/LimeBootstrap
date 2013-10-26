@@ -16,7 +16,7 @@
 <!-- /INFO HEADER  -->
 
 <!-- Shows an warning if late -->
-<div class="alert alert-error" data-bind="
+<div class="alert alert-danger" data-bind="
     visible: todo.endtime.value !== null && (moment(todo.endtime.value) < moment() && todo.done.value != 1),
     text: 'Uppgiften är ' + (todo.endtime.value != null ? moment(todo.endtime.value).fromNow(true) : '' )+ ' försenad!', 
     icon:'fa-bell'" >

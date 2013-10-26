@@ -441,7 +441,7 @@ Debug
 #debugConsole {
     padding:0px;
 }
-#debugConsole .nav-header {
+#debugConsole .menu-header {
     list-style:none;
     background-color:#FF0000;
     color:#FFF;
