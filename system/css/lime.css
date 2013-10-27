@@ -141,12 +141,12 @@ BUTTONS**
 
 .btn {
     background-image:none;
-    background-color:#F1F6FF;
+    background-color:inherit;
     box-shadow:none;
-     color: #6985B7;
-    font-size: 11px;
+     color: inherit;
+    font-size: 13px;
     font-weight: lighter;
-    border:1px solid #F1F6FF;
+    border:1px solid inherit;
     padding-left:5px;
 }
 
@@ -429,11 +429,56 @@ CONTENT
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5');
 }
 
-
 .alert{
     margin-top: 10px;
     border-radius: 0;
 }
+
+/*******************
+SKIN
+*******************/
+
+.britney{
+    background-color: #FCECFF;
+}
+
+.britney >.content-container{
+    background-color: #FDF6FF;
+    color:#645082;
+}
+.britney .content-container .menu li{
+    color:#645082 ; 
+}
+
+.britney .content-container .menu .divider{
+    background-color:#E3CEFC ; 
+}
+
+.britney .content-container .menu li:not(.menu-header):not(.divider):hover{
+    background-color:#E3CEFC ; 
+}
+
+
+.silver{
+    background-color: #E8EAED;
+}
+
+.silver >.content-container{
+    background-color: #F4F4F4;
+    color:#545B68;
+}
+.silver .content-container .menu li{
+    color:#545B68 ; 
+}
+
+.silver .content-container .menu .divider{
+    background-color:#D8D8D8 ; 
+}
+
+.silver .content-container .menu li:not(.menu-header):not(.divider):hover{
+    background-color:#D8D8D8 ; 
+}
+
 
 /*******************
 Debug

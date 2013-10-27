@@ -55,6 +55,9 @@ var lbs = lbs || {
         //get Server and Database
         this.setActiveDBandServer();
 
+        //set Skin
+        this.setSkin();
+
         //set moment language
         moment.lang(lbs.common.executeVba('Localize.GetLanguage'));
         
@@ -149,6 +152,27 @@ var lbs = lbs || {
         }
         catch (e) {
             lbs.log.warn("Could not set active server and database");
+
+        }        
+    },
+
+        /**
+    Find database and server
+    */
+    setSkin: function () {
+       
+        try {
+            var skin = lbs.common.executeVba("ActionPadTools.GetSkin");
+            if(skin == 1){
+                lbs.log.info("Silver skin is used");
+                $("body").addClass("silver")
+            }else if(skin == 2){
+                lbs.log.info("Yay! Britney skin is used");
+                $("body").addClass("britney")
+            }
+        }
+        catch (e) {
+            lbs.log.warn("Could not set the skin");
 
         }        
     },
