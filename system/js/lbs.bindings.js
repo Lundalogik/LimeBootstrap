@@ -232,6 +232,20 @@ ko.bindingHandlers.dataSources = {
 };
 ko.virtualElements.allowedBindings.dataSources = true;
 
+/**
+Safe text binding, failes to empty string
+*/
+ko.bindingHandlers.safeText = {
+  update: function(element, valueAccessor, allBindingsAccessor) {
+    var options = ko.utils.unwrapObservable(valueAccessor()),
+    value = ko.utils.unwrapObservable(options.value),
+    property = ko.utils.unwrapObservable(options.property),
+    fallback = ko.utils.unwrapObservable(options.default) || "",
+    text;
 
+    text = value ? (options.property ? value[property] : value) : fallback;
 
+    ko.bindingHandlers.text.update(element, function() { return text; });
+    }
+};
 

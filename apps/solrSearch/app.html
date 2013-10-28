@@ -1,0 +1,46 @@
+
+
+<div class="well">
+
+  <input type="text" placeholder="Sök" class="form-control" name="searchbox" id="searchbox" data-bind="value: query,event: {keypress: searchKeyboardCmd}" type="text" />
+
+ 
+<div class="btn-toolbar" style="margin: 0;">
+	<div class="btn-group btn-group-sm" data-bind="foreach: filterClasses">
+	  <button type="button" class="btn" data-bind="text: name, attr: { 'class': activeClass }, click: toggle "></button>
+	</div>
+</div>
+
+<table class="table table-striped">
+ 	<thead>
+	<tr>
+		<td data-bind="text: 'id'"></td>
+		<td data-bind="text: 'classname'"></td>
+		<td data-bind="text: 'idrecord'"></td>
+		<td data-bind="text: 'title'"></td>
+	</tr>
+	</thead>
+	<tbody data-bind="foreach: results">
+	<tr >
+		<td data-bind="text: id"></td>
+		<td data-bind="safeText: ldeclass"></td>
+		<td data-bind="text: idrecord"></td>
+		<td data-bind="text: title"></td>
+	</tr>
+	</tbody>
+</table>
+<!-- 
+<ul class="pagination">
+	<li><a href="#">«</a></li>
+	<li><a href="#">1</a></li>
+	<li><a href="#">»</a></li>
+</ul> -->
+
+<!-- <ul class="pager" >
+  <li><a href="#">Previous</a></li>
+  <li><a href="#">Next</a></li>
+  <li><a href="#">Show all</a></li>
+</ul>
+ -->
+
+</div>
