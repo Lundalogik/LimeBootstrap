@@ -57,7 +57,7 @@
 
                 //merge instance with app config
                 if (instanceConfig) {
-                    instance.config = lbs.common.mergeOptions(instance.config, instanceConfig);
+                    instance.config = lbs.common.mergeOptions(instance.config, instanceConfig, true);
                 }
                 
                 
@@ -133,7 +133,6 @@
 
             //apply bindings
             try {
-                console.log(vm)
                 lbs.log.debug('App ' + appName + ' ViewModel: ' + JSON.stringify(ko.toJS(vm)));
                 ko.applyBindings(vm, htmlNode.get(0));
             } catch (e) {
