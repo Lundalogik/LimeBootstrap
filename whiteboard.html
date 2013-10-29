@@ -1,30 +1,24 @@
 ﻿<!-- INFO HEADER  -->
     <div class="header-container darkgrey">
-        <div class="header-icon-container whiteboard">
-            
-        </div>
-        <div id="header-info"> 
-             <h2 data-bind="text:'Whiteboard'"></h2>
-			
-                <ul >			
-					<li data-bind="text:whiteboard.coworkercreatedby.text, limeLink:whiteboard.coworkercreatedby, icon:'icon-user'"></li>
-					<li data-bind="text:whiteboard.whiteboardstatus.text, icon:'icon-flag'"></li>
-                </ul> 
+        <div class="header-icon">  </div>
+        <h2 data-bind="text:'Whiteboard'"></h2>  
+        <ul class="info-links">			
+			<li data-bind="text:whiteboard.coworkercreatedby.text, limeLink:whiteboard.coworkercreatedby, icon:'icon-user'"></li>
+			<li data-bind="text:whiteboard.whiteboardstatus.text, icon:'icon-flag'"></li>
+        </ul> 
         </div>
     </div>
 <!-- /INFO HEADER  -->
-<!-- ACTIONS   -->
-<div class="content-container">
-  		
-    <ul class="menu expandable">
-         <li class="nav-header"data-bind=" text:localize.Actionpad_Whiteboard.command"></li> 
-         <li class="divider"></li>
-		 <li data-bind="vba:'Actionpad_Whiteboard.TakeOwnership', text:localize.Actionpad_Whiteboard.starttask, icon:'icon-calendar'"></li>
-		 <li data-bind="vba:'Actionpad_Whiteboard.setDone', text:localize.Actionpad_Whiteboard.taskcompleted, icon:'icon-thumbs-up'"></li>
-		 <li data-bind="vba:'Actionpad_Whiteboard.Deny', text:localize.Actionpad_Whiteboard.denytask, icon:'icon-thumbs-down'"></li>
-		 <li data-bind="vba:'Actionpad_Whiteboard.Postpone', text:localize.Actionpad_Whiteboard.moreinfo, icon:'icon-info-sign'"></li>
-     </ul>
+<!-- ACTIONS   -->		
+<ul class="menu expandable">
+     <li class="nav-header"data-bind=" text:localize.Actionpad_Whiteboard.command"></li> 
+     <li class="divider"></li>
+	 <li data-bind="vba:'Actionpad_Whiteboard.TakeOwnership', text:localize.Actionpad_Whiteboard.starttask, icon:'icon-calendar'"></li>
+	 <li data-bind="vba:'Actionpad_Whiteboard.setDone', text:localize.Actionpad_Whiteboard.taskcompleted, icon:'icon-thumbs-up'"></li>
+	 <li data-bind="vba:'Actionpad_Whiteboard.Deny', text:localize.Actionpad_Whiteboard.denytask, icon:'icon-thumbs-down'"></li>
+	 <li data-bind="vba:'Actionpad_Whiteboard.Postpone', text:localize.Actionpad_Whiteboard.moreinfo, icon:'icon-info-sign'"></li>
+ </ul>
 
-</div>
+<!-- ACTIONS   -->  
 	
  
