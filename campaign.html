@@ -1,34 +1,21 @@
 ﻿
 <!-- INFO HEADER  -->
     <div class="header-container purple">
-        <div class="header-icon-container campaign">
-                
-        </div>
-        <div id="header-info"> 
-            <h2 data-bind="text:campaign.name.text"></h2>
-				
-                <ul >			
-					<li data-bind="text:campaign.coworker.text, limeLink: campaign.coworker, icon: 'icon-user'"> </li>
-                   	<li data-bind="text:campaign.campaignstatus.text, icon: 'icon-flag'"> </li>
-                   
-                </ul> 
-        </div>
+        <div class="header-icon"></div>              
+         <h2 data-bind="text:campaign.name.text"></h2>
+            <ul class="info-links">			
+				<li data-bind="text:campaign.coworker.text, limeLink: campaign.coworker, icon: 'icon-user'"> </li>
+               	<li data-bind="text:campaign.campaignstatus.text, icon: 'icon-flag'"> </li>               
+            </ul>         
     </div>
 <!-- /INFO HEADER  -->
 
 <!-- ACTIONS   -->
-<div class="content-container">
 
-	<ul class="menu expandable">
-		<li class="nav-header"data-bind=" text:localize.Actionpad_Campaign.command"></li>  
-		<li class="divider"></li>
-		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, todo',  text:localize.Actionpad_Campaign.newtodo, icon:'icon-calendar'"></li>
-		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, history', text:localize.Actionpad_Campaign.newhistory, icon:'icon-pencil'"></li>
-		<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, document', text:localize.Actionpad_Campaign.newdoc, icon:'icon-file-text-alt'"></li>
-       
-    </ul>
-		
-		
-        <div class="limegraph" id="limegraph-pie"></div>
-            
-</div>
+<ul class="menu expandable">
+	<li class="nav-header"data-bind=" text:localize.Actionpad_Campaign.command"></li>  
+	<li class="divider"></li>
+	<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, todo',  text:localize.Actionpad_Campaign.newtodo, icon:'icon-calendar'"></li>
+	<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, history', text:localize.Actionpad_Campaign.newhistory, icon:'icon-pencil'"></li>
+	<li data-bind="vba:'ActionPadTools.NewInspectorFromInspector, document', text:localize.Actionpad_Campaign.newdoc, icon:'icon-file-text-alt'"></li>   
+</ul>	
