@@ -1,21 +1,18 @@
 ﻿
 <!-- INFO HEADER  -->
     <div class="header-container blue">
-        <div class="header-icon-container company">		
-        </div>
-        <div id="header-info"> 
-            <h2 data-bind="text:company.name.text"></h2>
-                <ul >
-                    <li data-bind="text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: 'icon-map-marker'"> </li>
-                    <li data-bind="text:company.phone.text, call: company.phone.text, icon: 'icon-phone'"></li>
-                    <li data-bind="text:company.www.text, openURL: company.www.text, icon: 'icon-globe'"></li>
-                </ul> 
-        </div>
+        <div class="header-icon">	</div>	
+        <h2 data-bind="text:company.name.text"></h2>
+        <ul class="info-links">
+            <li data-bind="text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: 'icon-map-marker'"> </li>
+            <li data-bind="text:company.phone.text, call: company.phone.text, icon: 'icon-phone'"></li>
+            <li data-bind="text:company.www.text, openURL: company.www.text, icon: 'icon-globe'"></li>
+        </ul>      
     </div>
 <!-- /INFO HEADER  -->
+
 <!-- ACTIONS   -->
-<div class="content-container">
-      		
+    		
     <ul class="menu expandable">
             <li class="nav-header"data-bind=" text:localize.Actionpad_Company.historyheader"></li>  
             <li class="divider"></li>
@@ -25,6 +22,6 @@
             <li data-bind="vba:'ActionPad_Company.NewHistory, noanswer', text:localize.Actionpad_Company.noanswer, icon:'icon-pencil'"></li>        
     </ul>
 
-</div>
+
 	
 
