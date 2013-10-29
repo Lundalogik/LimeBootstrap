@@ -44,6 +44,10 @@ solrClient.viewModel = function(){
 	self.start.subscribe(function(newValue) {self.getData();});
 	self.activeQueryFilter.subscribe(function(newValue) {self.getData();});
 	
+	self.openRecord = function(record){
+		lbs.common.executeVba("shell," + lbs.common.createLimeLink(record.ldeclass, record.idrecord));
+	}
+
 	self.getData = function(){
 
 		$.ajax({ 

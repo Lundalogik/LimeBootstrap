@@ -73,14 +73,15 @@ lbs.loader = {
                     lbs.log.info('Script "' + filename + '" loaded successfully');
               })
               .fail(function( jqxhr, settings, exception ) {
-                    throw new Error('Script "' + filename + '" could not be loaded');
+                    throw exception;
+                    //throw new Error('Script "' + filename + '" could not be loaded');
             });
 
             retval = true;
 
         } catch (e) {
            try{
-                lbs.log.warn('Script "' + filename + '" could not be loaded, using fallback loading through LWS');
+                lbs.log.info('Script "' + filename + '" could not be loaded, using fallback loading through LWS');
                 var s = ""
                 s = lbs.common.executeVba("LBSHelper.loadHTTPResource," + filename);
                 if (s && s !== "") {
@@ -90,10 +91,11 @@ lbs.loader = {
                     lbs.log.info('Script "' + filename + '" loaded successfully');
                     retval = true;
                 } else {
-                    throw new Error('Script "' + filename + '" could not be loaded');
+                    throw new Error('Script "' + filename + '" returned empty');
                 }
             }catch(e2){
-                lbs.log.error('Script "' + filename + '" could not be loaded');
+                lbs.log.error('Script "' + filename + '" could not be loaded though browser',e);
+                lbs.log.error('Script "' + filename + '" could not be loaded through LWS',e2);
                 retval = false;
             }
         }

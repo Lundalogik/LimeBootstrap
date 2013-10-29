@@ -19,7 +19,7 @@ lbs.apploader.register('solrSearch', function () {
 
         var vm = new solrClient.viewModel();
         vm.endpoint = self.config.endpoint;
-        vm.query("doc");
+        vm.query("*");
 
         return vm;
     }
