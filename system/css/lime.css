@@ -22,16 +22,16 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+/*
 a {
     color: white;
-}
+}*/
 
- a:hover {
+/* a:hover {
         text-decoration: none;
         color: white;
         cursor: default;
- }
+ }*/
 
 ul {
     padding: 0;
@@ -52,7 +52,7 @@ Added CSS for menu**
 
 .menu {
 
-margin-bottom: 0;
+margin: 10px -10px 0 -10px;
 padding-top: 10px;
 padding-left: 0;
 padding-right: 0;
@@ -61,11 +61,10 @@ padding-bottom: 10px;
  
 
 .menu .menu-header {
-  margin-left: -15px;
-  margin-right: -15px;
+  margin-left: -5px;
+  margin-right: -5px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
 }
- 
 
 .menu [class^="icon-"],
 .menu [class*=" icon-"] {
@@ -83,17 +82,7 @@ padding-bottom: 10px;
     margin-bottom: 3px;
 
 }
- 
-.menu-header {
-  display: block;
-  padding: 3px 15px;
-  font-size: 11px;
-  font-weight: bold;
-  line-height: 1.428571429;
-  color: #999;
-  text-shadow: 0 1px 0 rgba(255,255,255,.5);
-  text-transform: uppercase;
-}
+
 // Space them out when they follow another list item (link)
 .menu li + .menu-header {
   margin-top: 9px;
@@ -105,11 +94,22 @@ padding-bottom: 10px;
     cursor: default;
 }
 
+/*.menu-header {
+  display: block;
+  padding: 3px 15px 3px 25px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1.428571429;
+  color: #999;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  text-transform: uppercase;
+}*/
+
 .menu-header {
     text-transform: none;
     color: #425899;
     font-weight: lighter;
-    padding: 3px 15px 0;
+    padding: 3px 15px 0 3px;
     font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
@@ -138,31 +138,60 @@ padding-bottom: 10px;
 BUTTONS**
 ********/
 
-
-.btn {
-    background-image:none;
+.btn-lime {
+   background-image:none;
     background-color:inherit;
     box-shadow:none;
-     color: inherit;
+    color: inherit;
     font-size: 13px;
     font-weight: lighter;
-    border:1px solid inherit;
+    border:1px solid #CCE0FF;
     padding-left:5px;
 }
 
-.btn:hover {
+.btn-lime:hover{
     color: #6985B7;
     background-image:none;
     background-color:#CCE0FF;
-    border: 1px solid #81A9E1; 
+    border: 1px solid #81A9E1;
 }
 
-.btn:active {
+.btn-lime:focus,
+.btn-lime:active,
+.btn-lime.active,
+.open .dropdown-toggle.btn-lime {
+   color: #8fa6cf;
+    background-image:none;
+    background-color:#ADD1FF;
+    border: 1px solid #81A9E1;
+}
+
+.btn-lime:active,
+.btn-lime.active,
+.open .dropdown-toggle.btn-lime {
     color: #8fa6cf;
     background-image:none;
     background-color:#ADD1FF;
     border: 1px solid #81A9E1;
-    
+}
+
+.btn-lime.disabled,
+.btn-lime[disabled],
+fieldset[disabled] .btn-warning,
+.btn-lime.disabled:hover,
+.btn-lime[disabled]:hover,
+fieldset[disabled] .btn-warning:hover,
+.btn-lime.disabled:focus,
+.btn-lime[disabled]:focus,
+fieldset[disabled] .btn-warning:focus,
+.btn-lime.disabled:active,
+.btn-lime[disabled]:active,
+fieldset[disabled] .btn-warning:active,
+.btn-lime.disabled.active,
+.btn-lime[disabled].active,
+fieldset[disabled] .btn-lime.active {
+  background-color: #81A9E1;
+  border: #CCE0FF;
 }
 
 .btn-group.open .btn.dropdown-toggle {
@@ -172,12 +201,8 @@ BUTTONS**
     color: #8fa6cf;
 }
 
-.btn-group {
-    padding: 15px 0 0 10px;
-}
-
 .dropdown-menu {
-    margin: 0px 0 0 10px;
+    margin: 0px 0 0 0px;
     width: 120%;
     min-width:60%;
 }
@@ -185,7 +210,7 @@ BUTTONS**
 .dropdown-menu li {
     padding-left: 10px;
     cursor: default;
-     font-size: 12px;
+    font-size: 12px;
 }
 
 .dropdown-menu .divider {
@@ -346,7 +371,7 @@ HEADER
     z-index: 10;
     padding: 30px 0 15px 0;
     cursor:default;
-    margin: -10px -10px 10px 0px;
+    margin: -10px -20px 10px -20px;
     /*border-bottom: 1px solid #2469C3*/
 }
 
@@ -388,7 +413,7 @@ HEADER
 .header-container h2 {
     font-size: 18px;
     letter-spacing: -3;
-    margin: 0;
+    margin: 0 0 5px 0;
     padding: 0 0 0 10px;
     font-weight: lighter;
     white-space: nowrap;
@@ -419,6 +444,8 @@ CONTENT
 .content-container {
     position: relative;
     padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 10px;
     background-color: #F1F6FF;
     height: 100%;
     margin-right: 10px;
@@ -430,7 +457,7 @@ CONTENT
 }
 
 .alert{
-    margin-top: 10px;
+    margin: 10px -10px 10px -20px;
     border-radius: 0;
 }
 
@@ -485,11 +512,13 @@ Debug
 *******************/
 #debugConsole {
     padding:0px;
+    margin: 0 0 0 0;
 }
 #debugConsole .menu-header {
     list-style:none;
     background-color:#FF0000;
     color:#FFF;
+
 }
 
 #console {

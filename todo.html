@@ -16,14 +16,14 @@
 	
 <!-- /INFO HEADER  -->
 <!-- ACTIONS   -->
-	<div class="alert alert-error" data-bind="
+	<div class="alert alert-warning fullwidth" data-bind="
     visible: todo.endtime.value !== null && (moment(todo.endtime.value) < moment() && todo.done.value != 1),
     text: 'Uppgiften är ' + (todo.endtime.value != null ? moment(todo.endtime.value).fromNow(true) : '' )+ ' försenad!', 
     icon:'icon-bell'" >
 </div>
 
 <ul class="menu expandable">
-     <li class="nav-header"data-bind=" text:localize.Actionpad_Todo.command"></li>
+     <li class="menu-header"data-bind=" text:localize.Actionpad_Todo.command"></li>
      <li class="divider"></li>
      <li data-bind="vba:'Actionpad_Todo.SetDone', text:localize.Actionpad_Todo.check, icon:'icon-check'"></li>
      <li data-bind="vba:'Actionpad_Todo.SetDone, true, false', text:localize.Actionpad_Todo.checktodo, icon:'icon-calendar'"></li>
@@ -32,7 +32,7 @@
  </ul> 
  
 <div class="btn-group">
-	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" data-bind=" text:localize.Actionpad_Todo.headermoveforward, icon: 'icon-caret-down'"></a>
+	<a class="btn btn-lime dropdown-toggle" data-toggle="dropdown" href="#" data-bind=" text:localize.Actionpad_Todo.headermoveforward, icon: 'icon-caret-down'"></a>
 	<ul class="dropdown-menu">
 		<li data-bind="vba:'ActionPad_todo.Postpone, d, 1', text:localize.Actionpad_Todo.mf1d"></li>
 	    <li class="divider"></li>
@@ -46,5 +46,4 @@
 	</ul>
 </div>		 
 
-<!-- /ACTIONS  -->
-   
+
