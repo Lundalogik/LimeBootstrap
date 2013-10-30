@@ -159,6 +159,50 @@ lbs.common = {
             return v.toString(16);
         })
     },
+
+    /*
+        Returns the version in a comparable format.
+    */
+    parseVersion: function(inputString) {
+        var nMajor = 0;
+        var nMinor = 0;
+        var nBuild = 0;
+        var iMajor = 0;
+        var iMinor = 0;
+        var iBuild = 0;
+        var nIndex = 0;
+
+    
+        strVersion = inputString.split(".");
+
+        for (nIndex = 0; nIndex < strVersion.length && nIndex < 3; nIndex++) {
+            if (!isNaN(strVersion[nIndex])) {
+                if (nIndex == 0){
+                    iMajor = parseInt(strVersion[nIndex]);
+                    nMajor = iMajor * 10000;
+                }
+                else if (nIndex == 1){
+                    iMinor = parseInt(strVersion[nIndex]);
+                    nMinor = iMinor * 1000;
+                }
+                else if (nIndex == 2){
+                    iBuild = parseInt(strVersion[nIndex]);
+                    nBuild = iBuild;
+                }
+            }
+            else {
+                lbs.log.error("Could not parse lime version number '{0}'".format(inputString));
+            }
+        }
+
+        return {
+                "comparable": nMajor + nMinor + nBuild,
+                "full": "{0}.{1}.{2}".format(iMajor,iMinor,iBuild),
+                "major": iMajor,
+                "nMinor":iMinor,
+                "build": iBuild
+            };
+    },
     
 }
 

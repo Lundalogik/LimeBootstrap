@@ -12,6 +12,7 @@ var lbs = lbs || {
     */
     "debug": false,
     "limeDataConnection": window.external,
+    "limeVersion" : {},
     "hasLimeConnection": true,
     "activeClass": "",
     "activeDatabase": "",
@@ -108,7 +109,13 @@ var lbs = lbs || {
        
         //check connection to Lime
         this.hasLimeConnection = (typeof lbs.limeDataConnection.Application != 'undefined');
+
+        //getVersion
+        this.limeVersion =  lbs.hasLimeConnection ? 
+            lbs.common.parseVersion(lbs.limeDataConnection.Version) : lbs.common.parseVersion("0.0.0")
     },
+
+
 
     /**
     Find debug flags

@@ -1,25 +1,24 @@
-﻿
+﻿ <!-- ACTIONS   -->
+	<ul class="menu expandable">
+		<li class="nav-header"data-bind="text:localize.Actionpad_Index.links"></li> 
+        <li class="divider"></li>		
+		<li data-bind="openURL: 'www.lundalogik.se', text:localize.Actionpad_Index.llhomepage, icon:'icon-building'"></li>
+        <li data-bind="openURL: 'http://www.lundalogik.se/support/', icon: 'icon-home'">LLAB Intranet</li>
+		<li data-bind="openURL: 'http://www.lundalogik.se/support/', icon:'icon-heart'">Lundalogik Support</li>     
+	</ul>
 
-<ul class="menu expandable">
-	<li class="menu-header"data-bind="text:localize.Actionpad_Index.links"></li> 
-    <li class="divider"></li>		
-	<li data-bind="openURL: 'www.lundalogik.se', text:localize.Actionpad_Index.llhomepage, icon:'fa-building'"></li>
-    <li data-bind="openURL: 'http://www.lundalogik.se/support/', icon: 'fa-home'">LLAB Intranet</li>
-	<li data-bind="openURL: 'http://www.lundalogik.se/support/', icon:'fa-heart'">Lundalogik Support</li>     
-</ul>
-
-<ul class="menu expandable">
-	<li class="menu-header"data-bind="text:'Data'"></li> 
-    <li class="divider"></li>		
-	<li data-bind="appInvoke: 'textfileimport', text: 'Importera textfil', icon:'fa-file'"></li>   
-	<li data-bind="appInvoke: 'mergedoubles', text: 'Dubblettsammanslagning', icon:'fa-signin'"></li>
-</ul>
+	<ul class="menu expandable">
+		<li class="nav-header"data-bind="text:'Data'"></li> 
+        <li class="divider"></li>		
+		<li data-bind="appInvoke: 'textfileimport', text: 'Importera textfil', icon:'icon-file'"></li>   
+		<li data-bind="appInvoke: 'mergedoubles', text: 'Dubblettsammanslagning', icon:'icon-signin'"></li>
+	</ul>
 
 
-<ul class="menu expandable">
-        <li class="menu-header">LIME BI Dashboard</li> 
-        <li class="divider"></li>			  
-        <li data-bind="vba: 'ActionPadTools.OpenDocument',  text:localize.Actionpad_Index.openlimebi, icon:'fa-dashboard'"></li>
-        <li data-bind="vba: 'ActionPadTools.ClosePane',  text:localize.Actionpad_Index.closelimebi, icon:'fa-dashboard'"></li>
-</ul>
+	<ul class="menu expandable">
+            <li class="nav-header">LIME BI Dashboard</li> 
+            <li class="divider"></li>			  
+            <li data-bind="vba: 'ActionPadTools.OpenDocument',  text:localize.Actionpad_Index.openlimebi, icon:'icon-dashboard'"></li>
+            <li data-bind="vba: 'ActionPadTools.ClosePane',  text:localize.Actionpad_Index.closelimebi, icon:'icon-dashboard'"></li>
+	</ul>
 
