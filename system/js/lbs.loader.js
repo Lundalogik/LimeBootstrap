@@ -326,6 +326,26 @@ lbs.loader = {
         return r;
     },
 
+     /**
+    Transform a VBA records to JSON
+    */
+    "recordsToJSON": function (rc, alias) {
+
+        var className = rc.Class.Name
+        var nbrOfRecords = rc.Count;
+        var alias = alias ? alias : className;
+        var json = {};
+
+        json[alias] = {};
+        json[alias]['records'] = [];
+        for (var i = 1; i <= nbrOfRecords; i++) {
+            var record = lbs.loader.recordToJSON(rc.Item(i),'r');
+            json[alias]['records'].push(record.r);
+
+        }
+        return json;
+    },
+
     /**
     Transform a VBA record to JSON
     */
@@ -348,8 +368,12 @@ lbs.loader = {
             if (record.Fields(i).Type == 16) { //Relation
                 json[alias][attr]['class'] = record.Fields(i).LinkedField.Class.Name;
             }
-            if (record.Fields(i).Type == (19 || 18)) { //Option or Set
-                json[alias][attr]['key'] = record.GetOptionKey(i);
+
+            //check if optionkey support
+            if(lbs.limeVersion.comparable > lbs.common.parseVersion('10.8').comparable){
+                if (record.Fields(i).Type == (19 || 18)) { //Option or Set
+                    json[alias][attr]['key'] = record.GetOptionKey(i);
+                }
             }
 
         }
@@ -375,10 +399,13 @@ lbs.loader = {
             if (controls(i).Field.Type == 16) { //Relation
                 json[alias][attr]['class'] = controls(i).Field.LinkedField.Class.Name;
             }
-            if (controls(i).Field.Type == (19 || 18)) { //Option or Set
-                json[alias][attr]['key'] = controls(i).OptionKey;
-            }
 
+            //check if optionkey support
+            if(lbs.limeVersion.comparable > lbs.common.parseVersion('10.8')){
+                if (controls(i).Field.Type == (19 || 18)) { //Option or Set
+                    json[alias][attr]['key'] = controls(i).OptionKey;
+                }
+            }
         }
         return json;
 
