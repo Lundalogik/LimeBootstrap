@@ -1,6 +1,5 @@
 ﻿<!-- ko dataSources: [{ type: 'record', source: 'ActionPadTools.GetPersonContactData' },{type:'record', source:'ActionPadTools.GetCompanyContactData'}] --><!-- /ko -->
 
-<!-- INFO HEADER  -->
 <div class="header-container orange">
     <div class="header-icon"></div>
     <h2 data-bind="text: todo.subject.text"></h2> 
@@ -14,9 +13,7 @@
     </div>
 </div>		
 	
-<!-- /INFO HEADER  -->
-<!-- ACTIONS   -->
-	<div class="alert alert-warning fullwidth" data-bind="
+<div class="alert alert-warning fullwidth" data-bind="
     visible: todo.endtime.value !== null && (moment(todo.endtime.value) < moment() && todo.done.value != 1),
     text: 'Uppgiften är ' + (todo.endtime.value != null ? moment(todo.endtime.value).fromNow(true) : '' )+ ' försenad!', 
     icon:'icon-bell'" >
