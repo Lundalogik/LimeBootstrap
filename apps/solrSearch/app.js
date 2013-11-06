@@ -4,8 +4,7 @@ lbs.apploader.register('solrSearch', function () {
     //config
     this.config = {
         dataSources: [
-        	//{type: 'records', source: 'Globals.testrecords',alias: 'rcsource'}
-            // {type: 'record', source: 'Globals.testrecord',alias: 'rcsource'}
+        	
         ],
         resources: {
             scripts: ['solrClient.js'],

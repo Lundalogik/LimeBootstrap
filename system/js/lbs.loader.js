@@ -194,7 +194,7 @@ lbs.loader = {
             switch (dataSource.type) {
                 case 'activeInspector':
                     try {
-                        data = lbs.loader.controlsToJSON(lbs.limeDataConnection.ActiveControls,dataSource.alias,dataSource.alias);
+                        data = lbs.loader.controlsToJSON(lbs.limeDataConnection.ActiveControls,dataSource.alias);
                         
                         //find data without alias
                         dataNode = data[Object.keys(data)[0]];
@@ -203,11 +203,11 @@ lbs.loader = {
                             $.each(dataSource.relatedRecords,function(i, rs){
                                 if(dataNode.hasOwnProperty(rs.source)){
                                    
-                                    //fetch class and id from inspector
-                                    rs.class = dataNode[rs.source].class;
-                                    rs.idrecord = dataNode[rs.source].value;
+                                    //fetch class and id from inspector JSON object
+                                    rs['class'] = dataNode[rs.source]['class'];
+                                    rs['idrecord'] = dataNode[rs.source]['value'];
 
-                                    //add as subkey to inspector if no alias is specified
+                                    //add data as subkey to inspector relation if no alias is specified, otherwise as its own node
                                     vmToAdd = rs.alias ? vm : dataNode;
 
                                     //set alias to fieldname if does not exist
@@ -280,7 +280,7 @@ lbs.loader = {
                     break;
                 case 'relatedRecord':
                      try {
-                        record = lbs.common.executeVba("lbsHelper.loadRelatedRecord, {0}, {1}".format(dataSource.class, dataSource.idrecord));
+                        record = lbs.common.executeVba("lbsHelper.loadRelatedRecord, {0}, {1}".format(dataSource['class'], dataSource['idrecord']));
                         data = lbs.loader.recordToJSON(record, dataSource.alias);
                     } catch (e) {
                         lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
@@ -331,7 +331,7 @@ lbs.loader = {
     */
     "recordsToJSON": function (rc, alias) {
 
-        var className = rc.Class.Name
+        var className = rc['Class']['Name']
         var nbrOfRecords = rc.Count;
         var alias = alias ? alias : className;
         var json = {};
@@ -351,7 +351,7 @@ lbs.loader = {
     */
     "recordToJSON": function (record, alias) {
         var nbrOfFields = record.Fields.Count;
-        var className = record.Class.Name
+        var className = record['Class']['Name']
         var attr;
         var json = {};
         var alias = alias ? alias : className;
@@ -366,7 +366,7 @@ lbs.loader = {
                 json[alias][attr]['value'] = record.Value(i);
             }
             if (record.Fields(i).Type == 16) { //Relation
-                json[alias][attr]['class'] = record.Fields(i).LinkedField.Class.Name;
+                json[alias][attr]['class'] = record.Fields(i).LinkedField['Class']['Name'];
             }
 
             //check if optionkey support
@@ -385,7 +385,7 @@ lbs.loader = {
     */
     "controlsToJSON": function (controls, alias) {
         var nbrOfControls = controls.Count;
-        var className = controls.Class.Name
+        var className = controls['Class']['Name']
         var attr;
         var json = {};
         var alias = alias ? alias : className;
@@ -397,7 +397,7 @@ lbs.loader = {
             json[alias][attr]["text"] = controls(i).Text;
             json[alias][attr]['value'] = controls(i).Value;
             if (controls(i).Field.Type == 16) { //Relation
-                json[alias][attr]['class'] = controls(i).Field.LinkedField.Class.Name;
+                json[alias][attr]['class'] = controls(i).Field.LinkedField['Class']['Name'];
             }
 
             //check if optionkey support
