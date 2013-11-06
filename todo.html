@@ -4,11 +4,11 @@
     <div class="header-icon"></div>
     <h2 data-bind="text: todo.subject.text"></h2> 
         <ul class="info-links">			
-			<li data-bind="text:todo.person.text, limeLink: todo.person, icon:'icon-user'" </li>
-            <li data-bind="text:todo.company.text, limeLink:todo.company, icon:'icon-flag'"</li>
-			<li data-bind="text: person.phone.text, call: person.phone.text, icon: 'icon-phone' "</li>
-			<li data-bind="text: person.mobilephone.text, call: person.mobilephone.text, icon:'icon-mobile-phone'"</li>	
-			<li data-bind="text: company.phone.text, call: company.phone.text, icon: 'icon-phone'"</li>
+			<li data-bind="text:todo.person.text, limeLink: todo.person, icon:'fa-user'" </li>
+            <li data-bind="text:todo.company.text, limeLink:todo.company, icon:'fa-flag'"</li>
+			<li data-bind="text: person.phone.text, call: person.phone.text, icon: 'fa-phone' "</li>
+			<li data-bind="text: person.mobilephone.text, call: person.mobilephone.text, icon:'fa-mobile-phone'"</li>	
+			<li data-bind="text: company.phone.text, call: company.phone.text, icon: 'fa-phone'"</li>
         </ul> 
     </div>
 </div>		
@@ -16,20 +16,20 @@
 <div class="alert alert-warning fullwidth" data-bind="
     visible: todo.endtime.value !== null && (moment(todo.endtime.value) < moment() && todo.done.value != 1),
     text: 'Uppgiften är ' + (todo.endtime.value != null ? moment(todo.endtime.value).fromNow(true) : '' )+ ' försenad!', 
-    icon:'icon-bell'" >
+    icon:'fa-bell'" >
 </div>
 
 <ul class="menu expandable">
      <li class="menu-header"data-bind=" text:localize.Actionpad_Todo.command"></li>
      <li class="divider"></li>
-     <li data-bind="vba:'Actionpad_Todo.SetDone', text:localize.Actionpad_Todo.check, icon:'icon-check'"></li>
-     <li data-bind="vba:'Actionpad_Todo.SetDone, true, false', text:localize.Actionpad_Todo.checktodo, icon:'icon-calendar'"></li>
-     <li data-bind="vba:'Actionpad_Todo.SetDone, false, true', text:localize.Actionpad_Todo.checkhistory, icon:'icon-calendar'"></li>
-	 <li data-bind="vba:'ActionpadTools.NewInspectorFromInspector, history', text:localize.Actionpad_Todo.note, icon:'icon-file-text-alt'"></li>
+     <li data-bind="vba:'Actionpad_Todo.SetDone', text:localize.Actionpad_Todo.check, icon:'fa-check'"></li>
+     <li data-bind="vba:'Actionpad_Todo.SetDone, true, false', text:localize.Actionpad_Todo.checktodo, icon:'fa-calendar'"></li>
+     <li data-bind="vba:'Actionpad_Todo.SetDone, false, true', text:localize.Actionpad_Todo.checkhistory, icon:'fa-calendar'"></li>
+	 <li data-bind="vba:'ActionpadTools.NewInspectorFromInspector, history', text:localize.Actionpad_Todo.note, icon:'fa-file-text-alt'"></li>
  </ul> 
  
 <div class="btn-group">
-	<a class="btn btn-lime dropdown-toggle" data-toggle="dropdown" href="#" data-bind=" text:localize.Actionpad_Todo.headermoveforward, icon: 'icon-caret-down'"></a>
+	<a class="btn btn-lime dropdown-toggle" data-toggle="dropdown" href="#" data-bind=" text:localize.Actionpad_Todo.headermoveforward, icon: 'fa-caret-down'"></a>
 	<ul class="dropdown-menu">
 		<li data-bind="vba:'ActionPad_todo.Postpone, d, 1', text:localize.Actionpad_Todo.mf1d"></li>
 	    <li class="divider"></li>
