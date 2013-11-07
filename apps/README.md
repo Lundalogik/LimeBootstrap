@@ -1,1 +1,1 @@
-[Please read more here](../system/docs/BuildningApps.md)
+[Please read more here](../system/docs/Manual/BuildningApps.md)

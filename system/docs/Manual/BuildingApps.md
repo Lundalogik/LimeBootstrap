@@ -1,4 +1,4 @@
-#LIME-bootstrap apps
+#Basics
 Apps are small standalone tools, used for customer customisations. They are loaded dynamically and added only through a single line of HTML in the Actionpad. The business logic and dataconnection is allways performed by the VBA. This functionallity should be inside a single module. 
 
 The general idea of an app is to implement:
@@ -56,3 +56,18 @@ lbs.apploader.register('template', function () { //Insert name of app here
     }
 
 ```
+
+#Library helper functions
+
+## lbs.heper.loadDataSorce
+
+###description
+Loads a datasource into a JSON objekt
+
+### Syntax
+lbs.heper.loadDataSorce(viewModel, sourceDefinition, [alias], [override])
+
+### Parameters
+|Parameters|Type|Comment|
+|---|---|---|
+|viewModel|object to assign values to|array||
