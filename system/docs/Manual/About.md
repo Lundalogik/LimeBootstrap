@@ -9,7 +9,3 @@ LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reaso
 *	Internet Explorer 11
 
 Older versions of IE _may_ work, but the ActionPads will surely not look so great. 
-
- 
-### Building apps
-Please see the readme file in the apps folder 

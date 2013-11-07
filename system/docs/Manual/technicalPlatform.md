@@ -42,3 +42,5 @@ lbs.js is the main file of the framework is mainly in charge of setup and delega
 *	__lbs.bindings.js__ - The custom knockout bindnings are defined here
 *	__lbs.loader.js__  - Handels loading of scripts, views and styles. 
 *	__lbs.log.js__ - Handels logging to the custom console. 
+
+

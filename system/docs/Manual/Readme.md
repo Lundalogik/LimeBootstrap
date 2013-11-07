@@ -8,5 +8,5 @@ The LIME-bootstrap is made to make it easier, better and faster working with Act
 + [Upgrade instructions](Upgrade.md)
 + [Basic usage](BasicUsage.md)
 + [Building apps](BuildingApps.md)
-+ [Technical platform](technicalPlatform.md)
++ [Technical platform](TechnicalPlatform.md)
 
