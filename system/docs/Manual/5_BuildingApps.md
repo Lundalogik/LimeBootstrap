@@ -57,17 +57,86 @@ lbs.apploader.register('template', function () { //Insert name of app here
 
 ```
 
-#Library helper functions
+##Object definitions
 
-## lbs.heper.loadDataSorce
+#### DataSouce
+ `{type: '', source: '', alias:''}`
 
-###description
-Loads a datasource into a JSON objekt
+#### LimeVersion
+|Parameter|Type|Comment|
+|---|---|---|
+|comparable|int||
+|full|string||
+|major|int||
+|minor|int||
+|build|int||
 
-### Syntax
-lbs.heper.loadDataSorce(viewModel, sourceDefinition, [alias], [override])
 
-### Parameters
+##Library attributes
+
+debug
+#### limeVersion
+
+limeDataConnection
+hasLimeConnection
+activeClass
+activeDatabase
+activeServer
+
+##Library helper functions 
+
+#### lbs.heper.loadDataSorces
+
+
+#### lbs.heper.loadDataSorce
+
+##### Description
+Loads a datasources into a JSON objekt
+viewModel, sourceArray, [override]
+
+##### Syntax
+`lbs.heper.loadDataSorce(viewModel, DataSource, [override])`
+
+##### Parameters
 |Parameters|Type|Comment|
 |---|---|---|
-|viewModel|object to assign values to|array||
+|viewModel|array|object to assign values to|
+|DataSource|||
+|Override|||
+
+##### Return
+String
+
+####lbs.common.getErrorText
+##### Syntax
+`lbs.common.getErrorText()`
+
+####lbs.common.iconTemplate
+
+####lbs.common.escapeHtml
+html
+
+####lbs.common.createLimeLink
+class id
+
+####lbs.common.getURLParameter
+name
+
+####lbs.common.executeVba
+
+####lbs.common.executeVba
+
+####lbs.common.nl2br
+####lbs.common.generateGuid
+
+####string.format
+
+####lbs.log.debug
+
+#### lbs.log.info
+
+#### lbs.log.warn
+msg exep
+
+#### lbs.log.error
+msg exep
