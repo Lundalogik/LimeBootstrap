@@ -73,70 +73,151 @@ lbs.apploader.register('template', function () { //Insert name of app here
 
 
 ##Library attributes
+|Parameter|Type|Comment|
+|---|---|---|
+|lbs.debug|int|if debug modes has been triggered|
+|lbs.limeVersion|LimeVersion||
+|lbs.limeDataConnection|object|reference to window.external|
+|lbs.hasLimeConnection|boolean|has reference to lime?|
+|lbs.activeClass|string||
+|lbs.activeDatabase|string||
+|lbs.activeServer|string||
+|lbs.common.iconTemplate|string|template for icon html|
 
-debug
-#### limeVersion
-
-limeDataConnection
-hasLimeConnection
-activeClass
-activeDatabase
-activeServer
 
 ##Library helper functions 
 
-#### lbs.heper.loadDataSorces
-
-
-#### lbs.heper.loadDataSorce
-
-##### Description
-Loads a datasources into a JSON objekt
-viewModel, sourceArray, [override]
-
+#### lbs.heper.loadDataSorces()
+Loads multiple datasources into a JSON objekt
 ##### Syntax
-`lbs.heper.loadDataSorce(viewModel, DataSource, [override])`
-
+`lbs.heper.loadDataSorces(viewModel, DataSources, [override])`
 ##### Parameters
 |Parameters|Type|Comment|
 |---|---|---|
 |viewModel|array|object to assign values to|
-|DataSource|||
-|Override|||
+|DataSources|Array|sources|
+|Override|boolean|if duplicate values should be overriden or thrown away|
 
-##### Return
-String
-
-####lbs.common.getErrorText
+#### lbs.heper.loadDataSorce()
+Loads a datasources into a JSON objekt
 ##### Syntax
+`lbs.heper.loadDataSorce(viewModel, DataSource, [override])`
+##### Parameters
+|Parameters|Type|Comment|
+|---|---|---|
+|viewModel|array|object to assign values to|
+|DataSource|DataSouce|source|
+|Override|boolean|if duplicate values should be overriden or thrown away|
+
+####lbs.common.getErrorText()
+Returnes a funny error adjective :)
+#####Syntax
 `lbs.common.getErrorText()`
+##### Return
+string
 
-####lbs.common.iconTemplate
+####lbs.common.escapeHtml()
+Escape html
+##### Syntax
+`lbs.common.escapeHtml(html)`
+##### Parameters
+|Parameters|Type|
+|---|---|
+|html|string|
+##### Return
+string
 
-####lbs.common.escapeHtml
-html
+####lbs.common.createLimeLink()
+Create limelink
+##### Syntax
+`lbs.common.createLimeLink(class,id)`
+##### Parameters
+|Parameters|Type|
+|---|---|
+|class|string|
+|id|int|
+##### Return
+string
 
-####lbs.common.createLimeLink
-class id
+####lbs.common.getURLParameter()
+Extract URL parameter from GET variable
+##### Syntax
+`lbs.common.getURLParameter(name)`
+##### Parameters
+|Parameters|Type|
+|---|---|
+|name|string|
+##### Return
+string
 
-####lbs.common.getURLParameter
-name
-
-####lbs.common.executeVba
-
-####lbs.common.executeVba
+####lbs.common.executeVba()
+Execute VBA code, same as old VBA.run()
+##### Syntax
+`lbs.common.executeVba(proc,params)`
+##### Parameters
+|Parameters|Type|
+|---|---|
+|proc|string|
+|params|string|
+##### Return
+string
 
 ####lbs.common.nl2br
-####lbs.common.generateGuid
+replace nl chars with html rowbreaks
+##### Syntax
+`lbs.common.nl2br(data)`
+##### Parameters
+|Parameters|Type
+|---|---|
+|data|string|
+##### Return
+string
 
-####string.format
+####string.format()
+Implementation of c# String.Format()
+##### Syntax
+`string.format(format,var1,[var2])`
+##### Parameters
+|---|---|
+|format|string|
+|var|replacement varibles|
+##### Return
+string
 
 ####lbs.log.debug
+Log message at debug level
+##### Syntax
+`lbs.log.debug(msg)`
+##### Parameters
+|Parameters|Type|
+|---|---|
+|msg|message|
 
-#### lbs.log.info
+####lbs.log.debug
+Log message at info level
+##### Syntax
+`lbs.log.info(msg)`
+##### Parameters
+|Parameters|Type|
+|---|---|
+|msg|message|
 
-#### lbs.log.warn
-msg exep
+####lbs.log.warn
+Log message at warn level
+##### Syntax
+`lbs.log.warn(msg, [e])`
+##### Parameters
+|Parameters|Type|
+|---|---|
+|msg|message|
+|e|Execption (optional)|
 
-#### lbs.log.error
-msg exep
+####lbs.log.error
+Log message at error level
+##### Syntax
+`lbs.log.error(msg, [e])`
+##### Parameters
+|Parameters|Type|
+|---|---|---|
+|msg|message|
+|e|Execption (optional)|
