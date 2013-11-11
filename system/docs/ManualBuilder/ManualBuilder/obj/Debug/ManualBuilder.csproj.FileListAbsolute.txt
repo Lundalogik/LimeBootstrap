@@ -1,0 +1,6 @@
+F:\dev\limebootstrap\system\docs\ManualBuilder\ManualBuilder\bin\Debug\ManualBuilder.exe.config
+F:\dev\limebootstrap\system\docs\ManualBuilder\ManualBuilder\bin\Debug\ManualBuilder.exe
+F:\dev\limebootstrap\system\docs\ManualBuilder\ManualBuilder\bin\Debug\ManualBuilder.pdb
+F:\dev\limebootstrap\system\docs\ManualBuilder\ManualBuilder\obj\Debug\ManualBuilder.csprojResolveAssemblyReference.cache
+F:\dev\limebootstrap\system\docs\ManualBuilder\ManualBuilder\obj\Debug\ManualBuilder.exe
+F:\dev\limebootstrap\system\docs\ManualBuilder\ManualBuilder\obj\Debug\ManualBuilder.pdb
