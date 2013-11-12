@@ -1,0 +1,2 @@
+C:\Users\mhe\AppData\Roaming\Lundalogik\Lime\Databases\luserver109.lime basic v4\Actionpads\system\docs\ManualBuilder\ManualBuilder\bin\Release\BuildManual.exe
+C:\Users\mhe\AppData\Roaming\Lundalogik\Lime\Databases\luserver109.lime basic v4\Actionpads\system\docs\ManualBuilder\ManualBuilder\obj\Release\BuildManual.exe
