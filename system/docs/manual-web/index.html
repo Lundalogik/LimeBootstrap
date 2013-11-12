@@ -4,6 +4,8 @@
     <title>LimeBootstrap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/lbsmanual.css" rel="stylesheet">
+
 
   </head>
   <body>
@@ -13,69 +15,54 @@
         <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand" href="#">LimeBootstrap</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+          <ul class="nav navbar-nav" data-bind="foreach: data">
+            <li class="">
+              <a href="#" data-bind="text:humanName, attr: { href: uri }"></a>
+              </li>
           </ul>
-        </div><!-- /.navbar-collapse -->
+        </div>
         </div>
       </nav>
     </header>
 
-    <div class="container">
+    <div class="container" id="lbs-wrapper">
         <div class="row">
-          <div class="col-sm-3">
-            <div class="affix">
-              <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Messages</a></li>
+          <div class="col-sm-4">
+            <div class="affix" id="lbs-sidebar">
+              <ul class="nav nav-stacked" data-bind="foreach: sidebar">
+                <li class="" >
+                <a href="#" data-bind="text:text, attr: { href: anchor }, style: {marginLeft: indent()} "></a>
+                </li>
+                
               </ul>
             </div>
           </div>
         
-          <div class="col-sm-9" role="main">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet feugiat libero, id laoreet nunc. Vestibulum id sagittis sem. Proin gravida dolor id turpis vulputate pretium. Nullam dolor leo, ullamcorper vel aliquet volutpat, varius vel libero. Nam eros ipsum, eleifend ac massa non, porttitor auctor augue. Donec vitae nulla leo. Nunc venenatis leo at ante fermentum, sit amet sagittis lectus varius. Quisque sit amet vehicula nisl. Quisque vitae ligula at lectus suscipit eleifend non at ante. Aenean ac ultrices augue. Pellentesque sit amet justo nec elit scelerisque suscipit. Nulla adipiscing eros vel sollicitudin pellentesque. Mauris vestibulum faucibus risus non porttitor. Nam aliquet massa at nisl iaculis, in consequat magna bibendum. Integer non augue quis ante accumsan aliquam.</p>
-
+          <div class="col-sm-7" id="content" role="main">
+            
           </div>
         </div>
     </div>
     
 
-    <footer class="bs-footer" role="contentinfo">
+    <footer class="lbs-footer" role="contentinfo">
+      <div class="container">
+      
+      </div>
     </footer>
 
 
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/knockout-3.0.0.js"></script>
-    <script src="js/manual_content.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/knockout-3.0.0.js"></script>
+    <script type="text/javascript" src="js/knockout.mapping-latest.js"></script>
+    <script type="text/javascript" src="js/manual_content.js"></script>
+    <script type="text/javascript" src="js/lbsmanual.js"></script>
     
   </body>
 </html>
