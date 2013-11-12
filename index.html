@@ -1,468 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Limebootstrap by Lundalogik</title>
+    <title>LimeBootstrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/lbsmanual.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">Limebootstrap</h1>
-        <p class="header">The Actionpad framework for LIME Pro</p>
 
-        <ul>
-          <li class="download"><a class="buttons" href="https://github.com/Lundalogik/limebootstrap/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/Lundalogik/limebootstrap/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/Lundalogik/limebootstrap">View On GitHub</a></li>
-        </ul>
-
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/Lundalogik">Lundalogik</a></p>
-
-
-      </header>
-      <section>
-        <h1>
-<a name="lime-bootstrap" class="anchor" href="#lime-bootstrap"><span class="octicon octicon-link"></span></a>LIME-bootstrap</h1>
-
-<p>Welcome to the LIME Pro Actionpad framework called LIME-bootstrap. 
-The LIME-bootstrap is made to make it easier, better and faster working with Actionpads in LIME pro. The framework relies heavily on Knockout.js and Twitter Bootstrap but with custom styling and a simple, yet powerful script called lbs.js. The framework contains several built in functions and third 
-party libraries, but is also expandable through custom apps. Some actual actionpads used in the LIME basic database are also included.  </p>
-
-<p>The framework is "convention over configuration", meaning there should be one and only one way to do things. If you find yourself writing lots of code to do something, or god forbid, needing to modify ANY file in the systems folder, you're propably doing it wrong. Take a deep breath and ask for assistance.</p>
-
-<p>If you want to use the framework I solemnly swear to the following conditions:</p>
-
-<ol>
-<li>The systems folder should never, ever be modified. I can achieve cool and smart functions without ever touching it. </li>
-<li>lbs.html should neither be modified, exept from toggeling debug on and off<br>
-</li>
-<li>I must unlearn what you have learned! The framework offers a completely different methology of working with ActionPads, I will embrase it. </li>
-<li>I won't ever copy and paste code from old actionpads. A rabbit will die if I even think of coping VBScript...</li>
-<li>I wan't to contribute to a better framework, any improvements, errors or bugfixes will be commited to this git repository. </li>
-<li>I will follow the design guidlines:
-
-<ol>
-<li>The design should be flat, free from gradients and focused on content.</li>
-<li>The actionpad is very narrow (~250px), use the height and not the width of the actionpad.</li>
-<li>Font should be dark blue on the deafult blue background. In any other case, white should be used. It white cannot be used, use a darker variant of the background color i.e dark green on green background</li>
-<li>Font awesome is used for all icons exept for the header icons, here we use Icon Experience's new M-icon set.</li>
-<li>Stick to default colors, don't "brand" the solution with customers logo and colors.</li>
-</ol>
-</li>
-<li>I will use <code>lbs.common.executeVBA()</code> to run any LIME function and <code>lbs.limeDataConnection</code> to access any LIME object when building apps</li>
-<li>I won't include any scripts and styles in my views.<br>
-</li>
-</ol><p>LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reasons all functionality (except the data connections) should work in any browser. In LIME Pro the supporter browser versions are:</p>
-
-<ul>
-<li>  Internet Explorer 9</li>
-<li>  Internet Explorer 10</li>
-<li>  Internet Explorer 11</li>
-</ul><p>Older versions of IE <em>may</em> work, but the ActionPads will surely not look so great. </p>
-
-<h3>
-<a name="upgrade-instructions" class="anchor" href="#upgrade-instructions"><span class="octicon octicon-link"></span></a>Upgrade instructions</h3>
-
-<p>These are  the changes that you will have to do to upgrade to a specifik version</p>
-
-<h4>
-<a name="04" class="anchor" href="#04"><span class="octicon octicon-link"></span></a>0.4</h4>
-
-<ul>
-<li>  Skins are now supported! Actionpads must be reloaded to apply the skin change.</li>
-</ul><h4>
-<a name="03" class="anchor" href="#03"><span class="octicon octicon-link"></span></a>0.3</h4>
-
-<ul>
-<li>  Updated to font awesome 4.0. All icon bindings must be changed to handel the new "fa-" naming convention</li>
-<li>  Updated to Twitter Bootstrap 3.0</li>
-<li>  .nav-header should be change to .menu-header</li>
-<li>  .menu property "hidden" should be changed to "collapsed"</li>
-</ul><h4>
-<a name="02" class="anchor" href="#02"><span class="octicon octicon-link"></span></a>0.2</h4>
-
-<ul>
-<li>  Replace header tag <code>&lt;div class="header-fa-container helpdesk"&gt;</code> with <code>&lt;div class="header-icon"&gt;&lt;/div&gt;</code>. The image to show will sort itself out.</li>
-<li>  Place any images you may need in the root folder "resources" or a subdirectory of it</li>
-<li>  Invoke old-school apps with the binding "appInvoke"</li>
-<li>  Remove div with id #header-info and add class .info-links to the list of info links in the header</li>
-<li>  Remove div with id #content-container</li>
-</ul><h3>
-<a name="how-does-it-work" class="anchor" href="#how-does-it-work"><span class="octicon octicon-link"></span></a>How does it work?</h3>
-
-<p>The new actionpads are inspired of how a single page applcation work. Views (basically html-templates) and data(usually JSON) are loaded via AJAX (an asyncrounous javacript call) by the the web application. The template is then rendered by applying the data and the result is shown to the user.</p>
-
-<p>In LIME-bootstraps case lbs.html is the main application and all actionpads are pointed to lbs.html. lbs.html contians all included css, js amd meta tags. The actionpads (for example company.html) are now just views, containing no includes or javacript.
-lbs.html will detemine which view to load either by a supplied query string (the thing after the questionmark), <code>../lbs.html?ap=company</code> or if nothing is supplied, by trying to load a view with the same name as the class of the LIME inspector.</p>
-
-<p>The active inspectors record is then loaded as data and converted to JSON.    </p>
-
-<h3>
-<a name="the-console" class="anchor" href="#the-console"><span class="octicon octicon-link"></span></a>The console</h3>
-
-<p>The framework has been blessed with a virtual console, to use for debugging. It is activated through changing <code>debug="true"</code> in lbs.html. The console will automagically appeare if an error is logged. You can easily use the console when building apps, read more abot this in the app readme.</p>
-
-<h2>
-<a name="html-elements" class="anchor" href="#html-elements"><span class="octicon octicon-link"></span></a>HTML Elements</h2>
-
-<p>LIME bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the <a href="http://getbootstrap.com/components/">Twitter bootstrap</a> documentation for additional info</p>
-
-<h3>
-<a name="structure-of-an-actionpad-view" class="anchor" href="#structure-of-an-actionpad-view"><span class="octicon octicon-link"></span></a>Structure of an actionpad view</h3>
-
-<p>An Actionpad built with LIME-bootstrap has the following structure:</p>
-
-<div class="highlight highlight-html"><pre>    <span class="c">&lt;!-- Header section, The colorfull thing at the top  --&gt;</span>
-        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"header-container red"</span><span class="nt">&gt;</span> <span class="c">&lt;!-- Specify the color of the header. Please see color section for available colors  --&gt;</span>
-            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"header-fa-container helpdesk"</span><span class="nt">&gt;</span> <span class="c">&lt;!-- Specify the icon of the header. Please see icon section for available special icons  --&gt;</span>
-
-            <span class="nt">&lt;/div&gt;</span>
-            <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"header-info"</span><span class="nt">&gt;</span> 
-                <span class="nt">&lt;h2</span> <span class="na">data-bind=</span><span class="s">"text: helpdesk.helpdeskno.text"</span><span class="nt">&gt;&lt;/h2&gt;</span>
-                    <span class="nt">&lt;ul&gt;</span>
-                        <span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"text:helpdesk.person.text, limeLink:helpdesk.person, icon='fa-user'"</span><span class="nt">&gt;&lt;/li&gt;</span>                       
-                        ...
-                    <span class="nt">&lt;/ul&gt;</span> 
-            <span class="nt">&lt;/div&gt;</span>
-        <span class="nt">&lt;/div&gt;</span>      
-
-    <span class="c">&lt;!-- /Header section  --&gt;</span>
-    <span class="c">&lt;!-- Body section  --&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"content-container"</span><span class="nt">&gt;</span>
-
-            <span class="c">&lt;!-- Menus and apps goes here!  --&gt;</span>
-
-    <span class="nt">&lt;/div&gt;</span>
-    <span class="c">&lt;!-- /Body section  --&gt;</span>
-
-</pre></div>
-
-<h3>
-<a name="the-header-section-colors" class="anchor" href="#the-header-section-colors"><span class="octicon octicon-link"></span></a>The header section colors</h3>
-
-<p>The header section is the colorful header of each actionpad. The following colors are provided:</p>
-
-<ul>
-<li>  red</li>
-<li>  green</li>
-<li>  blue</li>
-<li>  yellow</li>
-<li>  orange</li>
-<li>  darkgrey</li>
-<li>  white</li>
-<li>  purple</li>
-</ul><p>Usage: </p>
-
-<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"header-container [insert color here]"</span><span class="nt">&gt;</span>
-</pre></div>
-
-<h3>
-<a name="the-menu" class="anchor" href="#the-menu"><span class="octicon octicon-link"></span></a>The menu</h3>
-
-<p>A menu can be created by the following HTML: </p>
-
-<div class="highlight highlight-html"><pre> <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"menu"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-header"</span><span class="na">data-bind=</span><span class="s">" text:localize.Actionpad_Business.command"</span><span class="nt">&gt;&lt;/li&gt;</span> 
-        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"divider"</span><span class="nt">&gt;&lt;/li&gt;</span>
-    ...
-<span class="nt">&lt;/ul&gt;</span>
-</pre></div>
-
-<p>A menu has two properties, <strong>Expandable</strong> and <strong>Hidden</strong>. The are added in the <code>&lt;ul&gt;</code>  class:
-<code>&lt;ul class="menu expandable hidden"&gt;</code>   </p>
-
-<p><strong>Expandable:</strong> The menu can be collapsed by clicking the header<br><strong>Collapsed:</strong> The menu is collapsed when the actionpad is loaded. Stupid to use without using Expandable...</p>
-
-<h3>
-<a name="dropdown-button" class="anchor" href="#dropdown-button"><span class="octicon octicon-link"></span></a>Dropdown button</h3>
-
-<p>A dropdown button can contain many options, while taking up very little space. </p>
-
-<div class="highlight highlight-html"><pre> <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"btn-group"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"btn dropdown-toggle"</span> <span class="na">data-toggle=</span><span class="s">"dropdown"</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">data-bind=</span><span class="s">" text:localize.Actionpad_Todo.headermoveforward, icon: 'fa-caret-down'"</span><span class="nt">&gt;&lt;/a&gt;</span>
-        <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"dropdown-menu"</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"vba:'ActionPad_todo.Postpone, d, 1', text:localize.Actionpad_Todo.mf1d"</span><span class="nt">&gt;&lt;/li&gt;</span>
-            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"divider"</span><span class="nt">&gt;&lt;/li&gt;</span>
-            <span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"vba:'ActionPad_todo.Postpone, ww, 1', text:localize.Actionpad_Todo.mf1w"</span><span class="nt">&gt;&lt;/li&gt;</span>
-            <span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"vba:'ActionPad_todo.Postpone, ww, 2', text:localize.Actionpad_Todo.mf2w"</span><span class="nt">&gt;&lt;/li&gt;</span>
-            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"divider"</span><span class="nt">&gt;&lt;/li&gt;</span>
-            <span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"vba:'ActionPad_todo.Postpone, m, 1', text:localize.Actionpad_Todo.mf1m"</span><span class="nt">&gt;&lt;/li&gt;</span>
-            <span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"vba:'ActionPad_todo.Postpone, m, 6', text:localize.Actionpad_Todo.mf6m"</span><span class="nt">&gt;&lt;/li&gt;</span>
-            <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"divider"</span><span class="nt">&gt;&lt;/li&gt;</span>
-            <span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"vba:'ActionPad_todo.Postpone, yyyy, 1', text:localize.Actionpad_Todo.mf1y"</span><span class="nt">&gt;&lt;/li&gt;</span>
-        <span class="nt">&lt;/ul&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-</pre></div>
-
-<h2>
-<a name="functions" class="anchor" href="#functions"><span class="octicon octicon-link"></span></a>Functions</h2>
-
-<p>All Twitter bootstrap functions are included, please see the <a href="http://getbootstrap.com/2.3.2/javascript.html">Twitter bootstrap documentation</a> 
-As we relay heavily on knockout their <code>data-bind:""</code> syntax is used through out the framework. The <code>data-bind:""</code> syntax is a used as a property on an html element. In a <code>data-bind</code> you add <code>bindings</code>, actions or triggers, to perform actions. All Knockout bindings are available, but also a few custom bindings to make your life easier. 
-Read more about bindings and Knockout <a href="http://knockoutjs.com/documentation/introduction.html">here</a> and try the tutorial <a href="http://learn.knockoutjs.com">here</a></p>
-
-<p>A basic example of use of a knockout binding:</p>
-
-<div class="highlight highlight-html"><pre><span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"text:company.name"</span><span class="nt">&gt;&lt;/li&gt;</span> `
-</pre></div>
-
-<p>List of custom handlers:</p>
-
-<ul>
-<li>  <strong>call:</strong> - <em>Tries to call the provided phone number</em>
-</li>
-<li>  <strong>email:</strong> - <em>Tries to email the provided address</em>
-</li>
-<li>  <strong>icon:</strong> - <em>Prepends the supplied font awesome icon to the html element</em>
-</li>
-<li>  <strong>limeLink:</strong> - <em>Creates an LIME link from a provided relationship field, for example person.company</em>
-</li>
-<li>  <strong>openURL:</strong> - <em>Opens the supplied URL in a external browser</em>
-</li>
-<li>  <strong>showOnMap:</strong> - <em>Opens Google Maps with the supplied data as a search query</em>
-</li>
-<li>  <strong>vba:</strong> - <em>Provide an string of an VBA function with it's parameters separated by commas</em>
-</li>
-<li>  <strong>vbaVisible:</strong> - <em>Extends knockouts 'visible:' by executing the supplied Boolean VBA function</em>
-</li>
-</ul><h3>
-<a name="translation-handling-multiple-languages" class="anchor" href="#translation-handling-multiple-languages"><span class="octicon octicon-link"></span></a>Translation: Handling multiple languages</h3>
-
-<p>All available translations from the Localization table are automatically available in the actionpad context. The same language as the logged in user uses is automatically used. The translations are cached in a dictionary to increase speed, but requires you to run <code>ThisApplication.Setup</code> to rebuild the dictionary if you add translations or make changes. </p>
-
-<div class="highlight highlight-html"><pre><span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"text:localize.ActionPad_Todo.addTodo"</span><span class="nt">&gt;&lt;/li&gt;</span>
-</pre></div>
-
-<p>Technical note
-The translations are added to the global view model and thus available in your apps.</p>
-
-<h3>
-<a name="fetching-data-from-fields-in-lime-pro" class="anchor" href="#fetching-data-from-fields-in-lime-pro"><span class="octicon octicon-link"></span></a>Fetching data from fields in LIME Pro</h3>
-
-<p>All fields from the ActiveInspector are automagically available for you to use in your view. The syntax is <code>[Record class name].[field database name].[property]</code>.</p>
-
-<p>The available properties are (in order of relevance):</p>
-
-<ul>
-<li>  <strong>.text</strong> </li>
-<li>  <strong>.value</strong>
-</li>
-<li>  <strong>.key</strong>  - __available for set and list fields_</li>
-<li>  <strong>.class</strong> - <em>available for relation fields</em> </li>
-</ul><div class="highlight highlight-html"><pre><span class="c">&lt;!-- Company Actionpad showing the name of the company--&gt;</span>
-<span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"text:company.name.text"</span><span class="nt">&gt;&lt;/li&gt;</span>
-<span class="c">&lt;!-- Person Actionpad using the id of the company relation as a parameter to a VBA-function. Note the Javascript syntax in the Knockout bindning  --&gt;</span>
-<span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"vba:'SomeFunction,' + person.company.value"</span><span class="nt">&gt;&lt;/li&gt;</span> 
-<span class="c">&lt;!-- Business Actionpad showing the optionKey from a set-list --&gt;</span>
-<span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"text:business.businesstatus.key"</span><span class="nt">&gt;&lt;/li&gt;</span> 
-</pre></div>
-
-<h4>
-<a name="loading-additional-data" class="anchor" href="#loading-additional-data"><span class="octicon octicon-link"></span></a>Loading additional data</h4>
-
-<p>It is common to use data from more than the ActiveInspector and the following syntax will NOT work <code>&lt;li data-bind="text:person.company.phone.text"&gt;&lt;/li&gt;</code></p>
-
-<p>Instead you can load additional data by using a knockout virtual element:</p>
-
-<div class="highlight highlight-html"><pre><span class="c">&lt;!-- ko dataSources: [</span>
-<span class="c">    {type:'record', source: 'ActionPadTools.GetPersonContactData' },</span>
-<span class="c">    {type:'record', source:'ActionPadTools.GetCompanyContactData'}] </span>
-<span class="c">--&gt;&lt;!-- /ko --&gt;</span>
-</pre></div>
-
-<p>Put the virtual element in the absolute beginning of your view. The dataSource binding takes an element with properties "type" and "source".
-<strong>type</strong>: Specifies the datatype, can be "record", "records" or "xml"
-<strong>source</strong>: The vba function witch supplies the data. Must be a public function. </p>
-
-<p>The loaded data can then be access by: </p>
-
-<div class="highlight highlight-html"><pre><span class="c">&lt;!-- Loading person and company info on a helpdesk actionpad--&gt;</span>
-<span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"text:helpdesk.company.text"</span><span class="nt">&gt;&lt;/li&gt;</span>                    
-<span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"text:person.phone.text"</span><span class="nt">&gt;&lt;/li&gt;</span>
-<span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"text:person.mobilephone.text"</span><span class="nt">&gt;&lt;/li&gt;</span>                      
-<span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"text:company.phone.text"</span><span class="nt">&gt;&lt;/li&gt;</span>   
-</pre></div>
-
-<h3>
-<a name="hiding-or-showing-elements" class="anchor" href="#hiding-or-showing-elements"><span class="octicon octicon-link"></span></a>Hiding or showing elements</h3>
-
-<p>It is common that some elements only should be visible for certain users or when specific conditions apply. The Data-visibility is used as follows:</p>
-
-<div class="highlight highlight-html"><pre><span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"vbaVisible:'ActionPad_Helpdesk.HideLinks, take'"</span><span class="nt">&gt;&lt;/li&gt;</span>
-</pre></div>
-
-<p>You can also use knockouts built in handler <code>visible:</code> to hide or show elements, any valid Javascript will be evaluated. Example:</p>
-
-<div class="highlight highlight-html"><pre><span class="c">&lt;!-- Shows an bootstrap alert if the todo is late. Moment.js is used to parse and handle dates.--&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-error"</span> <span class="na">data-bind=</span><span class="s">"</span>
-<span class="s">   visible: todo.endtime.value !== null &amp;&amp; (moment(todo.endtime.value) &lt; moment() &amp;&amp; todo.done.value != 1),</span>
-<span class="s">   text: 'The task is ' + (todo.endtime.value != null ? moment(todo.endtime.value).fromNow(true) : '' )+ ' late!',</span>
-<span class="s">   icon:'fa-bell'"</span> <span class="nt">&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</pre></div>
-
-<p>A VBA function is called, handling the logic whether the element should be visible or not, returning an boolean.<br><strong>true:</strong> Element is visible<br><strong>false:</strong> Element hidden
-In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required. </p>
-
-<h3>
-<a name="executing-vba-functions-and-specific-actions" class="anchor" href="#executing-vba-functions-and-specific-actions"><span class="octicon octicon-link"></span></a>Executing VBA-functions and specific actions</h3>
-
-<p><code>vba:</code> is used to trigger VBA-functions and specific actions on click. To call a VBA function simply use:</p>
-
-<div class="highlight highlight-html"><pre><span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"vba:'ActionPad_Helpdesk.Take'"</span><span class="nt">&gt;&lt;/li&gt;</span>
-</pre></div>
-
-<p>Input parameters are provided by simply separating them by commas.</p>
-
-<div class="highlight highlight-html"><pre><span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"vba:'ActionPad_Helpdesk.Park, 1, t_park_1_hour'"</span><span class="nt">&gt;&lt;/li&gt;</span>
-</pre></div>
-
-<p>You can also use any available data in the actionpad as an input to the function through concatenating a string  </p>
-
-<div class="highlight highlight-html"><pre><span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"vba:'ActionPad_Helpdesk.DoSomethingWithTheRecord,' + helpdesk.idhelpdesk.value"</span><span class="nt">&gt;&lt;/li&gt;</span>
-</pre></div>
-
-<p>###The built in handlers and how to use them</p>
-
-<ul>
-<li>
-<p><strong>showOnMap:</strong> - Searches Google Maps for the provided address.</p>
-
-<div class="highlight highlight-html"><pre><span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: 'fa-map-marker'"</span><span class="nt">&gt;&lt;/li&gt;</span>
-</pre></div>
-</li>
-<li>
-<p><strong>call:</strong> - Ads an tel: link to the HTML wich triggers an built in softphone software.</p>
-
-<div class="highlight highlight-html"><pre><span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"text: company.phone.text, call: company.phone.text, icon: 'fa-phone'"</span><span class="nt">&gt;&lt;/li&gt;</span>
-</pre></div>
-</li>
-<li>
-<p><strong>openURL:</strong> - Opens the suplied URL in an external browser</p>
-
-<div class="highlight highlight-html"><pre> <span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"text:company.www.text, openURL: company.www.text, icon: 'fa-globe'"</span><span class="nt">&gt;&lt;/li&gt;</span>
-</pre></div>
-</li>
-<li>
-<p><strong>limeLink</strong> - Tries to create an LIME link to the object provided, please note that the root node of the object is used and not a specific property.</p>
-
-<div class="highlight highlight-html"><pre><span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"text:todo.company.text, limeLink:todo.company, icon:'fa-flag'"</span><span class="nt">&gt;&lt;/li&gt;</span>
-</pre></div>
-</li>
-<li>
-<p><strong>email</strong> - Creates an email. TODO: Should use LIMES built in email factory</p>
-
-<div class="highlight highlight-html"><pre><span class="nt">&lt;li</span> <span class="na">data-bind=</span><span class="s">"text:person.email.text, email:person.email.text, icon:'fa-mail'"</span><span class="nt">&gt;&lt;/li&gt;</span>
-</pre></div>
-</li>
-</ul><h2>
-<a name="technical" class="anchor" href="#technical"><span class="octicon octicon-link"></span></a>Technical</h2>
-
-<h3>
-<a name="included-javascript-frameworks" class="anchor" href="#included-javascript-frameworks"><span class="octicon octicon-link"></span></a>Included javascript frameworks</h3>
-
-<p>The bundled library contains:</p>
-
-<ul>
-<li>  <a href="http://jquery.com">jQuery</a>
-</li>
-<li>  <a href="http://underscorejs.org">Underscore.js</a>
-</li>
-<li>  <a href="http://momentjs.com">Moment.js</a>
-</li>
-<li>  <a href="http://knockoutjs.com/">Knockout.js</a>
-</li>
-<li>  <a href="http://getbootstrap.com">Bootstrap.js</a>
-</li>
-</ul><h3>
-<a name="icons" class="anchor" href="#icons"><span class="octicon octicon-link"></span></a>Icons</h3>
-
-<p><a href="http://fortawesome.github.io/Font-Awesome/">Font awesome</a> is include. Please see the font awesome documentation.</p>
-
-<h3>
-<a name="structure-of-the-framework" class="anchor" href="#structure-of-the-framework"><span class="octicon octicon-link"></span></a>Structure of the framework</h3>
-
-<p>The framework has the following file structure</p>
-
-<ul>
-<li>  <strong>apps</strong> - <em>small selfdependent html apps that can be dynamically loaded into the Actionpads</em>
-
-<ul>
-<li>  ...</li>
-</ul>
-</li>
-<li>
-<p><strong>System</strong> - <em>READ ONLY! This is the base of the framework and should never be modified</em></p>
-
-<ul>
-<li>  <strong>bin</strong> - <em>launch Google Chrome in Allow Cross Origin mode</em>
-</li>
-<li>
-<p><strong>css</strong></p>
-
-<ul>
-<li>  lime.css - <em>styling for the framework. Overrides several Twitter Bootstrap stylings</em>
-</li>
-<li>  font-awesome.css</li>
-<li>  bootstrap.css</li>
-</ul>
-</li>
-<li>
-<p><strong>font</strong> - <em>Font files for Font awesome</em></p>
-
-<ul>
-<li>  ... </li>
-</ul>
-</li>
-<li>
-<p><strong>img</strong> - <em>images used in the framework which aren't from Font Awesom</em></p>
-
-<ul>
-<li>  ...</li>
-</ul>
-</li>
-<li>
-<p><strong>js</strong> - <em>all javacript used in the framework</em></p>
-
-<ul>
-<li>  lbs.js - <em>Frameworks main javascript</em>
-</li>
-<li>  ... Third party frameworks ...</li>
-</ul>
-</li>
-<li><p><strong>view</strong> - <em>Views used by the system, for example the debug view</em></p></li>
-</ul>
-</li>
-<li><p>application.html</p></li>
-</ul><h3>
-<a name="the-core-lbsjs-and-its-modules" class="anchor" href="#the-core-lbsjs-and-its-modules"><span class="octicon octicon-link"></span></a>The core: lbs.js and it's modules</h3>
-
-<p>lbs.js is the main file of the framework is mainly in charge of setup and delegating tasks. It uses the following modules to accually do stuff:</p>
-
-<ul>
-<li>  <strong>lbs.apploader.js</strong> - Handels the loading of the apps and their initiation </li>
-<li>  <strong>lbs.bindings.js</strong> - The custom knockout bindnings are defined here</li>
-<li>  <strong>lbs.loader.js</strong>  - Handels loading of scripts, views and styles. </li>
-<li>  <strong>lbs.log.js</strong> - Handels logging to the custom console. </li>
-</ul><h3>
-<a name="building-apps" class="anchor" href="#building-apps"><span class="octicon octicon-link"></span></a>Building apps</h3>
-
-<p>Please see the readme file in the apps folder </p>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">LimeBootstrap</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav" data-bind="foreach: data">
+            <li class="">
+              <a href="#" data-bind="text:humanName, attr: { href: uri }"></a>
+              </li>
+          </ul>
+        </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container" id="lbs-wrapper">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="affix" id="lbs-sidebar">
+              <ul class="nav nav-stacked" data-bind="foreach: sidebar">
+                <li class="" >
+                <a href="#" data-bind="text:text, attr: { href: anchor }, style: {marginLeft: indent()} "></a>
+                </li>
+                
+              </ul>
+            </div>
+          </div>
+        
+          <div class="col-sm-7" id="content" role="main">
+            
+          </div>
+        </div>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+    
+
+    <footer class="lbs-footer" role="contentinfo">
+      <div class="container">
+      
+      </div>
+    </footer>
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/knockout-3.0.0.js"></script>
+    <script type="text/javascript" src="js/knockout.mapping-latest.js"></script>
+    <script type="text/javascript" src="js/manual_content.js"></script>
+    <script type="text/javascript" src="js/lbsmanual.js"></script>
+    
   </body>
 </html>
+
