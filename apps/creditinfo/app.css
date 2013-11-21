@@ -1,18 +1,25 @@
-/*
- * Callouts
- *
- * Not quite alerts, but custom and helpful notes for folks reading the docs.
- * Requires a base and modifier class.
- */
-
-/* Common styles for all types */
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 .creditinfo{
 
   margin-left: -10px;
   margin-right:-10px;
   margin-top: 10px;
+  cursor: pointer;
+  background-color: #E3EDFC;
 }
 
+.rating-value {
+   background-color: #C1D3ED; 
+}
+
+.creditinfo:hover{
+
+}
+.annimation{
+  animation:fadeIn ease-in 1;
+  animation-fill-mode:forwards;
+  animation-duration:2s;
+}
 
 /* Variations */
 .bad {
@@ -36,7 +43,6 @@
 
 .good {
   background-color: #E3F7DE;
-
   color: #486400;
 }
 

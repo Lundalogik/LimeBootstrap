@@ -1,10 +1,13 @@
- <div class="creditinfo good">
+ <div class="creditinfo" data-bind="css: ratingColor(), 
+ event: { mouseover: showGetIcon, mouseout: hideGetIcon }">
 	  	<!-- ko if: ratingValue() && ratingText()-->
 	    <span class="rating-value" data-bind="text: ratingValue()"></span>
 	    <div class="rating-text" data-bind="text: ratingText()"></div>
 		<!-- /ko -->
 		<!-- ko if: !ratingValue()-->
-		<span class="rating-value" data-bind="icon: 'fa-download'"> </span>
-	    <div class="rating-text">Hämta kredit info</div>
+			
+			<span class="rating-value" data-bind="icon: 'fa-download'"> </span>
+			
+		    <div class="rating-text" data-bind="click:getRating">Hämta kreditinfo</div>
 		<!-- /ko -->
 </div>
