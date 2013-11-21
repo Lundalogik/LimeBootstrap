@@ -1,0 +1,10 @@
+ <div class="creditinfo good">
+	  	<!-- ko if: ratingValue() && ratingText()-->
+	    <span class="rating-value" data-bind="text: ratingValue()"></span>
+	    <div class="rating-text" data-bind="text: ratingText()"></div>
+		<!-- /ko -->
+		<!-- ko if: !ratingValue()-->
+		<span class="rating-value" data-bind="icon: 'fa-download'"> </span>
+	    <div class="rating-text">Hämta kredit info</div>
+		<!-- /ko -->
+</div>
