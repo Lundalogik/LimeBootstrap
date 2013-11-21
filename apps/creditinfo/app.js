@@ -3,7 +3,7 @@ lbs.apploader.register('creditinfo', function () {
 
     //config
     this.config = {
-        customernbr : "5563970465",
+        orgnbr : "5563970465",
         dataSources: [
      
         ],
@@ -12,9 +12,16 @@ lbs.apploader.register('creditinfo', function () {
             styles: ['app.css'],
             libs: []
         },
-        customerLoginName : "",
-        password : "",
-        packageName : ""
+        businessCheck:{
+            customerLoginName : "",
+            password : "",
+            packageName : ""
+        },
+        soliditet:{
+            customerLoginName : "",
+            password : "",
+            packageName : ""
+        }
     },
 
     //initialize
@@ -34,10 +41,9 @@ lbs.apploader.register('creditinfo', function () {
 
         viewModel.getRating = function(){
             var ratingData = {};
+            if self.config.businessCheck
             ratingData = lbs.loader.loadDataSources(ratingData, [{type: 'xml', source: 'CreditInfo.GetCompanyRating,556397-0465', alias:'creditdata'}], true);
-
             ratingData = ratingData.creditdata.DataImport2Result.Blocks.Block.Fields.Field
-            
             viewModel.ratingValue(ratingData[0].Value)
             viewModel.ratingText(ratingData[1].Value)
         }
