@@ -1,4 +1,3 @@
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 .creditinfo{
 
   margin-left: -10px;
@@ -13,12 +12,7 @@
 }
 
 .creditinfo:hover{
-
-}
-.annimation{
-  animation:fadeIn ease-in 1;
-  animation-fill-mode:forwards;
-  animation-duration:2s;
+ box-shadow: inset 0px 0px 4px #888;
 }
 
 /* Variations */
