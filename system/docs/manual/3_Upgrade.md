@@ -1,6 +1,11 @@
 # Upgrade instructions
 These are  the changes that you will have to do to upgrade to a specifik version
 
+### 0.6
+*	Added support for insepctorId param in 10.11
+*	Added global config, removed inline config
+*	Inline config entries in "comment-style" should be moved to _config.js 
+
 ### 0.5
 *	Bugfix: The styling of the menu hover-effekt is imporoved
 *	Bugfix: Header icon is now properly aligned 
