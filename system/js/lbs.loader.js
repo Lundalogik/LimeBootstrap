@@ -148,6 +148,12 @@ lbs.loader = {
     */
     loadDataSources: function (vm, dataSources, overrideExisting) {
 
+         //check connection
+        if(!lbs.hasLimeConnection){
+            lbs.log.warn('No connecton, datasources will not be loaded')
+            return vm;
+        }
+
         var filterRemoveRelated = function (item) {return (item.type != 'relatedRecord')};
         var filterRemoveInspector = function (item) {return (item.type != 'activeInspector')};
         var filterGetInspector = function (item) {return (item.type === 'activeInspector')};
@@ -187,14 +193,20 @@ lbs.loader = {
     */
     loadDataSource: function (vm, dataSource, overrideExisting) {
         var data = {};
-
+        
         lbs.log.debug('Loading data source: ' + dataSource.type + ':' + dataSource.source)
 
         try {
             switch (dataSource.type) {
                 case 'activeInspector':
                     try {
-                        data = lbs.loader.controlsToJSON(lbs.limeDataConnection.ActiveControls,dataSource.alias);
+                        //check lime
+                        if(!lbs.activeInspector){
+                            lbs.log.warn('No activeinspecor, datasource will not be loaded')
+                            return vm;
+                        }
+
+                        data = lbs.loader.controlsToJSON(lbs.activeInspector.Controls,dataSource.alias);
                         
                         //find data without alias
                         dataNode = data[Object.keys(data)[0]];
@@ -222,7 +234,7 @@ lbs.loader = {
                             }); 
                         }
                     } catch (e) {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
                     }
                     break;
                 case 'xml':

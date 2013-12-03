@@ -1,6 +1,10 @@
 # Upgrade instructions
 These are  the changes that you will have to do to upgrade to a specifik version
 
+### 0.5
+*	Bugfix: The styling of the menu hover-effekt is imporoved
+*	Bugfix: Header icon is now properly aligned 
+
 ### 0.4
 *	Skins are now supported! Actionpads must be reloaded to apply the skin change.
 

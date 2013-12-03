@@ -6,7 +6,7 @@ lbs.apploader.register('checklist', function () {
             {type: 'xml', source: 'Checklist.Initialize', alias:'checklistdata'}
         ],
         resources: {
-            scripts: [],
+            scripts: ['placeholders.min.js'],
             styles: ['checklist.css'],
             libs: ['json2xml.js']
         },

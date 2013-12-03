@@ -13,10 +13,10 @@
 			<span data-bind="click:$parent.taskClicked">
 				<input type='checkbox' data-bind="checked: isChecked, attr:{id:'a_' + order}" /> 
 				<label data-bind="attr:{for:'a_' + order}"></label> 
-				<span data-bind="text: title"></span>
+				<span class="taskText" data-bind="text: title"></span>
 			</span>
 			<!-- ko if: $parent.allowRemove -->
-			<div class="fa-times-circle" data-bind="click:$parent.removeTask, clickBubble: false,icon:'icon-remove'"></div>
+			<span class="icon-remove badge pull-right" data-bind="click:$parent.removeTask, clickBubble: false, icon:'fa-times'"> </span>
 			<!-- /ko -->
 		</li>
 	<!-- /ko -->

@@ -17,6 +17,7 @@ var lbs = lbs || {
     "activeClass": "",
     "activeDatabase": "",
     "activeServer": "",
+    "activeInspector": "",
     "apps" : {},
     "error": false,
     "vm": {},
@@ -50,8 +51,8 @@ var lbs = lbs || {
         //init the log
         this.log.setup(lbs.debug);
 
-        //get AP class
-        this.setActionPadClass();
+        //get AP class etc
+        this.setActionPadEnvironment();
 
         //get Server and Database
         this.setActiveDBandServer();
@@ -113,6 +114,7 @@ var lbs = lbs || {
         //getVersion
         this.limeVersion =  lbs.hasLimeConnection ? 
             lbs.common.parseVersion(lbs.limeDataConnection.Version) : lbs.common.parseVersion("0.0.0")
+
     },
 
 
@@ -131,17 +133,52 @@ var lbs = lbs || {
     /**
     Find active actionpad view
     */
-    setActionPadClass: function () {
-        if (lbs.common.getURLParameter("ap") != 'null') {
-            this.activeClass = lbs.common.getURLParameter("ap");
-        } else {
-            try {
-                this.activeClass = lbs.limeDataConnection.ActiveInspector.Class.Name;
-            }
-            catch (e) {
+    setActionPadEnvironment: function () {
+    	var inspectorObject;
+        var inspectorId;
+
+        //has limeconnection, try to get decent values
+        if(lbs.hasLimeConnection){
+
+        	try {
+        		//got support for inspectorid
+        		if(lbs.limeVersion.comparable > lbs.common.parseVersion("10.11.0").comparable){
+			    	inspectorId = lbs.common.getURLParameter("inspectorid")
+                    if (inspectorId != '') {
+			    		inspectorObject = lbs.limeDataConnection.Inspectors.Lookup(inspectorId);
+			        } else {
+			        	inspectorObject = null;
+			        }
+		        }
+		        //no inspectorid support
+		        else{
+                    alert(lbs.limeDataConnection.ActiveInspector.Record.id)
+		       		inspectorObject = lbs.limeDataConnection.ActiveInspector;
+		        }
+
+		        //set values
+		        if(inspectorObject){
+
+			        lbs.activeInspector = inspectorObject;
+			        lbs.activeClass = inspectorObject.class.Name;
+			    }else{
+			    	lbs.activeInspector = null;
+			    	lbs.activeClass = 'index';
+			    }
+			}
+		    catch (e) {
                 lbs.log.warn("Could not determine inspector class, assuming index",e);
                 lbs.activeClass = 'index';
-            }
+		    }
+	    	
+	    }else{
+	    	lbs.activeInspector = null;
+            lbs.activeClass = 'index';
+	    }
+
+	    //override
+    	if (lbs.common.getURLParameter("ap") != 'null') {
+            this.activeClass = lbs.common.getURLParameter("ap");
         }
 
         lbs.log.info("Using view: " + lbs.activeClass);

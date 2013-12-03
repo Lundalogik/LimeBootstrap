@@ -3,23 +3,26 @@
     padding-left: 0px;
     margin: :0;
     background-color:inherit;
-
 }
 
-.task{
-    padding:10px 0 10px 0;
-    margin-top: 5px;
-}
-
-#counter{
+.checklist #counter{
 	background-color: inherit;
 	color: inherit;
 }
 
-input[type=checkbox] {
+.checklist input[type=checkbox] {
 	visibility: hidden;
 	position: absolute;
 }
+
+
+.checklist .taskText{
+	height: 100%;
+	margin-bottom: 6px;
+	display:inline-block;
+	height: 15px;
+	vertical-align: middle;
+	}
 
 .checklist label {
 
@@ -28,18 +31,10 @@ input[type=checkbox] {
 	display:inline-block;
 	width: 15px;
 	height: 15px;
+	margin-top: 6px;
 	border-radius: 3px;
-	-webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
-	-moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
-	box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
-	background: #fcfff4;
+	border:solid 1px #425899;
 
-	background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-	background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-	background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-	background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-	background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
 }
 
 .checklist label:after {
@@ -72,7 +67,7 @@ input[type=checkbox] {
 	opacity: 1;
 }
 
-#new-task{
+.checklist #new-task{
 	border: none;
 	width: 100px;
 	height: 100%;
@@ -83,34 +78,34 @@ input[type=checkbox] {
 	padding:5px 0 10px 0 ;
 }
 
-#add-new-task{
+.checklist #add-new-task{
 	text-align: center;
 	background-color: #83BA1F ;
 	color: #FFF;
 }
-#add-new-task:hover{
+.checklist #add-new-task:hover{
 
 	background-color: #6A951A ;
 
 }
-.notComplete{
+.checklist .notComplete{
 	background-color: #EBEBEB;
 	color:#A7A7A7 !important;
 	opacity: 0.5;
 }
 
-.icon-remove{
-position: absolute;
-right: 5px;
-width: 10px;
-visibility: hidden;
+.checklist .icon-remove{
+	background-color: inherit;
+	visibility: hidden;
+	padding-top: 7px;
 }
 
-.task:hover > .icon-remove{
+.checklist .task:hover > .icon-remove{
 	visibility: visible;
+	color: inherit;
 }
 
- .icon-remove:hover{
+.checklist .task:hover > .icon-remove:hover{
 	color: red;
 	font-size: 15px;
 }
