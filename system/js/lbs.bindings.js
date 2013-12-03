@@ -224,13 +224,13 @@ ko.bindingHandlers.icon = {
 /**
 Load datasources by annotation from actionpad view. Not applicable in apps.
 */
-ko.bindingHandlers.dataSources = {
-    init: function (elem, valueAccessor) {
-        var sources = ko.unwrap(valueAccessor());
-        lbs.loader.loadDataSources(lbs.vm, sources);
-    }
-};
-ko.virtualElements.allowedBindings.dataSources = true;
+// ko.bindingHandlers.dataSources = {
+//     init: function (elem, valueAccessor) {
+//         var sources = ko.unwrap(valueAccessor());
+//         lbs.loader.loadDataSources(lbs.vm, sources);
+//     }
+// };
+// ko.virtualElements.allowedBindings.dataSources = true;
 
 /**
 Safe text binding, failes to empty string

@@ -309,6 +309,32 @@ lbs.loader = {
         return vm;
     },
 
+
+     /**
+    Process params from external config
+    */
+    "loadExternalConfig": function (defaulConfig,externalConfig,classname) {
+        var entry = {}
+
+        //check for config for active class
+        if(externalConfig.hasOwnProperty(classname)){
+            entry = externalConfig[classname];
+
+            //get datasorces if exists
+            if(entry.hasOwnProperty('dataSources')){
+                defaulConfig.dataSources = entry['dataSources'];
+            }
+
+            //get autorefresh if exists
+            if(entry.hasOwnProperty('autorefresh')){
+                defaulConfig.autorefresh = entry['autorefresh'];
+            }
+        }
+           
+        return defaulConfig;
+
+    },
+
     /**
     Only return unique values
     */

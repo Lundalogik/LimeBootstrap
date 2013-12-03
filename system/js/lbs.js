@@ -21,6 +21,7 @@ var lbs = lbs || {
     "apps" : {},
     "error": false,
     "vm": {},
+    "externalConfig" : "",
 
     /**
     config
@@ -34,7 +35,8 @@ var lbs = lbs || {
             scripts: [],
             styles: [],
             libs: ['json2xml.js', 'moment.min.js']
-        }
+        },
+        autorefresh : false
     },
 
     /**
@@ -45,9 +47,6 @@ var lbs = lbs || {
         //system param
         this.setSystemOperationParameters();
 
-        //find debug flag
-        this.setDebugStatus();
-
         //init the log
         this.log.setup(lbs.debug);
 
@@ -56,6 +55,9 @@ var lbs = lbs || {
 
         //get Server and Database
         this.setActiveDBandServer();
+
+        //configure
+        this.preocessConfiguration();
 
         //set Skin
         this.setSkin();
@@ -96,6 +98,20 @@ var lbs = lbs || {
     },
 
     /**
+    save properties for later load
+    */
+    configure : function(externalConfig){
+        this.externalConfig = externalConfig;
+    },
+
+     /**
+    Set properties when not standard
+    */
+    preocessConfiguration : function(){
+        this.config = lbs.loader.loadExternalConfig(this.config,this.externalConfig,this.activeClass);
+    },
+
+    /**
     Fetch variables required to run system
     */
     setSystemOperationParameters: function () {
@@ -122,12 +138,8 @@ var lbs = lbs || {
     /**
     Find debug flags
     */
-    setDebugStatus: function () {
-        if ($("html").attr("data-debug").toLowerCase() === "true") {
-            lbs.debug = true
-        } else {
-            lbs.debug = false
-        }
+    setDebug: function (val) {
+        lbs.debug = val
     },
 
     /**
