@@ -1,15 +1,12 @@
 Option Explicit
 
-Private locAvalibleActionpads As Scripting.Dictionary
-
-
 '=============================================
 ' Sets correct actionpad settings for all inspectors and the main AP
 '
 ' Param "bPublishable" changes settings to a publishable version as
 ' the settings are not supported by the client GUI in the current versions
 '=============================================
-Public Sub setDefaultActionpads(Optional ByVal bPublishable As Boolean = False)
+Public Sub setActionpads(Optional ByVal bPublishable As Boolean = False)
 On Error GoTo ErrorHandler
 
     Dim oClass As LDE.Class
@@ -22,11 +19,11 @@ On Error GoTo ErrorHandler
     'set inspector actionpads
     For Each oClass In ThisApplication.Database.Classes
         bShouldExist = oFiles.Exists(oClass.Name)
-        Call lbsHelper.setDefaultActionpad(oClass.Name, bShouldExist, bPublishable)
+        Call lbsHelper.setActionpad(oClass.Name, bShouldExist, bPublishable)
     Next oClass
     
     'set main actionpad
-    Call lbsHelper.setDefaultActionpad("index", True, bPublishable)
+    Call lbsHelper.setActionpad("index", True, bPublishable)
 
 Exit Sub
 ErrorHandler:
@@ -36,10 +33,10 @@ End Sub
 '=============================================
 ' Wrapper for "setActionpads" with "publishable" set to true
 '=============================================
-Public Sub setDefaultActionpadsPublishable()
+Public Sub setActionpadsPublishable()
 On Error GoTo ErrorHandler
 
-    Call lbsHelper.setDefaultActionpads(True)
+    Call lbsHelper.setActionpads(True)
 
 Exit Sub
 ErrorHandler:
@@ -51,7 +48,7 @@ End Sub
 ' Removed actionpad if "bShouldExist" is false
 ' Sets without get params if "bPublishable" is true
 '=============================================
-Public Sub setDefaultActionpad(ByVal sClass As String, ByVal bShouldExist As Boolean, Optional ByVal bPublishable As Boolean = False)
+Public Sub setActionpad(ByVal sClass As String, ByVal bShouldExist As Boolean, Optional ByVal bPublishable As Boolean = False)
 On Error GoTo ErrorHandler
 
     Dim oSettings As LDE.Settings
@@ -60,9 +57,12 @@ On Error GoTo ErrorHandler
     Dim sUrlSuffix As String
     Dim sUrl As String
     Dim lVisible As Long
+    Dim hasInspectorIdSupport As Boolean
+    
+    hasInspectorIdSupport = IIf(lbsHelper.getComparableVersion(ThisApplication.Version) > lbsHelper.getComparableVersion("10.11.0"), True, False)
     
     sUrlBase = ThisApplication.WebFolder + "lbs.html"
-    sUrlSuffix = IIf(bPublishable, "", "?ap=" + sClass)
+    sUrlSuffix = IIf(bPublishable Or hasInspectorIdSupport, "", "?ap=" + sClass)
     sUrl = IIf(bShouldExist, sUrlBase + sUrlSuffix, "")
     lVisible = IIf(VBA.Len(sUrl) > 0, 1, 0)
     
@@ -88,42 +88,6 @@ ErrorHandler:
     Call UI.ShowError("lbsHelper.setActionpad")
 End Sub
 
-
-'=============================================
-' Set actionpad url with params
-'=============================================
-Public Sub setActionpad(ByRef oInspector As Lime.Inspector)
-On Error GoTo ErrorHandler
-
-    Dim sUrlBase As String
-    Dim sUrlSuffix As String
-    Dim sUrl As String
-    Dim lVisible As Long
-    Dim sClass As String
-    
-    sClass = oInspector.Class.Name
-    
-    sUrlBase = ThisApplication.WebFolder + "lbs.html"
-    sUrlSuffix = "?ap=" + sClass + "&db=" + ThisApplication.DatabaseName
-    sUrl = IIf(locAvalibleActionpads.Exists(sClass), sUrlBase + sUrlSuffix, "")
-    lVisible = IIf(VBA.Len(sUrl) > 0, 1, 0)
-    
-    'index gets special treetment as it is not reloaded frequently and handle is avalible
-    If sClass = "index" Then
-        ThisApplication.WebBar.url = sUrl
-    'normal inspector AP
-    Else
-        oInspector.WebBar.url = sUrl
-        oInspector.WebBar.Visible = lVisible
-    End If
-    
-    Debug.Print (sUrl)
-
-Exit Sub
-ErrorHandler:
-    Call UI.ShowError("lbsHelper.setActionpad")
-End Sub
-
 '=============================================
 ' Collects all avalible actionpad views in a dictionary
 '=============================================
@@ -134,22 +98,17 @@ On Error GoTo ErrorHandler
     Dim sClassName As String
     Dim oFiles As New Scripting.Dictionary
     
-    If (locAvalibleActionpads Is Nothing) Then
+    sFileName = Dir(ThisApplication.WebFolder + "\*.html")
+    Do While Len(sFileName) > 0
+        sClassName = VBA.Left(sFileName, VBA.Len(sFileName) - 5)
+        'dont add the aplication entrypoint
+        If sClassName <> "lbs" Then
+            Call oFiles.Add(sClassName, sClassName)
+        End If
+        sFileName = Dir
+    Loop
     
-        sFileName = Dir(ThisApplication.WebFolder + "\*.html")
-        Do While Len(sFileName) > 0
-            sClassName = VBA.Left(sFileName, VBA.Len(sFileName) - 5)
-            'dont add the aplication entrypoint
-            If sClassName <> "lbs" Then
-                Call oFiles.Add(sClassName, sClassName)
-            End If
-            sFileName = Dir
-        Loop
-        
-        Set locAvalibleActionpads = oFiles
-    End If
-        
-    Set getAvaliableActionpads = locAvalibleActionpads
+    Set getAvaliableActionpads = oFiles
     
 Exit Function
 ErrorHandler:
@@ -205,17 +164,44 @@ ErrorHandler:
     Set loadRelatedRecord = Nothing
 End Function
 
-
 '=============================================
-' test
+' Comparable version
 '=============================================
-Public Function test() As LDE.Record
+Public Function getComparableVersion(sVersion As String) As Long
     On Error GoTo ErrorHandler
     
-    Set test = ActiveInspector.Record
+    Dim nMajor As Long
+    Dim nMinor As Long
+    Dim nBuild As Long
+    Dim iMajor As Long
+    Dim iMinor As Long
+    Dim iBuild As Long
+    Dim nIndex As Long
+    Dim sSplitString As Variant
     
+    nMajor = nMinor = nBuild = iMajor = iMinor = iBuild = nIndex = 0
+    sSplitString = VBA.Split(sVersion, ".")
+    
+    For nIndex = LBound(sSplitString) To UBound(sSplitString)
+         If nIndex = 0 Then
+            iMajor = CInt(sSplitString(nIndex))
+            nMajor = iMajor * 10000
+        ElseIf nIndex = 1 Then
+            iMinor = CInt(sSplitString(nIndex))
+            nMinor = iMinor * 1000
+        ElseIf nIndex = 2 Then
+            iBuild = CInt(sSplitString(nIndex))
+            nBuild = iBuild
+        End If
+        nIndex = nIndex + 1
+    Next nIndex
+
+    getComparableVersion = nMajor + nMinor + nBuild
+ 
 Exit Function
 ErrorHandler:
-    Call UI.ShowError("test")
+    Call UI.ShowError("getComparableVersion")
+    getComparableVersion = 0
 End Function
+
 
