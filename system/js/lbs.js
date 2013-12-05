@@ -146,31 +146,35 @@ var lbs = lbs || {
     Find active actionpad view
     */
     setActionPadEnvironment: function () {
-    	var inspectorObject;
-        var inspectorId;
+    	var apowner = null;
+        var inspectorObject = null;
+        var inspectorId = null;
 
         //has limeconnection, try to get decent values
         if(lbs.hasLimeConnection){
-
+         
         	try {
         		//got support for inspectorid
-        		if(lbs.limeVersion.comparable > lbs.common.parseVersion("10.11.0").comparable){
-			    	inspectorId = lbs.common.getURLParameter("inspectorid")
-                    if (inspectorId != '') {
-			    		inspectorObject = lbs.limeDataConnection.Inspectors.Lookup(inspectorId);
-			        } else {
-			        	inspectorObject = null;
-			        }
-		        }
+                apowner = lbs.common.getURLParameter("apowner")
+                if(apowner != ''){
+            		if(apowner = 'inspector'){
+                        //its an AP, find out which
+    			    	inspectorId = lbs.common.getURLParameter("apownerid")
+                        if (inspectorId != '') {
+    			    		inspectorObject = lbs.limeDataConnection.Inspectors.Lookup(inspectorId);
+    			        }
+    		        }else if (apowner = 'application'){
+                        //its main AP
+                        inspectorObject = null
+                    }
+                }
 		        //no inspectorid support
 		        else{
-                    alert(lbs.limeDataConnection.ActiveInspector.Record.id)
 		       		inspectorObject = lbs.limeDataConnection.ActiveInspector;
 		        }
 
 		        //set values
 		        if(inspectorObject){
-
 			        lbs.activeInspector = inspectorObject;
 			        lbs.activeClass = inspectorObject.class.Name;
 			    }else{
@@ -182,10 +186,6 @@ var lbs = lbs || {
                 lbs.log.warn("Could not determine inspector class, assuming index",e);
                 lbs.activeClass = 'index';
 		    }
-	    	
-	    }else{
-	    	lbs.activeInspector = null;
-            lbs.activeClass = 'index';
 	    }
 
 	    //override
