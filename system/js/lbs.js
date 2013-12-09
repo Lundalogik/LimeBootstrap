@@ -18,6 +18,7 @@ var lbs = lbs || {
     "activeDatabase": "",
     "activeServer": "",
     "activeInspector": "",
+    "wrapperType" : "actionpad",
     "apps" : {},
     "error": false,
     "vm": {},
@@ -153,6 +154,7 @@ var lbs = lbs || {
         //has limeconnection, try to get decent values
         if(lbs.hasLimeConnection){
          
+            //get inspector environment
         	try {
         		//got support for inspectorid
                 apowner = lbs.common.getURLParameter("apowner")
@@ -186,6 +188,7 @@ var lbs = lbs || {
                 lbs.log.warn("Could not determine inspector class, assuming index",e);
                 lbs.activeClass = 'index';
 		    }
+             
 	    }
 
 	    //override
@@ -193,6 +196,23 @@ var lbs = lbs || {
             this.activeClass = lbs.common.getURLParameter("ap");
         }
 
+        //get wrapper environment
+        try {
+            wrapperType = lbs.common.getURLParameter("type")
+            if(wrapperType != null){
+                lbs.wrapperType = wrapperType;
+            }
+            else{
+                lbs.wrapperType = 'inspector';
+            }
+        }
+        catch (e) {
+            lbs.log.error("Could not determine wrapper type",e);
+            self.wrapperType = 'inspector';
+        }   
+
+
+        lbs.log.info("Using wrapper type: " + lbs.wrapperType);
         lbs.log.info("Using view: " + lbs.activeClass);
     },
 

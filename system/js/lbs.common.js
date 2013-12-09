@@ -61,7 +61,7 @@ lbs.common = {
         var param =  decodeURI(
             (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
         );
-        return param = 'null' ? null : param;
+        return (param == 'null' ? null : param);
     },
 
     /**
