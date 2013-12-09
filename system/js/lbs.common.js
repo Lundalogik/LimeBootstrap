@@ -58,9 +58,10 @@ lbs.common = {
     Fetch the url parameters from the GET-URL
     */
     "getURLParameter": function (name) {
-        return decodeURI(
+        var param =  decodeURI(
             (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
         );
+        return param = 'null' ? null : param;
     },
 
     /**

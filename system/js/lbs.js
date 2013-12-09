@@ -156,7 +156,7 @@ var lbs = lbs || {
         	try {
         		//got support for inspectorid
                 apowner = lbs.common.getURLParameter("apowner")
-                if(apowner != ''){
+                if(apowner != null){
             		if(apowner = 'inspector'){
                         //its an AP, find out which
     			    	inspectorId = lbs.common.getURLParameter("apownerid")
@@ -189,7 +189,7 @@ var lbs = lbs || {
 	    }
 
 	    //override
-    	if (lbs.common.getURLParameter("ap") != 'null') {
+    	if (lbs.common.getURLParameter("ap") != null) {
             this.activeClass = lbs.common.getURLParameter("ap");
         }
 
