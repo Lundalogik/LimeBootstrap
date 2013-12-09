@@ -67,7 +67,7 @@ var lbs = lbs || {
         moment.lang(lbs.common.executeVba('Localize.GetLanguage'));
         
         //load view
-        this.loader.loadView('/system/view/{0}'.format(lbs.wrapperType), $("#wrapper"));
+        this.loader.loadView('system/view/{0}'.format(lbs.wrapperType), $("#wrapper"));
         this.loader.loadView(lbs.activeClass, $("#content"));
 
         //load datasources
