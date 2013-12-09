@@ -441,6 +441,10 @@ HEADER
 /*******************
 CONTENT
 *******************/
+#wrapper{
+    height: 100%;
+}
+
 .content-container {
     position: relative;
     padding-top: 10px;
@@ -455,6 +459,35 @@ CONTENT
     /* For IE 5.5 - 7 */
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5');
 }
+
+
+.content-container-tab {
+    padding: 0px;
+    margin: 0px;
+    background-color: #F1F6FF;
+    box-shadow: 0px;
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5');
+}
+
+.content-container-inline {
+    position: relative;
+    padding-top: 10px;
+    padding-left: 0px;
+    padding-right: 10px;
+    background-color: #F1F6FF;
+    height: 100%;
+    margin-right: 10px;
+    box-shadow: 0px;
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5');
+}
+
+
 #content{
     margin-left: 10px;
 

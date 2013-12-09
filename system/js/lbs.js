@@ -67,6 +67,7 @@ var lbs = lbs || {
         moment.lang(lbs.common.executeVba('Localize.GetLanguage'));
         
         //load view
+        this.loader.loadView('/system/view/{0}'.format(lbs.wrapperType), $("#wrapper"));
         this.loader.loadView(lbs.activeClass, $("#content"));
 
         //load datasources
@@ -200,17 +201,24 @@ var lbs = lbs || {
         try {
             wrapperType = lbs.common.getURLParameter("type")
             if(wrapperType != null){
-                lbs.wrapperType = wrapperType;
+                switch(wrapperType){
+                case 'tab':
+                  lbs.wrapperType = 'wrapperTab';
+                  break;
+                case 'inline':
+                  lbs.wrapperType = 'wrapperInline';
+                  break;
+                default:
+                    lbs.wrapperType = 'wrapperActionpad';
+                }
             }
             else{
-                lbs.wrapperType = 'inspector';
+                lbs.wrapperType = 'wrapperActionpad';
             }
         }
         catch (e) {
             lbs.log.error("Could not determine wrapper type",e);
-            self.wrapperType = 'inspector';
         }   
-
 
         lbs.log.info("Using wrapper type: " + lbs.wrapperType);
         lbs.log.info("Using view: " + lbs.activeClass);
