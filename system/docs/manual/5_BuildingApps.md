@@ -24,6 +24,8 @@ The data can be provided as XML, record or records and limebootstrap will then s
 <div data-app="name:'checklist',config:{canBeUnchecked:true,allowRemove:true, canAddTask:true}} " ></div>
 ```
 
+**Please note that you can not have a `data-app` and `data-bind` attribute in the same element**
+
 ##The javascript app structure
 	
 ```javascript
@@ -178,6 +180,7 @@ Implementation of c# String.Format()
 ##### Syntax
 `string.format(format,var1,[var2])`
 ##### Parameters
+|Parameters|Type|
 |---|---|
 |format|string|
 |var|replacement varibles|
