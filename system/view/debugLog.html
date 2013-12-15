@@ -1,5 +1,9 @@
-﻿    <ul id="debugConsole" class="menu expandable collapsed" >
-        <li class="menu-header alert-danger">Debug</li>
+﻿<!-- ko if: enabled  -->
+    <ul id="debugConsole" class="menu expandable collapsed" >
+        <li class="menu-header alert-danger">Debug
+        <span class="badge pull-right" data-bind="icon:'fa-refresh'" onclick="location.reload(true)"> </span>
+        </li>
+
         <li id="console">
             <ul data-bind="foreach: logItems">
                 <li data-bind="attr: { class: liclass }">
@@ -8,3 +12,4 @@
             </ul>
         </li>
 	</ul>	
+<!-- /ko -->
