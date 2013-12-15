@@ -13,6 +13,8 @@ html {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    cursor: default;
+    height: 100%;
 }
 
 body {
@@ -27,6 +29,7 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
 }
 /*
 a {
@@ -529,6 +532,10 @@ Debug
     background-color:#FF0000;
     color:#FFF;
 
+}
+#debugConsole .badge{
+    background-color: transparent;
+    cursor: pointer;
 }
 
 #console {
