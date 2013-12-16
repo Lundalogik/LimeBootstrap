@@ -23,6 +23,7 @@ var lbs = lbs || {
     "error": false,
     "vm": {},
     "externalConfig" : "",
+    "loading":{},
 
     /**
     config
@@ -47,6 +48,9 @@ var lbs = lbs || {
 
         //system param
         this.setSystemOperationParameters();
+
+        //load loader (sic!)
+        this.setupLoader();
 
         //init the log
         this.log.setup(lbs.debug);
@@ -97,6 +101,8 @@ var lbs = lbs || {
         //setOnclickEvents
         this.SetOnclickEvents();
 
+        //Loading complete
+        lbs.loading.showLoader(false);
     },
 
     /**
@@ -111,6 +117,18 @@ var lbs = lbs || {
     */
     preocessConfiguration : function(){
         this.config = lbs.loader.loadExternalConfig(this.config,this.externalConfig,this.activeClass);
+    },
+
+    /**
+    Initialize a neat little loading spinner
+    */
+    setupLoader : function(){
+        this.loader.loadView("system/view/loader", $("#loadingIndicator"));
+
+        lbs.loading.showLoader = ko.observable(true);
+        lbs.loading = ko.mapping.fromJS(lbs.loading);
+        ko.applyBindings(lbs.loading, $("#loadingIndicator").get(0));
+
     },
 
     /**
@@ -271,8 +289,8 @@ var lbs = lbs || {
         $(".expandable").find(".menu-header").click(
             function () {
                 var menuDiv = $(this).parent()
-                $(this).find("i").toggleClass("fa fa-angle-down"); //expanded
-                $(this).find("i").toggleClass("fa fa-angle-right"); // Hidden
+                $(this).find("i").first().toggleClass("fa fa-angle-down"); //expanded
+                $(this).find("i").first().toggleClass("fa fa-angle-right"); // Hidden
                 if (menuDiv.hasClass("collapsed")) {
                      menuDiv.removeClass("collapsed");
                      menuDiv.children("li").not(".remainHidden").fadeIn(200);

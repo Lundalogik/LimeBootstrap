@@ -48,7 +48,7 @@ ul {
 }
 
 i {
-    padding-right: 5px;
+    margin-right: 5px;
 }
 #content {
     height:100%;
@@ -640,6 +640,16 @@ INFO
    float:left;
 }
 
+/*******************
+Loader
+*******************/
 
+#loadingIndicator{
+position: absolute;
+font-size: 40px;
+left: 40%;
+top: 40%;
+
+}
 
 
