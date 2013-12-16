@@ -1,4 +1,3 @@
-##Lime Bootstrap
-[Please go here for documentation](system/docs/Manual)
+#Lime Bootstrap
+[Please go here for documentation](http://limebootstrap.lundalogik.com)
 
-Or [here for a better html version of it](http://lundalogik.github.io/limebootstrap)

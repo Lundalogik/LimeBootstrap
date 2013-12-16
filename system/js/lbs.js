@@ -70,12 +70,13 @@ var lbs = lbs || {
         //set moment language
         moment.lang(lbs.common.executeVba('Localize.GetLanguage'));
         
-        //load view
-        this.loader.loadView('system/view/{0}'.format(lbs.wrapperType), $("#wrapper"));
-        this.loader.loadView(lbs.activeClass, $("#content"));
 
         //load datasources
         this.vm = lbs.loader.loadDataSources(this.vm, this.config.dataSources, false);
+
+        //load views
+        this.loader.loadView('system/view/{0}'.format(lbs.wrapperType), $("#wrapper"));
+        this.loader.loadView(lbs.activeClass, $("#content"));
 
         //load apps
         this.apploader.identifyApps();
