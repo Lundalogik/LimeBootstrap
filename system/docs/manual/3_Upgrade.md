@@ -1,5 +1,5 @@
 # Upgrade instructions
-These are  the changes that you will have to do to upgrade to a specifik version
+These are  the changes that you will have to do to upgrade to a specific version
 
 ### 0.6
 *	Added support for insepctorId param in 10.11

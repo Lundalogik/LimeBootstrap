@@ -1,4 +1,4 @@
-###How does it work?
+#How does it work?
 The new actionpads are inspired of how a single page applcation work. Views (basically html-templates) and data(usually JSON) are loaded via AJAX (an asyncrounous javacript call) by the the web application. The template is then rendered by applying the data and the result is shown to the user.
 
 In LIME-bootstraps case lbs.html is the main application and all actionpads are pointed to lbs.html. lbs.html contians all included css, js amd meta tags. The actionpads (for example company.html) are now just views, containing no includes or javacript.
@@ -6,13 +6,13 @@ lbs.html will detemine which view to load either by a supplied query string (the
 
 The active inspectors record is then loaded as data and converted to JSON.    
 
-###The console
+#The console
 The framework has been blessed with a virtual console, to use for debugging. It is activated through changing `debug="true"` in lbs.html. The console will automagically appeare if an error is logged. You can easily use the console when building apps, read more abot this in the app readme.
 
-##HTML Elements
+#HTML Elements
 LIME bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for additional info
 
-### Structure of an actionpad view
+## Structure of an actionpad view
 An Actionpad built with LIME-bootstrap has the following structure:
 
 ```html
@@ -98,7 +98,7 @@ A dropdown button can contain many options, while taking up very little space.
     </div>
 ```
 
-##Functions
+#Functions
 All Twitter bootstrap functions are included, please see the [Twitter bootstrap documentation](http://getbootstrap.com/2.3.2/javascript.html) 
 As we relay heavily on knockout their `data-bind:""` syntax is used through out the framework. The `data-bind:""` syntax is a used as a property on an html element. In a `data-bind` you add `bindings`, actions or triggers, to perform actions. All Knockout bindings are available, but also a few custom bindings to make your life easier. 
 Read more about bindings and Knockout [here](http://knockoutjs.com/documentation/introduction.html) and try the tutorial [here](http://learn.knockoutjs.com)
@@ -118,7 +118,7 @@ List of custom handlers:
 *	__vba:__ - _Provide an string of an VBA function with it's parameters separated by commas_
 *	__vbaVisible:__ - _Extends knockouts 'visible:' by executing the supplied Boolean VBA function_
 
-### Translation: Handling multiple languages
+## Translation: Handling multiple languages
 All available translations from the Localization table are automatically available in the actionpad context. The same language as the logged in user uses is automatically used. The translations are cached in a dictionary to increase speed, but requires you to run `ThisApplication.Setup` to rebuild the dictionary if you add translations or make changes. 
 
 ```html
@@ -127,7 +127,7 @@ All available translations from the Localization table are automatically availab
 Technical note
 The translations are added to the global view model and thus available in your apps.
 
-###Fetching data from fields in LIME Pro
+##Fetching data from fields in LIME Pro
 All fields from the ActiveInspector are automagically available for you to use in your view. The syntax is `[Record class name].[field database name].[property]`.
 
 The available properties are (in order of relevance):
@@ -145,7 +145,7 @@ The available properties are (in order of relevance):
 <li data-bind="text:business.businesstatus.key"></li> 
 ```
 
-####Loading additional data
+###Loading additional data
 It is common to use data from more than the ActiveInspector and the following syntax will NOT work `<li data-bind="text:person.company.phone.text"></li>`
 
 Instead you can load additional data by using a knockout virtual element:
@@ -172,7 +172,7 @@ The loaded data can then be access by:
 <li data-bind="text:company.phone.text"></li>	
 ```
 
-###Hiding or showing elements
+##Hiding or showing elements
 
 It is common that some elements only should be visible for certain users or when specific conditions apply. The Data-visibility is used as follows:
 
@@ -197,7 +197,7 @@ __true:__ Element is visible
 __false:__ Element hidden
 In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required. 
 
-###Executing VBA-functions and specific actions
+##Executing VBA-functions and specific actions
 `vba:` is used to trigger VBA-functions and specific actions on click. To call a VBA function simply use:
 
 ```html
