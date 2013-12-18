@@ -586,6 +586,19 @@ Debug
     margin-bottom:0;
     
 }
+
+#update{
+    padding:5px;
+    margin:0;
+    padding-left: 5px;
+}
+
+#update .badge:hover{
+    background-color: #6F6F6F;
+
+}
+
+
 /*******************
 APP AREA
 *******************/

@@ -13,9 +13,7 @@
         //loadViewScript
         lbs.loader.loadView('system/view/debugLog',$("#debug"))
         //create viewModel
-        this.vm = new lbs.log.vmFactory();
-        this.vm.enabled(enabled);
-        
+        this.vm = new lbs.log.vmFactory(enabled);
         ko.applyBindings(this.vm, $("#debug").get(0));
     },
 
@@ -99,13 +97,29 @@
 /**
 ViewModel factory 
 */
-lbs.log.vmFactory = function () {
+lbs.log.vmFactory = function (enabled) {
     //Number of items to show in log
+    var self = this;
     this.maxNbrOfItems = 30;
     this.logItems = ko.observableArray([]);
-    this.enabled = ko.observable(false);
+    this.enabled = ko.observable(enabled);
     this.delayedLogItems = [];
     this.delayedLoggingEnabled = true;
+    this.showUpgrade = ko.observable(false);
+
+    this.checkVersion = function() {
+        if(self.enabled()){ //To minimize requests, only check when debug is active
+            remoteVersionData = $.parseJSON(lbs.loader.loadFromExternalWebService("http://limebootstrap.lundalogik.com/api/version/"));
+           
+            localVersionData = $.parseJSON(lbs.loader.loadLocalFileToString("system/version.json"));
+           
+            if(remoteVersionData.versions[0].version > localVersionData.versions[0].version) {
+                return true
+            }else{
+                return false
+            }
+        }
+    }
 
     this.enableConsole = function () {
         this.delayedLoggingEnabled = false;
@@ -134,6 +148,7 @@ lbs.log.vmFactory = function () {
                 this.enabled(true);
                 break;
         }
+
 
         //log to delayed list
         if (this.delayedLoggingEnabled) {

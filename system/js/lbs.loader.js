@@ -335,6 +335,15 @@ lbs.loader = {
 
     },
 
+    "loadFromExternalWebService" : function(url){
+        return lbs.common.executeVba("lbsHelper.loadFromREST," + url  );
+    },
+
+    "loadLocalFileToString" : function(path){
+        return lbs.common.executeVba("lbsHelper.loadHTTPResource," + path  );
+    },
+
+
     /**
     Only return unique values
     */

@@ -173,6 +173,22 @@ ErrorHandler:
 End Function
 
 '=============================================
+' Load JSON as if from webserver
+'=============================================
+Public Function loadFromREST(WebPath As String) As String
+    On Error GoTo ErrorHandler
+    Dim oXHTTP As Object
+    Dim s As String
+    Set oXHTTP = CreateObject("MSXML2.XMLHTTP")
+    oXHTTP.Open "GET", WebPath, False
+    oXHTTP.Send
+    loadFromREST = oXHTTP.responseText
+Exit Function
+ErrorHandler:
+    loadFromREST = ""
+End Function
+
+'=============================================
 ' Load Xml from storedProcedure
 '=============================================
 Public Function loadXmlFromStoredProcedure(procedureName As String) As String
