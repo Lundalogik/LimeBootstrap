@@ -1,6 +1,10 @@
 # Upgrade instructions
 These are  the changes that you will have to do to upgrade to a specific version
 
+### 0.7
+*	Added version checking. If debug is turned on the version of the installed framework is compared with the current version on GitHub. The user is notified and can download a new version.
+*	Added a method to the VBA method "lbsHelper". If upgrading, replace old version with new.
+
 ### 0.6
 *	Added support for insepctorId param in 10.11
 *	Added global config, removed inline config
