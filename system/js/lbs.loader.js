@@ -124,7 +124,7 @@ lbs.loader = {
                     element.html('<img src="' + lbs.loader.systemLibPath + 'img/YouDidntSayTheMagicWord.gif" />');
                 }
                 else if (status == "error") {
-                    lbs.log.error('View "' + file + '" could not be loaded');
+                    lbs.log.error('View "' + file + '" could not be loaded',e);
                 } else {
                     lbs.log.info('View "' + file + '" loaded successfully');
                 }
@@ -138,7 +138,7 @@ lbs.loader = {
                 element.html(s);
                 lbs.log.info('View "' + file + '" loaded successfully');
             } else {
-                lbs.log.error('View "' + file + '" could not be loaded');
+                lbs.log.error('View "' + file + '" could not be loaded',e);
             }
         }
     },
