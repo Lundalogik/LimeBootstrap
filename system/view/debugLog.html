@@ -1,9 +1,11 @@
 ﻿<!-- ko if: enabled  -->
-    <div id="update" class="alert alert-warning" data-bind="visible: checkVersion()" >
+    <!-- ko if: checkVersion()  -->
+    <div id="update" class="alert alert-warning" >
         <span data-bind=" icon:'fa-info-circle'"> <strong>Update available!</strong> </span>
         <span class="badge" data-bind="openURL:'https://github.com/Lundalogik/LimeBootstrap/archive/master.zip'">Download</span>
         <span class="badge" data-bind="openURL:'http://limebootstrap.lundalogik.com/web/manual/index.html?p=upgrade'">Changelog</span>
     </div>
+    <!-- /ko -->
     <ul id="debugConsole" class="menu expandable collapsed" >
         <li class="menu-header alert-danger">Debug
         <span class="badge pull-right" data-bind="icon:'fa-refresh'" onclick="location.reload(true)"> </span>
