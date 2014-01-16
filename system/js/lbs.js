@@ -270,7 +270,7 @@ var lbs = lbs || {
                 lbs.log.info("Silver skin is used");
                 $("body").addClass("silver")
             }else if(skin == 2){
-                lbs.log.info("Yay! Britney skin is used");
+                lbs.log.info("Skin: I'm Britney bitch!");
                 $("body").addClass("britney")
             }
         }
