@@ -147,17 +147,48 @@ BUTTONS**
 ********/
 .btn-lime{
     display: block;
-    width: 100%; 
     font-size: 13px;
     font-weight: lighter;
-    margin-top: 5px;  
+    margin-top: 5px;
+    width: 100%; 
+    cursor: default;
+        white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.btn-group>.btn-lime,
+.btn-lime-split>.btn{
+    float: none;
 }
 
+.btn-group-lime{
+    display: block;
+    font-size: 13px;
+    font-weight: lighter;
+    margin-top: 5px;
+    position: relative;
+    width: 100%;
+}
+
+.btn-lime-split > .btn:first-child{
+width:80%;
+ box-sizing: border-box;
+}
+
+.btn-lime-split > .btn:nth-child(2){
+width:20%;
+ box-sizing: border-box;
+}
 
 .dropdown-menu {
-    width: 100%;
-    min-width:60%;
+    border-top-left-radius:none;
+    border-top-right-radius: none;
     box-shadow: none;
+    margin-top: -1px;
+    min-width:60%;
+    width: 100%;
+    position: absolute;
+    top: 100%;
 }
 
 .dropdown-menu li {
