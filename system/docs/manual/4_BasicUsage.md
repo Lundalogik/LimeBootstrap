@@ -16,28 +16,28 @@ LIME bootstrap supports all Twitter bootstrap elements but has also a few specia
 An Actionpad built with LIME-bootstrap has the following structure:
 
 ```html
-    <!-- Header section, The colorfull thing at the top  -->
-        <div class="header-container red"> <!-- Specify the color of the header. Please see color section for available colors  -->
-            <div class="header-fa-container helpdesk"> <!-- Specify the icon of the header. Please see icon section for available special icons  -->
-  
-            </div>
-            <div id="header-info"> 
-                <h2 data-bind="text: helpdesk.helpdeskno.text"></h2>
-					<ul>
-						<li data-bind="text:helpdesk.person.text, limeLink:helpdesk.person, icon='fa-user'"></li>						
-  					  	...
-                    </ul> 
-            </div>
-        </div>		
-		
-    <!-- /Header section  -->
-    <!-- Body section  -->
-    <div class="content-container">
-      		
-			<!-- Menus and apps goes here!  -->
-		 
+<!-- Header section, The colorfull thing at the top  -->
+<div class="header-container [color]"> <!-- Specify the color of the header. Please see color section for available colors  -->
+    <div class="header-icon"></div>  <!-- Specify the icon of the header. Please see icon section for available special icons  -->
+    <h2 data-bind=""></h2>
+        <ul class="info-links">         
+            <li data-bind=""> </li>
+            ...
+        </ul> 
     </div>
-	<!-- /Body section  -->
+</div>      
+    
+ 
+<!-- /Header section  -->
+<!-- Body section  -->
+
+<div class="menu"> <!-- Menu  -->
+
+        
+</div>
+
+
+<!-- /Body section  -->
 
 ```
 
@@ -64,15 +64,14 @@ Usage:
 A menu can be created by the following HTML: 
 
 ```html
- <ul class="menu">
-        <li class="nav-header"data-bind=" text:localize.Actionpad_Business.command"></li> 
-        <li class="divider"></li>
-	...
+ <ul class="expandable collapsed">
+        <li class="menu-header">Text</li> 
+	   ...
 </ul>
 ```
 
-A menu has two properties, __Expandable__ and __Hidden__. The are added in the `<ul>`  class:
-`<ul class="menu expandable hidden">`	
+A menu has two properties, __Expandable__ and __collapsed__. The are added in the `<ul>`  class:
+`<ul class="menu expandable collapsed">`	
 
 __Expandable:__ The menu can be collapsed by clicking the header   
 __Collapsed:__ The menu is collapsed when the actionpad is loaded. Stupid to use without using Expandable...
@@ -82,20 +81,21 @@ __Collapsed:__ The menu is collapsed when the actionpad is loaded. Stupid to use
 A dropdown button can contain many options, while taking up very little space. 
 
 ```html
- <div class="btn-group">
-    	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" data-bind=" text:localize.Actionpad_Todo.headermoveforward, icon: 'fa-caret-down'"></a>
-    	<ul class="dropdown-menu">
-    		<li data-bind="vba:'ActionPad_todo.Postpone, d, 1', text:localize.Actionpad_Todo.mf1d"></li>
-    	    <li class="divider"></li>
-            <li data-bind="vba:'ActionPad_todo.Postpone, ww, 1', text:localize.Actionpad_Todo.mf1w"></li>
-    		<li data-bind="vba:'ActionPad_todo.Postpone, ww, 2', text:localize.Actionpad_Todo.mf2w"></li>
-            <li class="divider"></li>
-            <li data-bind="vba:'ActionPad_todo.Postpone, m, 1', text:localize.Actionpad_Todo.mf1m"></li>
-    		<li data-bind="vba:'ActionPad_todo.Postpone, m, 6', text:localize.Actionpad_Todo.mf6m"></li>
-    		<li class="divider"></li>
-            <li data-bind="vba:'ActionPad_todo.Postpone, yyyy, 1', text:localize.Actionpad_Todo.mf1y"></li>
-    	</ul>
-    </div>
+<div class="btn-group btn-group-lime"  data-bind="visible:todo.done.value != 1">
+    <button class="btn btn-lime btn-default dropdown-toggle" data-toggle="dropdown" data-bind=" text:localize.Actionpad_Todo.headermoveforward, icon: 'fa-caret-down'">
+    </button>
+    <ul class="dropdown-menu">
+        <li data-bind="vba:'ActionPad_todo.Postpone, d, 1', text:localize.Actionpad_Todo.mf1d"></li>
+        <li class="divider"></li>
+        <li data-bind="vba:'ActionPad_todo.Postpone, ww, 1', text:localize.Actionpad_Todo.mf1w"></li>
+        <li data-bind="vba:'ActionPad_todo.Postpone, ww, 2', text:localize.Actionpad_Todo.mf2w"></li>
+        <li class="divider"></li>
+        <li data-bind="vba:'ActionPad_todo.Postpone, m, 1', text:localize.Actionpad_Todo.mf1m"></li>
+        <li data-bind="vba:'ActionPad_todo.Postpone, m, 6', text:localize.Actionpad_Todo.mf6m"></li>
+        <li class="divider"></li>
+        <li data-bind="vba:'ActionPad_todo.Postpone, yyyy, 1', text:localize.Actionpad_Todo.mf1y"></li>
+    </ul>
+</div> 
 ```
 
 #Functions
