@@ -189,6 +189,31 @@ ErrorHandler:
 End Function
 
 '=============================================
+' Load XML from SOAP webservice
+'=============================================
+Public Function loadFromSOAP(WebPath As String, SOAPAction As String, XML As String) As String
+    On Error GoTo ErrorHandler
+    Dim oXHTTP As MSXML2.XMLHTTP60
+    Dim s As String
+      Set oXHTTP = New MSXML2.XMLHTTP60
+        ' POST
+        Call oXHTTP.Open("POST", WebPath, False)
+        ' Content-Type
+        Call oXHTTP.setRequestHeader("Content-Type", "text/xml; charset=utf-8")
+        ' SOAPAction
+        Call oXHTTP.setRequestHeader("SOAPAction", SOAPAction)
+        'Get RequestXML
+    
+        Call oXHTTP.Send(XML)
+    
+   
+    loadFromSOAP = oXHTTP.responseText
+Exit Function
+ErrorHandler:
+    loadFromSOAP = ""
+End Function
+
+'=============================================
 ' Load Xml from storedProcedure
 '=============================================
 Public Function loadXmlFromStoredProcedure(procedureName As String) As String
