@@ -1,6 +1,13 @@
 # Upgrade instructions
 These are  the changes that you will have to do to upgrade to a specific version
 
+###0.9
+*	Now in Twitter Bootstrap 3.1. 
+*	Handeling of inline and tab views have been improved
+
+###0.8
+Bugs have been eaten!
+
 ### 0.7
 *	Added version checking. If debug is turned on the version of the installed framework is compared with the current version on GitHub. The user is notified and can download a new version.
 *	Added a method to the VBA method "lbsHelper". If upgrading, replace old version with new.
