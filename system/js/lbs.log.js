@@ -128,23 +128,23 @@ lbs.log.vmFactory = function (enabled) {
 
     this.addEntry = function (lev, item) {
         ico = 'icon-exclamation';
-        rowclass = 'alert-info';
+        rowclass = 'alert alert-info';
         switch (lev) {
             case 'DEBUG':
                 ico = 'fa fa-cog';
-                rowclass = 'alert-info';
+                rowclass = 'alert alert-info';
                 break;
             case 'INFO':
                 ico = 'fa fa-info-circle';
-                rowclass = 'alert-info';
+                rowclass = 'alert alert-info';
                 break;
             case 'WARN':
                 ico = 'fa fa-warning';
-                rowclass = 'alert-warning';
+                rowclass = 'alert alert-warning';
                 break;
             case 'ERROR':
                 ico = 'fa fa-times-circle';
-                rowclass = 'alert-danger';
+                rowclass = 'alert alert-danger';
                 this.enabled(true);
                 break;
         }

@@ -417,24 +417,14 @@ CONTENT
 
 
 .content-container-tab {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5')";
-    background-color: #F1F6FF;
-    box-shadow: 0px;
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5');
-    margin: 0px;
-    padding: 0px;
+
 }
 
 .content-container-inline {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5')";
-    background-color: #F1F6FF;
     box-shadow: 0px;
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5');
     height: 100%;
-    margin-right: 10px;
-    padding-left: 0px;
-    padding-right: 10px;
-    padding-top: 10px;
+    width: 100%;
+    padding: 5px;
     position: relative;
 }
 
@@ -442,6 +432,11 @@ CONTENT
 #content{
     margin-left: 10px;
 
+}
+
+
+.content-container-inline #content{
+    margin-left: 0px;
 }
 
 .alert{
@@ -510,6 +505,16 @@ Debug
 #debugConsole {
     padding:0px;
     margin: 0 0 0 0;
+}
+
+#debugConsole .alert {
+    padding:0px;
+    padding-left: 5px;
+    margin: 0 0 0 0;
+    background-image: none;
+    border:none;
+    text-shadow:none;
+    box-shadow: none;
 }
 #debugConsole .menu-header {
     background-color:#FF0000;
