@@ -530,6 +530,9 @@ Debug
     background-color:#000;
     margin-left:0px;
     padding-left:5px;
+    overflow: scroll;
+    overflow-x:hidden;
+    height: 200px;
 }
 
 #console li  {
