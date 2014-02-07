@@ -1,13 +1,52 @@
 #How does it work?
 The new actionpads are inspired of how a single page applcation work. Views (basically html-templates) and data(usually JSON) are loaded via AJAX (an asyncrounous javacript call) by the the web application. The template is then rendered by applying the data and the result is shown to the user.
 
-In LIME-bootstraps case lbs.html is the main application and all actionpads are pointed to lbs.html. lbs.html contians all included css, js amd meta tags. The actionpads (for example company.html) are now just views, containing no includes or javacript.
+In LIME-bootstraps case lbs.html and lbs.js constitute the main application and all actionpads set to show lbs.html. For simplification we'll call the framework just `LBS` (LIME Bootstrap). lbs.html contians all included CSS, JS and meta tags. The actionpads (for example company.html) are now just views, containing no included CSS or JS.
 lbs.html will detemine which view to load either by a supplied query string (the thing after the questionmark), `../lbs.html?ap=company` or if nothing is supplied, by trying to load a view with the same name as the class of the LIME inspector.
 
-The active inspectors record is then loaded as data and converted to JSON.    
+The active inspectors record is then loaded as data and converted to JSON.
 
-#The console
-The framework has been blessed with a virtual console, to use for debugging. It is activated through changing `debug="true"` in lbs.html. The console will automagically appeare if an error is logged. You can easily use the console when building apps, read more abot this in the app readme.
+Basic flow in LBS:
+1	LBS starts and includes all base CSS, Javascript and sets a lot of enviroment variables, such as skin color, language.
+2	LBS then checks where you want your display your HTML-view. In LIME you can show HTML in the actionpad, in a field, in a tab or in a web dialog. If you don't specify anyting lbs will asume your buildning an actionpad.
+3	The specified view, html-file, is loaded
+4	Data is loaded. LBS will first check `_config.js` for datasources, specified with the name of the view. If no datasources are found LBS will try to load the data from the `activeinspector`. A dictonary of local languages translations is loaded. All data is suplied as a JSON-object and then converted to a knockout viewmodel-
+5	Apps are discovered, started and their data is loaded into the main viewmodel. A app can specify depencies on other libraries or styles. These are dynamically loaded and checked for duplicates.
+6	The viewmodel is applied to the now complete view and rendred.
+
+#Loading views
+As metioned lbs.html is the real engine and all HTML things should be loaded trough lbs.html. This is achived by supplying a querystring
+
+`[URL to actionpad folder]/lbs.html?ap=[path to your view/view name]`
+
+The path is relative the lbs.html file and you should not include the file extension (.html).
+
+Loading the company actionpad (company.html):
+
+`lbs.html?ap=company`
+
+#The console and debugging your applications
+The framework has been blessed with a virtual console, to use for debugging. It is activated through changing `setDebug(true)` in `_config.html`. The console will allways automagically appeare if a critical error is logged. If you make syntacic errors in the wrong place, even the viritual console will crash. You can easily use the console when building apps, read more abot this in the app readme. The console is limited to 30 messages by default.
+
+When working with more advanced stuff you might like to have access to a real console. Modern browsers won't allow dynamically loadings scripts from the local file system, due to security concerns. Dynamically loading scripts and html views are core concepts in LBS. In LIME a small VBA function acts as the loader. However in `system/bin/` you will find a `.bat-file` which will restart Google Chrome in a debug mode, allowing you to inspect the CSS and JS. If you dislike this approach a small HTTP-server will do the trick. With Python3 just go to the actionpad folder and write this in your terminal:
+
+```bash
+python -m http.server
+```
+
+#Different wrappers
+In LIME HTML can be displayed in the actionpad, in a HTML-field, in a HTML-tab and in a HTML-dialog. Theses places are quite different and requires some basic setup to work well. Your view can thus be loaded into three different wrappers for helping you with the different conditions.
+
+The three basic wrappers of content:
+*	Actionpad-wrapper. A thin and long wrapper with a slightly lighter backround images with a sharp edge to teh rest of the content:
+*	Inline-wrapper. Used for HTML-fields. Completely plain, with the same color as the inspecor and no padding or margin. Built to seamlesly look as a part of the inspector.
+*	Tab-wrapper. Used for wider layouts, such as a tab or a dialog. Uses default Twitter Bootstrap margins and is fully responsive.
+
+The Actionpad wrapper is allways used unless anything else is stated. Pick your wrapper by suppling a querystring to lbs.html
+
+__Inline:___ `lbs.html?type=inline`
+
+__Tab:__ `lbs.html?type=tab`
 
 #HTML Elements
 LIME bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for additional info
