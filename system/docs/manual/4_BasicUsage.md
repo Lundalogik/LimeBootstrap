@@ -31,7 +31,7 @@ The framework has been blessed with a virtual console, to use for debugging. It 
 When working with more advanced stuff you might like to have access to a real console. Modern browsers won't allow dynamically loadings scripts from the local file system, due to security concerns. Dynamically loading scripts and html views are core concepts in LBS. In LIME a small VBA function acts as the loader. However in `system/bin/` you will find a `.bat-file` which will restart Google Chrome in a debug mode, allowing you to inspect the CSS and JS. If you dislike this approach a small HTTP-server will do the trick. With Python3 just go to the actionpad folder and write this in your terminal:
 
 ```bash
-python -m http.server
+$python -m http.server
 ```
 
 #Different wrappers
