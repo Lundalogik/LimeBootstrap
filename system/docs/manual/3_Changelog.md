@@ -1,6 +1,11 @@
-# Upgrade instructions
-These are  the changes that you will have to do to upgrade to a specific version
+#Updates
+We continually relase new versions of LIME Bootstrap. From version 0.7 the framework automafically checks for new versions only and notifys you if updates are avialable. Please install them ;)
 
+# Upgrade instructions
+Just replace the `system`-folder and `lbs.html` and you are good to go, unless specified otherwise in the changelog
+
+
+#Changelog
 ###0.9
 *	Now in Twitter Bootstrap 3.1. 
 *	Handeling of inline and tab views have been improved
