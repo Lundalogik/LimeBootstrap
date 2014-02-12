@@ -3,44 +3,33 @@ STANDARDIZED ITEMS
 *******************/
 
 html {
-    height: 100%;
-    width: 100%;
-    padding:0 !important;
-    margin:0 !important;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
     cursor: default;
     height: 100%;
+    height: 100%;
+    margin:0 !important;
+    padding:0 !important;
+    user-select: none;
+    width: 100%;
 }
 
 body {
-    padding: 0 !important;
-    margin:0 !important;
-    height: inherit !important;
-    overflow: hidden;
     background-color: #E0EEFF;
     color: #6985B7;
     font-size: 13px;
     font-weight: lighter;
-    white-space: nowrap;
+    height: inherit !important;
+    margin:0 !important;
     overflow: hidden;
+    padding: 0 !important;
+    position: relative;
     text-overflow: ellipsis;
-
+    white-space: nowrap;
 }
-/*
-a {
-    color: white;
-}*/
-
-/* a:hover {
-        text-decoration: none;
-        color: white;
-        cursor: default;
- }*/
 
 ul {
     padding: 0;
@@ -48,11 +37,10 @@ ul {
 }
 
 i {
-    padding-right: 5px;
+    margin-right: 5px;
 }
 #content {
     height:100%;
-
 }
 
 /********
@@ -60,41 +48,34 @@ Added CSS for menu**
 ********/
 
 .menu {
-
-margin: 10px -10px 0 -10px;
-padding-top: 10px;
-padding-left: 0;
-padding-right: 0;
-padding-bottom: 10px;
+    margin: 10px -10px 0 -10px;
+    padding-bottom: 10px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 10px;
 }
  
-
 .menu .menu-header {
-  margin-left: -5px;
-  margin-right: -5px;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+    margin-left: -5px;
+    margin-right: -5px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
 }
 
 .menu [class^="icon-"],
 .menu [class*=" icon-"] {
-  margin-right: 2px;
+    margin-right: 2px;
 }
  
 .menu .divider {
-  *width: 100%;
-  height: 1px;
-  margin: ((1.428571429 / 2) - 1) 1px; // 8px 1px
-  *margin: -5px 0 5px;
-  overflow: hidden;
-      margin: 0 15px 0 10px;
     background-color: #D2E4FF;
+    height: 1px;
     margin-bottom: 3px;
-
+    margin: 0 15px 0 10px;
+    overflow: hidden;
 }
 
-// Space them out when they follow another list item (link)
 .menu li + .menu-header {
-  margin-top: 9px;
+    margin-top: 9px;
 }
 
 
@@ -103,39 +84,28 @@ padding-bottom: 10px;
     cursor: default;
 }
 
-/*.menu-header {
-  display: block;
-  padding: 3px 15px 3px 25px;
-  font-size: 11px;
-  font-weight: bold;
-  line-height: 1.428571429;
-  color: #999;
-  text-shadow: 0 1px 0 rgba(255,255,255,.5);
-  text-transform: uppercase;
-}*/
-
 .menu-header {
-    text-transform: none;
     color: #425899;
-    font-weight: lighter;
-    padding: 3px 15px 0 3px;
-    font-size: 14px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     cursor: default;
+    font-size: 14px;
+    font-weight: lighter;
     margin-left: 0 !important;
+    overflow: hidden;
+    padding: 3px 15px 0 3px;
+    text-overflow: ellipsis;
+    text-transform: none;
+    white-space: nowrap;
 }
 
 .menu > li:not(.menu-header):not(.divider) {
     color: #6985B7;
     font-size: 12px;
-    padding-top: 0;
-    padding-bottom: 0;
     font-weight: lighter;
-    white-space: nowrap;
     overflow: hidden;
+    padding-bottom: 0;
+    padding-top: 0;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .menu > li:not(.menu-header):not(.divider):hover {
@@ -146,80 +116,61 @@ padding-bottom: 10px;
 /********
 BUTTONS**
 ********/
-
-.btn-lime {
-   background-image:none;
-    background-color:inherit;
-    box-shadow:none;
-    color: inherit;
+.btn-lime{
+    cursor: default;
+    display: block;
     font-size: 13px;
     font-weight: lighter;
-    border:1px solid #CCE0FF;
-    padding-left:5px;
+    margin-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%; 
+}
+.btn-group>.btn-lime,
+.btn-lime-split>.btn{
+    float: none;
 }
 
-.btn-lime:hover{
-    color: #6985B7;
-    background-image:none;
-    background-color:#CCE0FF;
-    border: 1px solid #81A9E1;
+.btn-group-lime{
+    display: block;
+    font-size: 13px;
+    font-weight: lighter;
+    margin-top: 5px;
+    position: relative;
+    width: 100%;
 }
 
-.btn-lime:focus,
-.btn-lime:active,
-.btn-lime.active,
-.open .dropdown-toggle.btn-lime {
-   color: #8fa6cf;
-    background-image:none;
-    background-color:#ADD1FF;
-    border: 1px solid #81A9E1;
+.btn-lime-split > .btn:first-child{
+    box-sizing: border-box;
+    width:80%;
 }
 
-.btn-lime:active,
-.btn-lime.active,
-.open .dropdown-toggle.btn-lime {
-    color: #8fa6cf;
-    background-image:none;
-    background-color:#ADD1FF;
-    border: 1px solid #81A9E1;
-}
-
-.btn-lime.disabled,
-.btn-lime[disabled],
-fieldset[disabled] .btn-warning,
-.btn-lime.disabled:hover,
-.btn-lime[disabled]:hover,
-fieldset[disabled] .btn-warning:hover,
-.btn-lime.disabled:focus,
-.btn-lime[disabled]:focus,
-fieldset[disabled] .btn-warning:focus,
-.btn-lime.disabled:active,
-.btn-lime[disabled]:active,
-fieldset[disabled] .btn-warning:active,
-.btn-lime.disabled.active,
-.btn-lime[disabled].active,
-fieldset[disabled] .btn-lime.active {
-  background-color: #81A9E1;
-  border: #CCE0FF;
-}
-
-.btn-group.open .btn.dropdown-toggle {
-    background-image:none;
-    background-color:#ADD1FF;
-    border: 1px solid #81A9E1;
-    color: #8fa6cf;
+.btn-lime-split > .btn:nth-child(2){
+    box-sizing: border-box;
+    width:20%;
 }
 
 .dropdown-menu {
-    margin: 0px 0 0 0px;
-    width: 120%;
+    border-top-left-radius:none;
+    border-top-right-radius: none;
+    box-shadow: none;
+    margin-top: -1px;
     min-width:60%;
+    position: absolute;
+    top: 100%;
+    width: 100%;
 }
 
 .dropdown-menu li {
-    padding-left: 10px;
     cursor: default;
     font-size: 12px;
+    overflow: hidden;
+    overflow: hidden;
+    padding-left: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    white-space: nowrap;
 }
 
 .dropdown-menu .divider {
@@ -227,20 +178,20 @@ fieldset[disabled] .btn-lime.active {
 }
 
 .dropdown-menu li:hover {
-    background-image: none;
     background-color: #EEEEEE;
+    background-image: none;
 }
 
 /*******************
 COLORS
 *******************/
 .blue {
-    background-color: #2693FF;
-    color: white;
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
     /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+    background-color: #2693FF;
     border-bottom: 1px solid #2469C3;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
 }
 
 .header-container.blue:before {
@@ -252,12 +203,12 @@ COLORS
 }
 
 .yellow {
-    background-color: #D39D09;
-    color: white;
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#D39D09')";
     /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#D39D09');
+    background-color: #D39D09;
     border-bottom: 1px solid #B98B08;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#D39D09');
 }
 
 .header-container.yellow:before {
@@ -269,12 +220,12 @@ COLORS
 }
 
 .green {
-    background-color: #83BA1F;
-    color: white;
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#83BA1F')";
     /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#83BA1F');
+    background-color: #83BA1F;
     border-bottom: 1px solid #76A51C;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#83BA1F');
 }
 
 .header-container.green:before {
@@ -286,12 +237,12 @@ COLORS
 }
 
 .orange {
-    background-color: #E56C19;
-    color: white;
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#E56C19')";
     /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#E56C19');
+    background-color: #E56C19;
     border-bottom: 1px solid #B95815;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#E56C19');
 }
 
 .header-container.orange:before {
@@ -303,12 +254,12 @@ COLORS
 }
 
 .darkgrey {
-    background-color: #464646;
-    color: white;
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#464646')";
     /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#464646');
+    background-color: #464646;
     border-bottom: 1px solid #1E1E1E;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#464646');
 }
 
 .header-container.darkgrey:before {
@@ -320,12 +271,12 @@ COLORS
 }
 
 .white {
-    background-color: #FFFFFF;
-    color: white;
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#FFFFFF')";
     /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#FFFFFF');
+    background-color: #FFFFFF;
     border-bottom: 1px solid #7E7E7E;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#FFFFFF');
 }
 
 .header-container.white:before {
@@ -336,14 +287,13 @@ COLORS
     background-color: #7E7E7E;
 }
 
-
 .purple {
-    background-color: #981BB6;
-    color: white;
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#981BB6')";
     /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#981BB6');
+    background-color: #981BB6;
     border-bottom: 1px solid #791790;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#981BB6');
 }
 
 .header-container.purple:before {
@@ -355,12 +305,12 @@ COLORS
 }
 
 .red {
-    background-color: #BF3B26;
-    color: white;
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#BF3B26')";
     /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#BF3B26');
+    background-color: #BF3B26;
     border-bottom: 1px solid #A73624;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#BF3B26');
 }
 
 .header-container.red:before {
@@ -375,40 +325,39 @@ COLORS
 HEADER
 *******************/
 .header-container {
-    position: relative;
     box-shadow: -2px 1px 2px rgba(0, 0, 0, 0.4);
-    z-index: 10;
-    padding: 30px 0 15px 0;
     cursor:default;
     margin: -10px -20px 10px -10px;
-    /*border-bottom: 1px solid #2469C3*/
+    padding: 30px 0 15px 0;
+    position: relative;
+    z-index: 10;
 }
 
 .header-container:before {
-    content: " ";
     background-color: #E0EEFF;
-    width: 0;
-    height: 0;
     border-style: solid;
     border-width: 10px 10px 0 0;
-    position: absolute;
     bottom: -10px;
+    content: " ";
+    height: 0;
+    position: absolute;
     right: 0;
+    width: 0;
 }
 
 .header-container .header-icon-container {
-    padding-left: 20px;
-    padding-bottom: 10px;
-    padding-top: 64px;
     background: no-repeat 50% top;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-top: 64px;
 }
 /*******************************/
 /**USED TO SET HEADER PICTURES**/
 /*******************************/
 
 .header-container #header-icon {
-    height: 70px;
     font-size: 65px;
+    height: 70px;
 }
 
 .header-container ul.info-links li:hover {
@@ -421,13 +370,13 @@ HEADER
 
 .header-container h2 {
     font-size: 18px;
+    font-weight: lighter;
     letter-spacing: -3;
     margin: 0 0 5px 10px;
-    padding: 0 0 0 0px;
-    font-weight: lighter;
-    white-space: nowrap;
     overflow: hidden;
+    padding: 0 0 0 0px;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .header-container ul.info-links {
@@ -436,14 +385,13 @@ HEADER
 }
 
 .header-container ul.info-links > li {
-    width: 50%;
     list-style-position: inside;
-    width: 100%;
-    padding: 0 0 0 10px;
     margin: 0;
-    white-space: nowrap;
     overflow: hidden;
+    padding: 0 0 0 10px;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
 }
 
 
@@ -455,51 +403,40 @@ CONTENT
 }
 
 .content-container {
-    position: relative;
-    padding-top: 10px;
-    padding-left: 0px;
-    padding-right: 10px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5')";
     background-color: #F1F6FF;
+    box-shadow: 1px 0 2px #BEC8D5;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5');
     height: 100%;
     margin-right: 10px;
-    box-shadow: 1px 0 2px #BEC8D5;
-    /* For IE 8 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5')";
-    /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5');
+    padding-left: 0px;
+    padding-right: 10px;
+    padding-top: 10px;
+    position: relative;
 }
 
 
 .content-container-tab {
-    padding: 0px;
-    margin: 0px;
-    background-color: #F1F6FF;
-    box-shadow: 0px;
-    /* For IE 8 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5')";
-    /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5');
+
 }
 
 .content-container-inline {
-    position: relative;
-    padding-top: 10px;
-    padding-left: 0px;
-    padding-right: 10px;
-    background-color: #F1F6FF;
-    height: 100%;
-    margin-right: 10px;
     box-shadow: 0px;
-    /* For IE 8 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5')";
-    /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5');
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    position: relative;
 }
 
 
 #content{
     margin-left: 10px;
 
+}
+
+
+.content-container-inline #content{
+    margin-left: 0px;
 }
 
 .alert{
@@ -515,20 +452,24 @@ SKIN
     background-color: #FCECFF;
 }
 
-.britney >.content-container{
+.britney #wrapper > .content-container{
     background-color: #FDF6FF;
     color:#645082;
 }
-.britney .content-container .menu li{
+.britney #wrapper .content-container .menu li{
     color:#645082 ; 
 }
 
-.britney .content-container .menu .divider{
+.britney #wrapper .content-container .menu .divider{
     background-color:#E3CEFC ; 
 }
 
-.britney .content-container .menu li:not(.menu-header):not(.divider):hover{
+.britney #wrapper .content-container .menu li:not(.menu-header):not(.divider):hover{
     background-color:#E3CEFC ; 
+}
+
+.britney .header-container:before{
+    background-color: #FCECFF;
 }
 
 
@@ -536,21 +477,26 @@ SKIN
     background-color: #E8EAED;
 }
 
-.silver >.content-container{
+.silver #wrapper > .content-container{
     background-color: #F4F4F4;
     color:#545B68;
 }
-.silver .content-container .menu li{
+.silver #wrapper .content-container .menu li{
     color:#545B68 ; 
 }
 
-.silver .content-container .menu .divider{
+.silver #wrapper .content-container .menu .divider{
     background-color:#D8D8D8 ; 
 }
 
-.silver .content-container .menu li:not(.menu-header):not(.divider):hover{
+.silver #wrapper .content-container .menu li:not(.menu-header):not(.divider):hover{
     background-color:#D8D8D8 ; 
 }
+
+.silver .header-container:before{
+    background-color: #E8EAED;
+}
+
 
 
 /*******************
@@ -560,11 +506,20 @@ Debug
     padding:0px;
     margin: 0 0 0 0;
 }
+
+#debugConsole .alert {
+    padding:0px;
+    padding-left: 5px;
+    margin: 0 0 0 0;
+    background-image: none;
+    border:none;
+    text-shadow:none;
+    box-shadow: none;
+}
 #debugConsole .menu-header {
-    list-style:none;
     background-color:#FF0000;
     color:#FFF;
-
+    list-style:none;
 }
 #debugConsole .badge{
     background-color: transparent;
@@ -572,38 +527,53 @@ Debug
 }
 
 #console {
-     padding-left:5px;
-     margin-left:0px;
     background-color:#000;
+    margin-left:0px;
+    padding-left:5px;
+    overflow: scroll;
+    overflow-x:hidden;
+    height: 200px;
 }
 
 #console li  {
-    background-color:#000;
-    
+    background-color:#000;  
 }
+
 #console p  {
     padding-left:15px;
     margin-bottom:0;
-    
 }
+
+#update{
+    padding:5px;
+    margin:0;
+    padding-left: 5px;
+}
+
+#update .badge:hover{
+    background-color: #6F6F6F;
+
+}
+
+
 /*******************
 APP AREA
 *******************/
 .app-area {
-    color: #FFF;
-    background-image: -ms-linear-gradient(left, #A8A8A8 0%, #A8A8A8 100%);
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 200px;
     background-color: #A8A8A8;
+    background-image: -ms-linear-gradient(left, #A8A8A8 0%, #A8A8A8 100%);
+    bottom: 0;
+    color: #FFF;
+    height: 200px;
     margin-right: 10px;
+    position: absolute;
+    width: 100%;
 }
 
 .carousel {
     margin-left: 8px;
-    width: 90%;
     white-space: normal;
+    width: 90%;
 }
 
 .carousel h3 {
@@ -620,26 +590,41 @@ INFO
 
 
 .info {
-    
-    position:fixed;
     bottom:0;
-    margin:0;
     margin-bottom: 0px !important;
+    margin:0;
+    position:fixed;
 }
-
-    .info p {
    
-    }
-
-
-    
 .info i {
-   
+   float:left;
    font-size:30px;
    margin-right:5px;
-   float:left;
 }
 
+/*******************
+Loader
+*******************/
 
+#loadingIndicator{
+    font-size: 40px;
+    left: 40%;
+    position: absolute;
+    top: 40%;
+}
 
+/*******************
+Logo
+*******************/
 
+.lime-logo-bottom{
+    background: url(../../resources/logo.png) no-repeat center bottom;
+    bottom :10px;
+    height:30px;
+    left:0;
+    margin-left:auto;
+    margin-right:auto;
+    position:   absolute;   
+    right:0;
+    width:  93px;
+}

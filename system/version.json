@@ -1,0 +1,20 @@
+{
+	"versions":[
+		{
+			"version": 0.8,
+			"info": "Bugs have been eaten!"
+		},
+		{
+			"version": 0.7,
+			"info": "Added version checking. If debug is turned on the version of the installed framework is compared with the current version on GitHub. The user is notified and can download a new version. Added a method to the VBA method 'lbsHelper'. If upgrading, replace old version with new"
+		},
+		{
+			"version": 0.6,
+			"info": "Added support for insepctorId param in 10.11, Added global config, removed inline config, Inline config entries in 'comment-style' should be moved to _config.js"
+		},
+		{
+			"version": 0.5,
+			"info": "Bugfix: The styling of the menu hover-effekt is imporoved, Bugfix: Header icon is now properly aligned"
+		}
+	] 
+}

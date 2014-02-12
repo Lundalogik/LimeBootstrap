@@ -1,5 +1,21 @@
+#Updates
+We continually relase new versions of LIME Bootstrap. From version 0.7 the framework automafically checks for new versions only and notifys you if updates are avialable. Please install them ;)
+
 # Upgrade instructions
-These are  the changes that you will have to do to upgrade to a specific version
+Just replace the `system`-folder and `lbs.html` and you are good to go, unless specified otherwise in the changelog
+
+
+#Changelog
+###0.9
+*	Now in Twitter Bootstrap 3.1. 
+*	Handeling of inline and tab views have been improved
+
+###0.8
+Bugs have been eaten!
+
+### 0.7
+*	Added version checking. If debug is turned on the version of the installed framework is compared with the current version on GitHub. The user is notified and can download a new version.
+*	Added a method to the VBA method "lbsHelper". If upgrading, replace old version with new.
 
 ### 0.6
 *	Added support for insepctorId param in 10.11

@@ -290,6 +290,22 @@ lbs.loader = {
                         lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
                     }
                     break;
+                 case 'HTTPGetXml':
+                    data = lbs.loader.loadFromExternalWebService(dataSource.source)
+                    if (data != null) {
+                        data = lbs.loader.xmlToJSON(data,dataSource.alias);
+                    } else {
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                    }
+                    break;
+				case 'SOAPGetXml':
+                    data = lbs.common.executeVba('LBSHelper.loadFromSOAP,' + dataSource.source.url + ',' + dataSource.source.action + ',' + dataSource.source.xml);
+                    if (data != null) {
+                        data = lbs.loader.xmlToJSON(data,dataSource.alias);
+                    } else {
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                    }
+                    break;
                 case 'relatedRecord':
                      try {
                         record = lbs.common.executeVba("lbsHelper.loadRelatedRecord, {0}, {1}".format(dataSource['class'], dataSource['idrecord']));
@@ -334,6 +350,15 @@ lbs.loader = {
         return defaulConfig;
 
     },
+
+    "loadFromExternalWebService" : function(url){
+        return lbs.common.executeVba("lbsHelper.loadFromREST," + url  );
+    },
+
+    "loadLocalFileToString" : function(path){
+        return lbs.common.executeVba("lbsHelper.loadHTTPResource," + path  );
+    },
+
 
     /**
     Only return unique values
