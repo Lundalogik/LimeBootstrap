@@ -21,7 +21,7 @@ Initiation of an app is executed by the `lbs.apploader.js` module and triggered 
 The data can be provided as XML, record or records and limebootstrap will then supply the app with an View-model based on the data, free for you to work with. In the view model you will also find all translations and avilable data from the current actionpad viewmodel.   
 
 ```html
-<div data-app="name:'checklist',config:{canBeUnchecked:true,allowRemove:true, canAddTask:true}} " ></div>
+<div data-app="app:'checklist',config:{canBeUnchecked:true,allowRemove:true, canAddTask:true}} " ></div>
 ```
 
 **Please note that you can not have a `data-app` and `data-bind` attribute in the same element**
