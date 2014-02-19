@@ -287,7 +287,7 @@ var lbs = lbs || {
     SetOnclickEvents: function () {
 
         //set contextmenu enables/disabled
-        $("html").attr("oncontextmenu","return {0}".format(lbs.debug ? 'true':'false'));
+        $("html").attr("oncontextmenu","return {0}".format(lbs.debug ? 'false':'true'));
 
         //Expandable: Toggels visibility of child-elements of the element. Used in menues
         $(".expandable").find(".menu-header").click(
