@@ -188,6 +188,32 @@ ErrorHandler:
     loadFromREST = ""
 End Function
 
+Private Function DecodeBase64(ByVal strData As String) As Byte()
+    Dim objXML As Object
+    Dim objNode As Object
+    
+    Set objXML = CreateObject("MSXML2.DOMDocument")
+    Set objNode = objXML.createElement("b64")
+    objNode.DataType = "bin.base64"
+    objNode.Text = strData
+    DecodeBase64 = objNode.nodeTypedValue
+    
+    Set objNode = Nothing
+    Set objXML = Nothing
+End Function
+
+Public Sub saveFile(FilePath As String, Content As String)
+    Dim file As String
+    Dim toWrite As String
+    Dim fnum1 As Variant
+    toWrite = StrConv(DecodeBase64(Content), vbUnicode)
+    file = WebFolder & FilePath
+    fnum1 = FreeFile()
+    Open file For Output As #fnum1
+    Print #fnum1, toWrite
+    Close #fnum1
+End Sub
+
 '=============================================
 ' Load XML from SOAP webservice
 '=============================================

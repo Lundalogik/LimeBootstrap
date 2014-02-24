@@ -359,6 +359,9 @@ lbs.loader = {
         return lbs.common.executeVba("lbsHelper.loadHTTPResource," + path  );
     },
 
+    "saveLocalFile" : function(path, text) {
+        lbs.common.executeVba("lbsHelper.saveFile," + path, [text])
+    },
 
     /**
     Only return unique values
