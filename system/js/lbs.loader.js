@@ -487,6 +487,8 @@ lbs.loader = {
 
     },
 
-
+    "createUpdateTranslation" : function(owner, code, text, culture) {
+        return lbs.common.executeVba("lbsHelper.CreateUpdateTranslation,", [owner, code, text, culture]);
+    }
 
 }

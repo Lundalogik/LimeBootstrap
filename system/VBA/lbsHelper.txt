@@ -260,3 +260,43 @@ ErrorHandler:
     Call UI.ShowError("test")
 End Function
 
+'=============================================
+' Add translation to db
+'=============================================
+Public Sub CreateUpdateTranslation(ByVal sOwner As String, ByVal sCode As String, ByVal sLocalName As String, ByVal sLanguage As String)
+    On Error GoTo ErrorHandler
+    Dim oFilter As New LDE.Filter
+    Dim oView As New LDE.View
+    Dim oRecord As New LDE.Record
+
+    If Application.Classes("localize").Fields.Exists(sLanguage) = False Then
+        Call Application.MessageBox("Fältet '" & sLanguage & "' finns inte i tabellen '" & Application.Classes("localize").LocalName & "'.")
+        Exit Sub
+    End If
+
+    Call oFilter.AddCondition("owner", lkOpEqual, sOwner)
+    Call oFilter.AddCondition("code", lkOpEqual, sCode)
+    Call oFilter.AddOperator(lkOpAnd)
+
+    Call oView.Add("owner")
+    Call oView.Add("code")
+    Call oView.Add(sLanguage)
+
+    If oFilter.HitCount(Application.Classes("localize")) = 1 Then
+        Call oRecord.Open(Application.Classes("localize"), oFilter, oView)
+        oRecord.Value(sLanguage) = sLocalName
+        oRecord.Update
+    Else
+        Set oRecord = New LDE.Record
+        Call oRecord.Open(Application.Classes("localize"))
+        oRecord.Value("owner") = sOwner
+        oRecord.Value("code") = sCode
+        oRecord.Value(sLanguage) = sLocalName
+        oRecord.Update
+    End If
+
+    Exit Sub
+ErrorHandler:
+    Call UI.ShowError("CreateUpdateTranslation")
+End Sub
+
