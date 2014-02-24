@@ -314,6 +314,19 @@ lbs.loader = {
                         lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
                     }
                     break;
+                case 'AsyncPost':
+                    var params = dataSource.parameters || {};
+                    $.support.cors = true;
+                    data = {};
+                    data[dataSource.alias] = $.ajax({
+                        contentType: 'application/json',
+                        data: JSON.stringify(params),
+                        dataType: 'json',
+                        type: 'POST',
+                        url: dataSource.url,
+                        crossDomain: true
+                    });
+                    break;
             }
 
             //merge options into the viewModel
