@@ -22,7 +22,6 @@ var lbs = lbs || {
     "apps" : {},
     "error": false,
     "vm": {},
-    "externalConfig" : "",
     "loading":{},
 
     /**
@@ -45,6 +44,9 @@ var lbs = lbs || {
     Setup
     */
     setup: function () {
+        
+        //Enable or disable debug-mode
+        this.debug = lbs.externalConfig.debug;
 
         //system param
         this.setSystemOperationParameters();
@@ -52,6 +54,9 @@ var lbs = lbs || {
         //load loader (sic!)
         this.setupLoader();
 
+        //configure
+        this.preocessConfiguration();
+        
         //init the log
         this.log.setup(lbs.debug);
 
@@ -60,9 +65,6 @@ var lbs = lbs || {
 
         //get Server and Database
         this.setActiveDBandServer();
-
-        //configure
-        this.preocessConfiguration();
 
         //set Skin
         this.setSkin();
@@ -104,20 +106,15 @@ var lbs = lbs || {
 
         //Loading complete
         lbs.loading.showLoader(false);
+
     },
 
-    /**
-    save properties for later load
-    */
-    configure : function(externalConfig){
-        this.externalConfig = externalConfig;
-    },
 
      /**
     Set properties when not standard
     */
     preocessConfiguration : function(){
-        this.config = lbs.loader.loadExternalConfig(this.config,this.externalConfig,this.activeClass);
+        this.config = lbs.loader.loadExternalConfig(this.config,this.externalConfig.config,this.activeClass);
     },
 
     /**
