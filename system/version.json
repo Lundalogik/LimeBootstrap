@@ -1,6 +1,14 @@
 {
 	"versions":[
 		{
+			"version": 1.0,
+			"info": "The Big 1.0!"
+		},
+		{
+			"version": 0.9,
+			"info": "Now in Twitter Bootstrap 3.1, Handeling of inline and tab views have been improved"
+		},
+		{
 			"version": 0.8,
 			"info": "Bugs have been eaten!"
 		},
