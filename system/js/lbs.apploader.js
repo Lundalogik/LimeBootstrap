@@ -71,6 +71,33 @@
                 lbs.apps[guid].node = htmlNode;
                 lbs.apps[guid].instance = instance;
 
+                //Check app version if debug is enabled
+                if(lbs.debug){
+                    try{
+                        //Load local and remote version info
+                        remoteVersionData = $.parseJSON(lbs.loader.loadFromExternalWebService("http://limebootstrap.lundalogik.com/api/apps/"+ appName + "/")).info.versions;
+                        localVersionData = $.parseJSON(lbs.loader.loadLocalFileToString("apps/" + appName + "/app.json")).versions;
+            
+                        //Extract the latest version number from the versions array of version objects
+                        currentRemoteVersion = _.max(remoteVersionData, function(versionInfo){ return versionInfo.version; }).version;
+                        currentLocalVersion = _.max(localVersionData, function(versionInfo){ return versionInfo.version; }).version;
+
+                        //alert("local: " + currentLocalVersion + ", remote: " + currentRemoteVersion);
+
+                        if( parseFloat(currentLocalVersion) < parseFloat(currentRemoteVersion) ) {
+                            lbs.log.warn("App " + appName + " has an available update. Installed version: " + currentLocalVersion + ", Available version: " + currentRemoteVersion);
+                            lbs.log.vm.addAppUpdate({appName:appName, remoteVersion:currentRemoteVersion, localVersion:currentLocalVersion});
+                        }else{
+                            lbs.log.info("App " + appName + " is up to date (version: " + currentLocalVersion + ")");
+                        }
+
+
+                    }catch (e){
+                        lbs.log.warn("Failed to check version of app: " + appName, e);
+                    }
+
+                }
+
             } catch (e) {
                 lbs.log.warn("Could not load app", e);
             }

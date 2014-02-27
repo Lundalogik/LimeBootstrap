@@ -106,6 +106,7 @@ lbs.log.vmFactory = function (enabled) {
     this.delayedLogItems = [];
     this.delayedLoggingEnabled = true;
     this.showUpgrade = ko.observable(false);
+    this.appUpdates = ko.observableArray();
 
     this.checkVersion = function() {
         if(self.enabled()){ //To minimize requests, only check when debug is active
@@ -114,11 +115,17 @@ lbs.log.vmFactory = function (enabled) {
             localVersionData = $.parseJSON(lbs.loader.loadLocalFileToString("system/version.json"));
            
             if(remoteVersionData.versions[0].version > localVersionData.versions[0].version) {
+                self.showUpgrade(true);
                 return true
             }else{
                 return false
             }
         }
+    }
+
+    this.addAppUpdate = function(appName){
+        self.showUpgrade(true);
+        self.appUpdates.push(appName);
     }
 
     this.enableConsole = function () {
