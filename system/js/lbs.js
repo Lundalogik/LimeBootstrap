@@ -45,23 +45,24 @@ var lbs = lbs || {
     */
     setup: function () {
         
-        //Enable or disable debug-mode
-        this.debug = lbs.externalConfig.debug;
 
         //system param
         this.setSystemOperationParameters();
 
-        //load loader (sic!)
-        this.setupLoader();
-
-        //configure
-        this.preocessConfiguration();
+        //Enable or disable debug-mode
+        this.debug = lbs.externalConfig.debug;
         
         //init the log
         this.log.setup(lbs.debug);
 
         //get AP class etc
         this.setActionPadEnvironment();
+
+        //load loader (sic!)
+        this.setupLoader();
+
+        //configure
+        this.preocessConfiguration();
 
         //get Server and Database
         this.setActiveDBandServer();
@@ -164,7 +165,7 @@ var lbs = lbs || {
     Find active actionpad view
     */
     setActionPadEnvironment: function () {
-    	var apowner = null;
+        var apowner = null;
         var inspectorObject = null;
         var inspectorId = null;
 
@@ -172,44 +173,44 @@ var lbs = lbs || {
         if(lbs.hasLimeConnection){
          
             //get inspector environment
-        	try {
-        		//got support for inspectorid
+            try {
+                //got support for inspectorid
                 apowner = lbs.common.getURLParameter("apowner")
                 if(apowner != null){
-            		if(apowner = 'inspector'){
+                    if(apowner = 'inspector'){
                         //its an AP, find out which
-    			    	inspectorId = lbs.common.getURLParameter("apownerid")
-                        if (inspectorId != '') {
-    			    		inspectorObject = lbs.limeDataConnection.Inspectors.Lookup(inspectorId);
-    			        }
-    		        }else if (apowner = 'application'){
+                        inspectorId = lbs.common.getURLParameter("apownerid")
+                        if (inspectorId) {
+                            inspectorObject = lbs.limeDataConnection.Inspectors.Lookup(inspectorId);
+                        }
+                    }else if (apowner = 'application'){
                         //its main AP
                         inspectorObject = null
                     }
                 }
-		        //no inspectorid support
-		        else{
-		       		inspectorObject = lbs.limeDataConnection.ActiveInspector;
-		        }
+                //no inspectorid support
+                else{
+                    inspectorObject = lbs.limeDataConnection.ActiveInspector;
+                }
 
-		        //set values
-		        if(inspectorObject){
-			        lbs.activeInspector = inspectorObject;
-			        lbs.activeClass = inspectorObject.class.Name;
-			    }else{
-			    	lbs.activeInspector = null;
-			    	lbs.activeClass = 'index';
-			    }
-			}
-		    catch (e) {
+                //set values
+                if(inspectorObject){
+                    lbs.activeInspector = inspectorObject;
+                    lbs.activeClass = inspectorObject.class.Name;
+                }else{
+                    lbs.activeInspector = null;
+                    lbs.activeClass = 'index';
+                }
+            }
+            catch (e) {
                 lbs.log.warn("Could not determine inspector class, assuming index",e);
                 lbs.activeClass = 'index';
-		    }
+            }
              
-	    }
+        }
 
-	    //override
-    	if (lbs.common.getURLParameter("ap") != null) {
+        //override
+        if (lbs.common.getURLParameter("ap") != null) {
             this.activeClass = lbs.common.getURLParameter("ap");
         }
 
