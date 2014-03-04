@@ -2,7 +2,10 @@
 We continually release new versions of LIME Bootstrap. From version 0.7 the framework auto-magically checks for new versions only and notifies you if updates are available. Please install them ;)
 
 # Upgrade instructions
-Just replace the `system`-folder and `lbs.html` and you are good to go, unless specified otherwise in the change-log
+Just replace the `system`-folder and `lbs.html` and you are good to go, unless specified otherwise in the change-log. 
+
+__Please check that Windows hasn't blocked the files. Right click on the zip-folder and unblock before unzipping!__
+
 
 
 #Change-log
