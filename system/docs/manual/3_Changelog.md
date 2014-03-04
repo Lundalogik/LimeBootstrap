@@ -6,6 +6,10 @@ Just replace the `system`-folder and `lbs.html` and you are good to go, unless s
 
 
 #Change-log
+###1.1
+*	Bugfix: Handeling of `_config.js` now works in IE9 
+*	Bugfix: Index-view won't cause an ugly error any more
+
 ###1.0
 *	The big 1.0 release! *untz* *untz* *untz*
 *	__NOTE:__ Format of `_config.js` has changed and the file must be replaced! If you are upgrading and you have modified the file, look at the new format and apply your changed accordingly. Should be a 10 second fix.
