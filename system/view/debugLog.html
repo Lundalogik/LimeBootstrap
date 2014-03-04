@@ -2,9 +2,9 @@
     <!-- ko if:showUpgrade() -->
     <div id="update" class="alert alert-warning" >
         <!-- ko if: showLBSVersion() -->
-        <span data-bind=" icon:'fa-info-circle'"> <strong>LBS Update available!</strong> </span>
+        <span data-bind=" icon:'fa-info-circle'"> <strong>LBS Update available!</strong> <span data-bind="text:' (' + remoteVersion() + ')'"></span></span>
         <span class="badge" data-bind="openURL:'https://github.com/Lundalogik/LimeBootstrap/archive/master.zip'">Download 
-            <span data-bind="text:' (v' + remoteVersion() + ')'"></span>
+            
         </span>
         <span class="badge" data-bind="openURL:'http://limebootstrap.lundalogik.com/web/manual/index.html?p=changelog'">Changelog</span>
         <!-- /ko -->
@@ -12,7 +12,7 @@
         <ul data-bind=" foreach:appUpdates()">
            <li>
            <span data-bind=" icon:'fa-info-circle'"> <strong>App update available:</strong></span> 
-           <a href="#" data-bind="text: $data.appName + ' (' + $data.localVersion + '->' + remoteVersion + ')' , openURL:'http://limebootstrap.lundalogik.com/web/appstore/index.html#' + $data.appName"></a>
+           <a href="#" data-bind="text: $data.appName + ' (v' + $data.localVersion + '->v' + remoteVersion + ')' , openURL:'http://limebootstrap.lundalogik.com/web/appstore/index.html#' + $data.appName"></a>
            </li>
         </ul>
        

@@ -349,12 +349,26 @@ var lbs = lbs || {
         //Check app version if debug is enabled
         if(lbs.debug){
             // Check for app updates
+            var lbsURL = "http://limebootstrap.lundalogik.com/api/"
             $.each(lbs.apps, function(index, app){
                 try{
                 var appName = app.name;
-                //Load local and remote version info
-                var remoteVersionData = $.parseJSON(lbs.loader.loadFromExternalWebService("http://limebootstrap.lundalogik.com/api/apps/"+ appName + "/")).info.versions;
-                var localVersionData = $.parseJSON(lbs.loader.loadLocalFileToString("apps/" + appName + "/app.json")).versions;
+
+                //Load remote version info
+                var remoteData = lbs.loader.loadFromExternalWebService(lbsURL+ "apps/" + appName + "/");
+                if(remoteData.error){
+                    lbs.log.warn("Failed to check remote version of app: " + appName, e);
+                    return;
+                }
+                var remoteVersionData = $.parseJSON(remoteData).info.versions;
+
+                //Load local version info
+                var localData = lbs.loader.loadLocalFileToString("apps/" + appName + "/app.json");
+                if(localData === ""){
+                    lbs.log.warn("Failed to check local version of app: " + appName, e);
+                    return
+                }
+                var localVersionData = $.parseJSON(localData).versions;
 
                 //Extract the latest version number from the versions array of version objects
                 var currentRemoteVersion = _.max(remoteVersionData, function(versionInfo){ return versionInfo.version; }).version;
@@ -376,7 +390,13 @@ var lbs = lbs || {
             
             try{
             //Check for LBS Update
-                var remoteVersionData = $.parseJSON(lbs.loader.loadFromExternalWebService("http://limebootstrap.lundalogik.com/api/version/"));
+                var remoteData = lbs.loader.loadFromExternalWebService(lbsURL+ "version/");
+                if(!remoteData){
+                    lbs.log.warn("Failed to check remote version of LBS! ", e);
+                    return;
+                }
+                var remoteVersionData = $.parseJSON(remoteData);
+
                 var localVersionData = $.parseJSON(lbs.loader.loadLocalFileToString("system/version.json"));
                 
                 var currentRemoteVersion = _.max(remoteVersionData.versions, function(versionInfo){ return versionInfo.version; }).version;
@@ -385,10 +405,10 @@ var lbs = lbs || {
                 if(currentRemoteVersion > currentLocalVersion) {
                     lbs.log.vm.showUpgrade(true);
                     lbs.log.vm.showLBSVersion(true);
-                    lbs.log.vm.remoteVersion(currentRemoteVersion);
-                    lbs.log.warn("Your LIME Bootstrap is out of date! v{0}-> v{1}".format(currentLocalVersion,currentRemoteVersion));
+                    lbs.log.vm.remoteVersion(" v{0}-> v{1}".format(currentLocalVersion,currentRemoteVersion));
+                    lbs.log.warn("Your LIME Bootstrap is out of date! v{0}->v{1}".format(currentLocalVersion,currentRemoteVersion));
                 }else{
-                    
+                    lbs.log.info("LBS version: v{0}".format(currentLocalVersion));
                 }
             }catch(e){
                 lbs.log.warn("Failed to check version of LBS! ",e);
