@@ -12,6 +12,7 @@ __Please check that Windows hasn't blocked the files. Right click on the zip-fol
 ###1.1
 *	Bugfix: Handeling of `_config.js` now works in IE9 
 *	Bugfix: Index-view won't cause an ugly error any more
+*	Bugfix: Checking for updates should work better
 
 ###1.0
 *	The big 1.0 release! *untz* *untz* *untz*

@@ -105,6 +105,9 @@ var lbs = lbs || {
         //setOnclickEvents
         this.SetOnclickEvents();
 
+        //Check for updates
+        this.checkForUpdates();
+
         //Loading complete
         lbs.loading.showLoader(false);
 
@@ -341,6 +344,59 @@ var lbs = lbs || {
             lbs.log.warn("Binding of data ActionPad failed! \n Displaying mapping attributes",e);
         }
     },
+
+    checkForUpdates: function(){
+        //Check app version if debug is enabled
+        if(lbs.debug){
+            // Check for app updates
+            $.each(lbs.apps, function(index, app){
+                try{
+                var appName = app.name;
+                //Load local and remote version info
+                var remoteVersionData = $.parseJSON(lbs.loader.loadFromExternalWebService("http://limebootstrap.lundalogik.com/api/apps/"+ appName + "/")).info.versions;
+                var localVersionData = $.parseJSON(lbs.loader.loadLocalFileToString("apps/" + appName + "/app.json")).versions;
+
+                //Extract the latest version number from the versions array of version objects
+                var currentRemoteVersion = _.max(remoteVersionData, function(versionInfo){ return versionInfo.version; }).version;
+                var currentLocalVersion = _.max(localVersionData, function(versionInfo){ return versionInfo.version; }).version;
+
+                //alert("local: " + currentLocalVersion + ", remote: " + currentRemoteVersion);
+
+                if( parseFloat(currentLocalVersion) < parseFloat(currentRemoteVersion) ) {
+                    lbs.log.warn("App " + appName + " has an available update. Installed version: " + currentLocalVersion + ", Available version: " + currentRemoteVersion);
+                    lbs.log.vm.addAppUpdate({appName:appName, remoteVersion:currentRemoteVersion, localVersion:currentLocalVersion});
+                }else{
+                    lbs.log.info("App " + appName + " is up to date (version: " + currentLocalVersion + ")");
+                }
+
+                }catch (e){
+                    lbs.log.warn("Failed to check version of app: " + appName, e);
+                }
+            });
+            
+            try{
+            //Check for LBS Update
+                var remoteVersionData = $.parseJSON(lbs.loader.loadFromExternalWebService("http://limebootstrap.lundalogik.com/api/version/"));
+                var localVersionData = $.parseJSON(lbs.loader.loadLocalFileToString("system/version.json"));
+                
+                var currentRemoteVersion = _.max(remoteVersionData.versions, function(versionInfo){ return versionInfo.version; }).version;
+                var currentLocalVersion = _.max(localVersionData.versions, function(versionInfo){ return versionInfo.version; }).version;
+
+                if(currentRemoteVersion > currentLocalVersion) {
+                    lbs.log.vm.showUpgrade(true);
+                    lbs.log.vm.showLBSVersion(true);
+                    lbs.log.vm.remoteVersion(currentRemoteVersion);
+                    lbs.log.warn("Your LIME Bootstrap is out of date! v{0}-> v{1}".format(currentLocalVersion,currentRemoteVersion));
+                }else{
+                    
+                }
+            }catch(e){
+                lbs.log.warn("Failed to check version of LBS! ",e);
+            }
+        
+        }
+
+    }
 }
 
 /**

@@ -107,21 +107,8 @@ lbs.log.vmFactory = function (enabled) {
     this.delayedLoggingEnabled = true;
     this.showUpgrade = ko.observable(false);
     this.appUpdates = ko.observableArray();
-
-    this.checkVersion = function() {
-        if(self.enabled()){ //To minimize requests, only check when debug is active
-            remoteVersionData = $.parseJSON(lbs.loader.loadFromExternalWebService("http://limebootstrap.lundalogik.com/api/version/"));
-           
-            localVersionData = $.parseJSON(lbs.loader.loadLocalFileToString("system/version.json"));
-           
-            if(remoteVersionData.versions[0].version > localVersionData.versions[0].version) {
-                self.showUpgrade(true);
-                return true
-            }else{
-                return false
-            }
-        }
-    }
+    this.showLBSVersion = ko.observable(false);
+    this.remoteVersion = ko.observable();
 
     this.addAppUpdate = function(appName){
         self.showUpgrade(true);
