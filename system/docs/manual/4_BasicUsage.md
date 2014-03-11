@@ -104,7 +104,7 @@ To start an app add this HTML to your view:
 Each app has it's own instructions how to start and install them. Some apps require VBA and/or stored procedures to be added.
 
 #Bindings
-As we relay heavily on knockout their `data-bind:""` syntax is used through out the framework. The `data-bind:""` syntax is a used as a property on an html element. In a `data-bind` you add `bindings`, actions or triggers, to perform actions. All Knockout bindings are available, but also a few custom bindings to make your life easier. 
+As we relay heavily on knockout their `data-bind=""` syntax is used through out the framework. The `data-bind=""` syntax is a used as a property on an html element. In a `data-bind` you add `bindings`, actions or triggers, to perform actions. All Knockout bindings are available, but also a few custom bindings to make your life easier. 
 Read more about bindings and Knockout [here](http://knockoutjs.com/documentation/introduction.html) and try the tutorial [here](http://learn.knockoutjs.com)
 
 A basic example of use of a knockout binding:
@@ -132,8 +132,15 @@ All available translations from the Localization table are automatically availab
 ```html
 <li data-bind="text:localize.ActionPad_Todo.addTodo"></li>
 ```
-Technical note
-The translations are added to the global view model and thus available in your apps.
+
+The example below uses the versatile knockout binding `attr` to add a tooltip with localization support. It also uses the custom LIME Bootstrap bindings `vba` and `icon`.
+
+```html
+<li data-bind="vba:'Actionpad_Person.newComment', text:localize.Actionpad_Person.t_newcomment, icon:'fa-comment', attr: { title: localize.Actionpad_Person.tooltip_newcomment }"></li>
+```
+
+####Technical note
+The translations are added to the global view model and are thus available in your apps.
 
 ##Fetching data from fields in LIME Pro
 All fields from the ActiveInspector are automagically available for you to use in your view. The syntax is `[Record class name].[field database name].[property]`.
@@ -213,7 +220,7 @@ Input parameters are provided by simply separating them by commas.
  ```
  
 
-##Showing a adress on a map
+##Showing an adress on a map
  
 *   __showOnMap:__ - Searches Google Maps for the provided address.
  
@@ -242,8 +249,8 @@ Input parameters are provided by simply separating them by commas.
 	<li data-bind="text:todo.company.text, limeLink:todo.company, icon:'fa-flag'"></li>
 	```
 
-##Send a email
-*	__email__ - Creates an email. TODO: Should use LIMES built in email factory
+##Send an email
+*	__email__ - Creates an email. TODO: Should use LIME's built in email factory.
 	
 	```html
 	<li data-bind="text:person.email.text, email:person.email.text, icon:'fa-mail'"></li>
