@@ -67,12 +67,15 @@ lbs.common = {
     /**
     * Helperfunction to run VBA functions from JS
     */
-    "executeVba": function (inString) {
+    "executeVba": function (inString, params) {
         try {
             lbs.log.debug("Trying to execute VBA:" + inString);
             var vbaline;
 
             var inArgs = inString.split(',');
+            if(params){
+                inArgs = inArgs.concat(params);
+            }
 
             if (inArgs.length > 1) {
 

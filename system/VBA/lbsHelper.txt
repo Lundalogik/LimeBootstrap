@@ -188,6 +188,32 @@ ErrorHandler:
     loadFromREST = ""
 End Function
 
+Private Function DecodeBase64(ByVal strData As String) As Byte()
+    Dim objXML As Object
+    Dim objNode As Object
+    
+    Set objXML = CreateObject("MSXML2.DOMDocument")
+    Set objNode = objXML.createElement("b64")
+    objNode.DataType = "bin.base64"
+    objNode.Text = strData
+    DecodeBase64 = objNode.nodeTypedValue
+    
+    Set objNode = Nothing
+    Set objXML = Nothing
+End Function
+
+Public Sub saveFile(FilePath As String, Content As String)
+    Dim file As String
+    Dim toWrite As String
+    Dim fnum1 As Variant
+    toWrite = StrConv(DecodeBase64(Content), vbUnicode)
+    file = WebFolder & FilePath
+    fnum1 = FreeFile()
+    Open file For Output As #fnum1
+    Print #fnum1, toWrite
+    Close #fnum1
+End Sub
+
 '=============================================
 ' Load XML from SOAP webservice
 '=============================================
@@ -259,4 +285,44 @@ Exit Function
 ErrorHandler:
     Call UI.ShowError("test")
 End Function
+
+'=============================================
+' Add translation to db
+'=============================================
+Public Sub CreateUpdateTranslation(ByVal sOwner As String, ByVal sCode As String, ByVal sLocalName As String, ByVal sLanguage As String)
+    On Error GoTo ErrorHandler
+    Dim oFilter As New LDE.Filter
+    Dim oView As New LDE.View
+    Dim oRecord As New LDE.Record
+
+    If Application.Classes("localize").Fields.Exists(sLanguage) = False Then
+        Call Application.MessageBox("Fältet '" & sLanguage & "' finns inte i tabellen '" & Application.Classes("localize").LocalName & "'.")
+        Exit Sub
+    End If
+
+    Call oFilter.AddCondition("owner", lkOpEqual, sOwner)
+    Call oFilter.AddCondition("code", lkOpEqual, sCode)
+    Call oFilter.AddOperator(lkOpAnd)
+
+    Call oView.Add("owner")
+    Call oView.Add("code")
+    Call oView.Add(sLanguage)
+
+    If oFilter.HitCount(Application.Classes("localize")) = 1 Then
+        Call oRecord.Open(Application.Classes("localize"), oFilter, oView)
+        oRecord.Value(sLanguage) = sLocalName
+        oRecord.Update
+    Else
+        Set oRecord = New LDE.Record
+        Call oRecord.Open(Application.Classes("localize"))
+        oRecord.Value("owner") = sOwner
+        oRecord.Value("code") = sCode
+        oRecord.Value(sLanguage) = sLocalName
+        oRecord.Update
+    End If
+
+    Exit Sub
+ErrorHandler:
+    Call UI.ShowError("CreateUpdateTranslation")
+End Sub
 

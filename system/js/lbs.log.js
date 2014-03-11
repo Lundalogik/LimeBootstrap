@@ -78,7 +78,7 @@
     /**
     Log entry function for error
     */
-    error: function (msg, e) {
+    "error": function (msg, e) {
         if(e){lbs.log.exception(e)}
         lbs.log.logToDom('ERROR', lbs.common.nl2brIndent(msg));
         lbs.log.logToConsole.error((msg));
@@ -87,7 +87,7 @@
     /**
     Log entry function for exception
     */
-    exception: function (e, level) {
+    "exception": function (e, level) {
         if (!level) {level = 'ERROR'}
         lbs.log.logToDom(level, e.message + lbs.common.nl2brIndent(e.message + "\n" + e.stack));
         lbs.log.logToConsole.error((e.message), e);
@@ -106,19 +106,13 @@ lbs.log.vmFactory = function (enabled) {
     this.delayedLogItems = [];
     this.delayedLoggingEnabled = true;
     this.showUpgrade = ko.observable(false);
+    this.appUpdates = ko.observableArray();
+    this.showLBSVersion = ko.observable(false);
+    this.remoteVersion = ko.observable();
 
-    this.checkVersion = function() {
-        if(self.enabled() && lbs.hasConnection){ //To minimize requests, only check when debug is active
-            remoteVersionData = $.parseJSON(lbs.loader.loadFromExternalWebService("http://limebootstrap.lundalogik.com/api/version/"));
-           
-            localVersionData = $.parseJSON(lbs.loader.loadLocalFileToString("system/version.json"));
-           
-            if(remoteVersionData.versions[0].version > localVersionData.versions[0].version) {
-                return true
-            }else{
-                return false
-            }
-        }
+    this.addAppUpdate = function(appName){
+        self.showUpgrade(true);
+        self.appUpdates.push(appName);
     }
 
     this.enableConsole = function () {

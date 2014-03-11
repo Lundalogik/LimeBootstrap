@@ -71,6 +71,7 @@
                 lbs.apps[guid].node = htmlNode;
                 lbs.apps[guid].instance = instance;
 
+
             } catch (e) {
                 lbs.log.warn("Could not load app", e);
             }

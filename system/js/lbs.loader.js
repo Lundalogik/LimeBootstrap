@@ -316,6 +316,19 @@ lbs.loader = {
                         lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
                     }
                     break;
+                case 'AsyncPost':
+                    var params = dataSource.parameters || {};
+                    $.support.cors = true;
+                    data = {};
+                    data[dataSource.alias] = $.ajax({
+                        contentType: 'application/json',
+                        data: JSON.stringify(params),
+                        dataType: 'json',
+                        type: 'POST',
+                        url: dataSource.url,
+                        crossDomain: true
+                    });
+                    break;
             }
 
             //merge options into the viewModel
@@ -361,6 +374,9 @@ lbs.loader = {
         return lbs.common.executeVba("lbsHelper.loadHTTPResource," + path  );
     },
 
+    "saveLocalFile" : function(path, text) {
+        lbs.common.executeVba("lbsHelper.saveFile," + path, [text])
+    },
 
     /**
     Only return unique values
@@ -489,6 +505,8 @@ lbs.loader = {
 
     },
 
-
+    "createUpdateTranslation" : function(owner, code, text, culture) {
+        return lbs.common.executeVba("lbsHelper.CreateUpdateTranslation,", [owner, code, text, culture]);
+    }
 
 }

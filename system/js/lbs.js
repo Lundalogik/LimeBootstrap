@@ -22,7 +22,6 @@ var lbs = lbs || {
     "apps" : {},
     "error": false,
     "vm": {},
-    "externalConfig" : "",
     "loading":{},
 
     /**
@@ -45,24 +44,28 @@ var lbs = lbs || {
     Setup
     */
     setup: function () {
+        
 
         //system param
         this.setSystemOperationParameters();
 
-        //load loader (sic!)
-        this.setupLoader();
-
+        //Enable or disable debug-mode
+        this.debug = lbs.externalConfig.debug;
+        
         //init the log
         this.log.setup(lbs.debug);
 
         //get AP class etc
         this.setActionPadEnvironment();
 
-        //get Server and Database
-        this.setActiveDBandServer();
+        //load loader (sic!)
+        this.setupLoader();
 
         //configure
         this.preocessConfiguration();
+
+        //get Server and Database
+        this.setActiveDBandServer();
 
         //set Skin
         this.setSkin();
@@ -102,22 +105,20 @@ var lbs = lbs || {
         //setOnclickEvents
         this.SetOnclickEvents();
 
+        //Check for updates
+        this.checkForUpdates();
+
         //Loading complete
         lbs.loading.showLoader(false);
+
     },
 
-    /**
-    save properties for later load
-    */
-    configure : function(externalConfig){
-        this.externalConfig = externalConfig;
-    },
 
      /**
     Set properties when not standard
     */
     preocessConfiguration : function(){
-        this.config = lbs.loader.loadExternalConfig(this.config,this.externalConfig,this.activeClass);
+        this.config = lbs.loader.loadExternalConfig(this.config,this.externalConfig.config,this.activeClass);
     },
 
     /**
@@ -167,7 +168,7 @@ var lbs = lbs || {
     Find active actionpad view
     */
     setActionPadEnvironment: function () {
-    	var apowner = null;
+        var apowner = null;
         var inspectorObject = null;
         var inspectorId = null;
 
@@ -175,44 +176,44 @@ var lbs = lbs || {
         if(lbs.hasLimeConnection){
          
             //get inspector environment
-        	try {
-        		//got support for inspectorid
+            try {
+                //got support for inspectorid
                 apowner = lbs.common.getURLParameter("apowner")
                 if(apowner != null){
-            		if(apowner = 'inspector'){
+                    if(apowner = 'inspector'){
                         //its an AP, find out which
-    			    	inspectorId = lbs.common.getURLParameter("apownerid")
-                        if (inspectorId != '') {
-    			    		inspectorObject = lbs.limeDataConnection.Inspectors.Lookup(inspectorId);
-    			        }
-    		        }else if (apowner = 'application'){
+                        inspectorId = lbs.common.getURLParameter("apownerid")
+                        if (inspectorId) {
+                            inspectorObject = lbs.limeDataConnection.Inspectors.Lookup(inspectorId);
+                        }
+                    }else if (apowner = 'application'){
                         //its main AP
                         inspectorObject = null
                     }
                 }
-		        //no inspectorid support
-		        else{
-		       		inspectorObject = lbs.limeDataConnection.ActiveInspector;
-		        }
+                //no inspectorid support
+                else{
+                    inspectorObject = lbs.limeDataConnection.ActiveInspector;
+                }
 
-		        //set values
-		        if(inspectorObject){
-			        lbs.activeInspector = inspectorObject;
-			        lbs.activeClass = inspectorObject.class.Name;
-			    }else{
-			    	lbs.activeInspector = null;
-			    	lbs.activeClass = 'index';
-			    }
-			}
-		    catch (e) {
+                //set values
+                if(inspectorObject){
+                    lbs.activeInspector = inspectorObject;
+                    lbs.activeClass = inspectorObject.class.Name;
+                }else{
+                    lbs.activeInspector = null;
+                    lbs.activeClass = 'index';
+                }
+            }
+            catch (e) {
                 lbs.log.warn("Could not determine inspector class, assuming index",e);
                 lbs.activeClass = 'index';
-		    }
+            }
              
-	    }
+        }
 
-	    //override
-    	if (lbs.common.getURLParameter("ap") != null) {
+        //override
+        if (lbs.common.getURLParameter("ap") != null) {
             this.activeClass = lbs.common.getURLParameter("ap");
         }
 
@@ -346,6 +347,79 @@ var lbs = lbs || {
             lbs.log.warn("Binding of data ActionPad failed! \n Displaying mapping attributes",e);
         }
     },
+
+    checkForUpdates: function(){
+        //Check app version if debug is enabled
+        if(lbs.debug){
+            // Check for app updates
+            var lbsURL = "http://limebootstrap.lundalogik.com/api/"
+            $.each(lbs.apps, function(index, app){
+                try{
+                var appName = app.name;
+
+                //Load remote version info
+                var remoteData = lbs.loader.loadFromExternalWebService(lbsURL+ "apps/" + appName + "/");
+                if(remoteData.error){
+                    lbs.log.warn("Failed to check remote version of app: " + appName, e);
+                    return;
+                }
+                var remoteVersionData = $.parseJSON(remoteData).info.versions;
+
+                //Load local version info
+                var localData = lbs.loader.loadLocalFileToString("apps/" + appName + "/app.json");
+                if(localData === ""){
+                    lbs.log.warn("Failed to check local version of app: " + appName, e);
+                    return
+                }
+                var localVersionData = $.parseJSON(localData).versions;
+
+                //Extract the latest version number from the versions array of version objects
+                var currentRemoteVersion = _.max(remoteVersionData, function(versionInfo){ return versionInfo.version; }).version;
+                var currentLocalVersion = _.max(localVersionData, function(versionInfo){ return versionInfo.version; }).version;
+
+                //alert("local: " + currentLocalVersion + ", remote: " + currentRemoteVersion);
+
+                if( parseFloat(currentLocalVersion) < parseFloat(currentRemoteVersion) ) {
+                    lbs.log.warn("App " + appName + " has an available update. Installed version: " + currentLocalVersion + ", Available version: " + currentRemoteVersion);
+                    lbs.log.vm.addAppUpdate({appName:appName, remoteVersion:currentRemoteVersion, localVersion:currentLocalVersion});
+                }else{
+                    lbs.log.info("App " + appName + " is up to date (version: " + currentLocalVersion + ")");
+                }
+
+                }catch (e){
+                    lbs.log.warn("Failed to check version of app: " + appName, e);
+                }
+            });
+            
+            try{
+            //Check for LBS Update
+                var remoteData = lbs.loader.loadFromExternalWebService(lbsURL+ "version/");
+                if(!remoteData){
+                    lbs.log.warn("Failed to check remote version of LBS! ", e);
+                    return;
+                }
+                var remoteVersionData = $.parseJSON(remoteData);
+
+                var localVersionData = $.parseJSON(lbs.loader.loadLocalFileToString("system/version.json"));
+                
+                var currentRemoteVersion = _.max(remoteVersionData.versions, function(versionInfo){ return versionInfo.version; }).version;
+                var currentLocalVersion = _.max(localVersionData.versions, function(versionInfo){ return versionInfo.version; }).version;
+
+                if(currentRemoteVersion > currentLocalVersion) {
+                    lbs.log.vm.showUpgrade(true);
+                    lbs.log.vm.showLBSVersion(true);
+                    lbs.log.vm.remoteVersion(" v{0}-> v{1}".format(currentLocalVersion,currentRemoteVersion));
+                    lbs.log.warn("Your LIME Bootstrap is out of date! v{0}->v{1}".format(currentLocalVersion,currentRemoteVersion));
+                }else{
+                    lbs.log.info("LBS version: v{0}".format(currentLocalVersion));
+                }
+            }catch(e){
+                lbs.log.warn("Failed to check version of LBS! ",e);
+            }
+        
+        }
+
+    }
 }
 
 /**
