@@ -3,7 +3,7 @@
 Enable or disable the debug console 
 for the whole application
 **/
-lbs.setDebug(true);
+lbs.setDebug(false);
 
 /**
 Configure special use cases,

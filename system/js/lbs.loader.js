@@ -46,6 +46,10 @@ lbs.loader = {
         lbs.log.debug("Styles to load: " + lbs.loader.styles);
         lbs.log.debug("Libs to load: " + lbs.loader.libs);
 
+        $.each(lbs.loader.libs, function (i) {
+            lbs.loader.loadScript(lbs.loader.libs[i]);
+        })
+
         $.each(lbs.loader.scripts, function (i) {
             lbs.loader.loadScript(lbs.loader.scripts[i]);
         })
@@ -54,9 +58,7 @@ lbs.loader = {
             lbs.loader.loadStyle(lbs.loader.styles[i]);
         })
 
-        $.each(lbs.loader.libs, function (i) {
-            lbs.loader.loadScript(lbs.loader.libs[i]);
-        })
+        
 
     },
 
