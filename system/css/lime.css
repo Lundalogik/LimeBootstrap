@@ -127,6 +127,11 @@ BUTTONS**
     white-space: nowrap;
     width: 100%; 
 }
+
+.btn:focus{
+    outline:none!important;
+}
+
 .btn-group>.btn-lime,
 .btn-lime-split>.btn{
     float: none;
