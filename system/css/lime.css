@@ -127,6 +127,11 @@ BUTTONS**
     white-space: nowrap;
     width: 100%; 
 }
+
+.btn:focus{
+    outline:none!important;
+}
+
 .btn-group>.btn-lime,
 .btn-lime-split>.btn{
     float: none;
@@ -627,4 +632,21 @@ Logo
     position:   absolute;   
     right:0;
     width:  93px;
+}
+
+/*******************
+Misc tools
+*******************/
+.pull-text-left{
+    text-align: left;
+    text-indent: 5%;
+}
+
+.pull-text-right{
+    text-align: right;
+    text-indent: 5%;
+}
+
+.pull-text-center{
+    text-align: center;
 }
