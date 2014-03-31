@@ -169,3 +169,61 @@ lbs.log.vmFactory = function (enabled) {
         };
     }
 }
+
+lbs.log.watch = {
+
+    show : function(){
+        var wvm = new lbs.log.watch.vmFactory();
+        var dialog = showModalDialog("lbs.html?sv=watch&&type=inline",wvm,"status:false;dialogWidth:700px;dialogHeight:600px");
+    },
+
+    setup : function(){
+        if(window.dialogArguments){
+            lbs.log.vm.enabled(false);
+            //fetch vm from args
+            var args = window.dialogArguments;
+
+            //recrate vm in new scope
+            var wvm = new lbs.log.watch.vmFactory();
+            wvm.vms = args.vms;
+
+    
+            //load to global vm
+            vm = lbs.common.mergeOptions(lbs.vm, wvm || {}, true);
+
+            wvm.selectVm(wvm.vms[0]);
+        }
+    },
+
+    sh : function(){
+            //syntax highligt
+             $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+    },
+
+    vmFactory : function(){
+        var self = this;
+
+        self.selectedVm = ko.observable();
+        self.vms = [];
+
+        self.prettyVm = ko.computed(function(){
+            var p = JSON.stringify(ko.toJS(self.selectedVm),null,3);
+            return p;
+        });
+
+        self.selectVm = function(vm){
+            self.selectedVm(vm);
+            
+            lbs.log.watch.sh();
+        }
+
+        var map = $.map(lbs.apps,function(v,i){
+            return {name : v.name, vm : v.vm || ''};
+        });
+        
+        
+        self.vms.push({name : 'AP', vm : lbs.vm});
+        self.vms = self.vms.concat(map);
+
+    }
+};

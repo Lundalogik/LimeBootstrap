@@ -73,9 +73,11 @@ var lbs = lbs || {
         //set moment language
         moment.lang(lbs.common.executeVba('Localize.GetLanguage'));
         
-
         //load datasources
         this.vm = lbs.loader.loadDataSources(this.vm, this.config.dataSources, false);
+
+        //init watch
+        this.log.watch.setup();
 
         //load views
         this.loader.loadView('system/view/{0}'.format(lbs.wrapperType), $("#wrapper"));
@@ -110,6 +112,9 @@ var lbs = lbs || {
 
         //Loading complete
         lbs.loading.showLoader(false);
+
+        //syntax highjlight
+        lbs.log.watch.sh();
 
     },
 
@@ -217,6 +222,11 @@ var lbs = lbs || {
             this.activeClass = lbs.common.getURLParameter("ap");
         }
 
+        //override sys-view
+        if (lbs.common.getURLParameter('sv') != null) {
+            this.activeClass = 'system/view/{0}'.format(lbs.common.getURLParameter('sv'));
+        }
+
         //get wrapper environment
         try {
             wrapperType = lbs.common.getURLParameter("type")
@@ -288,7 +298,7 @@ var lbs = lbs || {
     SetOnclickEvents: function () {
 
         //set contextmenu enables/disabled
-        $("html").attr("oncontextmenu","return {0}".format(lbs.debug ? 'false':'true'));
+        $("html").attr("oncontextmenu","return {0}".format(lbs.debug ? 'true':'false'));
 
         //Expandable: Toggels visibility of child-elements of the element. Used in menues
         $(".expandable").find(".menu-header").click(
@@ -341,7 +351,7 @@ var lbs = lbs || {
     */
     applyBindings: function () {
         try {
-            lbs.log.debug('ViewModel: ' + JSON.stringify(lbs.vm));
+            //lbs.log.debug('ViewModel: ' + JSON.stringify(lbs.vm));
             ko.applyBindings(lbs.vm, $("#content").get(0));
         } catch (e) {
             lbs.log.warn("Binding of data ActionPad failed! \n Displaying mapping attributes",e);
@@ -350,7 +360,7 @@ var lbs = lbs || {
 
     checkForUpdates: function(){
         //Check app version if debug is enabled
-        if(lbs.debug){
+        if(lbs.debug && lbs.hasLimeConnection){
             // Check for app updates
             var lbsURL = "http://limebootstrap.lundalogik.com/api/"
             $.each(lbs.apps, function(index, app){
