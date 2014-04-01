@@ -37,5 +37,21 @@ lbs.externalConfig = {
 		    ],
 		 	autorefresh : false
 		},
+
+		// 'company' : {
+		//     dataSources: [
+		//     	{type: 'activeInspector', source: ''},
+		//         {type: 'records', source: 'ActionPadTools.GetTestData', alias: 'heppnode' },
+		//     ],
+		//  	autorefresh : false
+		// },
+
+		// 'person' : {
+		//     dataSources: [
+		//     	{type: 'activeInspector', source: ''},
+		//         {type: 'relatedRecord', source: 'company'},
+		//     ],
+		//  	autorefresh : false
+		// },
 	}
 }

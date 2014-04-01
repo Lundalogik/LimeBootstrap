@@ -174,7 +174,7 @@ lbs.log.watch = {
 
     show : function(){
         var wvm = new lbs.log.watch.vmFactory();
-        var dialog = showModalDialog("lbs.html?sv=watch&&type=inline",wvm,"status:false;dialogWidth:700px;dialogHeight:600px");
+        var dialog = showModalDialog("lbs.html?sv=watch&&type=inline",wvm,"status:false;dialogWidth:700px;dialogHeight:700px");
     },
 
     setup : function(){
@@ -183,47 +183,63 @@ lbs.log.watch = {
             //fetch vm from args
             var args = window.dialogArguments;
 
-            //recrate vm in new scope
+            //recrate vm in new scope. Some properties and knockout stuff
+            //may not survive the modal reference
             var wvm = new lbs.log.watch.vmFactory();
             wvm.vms = args.vms;
+            wvm.logItems = args.logItems;
 
-    
+            console.log(wvm)
+
             //load to global vm
             vm = lbs.common.mergeOptions(lbs.vm, wvm || {}, true);
 
+            //set active vm
             wvm.selectVm(wvm.vms[0]);
         }
     },
 
+    //syntax highligt
     sh : function(){
-            //syntax highligt
-             $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+        $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
     },
 
     vmFactory : function(){
         var self = this;
 
+        //data holders
         self.selectedVm = ko.observable({'name':'',vm:{}});
         self.vms = [];
+        self.logItems = [];
+        self.showLog = ko.observable(false);
 
+
+        //format vm as string
         self.prettyVm = ko.computed(function(){
             var p = JSON.stringify(self.selectedVm().vm,null,2);
             return p;
         });
 
+        //select vm to show
         self.selectVm = function(vm){
             self.selectedVm(vm);
-            
             lbs.log.watch.sh();
         }
 
+        //toggle log
+        self.toggleLog = function(){
+            self.showLog(!self.showLog());
+        }
+
+        //get vm from apps
         var map = $.map(lbs.apps,function(v,i){
-            return {name : v.name, vm : ko.toJS(v.vm) || ''};
+            return {name : v.name, vm : ko.toJS(v.vm) || {}};
         });
-        
-        
+        //add AP VM
         self.vms.push({name : 'AP', vm : lbs.vm});
         self.vms = self.vms.concat(map);
 
+        //get logposts
+        self.logItems = ko.toJS(lbs.log.vm.logItems);
     }
 };

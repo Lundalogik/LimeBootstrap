@@ -1,11 +1,31 @@
-
-<div data-bind="foreach: vms">
-
-	<button type="button" class="btn btn-default" data-bind="text: name, click:$parent.selectVm"></button>
-
+<div>
+	<button type="button" class="btn btn-default btn-sm" data-bind="text: 'Show Log', click:toggleLog, css: {'btn-success': showLog()}"></button>
+	<div class="btn-group">
+	 <!-- ko foreach: vms -->
+	 	<button type="button" class="btn btn-default btn-sm" data-bind="text: name, click:$parent.selectVm, css: {'btn-success': $parent.selectedVm().name == name}"></button>
+	 <!-- /ko -->
+	 </div>
 </div>
-<div style="height: 100%; width: 100%; overflow-y:scroll; overflow-x:scroll;">
-<pre class=""><code data-bind="text: prettyVm() "></code></pre>
+
+<div style="height: 100%; width: 100%; overflow-y:scroll; overflow-x:scroll; margin-top: 10px; padding: 5px;">
+
+	<div data-bind="visible: showLog()" class="">
+
+	    <ul id="debugConsole" class="menu" >
+	        <li id="" style="">
+	            <ul data-bind="foreach: logItems">
+	                <li data-bind="attr: { class: liclass }">
+	                    <i data-bind="attr: { class: icon }"> </i> <span data-bind="html: text"></span>
+	                </li>
+	            </ul>
+	        </li>
+	    </ul>   
+
+	</div>
+
+
+	<pre data-bind="visible: !showLog()" class=""><code data-bind="text: prettyVm() "></code></pre>
+
 </div>
 
 
