@@ -1,6 +1,10 @@
 {
 	"versions":[
 		{
+			"version": 1.2,
+			"info": "Viewmode viewer implemented. bugfixes"
+		},
+		{
 			"version": 1.1,
 			"info": "Important bugfixes"
 		},
