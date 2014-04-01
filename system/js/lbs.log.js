@@ -203,11 +203,11 @@ lbs.log.watch = {
     vmFactory : function(){
         var self = this;
 
-        self.selectedVm = ko.observable();
+        self.selectedVm = ko.observable({'name':'',vm:{}});
         self.vms = [];
 
         self.prettyVm = ko.computed(function(){
-            var p = JSON.stringify(ko.toJS(self.selectedVm),null,3);
+            var p = JSON.stringify(self.selectedVm().vm,null,2);
             return p;
         });
 
@@ -218,7 +218,7 @@ lbs.log.watch = {
         }
 
         var map = $.map(lbs.apps,function(v,i){
-            return {name : v.name, vm : v.vm || ''};
+            return {name : v.name, vm : ko.toJS(v.vm) || ''};
         });
         
         
