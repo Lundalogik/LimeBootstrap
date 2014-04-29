@@ -78,6 +78,8 @@ var lbs = lbs || {
 
         //init watch
         this.log.watch.setup();
+        //init watch
+        this.log.console.setup();
 
         //load views
         this.loader.loadView('system/view/{0}'.format(lbs.wrapperType), $("#wrapper"));

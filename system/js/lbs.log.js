@@ -11,7 +11,7 @@
     */
     setup: function (enabled) {
         //loadViewScript
-        lbs.loader.loadView('system/view/debugLog',$("#debug"))
+        lbs.loader.loadView('system/view/debug',$("#debug"))
         //create viewModel
         this.vm = new lbs.log.vmFactory(enabled);
         ko.applyBindings(this.vm, $("#debug").get(0));
@@ -46,6 +46,7 @@
         },
         error: function (msg) {
             lbs.error = true;
+            lbs.log.vm.errorFound(true);
             try { console.error(msg) } catch (e) { };
         },
     },
@@ -109,6 +110,7 @@ lbs.log.vmFactory = function (enabled) {
     this.appUpdates = ko.observableArray();
     this.showLBSVersion = ko.observable(false);
     this.remoteVersion = ko.observable();
+    this.errorFound = ko.observable(false);
 
     this.addAppUpdate = function(appName){
         self.showUpgrade(true);
@@ -178,7 +180,13 @@ lbs.log.watch = {
     },
 
     setup : function(){
+        //only applicable for watch view
+        if(lbs.activeClass != 'system/view/watch'){
+            return;
+        }
+
         if(window.dialogArguments){
+
             lbs.log.vm.enabled(false);
             //fetch vm from args
             var args = window.dialogArguments;
@@ -188,8 +196,6 @@ lbs.log.watch = {
             var wvm = new lbs.log.watch.vmFactory();
             wvm.vms = args.vms;
             wvm.logItems = args.logItems;
-
-            console.log(wvm)
 
             //load to global vm
             vm = lbs.common.mergeOptions(lbs.vm, wvm || {}, true);
@@ -210,9 +216,6 @@ lbs.log.watch = {
         //data holders
         self.selectedVm = ko.observable({'name':'',vm:{}});
         self.vms = [];
-        self.logItems = [];
-        self.showLog = ko.observable(false);
-
 
         //format vm as string
         self.prettyVm = ko.computed(function(){
@@ -226,18 +229,51 @@ lbs.log.watch = {
             lbs.log.watch.sh();
         }
 
-        //toggle log
-        self.toggleLog = function(){
-            self.showLog(!self.showLog());
-        }
-
         //get vm from apps
         var map = $.map(lbs.apps,function(v,i){
             return {name : v.name, vm : ko.toJS(v.vm) || {}};
         });
+
         //add AP VM
         self.vms.push({name : 'AP', vm : lbs.vm});
         self.vms = self.vms.concat(map);
+    }
+};
+
+
+lbs.log.console = {
+
+    show : function(){
+        var wvm = new lbs.log.console.vmFactory();
+        var dialog = showModalDialog("lbs.html?sv=log&&type=inline",wvm,"status:false;dialogWidth:700px;dialogHeight:700px");
+    },
+
+    setup : function(){
+        //only applicable for log view
+        if(lbs.activeClass != 'system/view/log'){
+            return;
+        }
+
+        if(window.dialogArguments){
+            lbs.log.vm.enabled(false);
+            //fetch vm from args
+            var args = window.dialogArguments;
+
+            //recrate vm in new scope. Some properties and knockout stuff
+            //may not survive the modal reference
+            var wvm = new lbs.log.console.vmFactory();
+            wvm.logItems = args.logItems;
+
+            console.log(wvm)
+
+            //load to global vm
+            vm = lbs.common.mergeOptions(lbs.vm, wvm || {}, true);
+        }
+    },
+
+
+    vmFactory : function(){
+        var self = this;
 
         //get logposts
         self.logItems = ko.toJS(lbs.log.vm.logItems);

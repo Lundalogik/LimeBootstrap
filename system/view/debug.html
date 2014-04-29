@@ -19,19 +19,12 @@
     </div>
     <!-- /ko -->
 
-    <ul id="debugConsole" class="menu expandable collapsed" >
-        
-        <li class="menu-header alert alert-danger">Debug
+    <ul id="debugConsole">
+        <li class="header">Debug
         <span class="badge pull-right"  data-bind="icon:'fa-refresh'" onclick="location.reload(true)"> </span>
-        <span class="badge pull-right" style="margin-right: -15px;" data-bind="icon:'fa-eye'" onclick="lbs.log.watch.show();"> </span>
-        </li>
-
-        <li id="console">
-            <ul data-bind="foreach: logItems">
-                <li data-bind="attr: { class: liclass }">
-                    <i data-bind="attr: { class: icon }"> </i> <span data-bind="html: text"></span>
-                </li>
-            </ul>
+        <span class="badge pull-right" style="margin-right: -15px;" data-bind="icon:'fa-eye', click: lbs.log.watch.show"> </span>
+        <span class="badge pull-right" style="margin-right: -15px;" data-bind="icon:'fa-file-text-o', click: lbs.log.console.show"> </span>
+        <span class="badge pull-right" style="margin-right: -15px;" data-bind="icon:'fa-exclamation-triangle', click: lbs.log.console.show, visible: lbs.log.vm.errorFound"> </span>
         </li>
     </ul>   
 <!-- /ko -->
