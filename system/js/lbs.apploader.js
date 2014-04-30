@@ -57,9 +57,13 @@
 
                 //merge instance with app config
                 if (instanceConfig) {
-                    instance.config = lbs.common.mergeOptions(instance.config, instanceConfig, true);
+                    // New config format
+                    if(typeof(instance.config) == 'function'){
+                        instance.config = new instance.config(instanceConfig)    
+                    }else{ //old format
+                        instance.config = lbs.common.mergeOptions( instance.config, instanceConfig, true);
+                    }
                 }
-                
                 
                 //push resources
                 lbs.loader.pushResources(instance.config.resources, path);
