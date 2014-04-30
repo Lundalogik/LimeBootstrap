@@ -370,12 +370,13 @@ var lbs = lbs || {
                 var appName = app.name;
 
                 //Load remote version info
-                var remoteData = lbs.loader.loadFromExternalWebService(lbsURL+ "apps/" + appName + "/");
+                var remoteData = $.parseJSON(lbs.loader.loadFromExternalWebService(lbsURL+ "apps/" + appName + "/"));
                 if(remoteData.error){
-                    lbs.log.warn("Failed to check remote version of app: " + appName, e);
+                    lbs.log.warn("Failed to check remote version of app: '" + appName + "'. Reason: " + remoteData.error);
                     return;
                 }
-                var remoteVersionData = $.parseJSON(remoteData).info.versions;
+                
+                var remoteVersionData = remoteData.info.versions;
 
                 //Load local version info
                 var localData = lbs.loader.loadLocalFileToString("apps/" + appName + "/app.json");
