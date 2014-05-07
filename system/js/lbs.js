@@ -325,8 +325,6 @@ var lbs = lbs || {
     SetTouchEnabled : function(enable){
          $("html").attr("oncontextmenu","return {0}".format(enable ? 'true':'false'));
          $("html").toggleClass("notouch",!enable);
-
-         lbs.log.debug("Set touch enabled: {0}".format(enable));
     },
 
     /**
