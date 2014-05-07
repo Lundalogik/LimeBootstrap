@@ -47,6 +47,7 @@
         error: function (msg) {
             lbs.error = true;
             lbs.log.vm.errorFound(true);
+            lbs.SetTouchEnabled(true);
             try { console.error(msg) } catch (e) { };
         },
     },
@@ -188,6 +189,8 @@ lbs.log.watch = {
         if(window.dialogArguments){
 
             lbs.log.vm.enabled(false);
+            lbs.SetTouchEnabled(true);
+
             //fetch vm from args
             var args = window.dialogArguments;
 
@@ -256,6 +259,8 @@ lbs.log.console = {
 
         if(window.dialogArguments){
             lbs.log.vm.enabled(false);
+            lbs.SetTouchEnabled(true);
+
             //fetch vm from args
             var args = window.dialogArguments;
 
@@ -263,8 +268,6 @@ lbs.log.console = {
             //may not survive the modal reference
             var wvm = new lbs.log.console.vmFactory();
             wvm.logItems = args.logItems;
-
-            console.log(wvm)
 
             //load to global vm
             vm = lbs.common.mergeOptions(lbs.vm, wvm || {}, true);

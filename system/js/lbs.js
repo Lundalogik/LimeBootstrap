@@ -51,6 +51,9 @@ var lbs = lbs || {
 
         //Enable or disable debug-mode
         this.debug = lbs.externalConfig.debug;
+
+        //set contextmenu enables/disabled
+        lbs.SetTouchEnabled(false);
         
         //init the log
         this.log.setup(lbs.debug);
@@ -299,9 +302,6 @@ var lbs = lbs || {
     **/ 
     SetOnclickEvents: function () {
 
-        //set contextmenu enables/disabled
-        $("html").attr("oncontextmenu","return {0}".format(lbs.debug ? 'true':'false'));
-
         //Expandable: Toggels visibility of child-elements of the element. Used in menues
         $(".expandable").find(".menu-header").click(
             function () {
@@ -320,6 +320,13 @@ var lbs = lbs || {
                 }
             }
         )
+    },
+
+    SetTouchEnabled : function(enable){
+         $("html").attr("oncontextmenu","return {0}".format(enable ? 'true':'false'));
+         $("html").toggleClass("notouch",!enable);
+
+         lbs.log.debug("Set touch enabled: {0}".format(enable));
     },
 
     /**
