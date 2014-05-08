@@ -645,12 +645,10 @@ Misc tools
 *******************/
 .pull-text-left{
     text-align: left;
-    text-indent: 5%;
 }
 
 .pull-text-right{
     text-align: right;
-    text-indent: 5%;
 }
 
 .pull-text-center{
