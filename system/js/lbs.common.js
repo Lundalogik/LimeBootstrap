@@ -68,8 +68,17 @@ lbs.common = {
     * Helperfunction to run VBA functions from JS
     */
     "executeVba": function (inString, params) {
+
         try {
-            lbs.log.debug("Trying to execute VBA:" + inString);
+            
+
+            if(lbs.hasLimeConnection){
+                lbs.log.debug("Trying to execute VBA:" + inString);
+                return null;
+            }else{
+                lbs.log.warn("No lime connection, will not exec VBA call:" + inString);
+            }
+
             var vbaline;
 
             var inArgs = inString.split(',');

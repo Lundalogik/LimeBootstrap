@@ -529,20 +529,22 @@ Debug
     color:#FFF;
     list-style:none;
     font-size: 16px;
-    padding-left: 5px;
+    padding: 3px 0px 3px 5px;
 }
 #debugConsole .badge{
     background-color: transparent;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
+    margin: 3px 0px 0px 3px;
+    padding: 0px;
+
 }
 
 #console{
     background-color:#000;
-    overflow: scroll;
-    overflow-x:hidden;
-    padding:5px;
-    margin: 0 0 0 0;
+    /*padding:5px;*/
+    margin: 0 0 5px 0;
+    width: 660px;
 }
 
 
@@ -564,6 +566,20 @@ Debug
 #update .badge:hover{
     background-color: #6F6F6F;
 
+}
+
+#watch, #dom{
+    margin-top: 10px; 
+    padding: 5px;
+    width: 660px;
+}
+
+#watchContainer{
+    width:690px; 
+    height:690px; 
+    padding-top:10px; 
+    overflow-y: scroll; 
+    overflow-x: hidden;
 }
 
 

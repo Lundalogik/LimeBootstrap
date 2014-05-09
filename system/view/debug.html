@@ -22,9 +22,9 @@
     <ul id="debugConsole">
         <li class="header">Debug
         <span class="badge pull-right"  data-bind="icon:'fa-refresh'" onclick="location.reload(true)"> </span>
-        <span class="badge pull-right" style="margin-right: -15px;" data-bind="icon:'fa-eye', click: lbs.log.watch.show"> </span>
-        <span class="badge pull-right" style="margin-right: -15px;" data-bind="icon:'fa-file-text-o', click: lbs.log.console.show"> </span>
-        <span class="badge pull-right" style="margin-right: -15px;" data-bind="icon:'fa-exclamation-triangle', click: lbs.log.console.show, visible: lbs.log.vm.errorFound"> </span>
+        <span class="badge pull-right" style="" data-bind="icon:'fa-eye', click: lbs.log.watch.show.bind($data, 'WATCH')"> </span>
+        <span class="badge pull-right" style="" data-bind="icon:'fa-file-text-o', click: lbs.log.watch.show.bind($data, 'LOG')"> </span>
+        <span class="badge pull-right" style="" data-bind="icon:'fa-exclamation-triangle', click: lbs.log.watch.show.bind($data, 'LOG'), visible: lbs.log.vm.errorFound"> </span>
         </li>
     </ul>   
 <!-- /ko -->

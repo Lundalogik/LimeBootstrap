@@ -1,16 +1,42 @@
-<div>
-	<div class="btn-group">
-	 <!-- ko foreach: vms -->
-	 	<button type="button" class="btn btn-default btn-sm" data-bind="text: name, click:$parent.selectVm, css: {'btn-success': $parent.selectedVm().name == name}"></button>
-	 <!-- /ko -->
-	 </div>
+<div id="watchContainer">
+
+	<div style="margin-bottom: 5px;">
+		<div class="btn-group btn-group.btn-group-justified">
+		 <!-- ko foreach: states -->
+		 	<button type="button" class="btn btn-default btn-sm" data-bind="text: $data, click:$parent.selectState, css: {'btn-success': $parent.selectedState() == $data}"></button>
+		 <!-- /ko -->
+		 </div>
+	</div>
+
+
+	<div data-bind="visible: selectedState() == 'WATCH'">
+		<div>
+			<div class="btn-group btn-group.btn-group-justified">
+			 <!-- ko foreach: vms -->
+			 	<button type="button" class="btn btn-default btn-sm" data-bind="text: name, click:$parent.selectVm, css: {'btn-success': $parent.selectedVm().name == name}"></button>
+			 <!-- /ko -->
+			 </div>
+		</div>
+
+		<div id="watch">
+			<pre ><code data-bind="text: prettyVm() "></code></pre>
+		</div>
+	</div>
+
+
+	<div data-bind="visible: selectedState() == 'LOG'">
+		<ul id="console" data-bind="foreach: logItems">
+		    <li data-bind="attr: { class: liclass }">
+		        <i data-bind="attr: { class: icon }"> </i> <span data-bind="html: text"></span>
+		    </li>
+		</ul>
+	</div>
+
+
+
+	<div data-bind="visible: selectedState() == 'DOM'">
+		<div id="dom">
+			<pre ><code data-bind="text: dom "></code></pre>
+		</div>
+	</div>
 </div>
-
-<div style="height: 100%; width: 100%; overflow-y:scroll; overflow-x:scroll; margin-top: 10px; padding: 5px;">
-
-	<pre class=""><code data-bind="text: prettyVm() "></code></pre>
-
-</div>
-
-
-
