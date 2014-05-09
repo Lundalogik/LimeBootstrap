@@ -161,7 +161,7 @@ var lbs = lbs || {
 
         //getVersion
         this.limeVersion =  lbs.hasLimeConnection ? 
-            lbs.common.parseVersion(lbs.limeDataConnection.Version) : lbs.common.parseVersion("0.0.0")
+            lbs.common.parseVersion(lbs.limeDataConnection.Version) : lbs.common.parseVersion("0.0.0");
 
     },
 
@@ -171,7 +171,7 @@ var lbs = lbs || {
     Find debug flags
     */
     setDebug: function (val) {
-        lbs.debug = val
+        lbs.debug = val;
     },
 
     /**
@@ -188,17 +188,17 @@ var lbs = lbs || {
             //get inspector environment
             try {
                 //got support for inspectorid
-                apowner = lbs.common.getURLParameter("apowner")
-                if(apowner != null){
-                    if(apowner = 'inspector'){
+                apowner = lbs.common.getURLParameter("apowner");
+                if(apowner !== null){
+                    if(apowner == 'inspector'){
                         //its an AP, find out which
-                        inspectorId = lbs.common.getURLParameter("apownerid")
+                        inspectorId = lbs.common.getURLParameter("apownerid");
                         if (inspectorId) {
                             inspectorObject = lbs.limeDataConnection.Inspectors.Lookup(inspectorId);
                         }
                     }else if (apowner = 'application'){
                         //its main AP
-                        inspectorObject = null
+                        inspectorObject = null;
                     }
                 }
                 //no inspectorid support
@@ -223,19 +223,19 @@ var lbs = lbs || {
         }
 
         //override
-        if (lbs.common.getURLParameter("ap") != null) {
+        if (lbs.common.getURLParameter("ap") !== null) {
             this.activeClass = lbs.common.getURLParameter("ap");
         }
 
         //override sys-view
-        if (lbs.common.getURLParameter('sv') != null) {
+        if (lbs.common.getURLParameter('sv') !== null) {
             this.activeClass = 'system/view/{0}'.format(lbs.common.getURLParameter('sv'));
         }
 
         //get wrapper environment
         try {
-            wrapperType = lbs.common.getURLParameter("type")
-            if(wrapperType != null){
+            wrapperType = lbs.common.getURLParameter("type");
+            if(wrapperType !== null){
                 switch(wrapperType){
                 case 'tab':
                   lbs.wrapperType = 'wrapperTab';
@@ -284,10 +284,10 @@ var lbs = lbs || {
             var skin = lbs.common.executeVba("ActionPadTools.GetSkin");
             if(skin == 1){
                 lbs.log.info("Silver skin is used");
-                $("body").addClass("silver")
+                $("body").addClass("silver");
             }else if(skin == 2){
                 lbs.log.info("Skin: I'm Britney bitch!");
-                $("body").addClass("britney")
+                $("body").addClass("britney");
             }
         }
         catch (e) {
@@ -305,7 +305,7 @@ var lbs = lbs || {
         //Expandable: Toggels visibility of child-elements of the element. Used in menues
         $(".expandable").find(".menu-header").click(
             function () {
-                var menuDiv = $(this).parent()
+                var menuDiv = $(this).parent();
                 $(this).find("i").first().toggleClass("fa fa-angle-down"); //expanded
                 $(this).find("i").first().toggleClass("fa fa-angle-right"); // Hidden
                 if (menuDiv.hasClass("collapsed")) {
@@ -319,7 +319,7 @@ var lbs = lbs || {
                     menuDiv.children("li").not(".menu-header").not(".divider").fadeOut(200);
                 }
             }
-        )
+        );
     },
 
     SetTouchEnabled : function(enable){
@@ -343,14 +343,14 @@ var lbs = lbs || {
                 $(this).children("li").not(".menu-header").not(".divider").hide();
             } else {
                 $(this).find(".menu-header").prepend("<i class='fa fa-angle-down'> </i>");
-            };
+            }
         });
 
         //header icons
         $(".header-icon").each(function(){
             $(this).addClass("header-icon-container");
             $(this).css("background-image", "url('resources/"+lbs.activeClass+".png')");
-        })
+        });
     },
 
     /**
@@ -369,40 +369,45 @@ var lbs = lbs || {
         //Check app version if debug is enabled
         if(lbs.debug && lbs.hasLimeConnection){
             // Check for app updates
-            var lbsURL = "http://limebootstrap.lundalogik.com/api/"
+            var lbsURL = "http://limebootstrap.lundalogik.com/api/";
             $.each(lbs.apps, function(index, app){
                 try{
-                var appName = app.name;
+                    var appName = app.name;
 
-                //Load remote version info
-                var remoteData = $.parseJSON(lbs.loader.loadFromExternalWebService(lbsURL+ "apps/" + appName + "/"));
-                if(remoteData.error){
-                    lbs.log.warn("Failed to check remote version of app: '" + appName + "'. Reason: " + remoteData.error);
-                    return;
-                }
-                
-                var remoteVersionData = remoteData.info.versions;
+                    //Load remote version info
+                    var remoteData = $.parseJSON(lbs.loader.loadFromExternalWebService(lbsURL+ "apps/" + appName + "/"));
+                    if(remoteData){
+                        if(remoteData.error){
+                            lbs.log.warn("Failed to check remote version of app: '" + appName + "'. Reason: " + remoteData.error);
+                            return;
+                        }
+                    }else{
+                        lbs.log.warn("Failed to check remote version of app: '" + appName + "'");
+                        return;
+                    }
+                    
+                    var remoteVersionData = remoteData.info.versions;
 
-                //Load local version info
-                var localData = lbs.loader.loadLocalFileToString("apps/" + appName + "/app.json");
-                if(localData === ""){
-                    lbs.log.warn("Failed to check local version of app: " + appName, e);
-                    return
-                }
-                var localVersionData = $.parseJSON(localData).versions;
+                    //Load local version info
+                    var localData = lbs.loader.loadLocalFileToString("apps/" + appName + "/app.json");
+                    if(localData === ""){
+                        lbs.log.warn("Failed to check local version of app: " + appName, e);
+                        return;
+                    }
+                    var localVersionData = $.parseJSON(localData).versions;
 
-                //Extract the latest version number from the versions array of version objects
-                var currentRemoteVersion = _.max(remoteVersionData, function(versionInfo){ return versionInfo.version; }).version;
-                var currentLocalVersion = _.max(localVersionData, function(versionInfo){ return versionInfo.version; }).version;
+                    //Extract the latest version number from the versions array of version objects
+                    var currentRemoteVersion = _.max(remoteVersionData, function(versionInfo){ return versionInfo.version; }).version;
+                    var currentLocalVersion = _.max(localVersionData, function(versionInfo){ return versionInfo.version; }).version;
 
-                //alert("local: " + currentLocalVersion + ", remote: " + currentRemoteVersion);
+                    //alert("local: " + currentLocalVersion + ", remote: " + currentRemoteVersion);
 
-                if( parseFloat(currentLocalVersion) < parseFloat(currentRemoteVersion) ) {
-                    lbs.log.warn("App " + appName + " has an available update. Installed version: " + currentLocalVersion + ", Available version: " + currentRemoteVersion);
-                    lbs.log.vm.addAppUpdate({appName:appName, remoteVersion:currentRemoteVersion, localVersion:currentLocalVersion});
-                }else{
-                    lbs.log.info("App " + appName + " is up to date (version: " + currentLocalVersion + ")");
-                }
+                    if( parseFloat(currentLocalVersion) < parseFloat(currentRemoteVersion) ) {
+                        lbs.log.warn("App " + appName + " has an available update. Installed version: " + currentLocalVersion + ", Available version: " + currentRemoteVersion);
+                        lbs.log.vm.addAppUpdate({appName:appName, remoteVersion:currentRemoteVersion, localVersion:currentLocalVersion});
+                    }else{
+                        lbs.log.info("App " + appName + " is up to date (version: " + currentLocalVersion + ")");
+                    }
 
                 }catch (e){
                     lbs.log.warn("Failed to check version of app: " + appName, e);
@@ -413,7 +418,7 @@ var lbs = lbs || {
             //Check for LBS Update
                 var remoteData = lbs.loader.loadFromExternalWebService(lbsURL+ "version/");
                 if(!remoteData){
-                    lbs.log.warn("Failed to check remote version of LBS! ", e);
+                    lbs.log.warn("Failed to check remote version of LBS! ");
                     return;
                 }
                 var remoteVersionData = $.parseJSON(remoteData);
@@ -438,14 +443,14 @@ var lbs = lbs || {
         }
 
     }
-}
+};
 
 /**
 ViewModel factory, extend this to add knockout functionality to actionpads
 */
-lbs.vmFactory = function () {}
+lbs.vmFactory = function () {};
 
 /**
 Every this is loaded, run the awesomeness!
 */
-$(document).ready(function () { window.lbs = lbs; lbs.setup();})
+$(document).ready(function () { window.lbs = lbs; lbs.setup();});
