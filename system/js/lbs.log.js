@@ -255,6 +255,6 @@ lbs.log.watch = {
 
         //get logposts
         self.logItems = ko.toJS(lbs.log.vm.logItems);
-        self.dom = $('html').get()[0].outerHTML;
+        self.dom = $('#wrapper').get()[0].outerHTML;
     }
 };
