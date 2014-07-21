@@ -209,6 +209,13 @@ lbs.log.watch = {
             //set active vm
             wvm.selectState(wvm.initState);
             wvm.selectVm(wvm.vms[0]);
+
+            //add trigger tot close watch
+            $('body').keypress(function(e){
+                if(e.which == 113){
+                    window.close();
+                }
+            });
         }
     },
 
@@ -234,6 +241,7 @@ lbs.log.watch = {
             return p;
         });
 
+     
         //select vm to show
         self.selectVm = function(vm){
             self.selectedVm(vm);
