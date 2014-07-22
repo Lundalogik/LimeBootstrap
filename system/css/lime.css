@@ -544,7 +544,7 @@ Debug
     background-color:#000;
     /*padding:5px;*/
     margin: 0 0 5px 0;
-    width: 660px;
+    width: 860px;
 }
 
 
@@ -571,12 +571,12 @@ Debug
 #watch, #dom{
     margin-top: 10px; 
     padding: 5px;
-    width: 660px;
+    width: 860px;
 }
 
 #watchContainer{
-    width:690px; 
-    height:690px; 
+    width:890px; 
+    height:790px; 
     padding-top:10px; 
     overflow-y: scroll; 
     overflow-x: hidden;

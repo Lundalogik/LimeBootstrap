@@ -178,7 +178,7 @@ lbs.log.watch = {
     show : function(state){
         var wvm = new lbs.log.watch.vmFactory();
         if(state !== ''){wvm.initState = state;}
-        var dialog = showModalDialog("lbs.html?sv=watch&&type=tab",wvm,"status:false;dialogWidth:700px;dialogHeight:700px");
+        var dialog = showModalDialog("lbs.html?sv=watch&&type=tab",wvm,"status:false;dialogWidth:900px;dialogHeight:800px;resizable:Yes");
     },
 
     setup : function(){
