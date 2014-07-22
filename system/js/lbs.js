@@ -110,7 +110,7 @@ var lbs = lbs || {
         this.ExecuteOnloadEvents();
 
         //setOnclickEvents
-        this.SetOnclickEvents();
+        this.SetJqEvents();
 
         //Check for updates
         this.checkForUpdates();
@@ -300,7 +300,7 @@ var lbs = lbs || {
     * On click handlers. Executes events when clicked, such as running VBA or manipulating the DOM
     * 
     **/ 
-    SetOnclickEvents: function () {
+    SetJqEvents: function () {
 
         //Expandable: Toggels visibility of child-elements of the element. Used in menues
         $(".expandable").find(".menu-header").click(
@@ -320,6 +320,14 @@ var lbs = lbs || {
                 }
             }
         );
+
+        //add trigger to reload page
+        $('body').keypress(function(e){
+            if(e.ctrlKey && e.which == 18){
+                location.reload();
+            }
+        });
+        
     },
 
     SetTouchEnabled : function(enable){
