@@ -98,7 +98,7 @@ ko.bindingHandlers.limeLink = {
                  lbs.common.executeVba("shell," + lbs.common.createLimeLink(ko.unwrap(valueAccessor().class), ko.unwrap(valueAccessor().value)));
             };
          };
-        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
+        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext);
     },
 };
 
@@ -112,7 +112,7 @@ ko.bindingHandlers.vba = {
                  lbs.common.executeVba(valueAccessor());
             };
          };
-        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
+        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext);
     },
 };
 
@@ -126,7 +126,7 @@ ko.bindingHandlers.showOnMap = {
                 lbs.common.executeVba("shell,https://www.google.com/maps?q=" + ko.unwrap(valueAccessor()).replace(/\r?\n|\r/g, ' '));
             };
          };
-        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
+        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext);
     },
 };
 
@@ -140,7 +140,7 @@ ko.bindingHandlers.call = {
                lbs.common.executeVba("shell,tel:" + ko.unwrap(valueAccessor()));
             };
          };
-        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
+        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext);
     },
 };
 
@@ -154,7 +154,7 @@ ko.bindingHandlers.openURL = {
                 lbs.common.executeVba("shell," + ko.unwrap(valueAccessor()));
             };
          };
-        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
+        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext);
     },
 };
 
@@ -175,7 +175,7 @@ ko.bindingHandlers.appInvoke = {
                 }
             }
         };
-        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
+        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext);
     },
 };
 
@@ -203,7 +203,7 @@ ko.bindingHandlers.email = {
                 lbs.common.executeVba("shell,mailto:" + ko.unwrap(valueAccessor()));
             };
         };
-        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, bindingContext);
+        ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext);
     },
 };
 
@@ -222,17 +222,6 @@ ko.bindingHandlers.icon = {
 };
 
 /**
-Load datasources by annotation from actionpad view. Not applicable in apps.
-*/
-// ko.bindingHandlers.dataSources = {
-//     init: function (elem, valueAccessor) {
-//         var sources = ko.unwrap(valueAccessor());
-//         lbs.loader.loadDataSources(lbs.vm, sources);
-//     }
-// };
-// ko.virtualElements.allowedBindings.dataSources = true;
-
-/**
 Safe text binding, failes to empty string
 */
 ko.bindingHandlers.safeText = {
@@ -249,3 +238,53 @@ ko.bindingHandlers.safeText = {
     }
 };
 
+ko.bindingHandlers.href = {
+    update: function (element, valueAccessor) {
+        ko.bindingHandlers.attr.update(element, function () {
+            return { href: valueAccessor()}
+        });
+    }
+};
+
+ko.bindingHandlers.src = {
+    update: function (element, valueAccessor) {
+        ko.bindingHandlers.attr.update(element, function () {
+            return { src: valueAccessor()}
+        });
+    }
+};
+
+ko.bindingHandlers.instantValue = {
+    init: function (element, valueAccessor, allBindings) {
+        var newAllBindings = function(){
+            // for backwards compatibility w/ knockout  < 3.0
+            return ko.utils.extend(allBindings(), { valueUpdate: 'afterkeydown' });
+        };
+        newAllBindings.get = function(a){
+            return a === 'valueupdate' ? 'afterkeydown' : allBindings.get(a);
+        };
+        newAllBindings.has = function(a){
+            return a === 'valueupdate' || allBindings.has(a);
+        };
+        ko.bindingHandlers.value.init(element, valueAccessor, newAllBindings);
+    },
+    update: ko.bindingHandlers.value.update
+};
+
+ko.bindingHandlers.toggle = {
+    init: function (element, valueAccessor) {
+        var value = valueAccessor();
+        ko.applyBindingsToNode(element, {
+            click: function () {
+                value(!value());
+            }
+        });
+    }
+};
+
+ko.bindingHandlers.stopBinding = {
+    init: function () {
+        return { controlsDescendantBindings: true };
+    }
+};
+ko.virtualElements.allowedBindings.stopBinding = true;
