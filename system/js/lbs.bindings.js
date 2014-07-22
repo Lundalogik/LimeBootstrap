@@ -323,3 +323,44 @@ ko.bindingHandlers.popover = {
         }
     }
 };
+
+ko.filters.number = function(value,nbrOfDecimals) {
+    if (nbrOfDecimals === undefined) nbrOfDecimals = 2;
+    value = Number(Math.round(value+'e'+nbrOfDecimals)+'e-'+nbrOfDecimals);
+    return value.toLocaleString();
+};
+
+ko.filters.currency = function(value, currency, divider) {
+    if (currency === undefined) currency = "tkr";
+    if (divider === undefined) divider = 1000;
+    value = value/divider;
+    value = Number(Math.round(value+'e'+0)+'e-'+0);
+    return value.toLocaleString() + currency;
+};
+ko.filters.percent = function(value, arg1) {
+    return (value * 100) + "%";
+};
+
+ko.filters.fromNow = function(date, arg1) {
+    date = date.slice(0,19);
+    //console.log(date)
+    return moment(date).fromNow(true);
+};
+
+ko.bindingHandlers.rotate = {
+    update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+        // This will be called once when the binding is first applied to an element,
+        // and again whenever the associated observable changes value.
+        // Update the DOM element based on the supplied values here.
+        
+        var deg = valueAccessor();
+        console.log(deg);
+        $(element).css({
+            "-webkit-transform":"rotate(" + deg + "deg)",
+            "-moz-transform-transform":"rotate(" + deg + "deg)",
+            "-ms-transform-transform":"rotate(" + deg + "deg)",
+            "-o-transform:":"rotate(" + deg + "deg)",
+            "transform:":"rotate(" + deg + "deg)"
+        });
+    }
+};
