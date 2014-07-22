@@ -4,6 +4,7 @@
 Common functions used in lbs
 --------------------------------------------------------
 */
+var lbs = lbs || {};
 lbs.common = {
 
     /**

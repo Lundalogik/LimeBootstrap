@@ -1,7 +1,6 @@
 ﻿/**
 Binding provider override
 */
-ko.bindingProvider.parseBindingsString
 ko.defaultBindingProvider = ko.bindingProvider.instance;
 ko.bindingProvider.instance = {
     nodeHasBindings: ko.defaultBindingProvider.nodeHasBindings,
@@ -27,24 +26,24 @@ ko.bindingProvider.instance = {
 
     //is value ok to bind to view, empty string is ok, undefined is not
     checkValue: function (data, val, node) {
-        if (!data) {return}
-        if (!data.hasOwnProperty(val)) {return}
-        if (data[val]) { return }
-        if (data[val] === "" || data[val] === false || data[val] === 0) { return }
+        if (!data) {return;}
+        if (!data.hasOwnProperty(val)) {return;}
+        if (data[val]) { return; }
+        if (data[val] === '' || data[val] === false || data[val] === 0) { return; }
 
-        throw new ReferenceError("Unable to set binding '{0}'.\nBindings value: {1}\nMessage: Property is undefined".format(val, $(node).attr('data-bind')));
+        throw new ReferenceError('Unable to set binding \'{0}\'.\nBindings value: {1}\nMessage: Property is undefined'.format(val, $(node).attr('data-bind')));
     },
 
     //replace dependent bindings with another that can handle the isses
     processDependentBindings: function (bindings) {
 
         //no bindings, nothing to do
-        if (!bindings) { return }
+        if (!bindings) { return; }
 
         //text and icon in same binding
         if (bindings.hasOwnProperty('text') && bindings.hasOwnProperty('icon')) {
             //dont run if text is empty
-            if (bindings['text'] !== "") {
+            if (bindings['text'] !== '') {
                 bindings['textWithIcon'] = { icon: bindings['icon'], text: bindings['text'] };
                 delete bindings['text'];
                 delete bindings['icon'];
@@ -57,18 +56,25 @@ ko.bindingProvider.instance = {
     //set visible bindings to the binding values. Used if bindings failed to display helper data.
     getDummyBindings: function (node) {
         var bindings = {};
+        var match;
 
         //set text
-        var match = new RegExp("text\:[^\,\}]*").exec($(node).attr('data-bind'))
-        if (match) {bindings['text'] = 'Binding: ' + match[0].split(":")[1].trim()}
+        match = new RegExp('text\:[^\,\}]*').exec($(node).attr('data-bind'));
+        if (match) {
+            bindings['text'] = 'Binding: ' + match[0].split(':')[1].trim();
+        }
            
         //set value
-        var match = new RegExp("value\:[^\,\}]*").exec($(node).attr('data-bind'))
-        if (match) { bindings['value'] = 'Binding: ' + match[0].split(":")[1].trim() }
+        match = new RegExp('value\:[^\,\}]*').exec($(node).attr('data-bind'));
+        if (match) { 
+            bindings['value'] = 'Binding: ' + match[0].split(':')[1].trim();
+        }
 
         //icons
-        var match = new RegExp("icon\:[^\,\}]*").exec($(node).attr('data-bind'))
-        if (match) { bindings['icon'] = match[0].split(":")[1].trim().replace(/\'/g, "") }
+        match = new RegExp('icon\:[^\,\}]*').exec($(node).attr('data-bind'));
+        if (match) { 
+            bindings['icon'] = match[0].split(':')[1].trim().replace(/\'/g, '');
+        }
 
         return bindings;
     },
@@ -83,7 +89,7 @@ ko.bindingHandlers.textWithIcon = {
         var value = ko.unwrap(valueAccessor());
         var iconHtml = lbs.common.iconTemplate.format(value['icon']);
 
-        $(element).html(iconHtml + '<span></span>')
+        $(element).html(iconHtml + '<span></span>');
         ko.bindingHandlers.text.update($(element).find('span').get(0), function () { return value['text'] }, allBindingsAccessor, viewModel, bindingContext)
     }
 };
@@ -95,7 +101,7 @@ ko.bindingHandlers.limeLink = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var newValueAccessor = function() {
             return function() {
-                 lbs.common.executeVba("shell," + lbs.common.createLimeLink(ko.unwrap(valueAccessor().class), ko.unwrap(valueAccessor().value)));
+                 lbs.common.executeVba('shell,' + lbs.common.createLimeLink(ko.unwrap(valueAccessor().class), ko.unwrap(valueAccessor().value)));
             };
          };
         ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext);
@@ -123,7 +129,7 @@ ko.bindingHandlers.showOnMap = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var newValueAccessor = function() {
             return function() {
-                lbs.common.executeVba("shell,https://www.google.com/maps?q=" + ko.unwrap(valueAccessor()).replace(/\r?\n|\r/g, ' '));
+                lbs.common.executeVba('shell,https://www.google.com/maps?q=' + ko.unwrap(valueAccessor()).replace(/\r?\n|\r/g, ' '));
             };
          };
         ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext);
@@ -137,7 +143,7 @@ ko.bindingHandlers.call = {
      init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var newValueAccessor = function() {
             return function() {
-               lbs.common.executeVba("shell,tel:" + ko.unwrap(valueAccessor()));
+               lbs.common.executeVba('shell,tel:' + ko.unwrap(valueAccessor()));
             };
          };
         ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext);
@@ -151,7 +157,7 @@ ko.bindingHandlers.openURL = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var newValueAccessor = function() {
             return function() {
-                lbs.common.executeVba("shell," + ko.unwrap(valueAccessor()));
+                lbs.common.executeVba('shell,' + ko.unwrap(valueAccessor()));
             };
          };
         ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext);
@@ -165,14 +171,14 @@ ko.bindingHandlers.appInvoke = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         
         var newValueAccessor = function() {
-            if(lbs.hasLimeConnection == true){
+            if(lbs.hasLimeConnection === true){
                 return function() {
                     Invoker.invokeWebApplication(ko.unwrap(valueAccessor()));
                 };
             }else{
                 return function(){
-                    alert("AppInvoker is not avalible outside of lime");
-                }
+                    alert('AppInvoker is not avalible outside of lime');
+                };
             }
         };
         ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext);
@@ -187,11 +193,11 @@ ko.bindingHandlers.vbaVisible = {
         var visible = lbs.common.executeVba(ko.unwrap(valueAccessor()));
 
         if (visible) {
-            $(element).show()
-            $(element).removeClass("hidden")
+            $(element).show();
+            $(element).removeClass('hidden');
         } else {
             $(element).hide();
-            $(element).addClass("hidden")
+            $(element).addClass('hidden');
         }
     }
 };
@@ -200,7 +206,7 @@ ko.bindingHandlers.email = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var newValueAccessor = function() {
             return function() {
-                lbs.common.executeVba("shell,mailto:" + ko.unwrap(valueAccessor()));
+                lbs.common.executeVba('shell,mailto:' + ko.unwrap(valueAccessor()));
             };
         };
         ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext);
@@ -214,7 +220,7 @@ ko.bindingHandlers.icon = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var content = lbs.common.iconTemplate.format(ko.unwrap(valueAccessor()));
         if (
-            $(element).text() != '' && $(element).text().substring(0, content.length) != content) {
+            $(element).text() !== '' && $(element).text().substring(0, content.length) != content) {
             $(element).prepend(content);
             element = $(element).get(0);
         }
@@ -229,7 +235,7 @@ ko.bindingHandlers.safeText = {
     var options = ko.utils.unwrapObservable(valueAccessor()),
     value = ko.utils.unwrapObservable(options.value),
     property = ko.utils.unwrapObservable(options.property),
-    fallback = ko.utils.unwrapObservable(options.default) || "",
+    fallback = ko.utils.unwrapObservable(options.default) || '',
     text;
 
     text = value ? (options.property ? value[property] : value) : fallback;
@@ -241,7 +247,7 @@ ko.bindingHandlers.safeText = {
 ko.bindingHandlers.href = {
     update: function (element, valueAccessor) {
         ko.bindingHandlers.attr.update(element, function () {
-            return { href: valueAccessor()}
+            return { href: valueAccessor()};
         });
     }
 };
@@ -249,7 +255,7 @@ ko.bindingHandlers.href = {
 ko.bindingHandlers.src = {
     update: function (element, valueAccessor) {
         ko.bindingHandlers.attr.update(element, function () {
-            return { src: valueAccessor()}
+            return { src: valueAccessor()};
         });
     }
 };
@@ -292,7 +298,7 @@ ko.virtualElements.allowedBindings.stopBinding = true;
 ko.bindingHandlers.popover = {
     init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {        
         $(element).attr({'data-toggle':'popover','data-container':'body','data-content':valueAccessor(),'data-placement':'top'});   
-        $(element).popover({ trigger: "hover", html:"true" })
+        $(element).popover({ trigger: 'hover', html:'true' });
 
     },
     update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
@@ -331,15 +337,16 @@ ko.filters.number = function(value,nbrOfDecimals) {
 };
 
 ko.filters.currency = function(value, currency, divider) {
-    if (currency === undefined) currency = "tkr";
+    if (currency === undefined) currency = 'tkr';
     if (divider === undefined) divider = 1000;
     value = value/divider;
     value = Number(Math.round(value+'e'+0)+'e-'+0);
     return value.toLocaleString() + currency;
 };
 ko.filters.percent = function(value, arg1) {
-    return (value * 100) + "%";
+    return (value * 100) + '%';
 };
+
 
 ko.filters.fromNow = function(date, arg1) {
     date = date.slice(0,19);
@@ -356,11 +363,11 @@ ko.bindingHandlers.rotate = {
         var deg = valueAccessor();
         console.log(deg);
         $(element).css({
-            "-webkit-transform":"rotate(" + deg + "deg)",
-            "-moz-transform-transform":"rotate(" + deg + "deg)",
-            "-ms-transform-transform":"rotate(" + deg + "deg)",
-            "-o-transform:":"rotate(" + deg + "deg)",
-            "transform:":"rotate(" + deg + "deg)"
+            '-webkit-transform':'rotate(' + deg + 'deg)',
+            '-moz-transform-transform':'rotate(' + deg + 'deg)',
+            '-ms-transform-transform':'rotate(' + deg + 'deg)',
+            '-o-transform:':'rotate(' + deg + 'deg)',
+            'transform:':'rotate(' + deg + 'deg)'
         });
     }
 };
