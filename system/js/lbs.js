@@ -81,8 +81,6 @@ var lbs = lbs || {
 
         //init watch
         this.log.watch.setup();
-        //init watch
-        // this.log.console.setup();
 
         //load views
         this.loader.loadView('system/view/{0}'.format(lbs.wrapperType), $("#wrapper"));
@@ -98,7 +96,7 @@ var lbs = lbs || {
         this.apploader.buildApps();
 
         //setup bindings
-        this.applyBindings();
+        this.applyContentBindings();
 
         //init apps
         this.apploader.initializeApps();
@@ -321,13 +319,33 @@ var lbs = lbs || {
             }
         );
 
-        //add trigger to reload page
-        $('body').keypress(function(e){
-            if(e.ctrlKey && e.which == 18){
+
+    
+    },
+
+    GlobalEventHandler: {
+        OnKeydown: function(data, e) {
+            // relaod AP (ctrl+shift+r)
+            if(e.ctrlKey && e.shiftKey && e.which == 82){
                 location.reload();
             }
-        });
-        
+            
+            //open watch (ctrl+shift+w)
+            else if(e.ctrlKey && e.shiftKey && e.which == 87){
+                lbs.log.watch.show('WATCH');
+            }
+
+            //open log (ctrl+shift+l)
+            else if(e.ctrlKey && e.shiftKey && e.which == 76){
+                lbs.log.watch.show('LOG');
+            }
+
+            else{
+
+                return true;
+            }
+
+        }
     },
 
     SetTouchEnabled : function(enable){
@@ -364,15 +382,15 @@ var lbs = lbs || {
     /**
     Apply knockout bindings to actionpad, note: no apps will be effected
     */
-    applyBindings: function () {
+    applyContentBindings: function () {
+
         try {
-            //lbs.log.debug('ViewModel: ' + JSON.stringify(lbs.vm));
             ko.applyBindings(lbs.vm, $("#content").get(0));
         } catch (e) {
             lbs.log.warn("Binding of data ActionPad failed! \n Displaying mapping attributes",e);
         }
     },
-
+    
     checkForUpdates: function(){
         //Check app version if debug is enabled
         if(lbs.debug && lbs.hasLimeConnection){
