@@ -288,3 +288,38 @@ ko.bindingHandlers.stopBinding = {
     }
 };
 ko.virtualElements.allowedBindings.stopBinding = true;
+
+ko.bindingHandlers.popover = {
+    init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {        
+        $(element).attr({'data-toggle':'popover','data-container':'body','data-content':valueAccessor(),'data-placement':'top'});   
+        $(element).popover({ trigger: "hover", html:"true" })
+
+    },
+    update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+        $(element).attr({'data-toggle':'popover','data-container':'body','data-content':valueAccessor(),'data-placement':'top'});   
+    }
+};
+
+ ko.bindingHandlers.tooltip = {   
+    init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+        if (typeof valueAccessor() ==='object'){
+            $(element).attr({'data-toggle':'tooltip','white-space':'nowrap','data-original-title':valueAccessor().text,'data-placement':valueAccessor().placement});        
+            $(element).tooltip();    
+        }
+        else
+        {
+            //,'white-space':'nowrap'
+            $(element).attr({'data-toggle':'tooltip','white-space':'pre-wrap','data-original-title':valueAccessor(),'data-placement':'top'});        
+            $(element).tooltip();    
+        }        
+    },
+    update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {    
+        if (typeof valueAccessor() ==='object'){
+            $(element).attr({'data-toggle':'tooltip','white-space':'pre-wrap','data-original-title':valueAccessor().text,'data-placement':valueAccessor().placement});        
+        }
+        else
+        {
+            $(element).attr({'data-toggle':'tooltip','white-space':'pre-wrap','data-original-title':valueAccessor(),'data-placement':'top'});                    
+        }
+    }
+};
