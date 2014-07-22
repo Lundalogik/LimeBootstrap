@@ -138,7 +138,6 @@
 
             //apply bindings
             try {
-                //lbs.log.debug('App ' + appName + ' ViewModel: ' + JSON.stringify(ko.toJS(vm)));
                 ko.applyBindings(vm, htmlNode.get(0));
             } catch (e) {
                 lbs.log.warn(lbs.common.nl2br("Binding of data to view failed for app: " + appName + "\n Displaying mapping attributes"));
