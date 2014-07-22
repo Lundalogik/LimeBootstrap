@@ -65,7 +65,7 @@ var lbs = lbs || {
         this.setupLoader();
 
         //configure
-        this.preocessConfiguration();
+        this.processConfiguration();
 
         //get Server and Database
         this.setActiveDBandServer();
@@ -125,7 +125,7 @@ var lbs = lbs || {
      /**
     Set properties when not standard
     */
-    preocessConfiguration : function(){
+    processConfiguration : function(){
         this.config = lbs.loader.loadExternalConfig(this.config,this.externalConfig.config,this.activeClass);
     },
 
@@ -386,6 +386,12 @@ var lbs = lbs || {
 
         try {
             ko.applyBindings(lbs.vm, $("#content").get(0));
+        } catch (e) {
+            lbs.log.warn("Binding of data ActionPad failed! \n Displaying mapping attributes",e);
+        }
+
+        try {
+            ko.applyBindings(lbs.vm, $("body").get(0));
         } catch (e) {
             lbs.log.warn("Binding of data ActionPad failed! \n Displaying mapping attributes",e);
         }

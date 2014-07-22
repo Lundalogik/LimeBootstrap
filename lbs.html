@@ -26,7 +26,8 @@
         <link rel="stylesheet" type="text/css" href="system/css/highlightJS/github.css" />
         
     </head>
-    <body>
+    <body  data-bind="event: { keydown: lbs.GlobalEventHandler.OnKeydown }">
+        <!-- ko stopBinding: true -->
         <div id="debug" data-bind="visible: enabled"></div>
         <div id="wrapper"></div>
         <div id="loadingIndicator"></div>
@@ -34,6 +35,9 @@
         <!-- external libs -->
         <script src="system/js/jquery-1.9.1.min.js" type="text/javascript"></script>
         <script src="system/js/knockout-2.3.0.js" type="text/javascript"></script>
+        <!-- <script src="system/js/knockout-3.1.0.js" type="text/javascript"></script> -->
+        <!-- <script src="system/js/knockout-3.1.0.debug.js" type="text/javascript"></script> -->
+        <!-- <script src="system/js/knockout.punches.min.js" type="text/javascript"></script> -->
         <script src="system/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="system/js/knockout.mapping-latest.js" type="text/javascript"></script>
         <script src="system/js/xml2json.js" type="text/javascript"></script>
@@ -52,6 +56,6 @@
         <script src="system/js/lbs.common.js" type="text/javascript"></script>
         <script src="system/js/lbs.bindings.js" type="text/javascript"></script>
         <script src="_config.js" type="text/javascript"></script>
-        
+        <!-- /ko -->
     </body>
 </html>
