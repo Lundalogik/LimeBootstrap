@@ -383,6 +383,9 @@ var lbs = lbs || {
     Apply knockout bindings to actionpad, note: no apps will be effected
     */
     applyContentBindings: function () {
+        ko.punches.interpolationMarkup.enable();
+        ko.punches.attributeInterpolationMarkup.enable();
+        ko.punches.textFilter.enableForBinding('text');
 
         try {
             ko.applyBindings(lbs.vm, $("#content").get(0));
@@ -393,7 +396,7 @@ var lbs = lbs || {
         try {
             ko.applyBindings(lbs.vm, $("body").get(0));
         } catch (e) {
-            lbs.log.warn("Binding of data ActionPad failed! \n Displaying mapping attributes",e);
+            lbs.log.warn("Binding of body bindings failed!",e);
         }
     },
     
