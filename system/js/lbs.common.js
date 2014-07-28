@@ -75,9 +75,9 @@ lbs.common = {
 
             if(lbs.hasLimeConnection){
                 lbs.log.debug("Trying to execute VBA:" + inString);
-                return null;
             }else{
                 lbs.log.warn("No lime connection, will not exec VBA call:" + inString);
+                return null;
             }
 
             var vbaline;
@@ -111,8 +111,8 @@ lbs.common = {
             }
 
         } catch (e) {
+            lbs.log.error("Failed to execute VBA:" + vbaline, e);
             return null;
-            //lbs.log.error("Failed to execute VBA:" + vbaline, e);
         }
     },
 
