@@ -279,7 +279,8 @@ var lbs = lbs || {
     setSkin: function () {
        
         try {
-            var skin = lbs.common.executeVba("ActionPadTools.GetSkin");
+            // var skin = lbs.common.executeVba("ActionPadTools.GetSkin");
+            var skin = lbs.hasLimeConnection ? lbs.limeDataConnection.application.Theme : 1;
             if(skin == 1){
                 lbs.log.info("Silver skin is used");
                 $("body").addClass("silver");
