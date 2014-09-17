@@ -1,6 +1,11 @@
 {
 	"versions":[
 		{
+			"version": 1.x,
+			"info": "Posibility to pass inspectorId to datasources. Support for unlocalized databases. Improved datasoruce: relatedRecord",
+			"date":"2014-09-17"
+		},
+		{
 			"version": 1.5,
 			"info": "Shortkeys. Alot of new bindings. Knockout 3.1. Knockout punches. Fontawesome 4.1.",
 			"date":"2014-07-22"
