@@ -74,19 +74,22 @@ Private Sub LoadDictionary()
     Set dicLookup = New Scripting.Dictionary
     dicLookup.CompareMode = VBA.vbTextCompare
     
-    'Get all records
-    Call oRecords.Open(Database.Classes("localize"))
+    ' check if table exists
+    If Not Database.Classes.Lookup("localize", lkLookupClassByLocalName) Is Nothing Then
     
-    For Each oRecord In oRecords
-        If VBA.Len(VBA.Trim(oRecord.Value(m_LanguageCode))) > 0 Then
-            sKey = GetLookupKey(oRecord.Value("owner"), oRecord.Value("code"))
-            If dicLookup.Exists(sKey) = False Then
-                Call dicLookup.Add(GetLookupKey(oRecord.Value("owner"), oRecord.Value("code")), oRecord.Value(m_LanguageCode))
+        'Get all records
+        Call oRecords.Open(Database.Classes("localize"))
+        
+        For Each oRecord In oRecords
+            If VBA.Len(VBA.Trim(oRecord.Value(m_LanguageCode))) > 0 Then
+                sKey = GetLookupKey(oRecord.Value("owner"), oRecord.Value("code"))
+                If dicLookup.Exists(sKey) = False Then
+                    Call dicLookup.Add(GetLookupKey(oRecord.Value("owner"), oRecord.Value("code")), oRecord.Value(m_LanguageCode))
+                End If
             End If
-        End If
-    Next oRecord
+        Next oRecord
     
-   
+    End If
     
     Exit Sub
 ErrorHandler:
