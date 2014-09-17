@@ -23,7 +23,7 @@ lbs.externalConfig = {
 		    	{type: 'activeInspector', source: ''}, 
 		    	{type: 'localization', source: '' },
 		        {type: 'record', source: 'ActionPadTools.GetCompanyContactData'}, 
-		        {type: 'record', source: 'ActionPadTools.GetPersonContactData'}
+		        {type: 'record', PassInspectorParam:true, source: 'ActionPadTools.GetPersonContactData'}
 		    ],
 		 	autorefresh : false
 		},
@@ -54,4 +54,4 @@ lbs.externalConfig = {
 		//  	autorefresh : false
 		// },
 	}
-}
+} 

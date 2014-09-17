@@ -240,7 +240,15 @@ lbs.loader = {
                     }
                     break;
                 case 'xml':
-                    data = lbs.common.executeVba(dataSource.source);
+                 
+                    //check for ownerIdParam
+                    var autoParams = []
+                    if(dataSource.hasOwnProperty('PassInspectorParam') && dataSource.PassInspectorParam && lbs.activeInspector){
+                        autoParams.push(lbs.activeInspector.ID)
+                    }
+
+                    data = lbs.common.executeVba(dataSource.source, autoParams);
+                    
                     if (data != null) {
                         data = lbs.loader.xmlToJSON(data, dataSource.alias);
                     } else {
@@ -248,7 +256,15 @@ lbs.loader = {
                     }
                     break;
                 case 'record':
-                    data = lbs.common.executeVba(dataSource.source);
+                    
+                    //check for ownerIdParam
+                    var autoParams = []
+                    if(dataSource.hasOwnProperty('PassInspectorParam') && dataSource.PassInspectorParam && lbs.activeInspector){
+                        autoParams.push(lbs.activeInspector.ID)
+                    }
+
+                    data = lbs.common.executeVba(dataSource.source, autoParams);
+
                     if (data != null) {
                         data = lbs.loader.recordToJSON(data,dataSource.alias);
                     } else {
@@ -256,7 +272,14 @@ lbs.loader = {
                     }
                     break;
                 case 'records':
-                    data = lbs.common.executeVba(dataSource.source);
+                    //check for ownerIdParam
+                    var autoParams = []
+                    if(dataSource.hasOwnProperty('PassInspectorParam') && dataSource.PassInspectorParam && lbs.activeInspector){
+                        autoParams.push(lbs.activeInspector.ID)
+                    }
+
+                    data = lbs.common.executeVba(dataSource.source, autoParams);
+
                     if (data != null) {
                         data = lbs.loader.recordsToJSON(data,dataSource.alias);
                     } else {
