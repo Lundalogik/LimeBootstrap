@@ -75,7 +75,7 @@ Private Sub LoadDictionary()
     dicLookup.CompareMode = VBA.vbTextCompare
     
     ' check if table exists
-    If Not Database.Classes.Lookup("localize", lkLookupClassByLocalName) Is Nothing Then
+    If Not Database.Classes.Lookup("localize", lkLookupClassByName) Is Nothing Then
     
         'Get all records
         Call oRecords.Open(Database.Classes("localize"))
