@@ -260,12 +260,27 @@ End Function
 '=============================================
 ' Load related record
 '=============================================
-Public Function loadRelatedRecord(sClass As String, lId As Long) As LDE.Record
+Public Function loadRelatedRecord(sClass As String, lId As Long, Optional sViewString As String) As LDE.Record
     On Error GoTo ErrorHandler
     
-    Dim oRecord As New LDE.Record
-    Call oRecord.Open(Database.Classes(sClass), lId)
-    Set loadRelatedRecord = oRecord
+    Dim oRecords As New LDE.Records
+    Dim oView As New LDE.View
+    Dim oFilter As New LDE.Filter
+    Dim sViewItem As Variant
+
+    Call oFilter.AddCondition("id" & sClass, lkOpEqual, lId)
+
+    For Each sViewItem In Split(sViewString, ";", -1, vbTextCompare)
+        Call oView.Add(sViewItem)
+    Next sViewItem
+    
+    Call oRecords.Open(Database.Classes(sClass), oFilter, oView, 1)
+    
+    If oRecords.Count = 1 Then
+        Set loadRelatedRecord = oRecords.Item(1)
+    Else
+        Set loadRelatedRecord = Nothing
+    End If
     
 Exit Function
 ErrorHandler:

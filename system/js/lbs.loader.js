@@ -333,7 +333,15 @@ lbs.loader = {
                     break;
                 case 'relatedRecord':
                      try {
-                        record = lbs.common.executeVba("lbsHelper.loadRelatedRecord, {0}, {1}".format(dataSource['class'], dataSource['idrecord']));
+                         //check for ownerIdParam
+                        var autoParams = []
+                        autoParams.push(dataSource['class'])
+                        autoParams.push(dataSource['idrecord'])
+                        if(dataSource.hasOwnProperty('view')){
+                            autoParams.push(dataSource['view'])
+                        }
+
+                        record = lbs.common.executeVba("lbsHelper.loadRelatedRecord", autoParams);
                         data = lbs.loader.recordToJSON(record, dataSource.alias);
                     } catch (e) {
                         lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
@@ -435,17 +443,21 @@ lbs.loader = {
     */
     "recordsToJSON": function (rc, alias) {
 
-        var className = rc['Class']['Name']
-        var nbrOfRecords = rc.Count;
-        var alias = alias ? alias : className;
         var json = {};
 
-        json[alias] = {};
-        json[alias]['records'] = [];
-        for (var i = 1; i <= nbrOfRecords; i++) {
-            var record = lbs.loader.recordToJSON(rc.Item(i),'r');
-            json[alias]['records'].push(record.r);
+        if(rc){
+            var className = rc['Class']['Name']
+            var nbrOfRecords = rc.Count;
+            var alias = alias ? alias : className;
+            
 
+            json[alias] = {};
+            json[alias]['records'] = [];
+            for (var i = 1; i <= nbrOfRecords; i++) {
+                var record = lbs.loader.recordToJSON(rc.Item(i),'r');
+                json[alias]['records'].push(record.r);
+
+            }
         }
         return json;
     },
@@ -454,32 +466,36 @@ lbs.loader = {
     Transform a VBA record to JSON
     */
     "recordToJSON": function (record, alias) {
-        var nbrOfFields = record.Fields.Count;
-        var className = record['Class']['Name']
-        var attr;
-        var json = {};
-        var alias = alias ? alias : className;
-        json[alias] = {};
-
-        for (var i = 1; i <= nbrOfFields; i++) {
-            attr = record.Fields(i).Name;
-            json[alias][attr] = {};
-            json[alias][attr]["text"] = record.Text(i);
         
-            if(typeof record.Value(i) != 'unknown'){
-                json[alias][attr]['value'] = record.Value(i);
-            }
-            if (record.Fields(i).Type == 16) { //Relation
-                json[alias][attr]['class'] = record.Fields(i).LinkedField['Class']['Name'];
-            }
+        var json = {};
 
-            //check if optionkey support
-            if(lbs.limeVersion.comparable > lbs.common.parseVersion('10.8').comparable){
-                if (record.Fields(i).Type == (19 || 18)) { //Option or Set
-                    json[alias][attr]['key'] = record.GetOptionKey(i);
+        if(record){
+            var nbrOfFields = record.Fields.Count;
+            var className = record['Class']['Name']
+            var attr;
+            var alias = alias ? alias : className;
+            json[alias] = {};
+
+            for (var i = 1; i <= nbrOfFields; i++) {
+                attr = record.Fields(i).Name;
+                json[alias][attr] = {};
+                json[alias][attr]["text"] = record.Text(i);
+            
+                if(typeof record.Value(i) != 'unknown'){
+                    json[alias][attr]['value'] = record.Value(i);
                 }
-            }
+                if (record.Fields(i).Type == 16) { //Relation
+                    json[alias][attr]['class'] = record.Fields(i).LinkedField['Class']['Name'];
+                }
 
+                //check if optionkey support
+                if(lbs.limeVersion.comparable > lbs.common.parseVersion('10.8').comparable){
+                    if (record.Fields(i).Type == (19 || 18)) { //Option or Set
+                        json[alias][attr]['key'] = record.GetOptionKey(i);
+                    }
+                }
+
+            }
         }
         return json;
     },

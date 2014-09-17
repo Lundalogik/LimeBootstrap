@@ -74,7 +74,7 @@ lbs.common = {
             
 
             if(lbs.hasLimeConnection){
-                lbs.log.debug("Trying to execute VBA:" + inString);
+                // lbs.log.debug("Trying to execute VBA:" + inString);
             }else{
                 lbs.log.warn("No lime connection, will not exec VBA call:" + inString);
                 return null;
@@ -92,6 +92,10 @@ lbs.common = {
                 var args = "";
                 vbaline = "lbs.limeDataConnection.Run('" + inArgs[0] + "', ";
                 for (var i = 1; i < inArgs.length; i++) {
+                    
+                    //cast as string
+                    inArgs[i] = String(inArgs[i]);
+
                     while (inArgs[i].charAt(0) === ' ') {
                         inArgs[i] = inArgs[i].substr(1);
                     }
@@ -101,12 +105,12 @@ lbs.common = {
                 }
                 vbaline += args + ")";
                 
-                //lbs.log.debug("Trying to execute multi argument VBA:" + vbaline);
+                lbs.log.debug("Trying to execute VBA:" + vbaline);
                 return eval(vbaline);
             }
             else {
                 vbaline = "lbs.limeDataConnection.Run('"+arguments[0]+"')";
-                //lbs.log.debug("Trying to execute single argument VBA:" + vbaline);
+                lbs.log.debug("Trying to execute VBA:" + vbaline);
                 return lbs.limeDataConnection.Run(arguments[0]);
             }
 

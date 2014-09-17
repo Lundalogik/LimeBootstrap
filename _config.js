@@ -22,8 +22,8 @@ lbs.externalConfig = {
 		    dataSources: [
 		    	{type: 'activeInspector', source: ''}, 
 		    	{type: 'localization', source: '' },
-		        {type: 'record', source: 'ActionPadTools.GetCompanyContactData'}, 
-		        {type: 'record', PassInspectorParam:true, source: 'ActionPadTools.GetPersonContactData'}
+		        {type: 'relatedRecord', source: 'person', view: 'name;phone;email;mobilephone', alias: 'person'},
+	   			{type: 'relatedRecord', source: 'company', view: 'name;phone', alias: 'company'}
 		    ],
 		 	autorefresh : false
 		},
@@ -32,8 +32,8 @@ lbs.externalConfig = {
 		    dataSources: [
 		    	{type: 'activeInspector', source: ''}, 
 		    	{type: 'localization', source: '' },
-		        {type: 'record', source: 'ActionPadTools.GetPersonContactData' },
-	   			{type: 'record', source:'ActionPadTools.GetCompanyContactData'}
+		        {type: 'relatedRecord', source: 'person', view: 'name;phone;email;mobilephone', alias: 'person'},
+	   			{type: 'relatedRecord', source: 'company', view: 'name;phone', alias: 'company'}
 		    ],
 		 	autorefresh : false
 		},
