@@ -1,5 +1,5 @@
 .snow{
-	background-image: url('../img/s1.png'), url('../img//s2.png'), url('../img//s3.png');
+	background-image: url('../img/snowflakes1.png'), url('../img//snowflakes2.png'), url('../img//snowflakes3.png');
 	left: 0;
 	top: 0;
 	z-index:1;
