@@ -2,7 +2,7 @@
 	"versions":[
 		{
 			"version": 1.6,
-			"info": "Posibility to pass inspectorId to datasources. Support for unlocalized databases. Improved datasoruce: relatedRecord",
+			"info": "Posibility to pass inspectorId to datasources. Support for unlocalized databases. Improved datasource: relatedRecord",
 			"date":"2014-09-17"
 		},
 		{
