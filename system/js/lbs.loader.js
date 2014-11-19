@@ -333,7 +333,6 @@ lbs.loader = {
                     break;
                 case 'relatedRecord':
                      try {
-                         //check for ownerIdParam
                         var autoParams = []
                         autoParams.push(dataSource['class'])
                         autoParams.push(dataSource['idrecord'])
@@ -341,8 +340,14 @@ lbs.loader = {
                             autoParams.push(dataSource['view'])
                         }
 
-                        record = lbs.common.executeVba("lbsHelper.loadRelatedRecord", autoParams);
-                        data = lbs.loader.recordToJSON(record, dataSource.alias);
+                        // verify that record related record exists
+                        if(dataSource['idrecord']){
+                            record = lbs.common.executeVba("lbsHelper.loadRelatedRecord", autoParams);
+                            data = lbs.loader.recordToJSON(record, dataSource.alias);
+                        }else{
+                            data = lbs.loader.emptyAliasJSON(dataSource.alias);
+                            lbs.log.debug("RelatedRecord load is canceled, idrecord is NULL: " + dataSource.type + ':' + dataSource.source)
+                        }
                     } catch (e) {
                         lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
                     }
@@ -497,6 +502,15 @@ lbs.loader = {
 
             }
         }
+        return json;
+    },
+
+    /**
+    Transform an empty alias to JSON
+    */
+    "emptyAliasJSON": function (alias) {
+        var json = {};
+        json[alias] = {};
         return json;
     },
 
