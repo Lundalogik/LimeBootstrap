@@ -47,7 +47,8 @@ lbs.common = {
              .replace(/"/g, "&quot;")
              .replace(/'/g, "&#039;");
     },
-
+    carouselRight : "<a class='right carousel-control' data-slide='next' role='button'><i class='fa fa-arrow-right'></i></a>",
+    carouselLeft : "<a class='left carousel-control' data-slide='prev' role='button'><i class='fa fa-arrow-left'></i> </a>",
     /**
     Create a limelink from class, id, server and database properties
     */

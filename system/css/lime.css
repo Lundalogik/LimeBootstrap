@@ -670,3 +670,270 @@ Misc tools
 .pull-text-center{
     text-align: center;
 }
+
+/*******************
+Popover
+*******************/
+.message-header{
+    height: 35px;
+    font-size: 16px;
+    line-height: 35px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 5px;    
+}
+
+
+/****
+
+NEW COLOURS
+    - Navyblue
+    - Pink
+    - Forrestgreen
+    - Wine
+    - Teal
+    - Lightgrey
+    - Black
+    - Stormblue
+    - Lavender 
+    - Olivegreen
+
+****/
+
+.olivegreen {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
+    /* For IE 5.5 - 7 */
+    background-color: #B5BF22;
+    border-bottom: 1px solid #A5AF12;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+}
+
+.header-container.olivegreen:before {
+    border-color: #95A205 transparent transparent transparent;
+}
+
+.header-container.olivegreen ul.info-links li:hover {
+    background-color: #C5CF2A;
+}
+
+.lavender {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
+    /* For IE 5.5 - 7 */
+    background-color: #B79EEF;
+    border-bottom: 1px solid #A78EEF;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+}
+
+.header-container.lavender:before {
+    border-color: #977EDF transparent transparent transparent;
+}
+
+.header-container.lavender ul.info-links li:hover {
+    background-color: #C7AEFF;
+}
+
+.stormblue {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
+    /* For IE 5.5 - 7 */
+    background-color: #25507F;
+    border-bottom: 1px solid #154069;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+}
+
+.header-container.stormblue:before {
+    border-color: #05305F transparent transparent transparent;
+}
+
+.header-container.stormblue ul.info-links li:hover {
+    background-color: #35659F;
+}
+
+.navyblue {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
+    /* For IE 5.5 - 7 */
+    background-color: #002370;
+    border-bottom: 1px solid #001250;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+}
+
+.header-container.navyblue:before {
+    border-color: #000230 transparent transparent transparent;
+}
+
+.header-container.navyblue ul.info-links li:hover {
+    background-color: #1535A0;
+}
+
+.pink {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
+    /* For IE 5.5 - 7 */
+    background-color: #E837B8;
+    border-bottom: 1px solid #D827A8;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+}
+
+.header-container.pink:before {
+    border-color: #A81788 transparent transparent transparent;
+}
+
+.header-container.pink ul.info-links li:hover {
+    background-color: #F857D8;
+}
+
+.lightgrey {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
+    /* For IE 5.5 - 7 */
+    background-color: #BBBBBB;
+    border-bottom: 1px solid #A0A0A0;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+}
+
+.header-container.lightgrey:before {
+    border-color: #909090 transparent transparent transparent;
+}
+
+.header-container.lightgrey ul.info-links li:hover {
+    background-color: #CCCCCC;
+}
+
+.forrestgreen {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
+    /* For IE 5.5 - 7 */
+    background-color: #2C4509;
+    border-bottom: 1px solid #173502;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+}
+
+.header-container.forrestgreen:before {
+    border-color: #082501 transparent transparent transparent;
+}
+
+.header-container.forrestgreen ul.info-links li:hover {
+    background-color: #2C5A17;
+}
+
+
+.teal {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
+    /* For IE 5.5 - 7 */
+    background-color: #006F85;
+    border-bottom: 1px solid #004A70;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+}
+
+.header-container.teal:before {
+    border-color: #003A50 transparent transparent transparent;
+}
+
+.header-container.teal ul.info-links li:hover {
+    background-color: #157F95;
+}
+
+.wine {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
+    /* For IE 5.5 - 7 */
+    background-color: #7E0024;
+    border-bottom: 1px solid #5E0018;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+}
+
+.header-container.wine:before {
+    border-color: #3E0005 transparent transparent transparent;
+}
+
+.header-container.wine ul.info-links li:hover {
+    background-color: #9E0034;
+}
+
+.black {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
+    /* For IE 5.5 - 7 */
+    background-color: #151515;
+    border-bottom: 1px solid #050505;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+}
+
+.header-container.black:before {
+    border-color: #000000 transparent transparent transparent;
+}
+
+.header-container.black ul.info-links li:hover {
+    background-color: #252525;
+}
+/****
+
+NEW COLOURS
+
+****/
+
+
+
+/********************
+App carousel
+********************/
+.lime-carousel{    
+    white-space: normal;
+    min-height: 150px;
+    height: auto;   
+    background-color: #F1F6FF;
+    width: 100%;
+    margin-left: 0px;
+}
+
+.carousel-inner{
+    margin: 0px -10px 0px -10px;
+    padding-left: 10px;
+    position: relative;
+    width: auto;
+}
+.lime-carousel .carousel-indicators{    
+    margin-top: 10px;
+    bottom: 0px;
+}
+.lime-carousel li.active{
+    background-color: #6985b7;
+}
+.carousel-indicators li{
+    border: 1px solid #6985b7;
+    cursor: default;
+}
+
+.carousel-indicators li:hover{
+    background-color: #d6e7ff;
+}
+
+a.carousel-control.left{
+    background-image: none; 
+    color: #6985b7;
+    opacity: 1;       
+}
+a.carousel-control.right{
+    background-image: none;            
+    color: #6985b7;
+    opacity: 1;
+}
+
+.carousel-control{
+    bottom: 0;
+    height: 35px;
+    width: 20px;
+    position: absolute;
+    top:auto;
+    color: #6985b7;
+    opacity: 1;
+}
+.carousel-control :hover{
+    color: #d6e7ff;
+    opacity: 1;
+}
+
