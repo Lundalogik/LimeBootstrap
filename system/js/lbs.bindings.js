@@ -369,7 +369,7 @@ ko.bindingHandlers.popover = {
                     title = '';
                     dom = valueAccessor().text;                                    
             }
-            
+            title = '<span>' + title + '</span>';
             dom = '<div><div class="message-header ' + color +'">' + icon + title + '</div>'+valueAccessor().text+'</div>';
         }
         else{            

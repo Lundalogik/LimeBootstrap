@@ -125,6 +125,8 @@ var lbs = lbs || {
         //syntax highjlight
         lbs.log.watch.sh();
 
+        
+
     },
 
 
@@ -392,6 +394,9 @@ var lbs = lbs || {
                 $('[data-toggle="popover"]').popover('hide');
             }
         });
+
+
+
 
         // FIX FOR CAROUSEL ANIMATION BUG
         $('.carousel').carousel().on('slide.bs.carousel', function (e) {

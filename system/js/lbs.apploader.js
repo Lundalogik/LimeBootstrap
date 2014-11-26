@@ -100,13 +100,13 @@
                     type = binding.type;
                     $(this).height(height);
 
-                    $(this).attr('id','carousel-' + i1);                    
-                    $(this).attr('data-ride', 'carousel');
-                    $(this).attr('data-interval', 0);
+                    $(this).attr({
+                        'id':'carousel-' + i1,
+                        'data-ride': 'carousel',
+                        'data-interval': '0'
+                    });                    
 
-                    $(this).addClass('carousel'); 
-                    $(this).addClass('slide');
-                    $(this).addClass('lime-carousel');
+                    $(this).addClass('carousel slide lime-carousel'); 
 
                     $(this).children().each(function(){
                         $(this).addClass("carousel-item");
@@ -115,8 +115,8 @@
                     $(this).append("<ol></ol>");
                     ol = $(this).find("ol");
 
-                    $(this).append(lbs.common.carouselRight);
-                    $(this).append(lbs.common.carouselLeft);
+                    $(this).append(lbs.common.carouselRight, lbs.common.carouselLeft);
+                    // $(this).append();
 
                     $(this).find("a").attr("data-target", "#carousel-" + i1);
 
@@ -129,12 +129,13 @@
                         li = ol.find("li").last();
                         if(i2 == 0){                                                        
                             $(this).addClass('active');
-                            li.addClass("active");
-                            li.addClass("black");
+                            li.addClass("active black");
                         }
-                            li.attr("data-slide-to",i2);
-                            li.attr("data-target",'#carousel-' + i1);                    
-                            li.addClass("black");
+                        li.attr({
+                            "data-slide-to" : i2,
+                            "data-target" : '#carousel-' + i1
+                        });            
+                        li.addClass("black");
                     });
 
 

@@ -674,266 +674,238 @@ Misc tools
 /*******************
 Popover
 *******************/
-.message-header{
-    height: 35px;
-    font-size: 16px;
-    line-height: 35px;
-    text-align: center;
-    color: #fff;
-    margin-bottom: 5px;    
+.message-header {
+  height: 38px;
+  font-size: 18px;
+  line-height: 38px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 7px;
+  position; relative;
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-top: -8px;
+  border-bottom: 1px solid;
+  border-color: #848484;
+  margin-top: -15px;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
 }
-
 
 /****
 
 NEW COLOURS
-    - Navyblue
-    - Pink
-    - Forrestgreen
-    - Wine
-    - Teal
-    - Lightgrey
-    - Black
-    - Stormblue
-    - Lavender 
-    - Olivegreen
+  - Turquoise
+  - Citrus
+  - Clean Green
+  - Deep Red
+  - Light Grey
+  - Purple Rain
+  - Magenta
 
 ****/
-
-.olivegreen {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
-    /* For IE 5.5 - 7 */
-    background-color: #B5BF22;
-    border-bottom: 1px solid #A5AF12;
-    color: white;
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+.turquoise {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#00A4B0')";
+  /* For IE 5.5 - 7 */
+  background-color: #00A4B0;
+  border-bottom: 1px solid #0094A0;
+  color: white;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#00A4B0'); 
 }
 
-.header-container.olivegreen:before {
-    border-color: #95A205 transparent transparent transparent;
+.header-container.turquoise:before {
+  border-color: #005D63 transparent transparent transparent; 
+}
+.header-container.turquoise ul.info-links li:hover {
+  background-color: #00B4C2; 
 }
 
-.header-container.olivegreen ul.info-links li:hover {
-    background-color: #C5CF2A;
+.citrus {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#C2B800')";
+  /* For IE 5.5 - 7 */
+  background-color: #C2B800;
+  border-bottom: 1px solid #B2A800;
+  color: white;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#C2B800'); 
 }
 
-.lavender {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
-    /* For IE 5.5 - 7 */
-    background-color: #B79EEF;
-    border-bottom: 1px solid #A78EEF;
-    color: white;
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+.header-container.citrus:before {
+  border-color: #635E00 transparent transparent transparent; 
+}
+.header-container.citrus ul.info-links li:hover {
+  background-color: #D4C800; 
 }
 
-.header-container.lavender:before {
-    border-color: #977EDF transparent transparent transparent;
+.clean-green {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#00B05B')";
+  /* For IE 5.5 - 7 */
+  background-color: #00B05B;
+  border-bottom: 1px solid #00A04B;
+  color: white;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#00B05B'); 
 }
 
-.header-container.lavender ul.info-links li:hover {
-    background-color: #C7AEFF;
+.header-container.clean-green:before {
+  border-color: #006333 transparent transparent transparent; 
 }
-
-.stormblue {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
-    /* For IE 5.5 - 7 */
-    background-color: #25507F;
-    border-bottom: 1px solid #154069;
-    color: white;
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
-}
-
-.header-container.stormblue:before {
-    border-color: #05305F transparent transparent transparent;
-}
-
-.header-container.stormblue ul.info-links li:hover {
-    background-color: #35659F;
-}
-
-.navyblue {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
-    /* For IE 5.5 - 7 */
-    background-color: #002370;
-    border-bottom: 1px solid #001250;
-    color: white;
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
-}
-
-.header-container.navyblue:before {
-    border-color: #000230 transparent transparent transparent;
-}
-
-.header-container.navyblue ul.info-links li:hover {
-    background-color: #1535A0;
-}
-
-.pink {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
-    /* For IE 5.5 - 7 */
-    background-color: #E837B8;
-    border-bottom: 1px solid #D827A8;
-    color: white;
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
-}
-
-.header-container.pink:before {
-    border-color: #A81788 transparent transparent transparent;
-}
-
-.header-container.pink ul.info-links li:hover {
-    background-color: #F857D8;
-}
-
-.lightgrey {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
-    /* For IE 5.5 - 7 */
-    background-color: #BBBBBB;
-    border-bottom: 1px solid #A0A0A0;
-    color: white;
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
-}
-
-.header-container.lightgrey:before {
-    border-color: #909090 transparent transparent transparent;
-}
-
-.header-container.lightgrey ul.info-links li:hover {
-    background-color: #CCCCCC;
-}
-
-.forrestgreen {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
-    /* For IE 5.5 - 7 */
-    background-color: #2C4509;
-    border-bottom: 1px solid #173502;
-    color: white;
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
-}
-
-.header-container.forrestgreen:before {
-    border-color: #082501 transparent transparent transparent;
-}
-
-.header-container.forrestgreen ul.info-links li:hover {
-    background-color: #2C5A17;
+.header-container.clean-green ul.info-links li:hover {
+  background-color: #00C16B; 
 }
 
 
-.teal {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
-    /* For IE 5.5 - 7 */
-    background-color: #006F85;
-    border-bottom: 1px solid #004A70;
-    color: white;
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+.deep-red {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#C81C1C')";
+  /* For IE 5.5 - 7 */
+  background-color: #C81C1C;
+  border-bottom: 1px solid #B81313;
+  color: white;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#C81C1C'); 
 }
 
-.header-container.teal:before {
-    border-color: #003A50 transparent transparent transparent;
+.header-container.deep-red:before {
+  border-color: #635E00 transparent transparent transparent; 
+}
+.header-container.deep-red ul.info-links li:hover {
+  background-color: #D82C2C; 
 }
 
-.header-container.teal ul.info-links li:hover {
-    background-color: #157F95;
+.light-grey {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#8B8B8B')";
+  /* For IE 5.5 - 7 */
+  background-color: #8B8B8B;
+  border-bottom: 1px solid #7B7B7B;
+  color: white;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#8B8B8B'); 
 }
 
-.wine {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
-    /* For IE 5.5 - 7 */
-    background-color: #7E0024;
-    border-bottom: 1px solid #5E0018;
-    color: white;
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+.header-container.light-grey:before {
+  border-color: #404040 transparent transparent transparent; 
+}
+.header-container.light-grey ul.info-links li:hover {
+  background-color: #9B9B9B; 
 }
 
-.header-container.wine:before {
-    border-color: #3E0005 transparent transparent transparent;
+.purple-rain {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#5A3098')";
+  /* For IE 5.5 - 7 */
+  background-color: #5A3098;
+  border-bottom: 1px solid #4A2088;
+  color: white;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#5A3098'); 
 }
 
-.header-container.wine ul.info-links li:hover {
-    background-color: #9E0034;
+.header-container.purple-rain:before {
+  border-color: #3C2166 transparent transparent transparent; 
+}
+.header-container.purple-rain ul.info-links li:hover {
+  background-color: #6A40A8; 
 }
 
-.black {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
-    /* For IE 5.5 - 7 */
-    background-color: #151515;
-    border-bottom: 1px solid #050505;
-    color: white;
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+.magenta {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#D01772')";
+  /* For IE 5.5 - 7 */
+  background-color: #D01772;
+  border-bottom: 1px solid #C00762;
+  color: white;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#D01772'); 
 }
 
-.header-container.black:before {
-    border-color: #000000 transparent transparent transparent;
+.header-container.magenta:before {
+  border-color: #610B36 transparent transparent transparent; 
 }
-
-.header-container.black ul.info-links li:hover {
-    background-color: #252525;
+.header-container.magenta ul.info-links li:hover {
+  background-color: #E02782; 
 }
 /****
 
 NEW COLOURS
 
 ****/
-
-
-
 /********************
 App carousel
 ********************/
-.lime-carousel{    
-    white-space: normal;
-    min-height: 150px;
-    height: auto;   
-    background-color: #F1F6FF;
-    width: 100%;
-    margin-left: 0px;
-}
+.lime-carousel {
+  white-space: normal;
+  min-height: 150px;
+  height: auto;
+  background-color: #F1F6FF;
+  width: 100%;
+  margin-left: 0px; }
 
-.carousel-inner{
-    margin: 0px -10px 0px -10px;
-    padding-left: 10px;
-    position: relative;
-    width: auto;
-}
-.lime-carousel .carousel-indicators{    
-    margin-top: 10px;
-    bottom: 0px;
-}
-.lime-carousel li.active{
-    background-color: #6985b7;
-}
-.carousel-indicators li{
-    border: 1px solid #6985b7;
-    cursor: default;
-}
+.carousel-inner {
+  margin: 0px -10px 0px -10px;
+  padding-left: 10px;
+  position: relative;
+  width: auto; }
 
-.carousel-indicators li:hover{
-    background-color: #d6e7ff;
-}
+.lime-carousel .carousel-indicators {
+  margin-top: 10px;
+  bottom: 0px; }
+.lime-carousel li.active {
+  background-color: #6985b7; }
 
-a.carousel-control.left{
-    background-image: none; 
-    color: #6985b7;
-    opacity: 1;       
-}
-a.carousel-control.right{
-    background-image: none;            
-    color: #6985b7;
-    opacity: 1;
-}
+.carousel-indicators li {
+  border: 1px solid #6985b7;
+  cursor: default; }
+  .carousel-indicators li:hover {
+    background-color: #d6e7ff; }
 
-.carousel-control{
-    bottom: 0;
-    height: 35px;
-    width: 20px;
-    position: absolute;
-    top:auto;
-    color: #6985b7;
-    opacity: 1;
-}
-.carousel-control :hover{
+a.carousel-control.left, a.carousel-control.right {
+  background-image: none;
+  color: #6985b7;
+  opacity: 1; }
+
+.carousel-control {
+  bottom: 0;
+  height: 35px;
+  width: 20px;
+  position: absolute;
+  top: auto;
+  color: #6985b7;
+  opacity: 1; }
+  .carousel-control :hover {
     color: #d6e7ff;
-    opacity: 1;
-}
+    opacity: 1; }
 
+/******************
+LimeAlert
+******************/
+.alert-container {
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  position: absolute;
+  background-color: rgba( 0, 0, 0, 0.4);
+  padding-top: 40%; }
+
+.lime-alert-box {
+  width: 65%;
+  margin-left: 17%;
+  margin-right: 18%;
+  top: 25%;
+  height: auto;
+  z-index: 1060;
+  position: absolute;
+  padding: 10px 15px 5px 15px;
+  text-align: left;
+  white-space: normal;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -vendor-animation-duration: 0.1s; }
+
+.message-footer {
+  padding-top: 10px;
+  margin: 10px 5px 5px 5px;
+  border-top: 1px solid;
+  border-color: #ccc; }
+
+.btn-alert {
+  width: 25%;
+  margin-left: 37%;
+  margin-right: 38%; }

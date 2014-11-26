@@ -2,10 +2,9 @@
 	"versions":[
 		{
 			"version": 1.7,
-			"info": "Added data carousel and new colours for Actionpads. Improved popover data-bind."
+			"info": "Added data carousel and new colours for Actionpads. Improved popover data-bind.",
 			"date": "2014-11-21"
 		},
-
 		{
 			"version": 1.6,
 			"info": "Posibility to pass inspectorId to datasources. Support for unlocalized databases. Improved datasource: relatedRecord",

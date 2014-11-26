@@ -245,3 +245,52 @@ if (!String.prototype.format) {
         });
     };
 }
+
+limeAlert = function(input){
+    if (typeof(input) == 'object'){
+        var text = input.text;
+        var title = input.title;
+        var color = input.color;
+        var icon = input.icon;
+        var animation = input.animation;
+
+        if(typeof(text) == 'undefined'){
+            text = "Ingen text!";
+        }
+        if(typeof(title) == 'undefined'){
+            title = "Ingen titel!";
+        }
+        if(typeof(color) == 'undefined'){
+            color = "blue";
+        }
+        if(typeof(icon) == 'undefined'){
+            icon = "";
+        }
+        if(typeof(animation) == 'undefined'){
+            animation = "";
+        }
+
+        $('body').prepend('<div class="alert-container"></div>');
+
+        var container = $('body').find('.alert-container');
+        
+        container.append('<div class="lime-alert-box animated ' + animation + '"></div>');   
+        
+        var limealert = $('body').find('.lime-alert-box');
+        limealert.append('<div class="message-header ' + color + '">' +'<i class="fa ' + icon + '"></i>' + title + '</div>');
+        limealert.append('<div>' + text + '</div>')
+        limealert.append('<div class="message-footer"><div class="btn btn-default btn-alert">Ok</div></div>')
+        // $('.alert-container').click(function(e){
+        //     if($(e.target).attr('class') == 'alert-container'){
+        //         $('.alert-container').hide();
+        //     }
+        // });
+        $('.btn-alert').click(function(e){
+            $('.alert-container').hide();
+        });  
+    }
+    else
+    {
+       alert(input);
+    }
+}
