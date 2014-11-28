@@ -378,6 +378,22 @@ var lbs = lbs || {
             $(this).addClass("header-icon-container");
             $(this).css("background-image", "url('resources/"+lbs.activeClass+".png')");
         });
+
+        //Apply Easter eggs
+        try {
+            var dateNow = new Date();
+            var dateFrom = new Date(dateNow.getFullYear(), 12, 01);
+            var dateTo = new Date(dateNow.getFullYear(), 12, 31);
+            //X-mas
+            if (dateNow >= dateFrom && dateNow <= dateTo) {
+                $(".header-container").each(function () {
+                    $(this).addClass('snow');
+                });
+            }
+        }
+        catch (e) {
+            lbs.log.info('Unable to load easter eggs.' + e);
+        }
     },
 
     /**
