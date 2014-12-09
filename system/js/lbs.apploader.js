@@ -1,4 +1,4 @@
-﻿lbs.apploader = {
+lbs.apploader = {
 
     /**
     holds a reference to all factory methods
@@ -32,7 +32,7 @@
 
                 //try to parse input to app from view
                 try {
-                    eval('binding = ' + $(this).attr("data-app"))
+                    eval('binding = ' + $(this).attr("data-app"));
                     appName = binding.app;
                     instanceConfig = binding.config;
                 } catch (e1) {
@@ -59,7 +59,7 @@
                 if (instanceConfig) {
                     // New config format
                     if(typeof(instance.config) == 'function'){
-                        instance.config = new instance.config(instanceConfig)    
+                        instance.config = new instance.config(instanceConfig)    ;
                     }else{ //old format
                         instance.config = lbs.common.mergeOptions( instance.config, instanceConfig, true);
                     }
@@ -116,7 +116,6 @@
                     ol = $(this).find("ol");
 
                     $(this).append(lbs.common.carouselRight, lbs.common.carouselLeft);
-                    // $(this).append();
 
                     $(this).find("a").attr("data-target", "#carousel-" + i1);
 
@@ -127,7 +126,7 @@
                         $(this).addClass('item');
                         ol.append("<li></li>");
                         li = ol.find("li").last();
-                        if(i2 == 0){                                                        
+                        if(i2 === 0){                                                        
                             $(this).addClass('active');
                             li.addClass("active black");
                         }
@@ -214,4 +213,4 @@
 
     }
 
-}
+};

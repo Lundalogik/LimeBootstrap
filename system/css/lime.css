@@ -329,6 +329,117 @@ COLORS
     background-color: #A73624;
 }
 
+/****
+
+NEW COLOURS
+  - Turquoise
+  - Citrus
+  - Clean Green
+  - Deep Red
+  - Light Grey
+  - Purple Rain
+  - Magenta
+
+****/
+.turquoise {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@turquoise')";
+  /* For IE 5.5 - 7 */
+  background-color: #00a4b0;
+  border-bottom: 1px solid #0094A0;
+  color: #ffffff;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@turquoise');
+}
+.header-container.turquoise:before {
+  border-color: #005D63 transparent transparent transparent;
+}
+.header-container.turquoise ul.info-links li:hover {
+  background-color: #00B4C2;
+}
+.citrus {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@citrus')";
+  /* For IE 5.5 - 7 */
+  background-color: #c2b800;
+  border-bottom: 1px solid #B2A800;
+  color: #ffffff;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@citrus');
+}
+.header-container.citrus:before {
+  border-color: #635E00 transparent transparent transparent;
+}
+.header-container.citrus ul.info-links li:hover {
+  background-color: #D4C800;
+}
+.clean-green {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@clean-green')";
+  /* For IE 5.5 - 7 */
+  background-color: #00b05b;
+  border-bottom: 1px solid #00A04B;
+  color: #ffffff;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@clean-green');
+}
+.header-container.clean-green:before {
+  border-color: #006333 transparent transparent transparent;
+}
+.header-container.clean-green ul.info-links li:hover {
+  background-color: #00C16B;
+}
+.deep-red {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@deep-red')";
+  /* For IE 5.5 - 7 */
+  background-color: #c81c1c;
+  border-bottom: 1px solid #B81313;
+  color: #ffffff;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@deep-red');
+}
+.header-container.deep-red:before {
+  border-color: #540C0C transparent transparent transparent;
+}
+.header-container.deep-red ul.info-links li:hover {
+  background-color: #D82C2C;
+}
+.light-grey {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@light-grey')";
+  /* For IE 5.5 - 7 */
+  background-color: #8b8b8b;
+  border-bottom: 1px solid #7B7B7B;
+  color: #ffffff;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@light-grey');
+}
+.header-container.light-grey:before {
+  border-color: #404040 transparent transparent transparent;
+}
+.header-container.light-grey ul.info-links li:hover {
+  background-color: #9B9B9B;
+}
+.purple-rain {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@purple-rain')";
+  /* For IE 5.5 - 7 */
+  background-color: #5a3098;
+  border-bottom: 1px solid #4A2088;
+  color: #ffffff;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@purple-rain');
+}
+.header-container.purple-rain:before {
+  border-color: #3C2166 transparent transparent transparent;
+}
+.header-container.purple-rain ul.info-links li:hover {
+  background-color: #6A40A8;
+}
+.magenta {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@magenta')";
+  /* For IE 5.5 - 7 */
+  background-color: #d01772;
+  border-bottom: 1px solid #C00762;
+  color: #ffffff;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@magenta');
+}
+.header-container.magenta:before {
+  border-color: #610B36 transparent transparent transparent;
+}
+.header-container.magenta ul.info-links li:hover {
+  background-color: #E02782;
+}
+
 /*******************
 HEADER
 *******************/
@@ -675,154 +786,24 @@ Misc tools
 Popover
 *******************/
 .message-header {
-  height: 38px;
+  height: 50px;
   font-size: 18px;
-  line-height: 38px;
+  line-height: 50px;
   text-align: center;
-  color: #fff;
-  margin-bottom: 7px;
-  position; relative;
+  color: #ffffff;
+  margin-bottom: 15px;
+  position: relative;
   margin-left: -15px;
-  margin-right: -15px;
-  margin-top: -8px;
-  border-bottom: 1px solid;
-  border-color: #848484;
+  margin-right: -15.5px;
   margin-top: -15px;
-  border-top-left-radius:5px;
-  border-top-right-radius:5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
-
-/****
-
-NEW COLOURS
-  - Turquoise
-  - Citrus
-  - Clean Green
-  - Deep Red
-  - Light Grey
-  - Purple Rain
-  - Magenta
-
-****/
-.turquoise {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#00A4B0')";
-  /* For IE 5.5 - 7 */
-  background-color: #00A4B0;
-  border-bottom: 1px solid #0094A0;
-  color: white;
-  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#00A4B0'); 
+.popover-content {
+  padding-bottom: 15px;
 }
-
-.header-container.turquoise:before {
-  border-color: #005D63 transparent transparent transparent; 
-}
-.header-container.turquoise ul.info-links li:hover {
-  background-color: #00B4C2; 
-}
-
-.citrus {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#C2B800')";
-  /* For IE 5.5 - 7 */
-  background-color: #C2B800;
-  border-bottom: 1px solid #B2A800;
-  color: white;
-  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#C2B800'); 
-}
-
-.header-container.citrus:before {
-  border-color: #635E00 transparent transparent transparent; 
-}
-.header-container.citrus ul.info-links li:hover {
-  background-color: #D4C800; 
-}
-
-.clean-green {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#00B05B')";
-  /* For IE 5.5 - 7 */
-  background-color: #00B05B;
-  border-bottom: 1px solid #00A04B;
-  color: white;
-  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#00B05B'); 
-}
-
-.header-container.clean-green:before {
-  border-color: #006333 transparent transparent transparent; 
-}
-.header-container.clean-green ul.info-links li:hover {
-  background-color: #00C16B; 
-}
-
-
-.deep-red {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#C81C1C')";
-  /* For IE 5.5 - 7 */
-  background-color: #C81C1C;
-  border-bottom: 1px solid #B81313;
-  color: white;
-  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#C81C1C'); 
-}
-
-.header-container.deep-red:before {
-  border-color: #635E00 transparent transparent transparent; 
-}
-.header-container.deep-red ul.info-links li:hover {
-  background-color: #D82C2C; 
-}
-
-.light-grey {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#8B8B8B')";
-  /* For IE 5.5 - 7 */
-  background-color: #8B8B8B;
-  border-bottom: 1px solid #7B7B7B;
-  color: white;
-  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#8B8B8B'); 
-}
-
-.header-container.light-grey:before {
-  border-color: #404040 transparent transparent transparent; 
-}
-.header-container.light-grey ul.info-links li:hover {
-  background-color: #9B9B9B; 
-}
-
-.purple-rain {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#5A3098')";
-  /* For IE 5.5 - 7 */
-  background-color: #5A3098;
-  border-bottom: 1px solid #4A2088;
-  color: white;
-  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#5A3098'); 
-}
-
-.header-container.purple-rain:before {
-  border-color: #3C2166 transparent transparent transparent; 
-}
-.header-container.purple-rain ul.info-links li:hover {
-  background-color: #6A40A8; 
-}
-
-.magenta {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#D01772')";
-  /* For IE 5.5 - 7 */
-  background-color: #D01772;
-  border-bottom: 1px solid #C00762;
-  color: white;
-  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#D01772'); 
-}
-
-.header-container.magenta:before {
-  border-color: #610B36 transparent transparent transparent; 
-}
-.header-container.magenta ul.info-links li:hover {
-  background-color: #E02782; 
-}
-/****
-
-NEW COLOURS
-
-****/
 /********************
-App carousel
+Data carousel
 ********************/
 .lime-carousel {
   white-space: normal;
@@ -830,31 +811,34 @@ App carousel
   height: auto;
   background-color: #F1F6FF;
   width: 100%;
-  margin-left: 0px; }
-
+  margin-left: 0px;
+}
+.lime-carousel .carousel-indicators {
+  margin-top: 10px;
+  bottom: 0px;
+}
+.lime-carousel li.active {
+  background-color: #6985b7;
+}
 .carousel-inner {
   margin: 0px -10px 0px -10px;
   padding-left: 10px;
   position: relative;
-  width: auto; }
-
-.lime-carousel .carousel-indicators {
-  margin-top: 10px;
-  bottom: 0px; }
-.lime-carousel li.active {
-  background-color: #6985b7; }
-
+  width: auto;
+}
 .carousel-indicators li {
   border: 1px solid #6985b7;
-  cursor: default; }
-  .carousel-indicators li:hover {
-    background-color: #d6e7ff; }
-
-a.carousel-control.left, a.carousel-control.right {
+  cursor: default;
+}
+.carousel-indicators li:hover {
+  background-color: #d6e7ff;
+}
+a.carousel-control.left,
+a.carousel-control.right {
   background-image: none;
   color: #6985b7;
-  opacity: 1; }
-
+  opacity: 1;
+}
 .carousel-control {
   bottom: 0;
   height: 35px;
@@ -862,50 +846,9 @@ a.carousel-control.left, a.carousel-control.right {
   position: absolute;
   top: auto;
   color: #6985b7;
-  opacity: 1; }
-  .carousel-control :hover {
-    color: #d6e7ff;
-    opacity: 1; }
-
-/******************
-LimeAlert
-******************/
-.alert-container {
-  width: 100%;
-  height: 100%;
-  z-index: 1000;
-  position: absolute;
-  background-color: rgba( 0, 0, 0, 0.4);
-  padding-top: 40%; }
-
-.lime-alert-box {
-  width: 65%;
-  margin-left: 17%;
-  margin-right: 18%;
-  top: 25%;
-  height: auto;
-  z-index: 1060;
-  position: absolute;
-  padding: 10px 15px 5px 15px;
-  text-align: left;
-  white-space: normal;
-  background-color: #fff;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
-  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  -vendor-animation-duration: 0.1s; }
-
-.message-footer {
-  padding-top: 10px;
-  margin: 10px 5px 5px 5px;
-  border-top: 1px solid;
-  border-color: #ccc; }
-
-.btn-alert {
-  width: 25%;
-  margin-left: 37%;
-  margin-right: 38%; }
+  opacity: 1;
+}
+.carousel-control :hover {
+  color: #d6e7ff;
+  opacity: 1;
+}

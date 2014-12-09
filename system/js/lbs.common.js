@@ -14,20 +14,15 @@ lbs.common = {
         var nbr = Math.floor((Math.random() * 5) + 1);
         switch (nbr) {
             case 1:
-                return "Oh snap!"
-                break;
+                return "Oh snap!";
             case 2:
-                return "Oh no!"
-                break;
+                return "Oh no!";
             case 3:
-                return "God damit!"
-                break;
+                return "God damit!";
             case 4:
-                return "Holy guacamole!"
-                break;
+                return "Holy guacamole!";
             case 5:
-                return "Arghhhh!"
-                break;
+                return "Arghhhh!";
         }
     },
 
@@ -53,7 +48,7 @@ lbs.common = {
     Create a limelink from class, id, server and database properties
     */
     "createLimeLink": function (limeClass, limeId) {
-        return "limecrm:"+limeClass+"."+lbs.activeDatabase + "." + lbs.activeServer + "?" + limeId
+        return "limecrm:"+limeClass+"."+lbs.activeDatabase + "." + lbs.activeServer + "?" + limeId;
     },
 
     /**
@@ -165,7 +160,7 @@ lbs.common = {
                     lbs.log.warn("Key '{0}' was not added to the view model. Key already exists".format(key));
                 }
             }
-        })
+        });
         return obj1;
     },
 
@@ -176,7 +171,7 @@ lbs.common = {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(16);
-        })
+        });
     },
 
     /*
@@ -196,11 +191,11 @@ lbs.common = {
 
         for (nIndex = 0; nIndex < strVersion.length && nIndex < 3; nIndex++) {
             if (!isNaN(strVersion[nIndex])) {
-                if (nIndex == 0){
+                if (nIndex === 0){
                     iMajor = parseInt(strVersion[nIndex]);
                     nMajor = iMajor * 10000;
                 }
-                else if (nIndex == 1){
+                else if (nIndex === 1){
                     iMinor = parseInt(strVersion[nIndex]);
                     nMinor = iMinor * 1000;
                 }
@@ -223,7 +218,7 @@ lbs.common = {
             };
     },
     
-}
+};
 
 /**
 --------------------------------------------------------
@@ -238,59 +233,7 @@ if (!String.prototype.format) {
     String.prototype.format = function () {
         var args = arguments;
         return this.replace(/{(\d+)}/g, function (match, number) {
-            return typeof args[number] != 'undefined'
-              ? args[number]
-              : match
-            ;
+            return typeof args[number] != 'undefined' ? args[number] : match;
         });
     };
-}
-
-limeAlert = function(input){
-    if (typeof(input) == 'object'){
-        var text = input.text;
-        var title = input.title;
-        var color = input.color;
-        var icon = input.icon;
-        var animation = input.animation;
-
-        if(typeof(text) == 'undefined'){
-            text = "Ingen text!";
-        }
-        if(typeof(title) == 'undefined'){
-            title = "Ingen titel!";
-        }
-        if(typeof(color) == 'undefined'){
-            color = "blue";
-        }
-        if(typeof(icon) == 'undefined'){
-            icon = "";
-        }
-        if(typeof(animation) == 'undefined'){
-            animation = "";
-        }
-
-        $('body').prepend('<div class="alert-container"></div>');
-
-        var container = $('body').find('.alert-container');
-        
-        container.append('<div class="lime-alert-box animated ' + animation + '"></div>');   
-        
-        var limealert = $('body').find('.lime-alert-box');
-        limealert.append('<div class="message-header ' + color + '">' +'<i class="fa ' + icon + '"></i>' + title + '</div>');
-        limealert.append('<div>' + text + '</div>')
-        limealert.append('<div class="message-footer"><div class="btn btn-default btn-alert">Ok</div></div>')
-        // $('.alert-container').click(function(e){
-        //     if($(e.target).attr('class') == 'alert-container'){
-        //         $('.alert-container').hide();
-        //     }
-        // });
-        $('.btn-alert').click(function(e){
-            $('.alert-container').hide();
-        });  
-    }
-    else
-    {
-       alert(input);
-    }
 }

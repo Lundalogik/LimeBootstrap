@@ -90,7 +90,7 @@ ko.bindingHandlers.textWithIcon = {
         var iconHtml = lbs.common.iconTemplate.format(value['icon']);
 
         $(element).html(iconHtml + '<span></span>');
-        ko.bindingHandlers.text.update($(element).find('span').get(0), function () { return value['text'] }, allBindingsAccessor, viewModel, bindingContext)
+        ko.bindingHandlers.text.update($(element).find('span').get(0), function () { return value['text']; }, allBindingsAccessor, viewModel, bindingContext);
     }
 };
 
@@ -306,13 +306,13 @@ ko.bindingHandlers.popover = {
         if (typeof(valueAccessor()) =="object"){  
 
             if(typeof(valueAccessor().color) == "undefined"){
-                color = "blue"
+                color = "blue";
             }else{
                 color = valueAccessor().color;
             }
 
             if(typeof(valueAccessor().title) == "undefined"){
-                title = "Titel saknas"
+                title = "Titel saknas";
             }else{
                 title = valueAccessor().title;
             }
@@ -327,7 +327,7 @@ ko.bindingHandlers.popover = {
             }
 
             if(typeof(valueAccessor().trigger) == "undefined"){
-                trigger = "hover"
+                trigger = "hover";
             }else{
                 trigger = valueAccessor().trigger;
                 if("hover,click".indexOf(valueAccessor().trigger) == -1){
@@ -337,7 +337,7 @@ ko.bindingHandlers.popover = {
 
             if(typeof(valueAccessor().icon) == "undefined"){
 
-                icon = ""
+                icon = "";
             }else{
                 icon = '<i class="fa ' + valueAccessor().icon + '"></i>';
             }
@@ -361,7 +361,7 @@ ko.bindingHandlers.popover = {
                 case 'success':
                     color = "green";
                     icon = '<i class="fa fa-check"></i> ';
-                    title = 'Success'
+                    title = 'Success';
                     break;
                 case 'custom':
                     break;
@@ -392,13 +392,13 @@ ko.bindingHandlers.popover = {
         if (typeof(valueAccessor()) =="object"){  
 
             if(typeof(valueAccessor().color) == "undefined"){
-                color = "blue"
+                color = "blue";
             }else{
                 color = valueAccessor().color;
             }
 
             if(typeof(valueAccessor().title) == "undefined"){
-                title = "Titel saknas"
+                title = "Titel saknas";
             }else{
                 title = valueAccessor().title;
             }
@@ -413,7 +413,7 @@ ko.bindingHandlers.popover = {
             }
 
             if(typeof(valueAccessor().trigger) == "undefined"){
-                trigger = "hover"
+                trigger = "hover";
             }else{
                 trigger = valueAccessor().trigger;
                 if("hover,click".indexOf(valueAccessor().trigger) == -1){
@@ -423,7 +423,7 @@ ko.bindingHandlers.popover = {
 
             if(typeof(valueAccessor().icon) == "undefined"){
 
-                icon = ""
+                icon = "";
             }else{
                 icon = '<i class="fa ' + valueAccessor().icon + '"></i>';
             }
@@ -447,7 +447,7 @@ ko.bindingHandlers.popover = {
                 case 'success':
                     color = "green";
                     icon = '<i class="fa fa-check"></i> ';
-                    title = 'Success'
+                    title = 'Success';
                     break;
                 case 'custom':
                     break;

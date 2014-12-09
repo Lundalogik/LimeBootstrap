@@ -202,7 +202,7 @@ var lbs = lbs || {
                         if (inspectorId) {
                             inspectorObject = lbs.limeDataConnection.Inspectors.Lookup(inspectorId);
                         }
-                    }else if (apowner = 'application'){
+                    }else if (apowner == 'application'){
                         //its main AP
                         inspectorObject = null;
                     }
@@ -389,8 +389,7 @@ var lbs = lbs || {
 
         // Clickable popovers close on click outside 
         $('body').on('click', function (e) {
-            if ($(e.target).data('toggle') !== 'popover'
-                && $(e.target).parents('.popover.in').length === 0) { 
+            if ($(e.target).data('toggle') !== 'popover' && $(e.target).parents('.popover.in').length === 0) { 
                 $('[data-toggle="popover"]').popover('hide');
             }
         });
