@@ -261,7 +261,7 @@ COLORS
     background-color: #B95815;
 }
 
-.darkgrey {
+.dark-grey, .darkgrey {
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#464646')";
     /* For IE 5.5 - 7 */
     background-color: #464646;
@@ -275,6 +275,14 @@ COLORS
 }
 
 .header-container.darkgrey ul.info-links li:hover {
+    background-color: #1E1E1E;
+}
+
+.header-container.dark-grey:before {
+    border-color: #1E1E1E transparent transparent transparent;
+}
+
+.header-container.dark-grey ul.info-links li:hover {
     background-color: #1E1E1E;
 }
 
