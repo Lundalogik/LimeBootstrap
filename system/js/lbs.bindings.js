@@ -90,7 +90,7 @@ ko.bindingHandlers.textWithIcon = {
         var iconHtml = lbs.common.iconTemplate.format(value['icon']);
 
         $(element).html(iconHtml + '<span></span>');
-        ko.bindingHandlers.text.update($(element).find('span').get(0), function () { return value['text'] }, allBindingsAccessor, viewModel, bindingContext)
+        ko.bindingHandlers.text.update($(element).find('span').get(0), function () { return value['text']; }, allBindingsAccessor, viewModel, bindingContext);
     }
 };
 
@@ -296,13 +296,173 @@ ko.bindingHandlers.stopBinding = {
 ko.virtualElements.allowedBindings.stopBinding = true;
 
 ko.bindingHandlers.popover = {
-    init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {        
-        $(element).attr({'data-toggle':'popover','data-container':'body','data-content':valueAccessor(),'data-placement':'top'});   
-        $(element).popover({ trigger: 'hover', html:'true' });
+    init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+        var dom;          
+        var color;
+        var title;
+        var icon;
+        var placement;
+        var trigger;
+        if (typeof(valueAccessor()) =="object"){  
+
+            if(typeof(valueAccessor().color) == "undefined"){
+                color = "blue";
+            }else{
+                color = valueAccessor().color;
+            }
+
+            if(typeof(valueAccessor().title) == "undefined"){
+                title = "Titel saknas";
+            }else{
+                title = valueAccessor().title;
+            }
+
+            if(typeof(valueAccessor().placement) == "undefined"){
+                placement = "top";
+            }else{
+                placement = valueAccessor().placement;
+                if("left,right,top,bottom".indexOf(valueAccessor().placement) == -1){
+                    placement = "top";
+                }
+            }
+
+            if(typeof(valueAccessor().trigger) == "undefined"){
+                trigger = "hover";
+            }else{
+                trigger = valueAccessor().trigger;
+                if("hover,click".indexOf(valueAccessor().trigger) == -1){
+                    trigger = "hover";
+                }
+            }
+
+            if(typeof(valueAccessor().icon) == "undefined"){
+
+                icon = "";
+            }else{
+                icon = '<i class="fa ' + valueAccessor().icon + '"></i>';
+            }
+            
+            switch(valueAccessor().type){                     
+                case 'error':
+                    color = 'red';
+                    icon = '<i class="fa fa-times"></i> ';
+                    title = 'Error';
+                    break;
+                case 'info':
+                    color = "blue";
+                    icon = '<i class="fa fa-info-circle"></i> ';
+                    title = 'Information';
+                    break;
+                case 'warning':
+                    color = "orange";
+                    icon = '<i class="fa fa-warning"></i> ';
+                    title = 'Warning';
+                    break;
+                case 'success':
+                    color = "green";
+                    icon = '<i class="fa fa-check"></i> ';
+                    title = 'Success';
+                    break;
+                case 'custom':
+                    break;
+                default:
+                    break;                                 
+            }
+            title = '<span>' + title + '</span>';
+            dom = '<div><div class="message-header ' + color +'">' + icon + title + '</div>'+valueAccessor().text+'</div>';
+        }
+        else{            
+           dom = valueAccessor();
+           placement = "top";
+           trigger = "hover";
+        }        
+        
+        $(element).attr({'data-toggle':'popover','data-container':'body','data-content':dom,'data-placement':placement});   
+        $(element).popover({ trigger: trigger, html:'true' });
 
     },
     update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
-        $(element).attr({'data-toggle':'popover','data-container':'body','data-content':valueAccessor(),'data-placement':'top'});   
+        var dom;          
+        var color;
+        var title;
+        var icon;
+        var placement;
+        var trigger;
+        if (typeof(valueAccessor()) =="object"){  
+
+            if(typeof(valueAccessor().color) == "undefined"){
+                color = "blue";
+            }else{
+                color = valueAccessor().color;
+            }
+
+            if(typeof(valueAccessor().title) == "undefined"){
+                title = "Titel saknas";
+            }else{
+                title = valueAccessor().title;
+            }
+
+            if(typeof(valueAccessor().placement) == "undefined"){
+                placement = "top";
+            }else{
+                placement = valueAccessor().placement;
+                if("left,right,top,bottom".indexOf(valueAccessor().placement) == -1){
+                    placement = "top";
+                }
+            }
+
+            if(typeof(valueAccessor().trigger) == "undefined"){
+                trigger = "hover";
+            }else{
+                trigger = valueAccessor().trigger;
+                if("hover,click".indexOf(valueAccessor().trigger) == -1){
+                    trigger = "hover";
+                }
+            }
+
+            if(typeof(valueAccessor().icon) == "undefined"){
+
+                icon = "";
+            }else{
+                icon = '<i class="fa ' + valueAccessor().icon + '"></i>';
+            }
+            
+            switch(valueAccessor().type){                     
+                case 'error':
+                    color = 'red';
+                    icon = '<i class="fa fa-times"></i> ';
+                    title = 'Error';
+                    break;
+                case 'info':
+                    color = "blue";
+                    icon = '<i class="fa fa-info-circle"></i> ';
+                    title = 'Information';
+                    break;
+                case 'warning':
+                    color = "orange";
+                    icon = '<i class="fa fa-warning"></i> ';
+                    title = 'Warning';
+                    break;
+                case 'success':
+                    color = "green";
+                    icon = '<i class="fa fa-check"></i> ';
+                    title = 'Success';
+                    break;
+                case 'custom':
+                    break;
+                default:
+                    break;                                   
+            }
+            
+            dom = '<div><div class="message-header ' + color +'">' + icon + title + '</div>'+valueAccessor().text+'</div>';
+        }
+        else{            
+           dom = valueAccessor();
+           placement = "top";
+           trigger = "hover";
+        }        
+        
+        $(element).attr({'data-toggle':'popover','data-container':'body','data-content':dom,'data-placement':placement});   
     }
 };
 

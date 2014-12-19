@@ -20,17 +20,17 @@ lbs.loader = {
         $.each(data.scripts, function (i) {
             path = appPath == '/' ? lbs.loader.systemLibPath + 'js/' : appPath;
             lbs.loader.scripts.push(path + data.scripts[i]);
-        })
+        });
 
         $.each(data.libs, function (i) {
             path = lbs.loader.systemLibPath + 'js/';
             lbs.loader.libs.push(path + data.libs[i]);
-        })
+        });
 
         $.each(data.styles, function (i) {
             path = appPath == '/' ? lbs.loader.systemLibPath + 'css/' : appPath;
             lbs.loader.styles.push(path + data.styles[i]);
-        })
+        });
     },
 
     /**
@@ -38,9 +38,9 @@ lbs.loader = {
     */
     "loadResources": function () {
 
-        lbs.loader.scripts = lbs.loader.scripts.filter(this.uniqueFilter)
-        lbs.loader.styles = lbs.loader.styles.filter(this.uniqueFilter)
-        lbs.loader.libs = lbs.loader.libs.filter(this.uniqueFilter)
+        lbs.loader.scripts = lbs.loader.scripts.filter(this.uniqueFilter);
+        lbs.loader.styles = lbs.loader.styles.filter(this.uniqueFilter);
+        lbs.loader.libs = lbs.loader.libs.filter(this.uniqueFilter);
 
         lbs.log.debug("Scripts to load:" + lbs.loader.scripts);
         lbs.log.debug("Styles to load: " + lbs.loader.styles);
@@ -48,15 +48,15 @@ lbs.loader = {
 
         $.each(lbs.loader.libs, function (i) {
             lbs.loader.loadScript(lbs.loader.libs[i]);
-        })
+        });
 
         $.each(lbs.loader.scripts, function (i) {
             lbs.loader.loadScript(lbs.loader.scripts[i]);
-        })
+        });
 
         $.each(lbs.loader.styles, function (i) {
             lbs.loader.loadStyle(lbs.loader.styles[i]);
-        })
+        });
 
         
 
@@ -84,7 +84,7 @@ lbs.loader = {
         } catch (e) {
            try{
                 lbs.log.info('Script "' + filename + '" could not be loaded, using fallback loading through LWS');
-                var s = ""
+                var s = "";
                 s = lbs.common.executeVba("LBSHelper.loadHTTPResource," + filename);
                 if (s && s !== "") {
                     with(window) {
@@ -121,7 +121,7 @@ lbs.loader = {
             file = file + ".html";
             element.load(file, function (response, status, xhr) {
                 if (response.indexOf('<script') != -1) {
-                    lbs.log.error('View "' + file + '" containes scripts, it is not allowed to be loaded')
+                    lbs.log.error('View "' + file + '" containes scripts, it is not allowed to be loaded');
                     //replace element with funnt image
                     element.html('<img src="' + lbs.loader.systemLibPath + 'img/YouDidntSayTheMagicWord.gif" />');
                 }
@@ -130,11 +130,11 @@ lbs.loader = {
                 } else {
                     lbs.log.info('View "' + file + '" loaded successfully');
                 }
-            })
+            });
         } catch (e) {
             lbs.log.warn("Resource could not be found. If using Chrome or IE11, make sure --file-access-from-file is enabled");
             lbs.log.warn('View "' + file + '" could not be loaded, using fallback loading through LWS');
-            var s = ""
+            var s = "";
             s = lbs.common.executeVba("LBSHelper.loadHTTPResource," + file);
             if (s && s !== "") {
                 element.html(s);
@@ -152,7 +152,7 @@ lbs.loader = {
 
          //check connection
         if(!lbs.hasLimeConnection){
-            lbs.log.warn('No connecton, datasources will not be loaded')
+            lbs.log.warn('No connecton, datasources will not be loaded');
             return vm;
         }
 
@@ -166,8 +166,8 @@ lbs.loader = {
         //check for activeInspector if using relatedRecord
         if(relatedRecordExists && !activeInspectorExists){
             //remove related record
-            dataSources = dataSources.filter(filterRemoveRelated)
-            lbs.log.warn("Failed to load datasource 'RelatedRecord', activeInspector is not loaded")
+            dataSources = dataSources.filter(filterRemoveRelated);
+            lbs.log.warn("Failed to load datasource 'RelatedRecord', activeInspector is not loaded");
         }
         // add properties to inspector source
         else if(relatedRecordExists){
@@ -177,7 +177,7 @@ lbs.loader = {
             //set related sources to inspector source
             activeInspector.relatedRecords = dataSources.filter(filterGetRelated);
             //remove previous sources collection
-            dataSources = dataSources.filter(filterRemoveRelated).filter(filterRemoveInspector)
+            dataSources = dataSources.filter(filterRemoveRelated).filter(filterRemoveInspector);
             //add new source to collection
             dataSources.push(activeInspector);
         }
@@ -185,10 +185,10 @@ lbs.loader = {
         //load soruces
         $.each(dataSources, function (key, source) {
             vm = lbs.loader.loadDataSource(vm, source, overrideExisting);
-            
-        })
+        });
         return vm;
     },
+
 
     /**
     Load a datasource to the selected viewmodel
@@ -196,7 +196,7 @@ lbs.loader = {
     loadDataSource: function (vm, dataSource, overrideExisting) {
         var data = {};
         
-        lbs.log.debug('Loading data source: ' + dataSource.type + ':' + dataSource.source)
+        lbs.log.debug('Loading data source: ' + dataSource.type + ':' + dataSource.source);
 
         try {
             switch (dataSource.type) {
@@ -204,7 +204,7 @@ lbs.loader = {
                     try {
                         //check lime
                         if(!lbs.activeInspector){
-                            lbs.log.warn('No activeinspecor, datasource will not be loaded')
+                            lbs.log.warn('No activeinspecor, datasource will not be loaded');
                             return vm;
                         }
 
@@ -231,59 +231,59 @@ lbs.loader = {
                                     lbs.loader.loadDataSource(vmToAdd,rs,true);
 
                                 }else{
-                                    lbs.log.warn("Failed to load datasource 'RelatedRecord', field '{0}' does not exist".format(rs.source))
+                                    lbs.log.warn("Failed to load datasource 'RelatedRecord', field '{0}' does not exist".format(rs.source));
                                 }
                             }); 
                         }
                     } catch (e) {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e);
                     }
                     break;
                 case 'xml':
                  
                     //check for ownerIdParam
-                    var autoParams = []
+                    var autoParams = [];
                     if(dataSource.hasOwnProperty('PassInspectorParam') && dataSource.PassInspectorParam && lbs.activeInspector){
-                        autoParams.push(lbs.activeInspector.ID)
+                        autoParams.push(lbs.activeInspector.ID);
                     }
 
                     data = lbs.common.executeVba(dataSource.source, autoParams);
                     
-                    if (data != null) {
+                    if (data !== null) {
                         data = lbs.loader.xmlToJSON(data, dataSource.alias);
                     } else {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source);
                     }
                     break;
                 case 'record':
                     
                     //check for ownerIdParam
-                    var autoParams = []
+                    var autoParams = [];
                     if(dataSource.hasOwnProperty('PassInspectorParam') && dataSource.PassInspectorParam && lbs.activeInspector){
-                        autoParams.push(lbs.activeInspector.ID)
+                        autoParams.push(lbs.activeInspector.ID);
                     }
 
                     data = lbs.common.executeVba(dataSource.source, autoParams);
 
-                    if (data != null) {
+                    if (data !== null) {
                         data = lbs.loader.recordToJSON(data,dataSource.alias);
                     } else {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source);
                     }
                     break;
                 case 'records':
                     //check for ownerIdParam
-                    var autoParams = []
+                    var autoParams = [];
                     if(dataSource.hasOwnProperty('PassInspectorParam') && dataSource.PassInspectorParam && lbs.activeInspector){
-                        autoParams.push(lbs.activeInspector.ID)
+                        autoParams.push(lbs.activeInspector.ID);
                     }
 
                     data = lbs.common.executeVba(dataSource.source, autoParams);
 
-                    if (data != null) {
+                    if (data !== null) {
                         data = lbs.loader.recordsToJSON(data,dataSource.alias);
                     } else {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source);
                     }
                     break;
                 case 'localization':
@@ -301,43 +301,43 @@ lbs.loader = {
                         $.each(parsedData['loc'], function (key, value) {
                             keysplit = key.split("$$");
                             collecton[keysplit[0]] = collecton[keysplit[0]] || {};
-                            collecton[keysplit[0]][keysplit[1]] = value
-                        })
+                            collecton[keysplit[0]][keysplit[1]] = value;
+                        });
 
                         data.localize = collecton;
                     }
                     break;
                 case 'storedProcedure':
                     data = lbs.common.executeVba("lbsHelper.loadXmlFromStoredProcedure, {0}".format(dataSource.source));
-                    if (data != null) {
+                    if (data !== null) {
                         data = lbs.loader.xmlToJSON(data,dataSource.alias);
                     } else {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source);
                     }
                     break;
                  case 'HTTPGetXml':
-                    data = lbs.loader.loadFromExternalWebService(dataSource.source)
-                    if (data != null) {
+                    data = lbs.loader.loadFromExternalWebService(dataSource.source);
+                    if (data !== null) {
                         data = lbs.loader.xmlToJSON(data,dataSource.alias);
                     } else {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source);
                     }
                     break;
 				case 'SOAPGetXml':
                     data = lbs.common.executeVba('LBSHelper.loadFromSOAP,' + dataSource.source.url + ',' + dataSource.source.action + ',' + dataSource.source.xml);
-                    if (data != null) {
+                    if (data !== null) {
                         data = lbs.loader.xmlToJSON(data,dataSource.alias);
                     } else {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source);
                     }
                     break;
                 case 'relatedRecord':
                      try {
-                        var autoParams = []
-                        autoParams.push(dataSource['class'])
+                        var autoParams = [];
+                        autoParams.push(dataSource['class']);;
                         autoParams.push(dataSource['idrecord'])
                         if(dataSource.hasOwnProperty('view')){
-                            autoParams.push(dataSource['view'])
+                            autoParams.push(dataSource['view']);
                         }
 
                         // verify that record related record exists
@@ -346,10 +346,10 @@ lbs.loader = {
                             data = lbs.loader.recordToJSON(record, dataSource.alias);
                         }else{
                             data = lbs.loader.emptyAliasJSON(dataSource.alias);
-                            lbs.log.debug("RelatedRecord load is canceled, idrecord is NULL: " + dataSource.type + ':' + dataSource.source)
+                            lbs.log.debug("RelatedRecord load is canceled, idrecord is NULL: " + dataSource.type + ':' + dataSource.source);
                         }
                     } catch (e) {
-                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
+                        lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e);
                     }
                     break;
                 case 'AsyncPost':
@@ -370,7 +370,7 @@ lbs.loader = {
             //merge options into the viewModel
             vm = lbs.common.mergeOptions(vm, data || {}, overrideExisting);
         } catch (e) {
-            lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e)
+            lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e);
         }
 
         return vm;
@@ -381,7 +381,7 @@ lbs.loader = {
     Process params from external config
     */
     "loadExternalConfig": function (defaulConfig,externalConfig,classname) {
-        var entry = {}
+        var entry = {};
 
         //check for config for active class
         if(externalConfig.hasOwnProperty(classname)){
@@ -411,7 +411,7 @@ lbs.loader = {
     },
 
     "saveLocalFile" : function(path, text) {
-        lbs.common.executeVba("lbsHelper.saveFile," + path, [text])
+        lbs.common.executeVba("lbsHelper.saveFile," + path, [text]);
     },
 
     /**
@@ -451,7 +451,7 @@ lbs.loader = {
         var json = {};
 
         if(rc){
-            var className = rc['Class']['Name']
+            var className = rc['Class']['Name'];
             var nbrOfRecords = rc.Count;
             var alias = alias ? alias : className;
             
@@ -476,7 +476,7 @@ lbs.loader = {
 
         if(record){
             var nbrOfFields = record.Fields.Count;
-            var className = record['Class']['Name']
+            var className = record['Class']['Name'];
             var attr;
             var alias = alias ? alias : className;
             json[alias] = {};
@@ -519,7 +519,7 @@ lbs.loader = {
     */
     "controlsToJSON": function (controls, alias) {
         var nbrOfControls = controls.Count;
-        var className = controls['Class']['Name']
+        var className = controls['Class']['Name'];
         var attr;
         var json = {};
         var alias = alias ? alias : className;
@@ -562,4 +562,4 @@ lbs.loader = {
         return lbs.common.executeVba("lbsHelper.CreateUpdateTranslation,", [owner, code, text, culture]);
     }
 
-}
+};

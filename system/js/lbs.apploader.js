@@ -1,4 +1,4 @@
-﻿lbs.apploader = {
+lbs.apploader = {
 
     /**
     holds a reference to all factory methods
@@ -32,7 +32,7 @@
 
                 //try to parse input to app from view
                 try {
-                    eval('binding = ' + $(this).attr("data-app"))
+                    eval('binding = ' + $(this).attr("data-app"));
                     appName = binding.app;
                     instanceConfig = binding.config;
                 } catch (e1) {
@@ -59,7 +59,7 @@
                 if (instanceConfig) {
                     // New config format
                     if(typeof(instance.config) == 'function'){
-                        instance.config = new instance.config(instanceConfig)    
+                        instance.config = new instance.config(instanceConfig)    ;
                     }else{ //old format
                         instance.config = lbs.common.mergeOptions( instance.config, instanceConfig, true);
                     }
@@ -82,6 +82,71 @@
         });
 
         return this;
+    },
+        buildCarousel : function(){        
+        
+        var ol;
+        var li;
+        var binding;
+        var type;
+        var height;     
+
+        $("[data-carousel]").each(function (i1,d1) {
+            try{
+                try{
+                   
+                    eval('binding = ' + $(this).attr("data-carousel"));
+                    height = binding.height;
+                    type = binding.type;
+                    $(this).height(height);
+
+                    $(this).attr({
+                        'id':'carousel-' + i1,
+                        'data-ride': 'carousel',
+                        'data-interval': '0'
+                    });                    
+
+                    $(this).addClass('carousel slide lime-carousel'); 
+
+                    $(this).children().each(function(){
+                        $(this).addClass("carousel-item");
+                    });
+
+                    $(this).append("<ol></ol>");
+                    ol = $(this).find("ol");
+
+                    $(this).append(lbs.common.carouselRight, lbs.common.carouselLeft);
+
+                    $(this).find("a").attr("data-target", "#carousel-" + i1);
+
+                    $(this).children('.carousel-item').wrapAll("<div class='carousel-inner'></div>");  
+                    
+                    ol.addClass("carousel-indicators");
+                    $(this).children('.carousel-inner').children('.carousel-item').each(function(i2,d2){                        
+                        $(this).addClass('item');
+                        ol.append("<li></li>");
+                        li = ol.find("li").last();
+                        if(i2 === 0){                                                        
+                            $(this).addClass('active');
+                            li.addClass("active black");
+                        }
+                        li.attr({
+                            "data-slide-to" : i2,
+                            "data-target" : '#carousel-' + i1
+                        });            
+                        li.addClass("black");
+                    });
+
+
+                }
+                catch (r){
+                    lbs.log.warn("Carousel definition is not valid",r);
+                }                
+            }     
+            catch (e){
+                lbs.log.warn("Could not load carousel",e);
+            }       
+        });
     },
 
     /**
@@ -148,4 +213,4 @@
 
     }
 
-}
+};

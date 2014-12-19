@@ -86,6 +86,9 @@ var lbs = lbs || {
         this.loader.loadView('system/view/{0}'.format(lbs.wrapperType), $("#wrapper"));
         this.loader.loadView(lbs.activeClass, $("#content"));
 
+        //load caurousel 
+        this.apploader.buildCarousel();
+        
         //load apps
         this.apploader.identifyApps();
 
@@ -116,8 +119,13 @@ var lbs = lbs || {
         //Loading complete
         lbs.loading.showLoader(false);
 
+        //Loading Jotnar
+        lbs.jotnar.winterEgg();
+
         //syntax highjlight
         lbs.log.watch.sh();
+
+        
 
     },
 
@@ -194,7 +202,7 @@ var lbs = lbs || {
                         if (inspectorId) {
                             inspectorObject = lbs.limeDataConnection.Inspectors.Lookup(inspectorId);
                         }
-                    }else if (apowner = 'application'){
+                    }else if (apowner == 'application'){
                         //its main AP
                         inspectorObject = null;
                     }
@@ -377,6 +385,22 @@ var lbs = lbs || {
         $(".header-icon").each(function(){
             $(this).addClass("header-icon-container");
             $(this).css("background-image", "url('resources/"+lbs.activeClass+".png')");
+        });
+
+        // Clickable popovers close on click outside 
+        $('body').on('click', function (e) {
+            if ($(e.target).data('toggle') !== 'popover' && $(e.target).parents('.popover.in').length === 0) { 
+                $('[data-toggle="popover"]').popover('hide');
+            }
+        });
+
+
+
+
+        // FIX FOR CAROUSEL ANIMATION BUG
+        $('.carousel').carousel().on('slide.bs.carousel', function (e) {
+            var nextH = $(e.relatedTarget).height();
+            $(this).find('.active.item').parent().animate({ height: Math.max(nextH,$(e.currentTarget).height()) }, 500);
         });
     },
 
