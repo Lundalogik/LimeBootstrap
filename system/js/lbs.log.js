@@ -254,7 +254,7 @@ lbs.log.watch = {
 
         //get vm from apps
         var map = $.map(lbs.apps,function(v,i){
-            return {name : v.name, vm : v.vm || {}};
+            return {name : v.name, vm : ko.toJS(v.vm) || {}};
         });
 
         //add AP VM
