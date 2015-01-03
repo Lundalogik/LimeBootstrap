@@ -1,10 +1,15 @@
-﻿lbs.log = {
+lbs.log = {
 
     /**
     active viewModel instance
     */
     vm: null,
-
+    verboseLevelEnum:{
+        debug:3,
+        info:2,
+        warn:1,
+        error:0
+    },
     
     /**
     Setup the lof and create view model
@@ -55,35 +60,62 @@
     /**
     Log entry function for debug
     */
-    "debug": function (msg) {
-        lbs.log.logToDom('DEBUG', lbs.common.nl2brIndent(msg));
-        lbs.log.logToConsole.debug((msg));
+
+    "log": function () {
+        lbs.log.logToConsole.debug(arguments);
+        for (var i = 0; i < arguments.length; i++) {
+            if(Array.isArray(arguments[i])){
+                arguments[i] = ko.toJSON(arguments[i],null,0);
+            } 
+            else if (typeof arguments[i] === 'object'){
+                arguments[i] = ko.toJSON(arguments[i],undefined,4);
+            }
+            else{
+                arguments[i] = arguments[i].toString();
+            }
+            lbs.log.logToDom('INFO',lbs.common.nl2brIndent(arguments[i]));
+        }
+
     },
+
+    "debug": function (msg) {
+        if(lbs.verboseLevel >= lbs.log.verboseLevelEnum.debug){
+            lbs.log.logToDom('DEBUG', lbs.common.nl2brIndent(msg));
+            lbs.log.logToConsole.debug((msg));
+        }
+    },
+
 
     /**
     Log entry function for info
     */
     "info": function (msg) {
-        lbs.log.logToDom('INFO', lbs.common.nl2brIndent(msg));
-        lbs.log.logToConsole.info((msg));
+        if(lbs.verboseLevel >= lbs.log.verboseLevelEnum.info){
+            lbs.log.logToDom('INFO', lbs.common.nl2brIndent(msg));
+            lbs.log.logToConsole.info((msg));
+        }
     },
 
     /**
     Log entry function for warn
     */
     "warn": function (msg, e) {
-        if(e){lbs.log.exception(e,'WARN');}
-        lbs.log.logToDom('WARN', lbs.common.nl2brIndent(msg));
-        lbs.log.logToConsole.warn((msg));
+        if(lbs.verboseLevel >= lbs.log.verboseLevelEnum.warn){
+            if(e){lbs.log.exception(e,'WARN');}
+            lbs.log.logToDom('WARN', lbs.common.nl2brIndent(msg));
+            lbs.log.logToConsole.warn((msg));
+        }
     },
 
     /**
     Log entry function for error
     */
     "error": function (msg, e) {
-        if(e){lbs.log.exception(e);}
-        lbs.log.logToDom('ERROR', lbs.common.nl2brIndent(msg));
-        lbs.log.logToConsole.error((msg));
+        if(lbs.verboseLevel >= lbs.log.verboseLevelEnum.error){
+            if(e){lbs.log.exception(e);}
+            lbs.log.logToDom('ERROR', lbs.common.nl2brIndent(msg));
+            lbs.log.logToConsole.error((msg));
+        }
     },
 
     /**
