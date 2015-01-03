@@ -1,4 +1,4 @@
-﻿/**
+/**
 * This is the default LIME Pro javascript lib for actionpad functions.
 * It contains many functions to make the world a little better place.
 */
@@ -11,6 +11,7 @@ var lbs = lbs || {
     Properties
     */
     "debug": false,
+    "verboseLevel":null,
     "limeDataConnection": window.external,
     "limeVersion" : {},
     "hasLimeConnection": true,
@@ -45,7 +46,6 @@ var lbs = lbs || {
     */
     setup: function () {
         
-
         //system param
         this.setSystemOperationParameters();
 
@@ -56,6 +56,8 @@ var lbs = lbs || {
         lbs.SetTouchEnabled(false);
         
         //init the log
+        window.console.log = lbs.log.log;
+        this.setVerboseLevel();
         this.log.setup(lbs.debug);
 
         //get AP class etc
@@ -86,9 +88,6 @@ var lbs = lbs || {
         this.loader.loadView('system/view/{0}'.format(lbs.wrapperType), $("#wrapper"));
         this.loader.loadView(lbs.activeClass, $("#content"));
 
-        //load caurousel 
-        this.apploader.buildCarousel();
-        
         //load apps
         this.apploader.identifyApps();
 
@@ -119,13 +118,8 @@ var lbs = lbs || {
         //Loading complete
         lbs.loading.showLoader(false);
 
-        //Loading Jotnar
-        lbs.jotnar.winterEgg();
-
         //syntax highjlight
         lbs.log.watch.sh();
-
-        
 
     },
 
@@ -180,6 +174,32 @@ var lbs = lbs || {
         lbs.debug = val;
     },
 
+    setVerboseLevel: function(){
+        if(lbs.externalConfig.verboseLevel){
+            switch(lbs.externalConfig.verboseLevel){
+                case "debug":
+                    lbs.verboseLevel = lbs.log.verboseLevelEnum.debug;
+                    break;
+                case "info":
+                    lbs.verboseLevel = lbs.log.verboseLevelEnum.info;
+                    break;
+                case "warn":
+                    lbs.verboseLevel = lbs.log.verboseLevelEnum.warn;
+                    break;
+                case "error":
+                    lbs.verboseLevel = lbs.log.verboseLevelEnum.error;
+                    break;
+                default:
+                    lbs.verboseLevel = lbs.log.verboseLevelEnum.warn;
+                    break;
+
+            }
+        }else{
+            lbs.verboseLevel = lbs.log.verboseLevelEnum.warn
+        }
+
+    },
+
     /**
     Find active actionpad view
     */
@@ -202,7 +222,7 @@ var lbs = lbs || {
                         if (inspectorId) {
                             inspectorObject = lbs.limeDataConnection.Inspectors.Lookup(inspectorId);
                         }
-                    }else if (apowner == 'application'){
+                    }else if (apowner = 'application'){
                         //its main AP
                         inspectorObject = null;
                     }
@@ -385,22 +405,6 @@ var lbs = lbs || {
         $(".header-icon").each(function(){
             $(this).addClass("header-icon-container");
             $(this).css("background-image", "url('resources/"+lbs.activeClass+".png')");
-        });
-
-        // Clickable popovers close on click outside 
-        $('body').on('click', function (e) {
-            if ($(e.target).data('toggle') !== 'popover' && $(e.target).parents('.popover.in').length === 0) { 
-                $('[data-toggle="popover"]').popover('hide');
-            }
-        });
-
-
-
-
-        // FIX FOR CAROUSEL ANIMATION BUG
-        $('.carousel').carousel().on('slide.bs.carousel', function (e) {
-            var nextH = $(e.relatedTarget).height();
-            $(this).find('.active.item').parent().animate({ height: Math.max(nextH,$(e.currentTarget).height()) }, 500);
         });
     },
 
