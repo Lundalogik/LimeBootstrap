@@ -129,7 +129,8 @@ ko.bindingHandlers.showOnMap = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var newValueAccessor = function() {
             return function() {
-                lbs.common.executeVba('shell,https://www.google.com/maps?q=' + ko.unwrap(valueAccessor()).replace(/\r?\n|\r/g, ' '));
+                var value = ko.unwrap(valueAccessor()).replace(/\r?\n|\r/g, ' ')
+                lbs.common.executeVba('shell,https://www.google.com/maps?q=' + encodeURIComponent(value) );
             };
          };
         ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext);
