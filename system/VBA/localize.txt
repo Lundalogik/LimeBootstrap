@@ -46,16 +46,12 @@ Public Sub SetLanguage(ByVal strLanguageCode As String)
     On Error GoTo ErrorHandler
     
      Select Case strLanguageCode
-        Case "sv":
+        Case "sv", "no", "fi":
             m_LanguageCode = strLanguageCode
-        Case "en-us":
+        Case "en-us", "en_us":
             m_LanguageCode = "en_us"
-        Case "no":
-            m_LanguageCode = "no"
-        Case "fi":
-            m_LanguageCode = "fi"
         Case Else
-            Call Err.Raise(123, "Localize.SetLanguage", "The languages ")
+            Call Err.Raise(123, "Localize.SetLanguage", "The language is not supported!")
     End Select
     
     Call LoadDictionary
