@@ -261,7 +261,7 @@ COLORS
     background-color: #B95815;
 }
 
-.dark-grey, .darkgrey {
+.darkgrey {
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#464646')";
     /* For IE 5.5 - 7 */
     background-color: #464646;
@@ -275,14 +275,6 @@ COLORS
 }
 
 .header-container.darkgrey ul.info-links li:hover {
-    background-color: #1E1E1E;
-}
-
-.header-container.dark-grey:before {
-    border-color: #1E1E1E transparent transparent transparent;
-}
-
-.header-container.dark-grey ul.info-links li:hover {
     background-color: #1E1E1E;
 }
 
@@ -701,6 +693,44 @@ Debug
     overflow-x: hidden;
 }
 
+#watchContainer #searchValue {    
+    padding-right:0px;
+    margin-top:5px;
+}
+#watchContainer #searchGroup {
+    width:300px;      
+    margin-left:15px;  
+} 
+#watchContainer #buttonNext {   
+   margin-left:5px;
+   margin-top: -5px;
+}
+
+#watchContainer #searchBar {
+   background-color:#fff;
+   border-radius:3px;
+   width:850px;
+   height: 44px;
+   position:fixed; 
+   padding-left: 100px; 
+   top: 756px; 
+   padding: 2px;
+   /*margin-left:-10px;*/
+   margin-left:5px;
+   display:inline;
+   border:1px solid #ccc;
+   line-height: 44px;
+}
+#watchContainer .highlight-yellow {
+    background-color: yellow;
+}
+#watchContainer .highlight-grey {
+    background-color: #337ab7;
+    color:#fff;
+}
+#watchContainer #searchHits {
+    margin-left:10px;    
+}
 
 /*******************
 APP AREA

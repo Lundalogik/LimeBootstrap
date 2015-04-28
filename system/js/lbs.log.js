@@ -211,10 +211,10 @@ lbs.log.watch = {
             wvm.selectVm(wvm.vms[0]);
 
             //add trigger tot close watch
-            $('body').keypress(function(e){
-                if(e.which == 113){
+            $('body').keypress(function (e) {                
+                if (e.which == 27) {                    
                     window.close();
-                }
+                }               
             });
         }
     },
@@ -234,12 +234,92 @@ lbs.log.watch = {
         self.selectedState = ko.observable("LOG");
         self.states = ['LOG','WATCH','DOM'];
         self.initState = 'LOG';
+        self.searchValue = ko.observable().extend({ throttle: 50 });
+
+        var html = "";
+        self.counter = ko.observable(0);
+        self.order = ko.observable(0);
 
         //format vm as string
-        self.prettyVm = ko.computed(function(){
-            var p = JSON.stringify(self.selectedVm().vm,null,2);
+        self.prettyVm = ko.computed(function () {
+            html = "";
+            self.searchValue("");
+            var p = JSON.stringify(self.selectedVm().vm, null, 2);            
             return p;
         });
+
+        $('body').keypress(function (e) {            
+            if (e.which == 13) {
+                self.goToNext();                
+            }
+        });
+
+        //search a VM        
+        self.searchValue.subscribe(function (newValue) {
+            newValue = newValue.toLowerCase();
+            var newPrettyVm = "";
+            self.order(0);
+            if (newValue.length > 2) {                
+                var re = new RegExp(newValue, "g");                    
+                var tempHtml = $('#vmData').html();                
+                if (html == "") {
+                    html = tempHtml;
+                }
+                else {
+                    $('#vmData').html(html);
+                }               
+                
+                self.counter(self.replaceText($('#vmData'), re, newValue));
+                self.goToNext();
+            }
+            else {
+                self.counter(0);
+                if (html == "") {
+                    $('#vmData').html($('#vmData').html());
+                }
+                else {
+                    $('#vmData').html(html);
+                }
+            }
+        });
+
+        self.goToNext = function () {
+            if ((self.order() < self.counter() && self.counter() > 0)) {  
+                
+                var target = '#' + self.order();
+                if ($(target).length > 0) {
+                    $('#watchContainer').animate({
+                        scrollTop: $(target).offset().top + $('#watchContainer').scrollTop()
+                    }, 200);
+
+                    var old = '#' + (self.order() - 1).toString(16);
+                    if ($(old).hasClass("highlight-grey")) {
+                        $(old).removeClass('highlight-grey').addClass('highlight-yellow');
+                    }
+
+                    $(target).addClass('highlight-grey');
+                    self.order(self.order() + 1);
+                }
+            }
+            else {
+                self.order(0);
+                self.goToNext();
+            }
+        }        
+
+        self.replaceText = function (html, reg, value) {            
+            var i = 0;            
+            $(html).find('span').each(function () {
+                if (($(this).hasClass("hljs-string") || $(this).hasClass("hljs-number")) ||$(this).hasClass("hljs-attribute") ) {                                                            
+                    if ($(this).text().toLowerCase().indexOf(value) > -1) {                        
+                        var text = $(this).text().toLowerCase().replace(reg, '<span id='+i+' class="highlight-yellow">' + value +'</span>');
+                        i = i +1;
+                        $(this).html(text);
+                    }
+                }                
+            });
+            return i;
+        }
 
      
         //select vm to show
