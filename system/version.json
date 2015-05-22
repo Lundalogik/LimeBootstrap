@@ -2,7 +2,7 @@
 	"versions":[
 		{
 			"version": 1.7,
-			"info": "Added data carousel and new colors for Actionpads. Improved popover data-bind. Added updates for Font Awesome and Bootstrap. Added utility file Jotnar.js.",
+			"info": "Added data carousel and new colours for Actionpads. Improved popover data-bind. Added updates for Font Awesome and Bootstrap. Added utility file Jotnar.js.",
 			"date": "2014-11-21"
 		},
 		{

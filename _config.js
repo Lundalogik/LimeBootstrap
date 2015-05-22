@@ -4,6 +4,7 @@ lbs.externalConfig = {
 	for the whole application
 	**/
 	debug: true,
+	verboseLevel: "error",
 
 	/**
 	Configure special use cases,

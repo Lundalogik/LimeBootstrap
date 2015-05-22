@@ -11,6 +11,7 @@ var lbs = lbs || {
     Properties
     */
     "debug": false,
+    "verboseLevel": null,
     "limeDataConnection": window.external,
     "limeVersion" : {},
     "hasLimeConnection": true,
@@ -56,6 +57,8 @@ var lbs = lbs || {
         lbs.SetTouchEnabled(false);
         
         //init the log
+        window.console.log = lbs.log.log;
+        this.setVerboseLevel();
         this.log.setup(lbs.debug);
 
         //get AP class etc
@@ -180,6 +183,35 @@ var lbs = lbs || {
         lbs.debug = val;
     },
 
+    setVerboseLevel: function () {        
+        if (lbs.externalConfig.verboseLevel) {            
+            switch (lbs.externalConfig.verboseLevel) {                
+                case "debug":
+                    lbs.verboseLevel = lbs.log.verboseLevelEnum.debug;
+                    break;
+                case "info":
+                    lbs.verboseLevel = lbs.log.verboseLevelEnum.info;
+                    break;
+                case "warn":
+                    lbs.verboseLevel = lbs.log.verboseLevelEnum.warn;
+                    break;
+                case "error":
+                    lbs.verboseLevel = lbs.log.verboseLevelEnum.error;
+                    break;
+                default:
+                    lbs.verboseLevel = lbs.log.verboseLevelEnum.warn;
+                    break;
+
+            }
+        } else {
+            lbs.verboseLevel = lbs.log.verboseLevelEnum.warn
+        }
+
+    },
+
+
+
+
     /**
     Find active actionpad view
     */
@@ -202,7 +234,7 @@ var lbs = lbs || {
                         if (inspectorId) {
                             inspectorObject = lbs.limeDataConnection.Inspectors.Lookup(inspectorId);
                         }
-                    }else if (apowner == 'application'){
+                    }else if (apowner = 'application'){
                         //its main AP
                         inspectorObject = null;
                     }

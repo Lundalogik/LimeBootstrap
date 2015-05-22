@@ -626,7 +626,7 @@ Debug
     margin: 0 0 0 0;
 }
 
-#debugConsole .alert, #console .alert{
+#debugConsole .alert, .console .alert{
     padding:0px;
     padding-left: 5px;
     margin: 0 0 0 0;
@@ -651,19 +651,19 @@ Debug
 
 }
 
-#console{
+.console{
     background-color:#000;
     /*padding:5px;*/
     margin: 0 0 5px 0;
     width: 860px;
+    min-height: 300px;
+    padding: 5px 2px 5px 2px;
 }
-
-
-#console li  {
+.console li  {
     background-color:#000;  
 }
 
-#console p  {
+.console p  {
     padding-left:15px;
     margin-bottom:0;
 }

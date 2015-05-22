@@ -366,7 +366,8 @@ ko.bindingHandlers.popover = {
                 case 'custom':
                     break;
                 default:
-                    break;                                 
+                    title = '';
+                    dom = valueAccessor().text;                                    
             }
             title = '<span>' + title + '</span>';
             dom = '<div><div class="message-header ' + color +'">' + icon + title + '</div>'+valueAccessor().text+'</div>';
@@ -382,7 +383,7 @@ ko.bindingHandlers.popover = {
 
     },
     update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
-        var dom;          
+         var dom;          
         var color;
         var title;
         var icon;
@@ -451,7 +452,8 @@ ko.bindingHandlers.popover = {
                 case 'custom':
                     break;
                 default:
-                    break;                                   
+                    title = '';
+                    dom = valueAccessor().text;                                    
             }
             
             dom = '<div><div class="message-header ' + color +'">' + icon + title + '</div>'+valueAccessor().text+'</div>';
