@@ -178,10 +178,9 @@ End Function
 Public Function loadFromREST(WebPath As String) As String
     On Error GoTo ErrorHandler
     Dim oXHTTP As Object
-    Dim qs As String
-    qs = CStr(Rnd() * 1000000#)
+    Dim s As String
     Set oXHTTP = CreateObject("MSXML2.XMLHTTP")
-    oXHTTP.Open "GET", WebPath + "?" + qs, False
+    oXHTTP.Open "GET", WebPath, False
     oXHTTP.Send
     loadFromREST = oXHTTP.responseText
 Exit Function
@@ -312,7 +311,7 @@ Public Sub CreateUpdateTranslation(ByVal sOwner As String, ByVal sCode As String
     Dim oRecord As New LDE.Record
 
     If Application.Classes("localize").Fields.Exists(sLanguage) = False Then
-        Call Application.MessageBox("FÃ¤ltet '" & sLanguage & "' finns inte i tabellen '" & Application.Classes("localize").LocalName & "'.")
+        Call Application.MessageBox("Fältet '" & sLanguage & "' finns inte i tabellen '" & Application.Classes("localize").LocalName & "'.")
         Exit Sub
     End If
 

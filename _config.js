@@ -3,8 +3,16 @@ lbs.externalConfig = {
 	Enable or disable the debug console 
 	for the whole application
 	**/
-	debug: true,
-
+	debug: false,
+	verboseLevel: "debug",
+	/*
+	Verbose levels:
+	    debug	: 	Shows all log levels
+        info	: 	Shows information level and up
+        warn	: 	Shows warning level and up
+        error	: 	Shows only error level logs
+		
+	*/
 	/**
 	Configure special use cases,
 	mainly when requiring additional datasources

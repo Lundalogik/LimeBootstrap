@@ -634,7 +634,7 @@ Debug
     margin: 0 0 0 0;
 }
 
-#debugConsole .alert, #console .alert{
+#debugConsole .alert, .console .alert{
     padding:0px;
     padding-left: 5px;
     margin: 0 0 0 0;
@@ -659,19 +659,19 @@ Debug
 
 }
 
-#console{
+.console{
     background-color:#000;
     /*padding:5px;*/
     margin: 0 0 5px 0;
     width: 860px;
+    min-height: 300px;
+    padding: 5px 2px 5px 2px;
 }
-
-
-#console li  {
+.console li  {
     background-color:#000;  
 }
 
-#console p  {
+.console p  {
     padding-left:15px;
     margin-bottom:0;
 }
@@ -701,6 +701,44 @@ Debug
     overflow-x: hidden;
 }
 
+#watchContainer #searchValue {    
+    padding-right:0px;
+    margin-top:5px;
+}
+#watchContainer #searchGroup {
+    width:300px;      
+    margin-left:15px;  
+} 
+#watchContainer #buttonNext {   
+   margin-left:5px;
+   margin-top: -5px;
+}
+
+#watchContainer #searchBar {
+   background-color:#fff;
+   border-radius:3px;
+   width:850px;
+   height: 44px;
+   position:fixed; 
+   padding-left: 100px; 
+   top: 756px; 
+   padding: 2px;
+   /*margin-left:-10px;*/
+   margin-left:5px;
+   display:inline;
+   border:1px solid #ccc;
+   line-height: 44px;
+}
+#watchContainer .highlight-yellow {
+    background-color: yellow;
+}
+#watchContainer .highlight-grey {
+    background-color: #337ab7;
+    color:#fff;
+}
+#watchContainer #searchHits {
+    margin-left:10px;    
+}
 
 /*******************
 APP AREA

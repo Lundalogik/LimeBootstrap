@@ -1,8 +1,13 @@
 {
 	"versions":[
 		{
+			"version": 1.8,
+			"info": "Possibility to search for data in the watch. Improved log functionality. Minified CSS and JavaScript. Knockout 3.3. Fontawesome 4.3. Moment 2.10.3. Twitter Bootstrap 3.3.5",
+			"date": "2015-07-07"
+		},
+		{
 			"version": 1.7,
-			"info": "Added data carousel and new colors for Actionpads. Improved popover data-bind. Added updates for Font Awesome and Bootstrap. Added utility file Jotnar.js.",
+			"info": "Added data carousel and new colours for Actionpads. Improved popover data-bind. Added updates for Font Awesome and Bootstrap. Added utility file Jotnar.js.",
 			"date": "2014-11-21"
 		},
 		{
