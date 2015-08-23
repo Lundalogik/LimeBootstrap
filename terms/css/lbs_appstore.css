@@ -1,0 +1,48 @@
+body{
+background-color: #f2f2f2;
+font-family: 'Roboto', sans-serif ;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+font-family: 'Roboto', sans-serif ;
+font-weight: 100;
+	}
+
+.jumbotron{
+	background-color: #3498db;
+	border-color: transparent;
+color:#FFF;
+
+}
+
+.navbar-default {
+	background-color: #3498db;
+	border-color: transparent;
+}
+
+.navbar-default .navbar-brand {
+	color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: white;
+}
+
+.appstore-footer-list {    
+    list-style-type:none;
+    margin-top: 130px;
+    margin-bottom: 50px;
+    text-align:center;
+}
+.appstore-footer-list li{
+    display:inline;  
+    padding-left: 20px;  
+    color:#428bca
+}
+.appstore-footer-list > li:hover > a {
+    color:#000;   
+    text-decoration:none; 
+}
+.img-responsive{
+	margin-top: 40px;
+}

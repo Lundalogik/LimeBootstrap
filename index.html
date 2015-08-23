@@ -1,69 +1,233 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>LimeBootstrap</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/lbsmanual.css" rel="stylesheet">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/img/favicon.png">
 
+    <title>LIME Bootstrap</title>
 
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="assets/css/animate.min.css" rel="stylesheet">
+
+    <!-- Fonts from Google Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,900' rel='stylesheet' type='text/css'>
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
   </head>
+
   <body>
 
-    <header>
-      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">LimeBootstrap</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><b>LIME Bootstrap</b></a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav" data-bind="foreach: data">
-            <li class="">
-              <a href="#" data-bind="text:humanName, attr: { href: uri }"></a>
-              </li>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://lime-bootstrap.readthedocs.org/en/latest/">Manual</a></li>
+            <li><a href="tutorial/" target="_blank" >Tutorial</a></li>
+            <li><a href="appstore/">Appstore</a></li>
           </ul>
-        </div>
-        </div>
-      </nav>
-    </header>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
 
-    <div class="container" id="lbs-wrapper">
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="affix" id="lbs-sidebar">
-              <ul class="nav nav-stacked" data-bind="foreach: sidebar">
-                <li class="" >
-                <a href="#" data-bind="text:text, attr: { href: anchor }, style: {marginLeft: indent()} "></a>
-                </li>
-                
-              </ul>
-            </div>
-          </div>
-        
-          <div class="col-sm-7" id="content" role="main">
-            
-          </div>
+	<div id="headerwrap" class="animated fadeInDown">
+		<div class="container ">
+			<div class="row">
+				<div class="col-lg-6">
+			
+						<h1 id="mega-heading">Your Plug and Play<br/>
+						Actionpad Framework</h1>
+						
+						<a href="https://github.com/Lundalogik/LimeBootstrap/archive/master.zip" class="btn btn-success btn-lg">Download</a>
+
+						<a href="https://github.com/Lundalogik/LimeBootstrap" class="btn btn-default btn-lg">View on GitHub </a>
+						 
+				</div><!-- /col-lg-6 -->
+				<div class="col-lg-6">
+					<img class="img-responsive animated fadeInRightBig" width="80%"src="assets/img/crazylimeshadow.png" id="crazylime"alt="">
+				</div><!-- /col-lg-6 -->
+				
+			</div><!-- /row -->
+		</div><!-- /container -->
+	</div><!-- /headerwrap -->
+	
+	
+	<div class="container animated fadeIn" id="first-section">
+		<div class="row mt centered">
+			<div class="col-lg-6 col-lg-offset-3">
+				<h1>Actionpad Work Horse</h1>
+				<h3>Why is LIME Bootstrap the best thing since sliced bread?</h3>
+			</div>
+		</div><!-- /row -->
+		
+		<div class="row mt centered">
+			<div class="col-lg-4">
+				<img src="assets/img/45.png" width="180" alt="">
+				<h4>1 - Easy to use</h4>
+				<p>The framework is designed to be super easy to use and give you the least amount of surprise</p>
+			</div><!--/col-lg-4 -->
+
+			<div class="col-lg-4">
+				<img src="assets/img/15.png" width="180" alt="">
+				<h4>2 - Powerful</h4>
+				<p>Build advanced functions in a structured way, with all the boring stuff already handled</p>
+
+			</div><!--/col-lg-4 -->
+
+			<div class="col-lg-4">
+				<img src="assets/img/21.png" width="180" alt="">
+				<h4>3 - Safe</h4>
+				<p>LIME Bootstrap is built to work with future browsers and the framework can be upgraded without affecting your customizations</p>
+
+			</div><!--/col-lg-4 -->
+		</div><!-- /row -->
+	</div><!-- /container -->
+	
+	<div class="container">
+        <hr></hr>
+	</div><!-- /container -->
+	
+	<div class="container">
+		<div class="row mt centered">
+			<div class="col-lg-6 col-lg-offset-3">
+				<h1><a href="/appstore/">LIME Bootstrap AppStore<span class="glyphicon glyphicon-chevron-right"></a></h1>
+				<h3>Download and add apps to your actionpads. <br> Or why don't you add your own?</h3>
+			</div>
+		</div><!-- /row -->
+	
+		<!-- CAROUSEL -->
+		<div class="row mt centered">
+			<div class="col-lg-6 col-lg-offset-3">
+				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+				  <!-- Indicators -->
+				  <ol class="carousel-indicators">
+				    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				  </ol>
+				
+				  <!-- Wrapper for slides -->
+				  <div class="carousel-inner">
+				    <div class="item active">
+				      <img src="assets/img/app1.png" alt="">
+				    </div>
+				    <div class="item">
+				      <img src="assets/img/app2.png" alt="">
+				    </div>
+				    <div class="item">
+				      <img src="assets/img/app3.png" alt="">
+				    </div>
+				  </div>
+				</div>			
+			</div><!-- /col-lg-8 -->
+		</div><!-- /row -->
+		<div class="row mt centered">
+			<div class="col-lg-6 col-lg-offset-3">
+				<a href="/appstore/" class="btn btn-info btn-lg">Take me there!</a>
+			</div>
+		</div>
+<hr>
+	</div><!--/container -->
+	
+
+
+	<div class="container">
+		<div class="row mt centered">
+			<div class="col-lg-6 col-lg-offset-3">
+				<h1><a href="/manual/">Manual<span class="glyphicon glyphicon-chevron-right"></span></a></h1>
+				<h3>Study hard and you will become a Bootstrap master. Here you'll find all the material you'll need</h3>
+			</div>
+		</div><!-- /row -->
+		
+		<div class="row mt centered">
+			<div class="col-lg-4">
+				<img class="" src="assets/img/47.png" width="140" alt="">
+				<h4><a href="manual/index.html?p=basicusage#howdoesitwork">Basics</a></h4>
+				<p>Learn how to build views, add links and simple actions. It's not hard at all to do amazing stuff</p>
+			</div><!--/col-lg-4 -->
+
+			<div class="col-lg-4">
+				<img class="" src="assets/img/46.png" width="140" alt="">
+				<h4><a href="manual/index.html?p=technicalplatform">Advanced</a></h4>
+				<p>Ready for the next level? Try working with logic in your templates!</p>
+
+			</div><!--/col-lg-4 -->
+
+			<div class="col-lg-4">
+				<img class="" src="assets/img/43.png" width="140" alt="">
+				<h4><a href="manual/index.html?p=buildingapps">Building Apps</a></h4>
+				<p>Let's take it away and try building your very own LIME Bootstrap App!</p>
+
+			</div><!--/col-lg-4 -->
+		</div><!-- /row -->		
+	</div><!-- /container -->
+    
+     <div class="container">
+        <hr></hr>
+	</div><!-- /container --> 
+      	
+    <div class="container">
+        <div class="row mt centered">
+            <h1><a href="https://trello.com/b/5XTNbeOu/lime-bootstrap">Contribute<span class="glyphicon glyphicon-chevron-right"></span></a></h1>                         
+            <h3>We are really interested in your ideas and contribution!</h3>
+            <br />
+            <div class="row">
+                <div class="col-lg-3 col-lg-offset-3">                    
+                    <p>Are you interested in what's going on with Lime Bootstrap, check out our <a href="https://trello.com/b/5XTNbeOu/lime-bootstrap">Trello-board</a>.<br /> If you find some of our ideas intresting, just vote or comment.</h3>
+                </div>
+                <div class="col-lg-2">
+                     <img class="" src="assets/img/clipboard.png" width="140" alt="">
+                </div>
+            </div>                                   
         </div>
     </div>
     
+    <div class="row mt centered">
+		<div class="col-lg-6 col-lg-offset-3">
+			<a href="https://github.com/Lundalogik/LimeBootstrap/issues" class="btn btn-default btn-lg">Report a problem</a>
+		</div>
 
-    <footer class="lbs-footer" role="contentinfo">
-      <div class="container">
-      
-      </div>
-    </footer>
+	</div>
 
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/knockout-3.0.0.js"></script>
-    <script type="text/javascript" src="js/knockout.mapping-latest.js"></script>
-    <script type="text/javascript" src="js/manual_content.js"></script>
-    <script type="text/javascript" src="js/lbsmanual.js"></script>
-    
+	<div class="container">
+		<hr>
+		<p class="centered"> by <a href="https://github.com/andreasastrom">@andreasastrom</a> , <a href="https://github.com/Hernrup">@hernrup</a> , <a href="https://github.com/Kahrstrom">@kahrstrom</a> and <a href="https://github.com/ThinkFlipp">@thinkflipp</a> </p>
+		<!-- <p class="centered">Created by BlackTie.co - Attribution License 3.0 - 2013</p> -->
+	</div><!-- /container -->
+	
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    		$(document).ready(function(){
+ 
+
+    		});
+
+    </script>
   </body>
 </html>
-

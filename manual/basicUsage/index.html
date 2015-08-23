@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BasicUsage - LimeBootstrap</title>
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <script type="text/javascript" src="../js/theme.js"></script>
+
+  <link rel="stylesheet" href="../css/github.css">
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> LimeBootstrap</a>
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+       <ul class="current">
+
+    <li class="toctree-l1 ">
+        <a class="" href="../philosophy/">Philosophy</a>
+        
+    </li>
+
+    <li class="toctree-l1 current">
+        <a class="current" href="./">BasicUsage</a>
+        
+            <ul>
+            
+                <li class="toctree-l2"><a href="#basic-usage">Basic usage</a></li>
+                
+                    <li><a class="toctree-l3" href="#a-lime-bootstrap-actionpad">A LIME Bootstrap Actionpad</a></li>
+                
+                    <li><a class="toctree-l3" href="#components">Components</a></li>
+                
+                    <li><a class="toctree-l3" href="#functions-and-apps">Functions and Apps</a></li>
+                
+                    <li><a class="toctree-l3" href="#bindings">Bindings</a></li>
+                
+                    <li><a class="toctree-l3" href="#the-logwatch">The log/watch</a></li>
+                
+                    <li><a class="toctree-l3" href="#keyboard-shortcuts">Keyboard shortcuts</a></li>
+                
+                    <li><a class="toctree-l3" href="#data-carousel">Data carousel</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../advanced/">Advanced</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../buildingApps/">BuildingApps</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../changelog/">Changelog</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../technicalPlatform/">TechnicalPlatform</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../python/">Python - Installation and configuration</a>
+        
+    </li>
+
+</ul>
+
+
+
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    <li>BasicUsage</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/Lundalogik/LimeBootstrapServices" class="icon icon-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <h1 id="basic-usage">Basic usage</h1>
+<h2 id="a-lime-bootstrap-actionpad">A LIME Bootstrap Actionpad</h2>
+<p>An Actionpad built with LIME Bootstrap has the following structure:</p>
+<pre class="prettyprint well"><code class="html">&lt;!-- Header section, The colorfull thing at the top  --&gt;
+&lt;div class=&quot;header-container [color]&quot;&gt; &lt;!-- Specify the color of the header. Please see color section for available colors  --&gt;
+    &lt;div class=&quot;header-icon&quot;&gt;&lt;/div&gt;  &lt;!-- Specify the icon of the header. Please see icon section for available special icons  --&gt;
+    &lt;h2 data-bind=&quot;&quot;&gt;&lt;/h2&gt;
+        &lt;ul class=&quot;info-links&quot;&gt;         
+            &lt;li data-bind=&quot;&quot;&gt; &lt;/li&gt;
+            ...
+        &lt;/ul&gt; 
+    &lt;/div&gt;
+&lt;/div&gt;      
+
+
+&lt;!-- /Header section  --&gt;
+&lt;!-- Body section  --&gt;
+
+&lt;div class=&quot;menu&quot;&gt; &lt;!-- Menu  --&gt;
+
+
+&lt;/div&gt;
+
+
+&lt;!-- /Body section  --&gt;
+
+</code></pre>
+
+<h2 id="components">Components</h2>
+<p>LIME bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the <a href="http://getbootstrap.com/components/">Twitter bootstrap</a> documentation for all cool stuff you have access to.</p>
+<h3 id="the-header-section">The header section</h3>
+<p>The header section is the colorful header of each actionpad. The following colors are provided:</p>
+<p><img src="https://raw.githubusercontent.com/Lundalogik/LimeBootstrapServices/master/web/assets/img/Bootstrap_colors.png"></p>
+<p>Usage: </p>
+<pre class="prettyprint well"><code class="html">&lt;div class=&quot;header-container [insert color here]&quot;&gt;
+</code></pre>
+
+<h3 id="the-menu">The menu</h3>
+<p>A menu can be created by the following HTML: </p>
+<pre class="prettyprint well"><code class="html"> &lt;ul class=&quot;expandable collapsed&quot;&gt;
+        &lt;li class=&quot;menu-header&quot;&gt;Text&lt;/li&gt; 
+       ...
+&lt;/ul&gt;
+</code></pre>
+
+<p>A menu has two properties, <strong>Expandable</strong> and <strong>collapsed</strong>. The are added in the <code>&lt;ul&gt;</code>  class:
+<code>&lt;ul class="menu expandable collapsed"&gt;</code>    </p>
+<p><strong>Expandable:</strong> The menu can be collapsed by clicking the header <br />
+<strong>Collapsed:</strong> The menu is collapsed when the actionpad is loaded. Stupid to use without using Expandable...</p>
+<h3 id="dropdown-button">Dropdown button:</h3>
+<p>A dropdown button can contain many options, while taking up very little space. </p>
+<pre class="prettyprint well"><code class="html">&lt;div class=&quot;btn-group btn-group-lime&quot;  data-bind=&quot;visible:todo.done.value != 1&quot;&gt;
+    &lt;button class=&quot;btn btn-lime btn-default dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; data-bind=&quot; text:localize.Actionpad_Todo.headermoveforward, icon: 'fa-caret-down'&quot;&gt;
+    &lt;/button&gt;
+    &lt;ul class=&quot;dropdown-menu&quot;&gt;
+        &lt;li data-bind=&quot;vba:'ActionPad_todo.Postpone, d, 1', text:localize.Actionpad_Todo.mf1d&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+        &lt;li data-bind=&quot;vba:'ActionPad_todo.Postpone, ww, 1', text:localize.Actionpad_Todo.mf1w&quot;&gt;&lt;/li&gt;
+        &lt;li data-bind=&quot;vba:'ActionPad_todo.Postpone, ww, 2', text:localize.Actionpad_Todo.mf2w&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+        &lt;li data-bind=&quot;vba:'ActionPad_todo.Postpone, m, 1', text:localize.Actionpad_Todo.mf1m&quot;&gt;&lt;/li&gt;
+        &lt;li data-bind=&quot;vba:'ActionPad_todo.Postpone, m, 6', text:localize.Actionpad_Todo.mf6m&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+        &lt;li data-bind=&quot;vba:'ActionPad_todo.Postpone, yyyy, 1', text:localize.Actionpad_Todo.mf1y&quot;&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt; 
+</code></pre>
+
+<h2 id="functions-and-apps">Functions and Apps</h2>
+<p>All Twitter bootstrap functions are included, please see the <a href="http://getbootstrap.com/javascript/">Twitter bootstrap documentation</a> 
+LIME Bootstraps allows you to load small components we call apps, as a compliment to Twitter Bootstraps components. Apps can be found <a href="http://limebootstrap.lundalogik.com/web/appstore/index.html">here</a></p>
+<p>To start an app add this HTML to your view:</p>
+<pre class="prettyprint well"><code class="html">
+&lt;div data-app=&quot;{app:'[Name of app]', 
+                config:{
+                  [App config]
+            }}&quot;&gt;
+&lt;/div&gt;
+
+</code></pre>
+
+<p>Each app has it's own instructions how to start and install them. Some apps require VBA and/or stored procedures to be added.</p>
+<h2 id="bindings">Bindings</h2>
+<p>As we relay heavily on knockout their <code>data-bind=""</code> syntax is used through out the framework. The <code>data-bind=""</code> syntax is a used as a property on an html element. In a <code>data-bind</code> you add <code>bindings</code>, actions or triggers, to perform actions. All Knockout bindings are available, but also a few custom bindings to make your life easier. 
+Read more about bindings and Knockout <a href="http://knockoutjs.com/documentation/introduction.html">here</a> and try the tutorial <a href="http://learn.knockoutjs.com">here</a></p>
+<p>A basic example of use of a knockout binding:</p>
+<pre class="prettyprint well"><code class="html">&lt;li data-bind=&quot;text:company.name&quot;&gt;&lt;/li&gt; `
+</code></pre>
+
+<p>As default you only have access to the data of the ActiveInspector!</p>
+<h3 id="custom-bindings">Custom bindings</h3>
+<p>To make your life easier we have implemented a few custom bindnings.
+List of custom handlers:</p>
+<ul>
+<li><strong>call:</strong> - <em>Tries to call the provided phone number</em></li>
+<li><strong>email:</strong> - <em>Tries to email the provided address</em></li>
+<li><strong>icon:</strong> - <em>Prepends the supplied font awesome icon to the html element</em></li>
+<li><strong>limeLink:</strong> - <em>Creates an LIME link from a provided relationship field, for example person.company</em></li>
+<li><strong>openURL:</strong> - <em>Opens the supplied URL in a external browser</em></li>
+<li><strong>showOnMap:</strong> - <em>Opens Google Maps with the supplied data as a search query</em></li>
+<li><strong>vba:</strong> - <em>Provide an string of an VBA function with it's parameters separated by commas</em></li>
+<li><strong>vbaVisible:</strong> - <em>Extends knockouts 'visible:' by executing the supplied Boolean VBA function</em></li>
+<li><strong>appInvoke:</strong> - <em>Invokes an old-style actionpad app like textfileimport or duplicatemerge</em></li>
+<li><strong>popover:</strong> - <em>Displays a popover</em></li>
+<li><strong>tooltip:</strong> - <em>Displays a bootstrap tooltip</em></li>
+</ul>
+<h3 id="translation-handling-multiple-languages">Translation: Handling multiple languages</h3>
+<p>All available translations from the Localization table are automatically available in the actionpad context. The same language as the logged in user uses is automatically used. The translations are cached in a dictionary to increase speed, but requires you to run <code>ThisApplication.Setup</code> to rebuild the dictionary if you add translations or make changes. </p>
+<pre class="prettyprint well"><code class="html">&lt;li data-bind=&quot;text:localize.ActionPad_Todo.addTodo&quot;&gt;&lt;/li&gt;
+</code></pre>
+
+<p>The example below uses the versatile knockout binding <code>attr</code> to add a tooltip with localization support. It also uses the custom LIME Bootstrap bindings <code>vba</code> and <code>icon</code>.</p>
+<pre class="prettyprint well"><code class="html">&lt;li data-bind=&quot;vba:'Actionpad_Person.newComment', text:localize.Actionpad_Person.t_newcomment, icon:'fa-comment', attr: { title: localize.Actionpad_Person.tooltip_newcomment }&quot;&gt;&lt;/li&gt;
+</code></pre>
+
+<h5 id="technical-notes">Technical notes</h5>
+<p>The translations are added to the global view model and are thus available in your apps.</p>
+<p>Note that it is not possible to use localization in the standard way, e.g., <code>localize.Actionpad_Person.t_newcomment</code> within a block where you are using the knockout binding <code>with</code>.</p>
+<h3 id="fetching-data-from-fields-in-lime-pro">Fetching data from fields in LIME Pro</h3>
+<p>All fields from the ActiveInspector are automagically available for you to use in your view. The syntax is <code>[Record class name].[field database name].[property]</code>.</p>
+<p>The available properties are (in order of relevance):
+<em>   <strong>.text</strong> 
+</em>   <strong>.value</strong>
+*   <strong>.key</strong>  - <strong>available for set and list fields_
+*   </strong>.class__ - <em>available for relation fields</em> </p>
+<pre class="prettyprint well"><code class="html">&lt;!-- Company Actionpad showing the name of the company--&gt;
+&lt;li data-bind=&quot;text:company.name.text&quot;&gt;&lt;/li&gt;
+&lt;!-- Person Actionpad using the id of the company relation as a parameter to a VBA-function. Note the Javascript syntax in the Knockout bindning  --&gt;
+&lt;li data-bind=&quot;vba:'SomeFunction,' + person.company.value&quot;&gt;&lt;/li&gt; 
+&lt;!-- Business Actionpad showing the optionKey from a set-list --&gt;
+&lt;li data-bind=&quot;text:business.businesstatus.key&quot;&gt;&lt;/li&gt; 
+</code></pre>
+
+<h3 id="going-beyond-the-activeinspector-loading-additional-data">Going beyond the ActiveInspector - Loading additional data</h3>
+<p>It is common to use data from more than the ActiveInspector and the following syntax will NOT work <code>&lt;li data-bind="text:person.company.phone.text"&gt;&lt;/li&gt;</code></p>
+<p>Instead you can load additional data by requesting data sources in <code>_config.js</code>. You'll find more information about this in the advanced section.</p>
+<p>The loaded data can then be access by: </p>
+<pre class="prettyprint well"><code class="html">&lt;!-- Loading person and company info on a helpdesk actionpad--&gt;
+&lt;li data-bind=&quot;text:helpdesk.company.text&quot;&gt;&lt;/li&gt;                    
+&lt;li data-bind=&quot;text:person.phone.text&quot;&gt;&lt;/li&gt;
+&lt;li data-bind=&quot;text:person.mobilephone.text&quot;&gt;&lt;/li&gt;                      
+&lt;li data-bind=&quot;text:company.phone.text&quot;&gt;&lt;/li&gt;   
+</code></pre>
+
+<h3 id="hiding-or-showing-elements">Hiding or showing elements</h3>
+<p>It is common that some elements only should be visible for certain users or when specific conditions apply. It can be done in two different ways. Either use the LIME Bootstrap data-binding <code>vbaVisible:</code> or use the knockout binding <code>visible:</code>.</p>
+<p>The <code>vbaVisible:</code> is used as follows. A VBA function is called, handling the logic whether the element should be visible or not, returning a boolean. <br />
+<strong>true:</strong> Element is visible <br />
+<strong>false:</strong> Element hidden</p>
+<p>In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required.</p>
+<pre class="prettyprint well"><code class="html">&lt;li data-bind=&quot;vbaVisible:'ActionPad_Helpdesk.HideLinks, take'&quot;&gt;&lt;/li&gt;
+</code></pre>
+
+<p>You can also use knockout's built in handler <code>visible:</code> to hide or show elements. Any valid Javascript will be evaluated. Example:</p>
+<pre class="prettyprint well"><code class="html">&lt;!-- Shows an bootstrap alert if the todo is late. Moment.js is used to parse and handle dates.--&gt;
+&lt;div class=&quot;alert alert-error&quot; data-bind=&quot;
+   visible: todo.endtime.value !== null &amp;&amp; (moment(todo.endtime.value) &lt; moment() &amp;&amp; todo.done.value != 1),
+   text: 'The task is ' + (todo.endtime.value != null ? moment(todo.endtime.value).fromNow(true) : '' )+ ' late!',
+   icon:'fa-bell'&quot; &gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>The binding <code>vbaVisible:</code> is only able to execute a given VBA function that returns true or false. If you need to add some kind of code on top of that VBA function, use the original knockout binding <code>visible:</code> instead. This example uses the opposite of the function result, but any other javascript code would also work fine.</p>
+<pre class="prettyprint well"><code class="html">&lt;div data-bind=&quot;visible:!lbs.common.executeVba('App_MoveDate.moveDaysPossible')&quot;&gt;
+...
+&lt;/div&gt;
+</code></pre>
+
+<h3 id="executing-vba-functions-and-specific-actions">Executing VBA-functions and specific actions</h3>
+<p><code>vba:</code> is used to trigger VBA-functions and specific actions on click. To call a VBA function simply use:</p>
+<p><code>html
+&lt;li data-bind="vba:'ActionPad_Helpdesk.Take'"&gt;&lt;/li&gt;</code></p>
+<p>Input parameters are provided by simply separating them by commas.</p>
+<p><code>html
+&lt;li data-bind="vba:'ActionPad_Helpdesk.Park, 1, t_park_1_hour'"&gt;&lt;/li&gt;</code></p>
+<p>You can also use any available data in the actionpad as an input to the function through concatenating a string  </p>
+<p><code>html
+&lt;li data-bind="vba:'ActionPad_Helpdesk.DoSomethingWithTheRecord,' + helpdesk.idhelpdesk.value"&gt;&lt;/li&gt;</code></p>
+<h3 id="showing-an-adress-on-a-map">Showing an adress on a map</h3>
+<ul>
+<li>
+<p><strong>showOnMap:</strong> - Searches Google Maps for the provided address.</p>
+<p><code>html
+&lt;li data-bind="text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: 'fa-map-marker'"&gt;&lt;/li&gt;</code></p>
+</li>
+</ul>
+<h3 id="call-a-phone-number">Call a phone number</h3>
+<ul>
+<li>
+<p><strong>call:</strong> - Ads an tel: link to the HTML wich triggers an built in softphone software.</p>
+<p><code>html
+&lt;li data-bind="text: company.phone.text, call: company.phone.text, icon: 'fa-phone'"&gt;&lt;/li&gt;</code></p>
+</li>
+</ul>
+<h3 id="go-to-a-website">Go to a website</h3>
+<ul>
+<li>
+<p><strong>openURL:</strong> - Opens the suplied URL in an external browser</p>
+<p><code>html
+ &lt;li data-bind="text:company.www.text, openURL: company.www.text, icon: 'fa-globe'"&gt;&lt;/li&gt;</code></p>
+</li>
+</ul>
+<h3 id="go-to-another-lime-record">Go to another LIME Record</h3>
+<ul>
+<li>
+<p><strong>limeLink</strong> - Tries to create an LIME link to the object provided, please note that the root node of the object is used and not a specific property.</p>
+<p><code>html
+&lt;li data-bind="text:todo.company.text, limeLink:todo.company, icon:'fa-flag'"&gt;&lt;/li&gt;</code></p>
+</li>
+</ul>
+<h3 id="send-an-email">Send an email</h3>
+<ul>
+<li>
+<p><strong>email</strong> - Creates an email. TODO: Should use LIME's built in email factory.</p>
+<p><code>html
+&lt;li data-bind="text:person.email.text, email:person.email.text, icon:'fa-envelope'"&gt;&lt;/li&gt;</code></p>
+</li>
+</ul>
+<h3 id="start-textfileimport">Start textfileimport</h3>
+<ul>
+<li>
+<p><strong>appInvoke</strong></p>
+<p><code>html
+    &lt;li data-bind="appInvoke: 'textfileimport"&gt;&lt;/li&gt;</code></p>
+</li>
+</ul>
+<h3 id="popover">Popover</h3>
+<ul>
+<li>
+<p><strong>popover</strong> - Gives you a small overlayer of context that you can design as you like. In its simplest form, it can be used to display informative texts. It can also be initialized as an object with one or several adjustable attributes, allowing for styling both header icon and title. There are also a few pre-defined types with their own set designs.</p>
+<p><code>html
+    &lt;li data-bind="popover: 'This is a popover'"&gt;&lt;/li&gt;</code>
+If the popover is initialized as an object, the following attributes can be configured:</p>
+<ul>
+<li><strong>icon</strong></li>
+</ul>
+<p>Any of the icons available from Font Awesome.</p>
+<ul>
+<li><strong>text</strong></li>
+</ul>
+<p>Text you want to be displayed.</p>
+<ul>
+<li><strong>title</strong></li>
+</ul>
+<p>Title to be displayed in the header section of the popover.</p>
+<ul>
+<li><strong>color</strong></li>
+</ul>
+<p>Background color of the header section. All header-colors are avalible.</p>
+<ul>
+<li><strong>trigger</strong></li>
+</ul>
+<p>What event will trigger the event. Only two values are valid here:
+<em>   hover
+</em>   click</p>
+<p>where the default value is 'hover'.</p>
+<ul>
+<li><strong>placement</strong></li>
+</ul>
+<p>Where the popover will be displayed in relation to its parent element. The following values are valid here:
+<em>   top
+</em>   right
+<em>   bottom
+</em>   left</p>
+<p>where the default value is 'top'.</p>
+<ul>
+<li><strong>type</strong></li>
+</ul>
+<p>What template (if any) should be used. Only the following values are valid:
+<em>   success
+</em>   info
+<em>   error
+</em>   warning
+*   custom</p>
+<p>where the default value is 'custom'. The top four alternatives will override all values for 'color', 'title' and 'icon'. These will be replaced by template ones for the specific types.</p>
+<ul>
+<li>
+<p><strong>Example without template</strong></p>
+<p><code>html
+    &lt;li data-bind= popover:{
+                text:'This is a popover', 
+                title: 'LBS rules', 
+                type: 'custom', 
+                color:'magenta',
+                trigger: 'click',
+                icon: 'fa-check',
+                placement: 'top'
+            }, text: 'Popoverclick'"&gt;"&gt;&lt;/li&gt;</code>
+    * <strong>Example with template</strong></p>
+<p><code>html
+    &lt;li data-bind="popover:{text:'This is a popover.',type:'info'}"&gt;&lt;/li&gt;</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="tooltip">Tooltip</h3>
+<ul>
+<li>
+<p><strong>tooltip</strong> - Gives you a good looking tooltip. <a href="http://getbootstrap.com/javascript/#tooltips">Bootstrap</a>. You can design where you like the tooltip to show by sending a object with a placement.</p>
+<p><code>html
+    &lt;a data-bind="text:'Andreas', tooltip: 'Konsult'"&gt;&lt;/a&gt;
+    &lt;a data-bind="text:'Andreas', tooltip: {text:'Konsult',placement:'right'}"&gt;&lt;/a&gt;</code></p>
+<h3 id="working-with-time-and-dates">Working with time and dates</h3>
+<p>Dates are a hassle, except when you have the awesome library <a href="http://momentjs.com">Moment.js</a>.</p>
+</li>
+</ul>
+<p>To create a iso-date:
+<code>moment()</code></p>
+<p>To parse almost any date format:
+<code>moment([CRAZY DATE FORMAT])</code></p>
+<p>Moment even makes time and dates readable to people.
+<code>moment().timeAgo(2011-01-01)</code> will give you, "A few years ago"</p>
+<p>Moment is automagically setup to use the same language and date-format as the language of the LIME Client. 
+Remember to use it and check out it further!</p>
+<h2 id="the-logwatch">The log/watch</h2>
+<p>Bootstap will give you some debug- and log views to help you out.</p>
+<h2 id="keyboard-shortcuts">Keyboard shortcuts</h2>
+<p>The different view can be opened with shortcuts provided the actionpad is in focus.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reload actionpad</td>
+<td>ctrl + shift + r</td>
+</tr>
+<tr>
+<td>Open log</td>
+<td>ctrl + shift + l</td>
+</tr>
+<tr>
+<td>Open watch</td>
+<td>ctrl + shift + w</td>
+</tr>
+<tr>
+<td>Close log/watch window</td>
+<td>q</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-carousel">Data carousel</h2>
+<p>Creates a data carousel that can be used when your actionpad is full of stuff. The carousel will build a pages for every first level child regardless of type. OBS! You always need to set height.</p>
+<ul>
+<li>
+<p><strong>Examples</strong></p>
+<p><code>html
+    &lt;div data-carousel="{height:'25%'}"&gt;
+        &lt;div data-app="{app:'Fulltextsearch',config:{}}"&gt;&lt;/div&gt;
+        &lt;div&gt;This is your second div&lt;/div&gt;
+        &lt;ul&gt;
+            &lt;li&gt;LBS rules&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;</code></p>
+</li>
+</ul>
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../advanced/" class="btn btn-neutral float-right" title="Advanced"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../philosophy/" class="btn btn-neutral" title="Philosophy"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a>, using the <a href="https://github.com/snide/sphinx_rtd_theme">Read the Docs theme</a>.
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <a href="https://github.com/Lundalogik/LimeBootstrapServices" target="about:blank" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      <span><a href="../philosophy/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="../advanced/" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+</body>
+</html>

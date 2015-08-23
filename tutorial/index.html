@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>LIME Bootstrap tutorial</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">    
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,900' rel='stylesheet' type='text/css'>
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+        <a href="/" 
+        style="
+            color: #fff;   
+            text-decoration: none;   
+            font-weight: bold;                
+            margin-left: 10px;            
+            font-family: 'Roboto'; 
+        ">LIME Bootstrap </a>
+    <body>        
+        
+
+        <div class="reveal">
+            <div class="slides">
+                <!-- FIRST SLIDE -->
+                <section >
+                    <h1>LIME Bootstrap tutorial<h1>
+                        <img src="img/CrazyLime.png" width="50%">
+
+                    </section>
+
+                <!-- <section>                    
+                    <section>    
+                        <h2>Schedule for today</h2>                    
+                        <ul>
+                            <li class="fragment fade-in">What is LIME Bootstrap?</li>
+                            <li class="fragment fade-in">Getting started</li>
+                            <li class="fragment fade-in">Working with views</li>
+                            <li class="fragment fade-in">Assignments</li>
+                        </ul>
+                    </section>
+                </section> -->
+                
+                <!-- WHAT IS LIME BOOTSTRAP?-->
+                <section >
+
+                    <section >
+                        <h2>What is LIME Bootstrap (LBS)?</h2>
+                    </section>
+
+                    <section >
+                        <h2>LBS is:</h2>
+                        <ul> 
+                            <li class="fragment fade-in">A way of building nice looking HTML things in LIME Pro without worrying too much</li>
+                            <li class="fragment fade-in">A framework of <a href="http://lime-bootstrap.readthedocs.org/en/latest/manual/technicalPlatform/" target="_blank">smart libraries</a></li>
+                            <li class="fragment fade-in">A open source project, free to <a href="https://github.com/Lundalogik/LimeBootstrap" target="_blank">contribute to</a></li>
+                            <li class="fragment fade-in">A platform and store for <a href="appstore/" target="_blank">delivering apps</a></li>
+                            <li class="fragment fade-in">A <a href="http://limebootstrap.lundalogik.com/api/version/" target="_blank">version control</a> system</li>
+                        </ul>
+                    </section>  
+
+                    <section data-background="#F2F2F2" class="grey">
+                        <h3>A Model-View-View Model framework</h3>
+                        <br>
+                        <img src="img/viewmodel.png">
+                        <br>
+                        <br>
+                        <small>Powered by <a href="http://knockoutjs.com/index.html" target="_blank" >knockout.js</a></small>
+                        
+                    </section>              
+
+                    <section data-background="#F2F2F2" class="grey">
+                        <h3>A single page app like structure</h3>
+                        <br>
+                        <img src="img/setup.png"> 
+                        <br>
+                        <br>
+                        <small> <a href="http://lime-bootstrap.readthedocs.org/en/latest/basicUsage/" target="_blank">->Further reading</a></small>
+                    </section>
+
+                    <section data-background="#F2F2F2" class="grey">
+                        <h3>A single page app like structure</h3>
+                        
+                        <img src="img/screen.png"> 
+                    </section>
+
+                    <section data-background="#F2F2F2" class="grey">
+                        <h3>Heart and soul of LBS:</h3>
+                        <li><a href="http://knockoutjs.com" target="_blank">KnockoutJS:</a> The powerful engine behind LBS. Makes smart web GUIs a walk in the park.</li>
+                        <li><a href="http://getbootstrap.com" target="_blank">Twitter Bootstrap:</a> A fantastic web-framework which LBS adapts and extends. Go here for finding out everything about the elements you would like to use, such as inputs or buttons. </li>
+                        <li><a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome: </a> Hundreds of icons ready to use. Available in any size or color as it's really a font!</li>
+
+                    </section>
+
+                    <section data-background="#F2F2F2" class="grey">
+                        <h3>Included smart tools:</h3>
+
+                        <li><a href="http://momentjs.com" target="_blank">Moment.js:</a> Makes working with time and date a joy!</li>
+                        <li><a href="http://underscorejs.org" target="_blank">Underscore.js:</a>Powerful and smart library which takes away the pain when working with data in JavaScript</li>
+                        <li><a href="http://underscorejs.org" target="_blank">jQuery.js:</a>The defacto standard for working with the DOM. Seldom used in LBS, but there are occasions where jQuery is needed</li>
+                    </section>
+
+                    <section data-background="#F2F2F2" class="grey">
+                        <h3>Online resources</h3>
+                        <ul> 
+
+                            <li><a href="http://limebootstrap.lundalogik.com" target="_blank">Project Home</a></li>
+                            <li><a href="http://lime-bootstrap.readthedocs.org/en/latest/" target="_blank">Manual</a></li>
+                            <li><a href="appstore/index.html" target="_blank">Appstore</a></li>
+                            <li><a href="https://github.com/Lundalogik/LimeBootstrap" target="_blank">Source code</a></li>
+                            <li><a href="https://github.com/Lundalogik/LimeBootstrap/issues" target="_blank">Issues and enhancements</a></li>
+                            
+                        </ul>
+                        
+                    </section>
+
+                    <section data-background="#F2F2F2" class="grey">
+                        <h2>Quiz time!</h2>
+                        <ul> 
+                            <li>Where do I go to find everything I need to know?</li>
+                            <li>What is a View, a ViewModel and a model?</li>
+                            <li>I'm dealing with Time and Dates. What should I do?</li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <!-- Getting started: -->
+                <section>
+                    <section>
+                        <h2>Getting Started, what you need:</h2>
+                        <ul> 
+                            <li class="fragment fade-in">Open the test database "limebootstrap" on "luserver1011"</li>
+                            <li class="fragment fade-in">A text editor. Sublime Text, Notepad++ or Visual Studio will do great. Notepad won't.</li>
+                            <li class="fragment fade-in">A web browser with <a href="http://knockoutjs.com" target="_blank">KnockoutJS</a>, <a href="http://getbootstrap.com" target="_blank">Twitter Bootstrap</a> and <a href="http://limebootstrap.lundalogik.com/web/manual/" target="_blank">Manual</a> open</li>
+                            <li class="fragment fade-in">Open the ActionPad folder (Alt-F11)</li>
+                        </ul>
+                    </section>
+
+                    <section data-background="#F2F2F2" class="grey">
+                        <h2>Folder structure:</h2>
+                        <img src="img/folders.png"> 
+                    </section>
+                    
+                    <section data-background="#F2F2F2" class="grey">
+                        <h2>What's happening?</h2>
+                        <img src="img/LBSmap.png"> 
+                    </section>
+                </section>
+
+
+                <!-- Working with views -->
+                <section>
+                    <section>
+                        <h2>Working with views</h2>
+                        <ul> 
+                            <li class="fragment fade-in">A view is a partial web-page, containing only part of the page</li>
+                            <li class="fragment fade-in">A view should never load any resources, such as JavaScript or CSS!</li>
+                            <li class="fragment fade-in">Contained in an .html-file, i.e "company.html"</li>
+                            <li class="fragment fade-in">The query-string <strong>"?ap=[viewname]"</strong> decides which view is loaded</li>
+                            <li class="fragment fade-in">LIME automatically sets <strong>"?ap=[Name of class of ActiveInspector]</strong></li>
+                        </ul>
+                    </section>
+
+                    <section data-background="#F2F2F2" class="grey">
+                        <h2>Bidings:</h2>
+                        <ul> 
+                            <li>Bindings connect data and functions from the ViewModel to the View.</li>
+                            <li>KnockoutJS supplies many bindings, found <a href="http://knockoutjs.com/documentation/introduction.html" target="_blank">here</a>
+                                <li>LBS supplies additional bindings, found <a href="http://lime-bootstrap.readthedocs.org/en/latest/basicUsage/#bindings" target="_blank">here</a>
+                                </ul>
+                            </section>
+                            <section data-background="#F2F2F2" class="grey" >
+                                <h2>A Simple Binding</h2>
+                                <pre>
+                                    <code class="html">
+
+                                        <h1 data-bind="text:'Say hello:'"></h1>
+                                        <button data-bind="text:'Click me!', click:alert('Hello World!')"></button>
+
+                                    </code>
+                                </pre>
+                                <div style="background:#FFF;padding:15px 0 15px;">
+                                    <p >Say hello:</p>
+                                    <button onclick="alert('Hello World!')">Click me!</button>
+                                </div>
+                            </section>
+
+
+                            <section data-background="#F2F2F2" class="grey">
+                                <h2>Working with ViewModels</h2>
+                                <pre><code data-trim class="javascript">
+                                    //ViewModel
+                                    var person = {
+                                    firstName: "Kalle",
+                                    lastName: "Kula",
+                                    age:ko.observable(21),
+                                    birthday: function(){
+                                    person.age(person.age() + 1);
+                                }
+                            }
+                        </code></pre>
+                        <pre>
+                            <code class="html">
+                                <!-- View -->
+                                <h1 data-bind="text:person.firstName"></h1>
+                                <h3 data-bind="text:'Age:' + person.age"></h3>
+                                <button data-bind="text:'Birthday party!', click:person.birthday()"></button>
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section data-background="#F2F2F2" class="grey">
+                        <h2>DataSources in LIME</h2>
+                        <ul> 
+                            <li>In LIME Pro all datasources are automatically converted to JSON and made into a ViewModel</li>
+                            <li>Default you'll always have the ActiveInspector and all Localizations</li>
+                        </ul>
+                        <pre><code data-trim class="json">
+                            //Company as ActiveInspector
+                            var vm = {
+                            "company":{
+                            "name":{
+                            "text":"Lundalogik",
+                            "value":"Lundalogik"
+                        },
+                        "responsible":{
+                        "text":"Erik Syrén",
+                        "value":1001
+                    },
+                    "relation":{
+                    "text":"3. Customer",
+                    "value":12031,
+                    "key":"customer"
+                },
+
+                ...
+            },
+            "localize":{
+            "Actionpad_Index":{
+            "links":"Länkar"
+        },
+        ...
+    }
+}
+</code></pre>
+
+</section>
+<section data-background="#F2F2F2" class="grey">
+    <h2>Quiz time!</h2>
+    <ul> 
+        <li>What type of fields do you think corresponds to the JSON in previous slide?</li>
+        <li>Check out some LBS or Knockout bindings. When do you need them?</li>
+        <li>In the ViewModel example we used "ko.observable()". What is it used for?</li>
+    </ul>
+</section>
+</section>
+<!-- Assignment 1 -->
+<section>
+    <section>
+        <h2>Assignment 1:</h2><br>
+        <p>Our dear customer "The Empire" would like to have an ActionPad on the Person card. They like to keep it simple and would only like to have the person's name displayed. Can you fix this? The customer's project manager mr Vader will help oversee the construction</p>
+    </section>
+    <section data-background="#F2F2F2" class="grey">
+        <h2>Assignment 1:</h2><br>
+        <p> Open "person.html" and add:</p>
+        <pre>
+            <code class="html">
+                <!-- person.html -->
+                <h1 data-bind="text:person.firstname.text + ' ' + person.lastname.text"></h1>
+            </code>
+        </pre>
+    </section>
+</section>
+
+<!-- Assignment 2 -->
+<section>
+    <section>
+        <h2>Assignment 2:</h2><br>
+        <p>You have angered Mr. Vader (not good, your planet might be doomed), by making a butt ugly ActionPad. You should have known better! Let's make it beautiful by adding a <a href="http://lime-bootstrap.readthedocs.org/en/latest/basicUsage" target="_blank">header-section</a>. Vader does like orange (!) </p>
+    </section>
+    <section data-background="#F2F2F2" class="grey">
+        <h2>Assignment 2:</h2><br>
+        <pre>
+            <code class="html">
+                <!-- Header section, The colorful thing at the top  -->
+                <div class="header-container orange">
+                    <div class="header-icon"></div> 
+                    <h2 data-bind="text:person.firstname.text + ' ' + person.lastname.text"></h2>      
+                </div>
+                <!-- /Header section  -->
+            </code>
+        </pre>
+    </section>
+    <section data-background="#F2F2F2" class="grey">
+        <h2>Quiz time!</h2>
+        <ul> 
+            <li>How did LBS know it should use a picture in the heading?</li>
+            <li>Where do you find more pictures like this one?</li>
+            <li>My customer would like a custom color. How should I do that?</li>
+        </ul>
+    </section>
+</section>
+<!-- Assignment 3 -->
+<section>
+    <section>
+        <h2>Assignment 3:</h2><br>
+        <p> Now impressed with your craftsmanship mr. Vader would like to have quick access the person's email and phone in the actionpad. Please remember your previous mistake of making things butt ugly. Add some "info-links" and checkout <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a> and the LBS "icon"-binding</p>
+    </section>
+    <section data-background="#F2F2F2" class="grey">
+        <h2>Assignment 3:</h2><br>
+        <pre>
+            <code class="html">
+                <!-- Header section, The colorful thing at the top  -->
+                <div class="header-container orange">
+                    <div class="header-icon"></div>
+                    <h2 data-bind="text:person.name.text"></h2> 
+                    <ul class="info-links"> 
+                        <li data-bind="text:person.phone.text, icon:'fa-phone'"></li>
+                        <li data-bind="text:person.mobilephone.text, icon:'fa-mobile-phone'"></li>
+                        <li data-bind="text:person.email.text, icon:'fa-envelope-o'"></li>
+                    </ul> 
+                </div>
+            </code>
+        </pre>
+    </section>
+</section>
+<!-- Assignment 3 -->
+<section>
+    <section>
+        <h2>Assignment 4:</h2><br>
+        <p>Now you have really pissed off mr. Vader! Nothing happens when he clicks the links (He even tried with something he called The Force. Did. Not. Work.). Fix it, and fix it fast! Check out if the LBS bindings can help you!  <a href="http://lime-bootstrap.readthedocs.org/en/latest/basicUsage/#bindings" target="_blank">Help!</a> </p>
+    </section>
+    <section data-background="#F2F2F2" class="grey">
+        <h2>Assignment 4:</h2><br>
+        <pre>
+            <code class="html">
+                <!-- Header section, The colorful thing at the top  -->
+                <div class="header-container orange">
+                    <div class="header-icon"></div>
+                    <h2 data-bind="text:person.name.text"></h2> 
+                    <ul class="info-links"> 
+                        <li data-bind="text:person.email.text, email: person.email.text, icon:'fa-envelope-o'"> </li>
+                        <li data-bind="text:person.phone.text, call:person.phone.text, icon:'fa-phone'"></li>
+                        <li data-bind="text:person.mobilephone.text, call:person.mobilephone.text, icon:'fa-mobile-phone'"></li>
+                    </ul> 
+                </div>
+            </code>
+        </pre>
+    </section>
+</section>
+<section>
+    <section>
+        <h2>Assignment 5:</h2><br>
+        <p>Now once again happy, Vader decides he would like even more information. This time from the the related company card. He would like the name of the company (clickable of course) and company city with a map connection and company phone. Let's just jump into to it! How hard can it be? </p>
+    </section>
+    <section data-background="#F2F2F2" class="grey">
+
+        <p>If you tried something similar to this:</p>
+        <pre>
+            <code class="html">
+                <!-- Header section, The colorful thing at the top  -->
+                ...
+                <ul class="info-links"> 
+                    ...
+                    <li data-bind="text:company.name.text, limeLink: company, icon:'fa-building'"> </li>
+                    <li data-bind="text:company.city.text, showOnMap:company.city.text, icon:'fa-map'"></li>
+                </ul> 
+                ...
+            </code>
+        </pre>
+    </section>
+    <section data-background="#F2F2F2" class="grey">
+        <p>Or like this:</p>
+        <pre>
+            <code class="html">
+                <!-- Header section, The colorful thing at the top  -->
+                ...
+                <ul class="info-links"> 
+                    ...
+                    <li data-bind="text:person.company.name.text, limeLink: person.company, icon:'fa-building'"> </li>
+                    <li data-bind="text:person.company.city.text, showOnMap: person.company.postalcity.text, icon:'fa-map-marker'"></li>
+                </ul> 
+                ...
+            </code>
+        </pre>
+        <p>You might have made Vader say bad things to a puppy.</p>
+    </section>
+    <section data-background="#F2F2F2" class="grey">
+        <p>Your ActionPad will probably look like this:</p>
+        <img src="img/error.png" height="30%">
+        <small>The red this is the debug log. She is our friend. She shows up if we make a bad mistake and tries to help us fix it. We can even have here around all the time to help us. Just open "_config.js" and set "debug=true". Do this now</small>
+    </section>
+    <section data-background="#F2F2F2" class="grey">
+        <p>The console log says that "company is undefined". By default only the ActiveInspectors' data is loaded. Luckily we can ask for more data in "_config.js". Add a "person" node and a dataSource. There is a nice VBA function "ActionPadTools.GetCompanyContactData" which returns a related company record</p>
+    </section>
+    <section data-background="#F2F2F2" class="grey">
+
+       <pre>
+        <code class="javascript">
+            lbs.externalConfig = {
+            /**
+            Enable or disable the debug console 
+            for the whole application
+            **/
+            debug: true,
+
+            /**
+            Configure special use cases,
+            mainly when requiring additional datasources
+            **/
+            config:{
+            'index' : {
+            dataSources: [
+            { type: 'localization', source: '' },
+            ],
+            autorefresh : false
+        },
+
+        'person' : {
+        dataSources: [
+        {type: 'activeInspector', source: ''},
+        {type: 'localization', source: '' },
+        {type: 'relatedRecord', source: 'company', view: 'name;postalcity;phone'},
+        ],
+        autorefresh : false
+    }
+}
+}
+</code>
+</pre>
+</section>
+
+</section>
+<section>
+    <section>
+        <h2>Assignment 7:</h2><br>
+        <p>Great! That went well! <br>Mr. Vader is overjoyed! He would now like an (evil) button to terminate the person! Say what? Well the customers wish is our law! We have prepared the most evil of functions: "ActionPad_Person.Terminate". Remember the text should work in many languages</p>
+    </section>
+    <section data-background="#F2F2F2" class="grey">
+
+        <p>The localizations is cached in a variable in "Localize.dicLookup". You must invalidate the cache by setting the variable to nothing</p>
+        <pre>
+            <code class="html">
+                ...
+                <button class="btn btn-lime btn-default" data-bind=" vba:'ActionPad_Person.Terminate', text:localize.Actionpad_Person.terminate, icon:'fa-ban'">
+                </button>
+                ...
+            </code>
+        </pre>
+    </section>
+    <section>
+        <p>Nice! Helping the Empire do it's business!<br>
+            Slight problem now. Due to your GUI the empire now tries to terminate already dead people. The button should only be visible if the person is active! 
+        </p>
+    </section>
+    <section data-background="#F2F2F2" class="grey">
+
+        <pre>
+            <code class="html">
+                ...
+                <button class="btn btn-lime btn-error" data-bind=" vba:'ActionPad_Person.Terminate', visible:person.active.value, text:localize.Actionpad_Person.terminate, icon:'fa-ban'">
+                </button>
+                ...
+            </code>
+        </pre>
+    </section>
+    <section data-background="#F2F2F2" class="grey">
+        <p>Problems! The function is now being a bit overused. The bodies are piling up the garbage disposal plant<br>
+            It should also only be visible for admins.
+        </p>
+    </section>
+                    <!-- <section>
+                        <p> Add a feature to show the time ago they where teminated. Checkout Moments "TimeAgo()"
+                        </p>
+                    </section> -->
+                </section>
+                <!-- Assignment 8-->
+                <section>
+                    <section>
+                        <h2>Assignment 8:</h2><br>
+                        <p>Due to a bit over use of the termination feature it is hard to find anybody alive at all. Mr. Vader would like to see a list of all person's on all companies with the same name as the person's company, their status and an icon. There is a VBA function to help you load the data, called "ActionPad_Person.GetPersons". Checkout the KnockoutJS binding "foreach:"</p>                        
+                    </section>
+
+                    <section data-background="#F2F2F2" class="grey">
+
+                        <pre>
+                            <h2>person.html</h2>
+                            <code class="html">
+                                ...
+                                <ul class="menu expandable">
+                                    <li class="menu-header" data-bind="text:localize.ActionPad_Person.PersonsText"></li>
+                                    <li class="divider"></li>
+                                    <!-- ko foreach: persons.records -->
+                                    <li data-bind="text: name.text, icon: 'fa-ambulance'">
+                                        <!-- /ko -->
+                                    </ul>
+                                    ...
+                                </code>
+                            </pre>
+                            <pre>
+                                <h2>_config.js</h2>
+                                <code class="html">
+                                    'person' : {
+                                    dataSources: [
+                                    {type: 'activeInspector', source: ''},
+                                    {type: 'localization', source: '' },
+                                    {type: 'relatedRecord', source: 'company', view: 'name;postalcity;phone'},
+                                    {type: 'records', source: 'ActionPad_Person.GetPersons', alias: 'persons'},
+                                    ],
+                                    autorefresh : false
+                                }
+                            </code>
+                        </pre>
+                    </section>
+
+
+                </section>
+                <!-- Assignment 9-->
+                <section>
+                    <section>
+                        <h2>Assignment 9: Apps apps apps!</h2><br>
+                        <p>Vader whould like to see his total kill count on the Index ActionPad. There is an app for that! App the app: <a href="http://limebootstrap.lundalogik.com/web/appstore/index.html#infotile" target="_blank">Infotile</a> and make it nice! </p>
+                    </section>                    
+                </section>
+                <section>
+                    <section>
+                        <h2>Assignment 10: Let's make a app!</h2><br>
+                        <p>Due to the loss of two Death Stars (one mainly due to small furry teddy bears) the Empire it's looking into its engineering practices. They are a bit worried about your code in Assignment 8. Rewrite it as an app! You should be able to filter it.</p>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                hideAddressBar: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Parallax scrolling
+                // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+                // parallaxBackgroundSize: '2100px 900px',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+
+    </body>
+    </html>

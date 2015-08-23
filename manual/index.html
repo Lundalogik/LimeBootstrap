@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LimeBootstrap</title>
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <script type="text/javascript" src="./js/theme.js"></script>
+
+  <link rel="stylesheet" href="./css/github.css">
+  <script type="text/javascript" src="./js/highlight.pack.js"></script>
+  <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> LimeBootstrap</a>
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+       <ul class="current">
+
+    <li class="toctree-l1 ">
+        <a class="" href="philosophy/">Philosophy</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="basicUsage/">BasicUsage</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="advanced/">Advanced</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="buildingApps/">BuildingApps</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="changelog/">Changelog</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="technicalPlatform/">TechnicalPlatform</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="python/">Python - Installation and configuration</a>
+        
+    </li>
+
+</ul>
+
+
+
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    <li>About</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/Lundalogik/LimeBootstrapServices" class="icon icon-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <h1 id="lime-bootstrap">LIME Bootstrap</h1>
+<p>The LIME Bootstrap is made to make it easier, better and faster working with Actionpads in LIME pro. The framework relies heavily on Knockout.js and Twitter Bootstrap but with custom styling and a simple, yet powerful script called <code>lbs.js</code>. The framework contains several built in functions and third 
+party libraries, but is also expandable through custom apps. </p>
+<p>LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reasons all functionality (except the data connections) should work in any browser.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Internet Explorer 9 &lt;- With some design quirks</li>
+<li>Internet Explorer 10</li>
+<li>Internet Explorer 11</li>
+</ul>
+<p>Older versions of IE <strong>won't</strong> work!</p>
+<ul>
+<li>LIME 10.11 or greater</li>
+</ul>
+<p>note
+On Lime 10.10 the data from activeinspector can not be trusted and there are some quirks when publishing actionpads.</p>
+<h2 id="install">Install</h2>
+<p>LIME Bootstrap is included in the LIME Basic database and nothing is needs to be done in this case. If installing LIME Bootstrap from scratch:</p>
+<ol>
+<li>Copy all the folders, <code>lbs.html</code> and <code>_config.js</code> to the Actionpad-folder</li>
+<li>Create two new VBA modules from the VBA found in <code>system/vba/</code> with the same name as the files</li>
+<li>Change the URL of all Actionpads in LIME Pro to <code>lbs.html</code></li>
+</ol>
+<p>If you'll like the some basic views to start with you can find some <a href="https://github.com/Lundalogik/LimeBootstrapBaseActionpads">here</a></p>
+<h2 id="custom-css-in-lime-bootstrap-lbs">Custom CSS in Lime Bootstrap (LBS)</h2>
+<p>Our recommendation and the basic principle are to avoid the use of self-written CSS LBS since we can not guarantee how this will affect future versions of LBS. The purpose of LBS is to standardize Actionpads and to be able to deliver updates without worrying for failures.</p>
+<p>We  cannot prevent customers to add their own written CSS. If you really have to you SHOULD NOT  update lime.css or add a custom CSS file in system / css folder. This is very risky since an update will replace the entire system folder. To avoid disasters where custom css is removed when updating LBS you should follow the below instructions.</p>
+<p>Create a folder called custom in the actionpad folder, in this folder create a CSS file called custom.css</p>
+<p>This file is not maintained by Lundalogik and we can not guarantee that the custom CSS will work with future LBS updates, but it will not get overwritten or removed. In addition to this they have to include it in lbs.html, which it does with the following line of code in the css section:</p>
+<p><code>&lt;link rel="stylesheet" type="text/css" href"custom/custom.css" /&gt;</code></p>
+<p>IMPORTAN: The recommendation is to avoid custom CSS.</p>
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="philosophy/" class="btn btn-neutral float-right" title="Philosophy"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a>, using the <a href="https://github.com/snide/sphinx_rtd_theme">Read the Docs theme</a>.
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <a href="https://github.com/Lundalogik/LimeBootstrapServices" target="about:blank" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      <span><a href="" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="philosophy/" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+</body>
+</html>

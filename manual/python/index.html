@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python - Installation and configuration - LimeBootstrap</title>
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <script type="text/javascript" src="../js/theme.js"></script>
+
+  <link rel="stylesheet" href="../css/github.css">
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> LimeBootstrap</a>
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+       <ul class="current">
+
+    <li class="toctree-l1 ">
+        <a class="" href="../philosophy/">Philosophy</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../basicUsage/">BasicUsage</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../advanced/">Advanced</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../buildingApps/">BuildingApps</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../changelog/">Changelog</a>
+        
+    </li>
+
+    <li class="toctree-l1 ">
+        <a class="" href="../technicalPlatform/">TechnicalPlatform</a>
+        
+    </li>
+
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Python - Installation and configuration</a>
+        
+            <ul>
+            
+                <li class="toctree-l2"><a href="#install-and-configure-python">Install and configure python</a></li>
+                
+                    <li><a class="toctree-l3" href="#helper-scripts">Helper scripts</a></li>
+                
+                    <li><a class="toctree-l3" href="#install-python">Install python</a></li>
+                
+                    <li><a class="toctree-l3" href="#woring-with-virtual-environment">Woring with virtual environment</a></li>
+                
+                    <li><a class="toctree-l3" href="#setup-environment-variables">Setup environment variables</a></li>
+                
+                    <li><a class="toctree-l3" href="#starting-webproject-for-services">Starting webproject for services</a></li>
+                
+                    <li><a class="toctree-l3" href="#working-with-heroku-optional">Working with heroku (optional)</a></li>
+                
+                    <li><a class="toctree-l3" href="#working-with-powershell-optional">Working with powershell (optional)</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+</ul>
+
+
+
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    <li>Python - Installation and configuration</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/Lundalogik/LimeBootstrapServices" class="icon icon-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <h1 id="install-and-configure-python">Install and configure python</h1>
+<p>Some help on making python work on windows.</p>
+<h2 id="helper-scripts">Helper scripts</h2>
+<p>In the folder "PythonHelpers" where are a few helpers to make the process easier.
+The script collection is refered to as <strong>$pyh</strong>.</p>
+<h2 id="install-python">Install python</h2>
+<p>open cmd and run <strong>$pyh/Install.bat</strong>. This will:</p>
+<ul>
+<li>Install python 2 and 3</li>
+<li>Install pip</li>
+<li>Install virutalenvironment</li>
+<li>Install virtualenvironmentWrapper</li>
+</ul>
+<h2 id="woring-with-virtual-environment">Woring with virtual environment</h2>
+<h3 id="create-environment">Create environment</h3>
+<p>open cmd and run <strong>$pyh/CreateEnvironment.bat</strong>.</p>
+<p>It takes 3 parameters.</p>
+<ul>
+<li>Python version 2/3</li>
+<li>Name of environment</li>
+<li>Path to project files</li>
+</ul>
+<p>This will install an set everything up.</p>
+<h3 id="activate-virtual-environment">Activate virtual environment</h3>
+<pre class="prettyprint well"><code>workon [&lt;name&gt;]
+</code></pre>
+<h3 id="deactive-virtual-environment">Deactive virtual environment</h3>
+<pre class="prettyprint well"><code>deactivate
+</code></pre>
+<h3 id="install-dependecies">Install dependecies</h3>
+<pre class="prettyprint well"><code>pip install -r requirements.txt`
+</code></pre>
+<h2 id="setup-environment-variables">Setup environment variables</h2>
+<p>To set environment variables such as github credentials. Create a file named
+<code>.env</code> in the prject root and list key-value pairs as
+<code>KEY=VAL</code></p>
+<p>Also add key "PYTHONUNBUFFERED=true" for immeiate console output</p>
+<h4 id="example">Example</h4>
+<pre class="prettyprint well"><code>PYTHONUNBUFFERED=true
+GITHUB_USER=xxx
+GITHUB_PASSWORD=yyy
+</code></pre>
+<h2 id="starting-webproject-for-services">Starting webproject for services</h2>
+<p><code>honcho start</code></p>
+<h2 id="working-with-heroku-optional">Working with heroku (optional)</h2>
+<p>The service and documentation platform is hosted on heroku.
+If you are to be working with heroku you may have to install the toolbelt.
+Make sure to install into a path without spaces. Standard path may not work.</p>
+<pre class="prettyprint well"><code>https://toolbelt.heroku.com/windows
+</code></pre>
+<h3 id="publish-to-heroku-using-git">Publish to heroku using git</h3>
+<p>Publishing to heroku is done by commiting to a specific git repo.</p>
+<p>Setup the heroku repos as remotes to you local repo</p>
+<pre class="prettyprint well"><code>heroku git:remote -a limebootstrapservices -r heroku
+heroku git:remote -a limebootstrapservices-dev -r heroku-dev
+</code></pre>
+<p>Send keys of you have not alread done so</p>
+<pre class="prettyprint well"><code>heroku keys:add
+</code></pre>
+<p>Publish to heroku</p>
+<pre class="prettyprint well"><code>git push heroku-dev master
+</code></pre>
+<p>to publish from another branch then master use</p>
+<pre class="prettyprint well"><code>git push heroku-dev &lt;my branch&gt;:master
+</code></pre>
+<p>Check the logs</p>
+<pre class="prettyprint well"><code>heroku logs --app limebootstrapservices-dev
+</code></pre>
+<p>Environments real addresses are located on the following urls, production is alias under <em>limebootstrap.lundalogik.se</em>.</p>
+<pre class="prettyprint well"><code>http://limebootstrapservices.herokuapp.com/
+http://limebootstrapservices-dev.herokuapp.com/
+</code></pre>
+<p>Some environment variables will have to be present on both environments similar to en <em>.env</em> file on local enviroment.</p>
+<pre class="prettyprint well"><code>heroku config:set GITHUB_USER=xxx --app limebootstrapservices-dev
+heroku config:set GITHUB_PASSWORD=yyy --app limebootstrapservices-dev
+</code></pre>
+<h2 id="working-with-powershell-optional">Working with powershell (optional)</h2>
+<p>Add python environment path.
+Set path as administrator and set it for whole machine</p>
+<pre class="prettyprint well"><code>[Environment]::SetEnvironmentVariable(&quot;Path&quot;, &quot;$env:Path;C:\Python33\;C:\Python33\Scripts\&quot;, &quot;Machine&quot;)
+</code></pre>
+
+<h3 id="change-powershell-executionpolicy">Change powershell executionpolicy</h3>
+<p><code>Set-ExecutionPolicy Unrestricted</code></p>
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../technicalPlatform/" class="btn btn-neutral" title="TechnicalPlatform"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a>, using the <a href="https://github.com/snide/sphinx_rtd_theme">Read the Docs theme</a>.
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <a href="https://github.com/Lundalogik/LimeBootstrapServices" target="about:blank" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      <span><a href="../technicalPlatform/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+</body>
+</html>
