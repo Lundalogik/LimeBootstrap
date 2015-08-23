@@ -1,6 +1,6 @@
 site_name: LimeBootstrap
 pages:
-- 'About': 'readme.md'
+- 'Home': 'index.md'
 - 'Philosophy': 'philosophy.md'
 - 'Basic Usage': 'basicUsage.md'
 - 'Advanced': 'advanced.md'
