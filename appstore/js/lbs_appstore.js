@@ -25,6 +25,12 @@ var viewModel = function () {
     self.mergeMenu = ko.observable(false);
     // self.hitcounter = ko.observable();
 
+    self.runsinlime = ko.observable(false);
+
+    if (window.external.database) {
+        self.runsinlime(true);
+    }
+
 
     // utility for converting to grid
     self.listToMatrix = function (list, elementsPerSubArray) {
@@ -207,7 +213,8 @@ var appFactory = function (app) {
     self.images = [];
     /**
 	Sets default picture if app images is missing.
-	*/    
+	*/
+
     if (app.images == "") {
         self.images.push(["img/_default.png"]);
         self.smallImage = ["img/_default.png"];
