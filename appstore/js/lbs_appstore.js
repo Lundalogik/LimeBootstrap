@@ -214,6 +214,10 @@ var appFactory = function (app) {
     /**
 	Sets default picture if app images is missing.
 	*/
+    self.runswithlip = ko.observable(false);
+    if (window.external.database) {
+        self.runswithlip(true);
+    }
 
     if (app.images == "") {
         self.images.push(["img/_default.png"]);
@@ -237,7 +241,12 @@ var appFactory = function (app) {
     self.changeAppInfo = function (app, item) {
         console.log(item.currentTarget.id);
         console.log(app);
-    }    
+    }
+    //Downloads app
+    self.password = ko.observable('');
+    self.passwordOk = ko.observable(false);
+    self.logintext = ko.observable('You need to be authenticated to download this application.')
+
     //self.name = ko.observable(app.name.charAt(0).toUpperCase() + app.name.slice(1))
     self.name = ko.observable(app.name)
     self.readme = marked(app.readme);
@@ -271,11 +280,50 @@ var appFactory = function (app) {
         $("#expanded-" + app.name()).modal('hide');
     };
 
-    self.download = function () {
+    self.download = function () {        
         if (!self.license()) {
-            location.href = 'http://limebootstrap.lundalogik.com/api/apps//api/apps/' + self.name() + '/download/'
+            location.href = 'http://limebootstrap.lundalogik.com/api/apps/' + self.name() + '/download/'
         }
+        //else {
+        //    self.passwordOk(false);
+        //    $("#sign_in").modal('show');
+        //}
     };
+    self.closeLogIn = function () {
+        $("#sign_in").modal('hide');
+        self.passwordOk(false);
+        self.password('');
+        self.logintext('You need to be authenticated to download this application.');
+    }
+
+    self.downloadPassword = function () {
+        if (self.password()) {
+            $.getJSON('/api/login/username/llabadmin/password/' + self.password() + '/', function (data) {
+                var logindata = data.login.access;
+                console.log(data.login.access);
+
+                if (logindata) {
+                    self.passwordOk(true);
+                    self.logintext('Nice! The download will begin soon.');
+                    location.href = '/api/apps/' + self.name() + '/download/'
+                }
+                else {
+                    self.logintext('Error! Wrong password.');
+                    self.password('');
+                    self.passwordOk(false);
+                }
+            });
+
+
+        }
+    }
+
+    self.installappwithlip = function () {
+        if (self.name()) {
+            window.external.run('LBSHelper.RunLip', self.name());
+        }
+    }
+
 
     self.appName = ko.computed(function () {
         if (self.info) {

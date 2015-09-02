@@ -190,3 +190,22 @@ code{
 	margin-top: 10px;
 	
 }
+#sign_in {
+    z-index: 2000;
+    padding-top: 15%;
+}
+#sign_in .modal-content {
+    background-color: #3498db;
+    color: #fff;
+    margin-left: 35%;
+    margin-right: 35%;
+    width: auto;
+    padding: 0px 15px 15px 15px;
+}
+#sign_in .modal-header {
+    border-bottom: none;
+    padding: 0px 0px 15px 0px;
+}
+.downloadOk {
+    text-align:center;
+}

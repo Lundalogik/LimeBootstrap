@@ -46,10 +46,16 @@
                                 <button type="button" class="close" data-bind="click:app.closeApp" aria-hidden="true">&times;</button>
                                 <h4 class="modal-title">
                                     <span data-bind="text:app.appName()"></span>
-                                    <button type="button" class="btn btn-success pull-right download" data-bind="click:app.download, css:{disabled:(app.license()?true:false)}">
+                                    <button type="button" class="btn btn-success pull-right download" data-bind="click:app.download, css:{disabled:(app.license()?true:false)},  visible: !app.runswithlip()">                                        
                                         <span data-bind="icon:(app.license()? 'glyphicon-usd' :'glyphicon-cloud-download')"></span>
                                         <span data-bind="text: (app.license()? 'Paid': 'Download')"></span>
                                     </button>
+
+                                    <button type="button" class="btn btn-success pull-right download" data-bind="click:app.installappwithlip, visible:  app.runswithlip()">
+                                        <span data-bind="icon:(app.license()? 'glyphicon-usd' :'glyphicon-cloud-download')"></span>
+                                        <span data-bind="text: 'Install'"></span>
+                                    </button>
+                                    
                                     <button type="button" class="btn btn-default pull-right download" data-bind="click:app.githubAddress">
                                         <span class="glyphicon glyphicon-cog"></span>
                                         Report problem or look at source
@@ -86,6 +92,36 @@
                 </div>
                 <!-- /.modal -->
                 <!-- /Expanded app view -->
+
+
+                <div class="modal fade bs-example-modal-sm" tabindex="-2" id="sign_in" role="dialog" aria-labelledby="mySmallModalLabel" >
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!--data-bind="visible: !passwordOk()"-->
+                        <div>
+                            <button type="button" class="close" data-bind="click:app.closeLogIn" aria-hidden="true">&times;</button>
+                            <h3>Download application</h3>
+                            <p data-bind="text: logintext()"></p>
+                        </div>
+                    </div>
+                    <div class="input-group" data-bind="visible: !passwordOk()">
+                        <input type="password" class="form-control" placeholder="Password" data-bind="value: password, valueUpdate:'afterkeydown';"/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" data-bind="click: downloadPassword, text: 'Download'"></button>
+                        </span>
+                    </div>
+                    <!--<div class="downloadOk" data-bind="visible: passwordOk() ">
+                        <h2 class="green">Succes!</h2>
+                        <p>Enjoy this magic application.</p>
+                        <button class="btn btn-default right" data-bind="click: app.closeLogIn, text:'Close'"></button>
+                    </div>-->
+                </div>
+              </div>
+            </div>
+
+
+
 
             </div>
             <!-- /ko -->
@@ -201,7 +237,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" data-bind="visible: !runsinlime()">
         <div class="row">
             <div class="col-md-12">
                 <div class="appstore-footer">
