@@ -24,9 +24,7 @@
                     <div class="carousel slide" data-ride="carousel" data-bind="attr:{id:'carousel-' + app.name()}">
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
-                            <!-- ko foreach: app.smallImage -->
-                            <div class="item" data-bind="style:{background:'#F1F6FF url(' + $data +') no-repeat center'}, css:{active: $index() == 0}"></div>                            
-                            <!-- /ko -->
+                            <div class="item active" data-bind="style:{background:'#F1F6FF url(' + app.smallImage + ') no-repeat center'}" ></div>                                          
                         </div>
 
                     </div>
@@ -71,11 +69,9 @@
                                 <div class="carousel slide" data-ride="carousel" data-bind="attr:{id:'carousel-large' + app.name()}">
                                     <!-- Wrapper for slides -->
                                     <div class="carousel-inner">
-                                        <!-- ko foreach: app.images -->
-                                        <!-- ko if: $data -->
-                                        <div class="item" data-bind="style:{background:'#F1F6FF url(' + $data +') no-repeat center'}, css:{active: $index() == 0}"></div>
-                                        <!-- /ko -->
-                                        <!-- /ko -->
+                                        
+                                        <div class="item active" data-bind="style:{background:'#F1F6FF url(' + app.bigImage +') no-repeat center'}" ></div>       
+                                        
                                     </div>
                                 </div>
                                 <br />

@@ -1,6 +1,6 @@
 var lbsappstore = {
     init: function () {
-        $.getJSON('http://limebootstrap.lundalogik.com/api/apps/', function (data) {
+        $.getJSON('http://api.lime-bootstrap.com/apps', function (data) {
             var vm = new viewModel();
             vm.populateFromRawData(data)
             vm.setActiveApp();
@@ -23,7 +23,7 @@ var viewModel = function () {
     self.activeFilter = ko.observable();
     self.searchvalue = ko.observable();
     self.mergeMenu = ko.observable(false);
-    // self.hitcounter = ko.observable();
+    // self.hitcounter = ko.observable();    
 
     self.runsinlime = ko.observable(false);
 
@@ -218,24 +218,42 @@ var appFactory = function (app) {
     if (window.external.database) {
         self.runswithlip(true);
     }
-
-    if (app.images == "") {
-        self.images.push(["img/_default.png"]);
-        self.smallImage = ["img/_default.png"];
+    //self.testimg = app.images;
+    //console.log(app.images);
+    if (app.images.indexOf(',') > -1) {
+        self.images = app.images.split(',');
     }
     else {
-        $.each(app.images, function (index, image) {            
-            if (image.indexOf("_small") >= 0) {
-                self.smallImage = [image];
+        self.images.push(app.images)
+    }
+
+    self.smallImage = "";
+    //$.each(self.images, function (index, image) {
+
+        $.each(app.images, function (imageindex, imagedata) {
+            console.log(imagedata);
+            //if (image == imagedata.file_name) {
+            if (imagedata.file_name.indexOf("small") > -1) {
+                self.smallImage = "data:image/" + imagedata.file_type + ";base64," + imagedata.blob.replace("b'", "").replace("'", "");                
             }
             else {
-                self.images.push([image]);                
+                var img = "data:image/" + imagedata.file_type + ";base64," + imagedata.blob.replace("b'", "").replace("'", "");
+                self.smallImage = img
+                self.bigImage = img
+                //}
+                //else {
+                //    self.bigImage = ["../assets/img/_default.png"];
+                //    self.smallImage = ["../assets/img/_default.png"];
+                //}
             }
+
+            //}
         });
-        if (!self.smallImage) {
-            self.smallImage = app.images;
-        }
-        
+
+    //})
+    if (self.smallImage === "") {
+        self.bigImage = ["../assets/img/_default.png"];
+        self.smallImage = ["../assets/img/_default.png"];
     }
 
     self.changeAppInfo = function (app, item) {
@@ -251,11 +269,11 @@ var appFactory = function (app) {
     self.name = ko.observable(app.name)
     self.readme = marked(app.readme);
     self.expandedApp = ko.observable(false);
-    self.info = ko.mapping.fromJS(app.info);
-    self.license = ko.observable(app.info.license);
+    self.info = ko.mapping.fromJS(app);
+    self.license = ko.observable(app.license);
     self.statusColor = ko.computed(function () {
         if (self.info.status) {
-            switch (app.info.status) {
+            switch (app.status) {
                 case 'Release':
                     return "label-success"
                 case 'Beta':
