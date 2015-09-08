@@ -1,0 +1,211 @@
+body{
+background-color: #f2f2f2;
+font-family: 'Roboto', sans-serif ;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+font-family: 'Roboto', sans-serif ;
+font-weight: 100;
+	}
+
+.jumbotron{
+	background-color: #3498db;
+	border-color: transparent;
+color:#FFF;
+
+}
+
+.navbar-default {
+	background-color: #3498db;
+	border-color: transparent;
+}
+
+.navbar-default .navbar-brand {
+	color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: white;
+}
+
+.app{
+	
+	background-color: #FFF;
+	height: 350px;
+	margin: 10px;
+	padding: 10px;
+	cursor: pointer;
+	overflow: hidden;
+
+	border-bottom-color: rgba(0, 0, 0, 0);
+	border-bottom-left-radius: 1px;
+	border-bottom-right-radius: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-left-color: rgba(0, 0, 0, 0);
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-right-color: rgba(0, 0, 0, 0);
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-top-color: rgba(0, 0, 0, 0);
+	border-top-left-radius: 1px;
+	border-top-right-radius: 1px;
+	border-top-style: solid;
+	border-top-width: 1px;
+	box-shadow: rgba(0, 0, 0, 0.0784314) 0px 2px 1px 0px;
+}
+
+.app .carousel .item{
+	height: 200px;
+	background-color: #F1F6FF;
+}
+
+ .carousel .carousel-indicators {
+	bottom: 0px;
+
+}
+.app .desc{
+	margin-top: 5px;
+	overflow: hidden;
+	height: 40px;
+}
+
+.carousel .carousel-indicators li {
+	border-color: #000;
+}
+.carousel .carousel-indicators .active {
+	background-color: #000;
+
+}
+
+.modal .modal-content{
+ -webkit-animation-delay: 0.3s;
+ -ms-animation-delay: 0.3s;
+ margin-left:15%;
+ margin-right:15%;
+}
+
+.modal .carousel .item{
+	height: 200px;
+}
+
+.modal .modal-dialog{
+	width: 80%;
+}
+
+.modal .download{
+
+	margin-right: 30px;
+}
+
+code{
+	white-space: inherit;
+}
+
+#loader{
+	padding-top:50px;
+}
+#loader img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.license-app{
+	background-color: #FFD600;
+	margin-top: -10px;
+	margin-bottom: 10px;
+	padding: 0px;
+	font-size: 15px;	
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+}
+.navbar-appstore{
+	padding: 0;
+}
+
+.navbar-appstore-input{
+	width: 250px;	
+}
+.navbar-appstore-input-group{
+	width: 250px;
+	float: right;	
+	margin-right: 15px;
+	margin-top: 3px;
+	
+}
+#navbar-appstore-search-button{
+	color: #2A6496;
+}
+#navbar-appstore-searchbar{
+	float: right;		
+}
+.navbar-appstore{
+	background-color: #fff; 
+	padding: 5px 15px 5px 35px;
+	margin-right: 10px;
+	margin-left: 10px;	
+}
+.nav-tabs{
+	border: none;
+}
+.jumbotron{
+	margin-bottom: 0px;
+}
+.nav-tabs>li>a{
+	border-radius: 0;
+}
+.active-appstore{
+	background-color: #f2f2f2;
+}
+#filter-text-appstore{
+	margin-left: 10px;
+}
+.appstore-footer-list {  
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+    list-style-type:none;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    text-align:center;
+}
+.appstore-footer-list li{
+    display:inline;  
+    padding-left: 20px;  
+    color:#428bca
+}
+.appstore-footer-list > li:hover > a {
+    color:#000;   
+    text-decoration:none; 
+}
+.appstore-menu {
+    background-color:#fff;
+}
+
+.menu-appstore-input-group{
+	width: 250px;
+	float: right;	
+	margin-right: 15px;
+	margin-top: 10px;
+	
+}
+#sign_in {
+    z-index: 2000;
+    padding-top: 15%;
+}
+#sign_in .modal-content {
+    background-color: #3498db;
+    color: #fff;
+    margin-left: 35%;
+    margin-right: 35%;
+    width: auto;
+    padding: 0px 15px 15px 15px;
+}
+#sign_in .modal-header {
+    border-bottom: none;
+    padding: 0px 0px 15px 0px;
+}
+.downloadOk {
+    text-align:center;
+}

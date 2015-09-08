@@ -1,6 +1,6 @@
 var lbsappstore = {
     init: function () {
-        $.getJSON('http://api.lime-bootstrap.com/apps', function (data) {
+        $.getJSON('http://api.lime-bootstrap.com/packages', function (data) {
             var vm = new viewModel();
             vm.populateFromRawData(data)
             vm.setActiveApp();
@@ -47,7 +47,7 @@ var viewModel = function () {
 
     // populate VM from JSON data
     self.populateFromRawData = function (rawData) {
-        $(rawData.apps).each(function (index, app) {
+        $(rawData.packages).each(function (index, app) {
             if (app.name) {
                 self.apps.push(new appFactory(app))
             }
