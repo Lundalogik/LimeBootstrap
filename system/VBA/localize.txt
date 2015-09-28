@@ -51,7 +51,8 @@ Public Sub SetLanguage(ByVal strLanguageCode As String)
         Case "en-us", "en_us":
             m_LanguageCode = "en_us"
         Case Else
-            Call Err.Raise(123, "Localize.SetLanguage", VBA.Replace("The language ""%1"" is not supported!", "%1", strLanguageCode))
+            m_LanguageCode = "en_us"
+            Call Lime.MessageBox(VBA.Replace("The language ""%1"" is not supported!" & VBA.vbCrLf & VBA.vbCrLf & "The actionpad language will be set to English.", "%1", strLanguageCode), VBA.vbOKOnly + VBA.vbInformation)
     End Select
     
     Call LoadDictionary
