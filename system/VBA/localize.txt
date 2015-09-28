@@ -46,7 +46,7 @@ Public Sub SetLanguage(ByVal strLanguageCode As String)
     On Error GoTo ErrorHandler
     
      Select Case strLanguageCode
-        Case "sv", "no", "fi":
+        Case "sv", "no", "fi", "da":
             m_LanguageCode = strLanguageCode
         Case "en-us", "en_us":
             m_LanguageCode = "en_us"
