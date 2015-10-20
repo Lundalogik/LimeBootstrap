@@ -1,4 +1,4 @@
-##Hiding or showing elements
+##vbaVisible: Hiding or showing elements
 
 It is common that some elements only should be visible for certain users or when specific conditions apply. It can be done in two different ways. Either use the LIME Bootstrap data-binding `vbaVisible:` or use the knockout binding `visible:`.
 
@@ -31,7 +31,7 @@ The binding `vbaVisible:` is only able to execute a given VBA function that retu
 </div>
 ```
 
-##Executing VBA-functions and specific actions
+##vba: Executing VBA-functions and specific actions
 `vba:` is used to trigger VBA-functions and specific actions on click. To call a VBA function simply use:
 
 ```html
@@ -51,7 +51,7 @@ Input parameters are provided by simply separating them by commas.
  ```
 
 
-##Showing an adress on a map
+##showOnMap: Showing an address on a map
 
 *   __showOnMap:__ - Searches Google Maps for the provided address.
 
@@ -59,42 +59,42 @@ Input parameters are provided by simply separating them by commas.
     <li data-bind="text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: 'fa-map-marker'"></li>
 ```
 
-## Call a phone number
+##Call: Call a phone number
 *   __call:__ - Ads an tel: link to the HTML wich triggers an built in softphone software.
 
 ```html
     <li data-bind="text: company.phone.text, call: company.phone.text, icon: 'fa-phone'"></li>
 ```
 
-## Go to a website
+##openURL: Go to a website
 *   __openURL:__ - Opens the suplied URL in an external browser
 
 ```html
      <li data-bind="text:company.www.text, openURL: company.www.text, icon: 'fa-globe'"></li>
 ```
 
-## Go to another LIME Record
+##limeLink: Go to another LIME Record
 *   __limeLink__ - Tries to create an LIME link to the object provided, please note that the root node of the object is used and not a specific property.
 
 ```html
     <li data-bind="text:todo.company.text, limeLink:todo.company, icon:'fa-flag'"></li>
 ```
 
-## Send an email
+##email: Send an email
 *   __email__ - Creates an email. TODO: Should use LIME's built in email factory.
 
 ```html
     <li data-bind="text:person.email.text, email:person.email.text, icon:'fa-envelope'"></li>
 ```
 
-## Start textfileimport
+##appInvoke: Start an app
 * __appInvoke__
 
 ```html
     <li data-bind="appInvoke: 'textfileimport"></li>
 ```
 
-## Popover
+## popover: Show additional info
 * __popover__ - Gives you a small overlayer of context that you can design as you like. In its simplest form, it can be used to display informative texts. It can also be initialized as an object with one or several adjustable attributes, allowing for styling both header icon and title. There are also a few pre-defined types with their own set designs.
 
 ```html
@@ -167,7 +167,7 @@ Input parameters are provided by simply separating them by commas.
 ```
 
 
-## Tooltip
+##tooltip: Show a helping tooltip
 * __tooltip__ - Gives you a good looking tooltip. [Bootstrap](http://getbootstrap.com/javascript/#tooltips). You can design where you like the tooltip to show by sending a object with a placement.
 
 ```html

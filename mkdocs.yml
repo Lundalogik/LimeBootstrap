@@ -4,8 +4,9 @@ pages:
 - 'Philosophy': 'philosophy.md'
 - 'Basic Usage': 'basicUsage.md'
 - 'Bindnings & Filters': 'bindingsAndFilters.md'
-- 'Advanced': 'advanced.md'
+- 'Components': 'bindingsAndFilters.md'
 - 'Building Apps': 'buildingApps.md'
+- 'Advanced': 'advanced.md'
 - 'Changelog': 'changelog.md'
 - 'Technical Platform': 'technicalPlatform.md'
 theme: readthedocs

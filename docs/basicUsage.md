@@ -32,68 +32,14 @@ An Actionpad built with LIME Bootstrap has the following structure:
 ##Components
 LIME bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for all cool stuff you have access to.
 
-###The header section
-The header section is the colorful header of each actionpad. The following colors are provided:
+We also supply the following components:
 
-<img src="https://raw.githubusercontent.com/Lundalogik/LimeBootstrapServices/master/web/assets/img/Bootstrap_colors.png">
+*   __Menu:__ - _A menu to hold actions_
+*   __Dropdown button:__ - _A dropdown button styled for LIME Pro_
+*   __Header section:__ - _The top section of every actionpad_
+*   __Data carousel:__ - _A rotating object to hold more objects_
 
-Usage:
-
-```html
-<div class="header-container [insert color here]">
-```
-###The menu
-A menu can be created by the following HTML:
-
-```html
- <ul class="expandable collapsed">
-        <li class="menu-header">Text</li>
-       ...
-</ul>
-```
-
-A menu has two properties, __Expandable__ and __collapsed__. The are added in the `<ul>`  class:
-`<ul class="menu expandable collapsed">`    
-
-__Expandable:__ The menu can be collapsed by clicking the header   
-__Collapsed:__ The menu is collapsed when the actionpad is loaded. Stupid to use without using Expandable...
-
-###Dropdown button:
-
-A dropdown button can contain many options, while taking up very little space.
-
-```html
-<div class="btn-group btn-group-lime"  data-bind="visible:todo.done.value != 1">
-    <button class="btn btn-lime btn-default dropdown-toggle" data-toggle="dropdown" data-bind=" text:localize.Actionpad_Todo.headermoveforward, icon: 'fa-caret-down'">
-    </button>
-    <ul class="dropdown-menu">
-        <li data-bind="vba:'ActionPad_todo.Postpone, d, 1', text:localize.Actionpad_Todo.mf1d"></li>
-        <li class="divider"></li>
-        <li data-bind="vba:'ActionPad_todo.Postpone, ww, 1', text:localize.Actionpad_Todo.mf1w"></li>
-        <li data-bind="vba:'ActionPad_todo.Postpone, ww, 2', text:localize.Actionpad_Todo.mf2w"></li>
-        <li class="divider"></li>
-        <li data-bind="vba:'ActionPad_todo.Postpone, m, 1', text:localize.Actionpad_Todo.mf1m"></li>
-        <li data-bind="vba:'ActionPad_todo.Postpone, m, 6', text:localize.Actionpad_Todo.mf6m"></li>
-        <li class="divider"></li>
-        <li data-bind="vba:'ActionPad_todo.Postpone, yyyy, 1', text:localize.Actionpad_Todo.mf1y"></li>
-    </ul>
-</div>
-```
-
-###Data carousel
-Creates a data carousel that can be used when your actionpad is full of stuff. The carousel will build a pages for every first level child regardless of type. OBS! You always need to set height.
-
-   * __Examples__
-
-```html
-        <div data-carousel="{height:'25%'}">
-            <div data-app="{app:'Fulltextsearch',config:{}}"></div>
-            <div>This is your second div</div>
-            <ul>
-                <li>LBS rules</li>
-            </ul>
-        </div>
-```
+See all our components [here](/en/latest/components)
 
 ##Functions and Apps
 All Twitter bootstrap functions are included, please see the [Twitter bootstrap documentation](http://getbootstrap.com/javascript/)
@@ -132,6 +78,8 @@ As default you only have access to the data of the ActiveInspector!
 
 ### Knockout bindings
 Knockout supplies a large set of bindings, which all can be found [here](http://knockoutjs.com/documentation/introduction.html)
+Our full documentation can be found [here](/en/latest/bindingsAndFilters/)
+
 Some of the more common and useful bindings
 
 *   __visible:__ - _hides or shows a html element based on an boolean expression_
@@ -171,6 +119,7 @@ A filter is a function transforming your binding data and outputting a formated 
 This will produce a nicely formated value of a deal, example: "10 000SEK"
 
 List of filters:
+
 *   __default:<defaultValue>__ - If the value is blank, null, or an empty array, replace it with the given default value.
 *   __fit:<length>[:<replacement>][:<where>]__ - Trim the value if it’s longer than the given length. The trimmed portion is replaced with ... or the replacement value, if given. By default, the value is trimmed on the right but can be changed to left or middle through the where option. For example: name | fit:10::'middle' will convert Shakespeare to Shak...are.
 *   __json[:space]__ - Convert the value to a JSON string using ko.toJSON. You can give a space value to format the JSON output.
