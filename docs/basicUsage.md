@@ -171,16 +171,16 @@ A filter is a function transforming your binding data and outputting a formated 
 This will produce a nicely formated value of a deal, example: "10 000SEK"
 
 List of filters:
-* __default:<defaultValue>__ - If the value is blank, null, or an empty array, replace it with the given default value.
-* __fit:<length>[:<replacement>][:<where>]__ - Trim the value if it’s longer than the given length. The trimmed portion is replaced with ... or the replacement value, if given. By default, the value is trimmed on the right but can be changed to left or middle through the where option. For example: name | fit:10::'middle' will convert Shakespeare to Shak...are.
-* __json[:space]__ - Convert the value to a JSON string using ko.toJSON. You can give a space value to format the JSON output.
-* __lowercase__ - Convert the value to lowercase.
-* __number:<numberOfDecimals>__ - Rounds a number of desired number of decimals
-* __replace:<search>:<replace>__ - Perform a search and replace on the value using String#replace.
-* __uppercase__ - Convert the value to uppercase.
-* __currency:<currencyName>:<divider>__ - Formats a number with to a currency with a space a separate every <divider> number. Default 1000
-* __percent:__ - Formats a decimal number as percent 0,01 > 1%
-* __fromNow:__ - Formats a date as a human readable text as for how long ago the date was. Example 2000-01-01 > "Over ten years ago"
+*   __default:<defaultValue>__ - If the value is blank, null, or an empty array, replace it with the given default value.
+*   __fit:<length>[:<replacement>][:<where>]__ - Trim the value if it’s longer than the given length. The trimmed portion is replaced with ... or the replacement value, if given. By default, the value is trimmed on the right but can be changed to left or middle through the where option. For example: name | fit:10::'middle' will convert Shakespeare to Shak...are.
+*   __json[:space]__ - Convert the value to a JSON string using ko.toJSON. You can give a space value to format the JSON output.
+*   __lowercase__ - Convert the value to lowercase.
+*   __number:<numberOfDecimals>__ - Rounds a number of desired number of decimals
+*   __replace:<search>:<replace>__ - Perform a search and replace on the value using String#replace.
+*   __uppercase__ - Convert the value to uppercase.
+*   __currency:<currencyName>:<divider>__ - Formats a number with to a currency with a space a separate every <divider> number. Default 1000
+*   __percent:__ - Formats a decimal number as percent 0,01 > 1%
+*   __fromNow:__ - Formats a date as a human readable text as for how long ago the date was. Example 2000-01-01 > "Over ten years ago"
 
 
 ## Translation: Handling multiple languages
