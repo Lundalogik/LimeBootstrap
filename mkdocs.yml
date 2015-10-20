@@ -3,11 +3,12 @@ pages:
 - 'Home': 'index.md'
 - 'Philosophy': 'philosophy.md'
 - 'Basic Usage': 'basicUsage.md'
+- 'Bindnings & Filters': 'bindingsAndFilters.md'
 - 'Advanced': 'advanced.md'
 - 'Building Apps': 'buildingApps.md'
 - 'Changelog': 'changelog.md'
 - 'Technical Platform': 'technicalPlatform.md'
-- 'Python - Installation and configuration': 'python.md'
+- '
 theme: readthedocs
 repo_url: https://github.com/Lundalogik/LimeBootstrap
 site_description: LimeBootstrap dokumentation
