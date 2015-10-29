@@ -118,9 +118,10 @@ To get the value in a cookie use the method lbs.bakery.getCookie()
 
 ```javascript
 var mycookievalue = lbs.bakery.getCookie(“gingerbread”)
-
+```
 ###Set Cookie
 To set a cookie just call the function lbs.bakery.setCookie(name,value,days). See example below. 
 
 ```javascript
 lbs.bakery.setCookie(“gingerbread”,myvalue,3)
+```
