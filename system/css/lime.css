@@ -704,14 +704,33 @@ Debug
 #watchContainer #searchValue {    
     padding-right:0px;
     margin-top:5px;
+    width: 300px;
 }
 #watchContainer #searchGroup {
-    width:300px;      
+    width:820px;      
     margin-left:15px;  
 } 
 #watchContainer #buttonNext {   
    margin-left:5px;
    margin-top: -5px;
+}
+
+.btn-toggle-watch{
+  margin-top: 2px;
+}
+#watch-top{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  padding-left:20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  width: 880px;
+  background-color: #E8EAED;
+}
+
+#watch-bot{
+  margin-top: 100px;
 }
 
 #watchContainer #searchBar {
@@ -738,6 +757,13 @@ Debug
 }
 #watchContainer #searchHits {
     margin-left:10px;    
+}
+
+#vmDataText{
+  width: 100%;
+  height: 630px;
+  background-color: #272822;
+  color: #F8F8F2;
 }
 
 /*******************

@@ -464,6 +464,7 @@ lbs.loader = {
 
             }
         }
+
         return json;
     },
 
@@ -535,12 +536,14 @@ lbs.loader = {
             }
 
             //check if optionkey support
-            if(lbs.limeVersion.comparable > lbs.common.parseVersion('10.8')){
+            if(lbs.limeVersion.comparable > lbs.common.parseVersion('10.8').comparable){
+
                 if (controls(i).Field.Type == (19 || 18)) { //Option or Set
                     json[alias][attr]['key'] = controls(i).OptionKey;
                 }
             }
         }
+      
         return json;
 
     },

@@ -129,7 +129,7 @@ ko.bindingHandlers.showOnMap = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var newValueAccessor = function() {
             return function() {
-                lbs.common.executeVba('shell,https://www.google.com/maps?q=' + ko.unwrap(valueAccessor()).replace(/\r?\n|\r/g, ' '));
+                lbs.common.executeVba('shell,https://www.google.com/maps?q=' + encodeURIComponent(ko.unwrap(valueAccessor()).replace(/\r?\n|\r/g, ' ')));
             };
          };
         ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext);
@@ -195,9 +195,28 @@ ko.bindingHandlers.vbaVisible = {
         if (visible) {
             $(element).show();
             $(element).removeClass('hidden');
+            $(element).removeClass('remainHidden');
         } else {
             $(element).hide();
             $(element).addClass('hidden');
+            $(element).addClass('remainHidden');
+        }
+    }
+};
+
+// Override knockout visible binding to allow for cookies
+ko.bindingHandlers.visible = {
+    'update': function (element, valueAccessor) {
+        var value = ko.utils.unwrapObservable(valueAccessor());
+
+        var isCurrentlyVisible = !(element.style.display == "none");
+        if (value && !isCurrentlyVisible){
+            element.style.display = "";
+            $(element).removeClass("remainHidden");
+        }
+        else if ((!value) && isCurrentlyVisible){
+            element.style.display = "none";
+            $(element).addClass("remainHidden");
         }
     }
 };
@@ -499,12 +518,21 @@ ko.filters.number = function(value,nbrOfDecimals) {
 };
 
 ko.filters.currency = function(value, currency, divider) {
-    if (currency === undefined) currency = 'tkr';
-    if (divider === undefined) divider = 1000;
-    value = value/divider;
-    value = Number(Math.round(value+'e'+0)+'e-'+0);
-    return value.toLocaleString() + currency;
+    var retval;
+    var currencyfirst = ["$", "£", "¥", "₱", "₭", "₦", "₩", "₮", "฿", "₹", "₡", "৳"];
+    if (typeof value !== "string") value = value.toString();
+    if (currency === undefined) currency = 'kr';
+    if (divider === undefined) divider = ' ';
+
+    if (currencyfirst.indexOf(currency) > -1) {
+        retval = currency + ' ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, divider);
+    }
+    else {
+        retval = value.replace(/\B(?=(\d{3})+(?!\d))/g, divider) + ' ' + currency;
+    }
+    return retval;
 };
+
 ko.filters.percent = function(value, arg1) {
     return (value * 100) + '%';
 };
@@ -533,3 +561,4 @@ ko.bindingHandlers.rotate = {
         });
     }
 };
+

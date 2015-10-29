@@ -1,6 +1,11 @@
 {
 	"versions":[
 		{
+			"version": 1.9,
+			"info": "Improved and selectable watch, new currency binding, support for cookies and more. Font Awesome 4.4.",
+			"date": "2015-10-19"
+		},
+		{
 			"version": 1.8,
 			"info": "Possibility to search for data in the watch. Improved log functionality. Minified CSS and JavaScript. Knockout 3.3. Fontawesome 4.3. Moment 2.10.3. Twitter Bootstrap 3.3.5",
 			"date": "2015-07-07"

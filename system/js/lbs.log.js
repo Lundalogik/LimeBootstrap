@@ -35,6 +35,8 @@
         }
     },
 
+
+
     /**
     Log to the console if in chrome
     
@@ -123,6 +125,29 @@
             lbs.log.logToConsole.error((msg));
         }
     },
+
+    /**
+    Log to LIME Pro infolog tab.
+    type should be either 'info', 'warning' or 'error'.
+    */
+    logToInfolog: function (type, msg) {
+        try{
+            if (type !== 'info' && type !== 'warning' && type !== 'error') {
+                type = 'info';
+            }
+            if(typeof msg === 'object'){
+                msg = JSON.stringify(msg);
+            }
+            else if(typeof msg !== 'string'){
+                msg = msg.toString();
+            }
+            lbs.common.executeVba('LBSHelper.logToInfolog,' + type + ',' + msg.replace(/,/g, '!@!').replace(/'/g, '%&%'));
+        }
+        catch(err) {
+            lbs.common.executeVba('LBSHelper.logToInfolog,' + "error" + ',' + err.toString().replace(/,/g, '!@!').replace(/'/g, '%&%'));
+        }
+
+    }
 };
 
 /**
@@ -206,12 +231,14 @@ lbs.log.vmFactory = function (enabled) {
     };
 };
 
+
+
 lbs.log.watch = {
 
     show : function(state){
         var wvm = new lbs.log.watch.vmFactory();
         if(state !== ''){wvm.initState = state;}
-        var dialog = showModalDialog("lbs.html?sv=watch&&type=tab",wvm,"status:false;dialogWidth:900px;dialogHeight:800px;resizable:Yes");
+        var dialog = showModalDialog("lbs.html?sv=watch&&type=tab",wvm,"status:false;dialogWidth:900px;dialogHeight:820px;resizable:Yes");
     },
 
     setup : function(){
@@ -243,11 +270,25 @@ lbs.log.watch = {
             wvm.selectState(wvm.initState);
             wvm.selectVm(wvm.vms[0]);
 
-            //add trigger tot close watch 27 = enter 
-            $('body').keypress(function (e) {                
-                if (e.which == 27) {                    
-                    window.close();
-                }               
+            //add trigger tot close watch 27 = enter. Ctrl+f will focus the search input
+            var map = { 70: false, 27: false, 17: false };
+            $('body').keydown(function (e) {
+                if (e.keyCode in map) {
+                    map[e.keyCode] = true;
+                    if (map[70] && map[17]) {
+                        $('#searchValue').focus();                        
+                        map[70] = false;
+                        map[17] = false;
+                    }
+                    if (map[27]) {
+                        window.close();
+                        map[27] = false;
+                    }
+                }
+            }).keyup(function (e) {                
+                if (e.keyCode in map) {
+                    map[e.keyCode] = false;
+                }
             });
         }
     },
@@ -270,7 +311,9 @@ lbs.log.watch = {
         self.searchValue = ko.observable().extend({ throttle: 50 });
         self.logView = ko.observable("SHOW ALL");
         self.logStatus = ['LOG'];
-
+        self.watchSelected = ko.observable(false);
+        
+    
         //var html is used to save main html
         var html = "";
         self.counter = ko.observable(0);
@@ -289,6 +332,17 @@ lbs.log.watch = {
             }
         });
 
+        self.select = function(){
+            self.watchSelected(true);
+            $('#vmDataText').height($('#vmDataText').prop('scrollHeight'));
+            
+        }
+        self.deSelect = function(){
+            self.watchSelected(false);
+        }
+        self.copyWatch = function(){
+            window.clipboardData.setData('Text', $('#vmDataText').text());
+        }
         //search a VM        
         self.searchValue.subscribe(function (searchString) {            
             var lowerString = searchString.toLowerCase();
@@ -326,7 +380,7 @@ lbs.log.watch = {
                 var target = '#' + self.order();
                 if ($(target).length > 0) {
                     $('#watchContainer').animate({
-                        scrollTop: $(target).offset().top + $('#watchContainer').scrollTop()
+                        scrollTop: $(target).offset().top + $('#watchContainer').scrollTop() - 200
                     }, 200);
 
                     var old = '#' + (self.order() - 1).toString(16);
@@ -368,6 +422,10 @@ lbs.log.watch = {
         self.selectState = function(state){
             self.selectedState(state);
         };
+
+        self.copyWatch = function(){
+            window.clipboardData.setData('Text', $('#vmDataText').text());
+        }
 
         // selected log status
         self.selectedLogStatus = function (view) {            

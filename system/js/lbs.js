@@ -45,7 +45,9 @@ var lbs = lbs || {
     Setup
     */
     setup: function () {
-        
+               
+        //Loading Jotnar
+        lbs.jotnar.winterEgg();
 
         //system param
         this.setSystemOperationParameters();
@@ -78,7 +80,7 @@ var lbs = lbs || {
 
         //set moment language
         moment.lang(lbs.common.executeVba('Localize.GetLanguage'));
-        
+
         //load datasources
         this.vm = lbs.loader.loadDataSources(this.vm, this.config.dataSources, false);
 
@@ -121,9 +123,9 @@ var lbs = lbs || {
 
         //Loading complete
         lbs.loading.showLoader(false);
-
-        //Loading Jotnar
-        lbs.jotnar.winterEgg();
+        
+        //Loading cookies
+        lbs.bakery.loader();
 
         //syntax highjlight
         lbs.log.watch.sh();
@@ -341,24 +343,6 @@ var lbs = lbs || {
     **/ 
     SetJqEvents: function () {
 
-        //Expandable: Toggels visibility of child-elements of the element. Used in menues
-        $(".expandable").find(".menu-header").click(
-            function () {
-                var menuDiv = $(this).parent();
-                $(this).find("i").first().toggleClass("fa fa-angle-down"); //expanded
-                $(this).find("i").first().toggleClass("fa fa-angle-right"); // Hidden
-                if (menuDiv.hasClass("collapsed")) {
-                     menuDiv.removeClass("collapsed");
-                     menuDiv.children("li").not(".remainHidden").fadeIn(200);
-                     menuDiv.find(":hidden").removeClass("remainHidden");
-                }else{
-                    
-                    menuDiv.addClass("collapsed");
-                    menuDiv.find(":hidden").addClass("remainHidden");
-                    menuDiv.children("li").not(".menu-header").not(".divider").fadeOut(200);
-                }
-            }
-        );
 
 
     
@@ -399,20 +383,7 @@ var lbs = lbs || {
     * 
     **/
     ExecuteOnloadEvents: function () {
-
-        //menues
     
-        $(".expandable").each(function () {
-             // if hidden by some reason, don't fuck with it.
-            if ($(this).hasClass("collapsed")) { //should be hidden if class hidden  exists
-                $(this).find(":hidden").addClass("remainHidden");
-                $(this).find(".menu-header").prepend("<i class='fa fa-angle-right'> </i>");
-                $(this).children("li").not(".menu-header").not(".divider").hide();
-            } else {
-                $(this).find(".menu-header").prepend("<i class='fa fa-angle-down'> </i>");
-            }
-        });
-
         //header icons
         $(".header-icon").each(function(){
             $(this).addClass("header-icon-container");

@@ -3,7 +3,7 @@ lbs.externalConfig = {
 	Enable or disable the debug console 
 	for the whole application
 	**/
-	debug: false,
+	debug: true,
 	verboseLevel: "debug",
 	/*
 	Verbose levels:
@@ -62,4 +62,4 @@ lbs.externalConfig = {
 		//  	autorefresh : false
 		// },
 	}
-} 
+}

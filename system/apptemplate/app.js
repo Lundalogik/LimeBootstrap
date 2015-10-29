@@ -12,7 +12,7 @@ lbs.apploader.register('%%APP_NAME%%', function () {
             this.resources = {
                 scripts: [], // <= External libs for your apps. Must be a file
                 styles: ['app.css'], // <= Load styling for the app.
-                libs: [] // <= Already included libs, but not loaded per default. Example json2xml.js
+                libs: [] // <= Already included libs, put not loaded per default. Example json2xml.js
             };
     };
 

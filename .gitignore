@@ -1,3 +1,6 @@
 /*.html
 !/lbs.html
 /apps/*
+/node_modules/*
+/gulpfile.js
+/lbs.gulp_install.bat

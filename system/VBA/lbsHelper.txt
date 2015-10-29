@@ -1,3 +1,10 @@
+' NOTE THAT THE CODE IN THIS MODULE IS A PART OF THE LIME PRO BASIC DATABASE AND MAY NOT BE CHANGED.
+' ANY CUSTOMIZATIONS OR ADDED FUNCTIONALITY SHOULD BE DONE IN SEPARATE FORMS, MODULES AND CLASS MODULES.
+' IF YOU CHOOSE TO IGNORE THIS WARNING AND CHANGE THE CODE IN THIS MODULE, SUPPORT OR VERSION COMPATIBILITY IS
+' NO LONGER GUARANTEED.
+'
+' //THE LIME CORE GROUP AT LUNDALOGIK
+
 Option Explicit
 
 Private locAvalibleActionpads As Scripting.Dictionary
@@ -248,9 +255,9 @@ Public Function loadXmlFromStoredProcedure(procedureName As String) As String
     Dim oProcedure As LDE.Procedure
     Set oProcedure = Application.Database.Procedures.Lookup(procedureName, lkLookupProcedureByName)
     oProcedure.Parameters("@@lang").InputValue = Database.Locale
-    oProcedure.Parameters("@@idcoworker").InputValue = ActiveUser.Record.id
+    oProcedure.Parameters("@@idcoworker").InputValue = ActiveUser.Record.ID
     Call oProcedure.Execute(False)
-    sXml = oProcedure.Result
+    sXml = oProcedure.result
     loadXmlFromStoredProcedure = sXml
 Exit Function
 ErrorHandler:
@@ -339,5 +346,34 @@ Public Sub CreateUpdateTranslation(ByVal sOwner As String, ByVal sCode As String
     Exit Sub
 ErrorHandler:
     Call UI.ShowError("CreateUpdateTranslation")
+End Sub
+
+'=============================================
+' Log to LIME Pro infolog tab.
+' logType should be one of: "info", "warning" or "error".
+'=============================================
+Public Sub logToInfolog(strType As String, message As String)
+    On Error GoTo ErrorHandler
+    
+    Dim lngType As Long
+    If strType = "info" Then
+        lngType = lkLogTypeInformation
+    ElseIf strType = "warning" Then
+        lngType = lkLogTypeWarning
+    ElseIf strType = "error" Then
+        lngType = lkLogTypeError
+    Else
+        lngType = lkLogTypeInformation
+    End If
+    
+    ' Change back to , instead of !@! and ' instead of %&%
+    message = VBA.Replace(message, "!@!", ",")
+    message = VBA.Replace(message, "%&%", "'")
+    
+    Call Application.log.Add(lngType, "LIME Bootstrap", "JavaScript", , message)
+    
+    Exit Sub
+ErrorHandler:
+    Call UI.ShowError("LBSHelper.logToInfolog")
 End Sub
 
