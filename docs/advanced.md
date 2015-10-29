@@ -114,7 +114,7 @@ Please note that you can put the bindings on separate rows to increase readabili
 Cookies are used to store values from the actionpads and apps. Every cookie is locally stored in the actionpad folder and is unique for every computer and database (not user). There are two methods that you can use to handle a cookie: 
 
 ###Get cookie
-To get the value in a cookie use the method lbs.bakery.getCookie()
+To get the value in a cookie use the method lbs.bakery.getCookie(name)
 
 ```javascript
 var mycookievalue = lbs.bakery.getCookie(“gingerbread”)
@@ -123,5 +123,5 @@ var mycookievalue = lbs.bakery.getCookie(“gingerbread”)
 To set a cookie just call the function lbs.bakery.setCookie(name,value,days). See example below. 
 
 ```javascript
-lbs.bakery.setCookie(“gingerbread”,myvalue,3)
+lbs.bakery.setCookie(“gingerbread”,mycookievalue,3)
 ```
