@@ -1,3 +1,4 @@
+#Bindings
 ##vbaVisible: Hiding or showing elements
 
 It is common that some elements only should be visible for certain users or when specific conditions apply. It can be done in two different ways. Either use the LIME Bootstrap data-binding `vbaVisible:` or use the knockout binding `visible:`.
@@ -174,3 +175,20 @@ Input parameters are provided by simply separating them by commas.
         <a data-bind="text:'Andreas', tooltip: 'Konsult'"></a>
         <a data-bind="text:'Andreas', tooltip: {text:'Konsult',placement:'right'}"></a>
 ```
+
+
+#Filters
+##Currency
+The currency filter can be combined with a text data-bind to format a number as a currency. The filter takes two optional parameters - currency and divider. The currency is the unit in which you want to present the formatted number, e.g. $ or GBP or SEK. The divider lets you decide what delimiter to use for formatting the number.
+
+```html
+<div data-bind="text: 100000 | currency:'$':','"></div>
+```
+
+This filter will format the number 100000 as $100,000. The following code
+
+```html
+<div data-bind="text: 100000 | currency:'£'"></div>
+```
+
+will result in the formatted value 100 000£.
