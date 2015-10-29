@@ -108,4 +108,19 @@ Example:
 
 ```
 
-Please note that you can but the bindings on separate rows to increase readability
+Please note that you can put the bindings on separate rows to increase readability
+
+##Cookies
+Cookies are used to store values from the actionpads and apps. Every cookie is locally stored in the actionpad folder and is unique for every computer and database (not user). There are two methods that you can use to handle a cookie: 
+
+###Get cookie
+To get the value in a cookie use the method lbs.bakery.getCookie()
+
+```javascript
+var mycookievalue = lbs.bakery.getCookie(“gingerbread”)
+
+###Set Cookie
+To set a cookie just call the function lbs.bakery.setCookie(name,value,days). See example below. 
+
+```javascript
+lbs.bakery.setCookie(“gingerbread”,myvalue,3)
