@@ -14,6 +14,18 @@ You may however want to exclude `config.js` and anything in the `resorces` folde
 
 #Changelog
 
+###1.9
+* Cookies
+* Currency filter
+* Selectable watch
+* Improved searchability
+* Option keys in VM
+* No more snow
+* Log to infolog
+* Improved language support
+* Font awesome 4.4
+
+
 ###1.8
 * Search for data in the watch
 * Improved log functionality
