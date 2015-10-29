@@ -188,7 +188,7 @@ The currency filter can be combined with a text data-bind to format a number as 
 This filter will format the number 100000 as $100,000. The following code
 
 ```html
-<div data-bind="text: 100000 | currency:'£'"></div>
+<div data-bind="text: 100000 | currency:'SEK'"></div>
 ```
 
-will result in the formatted value 100 000£.
+will result in the formatted value 100 000 SEK.
