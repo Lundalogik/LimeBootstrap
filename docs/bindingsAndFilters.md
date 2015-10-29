@@ -178,7 +178,7 @@ Input parameters are provided by simply separating them by commas.
 
 
 #Filters
-A filter in knockout punches is a way of 'piping' a text binding through a pre-defined filter to format the value into a desired way. The filter is initiated using the | sign followed by the name of the filter and any necessary parameter inputs to the filter.
+A filter in knockout punches is a way of 'piping' a text binding through a pre-defined filter to format the value in a desired way. The filter is initiated using the | sign followed by the name of the filter and any necessary parameter inputs to the filter.
 
 ##Currency
 The currency filter can be combined with a text data-bind to format a number as a currency. The filter takes two optional parameters - currency and divider. The currency is the unit in which you want to present the formatted number, e.g. $ or GBP or SEK. The divider lets you decide what delimiter to use for formatting the number.
