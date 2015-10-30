@@ -1,4 +1,4 @@
-﻿/**
+/**
 * This is the default LIME Pro javascript lib for actionpad functions.
 * It contains many functions to make the world a little better place.
 */
@@ -343,7 +343,7 @@ var lbs = lbs || {
     **/ 
     SetJqEvents: function () {
 
-
+        
 
     
     },
@@ -383,7 +383,7 @@ var lbs = lbs || {
     * 
     **/
     ExecuteOnloadEvents: function () {
-    
+        
         //header icons
         $(".header-icon").each(function(){
             $(this).addClass("header-icon-container");

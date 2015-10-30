@@ -343,7 +343,7 @@ var lbs = lbs || {
     **/ 
     SetJqEvents: function () {
 
-
+        
 
     
     },
@@ -383,9 +383,7 @@ var lbs = lbs || {
     * 
     **/
     ExecuteOnloadEvents: function () {
-
-        //menues
-    
+        
         //header icons
         $(".header-icon").each(function(){
             $(this).addClass("header-icon-container");
@@ -1544,7 +1542,7 @@ lbs.bakery = {
         var ap = decodeURI(
             (RegExp('ap' + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
         );
-
+        //On load: check collapsible menu cookies
         $('.expandable').each(function () {
             if (lbs.bakery.getCookie($(this).index() + 'ul' + ap) === "0") {
                 $(this).find(".menu-header").prepend("<i class='fa fa-angle-down'> </i>");
@@ -1557,6 +1555,7 @@ lbs.bakery = {
                 $(this).children("li").not(".menu-header").not(".divider").hide();
             }
         });
+
 
         $('.expandable').find(".menu-header").click(function () {
             var menuDiv = $(this).parent();
@@ -1579,8 +1578,8 @@ lbs.bakery = {
             menuDiv.addClass("collapsed");
             menuDiv.children("li").not(".menu-header").not(".divider").fadeOut(200);
         }
-    }
-	,
+    },
+    
     setCookie: function (cname, cvalue, exdays) {
 
         var ap = decodeURI(
@@ -2294,6 +2293,7 @@ ko.bindingHandlers.visible = {
         }
     }
 };
+
 ko.bindingHandlers.email = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var newValueAccessor = function() {
@@ -2311,7 +2311,8 @@ Prepend icon
 ko.bindingHandlers.icon = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var content = lbs.common.iconTemplate.format(ko.unwrap(valueAccessor()));
-        if ($(element).text() !== '' && $(element).text().substring(0, content.length) != content) {
+        if (
+            $(element).text() !== '' && $(element).text().substring(0, content.length) != content) {
             $(element).prepend(content);
             element = $(element).get(0);
         }
