@@ -45,7 +45,7 @@ var lbs = lbs || {
     Setup
     */
     setup: function () {
-               
+        var tTot1 = moment();
         //Loading Jotnar
         lbs.jotnar.winterEgg();
 
@@ -100,15 +100,17 @@ var lbs = lbs || {
         //load resources
         this.loader.loadResources();
 
+        var tApp1 = moment();
         //apps vm
         this.apploader.buildApps();
-
+        
         //setup bindings
         this.applyContentBindings();
 
         //init apps
         this.apploader.initializeApps();
-
+        var tApp2 = moment();
+        
         //push delayed logitems
         this.log.vm.enableConsole();
 
@@ -129,8 +131,10 @@ var lbs = lbs || {
 
         //syntax highjlight
         lbs.log.watch.sh();
+        var tTot2 = moment();
 
-        
+        lbs.log.info("Total load time: " + tTot2.diff(tTot1,"milliseconds")+ "ms");
+        lbs.log.info("App load time: " + tApp2.diff(tApp1,"milliseconds") + "ms");
 
     },
 
