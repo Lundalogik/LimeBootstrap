@@ -24,6 +24,7 @@ You may however want to exclude `config.js` and anything in the `resorces` folde
 * Log to infolog
 * Improved language support
 * Font awesome 4.4
+* Info about load time for apps and LBS
 
 
 ###1.8
