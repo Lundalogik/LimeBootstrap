@@ -252,8 +252,8 @@ var appFactory = function (app) {
 
     //})
     if (self.smallImage === "") {
-        self.bigImage = ["../assets/img/_default.png"];
-        self.smallImage = ["../assets/img/_default.png"];
+        self.bigImage = ["http://limebootstrap.lundalogik.com/web/appstore/img/_default.png"];
+        self.smallImage = ["http://limebootstrap.lundalogik.com/web/appstore/img/_default.png"];
     }
 
     self.changeAppInfo = function (app, item) {
