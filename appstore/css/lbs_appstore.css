@@ -9,14 +9,14 @@ font-weight: 100;
 	}
 
 .jumbotron{
-	background-color: #3498db;
+	background-color: #A0CE4E;
 	border-color: transparent;
 color:#FFF;
 
 }
 
 .navbar-default {
-	background-color: #3498db;
+	background-color: #A0CE4E;
 	border-color: transparent;
 }
 
@@ -28,6 +28,14 @@ color:#FFF;
 	color: white;
 }
 
+.nav .caret {
+    border-top-color:#fff;
+    border-bottom-color:#fff;
+}
+.prologo {
+    width:50px;
+    margin-left:10px;
+}
 .app{
 	
 	background-color: #FFF;

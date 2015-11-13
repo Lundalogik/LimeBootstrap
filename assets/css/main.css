@@ -9,7 +9,7 @@
 
 body {
   background-color: #f2f2f2;
-    font-family: 'roboto', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-weight: 300;
     font-size: 16px;
     color: #555;
@@ -84,7 +84,7 @@ p {
 
 /* Links */
 a {
-    color: #3498db;
+    color: #A0CE4E;
     word-wrap: break-word;
 
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -120,7 +120,7 @@ a:after {
 }
 
 .navbar-default {
-	background-color: #3498db;
+	background-color: #A0CE4E;
 	border-color: transparent;
 }
 
@@ -147,14 +147,18 @@ a:after {
 
 i {
 	margin: 8px;
-	color: #3498db; 
+	color: #A0CE4E; 
 }
 
+.prologo {
+    width:50px;
+    margin-left:10px;
+}
 
 /* HeaderWrap */
 #headerwrap {
 	/* background: url(../img/bg01.jpg) no-repeat center top; */
-	background-color: #3498db;
+	background-color: #A0CE4E;
 	margin-top: -20px;
 	padding-top:200px;
 	background-attachment: relative;
