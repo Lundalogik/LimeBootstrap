@@ -1,8 +1,11 @@
 var lbsappstore = {
     init: function () {
-        $.getJSON('http://api.lime-bootstrap.com/apps', function (data) {
+        $.getJSON('http://api.lime-bootstrap.com/apps?page=1', function (data) {
             var vm = new viewModel();
             vm.populateFromRawData(data)
+            vm.loadMoreData(2);
+            vm.loadMoreData(3);
+            //vm.loadMoreData();
             vm.setActiveApp();
             vm.setInitalFilter();
             console.log(ko.toJS(vm));
@@ -23,6 +26,8 @@ var viewModel = function () {
     self.activeFilter = ko.observable();
     self.searchvalue = ko.observable();
     self.mergeMenu = ko.observable(false);
+    self.activepage = ko.observable(1);
+    self.loadedpages = [1];
     // self.hitcounter = ko.observable();
 
     self.runsinlime = ko.observable(false);
@@ -31,7 +36,15 @@ var viewModel = function () {
         self.runsinlime(true);
     }
 
-
+    self.loadMoreData = function(pagenumber){
+        if (self.loadedpages.indexOf(pagenumber) == -1){
+            $.getJSON('http://api.lime-bootstrap.com/apps?page=' + pagenumber, function (data) {
+                self.populateFromRawData(data);
+            });
+            self.loadedpages.push(pagenumber);    
+        }
+        
+    }
     // utility for converting to grid
     self.listToMatrix = function (list, elementsPerSubArray) {
         var matrix = [], i, k;
@@ -47,11 +60,25 @@ var viewModel = function () {
 
     // populate VM from JSON data
     self.populateFromRawData = function (rawData) {
+        self.pages = ko.observableArray();
+        var currentpage = rawData._self._current_page; 
+        for ( i = currentpage; i <= rawData._self._total_pages; i++) {
+            self.pages.push(new self.pageFactory(i));
+        }
         $(rawData.apps).each(function (index, app) {
             if (app.name) {
-                self.apps.push(new appFactory(app))
+                self.apps.push(new appFactory(app, currentpage))
             }
         });
+    }
+
+    self.pageFactory = function(pagenumber){
+        var page = this;
+        page.pagenumber = pagenumber;
+        page.nextpage = function(){
+            self.activepage(this.pagenumber);
+        }
+        return page;
     }
 
     // post processing
@@ -70,23 +97,26 @@ var viewModel = function () {
                     $('#navbar-search').focus();
                 }
                 if ((item.appName().toLowerCase().indexOf(self.searchvalue().toLowerCase()) >= 0)) {
-                    if (self.activeFilter().text === 'All') {
-                        return item.info.status() === 'Release' || item.info.status() === 'Beta'
-                    }
-                    else if (self.activeFilter().text === 'New') {
-                        if (Object.prototype.toString.call(item.info.versions()[0]) !== '[object Undefined]') {
-                            return moment(item.info.versions()[0].date()).format('YYYY-MM-DD') > moment().subtract(90, 'days').format('YYYY-MM-DD');
-                        }
-                    }
-                    else {
-                        return item.info.status() == (self.activeFilter() ? self.activeFilter().text : '');
-                    }
+                    return item;
+                    // if (self.activeFilter().text === 'All') {
+                    //     //return item.info.status() === 'Release' || item.info.status() === 'Beta'
+                    //     return item.currentpage == self.activepage();
+                    // }
+                    // else if (self.activeFilter().text === 'New') {
+                    //     if (Object.prototype.toString.call(item.info.versions()[0]) !== '[object Undefined]') {
+                    //         return moment(item.info.versions()[0].date()).format('YYYY-MM-DD') > moment().subtract(90, 'days').format('YYYY-MM-DD');
+                    //     }
+                    // }
+                    // else {
+                    //     return item.info.status() == (self.activeFilter() ? self.activeFilter().text : '');
+                    // }
                 }
             }
             else {
                 if (self.activeFilter()) {
                     if (self.activeFilter().text === 'All') {
-                        return item.info.status() === 'Release' || item.info.status() === 'Beta'
+                        //return item.info.status() === 'Release' || item.info.status() === 'Beta'
+                        return item.currentpage == self.activepage();
                     }
                     else if (self.activeFilter().text === 'New') {
                         if (Object.prototype.toString.call(item.info.versions()[0]) !== '[object Undefined]') {
@@ -98,6 +128,7 @@ var viewModel = function () {
                     }
                 }
             }
+            
         });
 
         // sort
@@ -208,9 +239,10 @@ var viewModel = function () {
 /**
 ViewModel for an app
 */
-var appFactory = function (app) {
+var appFactory = function (app, currentpage) {
     var self = this;
     self.images = [];
+    self.currentpage = currentpage;
     /**
 	Sets default picture if app images is missing.
 	*/
@@ -218,8 +250,6 @@ var appFactory = function (app) {
     if (window.external && window.external.database) {
         self.runswithlip(true);
     }
-    //self.testimg = app.images;
-    //console.log(app.images);
     if (app.images.indexOf(',') > -1) {
         self.images = app.images.split(',');
     }
@@ -297,11 +327,14 @@ var appFactory = function (app) {
         location.hash = '';
         $("#expanded-" + app.name()).modal('hide');
     };
-
     self.download = function () {
         if (!self.license()) {
             location.href = 'http://limebootstrap.lundalogik.com/api/apps/' + self.name() + '/download/'
         }
+        else{
+            $('#myModal').modal('show');    
+        }
+        
         //else {
         //    self.passwordOk(false);
         //    $("#sign_in").modal('show');
@@ -314,23 +347,29 @@ var appFactory = function (app) {
         self.logintext('You need to be authenticated to download this application.');
     }
 
-    self.downloadPassword = function () {
+    self.downloadApp = function () {
         if (self.password()) {
-            $.getJSON('/api/login/username/llabadmin/password/' + self.password() + '/', function (data) {
-                var logindata = data.login.access;
-                console.log(data.login.access);
+            alert(self.password());
+            if(self.password() ==="LLAB"){
+                alert("hej");
+                location.href = '/api/apps/' + self.name() + '/download/';
+            }
+            // $.getJSON('/api/login/username/llabadmin/password/' + self.password() + '/', function (data) {
+            //     alert(data);
+            //     var logindata = data.login.access;
+            //     console.log(data.login.access);
 
-                if (logindata) {
-                    self.passwordOk(true);
-                    self.logintext('Nice! The download will begin soon.');
-                    location.href = '/api/apps/' + self.name() + '/download/'
-                }
-                else {
-                    self.logintext('Error! Wrong password.');
-                    self.password('');
-                    self.passwordOk(false);
-                }
-            });
+            //     if (logindata) {
+            //         self.passwordOk(true);
+            //         self.logintext('Nice! The download will begin soon.');
+            //         location.href = '/api/apps/' + self.name() + '/download/'
+            //     }
+            //     else {
+            //         self.logintext('Error! Wrong password.');
+            //         self.password('');
+            //         self.passwordOk(false);
+            //     }
+            // });
 
 
         }

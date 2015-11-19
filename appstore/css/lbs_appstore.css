@@ -178,6 +178,12 @@ code{
     margin-bottom: 50px;
     text-align:center;
 }
+.pagegroup{
+	margin: auto;
+	width: auto;
+	text-align: center;
+	margin-bottom: 20px;
+}
 .appstore-footer-list li{
     display:inline;  
     padding-left: 20px;  
@@ -196,23 +202,19 @@ code{
 	float: right;	
 	margin-right: 15px;
 	margin-top: 10px;
-	
 }
-#sign_in {
+#myModal {
     z-index: 2000;
-    padding-top: 15%;
+    padding-top: 10%;
 }
-#sign_in .modal-content {
-    background-color: #3498db;
+#myModal .modal-content {
+    background-color: #333333;
     color: #fff;
-    margin-left: 35%;
-    margin-right: 35%;
-    width: auto;
     padding: 0px 15px 15px 15px;
+    float:left;
 }
-#sign_in .modal-header {
-    border-bottom: none;
-    padding: 0px 0px 15px 0px;
+#myModal .modal-header {
+    padding: 15px 0px 15px 0px;
 }
 .downloadOk {
     text-align:center;

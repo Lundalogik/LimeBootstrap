@@ -49,6 +49,26 @@
                                         <span data-bind="text: (app.license()? 'Paid': 'Download')"></span>
                                     </button>
 
+                                    <div id="myModal" class="modal fade">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Download</h4>
+                                                <spand data-bind="text:app.appName()"></span>
+                                              </div>
+                                              <div class="modal-body">
+                                                 <p>This app requiers a license. If you got one, just type in the password and press download.</p>
+                                                 <input type="password" class="form-control" placeholder="Password">
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" data-bind="text:'Download', click: app.downloadApp"></button>
+                                              </div>
+                                            </div><!-- /.modal-content -->
+                                          </div><!-- /.modal-dialog -->
+                                      </div><!-- /.modal -->
+
                                     <button type="button" class="btn btn-success pull-right download" data-bind="click:app.installappwithlip, visible:  app.runswithlip()">
                                         <span data-bind="icon:(app.license()? 'glyphicon-usd' :'glyphicon-cloud-download')"></span>
                                         <span data-bind="text: 'Install'"></span>
@@ -90,31 +110,7 @@
                 <!-- /Expanded app view -->
 
 
-                <div class="modal fade bs-example-modal-sm" tabindex="-2" id="sign_in" role="dialog" aria-labelledby="mySmallModalLabel" >
-              <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <!--data-bind="visible: !passwordOk()"-->
-                        <div>
-                            <button type="button" class="close" data-bind="click:app.closeLogIn" aria-hidden="true">&times;</button>
-                            <h3>Download application</h3>
-                            <p data-bind="text: logintext()"></p>
-                        </div>
-                    </div>
-                    <div class="input-group" data-bind="visible: !passwordOk()">
-                        <input type="password" class="form-control" placeholder="Password" data-bind="value: password, valueUpdate:'afterkeydown';"/>
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" data-bind="click: downloadPassword, text: 'Download'"></button>
-                        </span>
-                    </div>
-                    <!--<div class="downloadOk" data-bind="visible: passwordOk() ">
-                        <h2 class="green">Succes!</h2>
-                        <p>Enjoy this magic application.</p>
-                        <button class="btn btn-default right" data-bind="click: app.closeLogIn, text:'Close'"></button>
-                    </div>-->
-                </div>
-              </div>
-            </div>
+              
 
 
 
@@ -231,6 +227,12 @@
                 <img src="img/ajax-loader.gif">
             </div>
         </div>
+    </div>
+
+    <div class="pagegroup" data-bind="visible: activeFilter().text === 'All'">
+    <!-- ko foreach:{ data:pages, as: 'page'} -->
+        <button class="btn btn-default" data-bind="text: page.pagenumber, click: page.nextpage"></button>
+    <!-- /ko -->
     </div>
 
     <div class="container" data-bind="visible: !runsinlime()">
