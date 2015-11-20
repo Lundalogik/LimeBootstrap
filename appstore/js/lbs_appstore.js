@@ -3,6 +3,12 @@ var lbsappstore = {
         $.getJSON('http://api.lime-bootstrap.com/apps?page=1', function (data) {
             var vm = new viewModel();
             vm.populateFromRawData(data)
+            vm.pages = ko.observableArray();
+            for (i = data._self._current_page; i <= data._self._total_pages; i++) {
+                vm.pages.push(new vm.pageFactory(i));
+                console.log("LOL" + i);
+            }
+
             vm.loadMoreData(2);
             vm.loadMoreData(3);
             //vm.loadMoreData();
@@ -38,9 +44,23 @@ var viewModel = function () {
 
     self.loadMoreData = function(pagenumber){
         if (self.loadedpages.indexOf(pagenumber) == -1){
-            $.getJSON('http://api.lime-bootstrap.com/apps?page=' + pagenumber, function (data) {
-                self.populateFromRawData(data);
-            });
+            //$.getJSON('http://api.lime-bootstrap.com/apps?page=' + pagenumber, function (data) {
+            //    self.populateFromRawData(data);
+            //});            
+                $.ajax({
+                    url: 'http://api.lime-bootstrap.com/apps?page=' + pagenumber,
+                    type: 'get',
+                    dataType: 'json',
+                    cache: true,
+                    async: false,
+                    success: function(data){
+                        self.populateFromRawData(data)
+                    },
+                    error: function () {
+                        console.log("något sket sig");
+                    }
+                    
+                });            
             self.loadedpages.push(pagenumber);    
         }
         
@@ -59,12 +79,9 @@ var viewModel = function () {
     }
 
     // populate VM from JSON data
-    self.populateFromRawData = function (rawData) {
-        self.pages = ko.observableArray();
+    self.populateFromRawData = function (rawData) {        
         var currentpage = rawData._self._current_page; 
-        for ( i = currentpage; i <= rawData._self._total_pages; i++) {
-            self.pages.push(new self.pageFactory(i));
-        }
+        
         $(rawData.apps).each(function (index, app) {
             if (app.name) {
                 self.apps.push(new appFactory(app, currentpage))
@@ -116,6 +133,7 @@ var viewModel = function () {
                 if (self.activeFilter()) {
                     if (self.activeFilter().text === 'All') {
                         //return item.info.status() === 'Release' || item.info.status() === 'Beta'
+                        console.log(self.activepage());
                         return item.currentpage == self.activepage();
                     }
                     else if (self.activeFilter().text === 'New') {
