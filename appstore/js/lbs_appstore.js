@@ -346,12 +346,12 @@ var appFactory = function (app, currentpage) {
         $("#expanded-" + app.name()).modal('hide');
     };
     self.download = function () {
-        if (!self.license()) {
-            location.href = 'http://limebootstrap.lundalogik.com/api/apps/' + self.name() + '/download/'
-        }
-        else{
+        //if (!self.license()) {
+        //    location.href = 'http://limebootstrap.lundalogik.com/api/apps/' + self.name() + '/download/'
+        //}
+        //else{
             $('#myModal').modal('show');    
-        }
+        //}
         
         //else {
         //    self.passwordOk(false);
@@ -366,13 +366,31 @@ var appFactory = function (app, currentpage) {
     }
 
     self.downloadApp = function () {
-        if (self.password()) {
+        //if (self.password()) {
             alert(self.password());
             if(self.password() ==="LLAB"){
                 alert("hej");
                 location.href = '/api/apps/' + self.name() + '/download/';
             }
-            // $.getJSON('/api/login/username/llabadmin/password/' + self.password() + '/', function (data) {
+            alert("här");
+
+            $.ajax({
+                url: 'http://api.lime-bootstrap.com/login/llabadmin/' + 'llab',
+                type: 'post',
+                dataType: 'jsonp',
+                cache: true,
+                async: false,
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function () {
+                    console.log("något sket sig");
+                }
+
+            });
+            //$.postJSON('/login/llabadmin/' + 'llab' , function (data) {
+            //    console.log(data);
+            //});
             //     alert(data);
             //     var logindata = data.login.access;
             //     console.log(data.login.access);
@@ -390,7 +408,7 @@ var appFactory = function (app, currentpage) {
             // });
 
 
-        }
+        //}
     }
 
     self.installappwithlip = function () {

@@ -231,7 +231,7 @@
 
     <div class="pagegroup" data-bind="visible: activeFilter().text === 'All'">
     <!-- ko foreach:{ data:pages, as: 'page'} -->
-        <button class="btn btn-default" data-bind="text: page.pagenumber, click: page.nextpage"></button>
+        <button class="" data-bind="text: page.pagenumber, click: page.nextpage, attr:{'class':($root.activepage() === pagenumber ? 'btn btn-success':'btn btn-default') } "></button>
     <!-- /ko -->
     </div>
 
