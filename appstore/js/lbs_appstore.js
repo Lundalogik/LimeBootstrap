@@ -332,6 +332,7 @@ var appFactory = function (app, currentpage) {
     };
     self.download = function () {
         if (self.license()) {
+            console.log("downloaing app");
             location.href = 'http://api.lime-bootstrap.com/apps/' + self.name() + '/download'
         }
         else{
