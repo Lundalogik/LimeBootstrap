@@ -332,7 +332,6 @@ var appFactory = function (app, currentpage) {
     };
     self.download = function () {
         if (self.license()) {
-            console.log("downloaing app");
             location.href = 'http://api.lime-bootstrap.com/apps/' + self.name() + '/download'
         }
         else{
@@ -352,6 +351,7 @@ var appFactory = function (app, currentpage) {
     self.downloadApp = function () {
         if (!self.password()) {
             if(self.password() ==="LLAB"){
+                console.log("downloaing app");
                 location.href = 'http://api.lime-bootstrap.com/apps/' + self.name() + '/download'
                 self.password('');
                 self.wrongpassword(false);
