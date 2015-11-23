@@ -349,7 +349,7 @@ var appFactory = function (app, currentpage) {
     }
 
     self.downloadApp = function () {
-        if (!self.password()) {
+        if (self.password()!="") {
             if(self.password() ==="LLAB"){
                 console.log("downloaing app");
                 location.href = 'http://api.lime-bootstrap.com/apps/' + self.name() + '/download'
