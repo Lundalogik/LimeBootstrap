@@ -204,8 +204,8 @@ code{
 	margin-top: 10px;
 }
 #myModal {
-    z-index: 2000;
-    padding-top: 10%;
+    z-index: 3000;
+    padding-top: 100px;
 }
 #myModal .modal-content {
     background-color: #333333;
@@ -218,4 +218,13 @@ code{
 }
 .downloadOk {
     text-align:center;
+}
+.download-with-password{
+	float: right;
+    margin-bottom: 0px;
+    display: none;
+    width: 300px;
+    position: absolute;
+    top: 15px;
+    right: 57px;
 }

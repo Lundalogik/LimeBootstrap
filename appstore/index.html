@@ -44,46 +44,33 @@
                                 <button type="button" class="close" data-bind="click:app.closeApp" aria-hidden="true">&times;</button>
                                 <h4 class="modal-title">
                                     <span data-bind="text:app.appName()"></span>
-                                    <button type="button" class="btn btn-success pull-right download" data-bind="click:app.download, css:{disabled:(app.license()?true:false)},  visible: !app.runswithlip()">                                        
-                                        <span data-bind="icon:(app.license()? 'glyphicon-usd' :'glyphicon-cloud-download')"></span>
-                                        <span data-bind="text: (app.license()? 'Paid': 'Download')"></span>
-                                    </button>
-
-                                    <div id="myModal" class="modal fade">
-                                          <div class="modal-dialog">
-                                            <div class="modal-content">
-                                              <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title">Download</h4>
-                                                <spand data-bind="text:app.appName()"></span>
-                                              </div>
-                                              <div class="modal-body">
-                                                 <p>This app requiers a license. If you got one, just type in the password and press download.</p>
-                                                 <input type="password" class="form-control" placeholder="Password">
-                                              </div>
-                                              <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" data-bind="text:'Download', click: app.downloadApp"></button>
-                                              </div>
-                                            </div><!-- /.modal-content -->
-                                          </div><!-- /.modal-dialog -->
-                                      </div><!-- /.modal -->
-
-                                    <button type="button" class="btn btn-success pull-right download" data-bind="click:app.installappwithlip, visible:  app.runswithlip()">
-                                        <span data-bind="icon:(app.license()? 'glyphicon-usd' :'glyphicon-cloud-download')"></span>
-                                        <span data-bind="text: 'Install'"></span>
-                                    </button>
-                                    
-                                    <button type="button" class="btn btn-default pull-right download" data-bind="click:app.githubAddress">
-                                        <span class="glyphicon glyphicon-cog"></span>
-                                        Report problem or look at source
-                                    </button>
+                                    <span class="download-without-password">
+                                        <button type="button" class="btn btn-success pull-right download" data-bind="click:app.download, css:{disabled:(app.license()?true:false)},  visible: !app.runswithlip()">                                        
+                                            <span data-bind="icon:(app.license()? 'glyphicon-usd' :'glyphicon-cloud-download')"></span>
+                                            <span data-bind="text: (app.license()? 'Paid': 'Download')"></span>
+                                        </button>
+                                        
+                                        <button type="button" class="btn btn-success pull-right download" data-bind="click:app.installappwithlip, visible:  app.runswithlip()">
+                                            <span data-bind="icon:(app.license()? 'glyphicon-usd' :'glyphicon-cloud-download')"></span>
+                                            <span data-bind="text: 'Install'"></span>
+                                        </button>
+                                        
+                                        <button type="button" class="btn btn-default pull-right download" data-bind="click:app.githubAddress">
+                                            <span class="glyphicon glyphicon-cog"></span>
+                                            Report problem or look at source
+                                        </button>
+                                    </span>
 
                                 </h4>
-
+                                <span class="download-with-password">
+                                    <div class="input-group">
+                                      <input id="passwordinput" class="form-control" type="password" data-bind="value:app.password, valueUpdate:'afterkeydown', attr:{ placeholder: (app.wrongpassword()? 'Wrong password':'Password')}">
+                                      <span class="input-group-addon" data-bind="text:'Download', click: app.downloadApp"></span>
+                                    </div>  
+                                </span>
                             </div>
-
                             <div class="modal-body">
+                            
                                 <div class="license-app" data-bind="visible:app.license(), icon:'glyphicon-flag'">This app requires a license. Are you intrested in this application, <a href="http://www.lundalogik.com/about-us/contact-us/find-us/">please contact us!</a></div>
                                 <!-- App images-->
                                 <div class="carousel slide" data-ride="carousel" data-bind="attr:{id:'carousel-large' + app.name()}">
@@ -229,6 +216,7 @@
         </div>
     </div>
 
+    <!-- PAGING -->
     <div class="pagegroup" data-bind="visible: activeFilter().text === 'All'">
     <!-- ko foreach:{ data:pages, as: 'page'} -->
         <button class="" data-bind="text: page.pagenumber, click: page.nextpage, attr:{'class':($root.activepage() === pagenumber ? 'btn btn-success':'btn btn-default') } "></button>

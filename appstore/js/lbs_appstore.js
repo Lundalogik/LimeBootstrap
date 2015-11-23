@@ -6,12 +6,8 @@ var lbsappstore = {
             vm.pages = ko.observableArray();
             for (i = data._self._current_page; i <= data._self._total_pages; i++) {
                 vm.pages.push(new vm.pageFactory(i));
-                console.log("LOL" + i);
+                vm.loadMoreData(i);
             }
-
-            vm.loadMoreData(2);
-            vm.loadMoreData(3);
-            //vm.loadMoreData();
             vm.setActiveApp();
             vm.setInitalFilter();
             console.log(ko.toJS(vm));
@@ -115,25 +111,11 @@ var viewModel = function () {
                 }
                 if ((item.appName().toLowerCase().indexOf(self.searchvalue().toLowerCase()) >= 0)) {
                     return item;
-                    // if (self.activeFilter().text === 'All') {
-                    //     //return item.info.status() === 'Release' || item.info.status() === 'Beta'
-                    //     return item.currentpage == self.activepage();
-                    // }
-                    // else if (self.activeFilter().text === 'New') {
-                    //     if (Object.prototype.toString.call(item.info.versions()[0]) !== '[object Undefined]') {
-                    //         return moment(item.info.versions()[0].date()).format('YYYY-MM-DD') > moment().subtract(90, 'days').format('YYYY-MM-DD');
-                    //     }
-                    // }
-                    // else {
-                    //     return item.info.status() == (self.activeFilter() ? self.activeFilter().text : '');
-                    // }
                 }
             }
             else {
                 if (self.activeFilter()) {
                     if (self.activeFilter().text === 'All') {
-                        //return item.info.status() === 'Release' || item.info.status() === 'Beta'
-                        console.log(self.activepage());
                         return item.currentpage == self.activepage();
                     }
                     else if (self.activeFilter().text === 'New') {
@@ -310,7 +292,7 @@ var appFactory = function (app, currentpage) {
     }
     //Downloads app
     self.password = ko.observable('');
-    self.passwordOk = ko.observable(false);
+    self.wrongpassword = ko.observable(false);
     self.logintext = ko.observable('You need to be authenticated to download this application.')
 
     //self.name = ko.observable(app.name.charAt(0).toUpperCase() + app.name.slice(1))
@@ -344,71 +326,40 @@ var appFactory = function (app, currentpage) {
         app.expandedApp(false);
         location.hash = '';
         $("#expanded-" + app.name()).modal('hide');
+        $(".download-without-password").show();
+        $(".download-with-password").hide();
+        
     };
     self.download = function () {
-        //if (!self.license()) {
-        //    location.href = 'http://limebootstrap.lundalogik.com/api/apps/' + self.name() + '/download/'
-        //}
-        //else{
-            $('#myModal').modal('show');    
-        //}
-        
-        //else {
-        //    self.passwordOk(false);
-        //    $("#sign_in").modal('show');
-        //}
+        if (self.license()) {
+            location.href = 'http://api.lime-bootstrap.com/apps/' + self.name() + '/download'
+        }
+        else{
+            $(".download-without-password").hide();
+            $(".download-with-password").fadeIn();
+            $("#passwordinput").focus();  
+            self.wrongpassword(false);
+        }
     };
     self.closeLogIn = function () {
         $("#sign_in").modal('hide');
         self.passwordOk(false);
-        self.password('');
+        self.password123('');
         self.logintext('You need to be authenticated to download this application.');
     }
 
     self.downloadApp = function () {
-        //if (self.password()) {
-            alert(self.password());
+        if (!self.password()) {
             if(self.password() ==="LLAB"){
-                alert("hej");
-                location.href = '/api/apps/' + self.name() + '/download/';
+                location.href = 'http://api.lime-bootstrap.com/apps/' + self.name() + '/download'
+                self.password('');
+                self.wrongpassword(false);
             }
-            alert("här");
-
-            $.ajax({
-                url: 'http://api.lime-bootstrap.com/login/llabadmin/' + 'llab',
-                type: 'post',
-                dataType: 'jsonp',
-                cache: true,
-                async: false,
-                success: function (data) {
-                    console.log(data)
-                },
-                error: function () {
-                    console.log("något sket sig");
-                }
-
-            });
-            //$.postJSON('/login/llabadmin/' + 'llab' , function (data) {
-            //    console.log(data);
-            //});
-            //     alert(data);
-            //     var logindata = data.login.access;
-            //     console.log(data.login.access);
-
-            //     if (logindata) {
-            //         self.passwordOk(true);
-            //         self.logintext('Nice! The download will begin soon.');
-            //         location.href = '/api/apps/' + self.name() + '/download/'
-            //     }
-            //     else {
-            //         self.logintext('Error! Wrong password.');
-            //         self.password('');
-            //         self.passwordOk(false);
-            //     }
-            // });
-
-
-        //}
+            else{
+                self.password('');
+                self.wrongpassword(true);
+            }
+        }
     }
 
     self.installappwithlip = function () {
