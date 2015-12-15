@@ -365,6 +365,21 @@ lbs.loader = {
                         crossDomain: true
                     });
                     break;
+                case 'activeuser':
+                    try{
+                        var activeuser = lbs.limeDataConnection.ActiveUser.record
+                        data = lbs.loader.recordToJSON(activeuser, 'activeuser');
+                        if (!activeuser){
+                            lbs.log.warn("Failed to load the activeuser");
+                        }
+                        else if(!activeuser.Record){
+                            lbs.log.warn("Active user does not have a coworker card.");
+                        }
+                     }
+                     catch (ex) {
+                        lbs.log.warn("Failed to load activeuser.");
+                     }
+                     break;
             }
 
             //merge options into the viewModel
