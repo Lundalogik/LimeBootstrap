@@ -88,3 +88,6 @@ Calls a SOAP web-service.
 | source | URL          |
 | action | SOAP action  |
 | xml    | SOAP request |
+
+## __activeuser__
+Gets the currently logged in users record (Only available in 1.10 and above)
