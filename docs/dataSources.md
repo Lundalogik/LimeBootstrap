@@ -14,7 +14,9 @@ A data source can also take a parameter __"alias"__, which lets you specify a na
             {type: 'activeInspector'},
             {type: 'localization'},
             {type: 'relatedRecord', source: 'person', view: 'name;phone' , alias: 'contact'},
-            {type: 'storedProcedure', source: ''}
+            {type: 'storedProcedure', source: ''},
+            {type: 'record', source:'ActionpadHelpdesk.GetHelpdeskCompanyRecord', PassInspectorParam:'true', alias:'helpdesk'}
+            {type: 'activeuser'}
         ],
         autorefresh : false
 ```
@@ -88,3 +90,6 @@ Calls a SOAP web-service.
 | source | URL          |
 | action | SOAP action  |
 | xml    | SOAP request |
+
++## __activeuser__
++Gets the currently logged in users record (Only available in 1.10 and above)
