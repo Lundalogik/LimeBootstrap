@@ -91,5 +91,7 @@ Calls a SOAP web-service.
 | action | SOAP action  |
 | xml    | SOAP request |
 
-+## __activeuser__
-+Gets the currently logged in users record (Only available in 1.10 and above)
+## __activeuser__
+Gets the currently logged in users record (Only available in 1.10 and above)
+
+Make sure to use LBSHelper.LoadActiveuser in ThisApplication.Setup when using activeuser as datasource on any card.
