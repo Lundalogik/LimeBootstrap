@@ -140,10 +140,19 @@
                             <a id="A2" data-bind="click: $parent.selectStatusFilter">New releases</a>
                             <!-- /ko -->
                         </li>
-                        
                         <li><a href="http://docs.lime-bootstrap.com">Manual</a></li>
                         <li><a href="tutorial/" target="_blank" >Tutorial</a></li>
                         <li><a href="appstore/">Appstore</a></li>
+                        <li class="dropdown" id="menuLogin"> 
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><i class="fa fa-user"></i></a>
+                                <div class="dropdown-menu" style="padding:17px;">
+                                    <form class="form" id="formLogin"> 
+                                        <input class="form-control navbar-appstore-input" name="username" id="username" type="text" placeholder="Username"> 
+                                        <input class="form-control navbar-appstore-input" name="password" id="password" type="password" placeholder="Password"><br>
+                                        <button type="button" id="btnLogin" class="btn">Login</button>
+                                    </form>
+                                </div>
+                        </li>
                         <li data-bind="visible:mergeMenu()"> <div class="input-group menu-appstore-input-group">
                                 <input type="text" class="form-control navbar-appstore-input" placeholder="Search" data-bind="value:searchvalue, valueUpdate:'afterkeydown'">
                                 <span class="input-group-btn">
