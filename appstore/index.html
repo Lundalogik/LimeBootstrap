@@ -70,7 +70,6 @@
                                 </span>
                             </div>
                             <div class="modal-body">
-                            
                                 <div class="license-app" data-bind="visible:app.license(), icon:'glyphicon-flag'">This app requires a license. Are you intrested in this application, <a href="http://www.lundalogik.com/about-us/contact-us/find-us/">please contact us!</a></div>
                                 <!-- App images-->
                                 <div class="carousel slide" data-ride="carousel" data-bind="attr:{id:'carousel-large' + app.name()}">
@@ -147,9 +146,10 @@
                             <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><i class="fa fa-user"></i></a>
                                 <div class="dropdown-menu" style="padding:17px;">
                                     <form class="form" id="formLogin"> 
-                                        <input class="form-control navbar-appstore-input" name="username" id="username" type="text" placeholder="Username"> 
-                                        <input class="form-control navbar-appstore-input" name="password" id="password" type="password" placeholder="Password"><br>
-                                        <button type="button" id="btnLogin" class="btn">Login</button>
+                                        <input class="form-control navbar-appstore-input" placeholder="Username" data-bind="with: userModel, 
+                                        value: username, valueUpdate: 'afterkeydown'"> 
+                                        <input class="form-control navbar-appstore-input" placeholder="Password" data-bind="with: userModel, value: password, valueUpdate: 'afterkeydown'"><br>
+                                        <button type="button" id="btnLogin" class="btn" data-bind="with: userModel, click: userLogin()">Login</button>
                                     </form>
                                 </div>
                         </li>

@@ -11,6 +11,7 @@ var lbsappstore = {
             vm.setActiveApp();
             vm.setInitalFilter();
             console.log(ko.toJS(vm));
+            var u = new userModel();
             ko.applyBindings(vm);
             $('pre code').each(function (i, e) { hljs.highlightBlock(e) });
         });
@@ -320,6 +321,7 @@ var appFactory = function (app, currentpage) {
         app.expandedApp(true);
         location.hash = app.name()
         $("#expanded-" + app.name()).modal('show');
+        $(".download-without-password").hide();
     };
 
     self.closeApp = function (app) {
@@ -341,6 +343,13 @@ var appFactory = function (app, currentpage) {
             self.wrongpassword(false);
         }
     };
+    self.loginValidation = function(){
+        var user = new userModel();
+        if(user.userLoggedIn)
+        {
+            $(".download-without-password").show();
+        }
+    }
     self.closeLogIn = function () {
         $("#sign_in").modal('hide');
         self.passwordOk(false);
@@ -385,7 +394,24 @@ var appFactory = function (app, currentpage) {
     };
 }
 
+var userModel = function () {
+    var self = this;
 
+    self.username = ko.observable();
+    self.password = ko.observable();
+    self.userLoggedIn = ko.observable(false);
+
+    self.userLogin = function () {
+       var uname = self.username();
+       var pw = self.password();
+
+       if(uname ==="Linus" && pw ==="linus123"){
+        self.userLoggedIn(true);
+       }
+
+    }
+
+}
 /**
 Lets get this party on the road
 */
