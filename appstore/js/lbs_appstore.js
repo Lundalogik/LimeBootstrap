@@ -390,11 +390,10 @@ var appFactory = function (app, currentpage) {
 var userModel = function () {
     var self = this;
 
-    self.username = ko.observable("");
-    self.password = ko.observable("");
+    self.username = ko.observable();
+    self.password = ko.observable();
     self.userLoggedIn = ko.observable(false);
 
-<<<<<<< HEAD
     self.userLogin = function () {
        var uname = self.username();
        var pw = self.password();
@@ -402,24 +401,7 @@ var userModel = function () {
        if(uname ==="Linus" && pw ==="linus123"){
         self.userLoggedIn(true);
        }
-=======
-    self.users = ko.observableArray([
-    { username: "Linus", password: "linus123" },
-    { username: "plug", password: "1337" },
-    { username: "play", password: "12345" }
-    ]);
->>>>>>> origin/appstore-ex-job
 
-    self.userLogin = function () {
-        if (self.username() != "" && self.password() != "") {
-            for (var i = 0; i < users().length; i++) {
-                if (self.users()[i].username === self.username() && self.users()[i].password === self.password()) {
-                    self.userLoggedIn(true);
-                    alert("Welcome " + self.username() + " .You are now logged in.");
-                    break;
-                }
-            }
-        }
     }
 }
 /**
