@@ -112,7 +112,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-default navbar-fixed-top " role="navigation" data-bind="visible: !runsinlime()">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" data-bind="visible: !runsinlime()">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -120,8 +120,7 @@
                 </div>
                 <div class="navbar-collapse collapse">                    
                     <ul class="nav navbar-nav navbar-right">
-                        
-                        <li data-bind="visible:mergeMenu()" role="dropdown">
+                        <li style = "display:none;" data-bind="visible:mergeMenu()" role="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Category <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu" data-bind="foreach: avaliableStatuses">
                                 <!-- ko if: text != 'All' && text != 'New'-->
@@ -129,12 +128,12 @@
                                 <!-- /ko -->
                             </ul>
                         </li>
-                        <li data-bind="visible:mergeMenu,foreach: avaliableStatuses">
+                        <li style = "display:none;" data-bind="visible:mergeMenu,foreach: avaliableStatuses">
                             <!-- ko if: text == 'All' -->
                             <a class="" id="A1" data-bind="click: $parent.selectStatusFilter">Show all</a>
                             <!-- /ko -->
                         </li>
-                        <li data-bind="visible:mergeMenu, foreach: avaliableStatuses">
+                        <li style = "display:none;" data-bind="visible:mergeMenu, foreach: avaliableStatuses">
                             <!-- ko if: text == 'New' -->
                             <a id="A2" data-bind="click: $parent.selectStatusFilter">New releases</a>
                             <!-- /ko -->
@@ -154,7 +153,7 @@
                                     </form>
                                 </div>
                         </li>
-                        <li data-bind="visible:mergeMenu()"> <div class="input-group menu-appstore-input-group">
+                        <li style = "display:none;" data-bind="visible:mergeMenu()"> <div class="input-group menu-appstore-input-group">
                                 <input type="text" class="form-control navbar-appstore-input" placeholder="Search" data-bind="value:searchvalue, valueUpdate:'afterkeydown'">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" id="Button1" type="button" data-bind="icon:'glyphicon glyphicon-search'"> </button>
