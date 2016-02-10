@@ -408,7 +408,7 @@ var userModel = function () {
                     $("#formLogin").hide();
                     setTimeout(function() {
                         $('[data-toggle="dropdown"]').parent().removeClass('open');
-                    }, 1000 );
+                    }, 1337 );
                     //alert("Welcome " + self.username() + " .You are now logged in.");
                     break;
                 }
