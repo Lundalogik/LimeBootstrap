@@ -405,7 +405,8 @@ var userModel = function () {
             for (var i = 0; i < users().length; i++) {
                 if (self.users()[i].username === self.username() && self.users()[i].password === self.password()) {
                     self.userLoggedIn(true);
-                    alert("Welcome " + self.username() + " .You are now logged in.");
+                    $("#formLogin").hide();
+                    //alert("Welcome " + self.username() + " .You are now logged in.");
                     break;
                 }
             }

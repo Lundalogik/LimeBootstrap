@@ -151,6 +151,10 @@
                                         <button type="button" id="btnLogin" class="btn" data-bind="with: userModel, click: userLogin()">Login</button>
                                         <a href="https://www.lundalogik.com/crm-systems/"><h6 style="display:inline; float:right;padding-right:5px">Not yet a user of LIME Pro?</h6></a>
                                     </form>
+                                    <form class="formLogOut" data-bind="visible:userLoggedIn()">
+                                        <h6 data-bind=""></h6>
+                                        <button type="button" id="btnLogOut" class="btn">Log out</button>
+                                    </form>
                                 </div>
                         </li>
                         <li style = "display:none;" data-bind="visible:mergeMenu()"> <div class="input-group menu-appstore-input-group">
