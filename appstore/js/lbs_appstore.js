@@ -412,6 +412,17 @@ var userModel = function () {
         }
     }
 }
+/**
+Lets get this party on the road
+*/
+$(function () {
+    $(document).ready(function () {
+        lbsappstore.init();
+        if ($(location.hash).length > 0) {
+            $("#expanded-checklist").modal('show');
+        }
+    });
+});
 
 
 ko.bindingHandlers.icon = {
