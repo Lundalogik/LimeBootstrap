@@ -321,7 +321,6 @@ var appFactory = function (app, currentpage) {
         app.expandedApp(true);
         location.hash = app.name()
         $("#expanded-" + app.name()).modal('show');
-        $(".download-without-password").hide();
     };
 
     self.closeApp = function (app) {

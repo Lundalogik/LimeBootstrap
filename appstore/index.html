@@ -36,7 +36,7 @@
                 </div>
                 <!--/ Mini app view -->
 
-                <!-- Expanded app view -->
+              <!-- Expanded app view -->
                 <div class="modal" data-backdrop="static" data-bind="attr:{id:'expanded-' + app.name()}, click:app.closeApp">
                     <div class="modal-dialog" data-bind="click: function(){return true}, clickBubble: false">
                         <div class="modal-content" data-bind="css:{'animated fadeIn':app.expandedApp()}">
@@ -70,6 +70,7 @@
                                 </span>
                             </div>
                             <div class="modal-body">
+                            
                                 <div class="license-app" data-bind="visible:app.license(), icon:'glyphicon-flag'">This app requires a license. Are you intrested in this application, <a href="http://www.lundalogik.com/about-us/contact-us/find-us/">please contact us!</a></div>
                                 <!-- App images-->
                                 <div class="carousel slide" data-ride="carousel" data-bind="attr:{id:'carousel-large' + app.name()}">
@@ -94,7 +95,6 @@
                 </div>
                 <!-- /.modal -->
                 <!-- /Expanded app view -->
-
 
               
 
@@ -146,17 +146,11 @@
                             <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><i class="fa fa-user"></i></a>
                                 <div class="dropdown-menu" style="padding:15px;">
                                     <form class="form" id="formLogin"> 
-<<<<<<< HEAD
-                                        <input class="form-control navbar-appstore-input" placeholder="Username" data-bind="with: userModel, 
+                                        <input class="form-control navbar-appstore-input" style="margin-bottom:10px" placeholder="Username" data-bind="with: userModel, 
                                         value: username, valueUpdate: 'afterkeydown'"> 
-                                        <input class="form-control navbar-appstore-input" placeholder="Password" data-bind="with: userModel, value: password, valueUpdate: 'afterkeydown'"><br>
+                                        <input class="form-control navbar-appstore-input" style="margin-bottom:10px" placeholder="Password" data-bind="with: userModel, value: password, valueUpdate: 'afterkeydown'">
                                         <button type="button" id="btnLogin" class="btn" data-bind="with: userModel, click: userLogin()">Login</button>
-=======
-                                        <input class="form-control navbar-appstore-input" style="margin-bottom:10px" name="username" type="text" placeholder="Username">
-                                        <input class="form-control navbar-appstore-input" style="margin-bottom:10px" name="password" type="password" placeholder="Password">
-                                        <button type="button" id="btnLogin" class="btn">Login</button> 
                                         <a href="https://www.lundalogik.com/crm-systems/"><h6 style="display:inline; float:right;padding-right:5px">Not yet a user of LIME Pro?</h6></a>
->>>>>>> origin/appstore-ex-job
                                     </form>
                                 </div>
                         </li>
