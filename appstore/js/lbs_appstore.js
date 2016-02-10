@@ -342,13 +342,7 @@ var appFactory = function (app, currentpage) {
             self.wrongpassword(false);
         }
     };
-    self.loginValidation = function(){
-        var user = new userModel();
-        if(user.userLoggedIn)
-        {
-            $(".download-without-password").show();
-        }
-    }
+
     self.closeLogIn = function () {
         $("#sign_in").modal('hide');
         self.passwordOk(false);
@@ -409,7 +403,6 @@ var userModel = function () {
        }
 
     }
-
 }
 /**
 Lets get this party on the road

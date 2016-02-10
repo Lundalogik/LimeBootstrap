@@ -44,7 +44,7 @@
                                 <button type="button" class="close" data-bind="click:app.closeApp" aria-hidden="true">&times;</button>
                                 <h4 class="modal-title">
                                     <span data-bind="text:app.appName()"></span>
-                                    <span class="download-without-password">
+                                    <span class="download-without-password" data-bind="with userModel, if: userLoggedIn">
                                         <button type="button" class="btn btn-success pull-right download" data-bind="click:app.download, css:{disabled:(app.license()?true:false)},  visible: !app.runswithlip()">                                        
                                             <span data-bind="icon:(app.license()? 'glyphicon-usd' :'glyphicon-cloud-download')"></span>
                                             <span data-bind="text: (app.license()? 'Paid': 'Download')"></span>
@@ -148,7 +148,7 @@
                                     <form class="form" id="formLogin"> 
                                         <input class="form-control navbar-appstore-input" style="margin-bottom:10px" placeholder="Username" data-bind="with: userModel, 
                                         value: username, valueUpdate: 'afterkeydown'"> 
-                                        <input class="form-control navbar-appstore-input" style="margin-bottom:10px" placeholder="Password" data-bind="with: userModel, value: password, valueUpdate: 'afterkeydown'">
+                                        <input class="form-control navbar-appstore-input" type="password" style="margin-bottom:10px" placeholder="Password" data-bind="with: userModel, value: password, valueUpdate: 'afterkeydown'">
                                         <button type="button" id="btnLogin" class="btn" data-bind="with: userModel, click: userLogin()">Login</button>
                                         <a href="https://www.lundalogik.com/crm-systems/"><h6 style="display:inline; float:right;padding-right:5px">Not yet a user of LIME Pro?</h6></a>
                                     </form>
