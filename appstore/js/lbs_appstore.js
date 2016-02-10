@@ -406,6 +406,9 @@ var userModel = function () {
                 if (self.users()[i].username === self.username() && self.users()[i].password === self.password()) {
                     self.userLoggedIn(true);
                     $("#formLogin").hide();
+                    setTimeout(function() {
+                        $('[data-toggle="dropdown"]').parent().removeClass('open');
+                    }, 1000 );
                     //alert("Welcome " + self.username() + " .You are now logged in.");
                     break;
                 }
