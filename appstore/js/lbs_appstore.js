@@ -401,7 +401,6 @@ var userModel = function () {
 
        if(uname ==="Linus" && pw ==="linus123"){
         self.userLoggedIn(true);
-        alert("Login successful!");
        }
 =======
     self.users = ko.observableArray([
