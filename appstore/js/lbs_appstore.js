@@ -394,6 +394,12 @@ var userModel = function () {
     self.password = ko.observable();
     self.userLoggedIn = ko.observable(false);
 
+    self.users = ko.observableArray([
+    { username: "Linus", password: "linus123" },
+    { username: "plug", password: "1337" },
+    { username: "play", password: "12345" }
+    ]);
+
     self.userLogin = function () {
        var uname = self.username();
        var pw = self.password();
