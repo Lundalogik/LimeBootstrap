@@ -394,21 +394,11 @@ var userModel = function () {
     self.password = ko.observable("");
     self.userLoggedIn = ko.observable(false);
 
-<<<<<<< HEAD
-    self.userLogin = function () {
-       var uname = self.username();
-       var pw = self.password();
-
-       if(uname ==="Linus" && pw ==="linus123"){
-        self.userLoggedIn(true);
-       }
-=======
     self.users = ko.observableArray([
     { username: "Linus", password: "linus123" },
     { username: "plug", password: "1337" },
     { username: "play", password: "12345" }
     ]);
->>>>>>> origin/appstore-ex-job
 
     self.userLogin = function () {
         if (self.username() != "" && self.password() != "") {
