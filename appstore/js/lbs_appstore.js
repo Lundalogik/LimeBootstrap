@@ -390,8 +390,8 @@ var appFactory = function (app, currentpage) {
 var userModel = function () {
     var self = this;
 
-    self.username = ko.observable();
-    self.password = ko.observable();
+    self.username = ko.observable("");
+    self.password = ko.observable("");
     self.userLoggedIn = ko.observable(false);
 
     self.users = ko.observableArray([
@@ -401,13 +401,15 @@ var userModel = function () {
     ]);
 
     self.userLogin = function () {
-       var uname = self.username();
-       var pw = self.password();
-
-       if(uname ==="Linus" && pw ==="linus123"){
-        self.userLoggedIn(true);
-       }
-
+        if (self.username() != "" && self.password() != "") {
+            for (var i = 0; i < users().length; i++) {
+                if (self.users()[i].username === self.username() && self.users()[i].password === self.password()) {
+                    self.userLoggedIn(true);
+                    alert("Welcome " + self.username() + " .You are now logged in.");
+                    break;
+                }
+            }
+        }
     }
 }
 /**
