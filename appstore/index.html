@@ -152,8 +152,9 @@
                                         <a href="https://www.lundalogik.com/crm-systems/"><h6 style="display:inline; float:right;padding-right:5px">Not yet a user of LIME Pro?</h6></a>
                                     </form>
                                     <form style="display: none" class="formLogOut" data-bind="visible: userLoggedIn()">
-                                        <h6 data-bind=""></h6>
-                                        <button type="button" id="btnLogOut" class="btn">Log out</button>
+                                        <h6 data-bind="text: username"></h6>
+
+                                        <button type="button" id="btnLogout" class="btn" data-bind="click: userLogout()">Log out</button>
                                     </form>
                                 </div>
                         </li>
