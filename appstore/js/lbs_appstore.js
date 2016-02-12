@@ -316,11 +316,18 @@ var appFactory = function (app, currentpage) {
             }
         }
     });
+    
+
+    self.scrollPosition = function () {
+        var position = $(window).scrollTop();
+    };
 
     self.expandApp = function (app) {
+        self.scrollPosition();
         app.expandedApp(true);
         location.hash = app.name()
         $("#expanded-" + app.name()).modal('show');
+
     };
 
     self.closeApp = function (app) {
@@ -329,6 +336,7 @@ var appFactory = function (app, currentpage) {
         $("#expanded-" + app.name()).modal('hide');
         $(".download-without-password").show();
         $(".download-with-password").hide();
+        window.scrollTo(self.scrollPosition.position, 0);
         
     };
     self.download = function () {
