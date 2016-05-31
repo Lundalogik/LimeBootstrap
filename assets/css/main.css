@@ -9,9 +9,8 @@
 
 body {
   background-color: #f2f2f2;
-    font-family: 'Lato', sans-serif;
-    font-weight: 300;
-    font-size: 16px;
+    font-family: 'galano_grotesque';
+    font-size: 15px;
     color: #555;
 
     -webkit-font-smoothing: antialiased;
@@ -20,13 +19,12 @@ body {
 
 /* Titles */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'roboto', sans-serif;
-    font-weight: 300;
+    font-family: 'galano_grotesque';
     color: #333;
 }
 
 h1 {
-	font-size: 40px;
+    font-size: 40px;
 }
 
 h1 span {
@@ -35,22 +33,11 @@ h1 span {
     padding-bottom: 9px;
 }
 
-h3 {
-	color: #95a5a6;
-	font-weight: 400;
-}
-
-h4 {
-	color: #95a5a6;
-	font-weight: 400;
-	font-size: 20px;
-}
-
 /* Paragraph & Typographic */
 p {
     line-height: 28px;
     margin-bottom: 25px;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .centered {
@@ -84,7 +71,7 @@ p {
 
 /* Links */
 a {
-    color: #A0CE4E;
+    color: #00C8AA;
     word-wrap: break-word;
 
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -120,12 +107,13 @@ a:after {
 }
 
 .navbar-default {
-	background-color: #A0CE4E;
+	background-color: #00C8AA;
 	border-color: transparent;
 }
 
-.navbar-default .navbar-brand {
-	color: white;
+.navbar-default .navbar-brand{
+    color: white;
+    padding: 3px 15px 0px 15px;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -147,18 +135,19 @@ a:after {
 
 i {
 	margin: 8px;
-	color: #A0CE4E; 
+	color: #00C8AA; 
 }
 
-.prologo {
-    width:50px;
+.crmlogo {
+    width:40px;
     margin-left:10px;
+    margin-bottom: 22px;
 }
 
 /* HeaderWrap */
 #headerwrap {
 	/* background: url(../img/bg01.jpg) no-repeat center top; */
-	background-color: #A0CE4E;
+	background-color: #00C8AA;
 	margin-top: -20px;
 	padding-top:200px;
 	background-attachment: relative;

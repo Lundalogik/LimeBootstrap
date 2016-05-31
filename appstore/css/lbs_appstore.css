@@ -1,27 +1,36 @@
 body{
-background-color: #f2f2f2;
-font-family: 'Roboto', sans-serif ;
+	background-color: #f2f2f2;
+	font-family: 'galano_grotesque';
+	font-size: 15px;
+	font-color: #575756;
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-font-family: 'Roboto', sans-serif ;
-font-weight: 100;
-	}
+h1, .h1 {
+	font-family: 'galano_grotesque_bold';
+	font-weight: 100;
+	font-size: 20px;
+}
+
+h2, h3, h4, h5, h6, .h2, .h3, .h4, .h5, .h6 {
+	font-family: 'galano_grotesque';
+	font-weight: 100;
+}
 
 .jumbotron{
-	background-color: #A0CE4E;
+	background-color: #00C8AA;
 	border-color: transparent;
 color:#FFF;
 
 }
 
 .navbar-default {
-	background-color: #A0CE4E;
+	background-color: #00C8AA;
 	border-color: transparent;
 }
 
-.navbar-default .navbar-brand {
+.navbar-default .navbar-brand{
 	color: white;
+	padding: 3px 15px 0px 15px;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -32,9 +41,10 @@ color:#FFF;
     border-top-color:#fff;
     border-bottom-color:#fff;
 }
-.prologo {
-    width:50px;
+.crmlogo {
+    width:40px;
     margin-left:10px;
+    margin-bottom: 22px;
 }
 .app{
 	
@@ -227,4 +237,8 @@ code{
     position: absolute;
     top: 15px;
     right: 57px;
+}
+
+.btn-success {
+	background-color: #00C8AA;
 }

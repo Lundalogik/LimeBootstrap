@@ -9,10 +9,10 @@
  * GLOBAL STYLES
  *********************************************/
 body {
-  background-color: #6796D8; }
+  background-color: #00C8AA; }
 
 .reveal {
-  font-family: "Roboto", sans-serif;
+  font-family: 'galano_grotesque';
   font-size: 36px;
   font-weight: 100;
   letter-spacing: -0.02em;
@@ -34,7 +34,6 @@ body {
 .reveal h6 {
   margin: 0 0 20px 0;
   color: #eeeeee;
-  font-family: "Roboto", Impact, sans-serif;
   line-height: 0.9em;
   letter-spacing: 0.02em;
 }
@@ -52,7 +51,7 @@ body {
 .reveal .grey li,
 .reveal .grey p
 {
-  color: #6796D8
+  color: #00C8AA
 }
 .reveal .grey li{
   text-align: left;
