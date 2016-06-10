@@ -12,6 +12,12 @@
     src: url('../fonts/galano_grotesque.ttf');
 }
 
+@font-face 
+{
+    font-family: galano_grotesque_bold;
+    src: url('../fonts/galano_grotesque_bold.ttf');
+}
+
 body {
   background-color: #f2f2f2;
     font-family: 'galano_grotesque';
