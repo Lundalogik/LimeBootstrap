@@ -32,12 +32,14 @@ body {
 {
     background-color: #FF50AA;
     border-color: #DF459A;
+    color: White;
 }
 
 .btn-accent:hover
 {
     background-color: #DF459A;
     border-color: #CF358A;
+    color: White;
 }
 
 /* Titles */
