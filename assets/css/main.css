@@ -28,6 +28,18 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
+.btn-accent
+{
+    background-color: #FF50AA;
+    border-color: #DF459A;
+}
+
+.btn-accent:hover
+{
+    background-color: #DF459A;
+    border-color: #CF358A;
+}
+
 /* Titles */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'galano_grotesque';
