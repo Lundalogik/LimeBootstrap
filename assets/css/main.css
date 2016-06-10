@@ -6,6 +6,11 @@
  * Version: 1.0
  * URL: http://blacktie.co
  */
+@font-face 
+{
+    font-family: galano_grotesque;
+    src: url('../assets/fonts/galano_grotesque.ttf');
+}
 
 body {
   background-color: #f2f2f2;
