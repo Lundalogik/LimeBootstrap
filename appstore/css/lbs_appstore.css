@@ -1,3 +1,9 @@
+@font-face 
+{
+    font-family: galano_grotesque;
+    src: url('../fonts/galano_grotesque.ttf');
+}
+
 body{
 	background-color: #f2f2f2;
 	font-family: 'galano_grotesque';
