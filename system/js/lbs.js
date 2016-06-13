@@ -392,6 +392,7 @@ var lbs = lbs || {
         $(".header-icon").each(function(){
             $(this).addClass("header-icon-container");
             $(this).css("background-image", "url('resources/"+lbs.activeClass+".png')");
+            $(this).append('<img src="resources/'+lbs.activeClass+'.png" class="header-icon-invis" />');
         });
 
         // Clickable popovers close on click outside 

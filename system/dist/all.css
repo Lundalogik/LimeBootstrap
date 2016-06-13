@@ -377,35 +377,53 @@ COLORS
 .green {
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#83BA1F')";
     /* For IE 5.5 - 7 */
-    background-color: #83BA1F;
-    border-bottom: 1px solid #76A51C;
+    background-color: #5ab900;
+    border-bottom: 1px solid #3a9900;
     color: white;
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#83BA1F');
 }
 
 .header-container.green:before {
-    border-color: #4B6712 transparent transparent transparent;
+    border-color: #2a7900 transparent transparent transparent;
 }
 
 .header-container.green ul.info-links li:hover {
-    background-color: #76A51C;
+    background-color: #3a9900;
+}
+
+.lime-green {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#83BA1F')";
+    /* For IE 5.5 - 7 */
+    /*background-color: #83BA1F;*/
+    background-color: #a0d700;
+    border-bottom: 1px solid #90b700;
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#83BA1F');
+}
+
+.header-container.lime-green:before {
+    border-color: #709700 transparent transparent transparent;
+}
+
+.header-container.lime-green ul.info-links li:hover {
+    background-color: #90b700;
 }
 
 .orange {
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#E56C19')";
     /* For IE 5.5 - 7 */
-    background-color: #E56C19;
-    border-bottom: 1px solid #B95815;
+    background-color: #ff692e;
+    border-bottom: 1px solid #df592e;
     color: white;
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#E56C19');
 }
 
 .header-container.orange:before {
-    border-color: #813E0F transparent transparent transparent;
+    border-color: #9f491e transparent transparent transparent;
 }
 
 .header-container.orange ul.info-links li:hover {
-    background-color: #B95815;
+    background-color: #df592e;
 }
 
 .dark-grey, .darkgrey {
@@ -499,16 +517,16 @@ NEW COLOURS
 .turquoise {
   -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@turquoise')";
   /* For IE 5.5 - 7 */
-  background-color: #00a4b0;
-  border-bottom: 1px solid #0094A0;
+  background-color: #00c8aa;
+  border-bottom: 1px solid #00b4b0;
   color: #ffffff;
   filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@turquoise');
 }
 .header-container.turquoise:before {
-  border-color: #005D63 transparent transparent transparent;
+  border-color: #00889a transparent transparent transparent;
 }
 .header-container.turquoise ul.info-links li:hover {
-  background-color: #00B4C2;
+  background-color: #00b4b0;
 }
 .citrus {
   -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@citrus')";
@@ -583,16 +601,16 @@ NEW COLOURS
 .magenta {
   -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@magenta')";
   /* For IE 5.5 - 7 */
-  background-color: #d01772;
-  border-bottom: 1px solid #C00762;
+  background-color: #FF50AA;
+  border-bottom: 1px solid #DF459A;
   color: #ffffff;
   filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='@magenta');
 }
 .header-container.magenta:before {
-  border-color: #610B36 transparent transparent transparent;
+  border-color: #9F408A transparent transparent transparent;
 }
 .header-container.magenta ul.info-links li:hover {
-  background-color: #E02782;
+  background-color: #DF459A;
 }
 
 /*******************
@@ -619,20 +637,20 @@ HEADER
     width: 0;
 }
 
-.header-container .header-icon-container {
-    background: no-repeat 50% top;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-top: 64px;
+.header-icon-invis{
+  visibility: hidden;
 }
+
+
 /*******************************/
 /**USED TO SET HEADER PICTURES**/
 /*******************************/
-
-.header-container #header-icon {
+.header-container .header-icon-container {
+    background: no-repeat 50% top;
     font-size: 65px;
-    height: 70px;
+    margin-bottom: 10px;
 }
+
 
 .header-container ul.info-links li:hover {
     cursor: default;
@@ -976,8 +994,8 @@ Logo
 
 .lime-logo-bottom{
     background: url(../../resources/logo.png) no-repeat center bottom;
-    bottom :10px;
-    height:30px;
+    bottom :18px;
+    height:120px;
     left:0;
     margin-left:auto;
     margin-right:auto;

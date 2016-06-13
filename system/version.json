@@ -1,6 +1,11 @@
 {
 	"versions":[
 		{
+			"version": 1.91,
+			"info": "Changed colours, icons and some layout to reflect the new brand.",
+			"date": "2016-06-13"
+		},
+		{
 			"version": 1.9,
 			"info": "Improved and selectable watch, new currency binding, support for cookies and more. Font Awesome 4.4.",
 			"date": "2015-10-19"
