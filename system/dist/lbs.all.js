@@ -46,8 +46,6 @@ var lbs = lbs || {
     */
     setup: function () {
         var tTot1 = moment();
-        //Loading Jotnar
-        lbs.jotnar.winterEgg();
 
         //system param
         this.setSystemOperationParameters();
@@ -463,7 +461,7 @@ var lbs = lbs || {
                         return;
                     }
                     var localVersionData = $.parseJSON(localData).versions;
-
+                    
                     //Extract the latest version number from the versions array of version objects
                     var currentRemoteVersion = _.max(remoteVersionData, function(versionInfo){ return versionInfo.version; }).version;
                     var currentLocalVersion = _.max(localVersionData, function(versionInfo){ return versionInfo.version; }).version;
