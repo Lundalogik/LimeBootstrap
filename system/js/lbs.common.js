@@ -174,10 +174,6 @@ lbs.common = {
         });
     },
 
-    checkGroup : function(groups, userGroups){
-        return userGroups.map(function(f){return f.Name;}).filter(function(n) {return groups.indexOf(n) != -1}).length > 0;
-    },
-
     /*
         Returns the version in a comparable format.
     */
