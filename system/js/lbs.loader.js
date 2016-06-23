@@ -197,7 +197,7 @@ lbs.loader = {
         var data = {};
         
         lbs.log.debug('Loading data source: ' + dataSource.type + ':' + dataSource.source);
-
+        var timerStart = moment();
         try {
             switch (dataSource.type) {
                 case 'activeInspector':
@@ -365,6 +365,12 @@ lbs.loader = {
                         crossDomain: true
                     });
                     break;
+                case 'activeUser':
+                    var c = lbs.common.executeVba("lbsHelper.getActiveUser");
+                    var json = JSON.parse(c);
+
+                    data.ActiveUser = json.ActiveUser;
+                    break;
             }
 
             //merge options into the viewModel
@@ -372,7 +378,9 @@ lbs.loader = {
         } catch (e) {
             lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e);
         }
-
+        var timerFinished = moment();
+        
+        lbs.log.warn("Time to load data source " + JSON.stringify(dataSource) + " : " + timerFinished.diff(timerStart,"milliseconds") + "ms")
         return vm;
     },
 

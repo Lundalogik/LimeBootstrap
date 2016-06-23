@@ -187,6 +187,7 @@ ko.bindingHandlers.appInvoke = {
 
 /**
 Call VBA function to check if item should be visible 
+THIS IS DEPRECATED AND WILL BE REMOVED IN A FUTURE VERSION.
 */
 ko.bindingHandlers.vbaVisible = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
