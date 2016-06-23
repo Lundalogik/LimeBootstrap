@@ -1,3 +1,4 @@
+
 ' NOTE THAT THE CODE IN THIS MODULE IS A PART OF THE LIME PRO BASIC DATABASE AND MAY NOT BE CHANGED.
 ' ANY CUSTOMIZATIONS OR ADDED FUNCTIONALITY SHOULD BE DONE IN SEPARATE FORMS, MODULES AND CLASS MODULES.
 ' IF YOU CHOOSE TO IGNORE THIS WARNING AND CHANGE THE CODE IN THIS MODULE, SUPPORT OR VERSION COMPATIBILITY IS
@@ -6,9 +7,7 @@
 ' //THE LIME CORE GROUP AT LUNDALOGIK
 
 Option Explicit
-
 Private locAvalibleActionpads As Scripting.Dictionary
-
 
 '=============================================
 ' Sets correct actionpad settings for all inspectors and the main AP
@@ -298,10 +297,10 @@ End Function
 '=============================================
 ' test
 '=============================================
-Public Function test() As LDE.Record
+Public Function Test() As LDE.Record
     On Error GoTo ErrorHandler
     
-    Set test = ActiveInspector.Record
+    Set Test = ActiveInspector.Record
     
 Exit Function
 ErrorHandler:
@@ -376,4 +375,29 @@ Public Sub logToInfolog(strType As String, message As String)
 ErrorHandler:
     Call UI.ShowError("LBSHelper.logToInfolog")
 End Sub
+
+Public Function getActiveUser() As String
+On Error GoTo ErrorHandler
+    
+    Dim sActiveUserJSON As String
+    Dim sGroups As String
+    Dim sGroupsTrimed As String
+    Dim group As Object
+    
+    For Each group In ActiveUser.MemberOfGroups
+        sGroups = sGroups + "{""Name"":""" + group.Name + """},"
+    Next group
+    
+    sGroupsTrimed = Left(sGroups, Len(sGroups) - 1)
+    
+    sActiveUserJSON = "{""ActiveUser"": {""Name"":" + """" + ActiveUser.Name + """" + ", ""ID"":" + CStr(ActiveUser.ID) + ", ""isAdmin"":" + LCase(CStr(ActiveUser.Administrator)) + ", ""isSuperUser"":" + LCase(CStr(ActiveUser.SuperUser)) + "," & _
+    """Groups"":[" + sGroupsTrimed + " ]}" & _
+    "}"
+        
+    getActiveUser = sActiveUserJSON
+    Exit Function
+ErrorHandler:
+    Call UI.ShowError("LBSHelper.getActiveUser")
+End Function
+
 
