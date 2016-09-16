@@ -2,8 +2,8 @@
 	"versions":[
 		{
 			"version": 1.12,
-			"info": "Added ActiveUser datasource. Deprecated use of vbaVisible. Added help function lbs.common.checkGroups.",
-			"date": "2016-06-23"
+			"info": "Added ActiveUser datasource. Deprecated use of vbaVisible. Added help function lbs.common.checkGroups. Fixed issues with version handling.",
+			"date": "2016-09-16"
 		},
 		{
 			"version": 1.11,

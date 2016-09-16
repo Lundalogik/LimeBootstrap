@@ -435,7 +435,7 @@ var lbs = lbs || {
         //Check app version if debug is enabled
         if(lbs.debug && lbs.hasLimeConnection){
             // Check for app updates
-            var lbsURL = "http://limebootstrap.lundalogik.com/api/";
+            var lbsURL = "http://api.lime-bootstrap.com/";//limebootstrap.lundalogik.com/api/";
             $.each(lbs.apps, function(index, app){
                 try{
                     var appName = app.name;
@@ -461,6 +461,11 @@ var lbs = lbs || {
                         return;
                     }
                     var localVersionData = $.parseJSON(localData).versions;
+
+                    
+                    
+                    
+
                     
                     //Extract the latest version number from the versions array of version objects
                     var currentRemoteVersion = _.max(remoteVersionData, function(versionInfo){ return versionInfo.version; }).version;
@@ -482,19 +487,30 @@ var lbs = lbs || {
             
             try{
             //Check for LBS Update
-                var remoteData = lbs.loader.loadFromExternalWebService(lbsURL+ "version/");
+                var remoteData = lbs.loader.loadFromExternalWebService(lbsURL+ "version");
                 if(!remoteData){
                     lbs.log.warn("Failed to check remote version of LBS! ");
                     return;
                 }
-                var remoteVersionData = $.parseJSON(remoteData);
 
-                var localVersionData = $.parseJSON(lbs.loader.loadLocalFileToString("system/version.json"));
+
                 
-                var currentRemoteVersion = _.max(remoteVersionData.versions, function(versionInfo){ return versionInfo.version; }).version;
-                var currentLocalVersion = _.max(localVersionData.versions, function(versionInfo){ return versionInfo.version; }).version;
+                var remoteVersionData = $.parseJSON(remoteData);
+               
+                var sortedVersions = remoteVersionData.versions.sort(function(ls, rs) {
+                    return lbs.common.compareVersions(ls.version.toString(), rs.version.toString());
+                });
+                var localVersionData = $.parseJSON(lbs.loader.loadLocalFileToString("system/version.json"));
 
-                if(currentRemoteVersion > currentLocalVersion) {
+                var currentRemoteVersion = sortedVersions[0].version//_.max(remoteVersionData.versions, function(versionInfo){ return versionInfo.version; }).version;
+
+                sortedVersions = localVersionData.versions.sort(function(ls, rs) {
+                    return lbs.common.compareVersions(ls.version.toString(), rs.version.toString());
+                });
+
+                var currentLocalVersion = sortedVersions[0].version//_.max(localVersionData.versions, function(versionInfo){ return versionInfo.version; }).version;
+
+                if(currentRemoteVersion.toString().split('.')[1] > currentLocalVersion.toString().split('.')[1]) {
                     lbs.log.vm.showUpgrade(true);
                     lbs.log.vm.showLBSVersion(true);
                     lbs.log.vm.remoteVersion(" v{0}-> v{1}".format(currentLocalVersion,currentRemoteVersion));

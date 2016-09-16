@@ -435,7 +435,7 @@ var lbs = lbs || {
         //Check app version if debug is enabled
         if(lbs.debug && lbs.hasLimeConnection){
             // Check for app updates
-            var lbsURL = "http://limebootstrap.lundalogik.com/api/";
+            var lbsURL = "http://api.lime-bootstrap.com/";//limebootstrap.lundalogik.com/api/";
             $.each(lbs.apps, function(index, app){
                 try{
                     var appName = app.name;
@@ -461,6 +461,11 @@ var lbs = lbs || {
                         return;
                     }
                     var localVersionData = $.parseJSON(localData).versions;
+
+                    
+                    
+                    
+
                     
                     //Extract the latest version number from the versions array of version objects
                     var currentRemoteVersion = _.max(remoteVersionData, function(versionInfo){ return versionInfo.version; }).version;
@@ -482,19 +487,30 @@ var lbs = lbs || {
             
             try{
             //Check for LBS Update
-                var remoteData = lbs.loader.loadFromExternalWebService(lbsURL+ "version/");
+                var remoteData = lbs.loader.loadFromExternalWebService(lbsURL+ "version");
                 if(!remoteData){
                     lbs.log.warn("Failed to check remote version of LBS! ");
                     return;
                 }
-                var remoteVersionData = $.parseJSON(remoteData);
 
-                var localVersionData = $.parseJSON(lbs.loader.loadLocalFileToString("system/version.json"));
+
                 
-                var currentRemoteVersion = _.max(remoteVersionData.versions, function(versionInfo){ return versionInfo.version; }).version;
-                var currentLocalVersion = _.max(localVersionData.versions, function(versionInfo){ return versionInfo.version; }).version;
+                var remoteVersionData = $.parseJSON(remoteData);
+               
+                var sortedVersions = remoteVersionData.versions.sort(function(ls, rs) {
+                    return lbs.common.compareVersions(ls.version.toString(), rs.version.toString());
+                });
+                var localVersionData = $.parseJSON(lbs.loader.loadLocalFileToString("system/version.json"));
 
-                if(currentRemoteVersion > currentLocalVersion) {
+                var currentRemoteVersion = sortedVersions[0].version//_.max(remoteVersionData.versions, function(versionInfo){ return versionInfo.version; }).version;
+
+                sortedVersions = localVersionData.versions.sort(function(ls, rs) {
+                    return lbs.common.compareVersions(ls.version.toString(), rs.version.toString());
+                });
+
+                var currentLocalVersion = sortedVersions[0].version//_.max(localVersionData.versions, function(versionInfo){ return versionInfo.version; }).version;
+
+                if(currentRemoteVersion.toString().split('.')[1] > currentLocalVersion.toString().split('.')[1]) {
                     lbs.log.vm.showUpgrade(true);
                     lbs.log.vm.showLBSVersion(true);
                     lbs.log.vm.remoteVersion(" v{0}-> v{1}".format(currentLocalVersion,currentRemoteVersion));
@@ -643,9 +659,8 @@ lbs.log = {
     */
     "exception": function (e, level) {        
         if (lbs.verboseLevel >= lbs.log.verboseLevelEnum.error) {
-            if (e) { lbs.log.exception(e); }
-            lbs.log.logToDom('ERROR', lbs.common.nl2brIndent(msg));
-            lbs.log.logToConsole.error((msg));
+            lbs.log.logToDom('ERROR', lbs.common.nl2brIndent(e.toString()));
+            lbs.log.logToConsole.error(e.toString());
         }
     },
 
@@ -1168,7 +1183,7 @@ lbs.loader = {
         var data = {};
         
         lbs.log.debug('Loading data source: ' + dataSource.type + ':' + dataSource.source);
-
+        var timerStart = moment();
         try {
             switch (dataSource.type) {
                 case 'activeInspector':
@@ -1336,6 +1351,12 @@ lbs.loader = {
                         crossDomain: true
                     });
                     break;
+                case 'activeUser':
+                    var c = lbs.common.executeVba("lbsHelper.getActiveUser");
+                    var json = JSON.parse(c);
+
+                    data.ActiveUser = json.ActiveUser;
+                    break;
             }
 
             //merge options into the viewModel
@@ -1343,7 +1364,9 @@ lbs.loader = {
         } catch (e) {
             lbs.log.warn("Failed to load datasource: " + dataSource.type + ':' + dataSource.source,e);
         }
-
+        var timerFinished = moment();
+        
+        lbs.log.warn("Time to load data source " + JSON.stringify(dataSource) + " : " + timerFinished.diff(timerStart,"milliseconds") + "ms")
         return vm;
     },
 
@@ -1931,6 +1954,10 @@ lbs.common = {
         });
     },
 
+    checkGroup : function(groups, userGroups){
+        return userGroups.map(function(f){return f.Name;}).filter(function(n) {return groups.indexOf(n) != -1}).length > 0;
+    },
+
     /*
         Returns the version in a comparable format.
     */
@@ -1974,6 +2001,42 @@ lbs.common = {
                 "build": iBuild
             };
     },
+
+    compareVersions : function(ls, rs) {
+        var rsSplitted = rs.toString().split('.');
+        var lsSplitted = ls.toString().split('.');
+        var returnValue = null;
+
+        for (var i = 0; i < Math.min(rsSplitted.length, lsSplitted.length); i++) {
+            var rsCurrent = parseInt(rsSplitted[i]);
+            var lsCurrent = parseInt(lsSplitted[i]);
+
+            if (rsCurrent > lsCurrent) {
+                returnValue = 1; // ls is a higher version number
+                break;
+            }
+            else if (rsCurrent < lsCurrent) {
+                returnValue = -1; // rs is a higher version number
+                break;
+            }
+            else {
+                // Continute to next version part
+            }
+        };
+
+        if (returnValue == null && rsSplitted.length < lsSplitted.length) {
+            returnValue = -1; // rs is a higher version number
+        }
+        else if (returnValue == null && rsSplitted.length > lsSplitted.length) {
+            returnValue = 1; // ls is a higher version number
+        }
+        else if (returnValue == null) {
+            returnValue = 0; // The same versions
+        }
+
+        return returnValue;
+    }
+
     
 };
 
@@ -2183,6 +2246,7 @@ ko.bindingHandlers.appInvoke = {
 
 /**
 Call VBA function to check if item should be visible 
+THIS IS DEPRECATED AND WILL BE REMOVED IN A FUTURE VERSION.
 */
 ko.bindingHandlers.vbaVisible = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
@@ -2567,3 +2631,82 @@ lbs.jotnar = {
 		
 	}
 };
+lbs.bakery = {
+
+    loader: function () {       
+
+        var ap = decodeURI(
+            (RegExp('ap' + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
+        );
+        //On load: check collapsible menu cookies
+        $('.expandable').each(function () {
+            if (lbs.bakery.getCookie($(this).index() + 'ul' + ap) === "0") {
+                $(this).find(".menu-header").prepend("<i class='fa fa-angle-down'> </i>");
+                $(this).removeClass("collapsed");
+                $(this).children("li").not(".remainHidden").show();
+            }
+            else{
+                $(this).find(".menu-header").prepend("<i class='fa fa-angle-right'> </i>");
+                $(this).addClass("collapsed");
+                $(this).children("li").not(".menu-header").not(".divider").hide();
+            }
+        });
+
+
+        $('.expandable').find(".menu-header").click(function () {
+            var menuDiv = $(this).parent();
+            var i = lbs.bakery.getCookie(menuDiv.index() + 'ul' + ap);
+            i = i === "0" ? "1" : "0";
+            lbs.bakery.setCookie(menuDiv.index() + 'ul' + ap, i, "200");
+            lbs.bakery.hideshow(menuDiv, ap);
+        });
+
+    }
+    ,
+    hideshow: function (menu, ap) {        
+        var menuDiv = $(menu);    
+        $(menu).find("i").first().toggleClass("fa fa-angle-down"); //expanded
+        $(menu).find("i").first().toggleClass("fa fa-angle-right"); // Hidden
+        if (lbs.bakery.getCookie($(menu).index() + 'ul' + ap) === "0") {
+            menuDiv.removeClass("collapsed");
+            menuDiv.children("li").not(".remainHidden").fadeIn(200);
+        } else {
+            menuDiv.addClass("collapsed");
+            menuDiv.children("li").not(".menu-header").not(".divider").fadeOut(200);
+        }
+    },
+    
+    setCookie: function (cname, cvalue, exdays) {
+
+        var ap = decodeURI(
+            (RegExp('ap' + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
+        );
+
+        cname = cname + '-' + ap;
+
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();        
+        var cookieid = "cookieid=" + $('.expandable').attr('id');
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+    ,
+    getCookie: function (cname) {
+
+        var ap = decodeURI(
+            (RegExp('ap' + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
+        );
+
+        cname = cname + '-' + ap;
+
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+};
+

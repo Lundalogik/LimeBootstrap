@@ -120,9 +120,8 @@
     */
     "exception": function (e, level) {        
         if (lbs.verboseLevel >= lbs.log.verboseLevelEnum.error) {
-            if (e) { lbs.log.exception(e); }
-            lbs.log.logToDom('ERROR', lbs.common.nl2brIndent(msg));
-            lbs.log.logToConsole.error((msg));
+            lbs.log.logToDom('ERROR', lbs.common.nl2brIndent(e.toString()));
+            lbs.log.logToConsole.error(e.toString());
         }
     },
 
