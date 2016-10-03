@@ -28,6 +28,14 @@ LIME Bootstrap is included in the LIME Basic database and nothing is needs to be
 
 If you'll like the some basic views to start with you can find some [here](https://github.com/Lundalogik/LimeBootstrapBaseActionpads)
 
+##Update
+Updating LIME Bootstrap is done by downloading the lastest version and replacing some files and updating some VBA. Remember to check if you need to unblock the zip file under properties
+
+1.	Replace the system folder, `lbs.html` and `_config.js` in the Actionpad-folder
+2.	Replace the VBA modules from the VBA found in `system/vba/` with the same name as the files.
+
+__check the `_config.js` for customizations and add those to the new `_config.js` file.__
+
 ##Custom CSS in Lime Bootstrap (LBS)
 Our recommendation and the basic principle are to avoid the use of self-written CSS LBS since we can not guarantee how this will affect future versions of LBS. The purpose of LBS is to standardize Actionpads and to be able to deliver updates without worrying for failures.
 
