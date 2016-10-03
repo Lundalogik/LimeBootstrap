@@ -47,4 +47,4 @@ This file is not maintained by Lundalogik and we can not guarantee that the cust
 
 `<link rel="stylesheet" type="text/css" href"custom/custom.css" />`
 
-IMPORTAN: The recommendation is to avoid custom CSS.
+IMPORTANT: The recommendation is to avoid custom CSS.
