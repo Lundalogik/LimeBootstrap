@@ -10,7 +10,7 @@ var lbsappstore = {
             }
             vm.setActiveApp();
             vm.setInitalFilter();
-            console.log(ko.toJS(vm));
+            
             ko.applyBindings(vm);
             $('pre code').each(function (i, e) { hljs.highlightBlock(e) });
         });
@@ -262,7 +262,7 @@ var appFactory = function (app, currentpage) {
     //$.each(self.images, function (index, image) {
 
         $.each(app.images, function (imageindex, imagedata) {
-            console.log(imagedata);
+            
             //if (image == imagedata.file_name) {
             if (imagedata.file_name.indexOf("small") > -1) {
                 self.smallImage = "data:image/" + imagedata.file_type + ";base64," + imagedata.blob.replace("b'", "").replace("'", "");
@@ -297,10 +297,11 @@ var appFactory = function (app, currentpage) {
     self.logintext = ko.observable('You need to be authenticated to download this application.')
 
     //self.name = ko.observable(app.name.charAt(0).toUpperCase() + app.name.slice(1))
-    self.name = ko.observable(app.displayName ? app.displayName : app.name);
+    self.name = ko.observable(app.name);
     self.readme = marked(app.readme);
     self.expandedApp = ko.observable(false);
     self.info = ko.mapping.fromJS(app);
+    self.displayName = app.displayName;
     self.license = ko.observable(app.license);
     self.statusColor = ko.computed(function () {
         if (self.info.status) {
@@ -372,7 +373,10 @@ var appFactory = function (app, currentpage) {
 
 
     self.appName = ko.computed(function () {
-        if (self.info) {
+        if (self.displayName){
+            return self.displayName;
+        }
+        else if (self.info) {
             //return self.info.name().charAt(0).toUpperCase() + self.info.name().slice(1);
             return self.info.name();
         } else {
