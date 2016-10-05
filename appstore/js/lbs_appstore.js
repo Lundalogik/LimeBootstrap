@@ -243,6 +243,7 @@ var appFactory = function (app, currentpage) {
     var self = this;
     self.images = [];
     self.currentpage = currentpage;
+
     /**
 	Sets default picture if app images is missing.
 	*/
@@ -296,7 +297,7 @@ var appFactory = function (app, currentpage) {
     self.logintext = ko.observable('You need to be authenticated to download this application.')
 
     //self.name = ko.observable(app.name.charAt(0).toUpperCase() + app.name.slice(1))
-    self.name = ko.observable(app.name)
+    self.name = ko.observable(app.displayName ? app.displayName : app.name);
     self.readme = marked(app.readme);
     self.expandedApp = ko.observable(false);
     self.info = ko.mapping.fromJS(app);
