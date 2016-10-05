@@ -1,5 +1,6 @@
 {
 	"name": "%%APP_NAME%%",
+	"displayName" "%%APP_NAME%%",
 	"author":"%%AUTHOR%%",
 	"status":"Development",
 	"versions":[
