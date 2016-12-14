@@ -1,3 +1,3 @@
 #Lime Bootstrap
-[Please go here for documentation](http://limebootstrap.lundalogik.com/web/manual/index.html?p=about)
+[Please go here for documentation](http://lime-bootstrap.readthedocs.io/en/latest/)
 
