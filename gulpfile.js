@@ -1,4 +1,4 @@
-var gulp = require('gulp'); 
+var gulp = require('gulp');
 
 // Include Our Plugins
 var jshint = require('gulp-jshint');
@@ -21,10 +21,10 @@ gulp.task('externalscripts', function() {
     return gulp.src(
         [
         'system/js/jquery-1.9.1.min.js',
-        'system/js/knockout-*',
+        'system/js/knockout-3.4.2.js',
         'system/js/knockout.punches.min.js',
-        'system/js/bootstrap.min.js',
         'system/js/knockout.mapping-latest.js',
+        'system/js/bootstrap.min.js',
         'system/js/xml2json.js',
         'system/js/moment.min.js',
         'system/js/underscore-min.js',
@@ -50,7 +50,8 @@ gulp.task('lbsscripts', function() {
         'system/js/lbs.apploader.js',
         'system/js/lbs.common.js',
         'system/js/lbs.bindings.js',
-        'system/js/lbs.jotnar.js'
+        'system/js/lbs.jotnar.js',
+        'system/js/lbs.bakery.js',
         ])
         .pipe(concat('lbs.all.js'))
         .pipe(gulp.dest('system/dist'))
@@ -64,8 +65,8 @@ gulp.task('css',function(){
     return gulp.src([
         'system/css/bootstrap.min.css',
         'system/css/bootstrap-theme.min.css',
-        'system/css/font-awesome.min.css', 
-        'system/css/animate.min.css', 
+        'system/css/font-awesome.min.css',
+        'system/css/animate.min.css',
         'system/css/highlightJS/github.css',
         'system/css/lime.css'
 
