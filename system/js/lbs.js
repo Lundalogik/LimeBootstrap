@@ -55,7 +55,7 @@ var lbs = lbs || {
 
         //set contextmenu enables/disabled
         lbs.SetTouchEnabled(false);
-        
+
         //init the log
         window.console.log = lbs.log.log;
         this.setVerboseLevel();
@@ -89,9 +89,9 @@ var lbs = lbs || {
         this.loader.loadView('system/view/{0}'.format(lbs.wrapperType), $("#wrapper"));
         this.loader.loadView(lbs.activeClass, $("#content"));
 
-        //load caurousel 
+        //load caurousel
         this.apploader.buildCarousel();
-        
+
         //load apps
         this.apploader.identifyApps();
 
@@ -101,14 +101,14 @@ var lbs = lbs || {
         var tApp1 = moment();
         //apps vm
         this.apploader.buildApps();
-        
+
         //setup bindings
         this.applyContentBindings();
 
         //init apps
         this.apploader.initializeApps();
         var tApp2 = moment();
-        
+
         //push delayed logitems
         this.log.vm.enableConsole();
 
@@ -123,7 +123,7 @@ var lbs = lbs || {
 
         //Loading complete
         lbs.loading.showLoader(false);
-        
+
         //Loading cookies
         lbs.bakery.loader();
 
@@ -168,12 +168,12 @@ var lbs = lbs || {
 
         //create viewmodel container
         this.vm = new lbs.vmFactory();
-       
+
         //check connection to Lime
-        this.hasLimeConnection = (typeof lbs.limeDataConnection.Application != 'undefined');
+        this.hasLimeConnection = (lbs.limeDataConnection && typeof lbs.limeDataConnection.Application != 'undefined');
 
         //getVersion
-        this.limeVersion =  lbs.hasLimeConnection ? 
+        this.limeVersion =  lbs.hasLimeConnection ?
             lbs.common.parseVersion(lbs.limeDataConnection.Version) : lbs.common.parseVersion("0.0.0");
 
     },
@@ -187,9 +187,9 @@ var lbs = lbs || {
         lbs.debug = val;
     },
 
-    setVerboseLevel: function () {        
-        if (lbs.externalConfig.verboseLevel) {            
-            switch (lbs.externalConfig.verboseLevel) {                
+    setVerboseLevel: function () {
+        if (lbs.externalConfig.verboseLevel) {
+            switch (lbs.externalConfig.verboseLevel) {
                 case "debug":
                     lbs.verboseLevel = lbs.log.verboseLevelEnum.debug;
                     break;
@@ -226,7 +226,7 @@ var lbs = lbs || {
 
         //has limeconnection, try to get decent values
         if(lbs.hasLimeConnection){
-         
+
             //get inspector environment
             try {
                 //got support for inspectorid
@@ -261,7 +261,7 @@ var lbs = lbs || {
                 lbs.log.warn("Could not determine inspector class, assuming index",e);
                 lbs.activeClass = 'index';
             }
-             
+
         }
 
         //override
@@ -295,7 +295,7 @@ var lbs = lbs || {
         }
         catch (e) {
             lbs.log.error("Could not determine wrapper type",e);
-        }   
+        }
 
         lbs.log.info("Using wrapper type: " + lbs.wrapperType);
         lbs.log.info("Using view: " + lbs.activeClass);
@@ -305,7 +305,7 @@ var lbs = lbs || {
     Find database and server
     */
     setActiveDBandServer: function () {
-       
+
         try {
             lbs.activeServer = lbs.limeDataConnection.Database.ActiveServerName;
             lbs.activeDatabase = lbs.limeDataConnection.Database.Name;
@@ -314,14 +314,14 @@ var lbs = lbs || {
         catch (e) {
             lbs.log.warn("Could not set active server and database");
 
-        }        
+        }
     },
 
         /**
     Find database and server
     */
     setSkin: function () {
-       
+
         try {
             // var skin = lbs.common.executeVba("ActionPadTools.GetSkin");
             var skin = lbs.hasLimeConnection ? lbs.limeDataConnection.application.Theme : 1;
@@ -336,18 +336,18 @@ var lbs = lbs || {
         catch (e) {
             lbs.log.warn("Could not set the skin");
 
-        }        
+        }
     },
-    
+
     /**
     * On click handlers. Executes events when clicked, such as running VBA or manipulating the DOM
-    * 
-    **/ 
+    *
+    **/
     SetJqEvents: function () {
 
-        
 
-    
+
+
     },
 
     GlobalEventHandler: {
@@ -356,7 +356,7 @@ var lbs = lbs || {
             if(e.ctrlKey && e.shiftKey && e.which == 82){
                 location.reload();
             }
-            
+
             //open watch (ctrl+shift+w)
             else if(e.ctrlKey && e.shiftKey && e.which == 87){
                 lbs.log.watch.show('WATCH');
@@ -381,11 +381,11 @@ var lbs = lbs || {
     },
 
     /**
-    * On load handler. Executes events when the actionpad is loaded, such as running setting up the DOM, hideing things and setting up 
-    * 
+    * On load handler. Executes events when the actionpad is loaded, such as running setting up the DOM, hideing things and setting up
+    *
     **/
     ExecuteOnloadEvents: function () {
-        
+
         //header icons
         $(".header-icon").each(function(){
             $(this).addClass("header-icon-container");
@@ -393,9 +393,9 @@ var lbs = lbs || {
             $(this).append('<img src="resources/'+lbs.activeClass+'.png" class="header-icon-invis" />');
         });
 
-        // Clickable popovers close on click outside 
+        // Clickable popovers close on click outside
         $('body').on('click', function (e) {
-            if ($(e.target).data('toggle') !== 'popover' && $(e.target).parents('.popover.in').length === 0) { 
+            if ($(e.target).data('toggle') !== 'popover' && $(e.target).parents('.popover.in').length === 0) {
                 $('[data-toggle="popover"]').popover('hide');
             }
         });
@@ -430,7 +430,7 @@ var lbs = lbs || {
             lbs.log.warn("Binding of body bindings failed!",e);
         }
     },
-    
+
     checkForUpdates: function(){
         //Check app version if debug is enabled
         if(lbs.debug && lbs.hasLimeConnection){
@@ -451,7 +451,7 @@ var lbs = lbs || {
                         lbs.log.warn("Failed to check remote version of app: '" + appName + "'");
                         return;
                     }
-                    
+
                     var remoteVersionData = remoteData.info.versions;
 
                     //Load local version info
@@ -462,11 +462,11 @@ var lbs = lbs || {
                     }
                     var localVersionData = $.parseJSON(localData).versions;
 
-                    
-                    
-                    
 
-                    
+
+
+
+
                     //Extract the latest version number from the versions array of version objects
                     var currentRemoteVersion = _.max(remoteVersionData, function(versionInfo){ return versionInfo.version; }).version;
                     var currentLocalVersion = _.max(localVersionData, function(versionInfo){ return versionInfo.version; }).version;
@@ -484,7 +484,7 @@ var lbs = lbs || {
                     lbs.log.warn("Failed to check version of app: " + appName, e);
                 }
             });
-            
+
             try{
             //Check for LBS Update
                 var remoteData = lbs.loader.loadFromExternalWebService(lbsURL+ "version");
@@ -494,9 +494,9 @@ var lbs = lbs || {
                 }
 
 
-                
+
                 var remoteVersionData = $.parseJSON(remoteData);
-               
+
                 var sortedVersions = remoteVersionData.versions.sort(function(ls, rs) {
                     return lbs.common.compareVersions(ls.version.toString(), rs.version.toString());
                 });
@@ -521,7 +521,7 @@ var lbs = lbs || {
             }catch(e){
                 lbs.log.warn("Failed to check version of LBS! ",e);
             }
-        
+
         }
 
     }
