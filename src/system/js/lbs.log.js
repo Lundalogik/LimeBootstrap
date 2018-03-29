@@ -1,4 +1,4 @@
-﻿lbs.log = {
+﻿export default log = {
 
     /**
     active viewModel instance
@@ -15,11 +15,11 @@
     /**
     Setup the lof and create view model
     */
-    setup: function (enabled) {        
+    setup: function (enabled) {
+        //create viewModel
+        this.vm = new lbs.log.vmFactory(enabled);        
         //loadViewScript
         lbs.loader.loadView('system/view/debug',$("#debug"));
-        //create viewModel
-        this.vm = new lbs.log.vmFactory(enabled);
         ko.applyBindings(this.vm, $("#debug").get(0));
     },
 

@@ -1,4 +1,4 @@
-lbs.loader = {
+export default loader = {
 
     /**
     Attrbutes
@@ -87,9 +87,7 @@ lbs.loader = {
                 var s = "";
                 s = lbs.common.executeVba("LBSHelper.loadHTTPResource," + filename);
                 if (s && s !== "") {
-                    with(window) {
-                        window.eval(s);
-                    }
+                    window.eval(s);
                     lbs.log.info('Script "' + filename + '" loaded successfully');
                     retval = true;
                 } else {

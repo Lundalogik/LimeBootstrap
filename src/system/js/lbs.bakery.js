@@ -1,4 +1,4 @@
-lbs.bakery = {
+export default bakery = {
 
     loader: function () {       
 

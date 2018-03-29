@@ -1,12 +1,18 @@
 /**
-* This is the default LIME Pro javascript lib for actionpad functions.
+* This is the default Lime CRM javascript lib for actionpad functions.
 * It contains many functions to make the world a little better place.
 */
 
 /**
 Objekt container
 */
-var lbs = lbs || {
+import log from './lbs.log' 
+import loader from './lbs.loader'
+import common from './lbs.common'
+import apploader from './lbs.apploader'
+import bakery from './lbs.bakery'
+
+export default lbs = lbs || {
     /**
     Properties
     */
@@ -24,6 +30,11 @@ var lbs = lbs || {
     "error": false,
     "vm": {},
     "loading":{},
+    "log": log,
+    "loader": loader,
+    "common": common,
+    "apploader": apploader,
+    "bakery": bakery,
 
     /**
     config

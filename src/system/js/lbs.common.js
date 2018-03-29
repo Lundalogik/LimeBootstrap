@@ -4,8 +4,7 @@
 Common functions used in lbs
 --------------------------------------------------------
 */
-var lbs = lbs || {};
-lbs.common = {
+export default common = {
 
     /**
     Fetch a random funny error text

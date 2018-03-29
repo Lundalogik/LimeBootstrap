@@ -1,4 +1,4 @@
-lbs.apploader = {
+export default apploader = {
 
     /**
     holds a reference to all factory methods
