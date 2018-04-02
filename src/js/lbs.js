@@ -12,7 +12,8 @@ import common from './lbs.common'
 import apploader from './lbs.apploader'
 import bakery from './lbs.bakery'
 
-export default lbs = lbs || {
+
+window.lbs = {
     /**
     Properties
     */
@@ -546,4 +547,4 @@ lbs.vmFactory = function () {};
 /**
 Every this is loaded, run the awesomeness!
 */
-$(document).ready(function () { window.lbs = lbs; lbs.setup();});
+$(document).ready(function () { lbs.setup();});

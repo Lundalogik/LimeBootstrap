@@ -18,7 +18,12 @@
         <meta http-equiv="pragma" content="no-cache" />
 
         <!-- css -->
-        <link rel="stylesheet" type="text/css" href="system/css/lime.css" />
+        <link rel="stylesheet" type="text/css" href="system/css/lbs.css" />
+        <script type="text/javascript">
+            window.lbs = {}
+        </script>
+        <script src="system/js/vendor.js" type="text/javascript"></script>
+        <script src="system/js/lbs.js" type="text/javascript"></script>
         
     </head>
     <body  data-bind="event: { keydown: lbs.GlobalEventHandler.OnKeydown }">
@@ -30,7 +35,7 @@
         <!-- external libs -->
        
         <!-- lbs -->
-        <script src="system/js/lbs.js" type="text/javascript"></script>
+
         <script src="_config.js" type="text/javascript"></script>
         <!-- /ko -->
     </body>

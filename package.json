@@ -7,7 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "brunch build"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,10 @@
   },
   "homepage": "https://github.com/Lundalogik/LimeBootstrap#readme",
   "devDependencies": {
-    "parcel-bundler": "^1.7.0"
+    "brunch": "^2.10.12",
+    "babel-brunch": "^6",
+    "uglify-js-brunch": "^2",
+    "babel-preset-react": "^6",
+    "babel-preset-latest": "^6"
   }
 }
