@@ -1,4 +1,4 @@
-export default loader = {
+let loader = {
 
     /**
     Attrbutes
@@ -572,3 +572,5 @@ export default loader = {
     }
 
 };
+
+export default loader

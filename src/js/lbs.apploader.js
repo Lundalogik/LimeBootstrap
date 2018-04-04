@@ -1,4 +1,4 @@
-export default apploader = {
+let apploader = {
 
     /**
     holds a reference to all factory methods
@@ -214,3 +214,5 @@ export default apploader = {
     }
 
 };
+
+export default apploader

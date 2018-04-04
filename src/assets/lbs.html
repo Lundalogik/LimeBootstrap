@@ -19,11 +19,7 @@
 
         <!-- css -->
         <link rel="stylesheet" type="text/css" href="system/css/lbs.css" />
-        <script type="text/javascript">
-            window.lbs = {}
-        </script>
-        <script src="system/js/vendor.js" type="text/javascript"></script>
-        <script src="system/js/lbs.js" type="text/javascript"></script>
+        
         
     </head>
     <body  data-bind="event: { keydown: lbs.GlobalEventHandler.OnKeydown }">
@@ -33,10 +29,11 @@
         <div id="loadingIndicator"></div>
         
         <!-- external libs -->
-       
+        <script src="system/js/vendor.js" type="text/javascript"></script>
         <!-- lbs -->
-
-        <script src="_config.js" type="text/javascript"></script>
+        <script src="system/js/lbs.js" type="text/javascript"></script>
+        <script>require('src/js/lbs.js');</script>
+        <script src="_config.js"></script>
         <!-- /ko -->
     </body>
 </html>

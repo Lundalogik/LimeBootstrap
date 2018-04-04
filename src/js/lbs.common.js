@@ -4,7 +4,7 @@
 Common functions used in lbs
 --------------------------------------------------------
 */
-export default common = {
+let common = {
 
     /**
     Fetch a random funny error text
@@ -190,7 +190,7 @@ export default common = {
         var nIndex = 0;
 
     
-        strVersion = inputString.split(".");
+        let strVersion = inputString.split(".");
 
         for (nIndex = 0; nIndex < strVersion.length && nIndex < 3; nIndex++) {
             if (!isNaN(strVersion[nIndex])) {
@@ -276,3 +276,5 @@ if (!String.prototype.format) {
         });
     };
 }
+
+export default common

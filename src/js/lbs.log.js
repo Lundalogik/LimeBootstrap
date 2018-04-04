@@ -1,4 +1,4 @@
-﻿export default log = {
+﻿const log = {
 
     /**
     active viewModel instance
@@ -152,7 +152,7 @@
 /**
 ViewModel factory 
 */
-lbs.log.vmFactory = function (enabled) {
+log.vmFactory = function (enabled) {
     //Number of items to show in log
     var self = this;
     this.maxNbrOfItems = 30;
@@ -177,8 +177,8 @@ lbs.log.vmFactory = function (enabled) {
     };
     // different types of logs
     this.addEntry = function (lev, item) {        
-        ico = 'icon-exclamation';
-        rowclass = 'alert alert-info';
+        let ico = 'icon-exclamation';
+        let rowclass = 'alert alert-info';
         switch (lev) {
             case 'DEBUG':
                 ico = 'fa fa-cog';
@@ -232,7 +232,7 @@ lbs.log.vmFactory = function (enabled) {
 
 
 
-lbs.log.watch = {
+log.watch = {
 
     show : function(state){
         var wvm = new lbs.log.watch.vmFactory();
@@ -445,3 +445,5 @@ lbs.log.watch = {
         self.dom = $('#wrapper').get()[0].outerHTML;
     }
 };
+
+export default log

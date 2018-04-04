@@ -1,4 +1,4 @@
-export default bakery = {
+const bakery = {
 
     loader: function () {       
 
@@ -77,3 +77,4 @@ export default bakery = {
     }
 };
 
+export default bakery
