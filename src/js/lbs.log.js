@@ -52,11 +52,15 @@
         warn: function (msg) {
             try { console.warn(msg); } catch (e) { }
         },
-        error: function (msg) {            
+        error: (msg) => {
             lbs.error = true;
             lbs.log.vm.errorFound(true);
-            lbs.SetTouchEnabled(true);
-            try { console.error(msg) ;} catch (e) { }
+            lbs.SetTouchEnabled(true)
+            try {
+                console.error(msg)
+            } catch(e) {
+                lbs.log.error(e)
+            }
         },
     },    
     /**

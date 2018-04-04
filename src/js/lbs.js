@@ -458,7 +458,8 @@ const lbs = {
 
                     if (parseFloat(currentLocalVersion) < parseFloat(currentRemoteVersion)) {
                         lbs.log.warn(`App '${appName}' has an available update. Installed version: ${currentLocalVersion}, Available version: ${currentRemoteVersion}`)
-                        lbs.log.vm.addAppUpdate({ appName,
+                        lbs.log.vm.addAppUpdate({
+                            appName,
                             remoteVersion: currentRemoteVersion,
                             localVersion: currentLocalVersion,
                         })
