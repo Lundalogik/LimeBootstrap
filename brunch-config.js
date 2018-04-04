@@ -34,6 +34,8 @@ exports.npm = {
     $: 'jquery',
     jQuery: 'jquery',
     ko: 'knockout',
+    'ko.mapping': 'knockout-mapping',
+    'ko.punches': 'knockout-punches',
     _: 'underscore'
   }
 }

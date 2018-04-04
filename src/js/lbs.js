@@ -16,8 +16,6 @@ import common from './lbs.common'
 import apploader from './lbs.apploader'
 import bakery from './lbs.bakery'
 
-ko.mapping = mapping
-ko.punches = punches
 
 /**
 Objekt container
@@ -98,7 +96,7 @@ const lbs = {
         this.setSkin()
 
         // set moment language
-        moment.lang(lbs.common.executeVba('Localize.GetLanguage'))
+        moment.locale(lbs.common.executeVba('Localize.GetLanguage'))
 
         // load datasources
         this.vm = lbs.loader.loadDataSources(this.vm, this.config.dataSources, false)
@@ -106,10 +104,11 @@ const lbs = {
         // init watch
         this.log.watch.setup()
 
-        // load views
-        this.loader.loadView('system/view/{0}'.format(lbs.wrapperType), $('#wrapper'))
-        this.loader.loadView(lbs.activeClass, $('#content'))
-
+        // load view
+        // this.loader.loadView('system/view/{0}'.format(lbs.wrapperType), $('#wrapper'))
+        if (lbs.activeClass) {
+            this.loader.loadView(lbs.activeClass, $('#content'))
+        }
         // load caurousel
         this.apploader.buildCarousel()
 
@@ -171,8 +170,6 @@ const lbs = {
     Initialize a neat little loading spinner
     */
     setupLoader() {
-        this.loader.loadView('system/view/loader', $('#loadingIndicator'))
-
         lbs.loading.showLoader = ko.observable(true)
         lbs.loading = ko.mapping.fromJS(lbs.loading)
         ko.applyBindings(lbs.loading, $('#loadingIndicator').get(0))
@@ -188,7 +185,7 @@ const lbs = {
         })
 
         // create viewmodel container
-        this.vm = new lbs.vmFactory()
+        this.vm = new lbs.VmFactory()
 
         // check connection to Lime
         this.hasLimeConnection = (lbs.limeDataConnection && typeof lbs.limeDataConnection.Application !== 'undefined')
@@ -291,9 +288,11 @@ const lbs = {
                 switch (wrapperType) {
                 case 'tab':
                     lbs.wrapperType = 'wrapperTab'
+                    $('#wrapper').removeClass('content-container').addClass('content-container-tab')
                     break
                 case 'inline':
                     lbs.wrapperType = 'wrapperInline'
+                    $('#wrapper').removeClass('content-container').addClass('content-container-inline')
                     break
                 default:
                     lbs.wrapperType = 'wrapperActionpad'
@@ -306,7 +305,7 @@ const lbs = {
         }
 
         lbs.log.info(`Using wrapper type: ${lbs.wrapperType}`)
-        lbs.log.info(`Using view: ${lbs.activeClass}`)
+        lbs.log.info(`Using view: ${lbs.activeClass || 'No view supplied'}`)
     },
 
     /**
@@ -412,7 +411,9 @@ const lbs = {
         }
 
         try {
-            ko.applyBindings(lbs.vm, $('body').get(0))
+            if (lbs.activeClass) {
+                ko.applyBindings(lbs.vm, $('body').get(0))
+            }
         } catch (e) {
             lbs.log.warn('Binding of body bindings failed!', e)
         }
@@ -511,7 +512,7 @@ const lbs = {
 /**
 ViewModel factory, extend this to add knockout functionality to actionpads
 */
-lbs.vmFactory = () => {}
+lbs.VmFactory = () => {}
 window.lbs = lbs
 /**
 Every this is loaded, run the awesomeness!
