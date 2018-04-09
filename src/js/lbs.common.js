@@ -1,4 +1,4 @@
-﻿
+﻿import $ from 'jquery'
 /**
 --------------------------------------------------------
 Common functions used in lbs
@@ -57,7 +57,7 @@ const common = {
     */
     getURLParameter(name) {
         const param = decodeURI((RegExp(`${name}=` + '(.+?)(&|$)').exec(location.search) || [, null])[1])
-        return (param == 'null' ? null : param)
+        return (param === 'null' ? null : param)
     },
 
     /**
@@ -72,7 +72,7 @@ const common = {
                 return null
             }
 
-            var vbaline
+            let vbaline
 
             let inArgs = inString.split(',')
             if (params) {
@@ -90,7 +90,7 @@ const common = {
                         inArgs[i] = inArgs[i].substr(1)
                     }
                     args += `'${inArgs[i]}'`
-                    if (i != inArgs.length - 1) { args += ',' }
+                    if (i !== inArgs.length - 1) { args += ',' }
                 }
                 vbaline += `${args})`
 
@@ -102,7 +102,7 @@ const common = {
             lbs.log.debug(`Trying to execute VBA:${vbaline}`)
             return lbs.limeDataConnection.Run(arguments[0])
         } catch (e) {
-            lbs.log.error(`Failed to execute VBA:${vbaline}`, e)
+            lbs.log.error(`Failed to execute VBA:${inString}`, e)
             return null
         }
     },

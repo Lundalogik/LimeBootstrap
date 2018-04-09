@@ -131,7 +131,7 @@ const loader = {
                 element.html(s)
                 lbs.log.info(`View "${file}" loaded successfully`)
             } else {
-                lbs.log.error(`View "${file}" could not be loaded`, e)
+                lbs.log.error(`View "${file}" could not be loaded`)
             }
         }
     },
@@ -146,8 +146,8 @@ const loader = {
             return vm
         }
 
-        const filterRemoveRelated = function (item) { return (item.type != 'relatedRecord') }
-        const filterRemoveInspector = function (item) { return (item.type != 'activeInspector') }
+        const filterRemoveRelated = function (item) { return (item.type !== 'relatedRecord') }
+        const filterRemoveInspector = function (item) { return (item.type !== 'activeInspector') }
         const filterGetInspector = function (item) { return (item.type === 'activeInspector') }
         const filterGetRelated = function (item) { return (item.type === 'relatedRecord') }
         const relatedRecordExists = dataSources.filter(filterRemoveRelated).length !== dataSources.length
@@ -199,7 +199,7 @@ const loader = {
                     data = lbs.loader.controlsToJSON(lbs.activeInspector.Controls, dataSource.alias)
 
                     // find data without alias
-                    dataNode = data[Object.keys(data)[0]]
+                    const dataNode = data[Object.keys(data)[0]]
                     // check for related records, source is fieldname is this instance
                     if (dataSource.hasOwnProperty('relatedRecords')) {
                         $.each(dataSource.relatedRecords, (i, rs) => {
@@ -209,7 +209,7 @@ const loader = {
                                 rs.idrecord = dataNode[rs.source].value
 
                                 // add data as subkey to inspector relation if no alias is specified, otherwise as its own node
-                                vmToAdd = rs.alias ? vm : dataNode
+                                const vmToAdd = rs.alias ? vm : dataNode
 
                                 // set alias to fieldname if does not exist
                                 rs.alias = rs.alias ? rs.alias : rs.source
@@ -285,7 +285,7 @@ const loader = {
                     parsedData = lbs.loader.dictionaryToJSON(k, d, 'loc')
 
                     $.each(parsedData.loc, (key, value) => {
-                        keysplit = key.split('$$')
+                        const keysplit = key.split('$$')
                         collecton[keysplit[0]] = collecton[keysplit[0]] || {}
                         collecton[keysplit[0]][keysplit[1]] = value
                     })
@@ -328,7 +328,7 @@ const loader = {
 
                     // verify that record related record exists
                     if (dataSource.idrecord) {
-                        record = lbs.common.executeVba('lbsHelper.loadRelatedRecord', autoParams)
+                        const record = lbs.common.executeVba('lbsHelper.loadRelatedRecord', autoParams)
                         data = lbs.loader.recordToJSON(record, dataSource.alias)
                     } else {
                         data = lbs.loader.emptyAliasJSON(dataSource.alias)
@@ -357,6 +357,8 @@ const loader = {
 
                 data.ActiveUser = json.ActiveUser
                 break
+            default:
+                lbs.log.warn(`Supplied datasource ${dataSource.type} not recognized. Please see docs for supported sources`)
             }
 
             // merge options into the viewModel

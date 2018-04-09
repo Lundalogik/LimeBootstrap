@@ -30,6 +30,7 @@ lbs.externalConfig = {
 		    dataSources: [
 		    	{type: 'activeInspector', source: ''}, 
 		    	{type: 'localization', source: '' },
+				{type: 'activeUser', source: '' },
 		        {type: 'relatedRecord', source: 'person', view: 'name;phone;email;mobilephone', alias: 'person'},
 	   			{type: 'relatedRecord', source: 'company', view: 'name;phone', alias: 'company'}
 		    ],
