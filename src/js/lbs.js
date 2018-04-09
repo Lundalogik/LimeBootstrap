@@ -31,7 +31,7 @@ const lbs = {
     verboseLevel: null,
     limeDataConnection: window.external,
     limeVersion: {},
-    hasLimeConnection: true,
+    hasLimeConnection: false,
     activeClass: '',
     activeDatabase: '',
     activeServer: '',
@@ -41,7 +41,6 @@ const lbs = {
     error: false,
     vm: {},
     loading: {},
-    log,
     loader,
     common,
     apploader,
@@ -68,6 +67,33 @@ const lbs = {
     */
     setup() {
         const tTot1 = moment()
+        lbs.log = {}
+        lbs.log.log = function() {
+            console.log.apply(console, arguments);
+        }
+        lbs.log.info = function() {
+            console.info.apply(console, arguments);
+            if (lbs.hasLimeConnection) {
+                //lbs.common.executeVba('debug.print', 'hepp')
+                //alert("hepp")
+               
+            }
+        }
+        lbs.log.warn = function() {
+            console.warn.apply(console, arguments);
+        }
+        lbs.log.error = function() {
+            console.error.apply(console, arguments);
+            if (lbs.hasLimeConnection) {
+                //lbs.common.executeVba('Debug.Print', 'hepp')
+                let args = Array.prototype.slice.call(arguments);
+                //lbs.common.executeVba('LBSHelper.Log', args.toString())
+            }
+        }
+        lbs.log.debug = function() {
+            console.debug.apply(console, arguments);
+        }
+
 
         // register custom bindnings
         registerCustomBindings()
@@ -82,9 +108,9 @@ const lbs = {
         lbs.SetTouchEnabled(false)
 
         // init the log
-        window.console.log = lbs.log.log
-        this.setVerboseLevel()
-        this.log.setup(lbs.debug)
+        //window.console.log = lbs.log.log
+        //this.setVerboseLevel()
+        //this.log.setup(lbs.debug)
 
         // get AP class etc
         this.setActionPadEnvironment()
@@ -108,7 +134,7 @@ const lbs = {
         this.vm = lbs.loader.loadDataSources(this.vm, this.config.dataSources, false)
 
         // init watch
-        this.log.watch.setup()
+        //this.log.watch.setup()
 
         // load view
         // this.loader.loadView('system/view/{0}'.format(lbs.wrapperType), $('#wrapper'))
@@ -136,7 +162,7 @@ const lbs = {
         const tApp2 = moment()
 
         // push delayed logitems
-        this.log.vm.enableConsole()
+        //this.log.vm.enableConsole()
 
         // execute onLoad
         this.ExecuteOnloadEvents()
@@ -154,7 +180,7 @@ const lbs = {
         lbs.bakery.loader()
 
         // syntax highjlight
-        lbs.log.watch.sh()
+        //lbs.log.watch.sh()
         const tTot2 = moment()
 
         lbs.log.info(`Total load time: ${tTot2.diff(tTot1, 'milliseconds')}ms`)
@@ -194,7 +220,7 @@ const lbs = {
         this.vm = new lbs.VmFactory()
 
         // check connection to Lime
-        this.hasLimeConnection = (lbs.limeDataConnection && typeof lbs.limeDataConnection.Application !== 'undefined')
+        this.hasLimeConnection = Boolean(lbs.limeDataConnection && typeof lbs.limeDataConnection.Application !== 'undefined')
 
         // getVersion
         this.limeVersion = lbs.hasLimeConnection ?

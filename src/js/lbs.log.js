@@ -67,7 +67,7 @@ const log = {
     /**
     Log entry function for app printing
     */
-    log(args) {
+    log(...args) {
         lbs.log.logToConsole.debug(args)
         args.map((arg) => {
             if (Array.isArray(arg)) {
