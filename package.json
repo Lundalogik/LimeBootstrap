@@ -23,6 +23,7 @@
   "homepage": "https://github.com/Lundalogik/LimeBootstrap#readme",
   "devDependencies": {
     "babel-brunch": "^6",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "brunch": "^2.10.12",
     "eslint": "^4.19.1",
