@@ -2,19 +2,22 @@
 * This is the default Lime CRM javascript lib for actionpad functions.
 * It contains many functions to make the world a little better place.
 */
+import 'babel-polyfill'
+
 import moment from 'moment'
 import $ from 'jquery'
 import _ from 'underscore'
 
 import ko from 'knockout'
-import mapping from 'knockout-mapping'
-import punches from 'knockout-punches'
+import 'knockout-mapping'
+import 'knockout-punches'
 
 import log from './lbs.log'
 import loader from './lbs.loader'
 import common from './lbs.common'
 import apploader from './lbs.apploader'
 import bakery from './lbs.bakery'
+import registerCustomBindings from './lbs.bindings'
 
 
 /**
@@ -65,6 +68,9 @@ const lbs = {
     */
     setup() {
         const tTot1 = moment()
+
+        // register custom bindnings
+        registerCustomBindings()
 
         // system param
         this.setSystemOperationParameters()

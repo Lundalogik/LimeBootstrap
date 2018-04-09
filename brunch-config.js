@@ -12,7 +12,7 @@ exports.files = {
         joinTo: {
             'system/css/lbs.css': /\.css/,
         },
-    },
+    }
 }
 
 exports.paths = {
@@ -20,8 +20,15 @@ exports.paths = {
     public: 'dist',
 }
 
-exports.plugins = {
-    babel: {presets: ['env']}
+module.exports.plugins = {
+  babel: {
+    presets: [['env', {
+      targets: {
+        browsers: ['last 2 versions']
+      },
+      useBuiltIns: true
+    }]]
+  }
 }
 
 exports.conventions = {
