@@ -67,7 +67,7 @@ const log = {
     /**
     Log entry function for app printing
     */
-    log(...args) {
+    log(args) {
         lbs.log.logToConsole.debug(args)
         args.map((arg) => {
             if (Array.isArray(arg)) {
@@ -226,8 +226,8 @@ log.VmFactory = class {
     push delayed items into log
     */
     pushDelayedLogItems() {
-        Object.entries(this.delayedLogItems).forEach((key) => {
-            this.logItems.push(this.delayedLogItems[key])
+        $(this.delayedLogItems).each((index, element) => {
+            this.logItems.push(element)
         })
     }
 }
@@ -238,7 +238,7 @@ log.watch = {
     show(state) {
         const wvm = new lbs.log.watch.VmFactory()
         if (state !== '') { wvm.initState = state }
-        showModalDialog('lbs.html?sv=watch&&type=tab', wvm, 'status:false;dialogWidth:900px;dialogHeight:820px;resizable:Yes')
+        window.showModalDialog('lbs.html?sv=watch&&type=tab', wvm, 'status:false;dialogWidth:900px;dialogHeight:820px;resizable:Yes')
     },
 
     setup() {
@@ -263,7 +263,7 @@ log.watch = {
             wvm.dom = args.dom
 
             // load to global vm
-            vm = lbs.common.mergeOptions(lbs.vm, wvm || {}, true)
+            lbs.vm = lbs.common.mergeOptions(lbs.vm, wvm || {}, true)
 
             // set active vm
             wvm.selectState(wvm.initState)

@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import ko from 'knockout'
 
 const apploader = {
 
@@ -167,19 +168,18 @@ const apploader = {
     Apply bindings
     */
     initializeApps() {
-        let path
         let appName
         let htmlNode
 
         $.each(lbs.apps, (key, app) => {
             appName = app.name
-            path = app.path
+            const { path } = app
             htmlNode = app.node
-            config = app.config
-            vm = lbs.apps[key].vm
+            const { config } = app
+            let { vm } = lbs.apps[key]
 
             // load view
-            lbs.loader.loadView(`${path }app`, htmlNode)
+            lbs.loader.loadView(`${path}app`, htmlNode)
 
             // run initialize
             try {
@@ -187,14 +187,14 @@ const apploader = {
                 lbs.apps[key].vm = vm
             } catch (e) {
                 lbs.apps[key].vm = vm
-                lbs.log.error(`Could not intialize app: ${  appName}`, e)
+                lbs.log.error(`Could not intialize app: ${appName}`, e)
             }
 
             // apply bindings
             try {
                 ko.applyBindings(vm, htmlNode.get(0))
             } catch (e) {
-                lbs.log.warn(lbs.common.nl2br(`Binding of data to view failed for app: ${  appName  }\n Displaying mapping attributes`))
+                lbs.log.warn(lbs.common.nl2br(`Binding of data to view failed for app: ${appName}\n Displaying mapping attributes`))
                 lbs.log.exception(e)
             }
         })
