@@ -22,6 +22,9 @@ exports.paths = {
 
 module.exports.plugins = {
   babel: {
+    plugins: [
+        ['transform-object-rest-spread', { useBuiltIns: true }]
+    ],
     presets: [['env', {
       targets: {
         browsers: ['last 2 versions']
@@ -45,4 +48,9 @@ exports.npm = {
     'ko.punches': 'knockout-punches',
     _: 'underscore'
   }
+}
+
+exports.server = {
+    hostname: '0.0.0.0',
+    indexPath: 'lbs.html'
 }
