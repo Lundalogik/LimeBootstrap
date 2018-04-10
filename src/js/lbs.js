@@ -45,6 +45,7 @@ const lbs = {
     common,
     apploader,
     bakery,
+    log,
 
     /**
     config
@@ -67,33 +68,6 @@ const lbs = {
     */
     setup() {
         const tTot1 = moment()
-        lbs.log = {}
-        lbs.log.log = function() {
-            console.log.apply(console, arguments);
-        }
-        lbs.log.info = function() {
-            console.info.apply(console, arguments);
-            if (lbs.hasLimeConnection) {
-                //lbs.common.executeVba('debug.print', 'hepp')
-                //alert("hepp")
-               
-            }
-        }
-        lbs.log.warn = function() {
-            console.warn.apply(console, arguments);
-        }
-        lbs.log.error = function() {
-            console.error.apply(console, arguments);
-            if (lbs.hasLimeConnection) {
-                //lbs.common.executeVba('Debug.Print', 'hepp')
-                let args = Array.prototype.slice.call(arguments);
-                //lbs.common.executeVba('LBSHelper.Log', args.toString())
-            }
-        }
-        lbs.log.debug = function() {
-            console.debug.apply(console, arguments);
-        }
-
 
         // register custom bindnings
         registerCustomBindings()
@@ -105,12 +79,10 @@ const lbs = {
         this.debug = lbs.externalConfig.debug
 
         // set contextmenu enables/disabled
-        lbs.SetTouchEnabled(false)
+        this.SetTouchEnabled(false)
 
         // init the log
-        //window.console.log = lbs.log.log
-        //this.setVerboseLevel()
-        //this.log.setup(lbs.debug)
+        this.log.setVerboseLevel()
 
         // get AP class etc
         this.setActionPadEnvironment()
@@ -133,11 +105,7 @@ const lbs = {
         // load datasources
         this.vm = lbs.loader.loadDataSources(this.vm, this.config.dataSources, false)
 
-        // init watch
-        //this.log.watch.setup()
-
         // load view
-        // this.loader.loadView('system/view/{0}'.format(lbs.wrapperType), $('#wrapper'))
         if (lbs.activeClass) {
             this.loader.loadView(lbs.activeClass, $('#content'))
         }
@@ -161,9 +129,6 @@ const lbs = {
         this.apploader.initializeApps()
         const tApp2 = moment()
 
-        // push delayed logitems
-        //this.log.vm.enableConsole()
-
         // execute onLoad
         this.ExecuteOnloadEvents()
 
@@ -179,8 +144,6 @@ const lbs = {
         // Loading cookies
         lbs.bakery.loader()
 
-        // syntax highjlight
-        //lbs.log.watch.sh()
         const tTot2 = moment()
 
         lbs.log.info(`Total load time: ${tTot2.diff(tTot1, 'milliseconds')}ms`)
@@ -226,39 +189,6 @@ const lbs = {
         this.limeVersion = lbs.hasLimeConnection ?
             lbs.common.parseVersion(lbs.limeDataConnection.Version) : lbs.common.parseVersion('0.0.0')
     },
-
-
-    /**
-    Find debug flags
-    */
-    setDebug(val) {
-        lbs.debug = val
-    },
-
-    setVerboseLevel() {
-        if (lbs.externalConfig.verboseLevel) {
-            switch (lbs.externalConfig.verboseLevel) {
-            case 'debug':
-                lbs.verboseLevel = lbs.log.verboseLevelEnum.debug
-                break
-            case 'info':
-                lbs.verboseLevel = lbs.log.verboseLevelEnum.info
-                break
-            case 'warn':
-                lbs.verboseLevel = lbs.log.verboseLevelEnum.warn
-                break
-            case 'error':
-                lbs.verboseLevel = lbs.log.verboseLevelEnum.error
-                break
-            default:
-                lbs.verboseLevel = lbs.log.verboseLevelEnum.warn
-                break
-            }
-        } else {
-            lbs.verboseLevel = lbs.log.verboseLevelEnum.warn
-        }
-    },
-
 
     /**
     Find active actionpad view
