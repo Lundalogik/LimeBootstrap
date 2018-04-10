@@ -266,6 +266,8 @@ const lbs = {
             lbs.log.error('Could not determine wrapper type', e)
         }
 
+        document.title = `Lime Bootstrap: ${this.activeClass}`
+
         lbs.log.info(`Using wrapper type: ${lbs.wrapperType}`)
         lbs.log.info(`Using view: ${lbs.activeClass || 'No view supplied'}`)
     },
