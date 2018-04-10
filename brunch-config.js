@@ -51,6 +51,6 @@ exports.npm = {
 }
 
 exports.server = {
-    hostname: '0.0.0.0',
+    // hostname: '0.0.0.0',
     indexPath: 'lbs.html'
 }
