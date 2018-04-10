@@ -30,11 +30,11 @@ const apploader = {
         let instance
         let guid
 
-        $('[data-app]').each(function () {
+        $('[data-app]').each((index, element) => {
             try {
                 // try to parse input to app from view
                 try {
-                    eval(`binding = ${$(this).attr('data-app')}`)
+                    eval(`binding = ${$(element).attr('data-app')}`)
                     appName = binding.app
                     instanceConfig = binding.config
                 } catch (e1) {
@@ -44,7 +44,7 @@ const apploader = {
 
                 // set basic properties
                 path = `apps/${appName}/`
-                htmlNode = $(this)
+                htmlNode = $(element)
                 guid = lbs.common.generateGuid()
 
                 // load app
