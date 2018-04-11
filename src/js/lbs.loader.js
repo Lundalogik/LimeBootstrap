@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import moment from 'moment'
 
 const loader = {
 
@@ -67,14 +68,13 @@ const loader = {
         let retval = false
         try {
             $.getScript(filename)
-                .done((script, textStatus) => {
+                .done(() => {
                     lbs.log.info(`Script "${filename}" loaded successfully`)
                 })
                 .fail((jqxhr, settings, exception) => {
                     throw exception
                     // throw new Error('Script "' + filename + '" could not be loaded');
                 })
-
             retval = true
         } catch (e) {
             try {
@@ -146,20 +146,21 @@ const loader = {
             return vm
         }
 
-        const filterRemoveRelated = function (item) { return (item.type !== 'relatedRecord') }
-        const filterRemoveInspector = function (item) { return (item.type !== 'activeInspector') }
-        const filterGetInspector = function (item) { return (item.type === 'activeInspector') }
-        const filterGetRelated = function (item) { return (item.type === 'relatedRecord') }
-        const relatedRecordExists = dataSources.filter(filterRemoveRelated).length !== dataSources.length
-        const activeInspectorExists = dataSources.filter(filterRemoveInspector).length !== dataSources.length
+        const filterRemoveRelated = item => item.type !== 'relatedRecord'
+        const filterRemoveInspector = item => item.type !== 'activeInspector'
+        const filterGetInspector = item => item.type === 'activeInspector'
+        const filterGetRelated = item => item.type === 'relatedRecord'
+        const relatedRecordExists = dataSources.filter(() =>
+            filterRemoveRelated).length !== dataSources.length
+        const activeInspectorExists = dataSources.filter(() =>
+            filterRemoveInspector).length !== dataSources.length
 
         // check for activeInspector if using relatedRecord
         if (relatedRecordExists && !activeInspectorExists) {
             // remove related record
             dataSources = dataSources.filter(filterRemoveRelated)
             lbs.log.warn("Failed to load datasource 'RelatedRecord', activeInspector is not loaded")
-        }
-        else if (relatedRecordExists) { // add properties to inspector source
+        } else if (relatedRecordExists) { // add properties to inspector source
             // get inspector source
             const activeInspector = dataSources.filter(filterGetInspector)[0]
             // set related sources to inspector source
@@ -186,9 +187,10 @@ const loader = {
 
         lbs.log.debug(`Loading data source: ${dataSource.type}:${dataSource.source}`)
         const timerStart = moment()
+
         try {
             switch (dataSource.type) {
-            case 'activeInspector':
+            case 'activeInspector': {
                 try {
                     // check lime
                     if (!lbs.activeInspector) {
@@ -208,7 +210,8 @@ const loader = {
                                 rs.class = dataNode[rs.source].class
                                 rs.idrecord = dataNode[rs.source].value
 
-                                // add data as subkey to inspector relation if no alias is specified, otherwise as its own node
+                                // add data as subkey to inspector relation if no alias
+                                // is specified, otherwise as its own node
                                 const vmToAdd = rs.alias ? vm : dataNode
 
                                 // set alias to fieldname if does not exist
@@ -225,10 +228,10 @@ const loader = {
                     lbs.log.warn(`Failed to load datasource: ${dataSource.type}:${dataSource.source}`, e)
                 }
                 break
-            case 'xml':
-
+            }
+            case 'xml': {
                 // check for ownerIdParam
-                var autoParams = []
+                const autoParams = []
                 if (dataSource.hasOwnProperty('PassInspectorParam') && dataSource.PassInspectorParam && lbs.activeInspector) {
                     autoParams.push(lbs.activeInspector.ID)
                 }
@@ -241,10 +244,10 @@ const loader = {
                     lbs.log.warn(`Failed to load datasource: ${dataSource.type}:${dataSource.source}`)
                 }
                 break
-            case 'record':
-
+            }
+            case 'record': {
                 // check for ownerIdParam
-                var autoParams = []
+                const autoParams = []
                 if (dataSource.hasOwnProperty('PassInspectorParam') && dataSource.PassInspectorParam && lbs.activeInspector) {
                     autoParams.push(lbs.activeInspector.ID)
                 }
@@ -257,9 +260,10 @@ const loader = {
                     lbs.log.warn(`Failed to load datasource: ${dataSource.type}:${dataSource.source}`)
                 }
                 break
-            case 'records':
+            }
+            case 'records': {
                 // check for ownerIdParam
-                var autoParams = []
+                const autoParams = []
                 if (dataSource.hasOwnProperty('PassInspectorParam') && dataSource.PassInspectorParam && lbs.activeInspector) {
                     autoParams.push(lbs.activeInspector.ID)
                 }
@@ -272,17 +276,17 @@ const loader = {
                     lbs.log.warn(`Failed to load datasource: ${dataSource.type}:${dataSource.source}`)
                 }
                 break
-            case 'localization':
-                var k = lbs.common.executeVba('Localize.getDictionaryKeys')
-                var d = lbs.common.executeVba('Localize.getDictionary')
-                var parsedData = {}
-                var collecton = {}
+            }
+            case 'localization': {
+                const k = lbs.common.executeVba('Localize.getDictionaryKeys')
+                const d = lbs.common.executeVba('Localize.getDictionary')
+                const collecton = {}
 
                 // return empty object if missing or no language support
                 if (!d || !k) {
                     lbs.log.warn('Localization dictionary could not be loaded')
                 } else {
-                    parsedData = lbs.loader.dictionaryToJSON(k, d, 'loc')
+                    const parsedData = lbs.loader.dictionaryToJSON(k, d, 'loc')
 
                     $.each(parsedData.loc, (key, value) => {
                         const keysplit = key.split('$$')
@@ -293,7 +297,8 @@ const loader = {
                     data.localize = collecton
                 }
                 break
-            case 'storedProcedure':
+            }
+            case 'storedProcedure': {
                 data = lbs.common.executeVba('lbsHelper.loadXmlFromStoredProcedure, {0}'.format(dataSource.source))
                 if (data !== null) {
                     data = lbs.loader.xmlToJSON(data, dataSource.alias)
@@ -301,7 +306,8 @@ const loader = {
                     lbs.log.warn(`Failed to load datasource: ${dataSource.type}:${dataSource.source}`)
                 }
                 break
-            case 'HTTPGetXml':
+            }
+            case 'HTTPGetXml': {
                 data = lbs.loader.loadFromExternalWebService(dataSource.source)
                 if (data !== null) {
                     data = lbs.loader.xmlToJSON(data, dataSource.alias)
@@ -309,7 +315,8 @@ const loader = {
                     lbs.log.warn(`Failed to load datasource: ${dataSource.type}:${dataSource.source}`)
                 }
                 break
-            case 'SOAPGetXml':
+            }
+            case 'SOAPGetXml': {
                 data = lbs.common.executeVba(`LBSHelper.loadFromSOAP,${dataSource.source.url},${dataSource.source.action},${dataSource.source.xml}`)
                 if (data !== null) {
                     data = lbs.loader.xmlToJSON(data, dataSource.alias)
@@ -317,9 +324,10 @@ const loader = {
                     lbs.log.warn(`Failed to load datasource: ${dataSource.type}:${dataSource.source}`)
                 }
                 break
-            case 'relatedRecord':
+            }
+            case 'relatedRecord': {
                 try {
-                    var autoParams = []
+                    const autoParams = []
                     autoParams.push(dataSource.class)
                     autoParams.push(dataSource.idrecord)
                     if (dataSource.hasOwnProperty('view')) {
@@ -338,8 +346,9 @@ const loader = {
                     lbs.log.warn(`Failed to load datasource: ${dataSource.type}:${dataSource.source}`, e)
                 }
                 break
-            case 'AsyncPost':
-                var params = dataSource.parameters || {}
+            }
+            case 'AsyncPost': {
+                const params = dataSource.parameters || {}
                 $.support.cors = true
                 data = {}
                 data[dataSource.alias] = $.ajax({
@@ -351,12 +360,14 @@ const loader = {
                     crossDomain: true,
                 })
                 break
-            case 'activeUser':
-                var c = lbs.common.executeVba('lbsHelper.getActiveUser')
-                var json = JSON.parse(c)
+            }
+            case 'activeUser': {
+                const c = lbs.common.executeVba('lbsHelper.getActiveUser')
+                const json = JSON.parse(c)
 
                 data.ActiveUser = json.ActiveUser
                 break
+            }
             default:
                 lbs.log.warn(`Supplied datasource ${dataSource.type} not recognized. Please see docs for supported sources`)
             }
@@ -421,20 +432,18 @@ const loader = {
     Transform a VBA dictionary to JSON.
     A collection with keys is needed as the keys method is not transported to JS
     */
-    dictionaryToJSON(keys, dic, alias) {
-        let key,
-            value
+    dictionaryToJSON(keys, dic, _alias) {
+        let key
+        let value
         const json = {}
         const r = {}
+        const alias = _alias || 'dictionarySource'
 
-        var alias = alias || 'dictionarySource'
-
-        for (let i = 1; i <= dic.count; i++) {
+        for (let i = 1; i <= dic.count; i += 1) {
             key = keys(i)
             value = dic.item(key)
             json[key] = value
         }
-
         r[alias] = json
         return r
     },
@@ -442,40 +451,39 @@ const loader = {
     /**
     Transform a VBA records to JSON
     */
-    recordsToJSON(rc, alias) {
+    recordsToJSON(rc, _alias) {
         const json = {}
 
         if (rc) {
             const className = rc.Class.Name
             const nbrOfRecords = rc.Count
-            var alias = alias || className
+            const alias = _alias || className
 
 
             json[alias] = {}
             json[alias].records = []
-            for (let i = 1; i <= nbrOfRecords; i++) {
+            for (let i = 1; i <= nbrOfRecords; i += 1) {
                 const record = lbs.loader.recordToJSON(rc.Item(i), 'r')
-                json[alias].records.push(record.r)
+                json[alias || className].records.push(record.r)
             }
         }
-
         return json
     },
 
     /**
     Transform a VBA record to JSON
     */
-    recordToJSON(record, alias) {
+    recordToJSON(record, _alias) {
         const json = {}
 
         if (record) {
             const nbrOfFields = record.Fields.Count
             const className = record.Class.Name
             let attr
-            var alias = alias || className
+            const alias = _alias || className
             json[alias] = {}
 
-            for (let i = 1; i <= nbrOfFields; i++) {
+            for (let i = 1; i <= nbrOfFields; i += 1) {
                 attr = record.Fields(i).Name
                 json[alias][attr] = {}
                 json[alias][attr].text = record.Text(i)
@@ -483,13 +491,13 @@ const loader = {
                 if (typeof record.Value(i) !== 'unknown') {
                     json[alias][attr].value = record.Value(i)
                 }
-                if (record.Fields(i).Type == 16) { // Relation
+                if (record.Fields(i).Type === 16) { // Relation
                     json[alias][attr].class = record.Fields(i).LinkedField.Class.Name
                 }
 
                 // check if optionkey support
                 if (lbs.limeVersion.comparable > lbs.common.parseVersion('10.8').comparable) {
-                    if (record.Fields(i).Type == (19 || 18)) { // Option or Set
+                    if (record.Fields(i).Type === (19 || 18)) { // Option or Set
                         json[alias][attr].key = record.GetOptionKey(i)
                     }
                 }
@@ -510,26 +518,26 @@ const loader = {
     /**
     Transform controls on activeInspector to JSON
     */
-    controlsToJSON(controls, alias) {
+    controlsToJSON(controls, _alias) {
         const nbrOfControls = controls.Count
         const className = controls.Class.Name
         let attr
         const json = {}
-        var alias = alias || className
+        const alias = _alias || className
         json[alias] = {}
 
-        for (let i = 1; i <= nbrOfControls; i++) {
+        for (let i = 1; i <= nbrOfControls; i += 1) {
             attr = controls(i).Field.Name
             json[alias][attr] = {}
             json[alias][attr].text = controls(i).Text
             json[alias][attr].value = controls(i).Value
-            if (controls(i).Field.Type == 16) { // Relation
+            if (controls(i).Field.Type === 16) { // Relation
                 json[alias][attr].class = controls(i).Field.LinkedField.Class.Name
             }
 
             // check if optionkey support
             if (lbs.limeVersion.comparable > lbs.common.parseVersion('10.8').comparable) {
-                if (controls(i).Field.Type == (19 || 18)) { // Option or Set
+                if (controls(i).Field.Type === (19 || 18)) { // Option or Set
                     json[alias][attr].key = controls(i).OptionKey
                 }
             }
@@ -541,9 +549,9 @@ const loader = {
     /**
     Transform XML to JSON
     */
-    xmlToJSON(xml, alias) {
+    xmlToJSON(xml, _alias) {
         const json = {}
-        var alias = alias || 'xmlSource'
+        const alias = _alias || 'xmlSource'
 
         json[alias] = $.parseJSON(xml2json($.parseXML(xml), ''))
 

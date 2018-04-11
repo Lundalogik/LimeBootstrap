@@ -1,80 +1,73 @@
-const bakery = {
+import $ from 'jquery'
 
-    loader: function () {       
+class Bakery {
+    static loader() {
+        const ap = decodeURI((RegExp('ap=(.+?)(&|$)').exec(window.location.search) || [null, null])[1])
 
-        var ap = decodeURI(
-            (RegExp('ap' + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
-        );
-        //On load: check collapsible menu cookies
-        $('.expandable').each(function () {
-            if (lbs.bakery.getCookie($(this).index() + 'ul' + ap) === "0") {
-                $(this).find(".menu-header").prepend("<i class='fa fa-angle-down'> </i>");
-                $(this).removeClass("collapsed");
-                $(this).children("li").not(".remainHidden").show();
+        // On load: check collapsible menu cookies
+        $('.expandable').each((index, element) => {
+            if (lbs.bakery.getCookie(`${$(element).index()}ul${ap}`) === '0') {
+                $(element).find('.menu-header').prepend("<i class='fa fa-angle-down'> </i>")
+                $(element).removeClass('collapsed')
+                $(element).children('li').not('.remainHidden').show()
+            } else {
+                $(element).find('.menu-header').prepend("<i class='fa fa-angle-right'> </i>")
+                $(element).addClass('collapsed')
+                $(element).children('li').not('.menu-header').not('.divider')
+                    .hide()
             }
-            else{
-                $(this).find(".menu-header").prepend("<i class='fa fa-angle-right'> </i>");
-                $(this).addClass("collapsed");
-                $(this).children("li").not(".menu-header").not(".divider").hide();
-            }
-        });
+        })
 
+        $('.expandable').find('.menu-header').click((event) => {
+            const element = event.currentTarget
+            const menuDiv = $(element).parent()
+            let i = lbs.bakery.getCookie(`${menuDiv.index()}ul${ap}`)
 
-        $('.expandable').find(".menu-header").click(function () {
-            var menuDiv = $(this).parent();
-            var i = lbs.bakery.getCookie(menuDiv.index() + 'ul' + ap);
-            i = i === "0" ? "1" : "0";
-            lbs.bakery.setCookie(menuDiv.index() + 'ul' + ap, i, "200");
-            lbs.bakery.hideshow(menuDiv, ap);
-        });
-
+            i = i === '0' ? '1' : '0'
+            lbs.bakery.setCookie(`${menuDiv.index()}ul${ap}`, i, '200')
+            lbs.bakery.hideshow(menuDiv, ap)
+        })
     }
-    ,
-    hideshow: function (menu, ap) {        
-        var menuDiv = $(menu);    
-        $(menu).find("i").first().toggleClass("fa fa-angle-down"); //expanded
-        $(menu).find("i").first().toggleClass("fa fa-angle-right"); // Hidden
-        if (lbs.bakery.getCookie($(menu).index() + 'ul' + ap) === "0") {
-            menuDiv.removeClass("collapsed");
-            menuDiv.children("li").not(".remainHidden").fadeIn(200);
+
+    static hideshow(menu, ap) {
+        const menuDiv = $(menu)
+        $(menu).find('i').first().toggleClass('fa fa-angle-down') // expanded
+        $(menu).find('i').first().toggleClass('fa fa-angle-right') // Hidden
+        if (lbs.bakery.getCookie(`${$(menu).index()}ul${ap}`) === '0') {
+            menuDiv.removeClass('collapsed')
+            menuDiv.children('li').not('.remainHidden').fadeIn(200)
         } else {
-            menuDiv.addClass("collapsed");
-            menuDiv.children("li").not(".menu-header").not(".divider").fadeOut(200);
+            menuDiv.addClass('collapsed')
+            menuDiv.children('li').not('.menu-header').not('.divider').fadeOut(200)
         }
-    },
-    
-    setCookie: function (cname, cvalue, exdays) {
-
-        var ap = decodeURI(
-            (RegExp('ap' + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
-        );
-
-        cname = cname + '-' + ap;
-
-        var d = new Date();
-        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-        var expires = "expires=" + d.toUTCString();        
-        var cookieid = "cookieid=" + $('.expandable').attr('id');
-        document.cookie = cname + "=" + cvalue + "; " + expires;
     }
-    ,
-    getCookie: function (cname) {
 
-        var ap = decodeURI(
-            (RegExp('ap' + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
-        );
+    static setCookie(name, cvalue, exdays) {
+        const ap = decodeURI((RegExp('ap=(.+?)(&|$)').exec(window.location.search) || [null, null])[1])
 
-        cname = cname + '-' + ap;
+        const cname = `${name}-${ap}`
 
-        var name = cname + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') c = c.substring(1);
-            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        const d = new Date()
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
+        const expires = `expires=${d.toUTCString()}`
+
+        document.cookie = `${cname}=${cvalue}; ${expires}`
+    }
+    static getCookie(name) {
+        const ap = decodeURI((RegExp('ap=(.+?)(&|$)').exec(window.location.search) || [null, null])[1])
+
+        const cname = `${name}-${ap}=`
+
+        const ca = document.cookie.split(';')
+        for (let i = 0; i < ca.length; i += 1) {
+            let c = ca[i]
+
+            while (c.charAt(0) === ' ') c = c.substring(1)
+            if (c.indexOf(cname) === 0) return c.substring(cname.length, c.length)
         }
-        return "";
-    }
-};
 
-export default bakery
+        return ''
+    }
+}
+
+export default Bakery
