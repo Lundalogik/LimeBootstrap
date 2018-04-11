@@ -18,6 +18,7 @@ import common from './lbs.common'
 import apploader from './lbs.apploader'
 import bakery from './lbs.bakery'
 import registerCustomBindings from './lbs.bindings'
+import './lbs.components'
 
 
 /**
