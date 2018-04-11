@@ -1,5 +1,6 @@
 ﻿import ko from 'knockout'
 import $ from 'jquery'
+import moment from 'moment'
 
 /**
  Binding provider override
@@ -12,36 +13,37 @@ export default function registerCustomBindings() {
             let bindings
             try {
                 bindings = ko.defaultBindingProvider.getBindings(node, bindingContext)
-    
+
                 // check validity
                 this.checkValue(bindings, 'text', node)
                 this.checkValue(bindings, 'value', node)
-    
+
                 bindings = this.processDependentBindings(bindings)
             } catch (ex) {
                 lbs.log.error(ex.message)
                 bindings = this.getDummyBindings(node)
                 bindings = this.processDependentBindings(bindings)
             }
-    
+
             return bindings
         },
-    
+
         // is value ok to bind to view, empty string is ok, undefined is not
         checkValue(data, val, node) {
             if (!data) { return }
             if (!data.hasOwnProperty(val)) { return }
             if (data[val]) { return }
             if (data[val] === '' || data[val] === false || data[val] === 0) { return }
-    
+
             throw new ReferenceError('Unable to set binding \'{0}\'.\nBindings value: {1}\nMessage: Property is undefined'.format(val, $(node).attr('data-bind')))
         },
-    
+
         // replace dependent bindings with another that can handle the isses
-        processDependentBindings(bindings) {
+        processDependentBindings(_bindings) {
             // no bindings, nothing to do
-            if (!bindings) { return }
-    
+            if (!_bindings) { return _bindings }
+
+            const bindings = _bindings
             // text and icon in same binding
             if (bindings.hasOwnProperty('text') && bindings.hasOwnProperty('icon')) {
                 // dont run if text is empty
@@ -53,36 +55,37 @@ export default function registerCustomBindings() {
             }
             return bindings
         },
-    
-    
-        // set visible bindings to the binding values. Used if bindings failed to display helper data.
+
+
+        // set visible bindings to the binding values.
+        // Used if bindings failed to display helper data.
         getDummyBindings(node) {
             const bindings = {}
             let match
-    
+
             // set text
-            match = new RegExp('text\:[^\,\}]*').exec($(node).attr('data-bind'))
+            match = new RegExp('text:[^,}]*').exec($(node).attr('data-bind'))
             if (match) {
                 bindings.text = `Binding: ${match[0].split(':')[1].trim()}`
             }
-    
+
             // set value
-            match = new RegExp('value\:[^\,\}]*').exec($(node).attr('data-bind'))
+            match = new RegExp('value:[^,}]*').exec($(node).attr('data-bind'))
             if (match) {
                 bindings.value = `Binding: ${match[0].split(':')[1].trim()}`
             }
-    
+
             // icons
-            match = new RegExp('icon\:[^\,\}]*').exec($(node).attr('data-bind'))
+            match = new RegExp('icon:[^,}]*').exec($(node).attr('data-bind'))
             if (match) {
-                bindings.icon = match[0].split(':')[1].trim().replace(/\'/g, '')
+                bindings.icon = match[0].split(':')[1].trim().replace(/'/g, '')
             }
-    
+
             return bindings
         },
-    
+
     }
-    
+
     /**
     Text with icon
     */
@@ -90,109 +93,91 @@ export default function registerCustomBindings() {
         update(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             const value = ko.unwrap(valueAccessor())
             const iconHtml = lbs.common.iconTemplate.format(value.icon)
-    
+
             $(element).html(`${iconHtml}<span></span>`)
             ko.bindingHandlers.text.update($(element).find('span').get(0), () => value.text, allBindingsAccessor, viewModel, bindingContext)
         },
     }
-    
+
     /**
     LimeLink
     */
     ko.bindingHandlers.limeLink = {
         init(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-            const newValueAccessor = function () {
-                return function () {
-                    lbs.common.executeVba(`shell,${lbs.common.createLimeLink(ko.unwrap(valueAccessor().class), ko.unwrap(valueAccessor().value))}`)
-                }
-            }
+            const limetype = ko.unwrap(valueAccessor().class)
+            const value = ko.unwrap(valueAccessor().value)
+            const limelink = lbs.common.createLimeLink(limetype, value)
+            const newValueAccessor = () => () => lbs.common.executeVba(`shell, ${limelink}`)
             ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext)
         },
     }
-    
+
     /**
     VBA call
     */
     ko.bindingHandlers.vba = {
         init(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-            const newValueAccessor = function () {
-                return function () {
-                    lbs.common.executeVba(valueAccessor())
-                }
-            }
+            const newValueAccessor = () => () => lbs.common.executeVba(valueAccessor())
             ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext)
         },
     }
-    
+
     /**
     Show on google map
     */
     ko.bindingHandlers.showOnMap = {
         init(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-            const newValueAccessor = function () {
-                return function () {
-                    lbs.common.executeVba(`shell,https://www.google.com/maps?q=${encodeURIComponent(ko.unwrap(valueAccessor()).replace(/\r?\n|\r/g, ' '))}`)
-                }
-            }
+            const fullAddress = encodeURIComponent(ko.unwrap(valueAccessor()).replace(/\r?\n|\r/g, ' '))
+            const link = `https://www.google.com/maps?q=${fullAddress}`
+            const newValueAccessor = () => () => lbs.common.executeVba(`shell, ${link}`)
             ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext)
         },
     }
-    
+
     /**
     Call phone (simply drop to shell)
     */
     ko.bindingHandlers.call = {
         init(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-            const newValueAccessor = function () {
-                return function () {
-                    lbs.common.executeVba(`shell,tel:${ko.unwrap(valueAccessor())}`)
-                }
-            }
+            const number = ko.unwrap(valueAccessor())
+            const newValueAccessor = () => () => lbs.common.executeVba(`shell,tel:${number}`)
             ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext)
         },
     }
-    
+
     /**
     Open URL (simply drop to shell)
     */
     ko.bindingHandlers.openURL = {
         init(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-            const newValueAccessor = function () {
-                return function () {
-                    lbs.common.executeVba(`shell,${ko.unwrap(valueAccessor())}`)
-                }
-            }
+            const url = ko.unwrap(valueAccessor())
+            const newValueAccessor = () => () => lbs.common.executeVba(`shell,${url}`)
             ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext)
         },
     }
-    
+
     /**
     Invoke old-style app
     */
     ko.bindingHandlers.appInvoke = {
         init(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-            const newValueAccessor = function () {
+            const newValueAccessor = () => {
                 if (lbs.hasLimeConnection === true) {
-                    return function () {
-                        Invoker.invokeWebApplication(ko.unwrap(valueAccessor()))
-                    }
+                    return () => Invoker.invokeWebApplication(ko.unwrap(valueAccessor()))
                 }
-                return function () {
-                    alert('AppInvoker is not avalible outside of lime')
-                }
+                return () => alert('AppInvoker is not avalible outside of lime')
             }
             ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext)
         },
     }
-    
+
     /**
     Call VBA function to check if item should be visible
     THIS IS DEPRECATED AND WILL BE REMOVED IN A FUTURE VERSION.
     */
     ko.bindingHandlers.vbaVisible = {
-        init(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        init(element, valueAccessor) {
             const visible = lbs.common.executeVba(ko.unwrap(valueAccessor()))
-    
             if (visible) {
                 $(element).show()
                 $(element).removeClass('hidden')
@@ -204,13 +189,13 @@ export default function registerCustomBindings() {
             }
         },
     }
-    
+
     // Override knockout visible binding to allow for cookies
     ko.bindingHandlers.visible = {
         update(element, valueAccessor) {
             const value = ko.utils.unwrapObservable(valueAccessor())
-    
-            const isCurrentlyVisible = !(element.style.display == 'none')
+
+            const isCurrentlyVisible = !(element.style.display === 'none')
             if (value && !isCurrentlyVisible) {
                 element.style.display = ''
                 $(element).removeClass('remainHidden')
@@ -220,78 +205,67 @@ export default function registerCustomBindings() {
             }
         },
     }
-    
+
     ko.bindingHandlers.email = {
         init(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-            const newValueAccessor = function () {
-                return function () {
-                    lbs.common.executeVba(`shell,mailto:${ko.unwrap(valueAccessor())}`)
-                }
-            }
+            const email = ko.unwrap(valueAccessor())
+            const newValueAccessor = () => () => lbs.common.executeVba(`shell,mailto:${email}`)
             ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext)
         },
     }
-    
+
     /**
     Prepend icon
     */
     ko.bindingHandlers.icon = {
-        init(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        init(element, valueAccessor) {
             const content = lbs.common.iconTemplate.format(ko.unwrap(valueAccessor()))
-            if (
-                $(element).text() !== '' && $(element).text().substring(0, content.length) != content) {
+            if ($(element).text() !== '' && $(element).text().substring(0, content.length) !== content) {
                 $(element).prepend(content)
                 element = $(element).get(0)
             }
         },
     }
-    
+
     /**
     Safe text binding, failes to empty string
     */
     ko.bindingHandlers.safeText = {
-        update(element, valueAccessor, allBindingsAccessor) {
-            let options = ko.utils.unwrapObservable(valueAccessor()),
-                value = ko.utils.unwrapObservable(options.value),
-                property = ko.utils.unwrapObservable(options.property),
-                fallback = ko.utils.unwrapObservable(options.default) || '',
-                text
-    
-            text = value ? (options.property ? value[property] : value) : fallback
-    
+        update(element, valueAccessor) {
+            const options = ko.utils.unwrapObservable(valueAccessor())
+            const value = ko.utils.unwrapObservable(options.value)
+            const property = ko.utils.unwrapObservable(options.property)
+            const fallback = ko.utils.unwrapObservable(options.default) || ''
+            const text = value ? (options.property ? value[property] : value) : fallback
+
             ko.bindingHandlers.text.update(element, () => text)
         },
     }
-    
+
     ko.bindingHandlers.href = {
         update(element, valueAccessor) {
             ko.bindingHandlers.attr.update(element, () => ({ href: valueAccessor() }))
         },
     }
-    
+
     ko.bindingHandlers.src = {
         update(element, valueAccessor) {
             ko.bindingHandlers.attr.update(element, () => ({ src: valueAccessor() }))
         },
     }
-    
+
     ko.bindingHandlers.instantValue = {
         init(element, valueAccessor, allBindings) {
-            const newAllBindings = function () {
-                // for backwards compatibility w/ knockout  < 3.0
-                return ko.utils.extend(allBindings(), { valueUpdate: 'afterkeydown' })
-            }
-            newAllBindings.get = function (a) {
-                return a === 'valueupdate' ? 'afterkeydown' : allBindings.get(a)
-            }
-            newAllBindings.has = function (a) {
-                return a === 'valueupdate' || allBindings.has(a)
-            }
+            // for backwards compatibility w/ knockout  < 3.0
+            const newAllBindings = () => ko.utils.extend(allBindings(), { valueUpdate: 'afterkeydown' })
+            newAllBindings.get = (a) => { return a === 'valueupdate' ? 'afterkeydown' : allBindings.get(a) }
+            newAllBindings.has = a => a === 'valueupdate' || allBindings.has(a)
+
             ko.bindingHandlers.value.init(element, valueAccessor, newAllBindings)
         },
         update: ko.bindingHandlers.value.update,
     }
-    
+
     ko.bindingHandlers.toggle = {
         init(element, valueAccessor) {
             const value = valueAccessor()
@@ -302,252 +276,111 @@ export default function registerCustomBindings() {
             })
         },
     }
-    
+
     ko.bindingHandlers.stopBinding = {
         init() {
             return { controlsDescendantBindings: true }
         },
     }
     ko.virtualElements.allowedBindings.stopBinding = true
-    
+
     ko.bindingHandlers.popover = {
-        init(element, valueAccessor, allBindings, viewModel, bindingContext) {
+        init(element, valueAccessor) {
             let dom
-            let color
-            let title
-            let icon
-            let placement
-            let trigger
-            if (typeof (valueAccessor()) === 'object') {
-                if (typeof (valueAccessor().color) === 'undefined') {
-                    color = 'blue'
-                } else {
-                    color = valueAccessor().color
-                }
-    
-                if (typeof (valueAccessor().title) === 'undefined') {
-                    title = 'Titel saknas'
-                } else {
-                    title = valueAccessor().title
-                }
-    
-                if (typeof (valueAccessor().placement) === 'undefined') {
-                    placement = 'top'
-                } else {
-                    placement = valueAccessor().placement
-                    if ('left,right,top,bottom'.indexOf(valueAccessor().placement) == -1) {
-                        placement = 'top'
-                    }
-                }
-    
-                if (typeof (valueAccessor().trigger) === 'undefined') {
-                    trigger = 'hover'
-                } else {
-                    trigger = valueAccessor().trigger
-                    if ('hover,click'.indexOf(valueAccessor().trigger) == -1) {
-                        trigger = 'hover'
-                    }
-                }
-    
-                if (typeof (valueAccessor().icon) === 'undefined') {
-                    icon = ''
-                } else {
-                    icon = `<i class="fa ${valueAccessor().icon}"></i>`
-                }
-    
-                switch (valueAccessor().type) {
-                case 'error':
-                    color = 'red'
-                    icon = '<i class="fa fa-times"></i> '
-                    title = 'Error'
-                    break
-                case 'info':
-                    color = 'blue'
-                    icon = '<i class="fa fa-info-circle"></i> '
-                    title = 'Information'
-                    break
-                case 'warning':
-                    color = 'orange'
-                    icon = '<i class="fa fa-warning"></i> '
-                    title = 'Warning'
-                    break
-                case 'success':
-                    color = 'green'
-                    icon = '<i class="fa fa-check"></i> '
-                    title = 'Success'
-                    break
-                case 'custom':
-                    break
-                default:
-                    title = ''
-                    dom = valueAccessor().text
-                }
+            let {
+                color = 'blue',
+                title = 'No title',
+                icon = '',
+            } = valueAccessor()
+
+            const {
+                placement = 'top',
+                trigger = 'hover',
+                type = '',
+            } = valueAccessor()
+
+            switch (type) {
+            case 'error':
+                color = 'red'
+                icon = '<i class="fa fa-times"></i> '
+                title = 'Error'
+                break
+            case 'info':
+                color = 'blue'
+                icon = '<i class="fa fa-info-circle"></i> '
+                title = 'Information'
+                break
+            case 'warning':
+                color = 'orange'
+                icon = '<i class="fa fa-warning"></i> '
+                title = 'Warning'
+                break
+            case 'success':
+                color = 'green'
+                icon = '<i class="fa fa-check"></i> '
+                title = 'Success'
+                break
+            case 'custom':
+                break
+            default:
+                title = ''
+                dom = valueAccessor()
+            }
+            if (!dom) {
+                icon = `<i class="fa ${valueAccessor().icon}"></i>`
                 title = `<span>${title}</span>`
                 dom = `<div><div class="message-header ${color}">${icon}${title}</div>${valueAccessor().text}</div>`
-            } else {
-                dom = valueAccessor()
-                placement = 'top'
-                trigger = 'hover'
             }
-    
             $(element).attr({
                 'data-toggle': 'popover', 'data-container': 'body', 'data-content': dom, 'data-placement': placement,
             })
             $(element).popover({ trigger, html: 'true' })
         },
-        update(element, valueAccessor, allBindings, viewModel, bindingContext) {
-            let dom
-            let color
-            let title
-            let icon
-            let placement
-            let trigger
-            if (typeof (valueAccessor()) === 'object') {
-                if (typeof (valueAccessor().color) === 'undefined') {
-                    color = 'blue'
-                } else {
-                    color = valueAccessor().color
-                }
-    
-                if (typeof (valueAccessor().title) === 'undefined') {
-                    title = 'Titel saknas'
-                } else {
-                    title = valueAccessor().title
-                }
-    
-                if (typeof (valueAccessor().placement) === 'undefined') {
-                    placement = 'top'
-                } else {
-                    placement = valueAccessor().placement
-                    if ('left,right,top,bottom'.indexOf(valueAccessor().placement) == -1) {
-                        placement = 'top'
-                    }
-                }
-    
-                if (typeof (valueAccessor().trigger) === 'undefined') {
-                    trigger = 'hover'
-                } else {
-                    trigger = valueAccessor().trigger
-                    if ('hover,click'.indexOf(valueAccessor().trigger) == -1) {
-                        trigger = 'hover'
-                    }
-                }
-    
-                if (typeof (valueAccessor().icon) === 'undefined') {
-                    icon = ''
-                } else {
-                    icon = `<i class="fa ${valueAccessor().icon}"></i>`
-                }
-    
-                switch (valueAccessor().type) {
-                case 'error':
-                    color = 'red'
-                    icon = '<i class="fa fa-times"></i> '
-                    title = 'Error'
-                    break
-                case 'info':
-                    color = 'blue'
-                    icon = '<i class="fa fa-info-circle"></i> '
-                    title = 'Information'
-                    break
-                case 'warning':
-                    color = 'orange'
-                    icon = '<i class="fa fa-warning"></i> '
-                    title = 'Warning'
-                    break
-                case 'success':
-                    color = 'green'
-                    icon = '<i class="fa fa-check"></i> '
-                    title = 'Success'
-                    break
-                case 'custom':
-                    break
-                default:
-                    title = ''
-                    dom = valueAccessor().text
-                }
-    
-                dom = `<div><div class="message-header ${color}">${icon}${title}</div>${valueAccessor().text}</div>`
-            } else {
-                dom = valueAccessor()
-                placement = 'top'
-                trigger = 'hover'
-            }
-    
-            $(element).attr({
-                'data-toggle': 'popover', 'data-container': 'body', 'data-content': dom, 'data-placement': placement,
-            })
-        },
     }
-    
+
     ko.bindingHandlers.tooltip = {
-        init(element, valueAccessor, allBindings, viewModel, bindingContext) {
-            if (typeof valueAccessor() === 'object') {
-                $(element).attr({
-                    'data-toggle': 'tooltip', 'white-space': 'nowrap', 'data-original-title': valueAccessor().text, 'data-placement': valueAccessor().placement,
-                })
-                $(element).tooltip()
-            } else {
-                // ,'white-space':'nowrap'
-                $(element).attr({
-                    'data-toggle': 'tooltip', 'white-space': 'pre-wrap', 'data-original-title': valueAccessor(), 'data-placement': 'top',
-                })
-                $(element).tooltip()
-            }
-        },
-        update(element, valueAccessor, allBindings, viewModel, bindingContext) {
-            if (typeof valueAccessor() === 'object') {
-                $(element).attr({
-                    'data-toggle': 'tooltip', 'white-space': 'pre-wrap', 'data-original-title': valueAccessor().text, 'data-placement': valueAccessor().placement,
-                })
-            } else {
-                $(element).attr({
-                    'data-toggle': 'tooltip', 'white-space': 'pre-wrap', 'data-original-title': valueAccessor(), 'data-placement': 'top',
-                })
-            }
+        init(element, valueAccessor) {
+            const {
+                placement = 'top',
+                text,
+            } = valueAccessor()
+
+            $(element).attr({
+                'data-toggle': 'tooltip',
+                'white-space': 'nowrap',
+                'data-original-title': text || valueAccessor(),
+                'data-placement': placement || 'top',
+            })
+
+            $(element).tooltip()
         },
     }
-    
-    ko.filters.number = function (value, nbrOfDecimals) {
-        if (nbrOfDecimals === undefined) nbrOfDecimals = 2
-        value = Number(`${Math.round(`${value}e${nbrOfDecimals}`)}e-${nbrOfDecimals}`)
-        return value.toLocaleString()
+
+    ko.filters.number = (value, nbrOfDecimals = 2) => {
+        const filteredValue = Number(`${Math.round(`${value}e${nbrOfDecimals}`)}e-${nbrOfDecimals}`)
+        return filteredValue.toLocaleString()
     }
-    
-    ko.filters.currency = function (value, currency, divider) {
-        let retval
+
+    ko.filters.currency = (value = '', currency = 'kr', divider = ' ') => {
         const currencyfirst = ['$', '£', '¥', '₱', '₭', '₦', '₩', '₮', '฿', '₹', '₡', '৳']
-        if (typeof value !== 'string') value = value.toString()
-        if (currency === undefined) currency = 'kr'
-        if (divider === undefined) divider = ' '
-    
+
         if (currencyfirst.indexOf(currency) > -1) {
-            retval = `${currency} ${value.replace(/\B(?=(\d{3})+(?!\d))/g, divider)}`
-        } else {
-            retval = `${value.replace(/\B(?=(\d{3})+(?!\d))/g, divider)} ${currency}`
+            return `${currency} ${value.replace(/\B(?=(\d{3})+(?!\d))/g, divider)}`
         }
-        return retval
+        return `${value.replace(/\B(?=(\d{3})+(?!\d))/g, divider)} ${currency}`
     }
-    
-    ko.filters.percent = function (value, arg1) {
-        return `${value * 100}%`
-    }
-    
-    
-    ko.filters.fromNow = function (date, arg1) {
-        date = date.slice(0, 19)
-        // console.log(date)
-        return moment(date).fromNow(true)
-    }
-    
+
+    ko.filters.percent = value => `${value * 100}%`
+
+    ko.filters.fromNow = date => moment(date.slice(0, 19)).fromNow(true)
+
     ko.bindingHandlers.rotate = {
-        update(element, valueAccessor, allBindings, viewModel, bindingContext) {
+        update(element, valueAccessor) {
             // This will be called once when the binding is first applied to an element,
             // and again whenever the associated observable changes value.
             // Update the DOM element based on the supplied values here.
-    
+
             const deg = valueAccessor()
-            console.log(deg)
             $(element).css({
                 '-webkit-transform': `rotate(${deg}deg)`,
                 '-moz-transform-transform': `rotate(${deg}deg)`,
