@@ -3,7 +3,7 @@ exports.files = {
         entryPoints: {
             'src/lbs.js': {
                 'system/js/lbs.js': /lbs.js|^src\/lib|^src\/components/,
-                'system/js/vendor.js': /^src\/vendor|node_modules/,
+                'system/js/vendor.js': /node_modules/,
             }
         },
         order: {

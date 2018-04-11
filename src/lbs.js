@@ -14,8 +14,8 @@ import ko from 'knockout'
 import 'knockout-mapping'
 import 'knockout-punches'
 
-import './vendor/js/json2xml'
-import './vendor/js/xml2json'
+// import './vendor/js/json2xml'
+import xml2json from 'xml2json-light'
 
 import Log from './lib/lbs.log'
 import loader from './lib/lbs.loader'
@@ -64,7 +64,7 @@ const lbs = {
         resources: {
             scripts: [],
             styles: [],
-            libs: ['json2xml.js', 'moment.min.js'],
+            libs: [],
         },
         autorefresh: false,
     },
@@ -484,6 +484,9 @@ ViewModel factory, extend this to add knockout functionality to actionpads
 */
 lbs.VmFactory = () => {}
 window.lbs = lbs
+
+// Hack to be compatible with old global version of this functionality
+window.xml2json = xml2json.xml2json
 /**
 Every this is loaded, run the awesomeness!
 */
