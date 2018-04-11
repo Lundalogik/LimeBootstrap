@@ -1,8 +1,9 @@
 ﻿/*******************
 STANDARDIZED ITEMS
 *******************/
+$blue: #2693FF;
+
 html {
-    
     cursor: default;
     height: 100%;
     height: 100%;
@@ -45,76 +46,6 @@ i {
 #content {
     height:100vh;
 }
-
-/********
-Added CSS for menu**
-********/
-
-.menu {
-    margin: 10px -10px 0 -10px;
-    padding-bottom: 10px;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 10px;
-}
- 
-.menu .menu-header {
-    margin-left: -5px;
-    margin-right: -5px;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
-}
-
-.menu [class^="icon-"],
-.menu [class*=" icon-"] {
-    margin-right: 2px;
-}
- 
-.menu .divider {
-    background-color: #D2E4FF;
-    height: 1px;
-    margin-bottom: 3px;
-    margin: 0 15px 0 10px;
-    overflow: hidden;
-}
-
-.menu li + .menu-header {
-    margin-top: 9px;
-}
-
-
-.menu > li {
-    padding-left: 10px;
-    cursor: default;
-}
-
-.menu-header {
-    color: #425899;
-    cursor: default;
-    font-size: 14px;
-    font-weight: lighter;
-    margin-left: 0 !important;
-    overflow: hidden;
-    padding: 3px 15px 0 3px;
-    text-overflow: ellipsis;
-    text-transform: none;
-    white-space: nowrap;
-}
-
-.menu > li:not(.menu-header):not(.divider) {
-    color: #6985B7;
-    font-size: 12px;
-    font-weight: lighter;
-    overflow: hidden;
-    padding-bottom: 0;
-    padding-top: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.menu > li:not(.menu-header):not(.divider):hover {
-    background-color: #E0EEFF;
-}
-
 
 /********
 BUTTONS**
@@ -196,8 +127,8 @@ COLORS
 .blue {
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
     /* For IE 5.5 - 7 */
-    background-color: #2693FF;
-    border-bottom: 1px solid #2469C3;
+    background-color: $blue;
+    border-bottom: 1px solid darken($blue, 10%);
     color: white;
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
 }
@@ -207,7 +138,7 @@ COLORS
 }
 
 .header-container.blue ul.info-links li:hover {
-    background-color: #51A9FF;
+    background-color: lighten($blue, 10%);
 }
 
 .yellow {

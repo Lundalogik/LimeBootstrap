@@ -1,0 +1,61 @@
+.menu {
+    margin: 10px -10px 0 -10px;
+    padding-bottom: 10px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 10px;
+    
+    .menu-header {
+        margin-left: -5px;
+        margin-right: -5px;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+        color: #425899;
+        cursor: default;
+        font-size: 14px;
+        font-weight: lighter;
+        margin-left: 0 !important;
+        overflow: hidden;
+        padding: 3px 15px 0 3px;
+        text-overflow: ellipsis;
+        text-transform: none;
+        white-space: nowrap;
+    }
+
+    .divider {
+        background-color: #D2E4FF;
+        height: 1px;
+        margin-bottom: 3px;
+        margin: 0 15px 0 10px;
+        overflow: hidden;
+    }
+
+    [class^="icon-"],
+    [class*=" icon-"] {
+        margin-right: 2px;
+    }
+
+    li + .menu-header {
+        margin-top: 9px;
+    }
+    
+    
+    > li {
+        padding-left: 10px;
+        cursor: default;
+    }
+    
+    > li:not(.menu-header):not(.divider) {
+        color: #6985B7;
+        font-size: 12px;
+        font-weight: lighter;
+        overflow: hidden;
+        padding-bottom: 0;
+        padding-top: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    > li:not(.menu-header):not(.divider):hover {
+        background-color: #E0EEFF;
+    }
+}
