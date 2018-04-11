@@ -1,8 +1,10 @@
 exports.files = {
     javascripts: {
-        joinTo: {
-            'system/js/lbs.js': /^src\/js/,
-            'system/js/vendor.js': /^src\/vendor|node_modules/,
+        entryPoints: {
+            'src/lbs.js': {
+                'system/js/lbs.js': /lbs.js|^src\/lib|^src\/components/,
+                'system/js/vendor.js': /^src\/vendor|node_modules/,
+            }
         },
         order: {
             before: /jquery-/,

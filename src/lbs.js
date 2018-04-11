@@ -8,17 +8,22 @@ import moment from 'moment'
 import $ from 'jquery'
 import _ from 'underscore'
 
+import 'bootstrap3'
+
 import ko from 'knockout'
 import 'knockout-mapping'
 import 'knockout-punches'
 
-import Log from './lbs.log'
-import loader from './lbs.loader'
-import Common from './lbs.common'
-import apploader from './lbs.apploader'
-import Bakery from './lbs.bakery'
-import registerCustomBindings from './lbs.bindings'
-import './lbs.components'
+import './vendor/js/json2xml'
+import './vendor/js/xml2json'
+
+import Log from './lib/lbs.log'
+import loader from './lib/lbs.loader'
+import Common from './lib/lbs.common'
+import apploader from './lib/lbs.apploader'
+import Bakery from './lib/lbs.bakery'
+import registerCustomBindings from './lib/lbs.bindings'
+import './components/lbs.components'
 
 
 /**
