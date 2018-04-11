@@ -10,7 +10,7 @@ exports.files = {
     },
     stylesheets: {
         joinTo: {
-            'system/css/lbs.css': /\.css/,
+            'system/css/lbs.css': /\.[s]?css/,
         },
     }
 }
@@ -21,17 +21,18 @@ exports.paths = {
 }
 
 module.exports.plugins = {
-  babel: {
-    plugins: [
-        ['transform-object-rest-spread', { useBuiltIns: true }]
-    ],
-    presets: [['env', {
-      targets: {
-        browsers: ['last 2 versions']
-      },
-      useBuiltIns: true
-    }]]
-  }
+    sass:{},
+    babel: {
+        plugins: [
+            ['transform-object-rest-spread', { useBuiltIns: true }]
+        ],
+        presets: [['env', {
+        targets: {
+            browsers: ['last 2 versions']
+        },
+        useBuiltIns: true
+        }]]
+    }
 }
 
 exports.conventions = {
