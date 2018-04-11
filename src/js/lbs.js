@@ -12,11 +12,11 @@ import ko from 'knockout'
 import 'knockout-mapping'
 import 'knockout-punches'
 
-import log from './lbs.log'
+import Log from './lbs.log'
 import loader from './lbs.loader'
-import common from './lbs.common'
+import Common from './lbs.common'
 import apploader from './lbs.apploader'
-import bakery from './lbs.bakery'
+import Bakery from './lbs.bakery'
 import registerCustomBindings from './lbs.bindings'
 
 
@@ -42,10 +42,10 @@ const lbs = {
     vm: {},
     loading: {},
     loader,
-    common,
+    common: Common,
     apploader,
-    bakery,
-    log,
+    bakery: Bakery,
+    log: new Log(),
 
     /**
     config

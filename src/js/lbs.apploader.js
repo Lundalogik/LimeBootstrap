@@ -21,9 +21,7 @@ const apploader = {
     */
     identifyApps() {
         let path
-        let raw
         let htmlNode
-        let config
         let instanceConfig
         let binding
         let appName
@@ -87,50 +85,49 @@ const apploader = {
         let ol
         let li
         let binding
-        let type
-        let height
 
-        $('[data-carousel]').each(function (i1, d1) {
+
+        $('[data-carousel]').each((index, element) => {
             try {
                 try {
-                    eval(`binding = ${$(this).attr('data-carousel')}`)
-                    height = binding.height
-                    type = binding.type
-                    $(this).height(height)
+                    eval(`binding = ${$(element).attr('data-carousel')}`)
+                    const { height } = binding
 
-                    $(this).attr({
-                        id: `carousel-${i1}`,
+                    $(element).height(height)
+
+                    $(element).attr({
+                        id: `carousel-${index}`,
                         'data-ride': 'carousel',
                         'data-interval': '0',
                     })
 
-                    $(this).addClass('carousel slide lime-carousel')
+                    $(element).addClass('carousel slide lime-carousel')
 
-                    $(this).children().each(function () {
-                        $(this).addClass('carousel-item')
+                    $(element).children().each((_, child) => {
+                        $(child).addClass('carousel-item')
                     })
 
-                    $(this).append('<ol></ol>')
-                    ol = $(this).find('ol')
+                    $(element).append('<ol></ol>')
+                    ol = $(element).find('ol')
 
-                    $(this).append(lbs.common.carouselRight, lbs.common.carouselLeft)
+                    $(element).append(lbs.common.carouselRight, lbs.common.carouselLeft)
 
-                    $(this).find('a').attr('data-target', `#carousel-${i1}`)
+                    $(element).find('a').attr('data-target', `#carousel-${index}`)
 
-                    $(this).children('.carousel-item').wrapAll("<div class='carousel-inner'></div>")
+                    $(element).children('.carousel-item').wrapAll("<div class='carousel-inner'></div>")
 
                     ol.addClass('carousel-indicators')
-                    $(this).children('.carousel-inner').children('.carousel-item').each(function (i2, d2) {
-                        $(this).addClass('item')
+                    $(element).children('.carousel-inner').children('.carousel-item').each((childIndex, child) => {
+                        $(child).addClass('item')
                         ol.append('<li></li>')
                         li = ol.find('li').last()
-                        if (i2 === 0) {
-                            $(this).addClass('active')
+                        if (childIndex === 0) {
+                            $(child).addClass('active')
                             li.addClass('active black')
                         }
                         li.attr({
-                            'data-slide-to': i2,
-                            'data-target': `#carousel-${i1}`,
+                            'data-slide-to': childIndex,
+                            'data-target': `#carousel-${index}`,
                         })
                         li.addClass('black')
                     })
@@ -147,10 +144,6 @@ const apploader = {
     Copy global viewmodel to app and add the datasources for the app
     */
     buildApps() {
-        let path
-        let appName
-        let htmlNode
-
         $.each(lbs.apps, (key, app) => {
             // to-be viewmodel
             let vm = {}
@@ -175,7 +168,6 @@ const apploader = {
             appName = app.name
             const { path } = app
             htmlNode = app.node
-            const { config } = app
             let { vm } = lbs.apps[key]
 
             // load view

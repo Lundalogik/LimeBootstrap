@@ -1,54 +1,59 @@
-﻿const log = {
-    verboseLevelEnum: {
-        debug: 3,
-        info: 2,
-        warn: 1,
-        error: 0,
-    },
-    log() {
-        if (lbs.debug) {
-            console.log.apply(console, arguments);
+﻿class Log {
+    constructor() {
+        this.verboseLevelEnum = {
+            debug: 3,
+            info: 2,
+            warn: 1,
+            error: 0,
         }
-    },
-    info() {
-        if (lbs.debug && lbs.verboseLevel >= log.verboseLevelEnum.info) {
-            console.info.apply(console, arguments);
+    }
+
+    // log(args) {
+    //     if (lbs.debug) {
+    //         console.log(args)
+    //     }
+    // }
+
+    info(args) {
+        if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.info) {
+            console.info(args)
         }
-    },
-    warn() {
-        if (lbs.debug && lbs.verboseLevel >= log.verboseLevelEnum.warn) {
-            console.warn.apply(console, arguments);
+    }
+    warn(args) {
+        if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.warn) {
+            console.warn(args)
         }
-    },
-    error() {
-        if (lbs.debug && lbs.verboseLevel >= log.verboseLevelEnum.error) {
-            console.error.apply(console, arguments);
+    }
+    error(args) {
+        if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.error) {
+            console.error(args)
         }
-    },
-    debug() {
-        if (lbs.debug && lbs.verboseLevel >= log.verboseLevelEnum.debug) {
-            console.debug.apply(console, arguments);
+    }
+    debug(args) {
+        if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.debug) {
+            console.debug(args)
         }
-    },
+    }
+
     setVerboseLevel() {
         switch (lbs.externalConfig.verboseLevel) {
         case 'debug':
-            lbs.verboseLevel = lbs.log.verboseLevelEnum.debug
+            lbs.verboseLevel = this.verboseLevelEnum.debug
             break
         case 'info':
-            lbs.verboseLevel = lbs.log.verboseLevelEnum.info
+            lbs.verboseLevel = this.verboseLevelEnum.info
             break
         case 'warn':
-            lbs.verboseLevel = lbs.log.verboseLevelEnum.warn
+            lbs.verboseLevel = this.verboseLevelEnum.warn
             break
         case 'error':
-            lbs.verboseLevel = lbs.log.verboseLevelEnum.error
+            lbs.verboseLevel = this.verboseLevelEnum.error
             break
         default:
-            lbs.verboseLevel = lbs.log.verboseLevelEnum.warn
+            lbs.verboseLevel = this.verboseLevelEnum.warn
             break
         }
-    },
+    }
 }
 
-export default log
+export default Log
