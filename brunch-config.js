@@ -12,7 +12,8 @@ exports.files = {
         joinTo: {
             'system/css/lbs.css': /\.[s]?css/,
         },
-    }
+    },
+    templates: {joinTo:'system/js/templates.js'}
 }
 
 exports.paths = {
@@ -22,6 +23,9 @@ exports.paths = {
 
 module.exports.plugins = {
     sass:{},
+    raw: {
+        pattern: /\.(tpl.html)$/
+    },
     babel: {
         plugins: [
             ['transform-object-rest-spread', { useBuiltIns: true }]
