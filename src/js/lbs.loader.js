@@ -139,7 +139,7 @@ const loader = {
     /**
     Load all datasources in set to the selected viewmodel
     */
-    loadDataSources(_vm, _dataSources) {
+    loadDataSources(_vm, _dataSources, overrideExisting) {
         // check connection
         if (!lbs.hasLimeConnection) {
             lbs.log.warn('No connecton, datasources will not be loaded')
@@ -177,7 +177,7 @@ const loader = {
         // load soruces
         $.each(dataSources, (key, source) => {
             const data = lbs.loader.loadDataSource(source)
-            vm = lbs.common.mergeOptions(vm, data, true)
+            vm = lbs.common.mergeOptions(vm, data, overrideExisting)
         })
 
         return vm
