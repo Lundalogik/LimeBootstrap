@@ -139,21 +139,24 @@ const loader = {
     /**
     Load all datasources in set to the selected viewmodel
     */
-    loadDataSources(vm, dataSources, overrideExisting) {
+    loadDataSources(_vm, _dataSources, overrideExisting) {
         // check connection
         if (!lbs.hasLimeConnection) {
             lbs.log.warn('No connecton, datasources will not be loaded')
-            return vm
+            return _vm
         }
-
+        let dataSources = _dataSources
+        let vm = _vm
         const filterRemoveRelated = item => item.type !== 'relatedRecord'
         const filterRemoveInspector = item => item.type !== 'activeInspector'
         const filterGetInspector = item => item.type === 'activeInspector'
         const filterGetRelated = item => item.type === 'relatedRecord'
-        const relatedRecordExists = dataSources.filter(() =>
-            filterRemoveRelated).length !== dataSources.length
-        const activeInspectorExists = dataSources.filter(() =>
-            filterRemoveInspector).length !== dataSources.length
+        const relatedRecordExists = dataSources.filter(
+            filterRemoveRelated,
+        ).length !== dataSources.length
+        const activeInspectorExists = dataSources.filter(
+            filterRemoveInspector,
+        ).length !== dataSources.length
 
         // check for activeInspector if using relatedRecord
         if (relatedRecordExists && !activeInspectorExists) {
@@ -173,8 +176,10 @@ const loader = {
 
         // load soruces
         $.each(dataSources, (key, source) => {
-            vm = lbs.loader.loadDataSource(vm, source, overrideExisting)
+            const data = lbs.loader.loadDataSource(source)
+            vm = lbs.common.mergeOptions(vm, data, overrideExisting)
         })
+
         return vm
     },
 
@@ -182,7 +187,7 @@ const loader = {
     /**
     Load a datasource to the selected viewmodel
     */
-    loadDataSource(vm, dataSource, overrideExisting) {
+    loadDataSource(dataSource) {
         let data = {}
 
         lbs.log.debug(`Loading data source: ${dataSource.type}:${dataSource.source}`)
@@ -195,35 +200,20 @@ const loader = {
                     // check lime
                     if (!lbs.activeInspector) {
                         lbs.log.warn('No activeinspecor, datasource will not be loaded')
-                        return vm
+                        return data
                     }
-
                     data = lbs.loader.controlsToJSON(lbs.activeInspector.Controls, dataSource.alias)
 
                     // find data without alias
                     const dataNode = data[Object.keys(data)[0]]
-                    // check for related records, source is fieldname is this instance
-                    if (dataSource.hasOwnProperty('relatedRecords')) {
-                        $.each(dataSource.relatedRecords, (i, rs) => {
-                            if (dataNode.hasOwnProperty(rs.source)) {
-                                // fetch class and id from inspector JSON object
-                                rs.class = dataNode[rs.source].class
-                                rs.idrecord = dataNode[rs.source].value
 
-                                // add data as subkey to inspector relation if no alias
-                                // is specified, otherwise as its own node
-                                const vmToAdd = rs.alias ? vm : dataNode
-
-                                // set alias to fieldname if does not exist
-                                rs.alias = rs.alias ? rs.alias : rs.source
-
-                                // call loadData for the related record
-                                lbs.loader.loadDataSource(vmToAdd, rs, true)
-                            } else {
-                                lbs.log.warn("Failed to load datasource 'RelatedRecord', field '{0}' does not exist".format(rs.source))
-                            }
-                        })
-                    }
+                    dataSource.relatedRecords.forEach((item) => {
+                        const relatedRecord = item
+                        relatedRecord.class = dataNode[item.source].class
+                        relatedRecord.idrecord = dataNode[item.source].value
+                        const relatedData = lbs.loader.loadDataSource(relatedRecord)
+                        data = lbs.common.mergeOptions(data, relatedData, true)
+                    })
                 } catch (e) {
                     lbs.log.warn(`Failed to load datasource: ${dataSource.type}:${dataSource.source}`, e)
                 }
@@ -232,7 +222,7 @@ const loader = {
             case 'xml': {
                 // check for ownerIdParam
                 const autoParams = []
-                if (dataSource.hasOwnProperty('PassInspectorParam') && dataSource.PassInspectorParam && lbs.activeInspector) {
+                if (Object.prototype.hasOwnProperty.call(dataSource, 'PassInspectorParam') && dataSource.PassInspectorParam && lbs.activeInspector) {
                     autoParams.push(lbs.activeInspector.ID)
                 }
 
@@ -248,7 +238,7 @@ const loader = {
             case 'record': {
                 // check for ownerIdParam
                 const autoParams = []
-                if (dataSource.hasOwnProperty('PassInspectorParam') && dataSource.PassInspectorParam && lbs.activeInspector) {
+                if (Object.prototype.hasOwnProperty.call(dataSource, 'PassInspectorParam') && dataSource.PassInspectorParam && lbs.activeInspector) {
                     autoParams.push(lbs.activeInspector.ID)
                 }
 
@@ -264,7 +254,7 @@ const loader = {
             case 'records': {
                 // check for ownerIdParam
                 const autoParams = []
-                if (dataSource.hasOwnProperty('PassInspectorParam') && dataSource.PassInspectorParam && lbs.activeInspector) {
+                if (Object.prototype.hasOwnProperty.call(dataSource, 'PassInspectorParam') && dataSource.PassInspectorParam && lbs.activeInspector) {
                     autoParams.push(lbs.activeInspector.ID)
                 }
 
@@ -330,7 +320,8 @@ const loader = {
                     const autoParams = []
                     autoParams.push(dataSource.class)
                     autoParams.push(dataSource.idrecord)
-                    if (dataSource.hasOwnProperty('view')) {
+
+                    if (Object.prototype.hasOwnProperty.call(dataSource, 'view')) {
                         autoParams.push(dataSource.view)
                     }
 
@@ -371,41 +362,40 @@ const loader = {
             default:
                 lbs.log.warn(`Supplied datasource ${dataSource.type} not recognized. Please see docs for supported sources`)
             }
+            const timerFinished = moment()
 
-            // merge options into the viewModel
-            vm = lbs.common.mergeOptions(vm, data || {}, overrideExisting)
+            lbs.log.warn(`Time to load data source ${JSON.stringify(dataSource)} : ${timerFinished.diff(timerStart, 'milliseconds')}ms`)
         } catch (e) {
             lbs.log.warn(`Failed to load datasource: ${dataSource.type}:${dataSource.source}`, e)
         }
-        const timerFinished = moment()
 
-        lbs.log.warn(`Time to load data source ${JSON.stringify(dataSource)} : ${timerFinished.diff(timerStart, 'milliseconds')}ms`)
-        return vm
+        return data
     },
 
 
     /**
     Process params from external config
     */
-    loadExternalConfig(defaulConfig, externalConfig, classname) {
+    loadExternalConfig(defaultConfig, externalConfig, classname) {
         let entry = {}
+        const config = defaultConfig
 
         // check for config for active class
-        if (externalConfig.hasOwnProperty(classname)) {
+        if (Object.prototype.hasOwnProperty.call(externalConfig, classname)) {
             entry = externalConfig[classname]
 
             // get datasorces if exists
-            if (entry.hasOwnProperty('dataSources')) {
-                defaulConfig.dataSources = entry.dataSources
+            if (Object.prototype.hasOwnProperty.call(entry, 'dataSources')) {
+                config.dataSources = entry.dataSources
             }
 
             // get autorefresh if exists
-            if (entry.hasOwnProperty('autorefresh')) {
-                defaulConfig.autorefresh = entry.autorefresh
+            if (Object.prototype.hasOwnProperty.call(entry, 'autorefresh')) {
+                config.autorefresh = entry.autorefresh
             }
         }
 
-        return defaulConfig
+        return config
     },
 
     loadFromExternalWebService(url) {

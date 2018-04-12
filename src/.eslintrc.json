@@ -2,12 +2,13 @@
     "extends": "airbnb-base",
     "rules": {
         "indent": ["error", 4],
-        "semi": ["error", "never"]
+        "semi": ["error", "never"],
+        "function-paren-newline": ["error", "consistent"]
     },
     "env": {
         "browser": true
     },
     "globals": {
-      "lbs": true  
+      "lbs": true
     }
 }
