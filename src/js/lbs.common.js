@@ -143,7 +143,7 @@ class Common {
                 lbs.log.warn("Key '{0}' was not added to the view model. Key already exists".format(key))
             }
         })
-        return obj1
+        return retval
     }
 
     /**
