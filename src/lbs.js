@@ -346,12 +346,6 @@ const lbs = {
     * such as running setting up the DOM, hideing things and setting up
     * */
     ExecuteOnloadEvents() {
-        // header icons
-        $('.header-icon').each((index, element) => {
-            $(element).addClass('header-icon-container')
-            $(element).css('background-image', `url('resources/${lbs.activeClass}.png')`)
-            $(element).append(`<img src="resources/${lbs.activeClass}.png" class="header-icon-invis" />`)
-        })
 
         // Clickable popovers close on click outside
         $('body').on('click', (e) => {
