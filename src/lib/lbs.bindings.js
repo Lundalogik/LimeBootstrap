@@ -31,7 +31,7 @@ export default function registerCustomBindings() {
         // is value ok to bind to view, empty string is ok, undefined is not
         checkValue(data, val, node) {
             if (!data) { return }
-            if (!data.hasOwnProperty(val)) { return }
+            if (!Object.prototype.hasOwnProperty.call(data, val)) { return }
             if (data[val]) { return }
             if (data[val] === '' || data[val] === false || data[val] === 0) { return }
 
@@ -45,7 +45,8 @@ export default function registerCustomBindings() {
 
             const bindings = _bindings
             // text and icon in same binding
-            if (bindings.hasOwnProperty('text') && bindings.hasOwnProperty('icon')) {
+            if (Object.prototype.hasOwnProperty.call(bindings, 'text')
+                && Object.prototype.hasOwnProperty.call(bindings, 'icon')) {
                 // dont run if text is empty
                 if (bindings.text !== '') {
                     bindings.textWithIcon = { icon: bindings.icon, text: bindings.text }
@@ -108,7 +109,9 @@ export default function registerCustomBindings() {
             const value = ko.unwrap(valueAccessor().value)
             const limelink = lbs.common.createLimeLink(limetype, value)
             const newValueAccessor = () => () => lbs.common.executeVba(`shell, ${limelink}`)
-            ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext)
+            ko.bindingHandlers.click.init(
+                element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext,
+            )
         },
     }
 
@@ -118,7 +121,9 @@ export default function registerCustomBindings() {
     ko.bindingHandlers.vba = {
         init(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             const newValueAccessor = () => () => lbs.common.executeVba(valueAccessor())
-            ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext)
+            ko.bindingHandlers.click.init(
+                element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext,
+            )
         },
     }
 
@@ -130,7 +135,9 @@ export default function registerCustomBindings() {
             const fullAddress = encodeURIComponent(ko.unwrap(valueAccessor()).replace(/\r?\n|\r/g, ' '))
             const link = `https://www.google.com/maps?q=${fullAddress}`
             const newValueAccessor = () => () => lbs.common.executeVba(`shell, ${link}`)
-            ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext)
+            ko.bindingHandlers.click.init(
+                element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext,
+            )
         },
     }
 
@@ -141,7 +148,9 @@ export default function registerCustomBindings() {
         init(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             const number = ko.unwrap(valueAccessor())
             const newValueAccessor = () => () => lbs.common.executeVba(`shell,tel:${number}`)
-            ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext)
+            ko.bindingHandlers.click.init(
+                element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext,
+            )
         },
     }
 
@@ -152,7 +161,9 @@ export default function registerCustomBindings() {
         init(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             const url = ko.unwrap(valueAccessor())
             const newValueAccessor = () => () => lbs.common.executeVba(`shell,${url}`)
-            ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext)
+            ko.bindingHandlers.click.init(
+                element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext,
+            )
         },
     }
 
@@ -167,7 +178,9 @@ export default function registerCustomBindings() {
                 }
                 return () => alert('AppInvoker is not avalible outside of lime')
             }
-            ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext)
+            ko.bindingHandlers.click.init(
+                element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext,
+            )
         },
     }
 
@@ -194,13 +207,12 @@ export default function registerCustomBindings() {
     ko.bindingHandlers.visible = {
         update(element, valueAccessor) {
             const value = ko.utils.unwrapObservable(valueAccessor())
-
-            const isCurrentlyVisible = !(element.style.display === 'none')
+            const isCurrentlyVisible = !$(element).is(':visible')
             if (value && !isCurrentlyVisible) {
-                element.style.display = ''
+                $(element).show()
                 $(element).removeClass('remainHidden')
-            } else if ((!value) && isCurrentlyVisible) {
-                element.style.display = 'none'
+            } else if (!value) {
+                $(element).hide()
                 $(element).addClass('remainHidden')
             }
         },
@@ -210,7 +222,9 @@ export default function registerCustomBindings() {
         init(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             const email = ko.unwrap(valueAccessor())
             const newValueAccessor = () => () => lbs.common.executeVba(`shell,mailto:${email}`)
-            ko.bindingHandlers.click.init(element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext)
+            ko.bindingHandlers.click.init(
+                element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext,
+            )
         },
     }
 
@@ -222,7 +236,6 @@ export default function registerCustomBindings() {
             const content = lbs.common.iconTemplate.format(ko.unwrap(valueAccessor()))
             if ($(element).text() !== '' && $(element).text().substring(0, content.length) !== content) {
                 $(element).prepend(content)
-                element = $(element).get(0)
             }
         },
     }
@@ -232,13 +245,15 @@ export default function registerCustomBindings() {
     */
     ko.bindingHandlers.safeText = {
         update(element, valueAccessor) {
-            const options = ko.utils.unwrapObservable(valueAccessor())
-            const value = ko.utils.unwrapObservable(options.value)
-            const property = ko.utils.unwrapObservable(options.property)
-            const fallback = ko.utils.unwrapObservable(options.default) || ''
-            const text = value ? (options.property ? value[property] : value) : fallback
-
-            ko.bindingHandlers.text.update(element, () => text)
+            const {
+                options: {
+                    value,
+                    property,
+                    fallback = '',
+                } = {},
+            } = ko.utils.unwrapObservable(valueAccessor())
+            const text = property ? value[property] : value
+            ko.bindingHandlers.text.update(element, () => text || fallback)
         },
     }
 
