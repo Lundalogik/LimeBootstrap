@@ -12,7 +12,8 @@
         "function-paren-newline": [
             "error",
             "consistent"
-        ]
+        ],
+        "linebreak-style": "off"
     },
     "env": {
         "browser": true,

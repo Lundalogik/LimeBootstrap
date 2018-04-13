@@ -9,6 +9,6 @@ class InfoHeaderVM {
     }
 }
 
-ko.components.register('info-header', { viewModel: InfoHeaderVM, infoHeaderTemplate })
+ko.components.register('info-header', { viewModel: InfoHeaderVM, template: infoHeaderTemplate })
 
 

@@ -7,13 +7,6 @@
             error: 0,
         }
     }
-
-    // log(args) {
-    //     if (lbs.debug) {
-    //         console.log(args)
-    //     }
-    // }
-
     info(args) {
         if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.info) {
             console.info(args)
