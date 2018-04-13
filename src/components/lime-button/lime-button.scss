@@ -1,0 +1,79 @@
+@import '../../css/variables';
+
+@mixin btn-lime-color($color, $text-color){
+    background-color: $color;
+    border: 1px solid darken($color, 10%);
+    color: $text-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: darken($color, 10%)
+    }
+}
+
+.btn-lime{
+    cursor: default;
+    display: block;
+    font-size: 13px;
+    font-weight: lighter;
+    margin-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+
+    &:not(.centered){
+        text-align: left;
+    }
+
+    &.blue {
+        @include btn-lime-color($blue, #FFF);
+    }
+    &.yellow {
+        @include btn-lime-color($yellow, #FFF);
+    }
+    &.green {
+        @include btn-lime-color($green, #FFF);
+    }
+    &.lime-green {
+        @include btn-lime-color($lime-green, #FFF);
+    }
+    &.lime-green {
+        @include btn-lime-color($orange, #FFF);
+    }
+    &.dark-grey, .darkgrey {
+        @include btn-lime-color($dark-grey, #FFF);
+    }
+    &.white {
+        @include btn-lime-color($white, #333);
+    }
+    &.purple {
+        @include btn-lime-color($purple, #FFF);
+    }
+    &.red {
+        @include btn-lime-color($red, #FFF);
+    }
+    &.turquoise {
+        @include btn-lime-color($turquoise, #FFF);
+    }
+    &.citrus {
+        @include btn-lime-color($citrus, #FFF);
+    }
+    &.clean-green {
+        @include btn-lime-color($clean-green, #FFF);
+    }
+    &.deep-red {
+        @include btn-lime-color($deep-red, #FFF);
+    }
+    &.light-grey {
+        @include btn-lime-color($light-grey, #FFF);
+    }
+    &.purple-rain {
+        @include btn-lime-color($purple-rain, #FFF);
+    }
+    &.magenta {
+        @include btn-lime-color($magenta, #FFF);
+    }
+}
+

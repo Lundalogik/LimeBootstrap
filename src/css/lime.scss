@@ -49,17 +49,6 @@ i {
 /********
 BUTTONS**
 ********/
-.btn-lime{
-    cursor: default;
-    display: block;
-    font-size: 13px;
-    font-weight: lighter;
-    margin-top: 5px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 100%; 
-}
 
 .btn:focus{
     outline:none!important;
@@ -184,15 +173,15 @@ SKIN
     color:#645082;
 }
 .britney #wrapper .content-container .menu li{
-    color:#645082 ; 
+    color:#645082 ;
 }
 
 .britney #wrapper .content-container .menu .divider{
-    background-color:#E3CEFC ; 
+    background-color:#E3CEFC ;
 }
 
 .britney #wrapper .content-container .menu li:not(.menu-header):not(.divider):hover{
-    background-color:#E3CEFC ; 
+    background-color:#E3CEFC ;
 }
 
 .britney .header-container:before{
@@ -209,15 +198,15 @@ SKIN
     color:#545B68;
 }
 .silver #wrapper .content-container .menu li{
-    color:#545B68 ; 
+    color:#545B68 ;
 }
 
 .silver #wrapper .content-container .menu .divider{
-    background-color:#D8D8D8 ; 
+    background-color:#D8D8D8 ;
 }
 
 .silver #wrapper .content-container .menu li:not(.menu-header):not(.divider):hover{
-    background-color:#D8D8D8 ; 
+    background-color:#D8D8D8 ;
 }
 
 .silver .header-container:before{
@@ -269,7 +258,7 @@ Debug
     padding: 5px 2px 5px 2px;
 }
 .console li  {
-    background-color:#000;  
+    background-color:#000;
 }
 
 .console p  {
@@ -289,29 +278,29 @@ Debug
 }
 
 #watch, #dom{
-    margin-top: 10px; 
+    margin-top: 10px;
     padding: 5px;
     width: 860px;
 }
 
 #watchContainer{
-    width:890px; 
-    height:790px; 
-    padding-top:10px; 
-    overflow-y: scroll; 
+    width:890px;
+    height:790px;
+    padding-top:10px;
+    overflow-y: scroll;
     overflow-x: hidden;
 }
 
-#watchContainer #searchValue {    
+#watchContainer #searchValue {
     padding-right:0px;
     margin-top:5px;
     width: 300px;
 }
 #watchContainer #searchGroup {
-    width:820px;      
-    margin-left:15px;  
-} 
-#watchContainer #buttonNext {   
+    width:820px;
+    margin-left:15px;
+}
+#watchContainer #buttonNext {
    margin-left:5px;
    margin-top: -5px;
 }
@@ -339,9 +328,9 @@ Debug
    border-radius:3px;
    width:850px;
    height: 44px;
-   position:fixed; 
-   padding-left: 100px; 
-   top: 756px; 
+   position:fixed;
+   padding-left: 100px;
+   top: 756px;
    padding: 2px;
    /*margin-left:-10px;*/
    margin-left:5px;
@@ -357,7 +346,7 @@ Debug
     color:#fff;
 }
 #watchContainer #searchHits {
-    margin-left:10px;    
+    margin-left:10px;
 }
 
 #vmDataText{
@@ -406,7 +395,7 @@ INFO
     margin:0;
     position:fixed;
 }
-   
+
 .info i {
    float:left;
    font-size:30px;
@@ -435,7 +424,7 @@ Logo
     left:0;
     margin-left:auto;
     margin-right:auto;
-    position:   absolute;   
+    position:   absolute;
     right:0;
     width:  93px;
 }

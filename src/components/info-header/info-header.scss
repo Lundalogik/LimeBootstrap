@@ -1,3 +1,5 @@
+@import '../../css/variables';
+
 @mixin header-container-color($color){
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
     /* For IE 5.5 - 7 */
@@ -5,18 +7,18 @@
     border-bottom: 1px solid darken($color, 10%);
     color: white;
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
-    
+
     &:before {
         border-color: darken($color, 25%) transparent transparent transparent;
     }
-    
+
     ul.info-links li:hover {
         background-color: lighten($color, 5%);
     }
 }
 
 .header-container {
-    
+
     box-shadow: -2px 1px 2px rgba(0, 0, 0, 0.4);
     cursor:default;
     margin: -10px -20px 10px -10px;
@@ -54,11 +56,11 @@
     ul.info-links li:hover {
         cursor: default;
     }
-    
+
     ul.info-links {
         text-decoration: none;
     }
-    
+
     h2 {
         font-size: 18px;
         font-weight: lighter;
@@ -69,12 +71,12 @@
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-    
+
     ul.info-links {
         list-style: none;
         padding: 0;
     }
-    
+
     ul.info-links > li {
         list-style-position: inside;
         margin: 0;
@@ -85,26 +87,6 @@
         width: 100%;
     }
 
-    $blue: #2693FF;
-    $yellow: #D39D09;
-    $green: #5ab900;
-    $lime-green: #a0d700;
-    $orange: #ff692e;
-    $dark-grey: #464646;
-    $white: #FFFFFF;
-    $purple: #981BB6;
-    $red: #BF3B26;
-
-    /* New Colors */
-    $turquoise: #00c8aa;
-    $citrus: #c2b800;
-    $clean-green: #00b05b;
-    $deep-red: #c81c1c;
-    $light-grey: #8b8b8b;
-    $purple-rain: #5a3098;
-    $magenta: #FF50AA;
-
-    
     &.blue {
         @include header-container-color($blue);
     }
