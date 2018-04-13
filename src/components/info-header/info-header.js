@@ -1,7 +1,7 @@
 import ko from 'knockout'
-import template from './info-header.tpl.html'
+import infoHeaderTemplate from './info-header.tpl.html'
 
-class ViewModel {
+class InfoHeaderVM {
     constructor(params) {
         this.header = params.header || ''
         this.color = params.color || 'blue'
@@ -9,4 +9,6 @@ class ViewModel {
     }
 }
 
-ko.components.register('info-header', { viewModel: ViewModel, template })
+ko.components.register('info-header', { viewModel: InfoHeaderVM, infoHeaderTemplate })
+
+
