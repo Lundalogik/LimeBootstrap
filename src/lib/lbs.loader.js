@@ -120,6 +120,8 @@ const loader = {
                     lbs.log.error(`View "${file}" could not be loaded`)
                 } else {
                     lbs.log.info(`View "${file}" loaded successfully`)
+                    // Trigger load event for other components to react to
+                    $('#content').trigger('load.view')
                 }
             })
         } catch (e) {
@@ -130,6 +132,7 @@ const loader = {
             if (s && s !== '') {
                 element.html(s)
                 lbs.log.info(`View "${file}" loaded successfully`)
+                $(element).trigger('load.view')
             } else {
                 lbs.log.error(`View "${file}" could not be loaded`)
             }
