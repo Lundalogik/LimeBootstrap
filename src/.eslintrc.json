@@ -1,14 +1,25 @@
 {
     "extends": "airbnb-base",
     "rules": {
-        "indent": ["error", 4],
-        "semi": ["error", "never"],
-        "function-paren-newline": ["error", "consistent"]
+        "indent": [
+            "error",
+            4
+        ],
+        "semi": [
+            "error",
+            "never"
+        ],
+        "function-paren-newline": [
+            "error",
+            "consistent"
+        ]
     },
     "env": {
-        "browser": true
+        "browser": true,
+        "jest/globals": true
     },
     "globals": {
-      "lbs": true
-    }
+        "lbs": true
+    },
+    "plugins": ["jest"]
 }

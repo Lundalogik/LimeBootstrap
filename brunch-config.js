@@ -29,15 +29,7 @@ module.exports.plugins = {
         pattern: /\.(tpl.html)$/
     },
     babel: {
-        plugins: [
-            ['transform-object-rest-spread', { useBuiltIns: true }]
-        ],
-        presets: [['env', {
-        targets: {
-            browsers: ['last 2 versions']
-        },
-        useBuiltIns: true
-        }]]
+        babelrc: true
     }
 }
 

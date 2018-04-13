@@ -1,0 +1,24 @@
+﻿<div class="header-container white">
+	<div class="header-icon"></div>
+</div>
+
+
+
+<button data-bind="text: company.coworker.text, tooltip: {text: 'TEST', placement: 'bottom'}"></button>
+
+<ul class="menu expandable">
+	<li class="menu-header"data-bind="text:localize.Actionpad_Index.links"></li>
+    <li class="divider"></li>
+    <li data-bind="icon: 'fa-calendar'"></li>
+</ul>
+
+
+<ul class="menu expandable">
+    <li class="menu-header" data-bind="text: localize.Pipeline.menuHeader"></li>
+    <li class="divider"></li>
+    <li id="pipeline"></li>
+</ul>
+<div data-bind="text: coworker.firstname.text"></div>
+<div data-bind="visible: false" data-carousel="{height: '25%'}">
+    <div data-app="{'app':'basic','config':{}}"></div>
+</div>
