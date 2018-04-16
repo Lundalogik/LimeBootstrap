@@ -325,12 +325,6 @@ const lbs = {
             if (e.ctrlKey && e.shiftKey && e.which === 82) {
                 window.location.reload()
                 return false
-            } else if (e.ctrlKey && e.shiftKey && e.which === 87) { // open watch (ctrl+shift+w)
-                lbs.log.watch.show('WATCH')
-                return false
-            } else if (e.ctrlKey && e.shiftKey && e.which === 76) { // open log (ctrl+shift+l)
-                lbs.log.watch.show('LOG')
-                return false
             }
             return true
         },
