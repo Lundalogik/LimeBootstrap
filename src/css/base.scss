@@ -50,24 +50,6 @@ i {
 BUTTONS**
 ********/
 
-.btn:focus{
-    outline:none!important;
-}
-
-.btn-group>.btn-lime,
-.btn-lime-split>.btn{
-    float: none;
-}
-
-.btn-group-lime{
-    display: block;
-    font-size: 13px;
-    font-weight: lighter;
-    margin-top: 5px;
-    position: relative;
-    width: 100%;
-}
-
 .dropdown-menu {
     border-top-left-radius:none;
     border-top-right-radius: none;

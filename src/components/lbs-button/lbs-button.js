@@ -1,5 +1,5 @@
 import ko from 'knockout'
-import limeButtonTemplate from './lime-button.tpl.html'
+import limeButtonTemplate from './lbs-button.tpl.html'
 import Log from '../../lib/lbs.log'
 
 class LimeButtonVM {
@@ -32,4 +32,4 @@ class LimeButtonVM {
     }
 }
 
-ko.components.register('lime-button', { viewModel: LimeButtonVM, template: limeButtonTemplate })
+ko.components.register('lbs-button', { viewModel: LimeButtonVM, template: limeButtonTemplate })

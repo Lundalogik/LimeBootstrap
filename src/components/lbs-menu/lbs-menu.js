@@ -1,5 +1,5 @@
 import ko from 'knockout'
-import limeMenuTemplate from './lime-menu.tpl.html'
+import limeMenuTemplate from './lbs-menu.tpl.html'
 
 class MenuVM {
     constructor(params) {
@@ -16,4 +16,4 @@ class MenuVM {
     }
 }
 
-ko.components.register('lime-menu', { viewModel: MenuVM, template: limeMenuTemplate })
+ko.components.register('lbs-menu', { viewModel: MenuVM, template: limeMenuTemplate })
