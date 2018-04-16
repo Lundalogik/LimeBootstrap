@@ -8,7 +8,7 @@ class LimeButtonVM {
             bootstrapClass = '',
             color = '',
             text = '',
-            icon = '',
+            icon = null,
             centered = false,
         } = params
         this.text = text
