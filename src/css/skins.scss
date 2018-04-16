@@ -1,0 +1,48 @@
+.britney{
+    background-color: #FCECFF;
+    
+    #wrapper > .content-container{
+        background-color: #FDF6FF;
+        color:#645082;
+    }
+    #wrapper .content-container .menu li{
+        color:#645082 ;
+    }
+    
+    #wrapper .content-container .menu .divider{
+        background-color:#E3CEFC ;
+    }
+    
+    #wrapper .content-container .menu li:not(.menu-header):not(.divider):hover{
+        background-color:#E3CEFC ;
+    }
+    
+    .header-container:before{
+        background-color: #FCECFF;
+    }
+    
+}
+
+.silver{
+    background-color: #E8EAED;
+    
+    #wrapper > .content-container{
+        background-color: #F4F4F4;
+        color:#545B68;
+    }
+    #wrapper .content-container .menu li{
+        color:#545B68 ;
+    }
+    
+    #wrapper .content-container .menu .divider{
+        background-color:#D8D8D8 ;
+    }
+    
+    #wrapper .content-container .menu li:not(.menu-header):not(.divider):hover{
+        background-color:#D8D8D8 ;
+    }
+    
+    .header-container:before{
+        background-color: #E8EAED;
+    }
+}
