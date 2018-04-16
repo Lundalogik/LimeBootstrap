@@ -1,4 +1,5 @@
 import './info-header/info-header'
 import './info-header/info-header-legacy'
-import './menu/menu'
+import './lime-menu/lime-menu'
 import './lime-button/lime-button'
+import './lime-split-button/lime-split-button'
