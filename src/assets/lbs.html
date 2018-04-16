@@ -28,32 +28,9 @@
         <!-- ko stopBinding: true -->
         <div id="debug" class="hidden" data-bind="css: {hidden: !enabled}">
         <!-- ko if: enabled  -->
-            <!-- ko if:showUpgrade() -->
-            <div id="update" class="alert alert-warning" >
-                <!-- ko if: showLBSVersion() -->
-                <span data-bind=" icon:'fa-info-circle'"> <strong>LBS Update available!</strong> <span data-bind="text:' (' + remoteVersion() + ')'"></span></span>
-                <span class="badge" data-bind="openURL:'https://github.com/Lundalogik/LimeBootstrap/archive/master.zip'">Download 
-                    
-                </span>
-                <span class="badge" data-bind="openURL:'http://limebootstrap.lundalogik.com/web/manual/changelog/'">Changelog</span>
-                <!-- /ko -->
-                
-                <ul data-bind=" foreach:appUpdates()">
-                <li>
-                <span data-bind=" icon:'fa-info-circle'"> <strong>App update available:</strong></span> 
-                <a href="#" data-bind="text: $data.appName + ' (v' + $data.localVersion + '->v' + remoteVersion + ')' , openURL:'http://limebootstrap.lundalogik.com/web/appstore/index.html#' + $data.appName"></a>
-                </li>
-                </ul>
-            
-            </div>
-            <!-- /ko -->
-
             <ul id="debugConsole">
                 <li class="header">Debug
                 <span class="badge pull-right"  data-bind="icon:'fa-refresh'" onclick="location.reload(true)"> </span>
-                <span class="badge pull-right" style="" data-bind="icon:'fa-eye', click: lbs.log.watch.show.bind($data, 'WATCH')"> </span>
-                <span class="badge pull-right" style="" data-bind="icon:'fa-file-text-o', click: lbs.log.watch.show.bind($data, 'LOG')"> </span>
-                <span class="badge pull-right" style="" data-bind="icon:'fa-exclamation-triangle', click: lbs.log.watch.show.bind($data, 'LOG'), visible: lbs.log.vm.errorFound"> </span>
                 </li>
             </ul>
         <!-- /ko -->

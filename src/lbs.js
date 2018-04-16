@@ -138,12 +138,6 @@ const lbs = {
         // execute onLoad
         this.ExecuteOnloadEvents()
 
-        // setOnclickEvents
-        this.SetJqEvents()
-
-        // Check for updates
-        this.checkForUpdates()
-
         // Loading complete
         lbs.loading.showLoader(false)
 
@@ -314,10 +308,6 @@ const lbs = {
     * On click handlers. Executes events when clicked, such as running VBA or manipulating the DOM
     *
     * */
-    SetJqEvents() {
-
-
-    },
 
     GlobalEventHandler: {
         OnKeydown(data, e) {
@@ -340,7 +330,6 @@ const lbs = {
     * such as running setting up the DOM, hideing things and setting up
     * */
     ExecuteOnloadEvents() {
-
         // Clickable popovers close on click outside
         $('body').on('click', (e) => {
             if ($(e.target).data('toggle') !== 'popover' && $(e.target).parents('.popover.in').length === 0) {
@@ -374,95 +363,6 @@ const lbs = {
             }
         } catch (e) {
             lbs.log.warn('Binding of body bindings failed!', e)
-        }
-    },
-
-    checkForUpdates() {
-        // Check app version if debug is enabled
-        if (lbs.debug && lbs.hasLimeConnection) {
-            // Check for app updates
-            const lbsURL = 'http://api.lime-bootstrap.com/' // limebootstrap.lundalogik.com/api/";
-            $.each(lbs.apps, (index, app) => {
-                const appName = app.name
-
-                try {
-                    // Load remote version info
-                    const remoteData = $.parseJSON(lbs.loader.loadFromExternalWebService(`${lbsURL}apps/${appName}/`))
-                    if (remoteData) {
-                        if (remoteData.error) {
-                            lbs.log.warn(`Failed to check remote version of app: ${appName}. Reason: ${remoteData.error}`)
-                            return
-                        }
-                    } else {
-                        lbs.log.warn(`Failed to check remote version of app: '${appName}'`)
-                        return
-                    }
-
-                    const remoteVersionData = remoteData.info.versions
-
-                    // Load local version info
-                    const localData = lbs.loader.loadLocalFileToString(`apps/${appName}/app.json`)
-                    if (localData === '') {
-                        lbs.log.warn(`Failed to check local version of app: ${appName}`)
-                        return
-                    }
-                    const localVersionData = $.parseJSON(localData).versions
-
-                    // Extract the latest version number from the versions array of version objects
-                    const currentRemoteVersion = _.max(remoteVersionData, versionInfo =>
-                        versionInfo.version).version
-                    const currentLocalVersion = _.max(localVersionData, versionInfo =>
-                        versionInfo.version).version
-
-
-                    if (parseFloat(currentLocalVersion) < parseFloat(currentRemoteVersion)) {
-                        lbs.log.warn(`App '${appName}' has an available update. Installed version: ${currentLocalVersion}, Available version: ${currentRemoteVersion}`)
-                        lbs.log.vm.addAppUpdate({
-                            appName,
-                            remoteVersion: currentRemoteVersion,
-                            localVersion: currentLocalVersion,
-                        })
-                    } else {
-                        lbs.log.info(`App '${appName}' is up to date (version: ${currentLocalVersion})`)
-                    }
-                } catch (e) {
-                    lbs.log.warn(`Failed to check version of app: ${appName}`, e)
-                }
-            })
-
-            try {
-            // Check for LBS Update
-                const remoteData = lbs.loader.loadFromExternalWebService(`${lbsURL}version`)
-                if (!remoteData) {
-                    lbs.log.warn('Failed to check remote version of LBS! ')
-                    return
-                }
-
-
-                const remoteVersionData = $.parseJSON(remoteData)
-
-                let sortedVersions = remoteVersionData.versions.sort((ls, rs) =>
-                    lbs.common.compareVersions(ls.version.toString(), rs.version.toString()))
-                const localVersionData = $.parseJSON(lbs.loader.loadLocalFileToString('system/version.json'))
-
-                const currentRemoteVersion = sortedVersions[0].version
-
-                sortedVersions = localVersionData.versions.sort((ls, rs) =>
-                    lbs.common.compareVersions(ls.version.toString(), rs.version.toString()))
-
-                const currentLocalVersion = sortedVersions[0].version
-
-                if (currentRemoteVersion.toString().split('.')[1] > currentLocalVersion.toString().split('.')[1]) {
-                    lbs.log.vm.showUpgrade(true)
-                    lbs.log.vm.showLBSVersion(true)
-                    lbs.log.vm.remoteVersion(' v{0}-> v{1}'.format(currentLocalVersion, currentRemoteVersion))
-                    lbs.log.warn('Your LIME Bootstrap is out of date! v{0}->v{1}'.format(currentLocalVersion, currentRemoteVersion))
-                } else {
-                    lbs.log.info('LBS version: v{0}'.format(currentLocalVersion))
-                }
-            } catch (e) {
-                lbs.log.warn('Failed to check version of LBS! ', e)
-            }
         }
     },
 }
