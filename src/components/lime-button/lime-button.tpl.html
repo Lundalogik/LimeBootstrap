@@ -1,4 +1,4 @@
-<button class="btn btn-lime text-left" data-bind="css: css, text: text, icon: icon">
-    <!-- ko template: { nodes: $componentTemplateNodes } -->
-    <!-- /ko -->
+<button class="btn btn-lime text-left" data-bind="css: css">
+    <i data-bind="visible: !!icon, icon: icon, text: ' '"></i>
+    <span data-bind="text: text"></span>
 </button>

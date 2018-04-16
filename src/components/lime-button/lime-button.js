@@ -8,8 +8,8 @@ class LimeButtonVM {
             bootstrapClass = '',
             color = '',
             text = '',
-            icon = '',
-            centered = true,
+            icon = null,
+            centered = false,
         } = params
         this.text = text
         this.icon = icon
@@ -21,7 +21,8 @@ class LimeButtonVM {
 
         if (this.color && this.bootstrapClass) {
             this.logger.warn(
-                `Cannot combine css classes '${this.bootstrapClass}' and '${this.color}'`)
+                `Cannot combine css classes '${this.bootstrapClass}' and '${this.color}'`,
+            )
         }
         if (this.centered) {
             this.cssClasses.push('centered')
