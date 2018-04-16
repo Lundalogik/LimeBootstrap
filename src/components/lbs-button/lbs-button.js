@@ -6,7 +6,7 @@ class LimeButtonVM {
     constructor(params) {
         const {
             bootstrapClass = '',
-            color = '',
+            color = 'lime-green',
             text = '',
             icon = null,
             centered = false,
