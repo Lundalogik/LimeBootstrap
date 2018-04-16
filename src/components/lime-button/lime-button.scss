@@ -8,7 +8,8 @@
     &:hover,
     &:focus,
     &:active {
-        background-color: darken($color, 10%)
+        background-color: darken($color, 10%);
+        outline: none!important;
     }
 }
 
