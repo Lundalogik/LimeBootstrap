@@ -207,7 +207,7 @@ export default function registerCustomBindings() {
     ko.bindingHandlers.visible = {
         update(element, valueAccessor) {
             const value = ko.utils.unwrapObservable(valueAccessor())
-            const isCurrentlyVisible = !$(element).is(':visible')
+            const isCurrentlyVisible = $(element).is(':visible')
             if (value && !isCurrentlyVisible) {
                 $(element).show()
                 $(element).removeClass('remainHidden')

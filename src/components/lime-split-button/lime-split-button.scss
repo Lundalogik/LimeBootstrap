@@ -2,25 +2,32 @@ $first-width: calc(80% - 4px);
 $second-width: calc(20%);
 
 .btn-lime-split {
+    display: block;
+    margin: 5px 0px 5px 0px;
+
     > .btn:first-child{
-        box-sizing: border-box;
         width: $first-width;
     }
 
     > lime-button:first-child{
-        box-sizing: border-box;
         width: $first-width;
-        display: inline-block;
     }
 
     > .btn:nth-child(2){
-        box-sizing: border-box;
         width: $second-width;
     }
 
     > lime-button:nth-child(2){
-        box-sizing: border-box;
         width: $second-width;
+    }
+
+    > *:first-child,
+    > *:nth-child(2) {
+        box-sizing: border-box;
         display: inline-block;
+    }
+
+    > * > * {
+        margin: 0 !important;
     }
 }
