@@ -73,8 +73,6 @@ const lbs = {
     Setup
     */
     setup() {
-        const tTot1 = moment()
-
         // register custom bindnings
         registerCustomBindings()
 
@@ -90,6 +88,7 @@ const lbs = {
         // init the log
         this.log.setVerboseLevel()
 
+        lbs.log.startTimer('LBS total load time')
         // get AP class etc
         this.setActionPadEnvironment()
 
@@ -124,7 +123,7 @@ const lbs = {
         // load resources
         this.loader.loadResources()
 
-        const tApp1 = moment()
+        lbs.log.startTimer('Apps total load time')
         // apps vm
         this.apploader.buildApps()
 
@@ -133,7 +132,7 @@ const lbs = {
 
         // init apps
         this.apploader.initializeApps()
-        const tApp2 = moment()
+        lbs.log.stopTimer('Apps total load time')
 
         // execute onLoad
         this.ExecuteOnloadEvents()
@@ -142,10 +141,7 @@ const lbs = {
         // Loading complete
         lbs.loading.showLoader(false)
 
-        const tTot2 = moment()
-
-        lbs.log.info(`Total load time: ${tTot2.diff(tTot1, 'milliseconds')}ms`)
-        lbs.log.info(`App load time: ${tApp2.diff(tApp1, 'milliseconds')}ms`)
+        lbs.log.stopTimer('LBS total load time')
     },
 
     /**

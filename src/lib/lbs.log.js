@@ -1,4 +1,33 @@
-﻿class Log {
+﻿import moment from 'moment'
+
+class Timer {
+    constructor() {
+        this.startTime = null
+        this.endtime = null
+        this.running = false
+    }
+
+    start() {
+        this.running = true
+        this.startTime = moment()
+    }
+
+    stop() {
+        this.endTime = moment()
+        this.running = false
+    }
+
+    getEllapsedTime() {
+        if (this.running && this.startTime) { // Timer still running
+            return moment().diff(this.startTime, 'milliseconds')
+        } else if (!this.running && this.endTime) {
+            return this.endTime.diff(this.startTime, 'milliseconds')
+        }
+        return null
+    }
+}
+
+class Log {
     constructor() {
         this.verboseLevelEnum = {
             debug: 3,
@@ -6,6 +35,7 @@
             warn: 1,
             error: 0,
         }
+        this.timers = {}
     }
     info(args) {
         if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.info) {
@@ -25,6 +55,26 @@
     debug(args) {
         if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.debug) {
             console.debug(args)
+        }
+    }
+
+    startTimer(name) {
+        if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.debug) {
+            this.timers[name] = new Timer()
+            this.timers[name].start()
+        }
+    }
+
+    stopTimer(name) {
+        if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.debug) {
+            const timer = this.timers[name]
+            if (timer) {
+                timer.stop()
+                this.debug(`Event '${name}' took ${timer.getEllapsedTime()}ms`)
+                delete this.timers[name]
+            } else {
+                this.warn(`Timer '${name}' not found in active timers`)
+            }
         }
     }
 
