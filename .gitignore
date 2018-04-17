@@ -24,6 +24,4 @@ node_modules/
 
 dist/
 .vscode
-src/assets/*
-
-!src/assets/lbs.html
+src/assets/apps/*
