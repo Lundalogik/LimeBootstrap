@@ -546,7 +546,7 @@ const loader = {
         const json = {}
         const alias = _alias || 'xmlSource'
 
-        json[alias] = $.parseJSON(xml2json($.parseXML(xml), ''))
+        json[alias] = xml2json(xml)
 
         return json
     },
