@@ -7,7 +7,7 @@ class LBSHeroVM extends LBSBaseComponent {
         super()
         const {
             header = '',
-            color = 'blue',
+            color = 'turquoise',
             img,
         } = params
 
