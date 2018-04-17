@@ -1,5 +1,4 @@
 import $ from 'jquery'
-import moment from 'moment'
 
 const loader = {
 
@@ -194,7 +193,7 @@ const loader = {
         let data = {}
 
         lbs.log.debug(`Loading data source: ${dataSource.type}:${dataSource.source}`)
-        const timerStart = moment()
+        lbs.log.startTimer(`${JSON.stringify(dataSource)}`)
 
         try {
             switch (dataSource.type) {
@@ -365,11 +364,10 @@ const loader = {
             default:
                 lbs.log.warn(`Supplied datasource ${dataSource.type} not recognized. Please see docs for supported sources`)
             }
-            const timerFinished = moment()
-
-            lbs.log.warn(`Time to load data source ${JSON.stringify(dataSource)} : ${timerFinished.diff(timerStart, 'milliseconds')}ms`)
         } catch (e) {
             lbs.log.warn(`Failed to load datasource: ${dataSource.type}:${dataSource.source}`, e)
+        } finally {
+            lbs.log.stopTimer(`${JSON.stringify(dataSource)}`)
         }
 
         return data
