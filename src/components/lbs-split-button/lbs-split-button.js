@@ -1,7 +1,8 @@
 import ko from 'knockout'
 import limeSplitButtonTemplate from './lbs-split-button.tpl.html'
+import LBSBaseComponent from '../lbs-base-component/lbs-base-component'
 
-class LimeSplitButtonVM {
+class LimeSplitButtonVM extends LBSBaseComponent {
 
 }
 
