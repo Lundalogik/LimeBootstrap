@@ -1,6 +1,7 @@
 import './info-header/info-header'
 import './info-header/info-header-legacy'
 import './lbs-menu/lbs-menu'
+import './lbs-menu/lbs-menu-legacy'
 import './lbs-button/lbs-button'
 import './lbs-split-button/lbs-split-button'
 import './lbs-button-group/lbs-button-group'

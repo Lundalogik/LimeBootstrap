@@ -137,6 +137,7 @@ const lbs = {
 
         // execute onLoad
         this.ExecuteOnloadEvents()
+        $('#content').trigger('load.complete')
 
         // Loading complete
         lbs.loading.showLoader(false)

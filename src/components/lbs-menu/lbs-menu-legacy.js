@@ -16,21 +16,17 @@ const hideshow = (menu) => {
     }
 }
 
-$('#content').bind('load.view', () => {
+$('#content').bind('load.complete', () => {
     // On load: check collapsible menu cookies
     $('.expandable').each((index, element) => {
         console.warn('[Deprication] You are using the legacy menu markup. Update to the new component <lime-menu>')
         const menuHeader = $(element).find('.menu-header')
         if (lbs.bakery.getCookie(`${$(element).index()}ul${ap}`) === '0') {
             menuHeader.prepend("<i class='fa fa-angle-down'> </i>")
-            menuHeader.append('<span></span>').data('bind', menuHeader.data('bind'))
-            menuHeader.data('bind', '')
             $(element).removeClass('collapsed')
             $(element).children('li').not('.remainHidden').show()
         } else {
             menuHeader.prepend("<i class='fa fa-angle-right'> </i>")
-            menuHeader.append('<span></span>').data('bind', menuHeader.data('bind'))
-            menuHeader.data('bind', '')
             $(element).addClass('collapsed')
             $(element).children('li').not('.menu-header').not('.divider')
                 .hide()
