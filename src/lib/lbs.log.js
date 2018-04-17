@@ -3,20 +3,20 @@
 export class Timer {
     constructor() {
         this.startTime = null
-        this.endtime = null
+        this.endTime = null
         this.running = false
     }
 
     start() {
         if (!this.startTime && !this.running) {
             this.startTime = moment()
-            this.endtime = null
         }
+        this.endTime = null
         this.running = true
     }
 
     stop() {
-        if (!this.endtime) {
+        if (!this.endTime) {
             this.endTime = moment()
         }
         this.running = false

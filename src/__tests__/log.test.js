@@ -3,14 +3,16 @@ import { Timer } from '../lib/lbs.log'
 test('You should be able to start a timer', () => {
     const t = new Timer()
     t.start()
-    expect(t.startTime != null)
+    expect(t.startTime).not.toBeNull()
 })
 
 test('A timer should report elapsed time at anytime', () => {
     const t = new Timer()
     t.start()
-    const time = t.getEllapsedTime()
-    expect(time > 0)
+    setTimeout(() => {
+        const time = t.getEllapsedTime()
+        expect(time).toBeGreaterThan(0)
+    }, 500)
 })
 
 test('A timer should be able to be restared', () => {
@@ -20,7 +22,7 @@ test('A timer should be able to be restared', () => {
     const starttime = Object.assign({}, t.startTime)
     t.start()
 
-    expect(t.startTime === starttime)
+    expect(t.startTime).toEqual(starttime)
 })
 
 test('A timer should not change starttime if called multiple times', () => {
@@ -29,7 +31,7 @@ test('A timer should not change starttime if called multiple times', () => {
     const starttime = Object.assign({}, t.startTime)
     t.start()
 
-    expect(t.startTime === starttime)
+    expect(t.startTime).toEqual(starttime)
 })
 
 test('Calling start on a stoped timer should reset endtime', () => {
@@ -37,5 +39,5 @@ test('Calling start on a stoped timer should reset endtime', () => {
     t.start()
     t.stop()
     t.start()
-    expect(t.endTime === null)
+    expect(t.endTime).toBeNull()
 })
