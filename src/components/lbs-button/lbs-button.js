@@ -5,6 +5,7 @@ import limeButtonTemplate from './lbs-button.tpl.html'
 class LimeButtonVM extends LBSBaseComponent {
     constructor(params) {
         super()
+
         const {
             bootstrapClass = '',
             color = 'lime-green',
