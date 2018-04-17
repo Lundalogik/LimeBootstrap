@@ -26,3 +26,28 @@ To use proposed JS features not included into ES6, do this:
 
 * `npm install --save-dev babel-preset-stage-0`
 * in `brunch-config.js`, add the preset: `presets: ['latest', 'stage-0']`
+
+## LBS Components
+
+The old style way of styling elements using a mix of LBS-specific and Twitter Bootstrap classes in actionpads and apps are being replaced by components. By using these new components as custom elements in your markup, all classes and intended styling will be included.
+
+__Important__
+* You can't use self closing elements when using custom elements such as the LBS components.
+* The old way of styling your elements can still be used, but should be considered deprecated.
+
+### lbs-button
+#### Params
+Param           | Explanation                     | Example value  | Default value
+--------------- | ------------------------------- |--------------- | -------------
+color           | One of LBS standard colors      | 'lime-green'   | 'lime-green'
+bootstrapClass  | One of Bootstrap button classes | 'btn-success'  | ''
+icon            | Font awesome icon of your choice| 'fa-calendar'  | null
+text            | Text on your button             | 'My button'    | ''
+centered        | Boolean for centering text      | true           | false
+
+Note: You cannot combine the params _color_ and _bootstrapClass_.
+
+#### Usage
+```
+<lime-button params="text: 'My button', color: 'magenta', icon: 'fa-money'"></lime-button>
+```
