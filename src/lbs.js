@@ -141,9 +141,6 @@ const lbs = {
         // Loading complete
         lbs.loading.showLoader(false)
 
-        // Loading cookies
-        lbs.bakery.loader()
-
         const tTot2 = moment()
 
         lbs.log.info(`Total load time: ${tTot2.diff(tTot1, 'milliseconds')}ms`)
