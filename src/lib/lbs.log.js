@@ -1,6 +1,6 @@
 ﻿import moment from 'moment'
 
-class Timer {
+export class Timer {
     constructor() {
         this.startTime = null
         this.endtime = null
@@ -8,12 +8,17 @@ class Timer {
     }
 
     start() {
+        if (!this.startTime && !this.running) {
+            this.startTime = moment()
+            this.endtime = null
+        }
         this.running = true
-        this.startTime = moment()
     }
 
     stop() {
-        this.endTime = moment()
+        if (!this.endtime) {
+            this.endTime = moment()
+        }
         this.running = false
     }
 
