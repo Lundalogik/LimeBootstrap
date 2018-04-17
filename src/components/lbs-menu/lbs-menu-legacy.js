@@ -19,7 +19,7 @@ const hideshow = (menu) => {
 $('#content').bind('load.complete', () => {
     // On load: check collapsible menu cookies
     $('.expandable').each((index, element) => {
-        console.warn('[Deprication] You are using the legacy menu markup. Update to the new component <lime-menu>')
+        console.warn('[Deprication] You are using the legacy menu markup. Update to the new component <lbs-menu>')
         const menuHeader = $(element).find('.menu-header')
         if (lbs.bakery.getCookie(`${$(element).index()}ul${ap}`) === '0') {
             menuHeader.prepend("<i class='fa fa-angle-down'> </i>")
