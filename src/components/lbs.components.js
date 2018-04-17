@@ -1,5 +1,5 @@
-import './info-header/info-header'
-import './info-header/info-header-legacy'
+import './lbs-hero/lbs-hero'
+import './lbs-hero/info-header-legacy'
 import './lbs-menu/lbs-menu'
 import './lbs-menu/lbs-menu-legacy'
 import './lbs-button/lbs-button'
