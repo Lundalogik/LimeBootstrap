@@ -12,7 +12,8 @@ test('A timer should report elapsed time at anytime', () => {
     setTimeout(() => {
         const time = t.getEllapsedTime()
         expect(time).toBeGreaterThan(0)
-    }, 500)
+    }, 5)
+    jest.runAllTimers()
 })
 
 test('A timer should be able to be restared', () => {
