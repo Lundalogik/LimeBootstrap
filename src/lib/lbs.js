@@ -234,7 +234,7 @@ const lbs = {
         }
 
         if (lbs.common.getURLParameter('id') !== null) {
-            lbs.activeInspectorId = lbs.common.getURLParameter('id')
+            lbs.activeInspectorId = parseInt(lbs.common.getURLParameter('id'), 10)
         }
 
         // get wrapper environment
