@@ -8,7 +8,7 @@ export default class LimeObject extends dataSource {
     }
 
     async fetch() {
-        const response = fetch(`/api/${this.limetype}/${this.id}/`, {
+        const response = await fetch(`/api/${this.limetype}/${this.id}/`, {
             headers: { 'x-session': lbs.session },
         })
         return response
