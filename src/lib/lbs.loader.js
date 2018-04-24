@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import LimeObject from './dataSources/lbs.dataSource.limeobject'
 
 const loader = {
 
@@ -143,10 +144,10 @@ const loader = {
     */
     loadDataSources(_vm, _dataSources, overrideExisting) {
         // check connection
-        if (!lbs.hasLimeConnection) {
-            lbs.log.warn('No connecton, datasources will not be loaded')
-            return _vm
-        }
+        // if (!lbs.hasLimeConnection) {
+        //     lbs.log.warn('No connecton, datasources will not be loaded')
+        //     return _vm
+        // }
         let dataSources = _dataSources
         let vm = _vm
         const filterRemoveRelated = item => item.type !== 'relatedRecord'
@@ -197,6 +198,9 @@ const loader = {
 
         try {
             switch (dataSource.type) {
+            case 'limeObject':
+                data = new LimeObject(dataSource).fetch()
+                break
             case 'activeInspector': {
                 try {
                     // check lime

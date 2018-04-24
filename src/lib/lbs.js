@@ -237,6 +237,10 @@ const lbs = {
             lbs.activeInspectorId = parseInt(lbs.common.getURLParameter('id'), 10)
         }
 
+        if (lbs.common.getURLParameter('session') !== null) {
+            lbs.session = lbs.common.getURLParameter('session')
+        }
+
         // get wrapper environment
         try {
             const wrapperType = lbs.common.getURLParameter('type')
