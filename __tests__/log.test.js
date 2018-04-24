@@ -1,4 +1,4 @@
-import { Timer } from '../lib/lbs.log'
+import { Timer } from '../src/lib/lbs.log'
 
 test('You should be able to start a timer', () => {
     const t = new Timer()
@@ -7,6 +7,7 @@ test('You should be able to start a timer', () => {
 })
 
 test('A timer should report elapsed time at anytime', () => {
+    jest.useFakeTimers()
     const t = new Timer()
     t.start()
     setTimeout(() => {

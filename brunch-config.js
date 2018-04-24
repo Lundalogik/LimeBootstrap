@@ -1,8 +1,8 @@
 exports.files = {
     javascripts: {
         entryPoints: {
-            'src/lbs.js': {
-                'system/js/lbs.js': /lbs.js|^src\/lib|^src\/components/,
+            'src/entry.js': {
+                'system/js/lbs.js': /entry.js|^src\/lib|^src\/components/,
                 'system/js/vendor.js': /node_modules/,
             }
         },
@@ -24,7 +24,7 @@ exports.paths = {
 }
 
 module.exports.plugins = {
-    sass:{},
+    sass: {},
     raw: {
         pattern: /\.(tpl.html)$/
     },
