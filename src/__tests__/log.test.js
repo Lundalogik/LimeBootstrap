@@ -20,7 +20,7 @@ test('A timer should be able to be restared', () => {
     const t = new Timer()
     t.start()
     t.stop()
-    const starttime = Object.assign({}, t.startTime)
+    const starttime = t.startTime
     t.start()
 
     expect(t.startTime).toEqual(starttime)
@@ -29,7 +29,7 @@ test('A timer should be able to be restared', () => {
 test('A timer should not change starttime if called multiple times', () => {
     const t = new Timer()
     t.start()
-    const starttime = Object.assign({}, t.startTime)
+    const starttime = t.startTime
     t.start()
 
     expect(t.startTime).toEqual(starttime)

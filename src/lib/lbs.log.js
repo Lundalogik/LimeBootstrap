@@ -1,6 +1,4 @@
-﻿import moment from 'moment'
-
-export class Timer {
+﻿export class Timer {
     constructor() {
         this.startTime = null
         this.endTime = null
@@ -9,7 +7,7 @@ export class Timer {
 
     start() {
         if (!this.startTime && !this.running) {
-            this.startTime = moment()
+            this.startTime = performance.now()
         }
         this.endTime = null
         this.running = true
@@ -17,16 +15,16 @@ export class Timer {
 
     stop() {
         if (!this.endTime) {
-            this.endTime = moment()
+            this.endTime = performance.now()
         }
         this.running = false
     }
 
     getEllapsedTime() {
         if (this.running && this.startTime) { // Timer still running
-            return moment().diff(this.startTime, 'milliseconds')
+            return performance.now() - this.startTime
         } else if (!this.running && this.endTime) {
-            return this.endTime.diff(this.startTime, 'milliseconds')
+            return this.endTime - this.startTime
         }
         return null
     }
