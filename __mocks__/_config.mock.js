@@ -3,7 +3,7 @@ export default {
 	Enable or disable the debug console 
 	for the whole application
 	**/
-	debug: true,
+	debug: false,
 	verboseLevel: "debug",
 	/*
 	Verbose levels:
