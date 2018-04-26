@@ -90,9 +90,6 @@ const lbs = {
         // configure
         this.processConfiguration()
 
-        // get Server and Database
-        this.setActiveDBandServer()
-
         // set Skin
         this.setSkin()
 
@@ -268,18 +265,26 @@ const lbs = {
 
         lbs.log.info(`Using wrapper type: ${lbs.wrapperType}`)
         lbs.log.info(`Using view: ${lbs.activeClass || 'No view supplied'}`)
+
+        // get Server and Database
+        lbs.setActiveDBandServer()
     },
 
     /**
     Find database and server
     */
     setActiveDBandServer() {
-        try {
+        if (lbs.hasLimeConnection) {
             lbs.activeServer = lbs.limeDataConnection.Database.ActiveServerName
             lbs.activeDatabase = lbs.limeDataConnection.Database.Name
-            lbs.log.info(`Active Server, Database: ${lbs.activeServer}, ${lbs.activeDatabase}`)
-        } catch (e) {
+        } else {
+            lbs.activeServer = lbs.common.getURLParameter('server')
+            lbs.activeDatabase = lbs.common.getURLParameter('database')
+        }
+        if (!lbs.activeServer || !lbs.activeDatabase) {
             lbs.log.warn('Could not set active server and database')
+        } else {
+            lbs.log.info(`Active Server, Database: ${lbs.activeServer}, ${lbs.activeDatabase}`)
         }
     },
 
