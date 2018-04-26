@@ -288,9 +288,6 @@ const lbs = {
         }
     },
 
-    /**
-    Find database and server
-    */
     setSkin() {
         try {
             // var skin = lbs.common.executeVba("ActionPadTools.GetSkin");
