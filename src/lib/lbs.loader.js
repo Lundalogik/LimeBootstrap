@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import LimeObject from './dataSources/lbs.dataSource.limeobject'
+import xml2json from 'xml2json-light'
 
 const loader = {
 
@@ -199,7 +200,11 @@ const loader = {
         try {
             switch (dataSource.type) {
             case 'limeObject':
-                data = new LimeObject(dataSource, lbs.session, lbs.activeServer, lbs.ActiveDatabase).fetch()
+                data = new LimeObject(
+                    dataSource, 
+                    lbs.session,
+                    lbs.activeServer,
+                    lbs.ActiveDatabase).fetch()
                 break
             case 'activeInspector': {
                 try {
@@ -547,7 +552,6 @@ const loader = {
     xmlToJSON(xml, _alias) {
         const json = {}
         const alias = _alias || 'xmlSource'
-
         json[alias] = xml2json(xml)
 
         return json
