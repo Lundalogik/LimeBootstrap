@@ -199,7 +199,7 @@ const loader = {
         try {
             switch (dataSource.type) {
             case 'limeObject':
-                data = new LimeObject(dataSource, lbs.session).fetch()
+                data = new LimeObject(dataSource, lbs.session, lbs.activeServer, lbs.ActiveDatabase).fetch()
                 break
             case 'activeInspector': {
                 try {
