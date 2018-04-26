@@ -25,7 +25,6 @@ test('URL parameters for session should be parsed', () => {
 test('URL parameters for server should be parsed', () => {
     expect(lbs.activeServer).toEqual('lime-core')
 })
-
 test('URL parameters for database should be parsed', () => {
     expect(lbs.activeDatabase).toEqual('core')
 })

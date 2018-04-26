@@ -19,18 +19,21 @@ export default class LimeObject extends dataSource {
 
     get url() {
         let url = `https://${this.serverURLComponent}/${this.databaseURLComponent}/api/v1/limeobject/${this.limetype}/${this.id}/`
-        this.embed.forEach((element, index) => {
+        this.embed.forEach((element, index, array) => {
             if (index === 0) {
                 url += '?'
             }
             url += `_embed=${element}`
+            if (index !== array.length - 1) {
+                url += '&'
+            }
         })
         return url
     }
 
     async fetch() {
         const response = await fetch(this.url, {
-            headers: { 'x-session': this.session },
+            headers: { 'sessionid': this.session },
         })
         return JSON.parse(response.body)
     }
