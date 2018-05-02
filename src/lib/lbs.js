@@ -104,8 +104,6 @@ const lbs = {
         if (lbs.activeClass) {
             this.loader.loadView(lbs.activeClass, $('#content'))
         }
-        // load caurousel
-        this.apploader.buildCarousel()
 
         // load apps
         this.apploader.identifyApps()
