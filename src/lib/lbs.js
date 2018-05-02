@@ -44,6 +44,7 @@ const lbs = {
     apploader,
     bakery: Bakery,
     log: new Log(),
+    VmFactory: () => {},
 
     /**
     config
@@ -352,5 +353,4 @@ const lbs = {
 /**
 ViewModel factory, extend this to add knockout functionality to actionpads
 */
-lbs.VmFactory = () => {}
 export default lbs
