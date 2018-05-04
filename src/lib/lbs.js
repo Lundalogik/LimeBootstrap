@@ -16,6 +16,7 @@ import Common from './lbs.common'
 import apploader from './lbs.apploader'
 import Bakery from './lbs.bakery'
 import registerCustomBindings from './lbs.bindings'
+import ComponentLoader from './lbs.componentLoader'
 /**
 Objekt container
 */
