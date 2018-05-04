@@ -14,4 +14,5 @@ window.xml2json = xml2json.xml2json
 /**
 Every this is loaded, run the awesomeness!
 */
-lbs.setup()
+$(document).ready(()=> {lbs.setup()})
+
