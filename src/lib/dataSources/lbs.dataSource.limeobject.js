@@ -30,7 +30,7 @@ export default class LimeObject extends dataSource {
 
     async fetch() {
         const response = await fetch(this.url, {
-            headers: { 'x-session': this.session },
+            headers: { sessionid: this.session },
         })
         return JSON.parse(response.body)
     }
