@@ -1,5 +1,5 @@
 import 'babel-polyfill'
-import 'jquery'
+import $ from 'jquery'
 import 'bootstrap3'
 import 'underscore'
 
@@ -14,5 +14,4 @@ window.xml2json = xml2json.xml2json
 /**
 Every this is loaded, run the awesomeness!
 */
-$(document).ready(()=> {lbs.setup()})
-
+$(document).ready(() => lbs.setup())
