@@ -17,6 +17,9 @@ export default {
     Configure special use cases,
     mainly when requiring additional datasources
     * */
+   components: [
+       {name:'my-app', viewModel:'', template:''}
+   ],
 
     config: {
         index: {
