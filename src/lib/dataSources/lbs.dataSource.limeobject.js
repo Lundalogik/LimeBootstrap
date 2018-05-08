@@ -19,11 +19,14 @@ export default class LimeObject extends dataSource {
 
     get url() {
         let url = `https://${this.serverURLComponent}/${this.databaseURLComponent}/api/v1/limeobject/${this.limetype}/${this.id}/`
-        this.embed.forEach((element, index) => {
+        this.embed.forEach((element, index, array) => {
             if (index === 0) {
                 url += '?'
             }
             url += `_embed=${element}`
+            if (index !== array.length - 1) {
+                url += '&'
+            }
         })
         return url
     }

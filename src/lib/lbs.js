@@ -16,6 +16,7 @@ import Common from './lbs.common'
 import apploader from './lbs.apploader'
 import Bakery from './lbs.bakery'
 import registerCustomBindings from './lbs.bindings'
+import ComponentLoader from './lbs.componentLoader'
 /**
 Objekt container
 */
@@ -44,6 +45,7 @@ const lbs = {
     apploader,
     bakery: Bakery,
     log: new Log(),
+    VmFactory: () => {},
 
     /**
     config
@@ -103,8 +105,6 @@ const lbs = {
         if (lbs.activeClass) {
             this.loader.loadView(lbs.activeClass, $('#content'))
         }
-        // load caurousel
-        this.apploader.buildCarousel()
 
         // load apps
         this.apploader.identifyApps()
@@ -288,9 +288,6 @@ const lbs = {
         }
     },
 
-    /**
-    Find database and server
-    */
     setSkin() {
         try {
             // var skin = lbs.common.executeVba("ActionPadTools.GetSkin");
@@ -355,5 +352,4 @@ const lbs = {
 /**
 ViewModel factory, extend this to add knockout functionality to actionpads
 */
-lbs.VmFactory = () => {}
 export default lbs

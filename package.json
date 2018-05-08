@@ -1,6 +1,6 @@
 {
-  "name": "LimeBootstrap",
-  "version": "1.13.0",
+  "name": "lime-bootstrap",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "directories": {

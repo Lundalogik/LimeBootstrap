@@ -13,7 +13,10 @@
             "error",
             "consistent"
         ],
-        "linebreak-style": "off"
+        "linebreak-style": "off",
+        "no-underscore-dangle": [
+            "allow"
+        ]
     },
     "env": {
         "browser": true,
