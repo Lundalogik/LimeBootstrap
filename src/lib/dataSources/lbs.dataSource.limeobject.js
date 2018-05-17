@@ -20,11 +20,11 @@ export default class LimeObject extends dataSource {
     get url() {
         let url = `https://${this.serverURLComponent}/${this.databaseURLComponent}/api/v1/limeobject/${this.limetype}/${this.id}/`
         this.embed.forEach((element, index, array) => {
-            if (index === 0) {
+            if (index === 0) { // first element should have a preceeding "?"
                 url += '?'
             }
             url += `_embed=${element}`
-            if (index !== array.length - 1) {
+            if (index !== array.length - 1) { // Last element should not have a dangeling "&"
                 url += '&'
             }
         })
