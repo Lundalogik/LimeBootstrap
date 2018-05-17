@@ -15,7 +15,7 @@
         ],
         "linebreak-style": "off",
         "no-underscore-dangle": [
-            "allow"
+            "off"
         ]
     },
     "env": {
