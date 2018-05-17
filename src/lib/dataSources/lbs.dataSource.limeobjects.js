@@ -54,7 +54,7 @@ export default class LimeObjects extends dataSource {
     async fetch(next = false) {
         const url = next ? this.next : this.url
         const response = await fetch(url, {
-            headers: { 'x-session': this.session },
+            headers: { 'sessionid': this.session },
         })
         const body = JSON.parse(response.body)
         this.next = body._links.next
