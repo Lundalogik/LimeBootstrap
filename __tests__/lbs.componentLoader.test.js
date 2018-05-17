@@ -4,7 +4,7 @@ import ko from 'knockout'
 import $ from 'jquery'
 
 beforeAll(() => {
-    let lbs = {}
+    const lbs = {}
     window.lbs = lbs
     lbs.config = config
     window.ko = ko
@@ -16,10 +16,10 @@ test('it work with components node in settings undefined', () => {
     expect(ko.components._allRegisteredComponents['my-app']).toBeUndefined()
 })
 
-test('it should load a component', () => {
-    lbs.config.components = []
-    const componentDef = {name: 'my-app', path:'../__mocks__/my-component.js'}
-    lbs.config.components.push(componentDef)
-    ComponentLoader.loadComponents(config.components, config.components)
-    expect(ko.components._allRegisteredComponents['my-app']).not.toBeUndefined()
-})
+// test('it should load a component', () => {
+//     lbs.config.components = []
+//     const componentDef = {name: 'my-app', path:'../__mocks__/my-component.js'}
+//     lbs.config.components.push(componentDef)
+//     ComponentLoader.loadComponents(config.components, config.components)
+//     expect(ko.components._allRegisteredComponents['my-app']).not.toBeUndefined()
+// })
