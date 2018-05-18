@@ -1,5 +1,7 @@
 import $ from 'jquery'
 import LimeObject from './dataSources/lbs.dataSource.limeobject'
+import LimeObjects from './dataSources/lbs.dataSource.limeobjects'
+import CustomEndpoint from './dataSources/lbs.dataSource.customEndpoint'
 import xml2json from 'xml2json-light'
 
 const loader = {
@@ -201,10 +203,27 @@ const loader = {
             switch (dataSource.type) {
             case 'limeObject':
                 data = new LimeObject(
-                    dataSource, 
+                    dataSource,
                     lbs.session,
                     lbs.activeServer,
-                    lbs.ActiveDatabase).fetch()
+                    lbs.ActiveDatabase,
+                ).fetch()
+                break
+            case 'limeObjects':
+                data = new LimeObjects(
+                    dataSource,
+                    lbs.session,
+                    lbs.activeServer,
+                    lbs.ActiveDatabase,
+                ).fetch()
+                break
+            case 'customEndpoint':
+                data = new CustomEndpoint(
+                    dataSource,
+                    lbs.session,
+                    lbs.activeServer,
+                    lbs.ActiveDatabase,
+                ).fetch()
                 break
             case 'activeInspector': {
                 try {

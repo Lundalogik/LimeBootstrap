@@ -106,6 +106,12 @@ const lbs = {
             this.loader.loadView(lbs.activeClass, $('#content'))
         }
 
+        let localComponents = []
+        if (lbs.config[lbs.activeClass] && lbs.config[lbs.activeClass].components) {
+            localComponents = lbs.config[lbs.activeClass].components
+        }
+        ComponentLoader.loadComponents(lbs.config.components, localComponents)
+
         // load apps
         this.apploader.identifyApps()
 
