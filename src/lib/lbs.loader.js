@@ -142,10 +142,34 @@ const loader = {
         }
     },
 
+    createDataSource(dataSourceLiteral) {
+        switch (dataSourceLiteral.type) {
+        case 'activeLimeObject': {
+            const modifiedDataSourceLiteral = dataSourceLiteral
+            modifiedDataSourceLiteral.id = lbs.activeLimeObjectId
+            modifiedDataSourceLiteral.limetype = lbs.activeClass
+            return new LimeObject(dataSourceLiteral,
+                lbs.session,
+                lbs.activeServer,
+                lbs.activeDatabase)
+        }
+        case 'limeObject':
+            return new LimeObject(
+                dataSourceLiteral,
+                lbs.session,
+                lbs.activeServer,
+                lbs.activeDatabase,
+            )
+        case 'limeObjects':
+            return LimeObjects
+        default:
+            return null
+        }
+    },
     /**
     Load all datasources in set to the selected viewmodel
     */
-    loadDataSources(_vm, _dataSources, overrideExisting) {
+    async loadDataSources(_vm, _dataSources, overrideExisting) {
         // check connection
         // if (!lbs.hasLimeConnection) {
         //     lbs.log.warn('No connecton, datasources will not be loaded')
@@ -179,16 +203,25 @@ const loader = {
             // add new source to collection
             dataSources.push(activeInspector)
         }
-
         // load soruces
-        $.each(dataSources, (key, source) => {
-            const data = lbs.loader.loadDataSource(source)
+        await Promise.all(dataSources.map(async (source) => {
+            let data = {}
+            if (source.async) {
+                data = await lbs.loader.loadAsyncDataSource(source)
+                console.log(data)
+            } else {
+                data = lbs.loader.loadDataSource(source)
+            }
             vm = lbs.common.mergeOptions(vm, data, overrideExisting)
-        })
+        }))
 
         return vm
     },
 
+    async loadAsyncDataSource(dataSourceLiteral) {
+        const dataSource = lbs.loader.createDataSource(dataSourceLiteral)
+        return dataSource.fetch()
+    },
 
     /**
     Load a datasource to the selected viewmodel
@@ -201,9 +234,19 @@ const loader = {
 
         try {
             switch (dataSource.type) {
+            case 'activeLimeObject': {
+                const dataSourceLiteral = dataSource
+                dataSourceLiteral.id = lbs.activeInspectorId
+                dataSourceLiteral.limetype = lbs.activeClass
+                data = new LimeObject(dataSourceLiteral,
+                    lbs.session,
+                    lbs.activeServer,
+                    lbs.activeDatabase,
+                ).fetch()
+                break
+            }
             case 'limeObject':
-                data = new LimeObject(
-                    dataSource,
+                data = lbs.loader.createDataSource(dataSource,
                     lbs.session,
                     lbs.activeServer,
                     lbs.ActiveDatabase,

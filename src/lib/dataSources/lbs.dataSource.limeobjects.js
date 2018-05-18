@@ -48,7 +48,8 @@ export default class LimeObjects extends dataSource {
     }
 
     async fetchNext() {
-        return this.fetch(true)
+        const loadNext = this.next !== ''
+        return this.fetch(loadNext)
     }
 
     async fetch(next = false) {
