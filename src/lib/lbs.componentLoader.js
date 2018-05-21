@@ -3,15 +3,16 @@ import _ from 'underscore'
 import $ from 'jquery'
 
 export default class ComponentLoader {
-    static loadComponents(globalComponents, localComponents) {
+    static async loadComponents(globalComponents, localComponents) {
         const components = _.union(localComponents, globalComponents)
-        components.forEach((component) => {
-            $.getScript(component.path).done((script, status) => {
+        await Promise.all(components.map(async (component) => {
+            await $.getScript(component.path).done((script, status) => {
                 const r = require // hack to fool Brunch.io to avoid require at compile time
-                ko.components.register(component.name, { viewModel: r(`src/${component.name}.js`).default, template: r(`src/${component.name}.html`) })
+                lbs.log.info(`Registering component ${component.name}`)
+                ko.components.register(component.name, { viewModel: r(`components/${component.name}/component.js`).default, template: r(`components/${component.name}/component.html`) })
             }).fail((jqxhr, settings, exception) => {
                 lbs.log.error("Something went wrong"+exception )
             })
-        })
+        }))
     }
 }

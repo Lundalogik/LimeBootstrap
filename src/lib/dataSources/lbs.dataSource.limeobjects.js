@@ -6,7 +6,7 @@ export default class LimeObjects extends dataSource {
     * @param {number} id ID of the LimeObject
     */
     constructor({
-        sort, sortOrder = 'desc', filter, limetype, ...rest
+        sort, sortOrder = 'desc', filter, limetype, fetchAll, limit = 10, ...rest
     }, session, server, database) {
         super(rest)
         this.filter = filter
@@ -18,12 +18,14 @@ export default class LimeObjects extends dataSource {
         this.serverURLComponent = encodeURI(server)
         this.databaseURLComponent = encodeURI(database)
         this.next = ''
+        this.limit = limit
+        this.fetchAll = fetchAll
     }
 
     addFilterParam(prop, operator, value) {
-        const validOperators = ['>=', '<=', '!=', '==']
+        const validOperators = ['>=', '<=', '!=', '=']
         if (!validOperators.includes(operator)) {
-            throw new Error('Invalid operator. Must be one of ">=", "<=", "!=", "=="')
+            throw new Error('Invalid operator. Must be one of ">=", "<=", "!=", "="')
         }
         this.filter += `&${prop}${operator}${value}`
     }
@@ -42,22 +44,32 @@ export default class LimeObjects extends dataSource {
 
     get url() {
         const sort = this.sort ? `&sort=${this.sortOrder}${this.sort}` : ''
-        const filter = this.filter ? `&${this.filter}` : ''
-        const params = `${filter}${sort}`
-        return `https://${this.serverURLComponent}/${this.databaseURLComponent}/api/v1/limeobject/${this.limetype}/${params}`
+        const filter = this.filter ? `${this.filter}` : ''
+        const limit = `&limit=${this.limit}`
+        const params = `${filter}${sort}${limit}`
+        return `https://${this.serverURLComponent}/${this.databaseURLComponent}/api/v1/limeobject/${this.limetype}/?${params}`
     }
 
     async fetchNext() {
-        return this.fetch(true)
+        const url = this.next === '' ? this.url : this.next
+        return this.fetch(url)
     }
 
-    async fetch(next = false) {
-        const url = next ? this.next : this.url
-        const response = await fetch(url, {
-            headers: { 'sessionid': this.session },
-        })
-        const body = JSON.parse(response.body)
-        this.next = body._links.next
-        return body._embedded.limeobjects
+    async fetch(url = this.url) {
+        let data = {}
+        try {
+            const response = await fetch(url, {
+                headers: { sessionid: this.session },
+            })
+            data = JSON.parse(response).body
+        } catch (e) {
+            data = JSON.parse(lbs.common.executeVba(`LBSHelper.CRMEndpoint, ${url}, GET`))
+        }
+        this.next = data._links.next ? data._links.next.href : null
+
+        if (this.fetchAll && this.next) {
+            return [...data._embedded.limeobjects, ...await this.fetch(this.next)]
+        }
+        return data._embedded.limeobjects
     }
 }

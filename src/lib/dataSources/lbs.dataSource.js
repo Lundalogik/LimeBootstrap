@@ -6,6 +6,6 @@ export default class DataSource {
     }
 
     static fetch() {
-        throw { name: 'NotImplementedError', message: 'Should be implemented by subclass' } 
+        throw { name: 'NotImplementedError', message: 'Should be implemented by subclass' }
     }
 }

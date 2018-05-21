@@ -66,7 +66,7 @@ const lbs = {
     /**
     Setup
     */
-    setup() {
+    async setup() {
         // register custom bindnings
         registerCustomBindings()
 
@@ -99,7 +99,7 @@ const lbs = {
         moment.locale(lbs.common.executeVba('Localize.GetLanguage'))
 
         // load datasources
-        this.vm = lbs.loader.loadDataSources(this.vm, this.config.dataSources, false)
+        this.vm = await lbs.loader.loadDataSources(this.vm, this.config.dataSources, false)
 
         // load view
         if (lbs.activeClass) {
@@ -107,11 +107,11 @@ const lbs = {
         }
 
         let localComponents = []
-        if (lbs.config[lbs.activeClass] && lbs.config[lbs.activeClass].components) {
-            localComponents = lbs.config[lbs.activeClass].components
+        if (lbs.externalConfig[lbs.activeClass] && lbs.externalConfig[lbs.activeClass].components) {
+            localComponents = lbs.externalConfig[lbs.activeClass].components
         }
-        ComponentLoader.loadComponents(lbs.config.components, localComponents)
-
+        await ComponentLoader.loadComponents(lbs.externalConfig.components, localComponents)
+        console.log(ko.components._allRegisteredComponents)
         // load apps
         this.apploader.identifyApps()
 
@@ -212,6 +212,7 @@ const lbs = {
                     lbs.activeInspector = inspectorObject
                     lbs.activeClass = inspectorObject.class.Name
                     lbs.activeInspectorId = inspectorObject.ID
+                    lbs.activeLimeObjectId = inspectorObject.record.ID
                 } else {
                     lbs.activeInspector = null
                     lbs.activeClass = 'index'
@@ -242,6 +243,8 @@ const lbs = {
 
         if (lbs.common.getURLParameter('session') !== null) {
             lbs.session = lbs.common.getURLParameter('session')
+        } else {
+            lbs.session = lbs.common.executeVba('LBSHelper.GetSessionID')
         }
 
         // get wrapper environment
