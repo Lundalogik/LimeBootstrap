@@ -6,7 +6,7 @@ export default class LimeObjects extends dataSource {
     * @param {number} id ID of the LimeObject
     */
     constructor({
-        sort, sortOrder = 'desc', filter, limetype, fetchAll, ...rest
+        sort, sortOrder = 'desc', filter, limetype, fetchAll, limit = 10, ...rest
     }, session, server, database) {
         super(rest)
         this.filter = filter
@@ -44,7 +44,7 @@ export default class LimeObjects extends dataSource {
     get url() {
         const sort = this.sort ? `&sort=${this.sortOrder}${this.sort}` : ''
         const filter = this.filter ? `${this.filter}` : ''
-        const limit = this.fetchAll ? '&_limit=50' : ''
+        const limit = `&limit=${this.limit}`
         const params = `${filter}${sort}${limit}`
         return `https://${this.serverURLComponent}/${this.databaseURLComponent}/api/v1/limeobject/${this.limetype}/?${params}`
     }
