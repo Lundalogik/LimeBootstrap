@@ -39,7 +39,7 @@ export default class LimeObject extends dataSource {
             })
             return JSON.parse(response.body)
         } catch (e) {
-            return JSON.parse(lbs.common.executeVba(`LBSHelper.loadFromCRMEndpoint, ${this.url}`))
+            return JSON.parse(lbs.common.executeVba(`LBSHelper.CRMEndpoint, ${this.url}, GET`))
         }
     }
 }

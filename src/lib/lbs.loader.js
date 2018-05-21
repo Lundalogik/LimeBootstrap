@@ -1,6 +1,7 @@
 import $ from 'jquery'
 import LimeObject from './dataSources/lbs.dataSource.limeobject'
 import LimeObjects from './dataSources/lbs.dataSource.limeobjects'
+import Translations from './dataSources/lbs.dataSource.translations'
 import CustomEndpoint from './dataSources/lbs.dataSource.customEndpoint'
 import xml2json from 'xml2json-light'
 
@@ -13,6 +14,26 @@ const loader = {
     scripts: [],
     styles: [],
     libs: [],
+    legacyDataSources: [
+        'localization',
+        'activeInspector',
+        'records',
+        'record',
+        'xml',
+        'storedProcedure',
+        'HTTPGetXml',
+        'SOAPGetXml',
+        'relatedRecord',
+        'AsyncPost',
+        'activeUser',
+    ],
+    asyncDataSources: [
+        'limeObject',
+        'limeObjects',
+        'activeLimeObject',
+        'customEndpoint',
+        'translations',
+    ],
 
     /**
     Add resources from config to load-lists
@@ -161,8 +182,21 @@ const loader = {
                 lbs.activeDatabase,
             )
         case 'limeObjects':
-            return LimeObjects
+            return new LimeObjects(
+                dataSourceLiteral,
+                lbs.session,
+                lbs.activeServer,
+                lbs.activeDatabase,
+            )
+        case 'translations':
+            return new Translations(
+                dataSourceLiteral,
+                lbs.session,
+                lbs.activeServer,
+                lbs.activeDatabase,
+            )
         default:
+            lbs.log.warn(`Could not identify type "${dataSourceLiteral.type}" of data source.`)
             return null
         }
     },
@@ -170,11 +204,6 @@ const loader = {
     Load all datasources in set to the selected viewmodel
     */
     async loadDataSources(_vm, _dataSources, overrideExisting) {
-        // check connection
-        // if (!lbs.hasLimeConnection) {
-        //     lbs.log.warn('No connecton, datasources will not be loaded')
-        //     return _vm
-        // }
         let dataSources = _dataSources
         let vm = _vm
         const filterRemoveRelated = item => item.type !== 'relatedRecord'
@@ -206,11 +235,12 @@ const loader = {
         // load soruces
         await Promise.all(dataSources.map(async (source) => {
             let data = {}
-            if (source.async) {
+            if (lbs.loader.asyncDataSources.includes(source.type)) {
                 data = await lbs.loader.loadAsyncDataSource(source)
-                console.log(data)
-            } else {
+            } else if (lbs.loader.legacyDataSources.includes(source.type)) {
                 data = lbs.loader.loadDataSource(source)
+            } else {
+                lbs.log.warn(`Data source type ${source.type} is invalid`)
             }
             vm = lbs.common.mergeOptions(vm, data, overrideExisting)
         }))
@@ -220,7 +250,10 @@ const loader = {
 
     async loadAsyncDataSource(dataSourceLiteral) {
         const dataSource = lbs.loader.createDataSource(dataSourceLiteral)
-        return dataSource.fetch()
+        const key = dataSourceLiteral.alias ? dataSourceLiteral.alias : dataSourceLiteral.type
+        lbs.log.info(`Fetching data source: ${key}`)
+        const data = { [key]: await dataSource.fetch() }
+        return data
     },
 
     /**
@@ -234,40 +267,6 @@ const loader = {
 
         try {
             switch (dataSource.type) {
-            case 'activeLimeObject': {
-                const dataSourceLiteral = dataSource
-                dataSourceLiteral.id = lbs.activeInspectorId
-                dataSourceLiteral.limetype = lbs.activeClass
-                data = new LimeObject(dataSourceLiteral,
-                    lbs.session,
-                    lbs.activeServer,
-                    lbs.activeDatabase,
-                ).fetch()
-                break
-            }
-            case 'limeObject':
-                data = lbs.loader.createDataSource(dataSource,
-                    lbs.session,
-                    lbs.activeServer,
-                    lbs.ActiveDatabase,
-                ).fetch()
-                break
-            case 'limeObjects':
-                data = new LimeObjects(
-                    dataSource,
-                    lbs.session,
-                    lbs.activeServer,
-                    lbs.ActiveDatabase,
-                ).fetch()
-                break
-            case 'customEndpoint':
-                data = new CustomEndpoint(
-                    dataSource,
-                    lbs.session,
-                    lbs.activeServer,
-                    lbs.ActiveDatabase,
-                ).fetch()
-                break
             case 'activeInspector': {
                 try {
                     // check lime
