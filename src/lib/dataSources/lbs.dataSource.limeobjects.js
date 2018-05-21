@@ -18,6 +18,7 @@ export default class LimeObjects extends dataSource {
         this.serverURLComponent = encodeURI(server)
         this.databaseURLComponent = encodeURI(database)
         this.next = ''
+        this.limit = limit
         this.fetchAll = fetchAll
     }
 
