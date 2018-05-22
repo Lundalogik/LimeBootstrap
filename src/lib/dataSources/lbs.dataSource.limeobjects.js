@@ -6,7 +6,7 @@ export default class LimeObjects extends dataSource {
     * @param {number} id ID of the LimeObject
     */
     constructor({
-        sort, sortOrder = 'desc', filter, limetype, fetchAll, limit = 10, ...rest
+        sort, sortOrder = 'desc', filter = '', limetype, fetchAll, limit = 10, ...rest
     }, session, server, database) {
         super(rest)
         this.filter = filter
