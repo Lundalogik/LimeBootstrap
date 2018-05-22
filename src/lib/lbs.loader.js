@@ -33,6 +33,7 @@ const loader = {
         'activeLimeObject',
         'customEndpoint',
         'translations',
+        'relatedLimeObjects',
     ],
 
     /**
@@ -195,6 +196,17 @@ const loader = {
                 lbs.activeServer,
                 lbs.activeDatabase,
             )
+        case 'relatedLimeObjects': {
+            const { relatedFrom = lbs.activeClass } = dataSourceLiteral
+            const dataSource = new LimeObjects(
+                dataSourceLiteral,
+                lbs.session,
+                lbs.activeServer,
+                lbs.activeDatabase,
+            )
+            dataSource.addFilterParam(relatedFrom, '=', lbs.activeLimeObjectId)
+            return dataSource
+        }
         default:
             lbs.log.warn(`Could not identify type "${dataSourceLiteral.type}" of data source.`)
             return null

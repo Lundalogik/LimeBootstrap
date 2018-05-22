@@ -6,7 +6,7 @@ export default class LimeObjects extends dataSource {
     * @param {number} id ID of the LimeObject
     */
     constructor({
-        sort, sortOrder = 'desc', filter, limetype, fetchAll, limit = 10, ...rest
+        sort, sortOrder = 'desc', filter = '', limetype, fetchAll, limit = 10, ...rest
     }, session, server, database) {
         super(rest)
         this.filter = filter
@@ -23,11 +23,12 @@ export default class LimeObjects extends dataSource {
     }
 
     addFilterParam(prop, operator, value) {
-        const validOperators = ['>=', '<=', '!=', '=']
+        const validOperators = ['min', 'max', 'not', '=']
         if (!validOperators.includes(operator)) {
-            throw new Error('Invalid operator. Must be one of ">=", "<=", "!=", "="')
+            throw new Error('Invalid operator. Must be one of "min", "max", "not", "="')
         }
-        this.filter += `&${prop}${operator}${value}`
+        const prefix = ['min', 'max', 'not'].includes(operator) ? `${operator}-` : ''
+        this.filter += `&${prefix}${prop}=${value}`
     }
 
     resetFilterParams() {
@@ -45,7 +46,7 @@ export default class LimeObjects extends dataSource {
     get url() {
         const sort = this.sort ? `&sort=${this.sortOrder}${this.sort}` : ''
         const filter = this.filter ? `${this.filter}` : ''
-        const limit = `&limit=${this.limit}`
+        const limit = `&_limit=${this.limit}`
         const params = `${filter}${sort}${limit}`
         return `https://${this.serverURLComponent}/${this.databaseURLComponent}/api/v1/limeobject/${this.limetype}/?${params}`
     }
@@ -56,20 +57,15 @@ export default class LimeObjects extends dataSource {
     }
 
     async fetch(url = this.url) {
-        let data = {}
-        try {
-            const response = await fetch(url, {
-                headers: { sessionid: this.session },
-            })
-            data = JSON.parse(response).body
-        } catch (e) {
-            data = JSON.parse(lbs.common.executeVba(`LBSHelper.CRMEndpoint, ${url}, GET`))
-        }
-        this.next = data._links.next ? data._links.next.href : null
+        const { body, ...rest } = await super._fetch(url, {
+            headers: { sessionid: this.session },
+        })
+
+        this.next = body._links.next ? body._links.next.href : null
 
         if (this.fetchAll && this.next) {
-            return [...data._embedded.limeobjects, ...await this.fetch(this.next)]
+            return [...body._embedded.limeobjects, ...await this.fetch(this.next)]
         }
-        return data._embedded.limeobjects
+        return body._embedded.limeobjects
     }
 }

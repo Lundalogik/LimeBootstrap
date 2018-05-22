@@ -34,6 +34,7 @@ const lbs = {
     activeServer: '',
     activeInspector: '',
     activeInspectorId: null,
+    activeLocale: 'en_us',
     session: null,
     wrapperType: 'actionpad',
     apps: {},
@@ -239,6 +240,12 @@ const lbs = {
 
         if (lbs.common.getURLParameter('id') !== null) {
             lbs.activeInspectorId = parseInt(lbs.common.getURLParameter('id'), 10)
+        }
+
+        if (lbs.common.getURLParameter('locale') !== null) {
+            lbs.activeLocale = lbs.common.getURLParameter('locale')
+        } else {
+            lbs.activeLocale = lbs.common.executeVba('LBSHelper.getLocale')
         }
 
         if (lbs.common.getURLParameter('session') !== null) {

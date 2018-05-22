@@ -49,7 +49,11 @@ __Note__: You need to supply the image to the dist/resource/ folder.
 
 #### Usage
 ```
-<lbs-button params="text: 'My button', color: 'magenta', icon: 'fa-money'"></lbs-button>
+<lbs-hero params="header: company.name">
+    <li data-bind="text: company.visitingcity, icon: 'fa-map-marker'"> </li>
+    <li data-bind="text: company.phone, call: company.phone, icon: 'fa-phone'"></li>
+    <li data-bind="text: company.www, openURL: company.www, icon: 'fa-globe'"></li>
+</lbs-hero>
 ```
 
 ### lbs-menu
