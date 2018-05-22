@@ -14,17 +14,10 @@ export default class Translations extends limeObjects {
 
         const restructuredData = body._embedded.limeobjects.reduce(
             (leftHand, rightHand) => {
-                const { _id, sv, en_us, da, no, fi } = rightHand
+                const translation = rightHand[lbs.activeLocale]
                 return {
                     ...leftHand,
-                    [rightHand.code]: {
-                        _id,
-                        sv,
-                        en_us,
-                        da,
-                        no,
-                        fi,
-                    },
+                    [rightHand.code]: translation,
                 }
             }, {},
         )
