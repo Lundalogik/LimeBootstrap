@@ -32,14 +32,9 @@ export default class LimeObject extends dataSource {
     }
 
     async fetch() {
-        try {
-            const response = await fetch(this.url, {
-                headers: { sessionid: this.session },
-                mode: 'cors',
-            })
-            return JSON.parse(response.body)
-        } catch (e) {
-            return JSON.parse(lbs.common.executeVba(`LBSHelper.CRMEndpoint, ${this.url}, GET`))
-        }
+        const response = await super._fetch(this.url, {
+            headers: { sessionid: this.session },
+        })
+        return response.body
     }
 }

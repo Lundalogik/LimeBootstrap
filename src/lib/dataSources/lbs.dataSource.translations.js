@@ -8,18 +8,11 @@ export default class Translations extends limeObjects {
     }
 
     async fetch(url = this.url) {
-        let data = {}
+        const { body, ...rest } = await super._fetch(url, {
+            headers: { sessionid: this.session },
+        })
 
-        try {
-            const response = await fetch(url, {
-                headers: { sessionid: this.session },
-            })
-            data = JSON.parse(response).body
-        } catch (e) {
-            data = JSON.parse(lbs.common.executeVba(`LBSHelper.CRMEndpoint, ${url}, GET`))
-        }
-
-        const restructuredData = data._embedded.limeobjects.reduce(
+        const restructuredData = body._embedded.limeobjects.reduce(
             (leftHand, rightHand) => {
                 const { _id, sv, en_us, da, no, fi } = rightHand
                 return {
@@ -36,8 +29,8 @@ export default class Translations extends limeObjects {
             }, {},
         )
 
-        if (data._links.next) {
-            return { ...restructuredData, ...await this.fetch(data._links.next.href) }
+        if (body._links.next) {
+            return { ...restructuredData, ...await this.fetch(body._links.next.href) }
         }
 
         return restructuredData
