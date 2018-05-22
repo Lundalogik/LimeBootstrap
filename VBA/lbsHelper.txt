@@ -194,19 +194,54 @@ ErrorHandler:
     loadFromREST = ""
 End Function
 
-Private Function DecodeBase64(ByVal strData As String) As Byte()
-    Dim objXML As Object
-    Dim objNode As Object
+
+Public Function GetSessionID() As String
+    On Error GoTo ErrorHandler
+    GetSessionID = ActiveUser.Database.SessionID
+    Exit Function
+ErrorHandler:
+    Call UI.ShowError("LBSHelper.GetSessionID")
+End Function
+
+
+Public Function CRMEndpoint(WebPath As String, Method As String, Optional b64Payload As String = "") As String
+    On Error GoTo ErrorHandler
+    Dim oXHTTP As Object
+    Dim s As String
+    Dim sPayload As String
     
-    Set objXML = CreateObject("MSXML2.DOMDocument")
+    Set oXHTTP = CreateObject("MSXML2.XMLHTTP")
+    oXHTTP.Open Method, WebPath, False
+    oXHTTP.setRequestHeader "sessionid", ActiveUser.Database.SessionID
+    If b64Payload <> "" Then
+        oXHTTP.setRequestHeader "Content-Type", "application/json"
+        sPayload = DecodeBase64(b64Payload)
+        oXHTTP.Send sPayload
+    Else
+        oXHTTP.Send
+    End If
+    CRMEndpoint = oXHTTP.responseText
+Exit Function
+ErrorHandler:
+    CRMEndpoint = ""
+End Function
+
+
+Private Function DecodeBase64(ByVal strData As String) As String
+    Dim objXML As MSXML2.DOMDocument60
+    Dim objNode As MSXML2.IXMLDOMElement
+    
+    ' help from MSXML
+    Set objXML = New MSXML2.DOMDocument60
     Set objNode = objXML.createElement("b64")
     objNode.DataType = "bin.base64"
-    objNode.Text = strData
-    DecodeBase64 = objNode.nodeTypedValue
-    
+    objNode.text = strData
+    DecodeBase64 = VBA.StrConv(objNode.nodeTypedValue, vbUnicode)
+    ' thanks, bye
     Set objNode = Nothing
     Set objXML = Nothing
 End Function
+
 
 Public Sub saveFile(FilePath As String, Content As String)
     Dim file As String
@@ -399,5 +434,7 @@ On Error GoTo ErrorHandler
 ErrorHandler:
     Call UI.ShowError("LBSHelper.getActiveUser")
 End Function
+
+
 
 

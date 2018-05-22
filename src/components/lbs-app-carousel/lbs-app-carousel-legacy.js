@@ -1,4 +1,3 @@
-
 $('#content').on('load.view', () => {
     let ol
     let li
@@ -7,6 +6,7 @@ $('#content').on('load.view', () => {
     $('[data-carousel]').each((index, element) => {
         try {
             try {
+                lbs.log.warn('The use of the legacy data carousel attribute is deprecated.')
                 eval(`binding = ${$(element).attr('data-carousel')}`)
                 const { height } = binding
 
