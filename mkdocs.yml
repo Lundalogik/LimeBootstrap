@@ -1,22 +1,32 @@
 site_name: Lime Bootstrap
 pages:
-- 'Home': '1. Introduction.md'
-- 'Getting started': '2. Getting started.md'
-- 'Included components': '3. Included components.md'
-- 'Bindnings & filters': '4. Bindings and filters.md'
-- 'Data sources': '5. DataSources.md'
-- 'Custom components Apps': '6. Custom components.md'
-- 'Advanced': '7. Advanced.md'
+- 'Introduction': 'index.md'
+- 'Getting started': 'getting_started.md'
+- 'Included components': 'included_components.md'
+- 'Bindnings & filters': 'bindings_and_filters.md'
+- 'Data sources': 'datasources.md'
+- 'Custom components Apps': 'custom_components.md'
+- 'Advanced': 'advanced.md'
 theme: readthedocs
 repo_url: https://github.com/Lundalogik/LimeBootstrap
-site_description: LimeBootstrap dokumentation
+repo_name: 'Lundalogik/LimeBootstrap'
+site_description: Lime Bootstrap documentation
 site_author: Lime Technologies AB
 docs_dir: docs
 dev_addr: localhost:3002
 theme:
   name: 'material'
+  custom_dir: 'docs/theme'
+  logo:
+    icon: 'home'
+  feature:
+    tabs: true
+  palette:
+    primary: 'teal'
+    accent: 'teal'
+  favicon: 'assets/images/favicon.ico'
 markdown_extensions:
 - codehilite
 - admonition
-extra_css:
-  - 'styles/custom.css'
+- meta
+
