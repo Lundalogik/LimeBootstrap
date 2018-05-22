@@ -9,7 +9,8 @@
   "scripts": {
     "test": "jest",
     "build": "brunch build",
-    "watch": "brunch watch -s"
+    "watch": "brunch watch -s",
+    "docs": "mkdocs serve"
   },
   "repository": {
     "type": "git",

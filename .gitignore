@@ -25,3 +25,4 @@ node_modules/
 dist/
 .vscode
 src/assets/apps/*
+venv/
