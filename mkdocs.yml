@@ -5,7 +5,7 @@ pages:
 - 'Included components': '3. Included components.md'
 - 'Bindnings & filters': '4. Bindings and filters.md'
 - 'Data sources': '5. DataSources.md'
-- 'Custom components Apps': '6. Custom Components.md'
+- 'Custom components Apps': '6. Custom components.md'
 - 'Advanced': '7. Advanced.md'
 theme: readthedocs
 repo_url: https://github.com/Lundalogik/LimeBootstrap
