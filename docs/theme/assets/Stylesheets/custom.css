@@ -1,0 +1,13 @@
+#lbs-dowload{
+    float: right;
+    cursor: pointer;
+
+}
+
+#lbs-dowload a{
+    text-transform: uppercase;
+}
+
+#lbs-dowload i{
+vertical-align: baseline;
+}

@@ -10,7 +10,8 @@
     "test": "jest",
     "build": "brunch build",
     "watch": "brunch watch -s",
-    "docs": "mkdocs serve"
+    "docs": "mkdocs serve",
+    "publish-docs": "mkdocs gh-deploy"
   },
   "repository": {
     "type": "git",
