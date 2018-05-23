@@ -32,16 +32,17 @@ export default class LimeObject extends dataSource {
     }
 
     async fetch() {
-        const response = await super._fetch(this.url, {
+        const { body } = await super._fetch(this.url, {
             headers: { sessionid: this.session },
         })
-        console.log(response)
+        const relationData = this.embed.reduce((acc, el) => {
+            const retval = (acc[el] = body._embedded[`relation_${el}`], acc)
+            return retval
+        }, {})
 
-        const { body } = response
-
-        this.embed.forEach((element) => {
-            body[element] = body._embedded[`relation_${element}`]
-        })
-        return body
+        return {
+            ...body,
+            ...relationData,
+        }
     }
 }
