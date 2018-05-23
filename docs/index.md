@@ -1,5 +1,6 @@
-Introduction
-==============
+hero: A Lime CRM ActionPad web framework
+
+# Introduction
 Lime Bootstrap is made to make it easier, better and faster working with Actionpads in Lime CRM. The framework relies heavily on Knockout.js and Twitter Bootstrap, styled and adapted to Lime CRM. The framework is mainly used by simple configuration in combination with  many built in convinience functions but it is also very expandable through the use of custom components.
 
 The framework is "opininated and convention over configuration", meaning there should be one and only one way to do things. If you find yourself writing lots of code to do something, or god forbid, needing to modify ANY file in the systems folder, you're propably doing it wrong. The framework is there to guide and help you.
