@@ -18,7 +18,7 @@ export default {
     mainly when requiring additional datasources
     * */
    components: [
-       {name:'my-app', viewModel:'', template:''}
+       {name:'my-components', path:'__mocks__/my-component.js'},
    ],
 
     config: {
