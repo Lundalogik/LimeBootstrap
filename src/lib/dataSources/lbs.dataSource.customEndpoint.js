@@ -25,7 +25,7 @@ export default class CustomEndpoint extends dataSource {
         const response = await super._fetch(this.url, {
             headers: { sessionid: this.session },
         })
-        return response.body
+        return JSON.parse(response.body)
     }
 
     async post(data) {
@@ -34,7 +34,7 @@ export default class CustomEndpoint extends dataSource {
             body: JSON.stringify(data),
             method: 'POST',
         })
-        return response
+        return JSON.parse(response.body)
     }
 
     async put(data) {
@@ -43,7 +43,7 @@ export default class CustomEndpoint extends dataSource {
             body: JSON.stringify(data),
             method: 'PUT',
         })
-        return response
+        return JSON.parse(response.body)
     }
 
     async delete(data) {
@@ -52,6 +52,6 @@ export default class CustomEndpoint extends dataSource {
             body: JSON.stringify(data),
             method: 'DELETE',
         })
-        return response
+        return JSON.parse(response.body)
     }
 }

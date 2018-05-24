@@ -352,7 +352,7 @@ Public Sub CreateUpdateTranslation(ByVal sOwner As String, ByVal sCode As String
     Dim oRecord As New LDE.Record
 
     If Application.Classes("localize").Fields.Exists(sLanguage) = False Then
-        Call Application.MessageBox("Fältet '" & sLanguage & "' finns inte i tabellen '" & Application.Classes("localize").LocalName & "'.")
+        Call Application.MessageBox("FÃ¤ltet '" & sLanguage & "' finns inte i tabellen '" & Application.Classes("localize").LocalName & "'.")
         Exit Sub
     End If
 
@@ -437,4 +437,11 @@ End Function
 
 
 
+Public Function getLocale() As String
+    On Error GoTo ErrorHandler
+    getLocale = ThisApplication.Locale
+    Exit Function
+ErrorHandler:
+    Call UI.ShowError("LBSHelper.getLocale")
+End Function
 
