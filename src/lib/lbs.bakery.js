@@ -1,6 +1,10 @@
 class Bakery {
-    static setCookie(name, cvalue, exdays) {
-        const ap = decodeURI((RegExp('ap=(.+?)(&|$)').exec(window.location.search) || [null, null])[1])
+    constructor(activeClass) {
+        this.activeClass = activeClass
+    }
+
+    setCookie(name, cvalue, exdays) {
+        const ap = this.activeClass
 
         const cname = `${name}-${ap}`
 
@@ -10,8 +14,8 @@ class Bakery {
 
         document.cookie = `${cname}=${cvalue}; ${expires}`
     }
-    static getCookie(name) {
-        const ap = decodeURI((RegExp('ap=(.+?)(&|$)').exec(window.location.search) || [null, null])[1])
+    getCookie(name) {
+        const ap = this.activeClass
 
         const cname = `${name}-${ap}=`
 

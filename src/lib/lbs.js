@@ -44,7 +44,7 @@ const lbs = {
     loader,
     common: Common,
     apploader,
-    bakery: Bakery,
+    bakery: null,
     log: new Log(),
     VmFactory: () => {},
 
@@ -86,7 +86,7 @@ const lbs = {
         lbs.log.startTimer('LBS total load time')
         // get AP class etc
         this.setActionPadEnvironment()
-
+        lbs.bakery = new Bakery(lbs.activeClass)
         // load loader (sic!)
         this.setupLoader()
 
@@ -112,7 +112,7 @@ const lbs = {
             localComponents = lbs.externalConfig[lbs.activeClass].components
         }
         await ComponentLoader.loadComponents(lbs.externalConfig.components, localComponents)
-        console.log(ko.components._allRegisteredComponents)
+
         // load apps
         this.apploader.identifyApps()
 
