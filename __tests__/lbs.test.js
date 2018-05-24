@@ -1,13 +1,14 @@
 import lbs from '../src/lib/lbs'
 import config from '../__mocks__/_config.mock'
 
+
 lbs.externalConfig = config
 
-beforeAll(() => {
+beforeAll(async () => {
     window.lbs = lbs
     // see issue https://github.com/facebook/jest/issues/5124 for window.location
     window.history.pushState({}, '', '?id=1001&session=123-abc-567&server=lime-core&database=core#company')
-    lbs.setup()
+    await lbs.setup()
 })
 
 test('A URL hash should be parsed and set activeClass', () => {
