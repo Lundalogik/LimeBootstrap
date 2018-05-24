@@ -57,10 +57,10 @@ export default class LimeObjects extends dataSource {
     }
 
     async fetch(url = this.url) {
-        const { body, ...rest } = await super._fetch(url, {
+        const response = await super._fetch(url, {
             headers: { sessionid: this.session },
         })
-
+        const body = JSON.parse(response.body)
         this.next = body._links.next ? body._links.next.href : null
 
         if (this.fetchAll && this.next) {

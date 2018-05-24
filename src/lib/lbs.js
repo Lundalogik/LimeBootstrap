@@ -112,7 +112,6 @@ const lbs = {
             localComponents = lbs.externalConfig[lbs.activeClass].components
         }
         await ComponentLoader.loadComponents(lbs.externalConfig.components, localComponents)
-        console.log(ko.components._allRegisteredComponents)
         // load apps
         this.apploader.identifyApps()
 
@@ -252,6 +251,10 @@ const lbs = {
             lbs.session = lbs.common.getURLParameter('session')
         } else {
             lbs.session = lbs.common.executeVba('LBSHelper.GetSessionID')
+        }
+
+        if (lbs.common.getURLParameter('limeobjectid') !== null) {
+            lbs.activeLimeObjectId = lbs.common.getURLParameter('limeobjectid')
         }
 
         // get wrapper environment
