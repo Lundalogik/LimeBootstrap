@@ -16,14 +16,14 @@ describe('Getting data from the crm api through a datasource', () => {
     test('It should be able to GET from an endpoint', async () => {
         fetch.once(JSON.stringify(personResponse))
         const d = await myEndpoint.get()
-        const personData = JSON.parse(d.body)
+        const personData = d
         expect(personData.person[0]).toEqual(1034)
     })
 
     test('It should be able to POST to an endpoint', async () => {
         fetch.once(JSON.stringify(bulkConsentPostResponse))
         const d = await myEndpoint.post(bulkConsentPayload)
-        const data = JSON.parse(d.body)
+        const data = d
         expect(data.key).toEqual('bulk_anonymized')
         expect(fetch.mock.calls[0][1].body).toEqual(JSON.stringify(bulkConsentPayload))
         expect(fetch.mock.calls[0][1].method).toEqual('POST')
@@ -32,7 +32,7 @@ describe('Getting data from the crm api through a datasource', () => {
     test('It should be able to PUT to an endpoint', async () => {
         fetch.once(JSON.stringify(bulkConsentPostResponse))
         const d = await myEndpoint.put(bulkConsentPayload)
-        const data = JSON.parse(d.body)
+        const data = d
         expect(data.key).toEqual('bulk_anonymized')
         expect(fetch.mock.calls[0][1].body).toEqual(JSON.stringify(bulkConsentPayload))
         expect(fetch.mock.calls[0][1].method).toEqual('PUT')
@@ -42,7 +42,7 @@ describe('Getting data from the crm api through a datasource', () => {
     test('It should be able to DELETE to an endpoint', async () => {
         fetch.once(JSON.stringify(bulkConsentDeleteResponse))
         const d = await myEndpoint.delete(bulkConsentDeletePayload)
-        const data = JSON.parse(d.body)
+        const data = d
         expect(data.key).toEqual('bulk_anonymize_request_delete')
         expect(fetch.mock.calls[0][1].body).toEqual(JSON.stringify(bulkConsentDeletePayload))
         expect(fetch.mock.calls[0][1].method).toEqual('DELETE')

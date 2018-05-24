@@ -25,13 +25,13 @@ test('It should fetch next objects', async () => {
 test('It should use use a correct URL', () => {
     fetch.once(JSON.stringify(companyResponses[0]))
     limeObjectNoFilter.fetch()
-    expect(fetch.mock.calls[0][0]).toEqual('https://lime-core/lime_core_v6_0/api/v1/limeobject/company/')
+    expect(fetch.mock.calls[0][0]).toEqual('https://lime-core/lime_core_v6_0/api/v1/limeobject/company/?&_limit=10')
 })
 
 test('It should set the correct header', () => {
     fetch.once(JSON.stringify(companyResponses[0]))
     limeObjectNoFilter.fetch()
-    expect(fetch.mock.calls[0][1].headers).toEqual({ 'x-session': '123-abc' })
+    expect(fetch.mock.calls[0][1].headers).toEqual({ sessionid: '123-abc' })
 })
 
 

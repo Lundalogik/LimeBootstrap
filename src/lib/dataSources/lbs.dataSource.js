@@ -17,7 +17,7 @@ export default class DataSource {
             lbs.log.info(`Using VBA fallback method for data source ${this.type}`)
             const payload = settings.body ? `, ${btoa(settings.body)}` : ''
             return {
-                body: JSON.parse(lbs.common.executeVba(`LBSHelper.CRMEndpoint, ${url}, ${method}${payload}`)),
+                body: lbs.common.executeVba(`LBSHelper.CRMEndpoint, ${url}, ${method}${payload}`),
                 status: 'Fetched through VBA... No idea',
             }
         }
