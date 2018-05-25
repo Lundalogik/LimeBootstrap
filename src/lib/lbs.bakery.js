@@ -5,8 +5,9 @@ class Bakery {
         this.activeClass = activeClass
     }
 
-    setCookie(name, cvalue, exdays = 9999) {
-        Cookies.set(name, cvalue, { expires: exdays, path: this.activeClass })
+    setCookie(name, value, days = 9999) {
+        const exdays = parseInt(days, 10)
+        Cookies.set(name, value, { expires: exdays, path: this.activeClass })
     }
     getCookie(name) {
         return Cookies.get(name)
