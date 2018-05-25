@@ -1,4 +1,6 @@
 <button class="btn btn-lime text-left" data-bind="css: css">
-    <i data-bind="visible: !!icon, icon: icon, text: ' '"></i>
+    <!-- ko if: icon -->
+    <lbs-icon params="icon: icon"></lbs-icon>
+    <!-- /ko -->
     <span data-bind="text: text"></span>
 </button>

@@ -22,10 +22,17 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 100%;
+
+    &.full-width {
+        width: 100%;
+    }
 
     &:not(.centered){
         text-align: left;
+    }
+
+    &.centered > i {
+        margin: 0 auto;
     }
 
     &.blue {

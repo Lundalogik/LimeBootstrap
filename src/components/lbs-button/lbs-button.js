@@ -1,8 +1,8 @@
 import ko from 'knockout'
 import LBSBaseComponent from '../lbs-base-component/lbs-base-component'
-import limeButtonTemplate from './lbs-button.tpl.html'
+import lbsButtonTemplate from './lbs-button.tpl.html'
 
-class LimeButtonVM extends LBSBaseComponent {
+class LBSButtonVM extends LBSBaseComponent {
     constructor(params) {
         super()
 
@@ -12,14 +12,15 @@ class LimeButtonVM extends LBSBaseComponent {
             text = '',
             icon = null,
             centered = false,
+            fullWidth = true,
         } = params
-
         this.text = text
         this.icon = icon
         this.bootstrapClass = bootstrapClass
         this.centered = centered
         this.color = color
-        this.cssClasses = [this.bootstrapClass, this.color]
+        this.fullWidth = fullWidth ? 'full-width' : ''
+        this.cssClasses = [this.bootstrapClass, this.color, this.fullWidth]
 
         if (this.color && this.bootstrapClass) {
             this.log.warn(
@@ -34,4 +35,4 @@ class LimeButtonVM extends LBSBaseComponent {
     }
 }
 
-ko.components.register('lbs-button', { viewModel: LimeButtonVM, template: limeButtonTemplate })
+ko.components.register('lbs-button', { viewModel: LBSButtonVM, template: lbsButtonTemplate })

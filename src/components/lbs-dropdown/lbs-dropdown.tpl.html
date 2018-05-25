@@ -1,0 +1,13 @@
+<div class="dropdown">
+    <lbs-button params="color: color, text: title, icon: icon, fullWidth: fullWidth, centered: title === ''" data-toggle="dropdown">
+    </lbs-button>
+
+    <ul class="dropdown-menu">
+        <!-- ko template: { nodes: $componentTemplateNodes, data: $root } -->
+        <!-- /ko -->
+
+        <!-- ko foreach: listItems -->
+        <li><a href="#" data-bind="text: label, click: click"></a></li>
+        <!-- /ko -->
+    </ul>
+</div>
