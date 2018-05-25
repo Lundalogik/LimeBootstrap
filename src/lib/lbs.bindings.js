@@ -92,6 +92,7 @@ export default function registerCustomBindings() {
     */
     ko.bindingHandlers.textWithIcon = {
         update(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+            lbs.log.warn('[Deprecation] you are using the legacy icon binding. Update to new component <lbs-icon>')
             const value = ko.unwrap(valueAccessor())
             const iconHtml = lbs.common.iconTemplate.format(value.icon)
 
@@ -233,6 +234,7 @@ export default function registerCustomBindings() {
     */
     ko.bindingHandlers.icon = {
         init(element, valueAccessor) {
+            lbs.log.warn('[Deprecation] you are using the legacy icon binding. Update to new component <lbs-icon>')
             const content = lbs.common.iconTemplate.format(ko.unwrap(valueAccessor()))
             if ($(element).text() !== '' && $(element).text().substring(0, content.length) !== content) {
                 $(element).prepend(content)
