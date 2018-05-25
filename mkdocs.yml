@@ -1,12 +1,16 @@
 site_name: Lime Bootstrap
 pages:
-- 'Introduction': 'index.md'
-- 'Getting started': 'getting_started.md'
-- 'Included components': 'included_components.md'
-- 'Bindnings & filters': 'bindings_and_filters.md'
-- 'Data sources': 'datasources.md'
-- 'Custom components Apps': 'custom_components.md'
-- 'Advanced': 'advanced.md'
+  - 'Documentation':
+    - 'Introduction': 'index.md'
+    - 'Getting started': 'getting_started.md'
+    - 'Included components': 'included_components.md'
+    - 'Bindnings & filters': 'bindings_and_filters.md'
+    - 'Data sources': 'datasources.md'
+    - 'Custom components Apps': 'custom_components.md'
+    - 'Advanced': 'advanced.md'
+  - 'Changelog':
+    - 'LBS 2': 'changelog/2.x.md'
+    - 'LBS 1': 'changelog/1.x.md'
 theme: readthedocs
 repo_url: https://github.com/Lundalogik/LimeBootstrap
 repo_name: 'Lundalogik/LimeBootstrap'
