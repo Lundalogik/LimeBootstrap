@@ -6,16 +6,13 @@ class Bakery {
     }
 
     setCookie(name, cvalue, exdays = 9999) {
-        const cname = `${name}-${this.activeClass}`
-        Cookies.set(cname, cvalue, { expires: exdays })
+        Cookies.set(name, cvalue, { expires: exdays, path: this.activeClass })
     }
     getCookie(name) {
-        const cname = `${name}-${this.activeClass}`
-        return Cookies.get(cname)
+        return Cookies.get(name)
     }
     getCookieJSON(name) {
-        const cname = `${name}-${this.activeClass}`
-        return Cookies.getJSON(cname)
+        return Cookies.getJSON(name)
     }
 }
 
