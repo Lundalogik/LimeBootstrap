@@ -6,6 +6,12 @@ test('It should set and get a cookie', () => {
     expect(bakery.getCookie('My coookiiiee!')).toEqual('1')
 })
 
+test('It should work if you use a string as input for expires', () => {
+    const bakery = new Bakery('company')
+    bakery.setCookie('string', 1, '500')
+    expect(bakery.getCookie('string')).toEqual('1')
+})
+
 test('It should set and get an JSON cookie', () => {
     const bakery = new Bakery('company')
     bakery.setCookie('json', { hello: 'world' })
