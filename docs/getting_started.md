@@ -1,54 +1,16 @@
 # Getting started
-## Up and running
-### Requirements
 
-Lime Bootstrap is only meant to be used inside Lime Crm, but for debugging reasons all functionality should work in any browser.
+## A Lime Bootstrap Actionpad
 
-*	Internet Explorer 11
-*   Chrome 59+
+An Actionpad built with Lime Bootstrap has the following structure:
 
-Older versions of IE __won't__ work!
-
-*	LIME 10.12 or greater
-
-### Install
-Lime Bootstrap is included in the Lime Core database and nothing is needs to be done in this case. If installing Lime Bootstrap from scratch:
-
-1.	Copy all the folders, `lbs.html` and `_config.js` to the Actionpad-folder
-2.	Add the VBA module `lbshelper` found in `vba`-folder.
-3.	Change the URL of all Actionpads in LIME Pro to `lbs.html`
-
-If you'll like the some basic ActionPad views to start with you can find some [here](https://github.com/Lundalogik/LimeBootstrapBaseActionpads)
-
-### Update
-Updating LIME Bootstrap is done by downloading the lastest version and replacing some files and updating some VBA.
-
-1.	Replace the system folder and `lbs.html`
-2.	Replace the VBA module
-
-!!! warning
-    Please note that Windows sometimes blocks dowloaded javascript files. Make sure to right click and unblock javascript files
-
-======================
-
-## Basic usage
-
-
-##A LIME Bootstrap Actionpad
-
-An Actionpad built with LIME Bootstrap has the following structure:
+![Alt text](assets/images/actionpad.png)
 
 ```html
+
+
 <!-- Header section, The colorfull thing at the top  -->
-<div class="header-container [color]"> <!-- Specify the color of the header. Please see color section for available colors  -->
-    <div class="header-icon"></div>  <!-- Specify the icon of the header. Please see icon section for available special icons  -->
-    <h2 data-bind=""></h2>
-        <ul class="info-links">
-            <li data-bind=""> </li>
-            ...
-        </ul>
-    </div>
-</div>
+<lbs-hero params="" ></lbs-hero>
 
 
 <!-- /Header section  -->
@@ -63,12 +25,12 @@ An Actionpad built with LIME Bootstrap has the following structure:
 ```
 
 ##Components
-LIME bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for all cool stuff you have access to.
+Lime bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for all cool stuff you have access to.
 
 We also supply the following components:
 
 *   __Menu:__ - _A menu to hold actions_
-*   __Dropdown button:__ - _A dropdown button styled for LIME Pro_
+*   __Dropdown button:__ - _A dropdown button styled for Lime Pro_
 *   __Header section:__ - _The top section of every actionpad_
 *   __Data carousel:__ - _A rotating object to hold more objects_
 
@@ -76,7 +38,7 @@ See all our components [here](/en/latest/components)
 
 ##Functions and Apps
 All Twitter bootstrap functions are included, please see the [Twitter bootstrap documentation](http://getbootstrap.com/javascript/)
-LIME Bootstraps allows you to load small components we call apps, as a compliment to Twitter Bootstraps components. Apps can be found [here](http://limebootstrap.lundalogik.com/web/appstore/index.html)
+Lime Bootstraps allows you to load small components we call apps, as a compliment to Twitter Bootstraps components. Apps can be found [here](http://limebootstrap.lundalogik.com/web/appstore/index.html)
 
 To start an app add this HTML to your view:
 ```html
@@ -130,7 +92,7 @@ List of custom handlers:
 *   __call:__ - _Tries to call the provided phone number_
 *   __email:__ - _Tries to email the provided address_
 *   __icon:__ - _Prepends the supplied font awesome icon to the html element_
-*   __limeLink:__ - _Creates an LIME link from a provided relationship field, for example person.company_
+*   __limeLink:__ - _Creates an Lime link from a provided relationship field, for example person.company_
 *   __openURL:__ - _Opens the supplied URL in a external browser_
 *   __showOnMap:__ - _Opens Google Maps with the supplied data as a search query_
 *   __vba:__ - _Provide an string of an VBA function with it's parameters separated by commas_
@@ -172,7 +134,7 @@ All available translations from the Localization table are automatically availab
 <li data-bind="text:localize.ActionPad_Todo.addTodo"></li>
 ```
 
-The example below uses the versatile knockout binding `attr` to add a tooltip with localization support. It also uses the custom LIME Bootstrap bindings `vba` and `icon`.
+The example below uses the versatile knockout binding `attr` to add a tooltip with localization support. It also uses the custom Lime Bootstrap bindings `vba` and `icon`.
 
 ```html
 <li data-bind="vba:'Actionpad_Person.newComment', text:localize.Actionpad_Person.t_newcomment, icon:'fa-comment', attr: { title: localize.Actionpad_Person.tooltip_newcomment }"></li>
@@ -183,7 +145,7 @@ The translations are added to the global view model and are thus available in yo
 
 Note that it is not possible to use localization in the standard way, e.g., `localize.Actionpad_Person.t_newcomment` within a block where you are using the knockout binding `with`.
 
-##Fetching data from fields in LIME Pro
+##Fetching data from fields in Lime CRM
 All fields from the ActiveInspector are automagically available for you to use in your view. The syntax is `[Record class name].[field database name].[property]`.
 
 The available properties are (in order of relevance):
@@ -229,7 +191,7 @@ To parse almost any date format:
 Moment even makes time and dates readable to people.
 `moment().timeAgo(2011-01-01)` will give you, "A few years ago"
 
-Moment is automagically setup to use the same language and date-format as the language of the LIME Client.
+Moment is automagically setup to use the same language and date-format as the language of the Lime Client.
 Remember to use it and check out it further!
 
 ## The log/watch
@@ -242,6 +204,4 @@ The different view can be opened with shortcuts provided the actionpad is in foc
 |   Function  |   Command   |
 |   ---    | ---       |
 |   Reload actionpad | ctrl + shift + r |
-|   Open log | ctrl + shift + l |
-|   Open watch | ctrl + shift + w |
-|   Close log/watch window | q |
+

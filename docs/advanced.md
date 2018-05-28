@@ -5,9 +5,9 @@ Advanced
 
 The new Actionpads are inspired of how a single page application work. Views (basically html-templates) and data(usually JSON) are loaded via AJAX (an asyncrounous javacript call) by the the web application. The template is then rendered by applying the data and the result is shown to the user.
 
-In LIME-bootstraps case lbs.html and lbs.js constitute the main application and all Actionpads set to show `lbs.html`. For simplification we'll call the framework just __LBS__ (LIME Bootstrap). `lbs.html` contians all included CSS, JS and meta tags. The Actionpads (for example company.html) are now just views, containing no included CSS or JS.
+In Lime-bootstraps case lbs.html and lbs.js constitute the main application and all Actionpads set to show `lbs.html`. For simplification we'll call the framework just __LBS__ (Lime Bootstrap). `lbs.html` contians all included CSS, JS and meta tags. The Actionpads (for example company.html) are now just views, containing no included CSS or JS.
 
-lbs.html will detemine which view to load either by a supplied query string (the thing after the questionmark), `../lbs.html?ap=company` or if nothing is supplied, by trying to load a view with the same name as the class of the LIME inspector.
+lbs.html will detemine which view to load either by a supplied query string (the thing after the questionmark), `../lbs.html?ap=company` or if nothing is supplied, by trying to load a view with the same name as the class of the Lime inspector.
 
 The active inspectors record is then loaded as data and converted to JSON.
 
@@ -15,7 +15,7 @@ Basic flow in LBS:
 
 1.	LBS starts and includes all base CSS, Javascript and sets a lot of environment variables, such as skin color, language.
 
-2.	LBS then checks where you want your display your HTML-view. In LIME you can show HTML in the Actionpad, in a field, in a tab or in a web dialog. If you don't specify anything lbs will assume your building an Actionpad.
+2.	LBS then checks where you want your display your HTML-view. In Lime you can show HTML in the Actionpad, in a field, in a tab or in a web dialog. If you don't specify anything lbs will assume your building an Actionpad.
 
 3.	The specified view, html-file, is loaded
 
@@ -39,14 +39,14 @@ Loading the company Actionpad (company.html):
 #The console and debugging your applications
 The framework has been blessed with a virtual console, to use for debugging. It is activated through changing `debug: true,` in `_config.js`. The console will allways automagically appeare if a critical error is logged. If you make syntacic errors in the wrong place, even the viritual console will crash. You can easily use the console when building apps, read more abot this in the app readme. The console is limited to 30 messages by default.
 
-When working with more advanced stuff you might like to have access to a real console. Modern browsers won't allow dynamically loadings scripts from the local file system, due to security concerns. Dynamically loading scripts and html views are core concepts in LBS. In LIME a small VBA function acts as the loader. However in `system/bin/` you will find a `.bat-file` which will restart Google Chrome in a debug mode, allowing you to inspect the CSS and JS. If you dislike this approach a small HTTP-server will do the trick. With Python3 just go to the actionpad folder and write this in your terminal:
+When working with more advanced stuff you might like to have access to a real console. Modern browsers won't allow dynamically loadings scripts from the local file system, due to security concerns. Dynamically loading scripts and html views are core concepts in LBS. In Lime a small VBA function acts as the loader. However in `system/bin/` you will find a `.bat-file` which will restart Google Chrome in a debug mode, allowing you to inspect the CSS and JS. If you dislike this approach a small HTTP-server will do the trick. With Python3 just go to the actionpad folder and write this in your terminal:
 
 ```bash
 $python -m http.server
 ```
 
 ##Different wrappers
-In LIME HTML can be displayed in the actionpad, in a HTML-field, in a HTML-tab and in a HTML-dialog. Theses places are quite different and requires some basic setup to work well. Your view can thus be loaded into three different wrappers for helping you with the different conditions.
+In Lime HTML can be displayed in the actionpad, in a HTML-field, in a HTML-tab and in a HTML-dialog. Theses places are quite different and requires some basic setup to work well. Your view can thus be loaded into three different wrappers for helping you with the different conditions.
 
 The three basic wrappers of content:
 

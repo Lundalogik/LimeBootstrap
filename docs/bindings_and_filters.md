@@ -1,7 +1,7 @@
 #Bindings
 ##vbaVisible: Hiding or showing elements
 
-It is common that some elements only should be visible for certain users or when specific conditions apply. It can be done in two different ways. Either use the LIME Bootstrap data-binding `vbaVisible:` or use the knockout binding `visible:`.
+It is common that some elements only should be visible for certain users or when specific conditions apply. It can be done in two different ways. Either use the Lime Bootstrap data-binding `vbaVisible:` or use the knockout binding `visible:`.
 
 The `vbaVisible:` is used as follows. A VBA function is called, handling the logic whether the element should be visible or not, returning a boolean.
 __true:__ Element is visible
@@ -74,15 +74,15 @@ Input parameters are provided by simply separating them by commas.
      <li data-bind="text:company.www.text, openURL: company.www.text, icon: 'fa-globe'"></li>
 ```
 
-##limeLink: Go to another LIME Record
-*   __limeLink__ - Tries to create an LIME link to the object provided, please note that the root node of the object is used and not a specific property.
+##limeLink: Go to another Lime Record
+*   __limeLink__ - Tries to create an Lime link to the object provided, please note that the root node of the object is used and not a specific property.
 
 ```html
     <li data-bind="text:todo.company.text, limeLink:todo.company, icon:'fa-flag'"></li>
 ```
 
 ##email: Send an email
-*   __email__ - Creates an email. TODO: Should use LIME's built in email factory.
+*   __email__ - Creates an email. TODO: Should use Lime's built in email factory.
 
 ```html
     <li data-bind="text:person.email.text, email:person.email.text, icon:'fa-envelope'"></li>

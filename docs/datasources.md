@@ -1,6 +1,6 @@
 # Data sources
 
-A core concept in LIME Bootstrap is data sources. A data source is just what it sounds like, a source of data. The source can be many things, like a LIME Inspector, a REST web-service, a stored procedure or a VBA function. Data sources are used both while working with basic views and especially when working with apps.
+A core concept in Lime Bootstrap is data sources. A data source is just what it sounds like, a source of data. The source can be many things, like a Lime Inspector, a REST web-service, a stored procedure or a VBA function. Data sources are used both while working with basic views and especially when working with apps.
 
 The datasource configuration takes a paramter `type` and then other source specific params.
 
