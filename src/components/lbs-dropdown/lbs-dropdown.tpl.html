@@ -1,13 +1,13 @@
-<div class="dropdown">
-    <lbs-button params="color: color, text: title, icon: icon, fullWidth: fullWidth, centered: title === ''" data-toggle="dropdown">
+<div class="dropdown" data-bind="css: position">
+    <lbs-button params="color: color, text: title, icon: icon, fullWidth: fullWidth, centered: title === '', borderless: borderless" data-toggle="dropdown">
     </lbs-button>
 
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu" data-bind="css: {'dropdown-menu-right': position ==='top-right'} ">
         <!-- ko template: { nodes: $componentTemplateNodes, data: $root } -->
         <!-- /ko -->
 
         <!-- ko foreach: listItems -->
-        <li><a href="#" data-bind="text: label, click: click"></a></li>
+        <lbs-list-item params="text: label, icon: icon" data-bind="click: click, vba: vba"></lbs-list-item>
         <!-- /ko -->
     </ul>
 </div>

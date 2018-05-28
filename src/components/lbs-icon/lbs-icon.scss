@@ -1,7 +1,11 @@
 lbs-icon {
-    > i.fa {
+    > i.fa-li {
+        width: 1em;
+        position: inherit;
+    }
+
+    >i.fa:not(.fa-li) {
         margin: 0;
         padding: 0;
     }
-    margin-right: 4px;
 }

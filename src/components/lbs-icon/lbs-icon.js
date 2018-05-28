@@ -7,9 +7,10 @@ class LBSIconVM extends LBSBaseComponent {
         super()
         const {
             icon,
+            options = '',
         } = params
 
-        this.icon = `fa ${icon}`
+        this.icon = `fa ${options} ${icon}`
     }
 }
 

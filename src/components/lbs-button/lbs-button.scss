@@ -1,9 +1,23 @@
 @import '../../css/variables';
 
 @mixin btn-lime-color($color, $text-color){
-    background-color: $color;
-    border: 1px solid darken($color, 10%);
-    color: $text-color;
+    &:not(.btn-outline) {
+        background-color: $color;
+        border: 1px solid darken($color, 10%);
+        color: $text-color;
+    }
+
+    &.btn-outline {
+        background-color: white;
+        border: 1px solid $color;
+        color: $color;
+    }
+
+    &.borderless {
+        border: 0px solid transparent;
+        outline: 0 none;
+        box-shadow: none;
+    }
 
     &:hover,
     &:focus,
@@ -23,16 +37,16 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 
+    &:not(.btn-icon) > lbs-icon.button-icon {
+        margin-right: 10px;
+    }
+
     &.full-width {
         width: 100%;
     }
 
     &:not(.centered){
         text-align: left;
-    }
-
-    &.centered > lbs-icon {
-        margin: 0 auto;
     }
 
     &.blue {
@@ -82,6 +96,10 @@
     }
     &.magenta {
         @include btn-lime-color($magenta, #FFF);
+    }
+
+    &.borderless {
+        border: none;
     }
 }
 

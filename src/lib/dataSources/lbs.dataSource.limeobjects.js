@@ -6,7 +6,7 @@ export default class LimeObjects extends dataSource {
     * @param {number} id ID of the LimeObject
     */
     constructor({
-        sort, sortOrder = 'desc', filter = '', limetype, fetchAll, limit = 10, ...rest
+        sort, sortOrder = 'desc', filter = '', limetype, fetchAll, embed = [], limit = 10, ...rest
     }, session, server, database) {
         super(rest)
         this.filter = filter
@@ -15,6 +15,7 @@ export default class LimeObjects extends dataSource {
         this.params = [this.filter, this.sort]
         this.limetype = limetype
         this.session = session
+        this.embed = embed
         this.serverURLComponent = encodeURI(server)
         this.databaseURLComponent = encodeURI(database)
         this.next = ''
@@ -47,7 +48,9 @@ export default class LimeObjects extends dataSource {
         const sort = this.sort ? `&sort=${this.sortOrder}${this.sort}` : ''
         const filter = this.filter ? `${this.filter}` : ''
         const limit = `&_limit=${this.limit}`
-        const params = `${filter}${sort}${limit}`
+        const embed = this.embed.length > 0 ? `&_embed=${this.embed.join('&_embed=')}` : ''
+        const params = `${filter}${sort}${limit}${embed}`
+
         return `https://${this.serverURLComponent}/${this.databaseURLComponent}/api/v1/limeobject/${this.limetype}/?${params}`
     }
 
@@ -66,6 +69,16 @@ export default class LimeObjects extends dataSource {
         if (this.fetchAll && this.next) {
             return [...body._embedded.limeobjects, ...await this.fetch(this.next)]
         }
-        return body._embedded.limeobjects
+        return body._embedded.limeobjects.map((limeobject) => {
+            const relationData = this.embed.reduce((acc, el) => {
+                const retval = (acc[el] = (limeobject._embedded ? limeobject._embedded[`relation_${el}`] : null), acc)
+                return retval
+            }, {})
+
+            return {
+                ...limeobject,
+                ...relationData,
+            }
+        })
     }
 }

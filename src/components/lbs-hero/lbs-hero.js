@@ -9,11 +9,13 @@ class LBSHeroVM extends LBSBaseComponent {
             header = '',
             color = 'turquoise',
             img = `${lbs.activeClass}.png`,
+            menuItems = [],
         } = params
 
         this.header = header
         this.color = color
         this.img = `resources/${img}`
+        this.menuItems = menuItems
     }
 }
 

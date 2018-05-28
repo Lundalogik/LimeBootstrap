@@ -8,11 +8,13 @@ class LBSButtonVM extends LBSBaseComponent {
 
         const {
             bootstrapClass = '',
-            color = 'lime-green',
+            color = 'turquoise',
             text = '',
             icon = null,
             centered = false,
             fullWidth = true,
+            borderless = false,
+            outline = false,
         } = params
         this.text = text
         this.icon = icon
@@ -20,7 +22,17 @@ class LBSButtonVM extends LBSBaseComponent {
         this.centered = centered
         this.color = color
         this.fullWidth = fullWidth ? 'full-width' : ''
-        this.cssClasses = [this.bootstrapClass, this.color, this.fullWidth]
+        this.borderless = borderless ? 'borderless' : ''
+        this.btnIcon = text === '' ? 'btn-icon' : ''
+        this.btnOutline = outline ? 'btn-outline' : ''
+        this.cssClasses = [
+            this.bootstrapClass,
+            this.color,
+            this.fullWidth,
+            this.borderless,
+            this.btnIcon,
+            this.btnOutline,
+        ]
 
         if (this.color && this.bootstrapClass) {
             this.log.warn(

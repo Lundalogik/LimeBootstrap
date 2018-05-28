@@ -1,8 +1,8 @@
 import ko from 'knockout'
-import limeMenuItemTemplate from './lbs-menu-item.tpl.html'
+import limeListItemTemplate from './lbs-list-item.tpl.html'
 import LBSBaseComponent from '../lbs-base-component/lbs-base-component'
 
-class LBSMenuItemVM extends LBSBaseComponent {
+class LBSListItemVM extends LBSBaseComponent {
     constructor(params) {
         super()
         const {
@@ -15,4 +15,4 @@ class LBSMenuItemVM extends LBSBaseComponent {
     }
 }
 
-ko.components.register('lbs-menu-item', { viewModel: LBSMenuItemVM, template: limeMenuItemTemplate })
+ko.components.register('lbs-list-item', { viewModel: LBSListItemVM, template: limeListItemTemplate })

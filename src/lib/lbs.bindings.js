@@ -121,7 +121,9 @@ export default function registerCustomBindings() {
     */
     ko.bindingHandlers.vba = {
         init(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-            const newValueAccessor = () => () => lbs.common.executeVba(valueAccessor())
+            const newValueAccessor = () => () => {
+                return valueAccessor() ? lbs.common.executeVba(valueAccessor()) : () => {}
+            }
             ko.bindingHandlers.click.init(
                 element, newValueAccessor, allBindingsAccessor, viewModel, bindingContext,
             )

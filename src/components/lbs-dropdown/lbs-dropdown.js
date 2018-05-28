@@ -7,17 +7,21 @@ class LBSDropdownTemplate extends LBSBaseComponent {
         super()
 
         const {
-            color = 'lime-green',
+            color = 'turquoise',
             title = '',
             icon = 'fa-caret-down',
             items = [],
             fullWidth = false,
+            heroMenu = false,
+            borderless = false,
         } = params
         this.listItems = LBSDropdownTemplate.mapItems(items)
         this.color = color
         this.title = title
         this.fullWidth = fullWidth
         this.icon = icon
+        this.borderless = borderless
+        this.position = heroMenu ? 'top-right' : ''
     }
 
     static mapItems(items) {
@@ -28,8 +32,14 @@ class LBSDropdownTemplate extends LBSBaseComponent {
                     lbs.log.warn('Object type item parameter in dropdown must have a label!')
                     _item = { ..._item, label: '' }
                 }
-                if (!item.label) {
+                if (!item.click) {
                     _item = { ..._item, click: () => {} }
+                }
+                if (!item.icon) {
+                    _item = { ..._item, icon: null }
+                }
+                if (!item.vba) {
+                    _item = { ..._item, vba: null }
                 }
                 return _item
             }
