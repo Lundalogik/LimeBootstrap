@@ -1,8 +1,8 @@
 import ko from 'knockout'
 import LBSBaseComponent from '../lbs-base-component/lbs-base-component'
-import lbsDropdownTemplate from './lbs-dropdown.tpl.html'
+import lbsDropdownMenuTemplate from './lbs-dropdown-menu.tpl.html'
 
-class LBSDropdownTemplate extends LBSBaseComponent {
+class LBSDropdownMenuTemplate extends LBSBaseComponent {
     constructor(params) {
         super()
 
@@ -15,7 +15,7 @@ class LBSDropdownTemplate extends LBSBaseComponent {
             heroMenu = false,
             borderless = false,
         } = params
-        this.listItems = LBSDropdownTemplate.mapItems(items)
+        this.listItems = LBSDropdownMenuTemplate.mapItems(items)
         this.color = color
         this.title = title
         this.fullWidth = fullWidth
@@ -48,4 +48,4 @@ class LBSDropdownTemplate extends LBSBaseComponent {
     }
 }
 
-ko.components.register('lbs-dropdown', { viewModel: LBSDropdownTemplate, template: lbsDropdownTemplate })
+ko.components.register('lbs-dropdown-menu', { viewModel: LBSDropdownMenuTemplate, template: lbsDropdownMenuTemplate })
