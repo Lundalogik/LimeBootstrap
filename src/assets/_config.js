@@ -1,6 +1,6 @@
 lbs.externalConfig = {
 	/**
-	Enable or disable the debug console 
+	Enable or disable the debug console
 	for the whole application
 	**/
 	debug: true,
@@ -11,7 +11,7 @@ lbs.externalConfig = {
         info	: 	Shows information level and up
         warn	: 	Shows warning level and up
         error	: 	Shows only error level logs
-		
+
 	*/
 	/**
 	Configure special use cases,
@@ -28,7 +28,7 @@ lbs.externalConfig = {
 
 		'helpdesk' : {
 		    dataSources: [
-		    	{type: 'activeInspector', source: ''}, 
+		    	{type: 'activeInspector', source: ''},
 		    	{type: 'localization', source: '' },
 				{type: 'activeUser', source: '' },
 		        {type: 'relatedRecord', source: 'person', view: 'name;phone;email;mobilephone', alias: 'person'},
@@ -39,13 +39,19 @@ lbs.externalConfig = {
 
 		'todo' : {
 		    dataSources: [
-		    	{type: 'activeInspector', source: ''}, 
+		    	{type: 'activeInspector', source: ''},
 		    	{type: 'localization', source: '' },
 		        {type: 'relatedRecord', source: 'person', view: 'name;phone;email;mobilephone', alias: 'person'},
 	   			{type: 'relatedRecord', source: 'company', view: 'name;phone', alias: 'company'}
 		    ],
 		 	autorefresh : false
 		},
+		company: {
+			dataSources: [
+				{ type: 'activeLimeObject', alias: 'company', embed: ['coworker']},
+				{ type: 'translations', owner: 'actionpad_company'}
+			]
+		}
 
 		// 'company' : {
 		//     dataSources: [
