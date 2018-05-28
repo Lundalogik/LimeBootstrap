@@ -2,6 +2,8 @@
 STANDARDIZED ITEMS
 *******************/
 
+@import './variables.scss';
+
 html {
     cursor: default;
     height: 100%;
@@ -22,7 +24,7 @@ html.notouch{
 
 body {
     background-color: #E0EEFF;
-    color: #6985B7;
+    color: $main-text-color;
     font-size: 13px;
     font-weight: lighter;
     height: inherit !important;
@@ -45,42 +47,6 @@ i {
 #content {
     height:100vh;
 }
-
-/********
-BUTTONS**
-********/
-
-.dropdown-menu {
-    border-top-left-radius:none;
-    border-top-right-radius: none;
-    box-shadow: none;
-    margin-top: -1px;
-    min-width:60%;
-    position: absolute;
-    top: 100%;
-    width: 100%;
-}
-
-.dropdown-menu li {
-    cursor: default;
-    font-size: 12px;
-    overflow: hidden;
-    overflow: hidden;
-    padding-left: 10px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    white-space: nowrap;
-}
-
-.dropdown-menu .divider {
-  margin:3px 1px
-}
-
-.dropdown-menu li:hover {
-    background-color: #EEEEEE;
-    background-image: none;
-}
-
 
 
 /*******************

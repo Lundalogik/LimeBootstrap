@@ -1,0 +1,34 @@
+@import '../../css/variables.scss';
+
+lbs-dropdown-menu {
+    > div.dropdown {
+        border-top-left-radius: none;
+        border-top-right-radius: none;
+        box-shadow: none;
+
+        > ul.dropdown-menu {
+            min-width: 80vw;
+            li {
+                color: $main-text-color;
+                cursor: default;
+                font-size: 14px;
+                overflow: hidden;
+                padding-left: 10px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                white-space: nowrap;
+
+                &:hover {
+                    background-color: #EEEEEE;
+                    background-image: none;
+                }
+            }
+        }
+
+        &.top-right {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+        }
+    }
+}
