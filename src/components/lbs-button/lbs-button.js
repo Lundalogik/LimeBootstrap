@@ -14,7 +14,7 @@ class LBSButtonVM extends LBSBaseComponent {
             centered = false,
             fullWidth = true,
             borderless = false,
-            outline = false,
+            alternative = false,
         } = params
         this.text = text
         this.icon = icon
@@ -24,14 +24,14 @@ class LBSButtonVM extends LBSBaseComponent {
         this.fullWidth = fullWidth ? 'full-width' : ''
         this.borderless = borderless ? 'borderless' : ''
         this.btnIcon = text === '' ? 'btn-icon' : ''
-        this.btnOutline = outline ? 'btn-outline' : ''
+        this.alternative = alternative ? 'btn-alternative' : ''
         this.cssClasses = [
             this.bootstrapClass,
             this.color,
             this.fullWidth,
             this.borderless,
             this.btnIcon,
-            this.btnOutline,
+            this.alternative,
         ]
 
         if (this.color && this.bootstrapClass) {
