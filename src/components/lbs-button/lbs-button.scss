@@ -1,13 +1,13 @@
 @import '../../css/variables';
 
 @mixin btn-lime-color($color, $text-color){
-    &:not(.btn-outline) {
+    &:not(.btn-alternative) {
         background-color: $color;
         border: 1px solid darken($color, 10%);
         color: $text-color;
     }
 
-    &.btn-outline {
+    &.btn-alternative {
         background-color: white;
         border: 1px solid $color;
         color: $color;
