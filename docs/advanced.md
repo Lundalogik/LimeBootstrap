@@ -1,7 +1,7 @@
-Advanced
-======================
+# Advanced
 
-##How does it work?
+
+## Under the hoods of LBS
 
 The new Actionpads are inspired of how a single page application work. Views (basically html-templates) and data(usually JSON) are loaded via AJAX (an asyncrounous javacript call) by the the web application. The template is then rendered by applying the data and the result is shown to the user.
 
@@ -25,7 +25,7 @@ Basic flow in LBS:
 
 6.	The viewmodel is applied to the now complete view and rendered.
 
-##Loading views
+## Loading views
 As metioned lbs.html is the real engine and all HTML things should be loaded trough lbs.html. This is achieved by supplying a query string
 
 `[URL to Actionpad folder]/lbs.html?ap=[path to your view/view name]`
@@ -36,7 +36,7 @@ Loading the company Actionpad (company.html):
 
 `lbs.html?ap=company`
 
-#The console and debugging your applications
+## The console and debugging your applications
 The framework has been blessed with a virtual console, to use for debugging. It is activated through changing `debug: true,` in `_config.js`. The console will allways automagically appeare if a critical error is logged. If you make syntacic errors in the wrong place, even the viritual console will crash. You can easily use the console when building apps, read more abot this in the app readme. The console is limited to 30 messages by default.
 
 When working with more advanced stuff you might like to have access to a real console. Modern browsers won't allow dynamically loadings scripts from the local file system, due to security concerns. Dynamically loading scripts and html views are core concepts in LBS. In Lime a small VBA function acts as the loader. However in `system/bin/` you will find a `.bat-file` which will restart Google Chrome in a debug mode, allowing you to inspect the CSS and JS. If you dislike this approach a small HTTP-server will do the trick. With Python3 just go to the actionpad folder and write this in your terminal:
@@ -45,7 +45,7 @@ When working with more advanced stuff you might like to have access to a real co
 $python -m http.server
 ```
 
-##Different wrappers
+## Different wrappers
 In Lime HTML can be displayed in the actionpad, in a HTML-field, in a HTML-tab and in a HTML-dialog. Theses places are quite different and requires some basic setup to work well. Your view can thus be loaded into three different wrappers for helping you with the different conditions.
 
 The three basic wrappers of content:
@@ -65,35 +65,7 @@ When working with tabs, fields or dialogs it is easiest to use VBA to set the UR
     ActiveInspector.Controls.SetValue("htmlfield", WebFolder & "lbs.html?ap=foo&type=inline")
 ```
 
-##Settings and loading more data - _config.js
-
-For loading additional data or enabling the debug mode you have a file called `_config.js`.
-
-Example:
-
-```javascript
-/**
-Enable or disable the debug console
-for the whole application
-**/
-lbs.setDebug(true);
-
-/**
-Configure special use cases,
-mainly when requiring additional data sources
-**/
-
-lbs.configure({
-    'index' : { // <-- name of view
-        dataSources: [
-             { type: 'localization', source: '' },
-        ],
-        autorefresh : false
-    }
-})
-```
-
-##Logic in bindnings
+## Logic in bindnings
 Knockout lets you write JavaScript expressions directly in the bindnings. This is a really simple and powerful way of doing cool stuff. Word of advice: Too much logic in the view isn't nice at all. If you need to do a little more advanced stuff, build an app!
 
 Example:
@@ -110,23 +82,43 @@ Example:
 
 Please note that you can put the bindings on separate rows to increase readability
 
-##Cookies
+## Cookies
 Cookies are used to store values from the actionpads and apps. Every cookie is locally stored in the actionpad folder and is unique for every computer and database (not user). There are two methods that you can use to handle a cookie:
 
-###Get cookie
+### Get cookie
 To get the value in a cookie use the method lbs.bakery.getCookie(name)
 
 ```javascript
 var mycookievalue = lbs.bakery.getCookie(“gingerbread”)
 ```
-###Set Cookie
+### Set Cookie
 To set a cookie just call the function lbs.bakery.setCookie(name,value,days). See example below.
 
 ```javascript
 lbs.bakery.setCookie(“gingerbread”,mycookievalue,3)
 ```
 
-## Included javascript frameworks
+## Based on Bootstrap
+Lime Bootstrap is based on the popular web framework [Bootstrap](http://getbootstrap.com/).
+All Twitter bootstrap functions are included, please see the [Twitter bootstrap documentation](http://getbootstrap.com/javascript/).
+Lime Bootstrap also supports all Bootstraps elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for all cool stuff you have access to.
+
+## Working with time and dates
+Dates are a hassle, except when you have the awesome library [Moment.js](http://momentjs.com).
+
+To create a iso-date:
+`moment()`
+
+To parse almost any date format:
+`moment([CRAZY DATE FORMAT])`
+
+Moment even makes time and dates readable to people.
+`moment().timeAgo(2011-01-01)` will give you, "A few years ago"
+
+Moment is automagically setup to use the same language and date-format as the language of the Lime Client.
+Remember to use it and check out it further!
+
+## All included javascript frameworks
 The bundled library contains:
 
 *	[jQuery](http://jquery.com)

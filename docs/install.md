@@ -19,11 +19,16 @@ Lime Bootstrap is included in the Lime Core database and nothing is needs to be 
 
 If you'll like the some basic ActionPad views to start with you can find some [here](https://github.com/Lundalogik/LimeBootstrapBaseActionpads)
 
+!!! warning
+    Please note that Windows sometimes blocks dowloaded javascript files. Make sure to right click and unblock javascript files
+
 ## Update
 Updating Lime Bootstrap is done by downloading the lastest version and replacing some files and updating some VBA.
 
 1.	Replace the system folder and `lbs.html`
 2.	Replace the VBA module
 
-!!! warning
-    Please note that Windows sometimes blocks dowloaded javascript files. Make sure to right click and unblock javascript files
+!!! info
+    If you are upgrading from LBS 1.3 or older you also need to replace and upgrade `_config.js`
+
+

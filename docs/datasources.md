@@ -2,9 +2,9 @@
 
 A core concept in Lime Bootstrap is data sources. A data source is just what it sounds like, a source of data. The source can be many things, like a Lime Inspector, a REST web-service, a stored procedure or a VBA function. Data sources are used both while working with basic views and especially when working with apps.
 
-The datasource configuration takes a paramter `type` and then other source specific params.
+All datasources  takes a paramter `type` and then some other source specific params.
 
-A data source can also take a parameter __"alias"__, which lets you specify a name for the data source in viewModel. This might be usefull if you have multiple sources on the same table wich may couse collisions.
+All source can also take a parameter __"alias"__, which lets you specify a name for the data source in ViewModel. This might be usefull if you have multiple sources on the same table wich may otherwise will cause naming collisions.
 
 ### Example:
 
@@ -16,12 +16,15 @@ A data source can also take a parameter __"alias"__, which lets you specify a na
             {type: 'relatedRecord', source: 'person', view: 'name;phone' , alias: 'contact'},
             {type: 'storedProcedure', source: ''}
         ],
-        autorefresh : false
+
 ```
+## Data sources
 
-__Note that autorefresh isn't implemented yet!__
 
-The available data sources are:
+
+## Legacy Data sources
+
+The legacy datasources fetches data through the use of VBA or directly through the COM-bridge. These datasources are slower, blocking and less compatible with future directions. Avoyd using them or limit your use as much as possible
 
 ## __activeInspector__
 Fetch data from the ActiveInspector

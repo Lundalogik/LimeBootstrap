@@ -1,5 +1,37 @@
-#Bindings
-##vbaVisible: Hiding or showing elements
+# Bindings and Filters
+
+# Bindings
+As we relay heavily on knockout their `data-bind=""` syntax is used through out the framework. The `data-bind=""` syntax is a used as a property on an html element. In a `data-bind` you add `bindings`, actions or triggers, to perform actions. All Knockout bindings are available, but also a few custom bindings to make your life easier.
+Read more about bindings and Knockout [here](http://knockoutjs.com/documentation/introduction.html) and try the tutorial [here](http://learn.knockoutjs.com)
+
+A basic example of use of a knockout binding:
+```html
+<li data-bind="text:company.name"></li>
+```
+You can also use a short hand for bindnings, using brackets. The above example can also be written as
+
+```html
+<li>{{company.name}}</li>
+```
+
+You can read more about this short hand syntax [here](https://mbest.github.io/knockout.punches/)
+
+As default you only have access to the data of the ActiveInspector!
+
+### Knockout bindings
+Knockout supplies a large set of bindings, which all can be found [here](http://knockoutjs.com/documentation/introduction.html)
+
+Some of the more common and useful bindings
+
+*   __visible:__ - _hides or shows a html element based on an boolean expression_
+*   __text:__ - _Displays a variable as text_
+*   __html:__ - _Prepends the supplied font awesome icon to the html element_
+*   __css:__ - _Add or remove CSS classes_
+*   __style:__ - _Add styling attributes_
+*   __attr__ - _Set value of any html attribute_
+*   __foreach:__ - _Loop through an array_
+
+### vbaVisible: Hiding or showing elements
 
 It is common that some elements only should be visible for certain users or when specific conditions apply. It can be done in two different ways. Either use the Lime Bootstrap data-binding `vbaVisible:` or use the knockout binding `visible:`.
 
@@ -32,7 +64,7 @@ The binding `vbaVisible:` is only able to execute a given VBA function that retu
 </div>
 ```
 
-##vba: Executing VBA-functions and specific actions
+### vba: Executing VBA-functions and specific actions
 `vba:` is used to trigger VBA-functions and specific actions on click. To call a VBA function simply use:
 
 ```html
@@ -52,7 +84,7 @@ Input parameters are provided by simply separating them by commas.
  ```
 
 
-##showOnMap: Showing an address on a map
+### showOnMap: Showing an address on a map
 
 *   __showOnMap:__ - Searches Google Maps for the provided address.
 
@@ -60,42 +92,42 @@ Input parameters are provided by simply separating them by commas.
     <li data-bind="text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: 'fa-map-marker'"></li>
 ```
 
-##Call: Call a phone number
+### Call: Call a phone number
 *   __call:__ - Ads an tel: link to the HTML wich triggers an built in softphone software.
 
 ```html
     <li data-bind="text: company.phone.text, call: company.phone.text, icon: 'fa-phone'"></li>
 ```
 
-##openURL: Go to a website
+### openURL: Go to a website
 *   __openURL:__ - Opens the suplied URL in an external browser
 
 ```html
      <li data-bind="text:company.www.text, openURL: company.www.text, icon: 'fa-globe'"></li>
 ```
 
-##limeLink: Go to another Lime Record
+### limeLink: Go to another Lime Record
 *   __limeLink__ - Tries to create an Lime link to the object provided, please note that the root node of the object is used and not a specific property.
 
 ```html
     <li data-bind="text:todo.company.text, limeLink:todo.company, icon:'fa-flag'"></li>
 ```
 
-##email: Send an email
+### email: Send an email
 *   __email__ - Creates an email. TODO: Should use Lime's built in email factory.
 
 ```html
     <li data-bind="text:person.email.text, email:person.email.text, icon:'fa-envelope'"></li>
 ```
 
-##appInvoke: Start an app
+### appInvoke: Start an app
 * __appInvoke__
 
 ```html
     <li data-bind="appInvoke: 'textfileimport"></li>
 ```
 
-## popover: Show additional info
+### popover: Show additional info
 * __popover__ - Gives you a small overlayer of context that you can design as you like. In its simplest form, it can be used to display informative texts. It can also be initialized as an object with one or several adjustable attributes, allowing for styling both header icon and title. There are also a few pre-defined types with their own set designs.
 
 ```html
@@ -168,7 +200,7 @@ Input parameters are provided by simply separating them by commas.
 ```
 
 
-##tooltip: Show a helping tooltip
+### tooltip: Show a helping tooltip
 * __tooltip__ - Gives you a good looking tooltip. [Bootstrap](http://getbootstrap.com/javascript/#tooltips). You can design where you like the tooltip to show by sending a object with a placement.
 
 ```html
@@ -177,10 +209,33 @@ Input parameters are provided by simply separating them by commas.
 ```
 
 
-#Filters
-A filter in knockout punches is a way of 'piping' a text binding through a pre-defined filter to format the value in a desired way. The filter is initiated using the | sign followed by the name of the filter and any necessary parameter inputs to the filter.
+## Filters
+A filter in knockout is a way of 'piping' a text binding through a pre-defined filter to format the value in a desired way. The filter is initiated using the | sign followed by the name of the filter and any necessary parameter inputs to the filter.
 
-##Currency
+Filters are a smart and easy way to format your data in a binding
+A filter is a function transforming your binding data and outputting a formated version of it.
+
+```html
+<li data-bind="text:deal.value | currency: SEK"></li>
+<li>{{deal.value | currency: SEK}}</li>
+```
+
+This will produce a nicely formated value of a deal, example: "10 000SEK"
+
+List of filters:
+
+*   __default:<defaultValue>__ - If the value is blank, null, or an empty array, replace it with the given default value.
+*   __fit:<length>[:<replacement>][:<where>]__ - Trim the value if it’s longer than the given length. The trimmed portion is replaced with ... or the replacement value, if given. By default, the value is trimmed on the right but can be changed to left or middle through the where option. For example: name | fit:10::'middle' will convert Shakespeare to Shak...are.
+*   __json[:space]__ - Convert the value to a JSON string using ko.toJSON. You can give a space value to format the JSON output.
+*   __lowercase__ - Convert the value to lowercase.
+*   __number:<numberOfDecimals>__ - Rounds a number of desired number of decimals
+*   __replace:<search>:<replace>__ - Perform a search and replace on the value using String#replace.
+*   __uppercase__ - Convert the value to uppercase.
+*   __currency:<currencyName>:<divider>__ - Formats a number with to a currency with a space a separate every <divider> number. Default 1000
+*   __percent:__ - Formats a decimal number as percent 0,01 > 1%
+*   __fromNow:__ - Formats a date as a human readable text as for how long ago the date was. Example 2000-01-01 > "Over ten years ago"
+
+### Currency
 The currency filter can be combined with a text data-bind to format a number as a currency. The filter takes two optional parameters - currency and divider. The currency is the unit in which you want to present the formatted number, e.g. $ or GBP or SEK. The divider lets you decide what delimiter to use for formatting the number.
 
 ```html
