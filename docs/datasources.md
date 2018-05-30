@@ -23,10 +23,21 @@ All source can also take a parameter __"alias"__, which lets you specify a name 
 ### activeLimeObject
 Fetch data from the Lime CRM api for the currently active LimeObject
 
+
 ```
 { type: 'activeLimeObject' , embed: ['coworker']}
 
 ```
+
+| Param              | Description                         | Default | Required |
+|--------------------|-------------------------------------|---------|----------|
+| type               | Type of the data source             |         | true     |
+| embed              | Related objects to embed            | []      | false    |
+
+Embed fetches data from related objects. It only works for `belongs_to` properties.
+
+!!! Note
+    The returned data is almost identical to the answer from the Lime CRM API with one important exception, embedded objects. To make embedded data easier to use directly in a View we push the data from the `_embeded`-node to a `[your object here]-node. 
 
 
 ## Legacy data sources
