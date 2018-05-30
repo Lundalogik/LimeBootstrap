@@ -209,6 +209,13 @@ const loader = {
             dataSource.addFilterParam(relatedFrom, '=', lbs.activeLimeObjectId)
             return dataSource
         }
+        case 'customEndpoint':
+            return new CustomEndpoint(
+                dataSourceLiteral,
+                lbs.session,
+                lbs.activeServer,
+                lbs.activeDatabase,
+            )
         default:
             lbs.log.warn(`Could not identify type "${dataSourceLiteral.type}" of data source.`)
             return null
