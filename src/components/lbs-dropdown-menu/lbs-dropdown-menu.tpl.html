@@ -7,7 +7,12 @@
         <!-- /ko -->
 
         <!-- ko foreach: listItems -->
+        <!-- ko if: type === 'item' -->
         <lbs-list-item params="text: label, icon: icon" data-bind="click: click, vba: vba"></lbs-list-item>
+        <!-- /ko -->
+        <!-- ko if: type === 'divider' -->
+        <lbs-list-divider></lbs-list-divider>
+        <!-- /ko -->
         <!-- /ko -->
     </ul>
 </div>

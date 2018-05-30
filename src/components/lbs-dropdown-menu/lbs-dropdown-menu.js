@@ -2,7 +2,7 @@ import ko from 'knockout'
 import LBSBaseComponent from '../lbs-base-component/lbs-base-component'
 import lbsDropdownMenuTemplate from './lbs-dropdown-menu.tpl.html'
 
-class LBSDropdownMenuTemplate extends LBSBaseComponent {
+class LBSDropdownMenu extends LBSBaseComponent {
     constructor(params) {
         super()
 
@@ -15,7 +15,7 @@ class LBSDropdownMenuTemplate extends LBSBaseComponent {
             heroMenu = false,
             borderless = false,
         } = params
-        this.listItems = LBSDropdownMenuTemplate.mapItems(items)
+        this.listItems = LBSDropdownMenu.mapItems(items)
         this.color = color
         this.title = title
         this.fullWidth = fullWidth
@@ -24,28 +24,24 @@ class LBSDropdownMenuTemplate extends LBSBaseComponent {
         this.position = heroMenu ? 'top-right' : ''
     }
 
+    static mapItem({
+        type = 'item',
+        label = '',
+        icon = '',
+        vba = null,
+        click = () => {},
+    }) {
+        return { type, label, icon, vba, click }
+    }
+
     static mapItems(items) {
         return items.map((item) => {
             if (typeof item === 'object') {
-                let _item = item
-                if (!item.label) {
-                    lbs.log.warn('Object type item parameter in dropdown must have a label!')
-                    _item = { ..._item, label: '' }
-                }
-                if (!item.click) {
-                    _item = { ..._item, click: () => {} }
-                }
-                if (!item.icon) {
-                    _item = { ..._item, icon: null }
-                }
-                if (!item.vba) {
-                    _item = { ..._item, vba: null }
-                }
-                return _item
+                return LBSDropdownMenu.mapItem(item)
             }
-            return { label: item }
+            return { label: item, type: 'item' }
         })
     }
 }
 
-ko.components.register('lbs-dropdown-menu', { viewModel: LBSDropdownMenuTemplate, template: lbsDropdownMenuTemplate })
+ko.components.register('lbs-dropdown-menu', { viewModel: LBSDropdownMenu, template: lbsDropdownMenuTemplate })

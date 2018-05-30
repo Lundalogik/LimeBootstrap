@@ -29,6 +29,9 @@ label           | Text shown in the list item     | 'Postpone'         | ''
 icon            | Optional icon to the left of the text | 'fa-user'    | ''
 click           | Javascript function to run on click | () => { alert('Hi') } | null
 vba             | VBA sub to run on click. Can be combined with click. | 'Module.Sub' | null
+type            | _item_ or _divider_             | 'item'             | 'item'
+
+__Note__: All other parameters will be disregarded if type is set to _divider_.
 
 __Note__: You need to supply the image to the dist/resource/ folder if the name of the image is anything else than _dist/resource/classname.png_.
 
@@ -234,7 +237,9 @@ label           | Text shown in the list item     | 'Postpone'         | ''
 icon            | Optional icon to the left of the text | 'fa-user'    | ''
 click           | Javascript function to run on click | () => { alert('Hi') } | null
 vba             | VBA sub to run on click. Can be combined with click. | 'Module.Sub' | null
+type            | _item_ or _divider_             | 'item'             | 'item'
 
+__Note__: All other parameters will be disregarded if type is set to _divider_.
 
 ### Usage
 ```

@@ -16,7 +16,11 @@ lbs-dropdown-menu {
                 padding-left: 10px;
                 text-overflow: ellipsis;
                 white-space: nowrap;
-                white-space: nowrap;
+
+                &.divider {
+                    height: 1px;
+                    margin-bottom: 3px;
+                }
 
                 &:hover {
                     background-color: #EEEEEE;
