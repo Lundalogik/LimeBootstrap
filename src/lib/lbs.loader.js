@@ -1,9 +1,11 @@
 import $ from 'jquery'
+import { xml2json } from 'xml2json-light'
+
 import LimeObject from './dataSources/lbs.dataSource.limeobject'
 import LimeObjects from './dataSources/lbs.dataSource.limeobjects'
 import Translations from './dataSources/lbs.dataSource.translations'
 import CustomEndpoint from './dataSources/lbs.dataSource.customEndpoint'
-import xml2json from 'xml2json-light'
+
 
 const loader = {
 
