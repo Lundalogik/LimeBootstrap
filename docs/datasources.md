@@ -20,19 +20,37 @@ All source can also take a parameter __"alias"__, which lets you specify a name 
 ```
 ## Data sources
 
+### activeLimeObject
+Fetch data from the Lime CRM api for the currently active LimeObject
 
 
-## Legacy Data sources
+```
+{ type: 'activeLimeObject' , embed: ['coworker']}
+
+```
+
+| Param              | Description                         | Default | Required |
+|--------------------|-------------------------------------|---------|----------|
+| type               | Type of the data source             |         | true     |
+| embed              | Related objects to embed            | []      | false    |
+
+Embed fetches data from related objects. It only works for `belongs_to` properties.
+
+!!! Note
+    The returned data is almost identical to the answer from the Lime CRM API with one important exception, embedded objects. To make embedded data easier to use directly in a View we push the data from the `_embeded`-node to a `[your object here]-node. 
+
+
+## Legacy data sources
 
 The legacy datasources fetches data through the use of VBA or directly through the COM-bridge. These datasources are slower, blocking and less compatible with future directions. Avoyd using them or limit your use as much as possible
 
-## __activeInspector__
+### activeInspector
 Fetch data from the ActiveInspector
 
 The datasource takes no additional params.
 
 
-## __record__
+### record
 Execute specified VBA-function which must return a Record object.
 
 | Param              | Description                         | Default |
@@ -40,7 +58,7 @@ Execute specified VBA-function which must return a Record object.
 | source             | Name of VBA-function                |         |
 | PassInspectorParam | Pass activeInspector id for lookups | false   |
 
-## __records__
+### records
 Execute specified VBA-function which must return a Records set object.
 
 | Param              | Description                         | Default |
@@ -48,7 +66,7 @@ Execute specified VBA-function which must return a Records set object.
 | source             | Name of VBA-function                |         |
 | PassInspectorParam | Pass activeInspector id for lookups | false   |
 
-## __relatedRecord__
+### relatedRecord
 Loads additonal fields from a record connected to the active inspector.
 
 | Param  | Description                                 |
@@ -56,7 +74,7 @@ Loads additonal fields from a record connected to the active inspector.
 | source | relationfield on activeinspector            |
 | view   | semicolon separeted list of fields to fetch |
 
-## __xml__
+### xml
 Execute specified VBA-function which must return a XML as string
 
 | Param              | Description                         | Default |
@@ -64,26 +82,26 @@ Execute specified VBA-function which must return a XML as string
 | source             | Name of VBA-function                |         |
 | PassInspectorParam | Pass activeInspector id for lookups | false   |
 
-## __localization__
+### localization
 Execute specified VBA-function which must return a Records set object.
 
 The datasource takes no additional params.
 
-## __storedProcedure__
+### storedProcedure
 Execute specified stored procedure. The procedure must return xml.
 
 | Param  | Description              |
 |--------|--------------------------|
 | source | Name of stored procedure |
 
-## __HTTPGetXml__
+### HTTPGetXml
 Calls a web-service and expects a xml response.
 
 | Param  | Description |
 |--------|-------------|
 | source | URL         |
 
-## __SOAPGetXml__
+### SOAPGetXml
 Calls a SOAP web-service.
 
 | Param  | Description  |
