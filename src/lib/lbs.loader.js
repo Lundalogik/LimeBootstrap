@@ -207,6 +207,7 @@ const loader = {
                 lbs.activeDatabase,
             )
             dataSource.addFilterParam(relatedFrom, '=', lbs.activeLimeObjectId)
+            dataSource.fetchAll = true
             return dataSource
         }
         case 'customEndpoint':
