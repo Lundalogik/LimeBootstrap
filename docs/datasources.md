@@ -27,10 +27,11 @@ A data source can either be specified in `_config.js` or programtically created 
 Fetch data from the Lime CRM api for the currently active LimeObject
 
 
-| Param              | Description                         | Default | Required |
-|--------------------|-------------------------------------|---------|----------|
-| type               | Type of the data source             |         | true     |
-| embed              | Related objects to embed            | []      | false    |
+| Param              | Description                         | Default                | Required |
+|--------------------|-------------------------------------|------------------------|----------|
+| type               | Type of the data source             |                        | true     |
+| embed              | Related objects to embed            | []                     | false    |
+| alias              | Name of node in the ViewModel       | the active Lime Object | false    |
 
 Embed fetches data from related objects. It only works for `belongs_to` properties.
 
@@ -50,6 +51,21 @@ Embed fetches data from related objects. It only works for `belongs_to` properti
     ```
 
 ### relatedLimeObjects
+
+Fetch data from the Lime CRM api for related objects to the currently active LimeObject
+
+
+| Param              | Description                                               | Default  | Required |
+|--------------------|-------------------------------------                      |----------|----------|
+| type               | Type of the data source                                   |          | true     |
+| alias              | Name of node in the ViewModel                             |          | true     |
+| fetchAll           | Fetches all related data instead of only first page       | true     | false    |
+| sort               | Property to sort result on                                |          | false    |
+| sortOrder          | 'asc' or 'desc'                                           | desc     | false    |
+| embed              | Related objects to embed                                  | []       | false    |
+| filter             | A filter string                                           | []       | false    |
+| size               | number of items in fetch                                  | 0        | false    |
+
 
 ## Legacy data sources
 
