@@ -3,7 +3,7 @@ import lbsLoadingIndicatorTemplate from './lbs-loading-indicator.tpl.html'
 
 export default class LoadingIndicator {
     constructor(params) {
-        this.loading = ko.observable(params.loading)
+        this.loading = params.loading
     }
 }
 
