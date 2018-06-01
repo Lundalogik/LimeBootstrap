@@ -2,6 +2,7 @@ const express = require('express')
 
 const companyResponse = require('./__mocks__/api_response_lime_core_company')
 const relatedPersonResponse = require('./__mocks__/api_response_lime_core_company_related_persons')
+const localizationResponse = require('./__mocks__/api_response_lime_core_localize')
 
 const app = express()
 
@@ -29,6 +30,11 @@ app.get('/core/api/v1/limeobject/company/:id/', (req, res, next) => {
 app.get('/core/api/v1/limeobject/person/', (req, res, next) => {
     res.setHeader('Content-Type', 'application/json')
     res.send(JSON.stringify(relatedPersonResponse))
+})
+
+app.get('/core/api/v1/limeobject/localize/', (req, res, next) => {
+    res.setHeader('Content-Type', 'application/json')
+    res.send(JSON.stringify(localizationResponse))
 })
 
 // Export the module like this for Brunch.
