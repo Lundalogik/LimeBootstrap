@@ -12,7 +12,7 @@ export default class Translations extends limeObjects {
             headers: { sessionid: this.session },
         })
 
-        const body = JSON.parse(response.body)
+        const body = await response.json()
 
         const restructuredData = body._embedded.limeobjects.reduce(
             (leftHand, rightHand) => {

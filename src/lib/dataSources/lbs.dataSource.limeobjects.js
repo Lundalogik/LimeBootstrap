@@ -8,16 +8,13 @@ export default class LimeObjects extends dataSource {
     constructor({
         sort, sortOrder = 'desc', filter = '', limetype, fetchAll, embed = [], limit = 10, ...rest
     }, session, server, database) {
-        super(rest)
+        super(rest, session, server, database)
         this.filter = filter
         this.sort = sort
         this.sortOrder = sortOrder === 'asc' ? '-' : ''
         this.params = [this.filter, this.sort]
         this.limetype = limetype
-        this.session = session
         this.embed = embed
-        this.serverURLComponent = encodeURI(server)
-        this.databaseURLComponent = encodeURI(database)
         this.next = ''
         this.limit = limit
         this.fetchAll = fetchAll
@@ -51,7 +48,7 @@ export default class LimeObjects extends dataSource {
         const embed = this.embed.length > 0 ? `&_embed=${this.embed.join('&_embed=')}` : ''
         const params = `${filter}${sort}${limit}${embed}`
 
-        return `https://${this.serverURLComponent}/${this.databaseURLComponent}/api/v1/limeobject/${this.limetype}/?${params}`
+        return `${super.serverURL}/api/v1/limeobject/${this.limetype}/?${params}`
     }
 
     async fetchNext() {
@@ -60,10 +57,8 @@ export default class LimeObjects extends dataSource {
     }
 
     async fetch(url = this.url) {
-        const response = await super._fetch(url, {
-            headers: { sessionid: this.session },
-        })
-        const body = JSON.parse(response.body)
+        const response = await super._fetch(url)
+        const body = await response.json()
         this.next = body._links.next ? body._links.next.href : null
 
         if (this.fetchAll && this.next) {
