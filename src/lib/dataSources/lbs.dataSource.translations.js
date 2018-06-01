@@ -1,22 +1,21 @@
-import limeObjects from './lbs.dataSource.limeobjects'
+import LimeObjects from './lbs.dataSource.limeobjects'
 
-export default class Translations extends limeObjects {
-    constructor({ owner, ...rest }, session, server, database) {
-        super({ rest }, session, server, database)
+export default class Translations extends LimeObjects {
+    constructor({ owner, locale, ...rest }, session, server, database) {
+        super(rest, session, server, database)
         this.filter = `owner=${owner}`
         this.limetype = 'localize'
+        this.locale = locale
     }
 
     async fetch(url = this.url) {
-        const response = await super._fetch(url, {
-            headers: { sessionid: this.session },
-        })
+        const response = await super._fetch(url)
 
         const body = await response.json()
 
         const restructuredData = body._embedded.limeobjects.reduce(
             (leftHand, rightHand) => {
-                const translation = rightHand[lbs.activeLocale]
+                const translation = rightHand[this.locale]
                 return {
                     ...leftHand,
                     [rightHand.code]: translation,

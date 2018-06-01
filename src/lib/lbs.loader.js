@@ -192,13 +192,16 @@ const loader = {
                 lbs.activeServer,
                 lbs.activeDatabase,
             )
-        case 'translations':
+        case 'translations': {
+            const modifiedTranslationsDataSourceLiteral = dataSourceLiteral
+            modifiedTranslationsDataSourceLiteral.locale = dataSourceLiteral.locale || lbs.activeLocale
             return new Translations(
                 dataSourceLiteral,
                 lbs.session,
                 lbs.activeServer,
                 lbs.activeDatabase,
             )
+        }
         case 'relatedLimeObjects': {
             const { relatedFrom = lbs.activeClass } = dataSourceLiteral
             const dataSource = new LimeObjects(
