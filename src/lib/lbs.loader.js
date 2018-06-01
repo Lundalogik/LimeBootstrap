@@ -172,6 +172,7 @@ const loader = {
             const modifiedDataSourceLiteral = dataSourceLiteral
             modifiedDataSourceLiteral.id = lbs.activeLimeObjectId
             modifiedDataSourceLiteral.limetype = lbs.activeClass
+            modifiedDataSourceLiteral.alias = dataSourceLiteral.alias || lbs.activeClass
             return new LimeObject(dataSourceLiteral,
                 lbs.session,
                 lbs.activeServer,
