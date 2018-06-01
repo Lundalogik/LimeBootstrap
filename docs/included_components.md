@@ -38,9 +38,9 @@ __Note__: You need to supply the image to the dist/resource/ folder if the name 
 ### Usage
 ```
 <lbs-hero params="header: company.name, menuItems: [{ label: 'My hero item', icon: 'fa-bowling-ball' }]">
-    <lbs-list-item params="text: company.visitingcity, icon: 'fa-map-marker'" data-bind="openMap: company.fullvisitingaddress"></li>
-    <lbs-list-item params="text: company.phone, call: company.phone, icon: 'fa-phone'" data-bind="call: company.phone"></li>
-    <lbs-list-item params="text: company.www, openURL: company.www, icon: 'fa-globe'" data-bind="openURL: company.www"></li>
+    <lbs-list-item params="text: company.visitingcity, icon: 'fa-map-marker'" data-bind="openMap: company.fullvisitingaddress"></lbs-list-item>
+    <lbs-list-item params="text: company.phone, call: company.phone, icon: 'fa-phone'" data-bind="call: company.phone"></lbs-list-item>
+    <lbs-list-item params="text: company.www, openURL: company.www, icon: 'fa-globe'" data-bind="openURL: company.www"></lbs-list-item>
 </lbs-hero>
 ```
 
