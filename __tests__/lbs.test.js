@@ -8,7 +8,7 @@ beforeAll(async () => {
     window.lbs = lbs
     // see issue https://github.com/facebook/jest/issues/5124 for window.location
     window.history.pushState({}, '', '?id=1001&session=123-abc-567&server=lime-core&database=core#company')
-    await lbs.setup()
+    lbs.setActionPadEnvironment()
 })
 
 test('A URL hash should be parsed and set activeClass', () => {
