@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     www: 'www.testforetaget.com',
     postalcity: 'Lund',
     postaladdress2: '',
