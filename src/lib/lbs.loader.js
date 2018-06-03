@@ -195,8 +195,9 @@ const loader = {
         case 'translations': {
             const modifiedTranslationsDataSourceLiteral = dataSourceLiteral
             modifiedTranslationsDataSourceLiteral.locale = dataSourceLiteral.locale || lbs.activeLocale
+            modifiedTranslationsDataSourceLiteral.alias = dataSourceLiteral.alias || 'txt'
             return new Translations(
-                dataSourceLiteral,
+                modifiedTranslationsDataSourceLiteral,
                 lbs.session,
                 lbs.activeServer,
                 lbs.activeDatabase,
