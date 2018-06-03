@@ -1,8 +1,7 @@
-export const personResponse = {
+module.exports.personResponse = {
     person: [1034, 1984],
 }
-
-export const bulkConsentDeleteResponse = {
+module.exports.bulkConsentDeleteResponse = {
     key: 'bulk_anonymize_request_delete',
     message: 'Deleted anonymize requests',
     not_found: [
@@ -18,18 +17,17 @@ export const bulkConsentDeleteResponse = {
         1035,
     ],
 }
-
-export const bulkConsentDeletePayload = {
+module.exports.bulkConsentDeletePayload = {
     ids: [1023, 5055, 1100, 1002, 1003, 1005, 1005, 1025, 1035, 1025],
 }
 
-export const bulkConsentPayload = {
+module.exports.bulkConsentPayload = {
     ids: [1023, 5055, 1100],
     consent_type_id: 1004,
     backreference: 'consent',
 }
 
-export const bulkConsentPostResponse = {
+module.exports.bulkConsentPostResponse = {
     key: 'bulk_anonymized',
     message: 'Anonymized',
     not_found: [
