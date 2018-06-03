@@ -27,12 +27,12 @@ A data source can either be specified in `_config.js` or programtically created 
 Fetch data from the Lime CRM api for the currently active LimeObject
 
 
-| Param              | Description                         | Default                | Required |
-|--------------------|-------------------------------------|------------------------|----------|
-| type               | Type of the data source             |                        | true     |
-| embed              | Related objects to embed            | []                     | false    |
-| alias              | Name of node in the ViewModel       | the active Lime Object | false    |
-
+| Param              | Description                         | Default                    | Required |
+|--------------------|-------------------------------------|------------------------    |----------|
+| type               | Type of the data source             |                            | true     |
+| embed              | Related objects to embed            | []                         | false    |
+| alias              | Name of node in the ViewModel       | Name of active Lime Object | false    |
+| protocol           | Protocol of fetch                   | https                      | false    |
 Embed fetches data from related objects. It only works for `belongs_to` properties.
 
 !!! Note
@@ -64,8 +64,30 @@ Fetch data from the Lime CRM api for related objects to the currently active Lim
 | sortOrder          | 'asc' or 'desc'                                           | desc     | false    |
 | embed              | Related objects to embed                                  | []       | false    |
 | filter             | A filter string                                           | []       | false    |
-| size               | number of items in fetch                                  | 0        | false    |
+| size               | Number of items in fetch                                  | 0        | false    |
+| protocol           | Protocol of fetch                                         | https    | false    |
 
+
+```javascript
+{ type: 'relatedLimeObjects', limetype: 'person', alias: 'persons', protocol: 'http' }
+```
+
+### translations
+
+Fetch translations for the specified language for a specific key (owner)
+
+
+| Param              | Description                               | Default                  | Required |
+|--------------------|-------------------------------------      |----------                |----------|
+| type               | Type of the data source                   |                          | true     |
+| alias              | Name of node in the ViewModel             | txt                      | false    |
+| locale             | A string to specified the wanted locale   | Users locale             | false    |
+| owner              | Owner of the translation                  | Users locale             | false    |
+| protocol           | Protocol of fetch                         | https                    | false    |
+
+```javascript
+{ type: 'translations', owner: 'company'}
+```
 
 ## Legacy data sources
 
