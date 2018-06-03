@@ -18,33 +18,41 @@ export default class CustomEndpoint extends dataSource {
         return `${super.serverURL}${url}`
     }
 
+    async fetch() {
+        return this.get()
+    }
+
     async get() {
         const response = await super._fetch(this.url, {
         })
-        return response.json()
+        const data = await response.json()
+        return data
     }
 
-    async post(data) {
+    async post(payload) {
         const response = await super._fetch(this.url, {
-            body: JSON.stringify(data),
+            body: JSON.stringify(payload),
             method: 'POST',
         })
-        return response.json()
+        const data = await response.json()
+        return data
     }
 
-    async put(data) {
+    async put(payload) {
         const response = await super._fetch(this.url, {
-            body: JSON.stringify(data),
+            body: JSON.stringify(payload),
             method: 'PUT',
         })
-        return response.json()
+        const data = await response.json()
+        return data
     }
 
-    async delete(data) {
+    async delete(payload) {
         const response = await super._fetch(this.url, {
-            body: JSON.stringify(data),
+            body: JSON.stringify(payload),
             method: 'DELETE',
         })
-        return response.json()
+        const data = await response.json()
+        return data
     }
 }
