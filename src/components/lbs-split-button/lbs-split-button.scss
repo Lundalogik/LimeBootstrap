@@ -5,19 +5,12 @@ $second-width: calc(20%);
     display: block;
     margin: 5px 0px 5px 0px;
 
-    > .btn:first-child{
+    > :first-child{
         width: $first-width;
     }
 
-    > lime-button:first-child{
-        width: $first-width;
-    }
 
-    > .btn:nth-child(2){
-        width: $second-width;
-    }
-
-    > lime-button:nth-child(2){
+    > :nth-child(2){
         width: $second-width;
     }
 

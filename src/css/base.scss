@@ -199,8 +199,8 @@ Popover
   padding-bottom: 15px;
 }
 
-@each $key, $val in $colors-list {
+@each $key, $colors in $colors-list {
     .#{$key} {
-        background-color: #{$val};
+        background-color: nth($colors, 1)
     }
 }

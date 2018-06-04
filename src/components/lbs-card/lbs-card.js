@@ -1,15 +1,16 @@
 import ko from 'knockout'
-import lbsExpansionPanel from './lbs-expansion-panel.tpl.html'
+import lbsCardTemplate from './lbs-card.tpl.html'
 import LBSBaseComponent from '../lbs-base-component/lbs-base-component'
 
-class LBSExpansionPanel extends LBSBaseComponent {
+class LBSCard extends LBSBaseComponent {
     constructor(params) {
         super()
         const {
             title = '',
             expanded = true,
             icon = null,
-            color = 'turquoise',
+            color = 'default',
+            expandable = true,
         } = params
 
         this.title = title
@@ -17,7 +18,8 @@ class LBSExpansionPanel extends LBSBaseComponent {
         const expandedCookie = lbs.bakery.getCookieJSON(this.cookieID)
         this.expanded = ko.observable(expandedCookie ? expandedCookie.expanded : expanded)
         this.icon = icon
-        this.css = ko.computed(() => `${this.expanded() ? 'expanded' : ''} ${color}`)
+        this.expandable = expandable
+        this.css = ko.computed(() => `${this.expanded() ? 'expanded' : ''}  lbs-card--${color}`)
     }
 
     toggle() {
@@ -26,4 +28,4 @@ class LBSExpansionPanel extends LBSBaseComponent {
     }
 }
 
-ko.components.register('lbs-expansion-panel', { viewModel: LBSExpansionPanel, template: lbsExpansionPanel })
+ko.components.register('lbs-card', { viewModel: LBSCard, template: lbsCardTemplate })

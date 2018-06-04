@@ -1,9 +1,13 @@
-<div class="panel panel-default lbs-expansion-panel" data-bind="css: css()">
+<div class="panel panel-default lbs-card" data-bind="css: css()">
+    <!-- ko if: title -->
     <div class="panel-heading" data-bind="click: toggle">
         <span data-bind="text: title"></span>
+        <!-- ko if: expandable -->
         <span data-bind="visible: expanded()" class="fa fa-angle-down pull-right"></span>
         <span data-bind="visible: !expanded()" class="fa fa-angle-right pull-right"></span>
+        <!-- /ko -->
     </div>
+    <!-- /ko -->
     <div class="panel-body">
         <!-- ko template: { nodes: $componentTemplateNodes, data: $root } --><!-- /ko -->
     </div>
