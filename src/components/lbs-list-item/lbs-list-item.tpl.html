@@ -2,5 +2,7 @@
     <!-- ko if: icon -->
     <lbs-icon params="icon: icon, options: 'fa-li'"></lbs-icon>
     <!-- /ko -->
-    <span data-bind="text: text"></p>
+    <span data-bind="text: text"></span>
+    <!-- ko template: { nodes: $componentTemplateNodes, data: $root } -->
+    <!-- /ko -->
 </li>

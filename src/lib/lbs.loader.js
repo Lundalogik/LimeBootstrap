@@ -625,7 +625,7 @@ const loader = {
     xmlToJSON(xml, _alias) {
         const json = {}
         const alias = _alias || 'xmlSource'
-        json[alias] = xml2json(xml)
+        json[alias] = xml2json.xml2json(xml)
 
         return json
     },

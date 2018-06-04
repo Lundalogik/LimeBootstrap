@@ -17,4 +17,30 @@ $light-grey: #8b8b8b;
 $purple-rain: #5a3098;
 $magenta: #FF50AA;
 
+$colors-list:(
+    default: $turquoise,
+    blue: $blue,
+    yellow: $yellow,
+    green: $green,
+    lime-green: $lime-green,
+    limegreen: $lime-green,
+    orange: $orange,
+    dark-grey: $dark-grey,
+    darkgrey: $dark-grey,
+    white: $white,
+    purple: $purple,
+    red: $red,
+    turquoise: $turquoise,
+    citrus: $citrus,
+    clean-green: $clean-green,
+    cleangreen: $clean-green,
+    deep-red: $deep-red,
+    deepred: $deep-red,
+    light-grey: $light-grey,
+    lightgrey: $light-grey,
+    purple-rain: $purple-rain,
+    purplerain: $purple-rain,
+    magenta: $magenta
+);
+
 $main-text-color: #6985B7;
