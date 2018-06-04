@@ -9,7 +9,7 @@ export default class ComponentLoader {
             await $.getScript(component.path).done((script, status) => {
                 const r = require // hack to fool Brunch.io to avoid require at compile time
                 lbs.log.info(`Registering component ${component.name}`)
-                ko.components.register(component.name, { viewModel: r(`components/${component.name}/component.js`).default, template: r(`components/${component.name}/component.html`) })
+                ko.components.register(component.name, { viewModel: r(`components/${component.name}/viewmodel.js`).default, template: r(`components/${component.name}/template.html`) })
             }).fail((jqxhr, settings, exception) => {
                 lbs.log.error("Something went wrong"+exception )
             })
