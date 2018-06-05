@@ -27,7 +27,7 @@ class LBSButtonVM extends LBSBaseComponent {
         this.alternative = alternative ? 'btn-alternative' : ''
         this.cssClasses = [
             this.bootstrapClass,
-            this.color,
+            `btn-lime--${this.color}`,
             this.fullWidth,
             this.borderless,
             this.btnIcon,
