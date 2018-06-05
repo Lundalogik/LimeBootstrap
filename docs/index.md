@@ -22,3 +22,5 @@ These few steps can  act as a guide
 
 
 Happy coding!
+
+![logo](assets/images/hans-olof-the-great.png)

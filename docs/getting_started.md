@@ -1,82 +1,94 @@
 # Getting started
-## Up and running
-### Requirements
 
-Lime Bootstrap is only meant to be used inside Lime Crm, but for debugging reasons all functionality should work in any browser.
+## A Lime Bootstrap Actionpad
 
-*	Internet Explorer 11
-*   Chrome 59+
+An Actionpad built with Lime Bootstrap has the following structure:
 
-Older versions of IE __won't__ work!
-
-*	LIME 10.12 or greater
-
-### Install
-Lime Bootstrap is included in the Lime Core database and nothing is needs to be done in this case. If installing Lime Bootstrap from scratch:
-
-1.	Copy all the folders, `lbs.html` and `_config.js` to the Actionpad-folder
-2.	Add the VBA module `lbshelper` found in `vba`-folder.
-3.	Change the URL of all Actionpads in LIME Pro to `lbs.html`
-
-If you'll like the some basic ActionPad views to start with you can find some [here](https://github.com/Lundalogik/LimeBootstrapBaseActionpads)
-
-### Update
-Updating LIME Bootstrap is done by downloading the lastest version and replacing some files and updating some VBA.
-
-1.	Replace the system folder and `lbs.html`
-2.	Replace the VBA module
-
-!!! warning
-    Please note that Windows sometimes blocks dowloaded javascript files. Make sure to right click and unblock javascript files
-
-======================
-
-## Basic usage
-
-
-##A LIME Bootstrap Actionpad
-
-An Actionpad built with LIME Bootstrap has the following structure:
+![Alt text](assets/images/actionpad.png)
 
 ```html
-<!-- Header section, The colorfull thing at the top  -->
-<div class="header-container [color]"> <!-- Specify the color of the header. Please see color section for available colors  -->
-    <div class="header-icon"></div>  <!-- Specify the icon of the header. Please see icon section for available special icons  -->
-    <h2 data-bind=""></h2>
-        <ul class="info-links">
-            <li data-bind=""> </li>
-            ...
-        </ul>
-    </div>
-</div>
+<lbs-hero params="header: company.name, img: company">
+    <lbs-list-item params="text: company.visitingcity, icon: 'fa-map-marker'" data-bind="openMap: company.fullvisitingaddress"></li>
+    <lbs-list-item params="text: company.phone, call: company.phone, icon: 'fa-phone'" data-bind="call: company.phone"></li>
+    <lbs-list-item params="text: company.www, openURL: company.www, icon: 'fa-globe'" data-bind="openURL: company.www"></li>
+</lbs-hero>
 
 
-<!-- /Header section  -->
-<!-- Body section  -->
+<lbs-menu params="title: 'Functions', expanded: true">
+    <lbs-list-item params="text: 'Copy postal address', icon: 'fa-calendar'" data-bind="click: runMyFunction"></li>
+</lbs-menu>
 
-<div class="menu"> <!-- Menu  -->
-
-
-</div>
-<!-- /Body section  -->
+<lbs-menu params="title: 'History', expanded: true">
+...
+</lbs-menu>
 
 ```
 
-##Components
-LIME bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for all cool stuff you have access to.
+An ActionPad built with Lime Bootstrap has two main components; a `View` and a `ViewModel`. Lime Bootstrap uses [knockoutjs](http://knockoutjs.com) [Model-View-ViewModel (MVVM)](https://en.wikipedia.org/wiki/Model–view–viewmodel) pattern.
 
-We also supply the following components:
+### The view
+The view is a piece of HTML which descripes where elements should be placed. In the view we `bind` the data and functions of the `ViewModel` to the view. Each ActionPad has an unique view, which is a partial html-file with the same name as the LimeType it is used with, for example `company.html``
 
-*   __Menu:__ - _A menu to hold actions_
-*   __Dropdown button:__ - _A dropdown button styled for LIME Pro_
-*   __Header section:__ - _The top section of every actionpad_
-*   __Data carousel:__ - _A rotating object to hold more objects_
+In the `view `we make heavy use of `components`
+
+### The ViewModel
+The ViewModel is a Javascript object containing your data and functions to interact with the View. You don't have any direct access to the ViewModel when building ActionPads. For direct access to a ViewModel you need to create a [Custom Components](custom_components). You have some indirect access to the ViewModel of an ActionPad through specifing which [data sources](datasources) should be used in the file `_config.js`.
+
+## Configuration
+All framework configuration is done in the file `_config.js`. Here you can load additional data, enabling the debug mode or load custom components.
+
+```javascript
+lbs.externalConfig = {
+
+	/*
+	Enable or disable the debug-logging
+	*/
+    debug: true,
+
+    /*
+	Verbose levels:
+	    debug	: 	Shows all log levels
+        info	: 	Shows information level and up
+        warn	: 	Shows warning level and up
+        error	: 	Shows only error level logs
+    */
+    verboseLevel: 'warn',
+
+    /*
+    Load custom components
+    */
+    components: [
+        { name: 'my-component', path: 'components/my-comp/my-comp.js' }
+    ]
+
+    /*
+    Datasources to be used for each view
+    */
+	config:{
+		helpdesk : {
+		    dataSources: [
+		    	{ type: 'activeLimeObject', embed: ['person'] },
+		    	{ type: 'translation' },
+		        { type: 'relatedLimeObjects', limetype: 'person', alias: 'person' },
+		    ]
+		}
+	}
+}
+
+```
+
+## Components
+
+Components are self contained specialized html elements, for example `<lbs-hero>`. We are using [knockout components](http://knockoutjs.com/documentation/component-overview.html) behind the scenes to create the components, but in essens it is very inspired of the emerging webstandard of web components. Several components are [included](included_components) but you have also the ability to [build your own components](custom_components) or download community components from the [AppStore](https://appstore.lime-bootstrap.com)
 
 See all our components [here](/en/latest/components)
 
-##Functions and Apps
-All Twitter bootstrap functions are included, please see the [Twitter bootstrap documentation](http://getbootstrap.com/javascript/)
-LIME Bootstraps allows you to load small components we call apps, as a compliment to Twitter Bootstraps components. Apps can be found [here](http://limebootstrap.lundalogik.com/web/appstore/index.html)
+## Custom Components and Apps
+Lime Bootstraps allows you to create and custom components, as a compliment to the included components. Lime Bootstrap 1 had the concept of creating small apps. These apps still run fine in Lime Bootstrap 2.0, but it is prefered to use components.
+
+Components and Apps can be found [here](http://limebootstrap.lundalogik.com/web/appstore/index.html)
+
+A Custom Component is added in `_config.js` and can then be used in the same way as any included component.
 
 To start an app add this HTML to your view:
 ```html
@@ -88,102 +100,27 @@ To start an app add this HTML to your view:
 </div>
 
 ```
-
 Each app has it's own instructions how to start and install them. Some apps require VBA and/or stored procedures to be added.
 
-##Bindings and filters
-As we relay heavily on knockout their `data-bind=""` syntax is used through out the framework. The `data-bind=""` syntax is a used as a property on an html element. In a `data-bind` you add `bindings`, actions or triggers, to perform actions. All Knockout bindings are available, but also a few custom bindings to make your life easier.
-Read more about bindings and Knockout [here](http://knockoutjs.com/documentation/introduction.html) and try the tutorial [here](http://learn.knockoutjs.com)
-
-A basic example of use of a knockout binding:
-```html
-<li data-bind="text:company.name"></li>
-```
-You can also use a short hand for bindnings, using brackets. The above example can also be written as
-
-```html
-<li>{{company.name}}</li>
-```
-
-You can read more about this short hand syntax [here](https://mbest.github.io/knockout.punches/)
-
-As default you only have access to the data of the ActiveInspector!
-
-### Knockout bindings
-Knockout supplies a large set of bindings, which all can be found [here](http://knockoutjs.com/documentation/introduction.html)
-Our full documentation can be found [here](/en/latest/bindingsAndFilters/)
-
-Some of the more common and useful bindings
-
-*   __visible:__ - _hides or shows a html element based on an boolean expression_
-*   __text:__ - _Displays a variable as text_
-*   __html:__ - _Prepends the supplied font awesome icon to the html element_
-*   __css:__ - _Add or remove CSS classes_
-*   __style:__ - _Add styling attributes_
-*   __attr__ - _Set value of any html attribute_
-*   __foreach:__ - _Loop through an array_
-
-###Custom bindings
-To make your life easier we have implemented a few custom bindnings.
-List of custom handlers:
-
-*   __call:__ - _Tries to call the provided phone number_
-*   __email:__ - _Tries to email the provided address_
-*   __icon:__ - _Prepends the supplied font awesome icon to the html element_
-*   __limeLink:__ - _Creates an LIME link from a provided relationship field, for example person.company_
-*   __openURL:__ - _Opens the supplied URL in a external browser_
-*   __showOnMap:__ - _Opens Google Maps with the supplied data as a search query_
-*   __vba:__ - _Provide an string of an VBA function with it's parameters separated by commas_
-*   __vbaVisible:__ - _Extends knockouts 'visible:' by executing the supplied Boolean VBA function_
-*   __appInvoke:__ - _Invokes an old-style actionpad app like textfileimport or duplicatemerge_
-*   __popover:__ - _Displays a popover_
-*   __tooltip:__ - _Displays a bootstrap tooltip_
-
-
-###Filters
-Filters are a smart and easy way to format your data in a binding
-A filter is a function transforming your binding data and outputting a formated version of it.
-
-```html
-<li data-bind="text:deal.value | currency: SEK"></li>
-<li>{{deal.value | currency: SEK}}</li>
-```
-
-This will produce a nicely formated value of a deal, example: "10 000SEK"
-
-List of filters:
-
-*   __default:<defaultValue>__ - If the value is blank, null, or an empty array, replace it with the given default value.
-*   __fit:<length>[:<replacement>][:<where>]__ - Trim the value if it’s longer than the given length. The trimmed portion is replaced with ... or the replacement value, if given. By default, the value is trimmed on the right but can be changed to left or middle through the where option. For example: name | fit:10::'middle' will convert Shakespeare to Shak...are.
-*   __json[:space]__ - Convert the value to a JSON string using ko.toJSON. You can give a space value to format the JSON output.
-*   __lowercase__ - Convert the value to lowercase.
-*   __number:<numberOfDecimals>__ - Rounds a number of desired number of decimals
-*   __replace:<search>:<replace>__ - Perform a search and replace on the value using String#replace.
-*   __uppercase__ - Convert the value to uppercase.
-*   __currency:<currencyName>:<divider>__ - Formats a number with to a currency with a space a separate every <divider> number. Default 1000
-*   __percent:__ - Formats a decimal number as percent 0,01 > 1%
-*   __fromNow:__ - Formats a date as a human readable text as for how long ago the date was. Example 2000-01-01 > "Over ten years ago"
-
-
-## Translation: Handling multiple languages
+## Translation
 All available translations from the Localization table are automatically available in the actionpad context. The same language as the logged in user uses is automatically used. The translations are cached in a dictionary to increase speed, but requires you to run `ThisApplication.Setup` to rebuild the dictionary if you add translations or make changes.
 
 ```html
 <li data-bind="text:localize.ActionPad_Todo.addTodo"></li>
 ```
 
-The example below uses the versatile knockout binding `attr` to add a tooltip with localization support. It also uses the custom LIME Bootstrap bindings `vba` and `icon`.
+The example below uses the versatile knockout binding `attr` to add a tooltip with localization support. It also uses the custom Lime Bootstrap bindings `vba` and `icon`.
 
 ```html
 <li data-bind="vba:'Actionpad_Person.newComment', text:localize.Actionpad_Person.t_newcomment, icon:'fa-comment', attr: { title: localize.Actionpad_Person.tooltip_newcomment }"></li>
 ```
 
-###Technical notes
+#### Technical notes
 The translations are added to the global view model and are thus available in your apps.
 
 Note that it is not possible to use localization in the standard way, e.g., `localize.Actionpad_Person.t_newcomment` within a block where you are using the knockout binding `with`.
 
-##Fetching data from fields in LIME Pro
+## Fetching data from fields in Lime CRM
 All fields from the ActiveInspector are automagically available for you to use in your view. The syntax is `[Record class name].[field database name].[property]`.
 
 The available properties are (in order of relevance):
@@ -202,12 +139,14 @@ The available properties are (in order of relevance):
 <li data-bind="text:business.businesstatus.key"></li>
 ```
 
-###Going beyond the ActiveInspector - Loading additional data
+### Loading additional data
 It is common to use data from more than the ActiveInspector and the following syntax will NOT work `<li data-bind="text:person.company.phone.text"></li>`
 
-Instead you can load additional data by requesting data sources in `_config.js`. You'll find more information about this in the advanced section.
+Instead you can load additional data by requesting data sources in `_config.js`.
 
 The loaded data can then be access by:
+
+All avialable data sources can be found [here](datasources)
 
 ```html
 <!-- Loading person and company info on a helpdesk actionpad-->
@@ -217,24 +156,6 @@ The loaded data can then be access by:
 <li data-bind="text:company.phone.text"></li>
 ```
 
-##Working with time and dates
-Dates are a hassle, except when you have the awesome library [Moment.js](http://momentjs.com).
-
-To create a iso-date:
-`moment()`
-
-To parse almost any date format:
-`moment([CRAZY DATE FORMAT])`
-
-Moment even makes time and dates readable to people.
-`moment().timeAgo(2011-01-01)` will give you, "A few years ago"
-
-Moment is automagically setup to use the same language and date-format as the language of the LIME Client.
-Remember to use it and check out it further!
-
-## The log/watch
-
-Bootstap will give you some debug- and log views to help you out.
 
 ## Keyboard shortcuts
 The different view can be opened with shortcuts provided the actionpad is in focus.
@@ -242,6 +163,4 @@ The different view can be opened with shortcuts provided the actionpad is in foc
 |   Function  |   Command   |
 |   ---    | ---       |
 |   Reload actionpad | ctrl + shift + r |
-|   Open log | ctrl + shift + l |
-|   Open watch | ctrl + shift + w |
-|   Close log/watch window | q |
+

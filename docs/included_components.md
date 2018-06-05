@@ -10,15 +10,18 @@ __Important__
 ## lbs-hero
 Component for adding a hero (banner like header) for an actionpad.
 
-<img src="https://raw.githubusercontent.com/Lundalogik/LimeBootstrapServices/master/web/assets/img/Bootstrap_colors.png">
+![The LBS Hero](assets/images/lbs-hero.png)
+
 
 ### Params
-Param           | Explanation                     | Example value      | Default value
---------------- | ------------------------------- |------------------- | -------------
-color           | One of LBS standard colors      | 'lime-green'       | 'turquoise'
-header          | Header text for the hero        | 'Lime Technologies'| ''
-img             | Name of the header image        | 'fa-calendar'      |
-menuItems       | Array with objects defining a context menu. | See below | []
+Param           | Explanation                                   | Example value                 | Default value
+--------------- | -------------------------------               |-------------------            | -------------
+color           | One of LBS standard colors                    | 'lime-green'                  | 'turquoise'
+header          | Header text for the hero                      | 'Lime Technologies'           | ''
+img             | Name of the header image                      | 'fa-calendar'                 |
+menuItems       | Array with objects defining a context menu.   | [See below](#context-menu)    | []
+
+<img src="https://raw.githubusercontent.com/Lundalogik/LimeBootstrapServices/master/web/assets/img/Bootstrap_colors.png">
 
 ### Context menu
 The context menu is automatically added to the lbs-hero component if the array `menuItems` is supplied and has more than 0 elements. Each element in the array has the following options:
@@ -38,11 +41,13 @@ __Note__: You need to supply the image to the dist/resource/ folder if the name 
 ### Usage
 ```
 <lbs-hero params="header: company.name, menuItems: [{ label: 'My hero item', icon: 'fa-bowling-ball' }]">
-    <lbs-list-item params="text: company.visitingcity, icon: 'fa-map-marker'" data-bind="openMap: company.fullvisitingaddress"></li>
-    <lbs-list-item params="text: company.phone, call: company.phone, icon: 'fa-phone'" data-bind="call: company.phone"></li>
-    <lbs-list-item params="text: company.www, openURL: company.www, icon: 'fa-globe'" data-bind="openURL: company.www"></li>
+    <lbs-list-item params="text: company.visitingcity, icon: 'fa-map-marker'" data-bind="openMap: company.fullvisitingaddress"></lbs-list-item>
+    <lbs-list-item params="text: company.phone, call: company.phone, icon: 'fa-phone'" data-bind="call: company.phone"></lbs-list-item>
+    <lbs-list-item params="text: company.www, openURL: company.www, icon: 'fa-globe'" data-bind="openURL: company.www"></lbs-list-item>
 </lbs-hero>
 ```
+
+--------------
 
 ## lbs-menu
 Expandable menu component.

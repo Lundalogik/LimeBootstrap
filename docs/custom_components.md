@@ -2,7 +2,7 @@ Building apps
 ==============
 
 ##Basics
-Apps are small standalone tools, used for customer customisations. They are loaded dynamically and added only through a single line of HTML in the Actionpad. The business logic and dataconnection is allways performed by the VBA. This functionallity should be inside a single module. 
+Apps are small standalone tools, used for customer customisations. They are loaded dynamically and added only through a single line of HTML in the Actionpad. The business logic and dataconnection is allways performed by the VBA. This functionallity should be inside a single module.
 
 The general idea of an app is to implement:
 
@@ -12,16 +12,16 @@ The general idea of an app is to implement:
 
 An app is initilaized as:
 1. The app is loaded and the config of the app is parsed
-2. Data is loaded from LIME Pro, from your supplied function
+2. Data is loaded from Lime CRM, from your supplied function
 3. The data is converted to a view-model (In this case the view model is just a JSON represenation of the data)
 4. Additional resources are loaded to the app
 5. The view-model is supplied to the app and cam be modified
 6. The app view is loaded from app.html.
-7. The view and view-model is rendered and injected to the actionpad 
+7. The view and view-model is rendered and injected to the actionpad
 
 Initiation of an app is executed by the `lbs.apploader.js` module and triggered by an `data-app:`-attribute.
 
-The data can be provided as XML, record or records and limebootstrap will then supply the app with an View-model based on the data, free for you to work with. In the view model you will also find all translations and avilable data from the current actionpad viewmodel.   
+The data can be provided as XML, record or records and limebootstrap will then supply the app with an View-model based on the data, free for you to work with. In the view model you will also find all translations and avilable data from the current actionpad viewmodel.
 
 ```html
 <div data-app="{app:'checklist',config:{canBeUnchecked:true,allowRemove:true, canAddTask:true}} " ></div>
@@ -30,7 +30,7 @@ The data can be provided as XML, record or records and limebootstrap will then s
 **Please note that you can not have a `data-app` and `data-bind` attribute in the same element**
 
 ###The javascript app structure
-	
+
 ```javascript
 lbs.apploader.register('template', function () { //Insert name of app here
     var self = this;
@@ -50,7 +50,7 @@ lbs.apploader.register('template', function () { //Insert name of app here
     //initialize
     this.initialize = function (node, viewModel) {
 
-        //Use this method to setup you app. 
+        //Use this method to setup you app.
         //
         //The data you requested along with activeInspector are delivered in the variable viewModel.
         //You may make any modifications you please to it or replace is with a entirely new one before returning it.
@@ -90,7 +90,7 @@ lbs.apploader.register('template', function () { //Insert name of app here
 |lbs.common.iconTemplate|string|template for icon html|
 
 
-###Library helper functions 
+###Library helper functions
 
 ##### lbs.heper.loadDataSorces()
 Loads multiple datasources into a JSON objekt

@@ -1,9 +1,11 @@
 import $ from 'jquery'
+import { xml2json } from 'xml2json-light'
+
 import LimeObject from './dataSources/lbs.dataSource.limeobject'
 import LimeObjects from './dataSources/lbs.dataSource.limeobjects'
 import Translations from './dataSources/lbs.dataSource.translations'
 import CustomEndpoint from './dataSources/lbs.dataSource.customEndpoint'
-import xml2json from 'xml2json-light'
+
 
 const loader = {
 
@@ -170,6 +172,7 @@ const loader = {
             const modifiedDataSourceLiteral = dataSourceLiteral
             modifiedDataSourceLiteral.id = lbs.activeLimeObjectId
             modifiedDataSourceLiteral.limetype = lbs.activeClass
+            modifiedDataSourceLiteral.alias = dataSourceLiteral.alias || lbs.activeClass
             return new LimeObject(dataSourceLiteral,
                 lbs.session,
                 lbs.activeServer,
@@ -189,13 +192,17 @@ const loader = {
                 lbs.activeServer,
                 lbs.activeDatabase,
             )
-        case 'translations':
+        case 'translations': {
+            const modifiedTranslationsDataSourceLiteral = dataSourceLiteral
+            modifiedTranslationsDataSourceLiteral.locale = dataSourceLiteral.locale || lbs.activeLocale
+            modifiedTranslationsDataSourceLiteral.alias = dataSourceLiteral.alias || 'txt'
             return new Translations(
-                dataSourceLiteral,
+                modifiedTranslationsDataSourceLiteral,
                 lbs.session,
                 lbs.activeServer,
                 lbs.activeDatabase,
             )
+        }
         case 'relatedLimeObjects': {
             const { relatedFrom = lbs.activeClass } = dataSourceLiteral
             const dataSource = new LimeObjects(
@@ -205,8 +212,16 @@ const loader = {
                 lbs.activeDatabase,
             )
             dataSource.addFilterParam(relatedFrom, '=', lbs.activeLimeObjectId)
+            dataSource.fetchAll = true
             return dataSource
         }
+        case 'customEndpoint':
+            return new CustomEndpoint(
+                dataSourceLiteral,
+                lbs.session,
+                lbs.activeServer,
+                lbs.activeDatabase,
+            )
         default:
             lbs.log.warn(`Could not identify type "${dataSourceLiteral.type}" of data source.`)
             return null

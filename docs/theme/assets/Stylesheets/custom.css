@@ -11,3 +11,9 @@
 #lbs-dowload i{
 vertical-align: baseline;
 }
+
+.md-content img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

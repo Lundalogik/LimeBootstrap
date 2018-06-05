@@ -2,11 +2,12 @@ site_name: Lime Bootstrap
 pages:
   - 'Documentation':
     - 'Introduction': 'index.md'
+    - 'Installation': 'install.md'
     - 'Getting started': 'getting_started.md'
     - 'Included components': 'included_components.md'
     - 'Bindnings & filters': 'bindings_and_filters.md'
     - 'Data sources': 'datasources.md'
-    - 'Custom components Apps': 'custom_components.md'
+    - 'Custom components': 'custom_components.md'
     - 'Advanced': 'advanced.md'
   - 'Changelog':
     - 'LBS 2': 'changelog/2.x.md'

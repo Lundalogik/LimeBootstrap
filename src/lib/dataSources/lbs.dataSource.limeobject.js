@@ -8,17 +8,14 @@ export default class LimeObject extends dataSource {
     constructor({
         id, limetype, embed, ...rest
     }, session, server, database) {
-        super(rest)
+        super(rest, session, server, database)
         this.id = id
         this.limetype = limetype
         this.embed = embed || []
-        this.session = session
-        this.serverURLComponent = encodeURI(server)
-        this.databaseURLComponent = encodeURI(database)
     }
 
     get url() {
-        let url = `https://${this.serverURLComponent}/${this.databaseURLComponent}/api/v1/limeobject/${this.limetype}/${this.id}/`
+        let url = `${super.serverURL}/api/v1/limeobject/${this.limetype}/${this.id}/`
         this.embed.forEach((element, index, array) => {
             if (index === 0) { // first element should have a preceeding "?"
                 url += '?'
@@ -32,11 +29,9 @@ export default class LimeObject extends dataSource {
     }
 
     async fetch() {
-        const response = await super._fetch(this.url, {
-            headers: { sessionid: this.session },
-        })
+        const response = await super._fetch(this.url)
 
-        const body = JSON.parse(response.body)
+        const body = await response.json()
 
         const relationData = this.embed.reduce((acc, el) => {
             const retval = (acc[el] = (body._embedded ? body._embedded[`relation_${el}`] : null), acc)

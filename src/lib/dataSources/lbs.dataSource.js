@@ -1,14 +1,24 @@
 export default class DataSource {
-    constructor({ type, source, alias = '' }) {
+    constructor({ type, source, alias = '', protocol = 'https' }, session, server, database) {
         this.type = type
         this.source = source
         this.alias = alias
+        this.protocol = protocol
+        this.session = session
+        this.serverURLComponent = encodeURI(server)
+        this.databaseURLComponent = encodeURI(database)
+        this.protocol = protocol
+    }
+
+    get serverURL() {
+        return `${this.protocol}://${this.serverURLComponent}/${this.databaseURLComponent}`
     }
 
     async _fetch(url = '', settings = {}) {
         const { method = 'GET' } = settings
         const _settings = {
             mode: 'cors',
+            headers: { sessionid: this.session },
         }
         try {
             const response = await fetch(url, { ...settings, ..._settings })
@@ -17,7 +27,7 @@ export default class DataSource {
             lbs.log.info(`Using VBA fallback method for data source ${this.type}`)
             const payload = settings.body ? `, ${btoa(settings.body)}` : ''
             return {
-                body: lbs.common.executeVba(`LBSHelper.CRMEndpoint, ${url}, ${method}${payload}`),
+                json: async () => lbs.common.executeVba(`LBSHelper.CRMEndpoint, ${url}, ${method}${payload}`),
                 status: 'Fetched through VBA... No idea',
             }
         }

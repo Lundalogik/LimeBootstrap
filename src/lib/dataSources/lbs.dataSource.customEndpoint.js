@@ -3,11 +3,8 @@ import dataSource from './lbs.dataSource'
 // Represents a request for data of a LimeObject from the rest API
 export default class CustomEndpoint extends dataSource {
     constructor({ relativeUrl, ...rest }, session, server, database) {
-        super(rest)
+        super(rest, session, server, database)
         this.relativeUrl = relativeUrl
-        this.session = session
-        this.serverURLComponent = encodeURI(server)
-        this.databaseURLComponent = encodeURI(database)
     }
 
     get url() {
@@ -18,40 +15,44 @@ export default class CustomEndpoint extends dataSource {
         if (this.relativeUrl.charAt(this.relativeUrl.length - 1) !== '/') { // Append slash
             url = `${url}/`
         }
-        return `https://${this.serverURLComponent}/${this.databaseURLComponent}${url}`
+        return `${super.serverURL}${url}`
+    }
+
+    async fetch() {
+        return this.get()
     }
 
     async get() {
         const response = await super._fetch(this.url, {
-            headers: { sessionid: this.session },
         })
-        return JSON.parse(response.body)
+        const data = await response.json()
+        return data
     }
 
-    async post(data) {
+    async post(payload) {
         const response = await super._fetch(this.url, {
-            headers: { sessionid: this.session },
-            body: JSON.stringify(data),
+            body: JSON.stringify(payload),
             method: 'POST',
         })
-        return JSON.parse(response.body)
+        const data = await response.json()
+        return data
     }
 
-    async put(data) {
+    async put(payload) {
         const response = await super._fetch(this.url, {
-            headers: { sessionid: this.session },
-            body: JSON.stringify(data),
+            body: JSON.stringify(payload),
             method: 'PUT',
         })
-        return JSON.parse(response.body)
+        const data = await response.json()
+        return data
     }
 
-    async delete(data) {
+    async delete(payload) {
         const response = await super._fetch(this.url, {
-            headers: { sessionid: this.session },
-            body: JSON.stringify(data),
+            body: JSON.stringify(payload),
             method: 'DELETE',
         })
-        return JSON.parse(response.body)
+        const data = await response.json()
+        return data
     }
 }
