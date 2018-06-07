@@ -727,8 +727,5 @@ module.exports = {
         self: {
             href: 'https://prostaging/core54/api/v1/limeobject/person/?_limit=10',
         },
-        next: {
-            href: null,
-        },
     },
 }
