@@ -2,7 +2,7 @@
   "name": "lime-bootstrap",
   "version": "2.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/lbs.js",
   "directories": {
     "doc": "docs"
   },
