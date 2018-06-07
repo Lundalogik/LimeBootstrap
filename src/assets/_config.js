@@ -1,72 +1,41 @@
 lbs.externalConfig = {
-	/**
-	Enable or disable the debug console
-	for the whole application
-	**/
-	debug: true,
-	verboseLevel: "debug",
-	/*
-	Verbose levels:
-	    debug	: 	Shows all log levels
+    /**
+    Enable or disable the debug console
+    for the whole application
+    * */
+    debug: true,
+    verboseLevel: 'debug',
+    /*
+    Verbose levels:
+        debug	: 	Shows all log levels
         info	: 	Shows information level and up
         warn	: 	Shows warning level and up
         error	: 	Shows only error level logs
 
-	*/
-	/**
-	Configure special use cases,
-	mainly when requiring additional datasources
-	**/
+    */
+    /**
+    Configure special use cases,
+    mainly when requiring additional datasources
+    * */
 
-	config:{
-		'index' : {
-		    dataSources: [
-		         { type: 'localization', source: '' },
-		    ],
-		 	autorefresh : false
-		},
+    components: [
+        { name: 'checklist', path: 'http://localhost:3334/' }
+    ],
 
-		'helpdesk' : {
-		    dataSources: [
-		    	{type: 'activeInspector', source: ''},
-		    	{type: 'localization', source: '' },
-				{type: 'activeUser', source: '' },
-		        {type: 'relatedRecord', source: 'person', view: 'name;phone;email;mobilephone', alias: 'person'},
-	   			{type: 'relatedRecord', source: 'company', view: 'name;phone', alias: 'company'}
-		    ],
-		 	autorefresh : false
-		},
-
-		'todo' : {
-		    dataSources: [
-		    	{type: 'activeInspector', source: ''},
-		    	{type: 'localization', source: '' },
-		        {type: 'relatedRecord', source: 'person', view: 'name;phone;email;mobilephone', alias: 'person'},
-	   			{type: 'relatedRecord', source: 'company', view: 'name;phone', alias: 'company'}
-		    ],
-		 	autorefresh : false
-		},
-		company: {
-			dataSources: [
-				{ type: 'activeLimeObject', alias: 'company', embed: ['coworker']},
-				{ type: 'translations', owner: 'actionpad_company'}
-			]
-		}
-
-		// 'company' : {
-		//     dataSources: [
-		//     	{type: 'activeInspector', source: ''},
-		//         {type: 'records', source: 'ActionPadTools.GetTestData', alias: 'heppnode' },
-		//     ],
-		//  	autorefresh : false
-		// },
-
-		// 'person' : {
-		//     dataSources: [
-		//     	{type: 'activeInspector', source: ''},
-		//         {type: 'relatedRecord', source: 'company'},
-		//     ],
-		//  	autorefresh : false
-		// },
-	}
+    config: {
+        index: {
+            dataSources: [
+                { type: 'localization', source: '' },
+            ],
+            autorefresh: false,
+        },
+        company: {
+            dataSources: [
+                { type: 'activeLimeObject', embed: ['coworker'], protocol: 'http' },
+                { type: 'relatedLimeObjects', limetype: 'person', alias: 'persons', protocol: 'http' },
+                { type: 'translations', owner: 'company', alias: 'txt', protocol: 'http' },
+                { type: 'customEndpoint', relativeUrl: 'person/expired/', alias: 'gdpr', protocol: 'http' },
+            ],
+        },
+    },
 }
