@@ -70,12 +70,14 @@ const lbs = {
     async setup() {
         // register custom bindnings
         registerCustomBindings()
+        ko.options.deferUpdates = true
 
         // system param
         this.setSystemOperationParameters()
 
         // Enable or disable debug-mode
         this.debug = lbs.externalConfig.debug
+        ko.applyBindings({ enabled: this.debug }, $('#debug').get(0))
 
         // set contextmenu enables/disabled
         this.SetTouchEnabled(false)

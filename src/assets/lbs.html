@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Lime Bootstrap</title>
-        
+
         <!-- meta -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -22,7 +22,7 @@
 
         <!-- external libs -->
         <script src="system/js/vendor.js" type="text/javascript"></script>
-        
+
     </head>
     <body  data-bind="event: { keydown: lbs.GlobalEventHandler.OnKeydown }">
         <!-- ko stopBinding: true -->
@@ -30,7 +30,8 @@
         <!-- ko if: enabled  -->
             <ul id="debugConsole">
                 <li class="header">Debug
-                <span class="badge pull-right"  data-bind="icon:'fa-refresh'" onclick="location.reload(true)"> </span>
+                    <span class="badge pull-right"  data-bind="icon:'fa-bug', openURL: 'chrome.exe localhost:12400'"> </span>
+                    <span class="badge pull-right"  data-bind="icon:'fa-refresh'" onclick="location.reload(true)"> </span>
                 </li>
             </ul>
         <!-- /ko -->
@@ -47,11 +48,11 @@
             <!-- /ko -->
         </div>
         <!-- /ko -->
-            
+
         <script src="system/js/templates.js" type="text/javascript"></script>
         <script src="system/js/lbs.js" type="text/javascript"></script>
         <script>require('src/entry.js');</script>
         <script src="_config.js"></script>
     </body>
-            
+
 </html>
