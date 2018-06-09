@@ -9,6 +9,16 @@ pages:
     - 'Data sources': 'datasources.md'
     - 'Custom components': 'custom_components.md'
     - 'Advanced': 'advanced.md'
+  - 'Components':
+    - 'Alert': 'components/lbs-alert.md'
+    - 'Button components': 'components/lbs-buttons.md'
+    - 'Card': 'components/lbs-card.md'
+    - 'Hero': 'components/lbs-hero.md'
+    - 'Icon': 'components/lbs-icon.md'
+    - 'List components': 'components/lbs-lists.md'
+    - 'Loading indicator': 'components/lbs-loading-indicator.md'
+    - 'Menu': 'components/lbs-menu.md'
+    - 'Time components': 'components/lbs-time.md'
   - 'Changelog':
     - 'LBS 2': 'changelog/2.x.md'
     - 'LBS 1': 'changelog/1.x.md'

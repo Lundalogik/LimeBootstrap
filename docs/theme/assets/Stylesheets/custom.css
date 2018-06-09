@@ -1,9 +1,13 @@
 #lbs-dowload{
     float: right;
     cursor: pointer;
-
 }
 
+#lbs-appstore{
+    float: right;
+    cursor: pointer;
+
+}
 #lbs-dowload a{
     text-transform: uppercase;
 }
