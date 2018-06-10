@@ -14,7 +14,12 @@ class LBSDropdownMenu extends LBSBaseComponent {
             fullWidth = false,
             heroMenu = false,
             borderless = false,
+            menuPosition = 'left',
         } = params
+        if (!['right', 'left'].includes(menuPosition)) {
+            lbs.log.warn('Param [menuPosition] must be either left or right!')
+        }
+
         this.listItems = LBSDropdownMenu.mapItems(items)
         this.color = color
         this.title = title
@@ -22,6 +27,7 @@ class LBSDropdownMenu extends LBSBaseComponent {
         this.icon = icon
         this.borderless = borderless
         this.position = heroMenu ? 'top-right' : ''
+        this.menuPosition = this.position === 'top-right' ? 'left' : menuPosition
     }
 
     static mapItem({

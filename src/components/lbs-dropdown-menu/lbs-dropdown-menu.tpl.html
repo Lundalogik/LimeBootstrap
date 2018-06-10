@@ -2,8 +2,8 @@
     <lbs-button params="color: color, text: title, icon: icon, fullWidth: fullWidth, centered: title === '', borderless: borderless" data-toggle="dropdown">
     </lbs-button>
 
-    <ul class="dropdown-menu" data-bind="css: {'dropdown-menu-right': position ==='top-right'} ">
-        <!-- ko template: { nodes: $componentTemplateNodes, data: $root } -->
+    <ul class="dropdown-menu" data-bind="css: {'dropdown-menu-right': menuPosition === 'right'} ">
+        <!-- ko template: { nodes: $componentTemplateNodes, data: $parent } -->
         <!-- /ko -->
 
         <!-- ko foreach: listItems -->

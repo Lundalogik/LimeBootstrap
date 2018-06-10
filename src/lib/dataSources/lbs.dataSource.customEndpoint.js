@@ -2,9 +2,10 @@ import dataSource from './lbs.dataSource'
 
 // Represents a request for data of a LimeObject from the rest API
 export default class CustomEndpoint extends dataSource {
-    constructor({ relativeUrl, ...rest }, session, server, database) {
+    constructor({ relativeUrl, params, ...rest }, session, server, database) {
         super(rest, session, server, database)
         this.relativeUrl = relativeUrl
+        this.params = params
     }
 
     get url() {
@@ -14,6 +15,9 @@ export default class CustomEndpoint extends dataSource {
         }
         if (this.relativeUrl.charAt(this.relativeUrl.length - 1) !== '/') { // Append slash
             url = `${url}/`
+        }
+        if (this.params) {
+            url = `${url}?${this.params}`
         }
         return `${super.serverURL}${url}`
     }

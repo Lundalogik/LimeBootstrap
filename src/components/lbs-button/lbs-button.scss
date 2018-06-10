@@ -49,53 +49,10 @@
         text-align: left;
     }
 
-    &.blue {
-        @include btn-lime-color($blue, #FFF);
-    }
-    &.yellow {
-        @include btn-lime-color($yellow, #FFF);
-    }
-    &.green {
-        @include btn-lime-color($green, #FFF);
-    }
-    &.lime-green {
-        @include btn-lime-color($lime-green, #FFF);
-    }
-    &.orange {
-        @include btn-lime-color($orange, #FFF);
-    }
-    &.dark-grey, .darkgrey {
-        @include btn-lime-color($dark-grey, #FFF);
-    }
-    &.white {
-        @include btn-lime-color($white, #333);
-    }
-    &.purple {
-        @include btn-lime-color($purple, #FFF);
-    }
-    &.red {
-        @include btn-lime-color($red, #FFF);
-    }
-    &.turquoise {
-        @include btn-lime-color($turquoise, #FFF);
-    }
-    &.citrus {
-        @include btn-lime-color($citrus, #FFF);
-    }
-    &.clean-green {
-        @include btn-lime-color($clean-green, #FFF);
-    }
-    &.deep-red {
-        @include btn-lime-color($deep-red, #FFF);
-    }
-    &.light-grey {
-        @include btn-lime-color($light-grey, #FFF);
-    }
-    &.purple-rain {
-        @include btn-lime-color($purple-rain, #FFF);
-    }
-    &.magenta {
-        @include btn-lime-color($magenta, #FFF);
+    @each $key, $colors in $colors-list {
+        &--#{$key} {
+            @include btn-lime-color(nth($colors, 1), nth($colors, 2));
+        }
     }
 
     &.borderless {

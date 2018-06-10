@@ -1,5 +1,9 @@
+import NotYetImplementedError from '../lbs.errors'
+
 export default class DataSource {
-    constructor({ type, source, alias = '', protocol = 'https' }, session, server, database) {
+    constructor({
+        type, source, alias = '', protocol = 'https',
+    }, session, server, database) {
         this.type = type
         this.source = source
         this.alias = alias
@@ -27,13 +31,13 @@ export default class DataSource {
             lbs.log.info(`Using VBA fallback method for data source ${this.type}`)
             const payload = settings.body ? `, ${btoa(settings.body)}` : ''
             return {
-                json: async () => lbs.common.executeVba(`LBSHelper.CRMEndpoint, ${url}, ${method}${payload}`),
+                json: async () => JSON.parse(lbs.common.executeVba(`LBSHelper.CRMEndpoint, ${url}, ${method}${payload}`)),
                 status: 'Fetched through VBA... No idea',
             }
         }
     }
 
     static fetch() {
-        throw { name: 'NotImplementedError', message: 'Should be implemented by subclass' }
+        throw new NotYetImplementedError('Should be implemented by subclass')
     }
 }
