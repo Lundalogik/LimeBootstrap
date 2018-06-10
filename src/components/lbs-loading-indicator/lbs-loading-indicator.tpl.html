@@ -1,4 +1,6 @@
-<i class="fa fa-spinner fa-pulse fa-3x fa-fw" data-bind="visible: loading()"></i>
+<div data-bind="visible: loading()" class="loader-container">
+    <lbs-icon params="icon: 'fa-spinner', options: `${size} fa-fw fa-pulse`"></lbs-icon>
+</div>
 <!-- ko if: !loading() -->
     <!-- ko template: { nodes: $componentTemplateNodes, data: $parent } -->
     <!-- /ko -->
