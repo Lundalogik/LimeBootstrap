@@ -38,17 +38,17 @@ Embed fetches data from related objects. It only works for `belongs_to` properti
 !!! Note
     The returned data is almost identical to the answer from the Lime CRM API with one important exception, embedded objects. To make embedded data easier to use directly in a View we push the data from the `_embeded`-node to a `[your object here]`-node.
 
-!!! Example
-    requesting
 
+```
+{ type: 'activeLimeObject' , embed: ['coworker']}
+```
 
-        { type: 'activeLimeObject' , embed: ['coworker']}
+For programtic use
 
-    where the active LimeObject is a company will yield:
-
-    ```
-    TODO: Add example
-    ```
+```javascript
+const dataSource =lbs.loader.createDataSource({ type: 'activeLimeObject' , embed: ['coworker']})
+const data = await dataSource.fetch()
+```
 
 ### relatedLimeObjects
 
@@ -72,6 +72,15 @@ Fetch data from the Lime CRM api for related objects to the currently active Lim
 { type: 'relatedLimeObjects', limetype: 'person', alias: 'persons', protocol: 'http' }
 ```
 
+For programtic use
+
+```javascript
+const dataSource =lbs.loader.createDataSource({ type: 'relatedLimeObjects', limetype: 'person', alias: 'persons', protocol: 'http' })
+const data = await dataSource.fetch()
+```
+
+
+
 ### translations
 
 Fetch translations for the specified language for a specific key (owner)
@@ -87,6 +96,46 @@ Fetch translations for the specified language for a specific key (owner)
 
 ```javascript
 { type: 'translations', owner: 'company'}
+```
+
+For programtic use
+
+```javascript
+const dataSource =lbs.loader.createDataSource({ type: 'translations', owner: 'company'})
+const data = await dataSource.fetch()
+```
+
+### customEndpoint
+
+Can GET, PUT, POST and DELETE to a Lime CRM Custom Endpoint
+
+
+| Param              | Description                                            | Default                  | Required |
+|--------------------|-------------------------------------                   |----------                |----------|
+| type               | Type of the data source                                |                          | true     |
+| alias              | Name of node in the ViewModel                          | ''                       | true     |
+| relativeUrl        | A url to the custom endpoint, relative the base URL    |                          | true     |
+| protocol           | Protocol of fetch                                      | https                    | false    |
+
+```javascript
+{ type: 'customEndpoint', alias: 'myData', relativeUrl: 'my_endpoint/my_subfunc/'}
+```
+
+For programtic use
+
+```javascript
+const dataSource =lbs.loader.createDataSource({ type: 'customEndpoint', alias: 'myData', relativeUrl: 'my_endpoint/my_subfunc/'})
+
+// GET and DELETE
+const data = await dataSource.get()
+const data2 = await dataSource.delete()
+
+const payload = {prop: 'value'}
+
+// PUT and POST
+const data3 = await dataSource.post(payload)
+const data4 = await dataSource.put(payload)
+
 ```
 
 ## Legacy data sources
