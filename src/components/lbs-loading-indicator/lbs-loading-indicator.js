@@ -4,24 +4,23 @@ import lbsLoadingIndicatorTemplate from './lbs-loading-indicator.tpl.html'
 export default class LoadingIndicator {
     constructor({ loading, size = 'md' }) {
         this.loading = loading
-        const validSizes = ['sm', 'md', 'lg', 'xl']
+        this.validSizes = ['sm', 'md', 'lg', 'xl']
+        this.size = this.getSize(size)
+    }
 
+    getSize(size) {
         switch (size) {
         case 'sm':
-            this.size = ''
-            break
+            return ''
         case 'md':
-            this.size = 'fa-lg'
-            break
+            return 'fa-lg'
         case 'lg':
-            this.size = 'fa-2x'
-            break
+            return 'fa-2x'
         case 'xl':
-            this.size = 'fa-3x'
-            break
+            return 'fa-3x'
         default:
-            lbs.log.warn(`Loader size must be on of ${validSizes.join(', ')}`)
-            this.size = 'fa-lg'
+            lbs.log.warn(`Loader size must be on of ${this.validSizes.join(', ')}`)
+            return 'fa-lg'
         }
     }
 }
