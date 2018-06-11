@@ -73,7 +73,7 @@ class Log {
             const timer = this.timers[name]
             if (timer) {
                 timer.stop()
-                this.debug(`Event '${name}' took ${timer.getEllapsedTime()}ms`)
+                this.debug(`Event '${name}' took ${Math.round(timer.getEllapsedTime())}ms`)
                 delete this.timers[name]
             } else {
                 this.warn(`Timer '${name}' not found in active timers`)
