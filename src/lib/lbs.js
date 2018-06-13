@@ -244,9 +244,9 @@ const lbs = {
         }
 
         if (lbs.common.getURLParameter('locale') !== null) {
-            lbs.activeLocale = lbs.common.getURLParameter('locale')
+            lbs.activeLocale = lbs.common.getURLParameter('locale').replace('-', '_')
         } else {
-            lbs.activeLocale = lbs.common.executeVba('LBSHelper.getLocale')
+            lbs.activeLocale = lbs.common.executeVba('LBSHelper.getLocale').replace('-', '_')
         }
 
         if (lbs.common.getURLParameter('session') !== null) {
