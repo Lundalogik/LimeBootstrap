@@ -17,6 +17,7 @@ import apploader from './lbs.apploader'
 import Bakery from './lbs.bakery'
 import registerCustomBindings from './lbs.bindings'
 import ComponentLoader from './lbs.componentLoader'
+import { SetupError } from './lbs.errors'
 /**
 Objekt container
 */
@@ -32,7 +33,7 @@ const lbs = {
     activeClass: '',
     activeDatabase: '',
     activeServer: '',
-    activeInspector: '',
+    activeInspector: null,
     activeInspectorId: null,
     activeLocale: 'en_us',
     session: null,
@@ -88,15 +89,13 @@ const lbs = {
         lbs.log.startTimer('LBS total load time')
         // get AP class etc
         this.setActionPadEnvironment()
+
         lbs.bakery = new Bakery(lbs.activeClass)
         // load loader (sic!)
         this.setupLoader()
 
         // configure
         this.processConfiguration()
-
-        // set Skin
-        this.setSkin()
 
         // set moment language
         moment.locale(lbs.common.executeVba('Localize.GetLanguage'))
@@ -181,59 +180,38 @@ const lbs = {
     },
 
     /**
-    Find active actionpad view
+    Finds and sets
+        - reference to ActiveInspetor
+        - Id of ActiveInspector
+        - Name of LimeType (class), might also be 'index' indicating no class
+        - locale
+        - session
+        - limeobject id
+        - wrapper type
     */
     setActionPadEnvironment() {
-        let apowner = null
-        let inspectorObject = null
-        let inspectorId = null
-
-        // has limeconnection, try to get decent values
-        if (lbs.hasLimeConnection) {
-            // get inspector environment
-            try {
-                // got support for inspectorid
-                apowner = lbs.common.getURLParameter('apowner')
-                if (apowner !== null) {
-                    if (apowner === 'inspector') {
-                        // its an AP, find out which
-                        inspectorId = lbs.common.getURLParameter('apownerid')
-                        if (inspectorId) {
-                            inspectorObject = lbs.limeDataConnection.Inspectors.Lookup(inspectorId)
-                        }
-                    } else if (apowner === 'application') {
-                        // its main AP
-                        inspectorObject = null
-                    }
-                } else { // no inspectorid support
-                    inspectorObject = lbs.limeDataConnection.ActiveInspector
-                }
-
-                // set values
-                if (inspectorObject) {
-                    lbs.activeInspector = inspectorObject
-                    lbs.activeClass = inspectorObject.class.Name
-                    lbs.activeInspectorId = inspectorObject.ID
-                    lbs.activeLimeObjectId = inspectorObject.record.ID
-                } else {
-                    lbs.activeInspector = null
-                    lbs.activeClass = 'index'
-                }
-            } catch (e) {
-                lbs.log.warn('Could not determine inspector class, assuming index', e)
-                lbs.activeClass = 'index'
-            }
+        lbs.setActiveInspectorReference()
+        /* Find out the name of the LimeType (class) we are viewing.
+         If we are not viewing an inspector we are viewing the index actionpad.
+         Used to load appropriate view
+        */
+        this.activeClass = lbs.common.getURLParameter('ap')
+        if (!this.activeClass && window.location.hash !== '') {
+            lbs.activeClass = window.location.hash.substring(1)
+        } else if (lbs.activeInspector) {
+            lbs.activeClass = lbs.activeInspector.class.Name
+        } else { // all else fails, go for Index
+            lbs.activeClass = 'index'
         }
 
-        // override
-        if (lbs.common.getURLParameter('ap') !== null) {
-            this.activeClass = lbs.common.getURLParameter('ap')
+        lbs.activeInspectorId = parseInt(lbs.common.getURLParameter('id'), 10)
+        if (!lbs.activeInspectorId && lbs.activeInspector) {
+            lbs.activeInspectorId = lbs.activeInspector.Id
+        } else if (!lbs.activeInspectorId) {
+            lbs.log.warn('Could not set active inspector id!')
         }
 
-        if (window.location.hash !== '') {
-            this.activeClass = window.location.hash.substring(1)
-        }
-
+<<<<<<< HEAD
         // override sys-view
         if (lbs.common.getURLParameter('sv') !== null) {
             this.activeClass = 'system/view/{0}'.format(lbs.common.getURLParameter('sv'))
@@ -247,81 +225,115 @@ const lbs = {
             lbs.activeLocale = lbs.common.getURLParameter('locale').replace('-', '_')
         } else {
             lbs.activeLocale = lbs.common.executeVba('LBSHelper.getLocale').replace('-', '_')
+=======
+        lbs.activeLocale = lbs.common.getURLParameter('locale')
+        if (!lbs.activeLocale && lbs.hasLimeConnection) {
+            lbs.activeLocale = lbs.common.executeVba('LBSHelper.getLocale')
+        } else if (!lbs.activeLocale) {
+            lbs.log.warn('Could not set locale! Default "en_us" will be used')
+>>>>>>> Rewritten setup of AP env
         }
 
-        if (lbs.common.getURLParameter('session') !== null) {
-            lbs.session = lbs.common.getURLParameter('session')
-        } else {
+        lbs.session = lbs.common.getURLParameter('session')
+        if (!lbs.session && lbs.hasLimeConnection) {
             lbs.session = lbs.common.executeVba('LBSHelper.GetSessionID')
+        } else if (!lbs.session) {
+            throw new SetupError('Could not get users active session')
         }
 
-        if (lbs.common.getURLParameter('limeobjectid') !== null) {
-            lbs.activeLimeObjectId = lbs.common.getURLParameter('limeobjectid')
+        lbs.activeLimeObjectId = lbs.common.getURLParameter('limeobjectid')
+        if (!lbs.activeLimeObjectId && lbs.activeInspector) {
+            lbs.activeLimeObjectId = lbs.activeInspector.record.ID
+        } else if (!lbs.activeLimeObjectId && lbs.activeClass !== 'index') {
+            throw new SetupError('Could not get the active LimeObjects id')
         }
 
-        // get wrapper environment
-        try {
-            const wrapperType = lbs.common.getURLParameter('type')
-            if (wrapperType !== null) {
-                switch (wrapperType) {
-                case 'tab':
-                    lbs.wrapperType = 'wrapperTab'
-                    $('#wrapper').removeClass('content-container').addClass('content-container-tab')
-                    break
-                case 'inline':
-                    lbs.wrapperType = 'wrapperInline'
-                    $('#wrapper').removeClass('content-container').addClass('content-container-inline')
-                    break
-                default:
-                    lbs.wrapperType = 'wrapperActionpad'
-                }
-            } else {
-                lbs.wrapperType = 'wrapperActionpad'
-            }
-        } catch (e) {
-            lbs.log.error('Could not determine wrapper type', e)
-        }
+
+        lbs.setWrapper()
+        lbs.setActiveDBandServer()
+        lbs.setSkin()
 
         document.title += `: ${this.activeClass}`
-
         lbs.log.info(`Using wrapper type: ${lbs.wrapperType}`)
         lbs.log.info(`Using view: ${lbs.activeClass || 'No view supplied'}`)
-
-        // get Server and Database
-        lbs.setActiveDBandServer()
     },
 
+    setActiveInspectorReference() {
+        if (lbs.hasLimeConnection) {
+            /* Just trying to grab the activeInspector by reference might cause problems
+             a to query strings a therefor added by lime and used to make a lookup.
+            In old clients this isn't done and we need a fallback
+            */
+            switch (lbs.common.getURLParameter('apowner')) {
+            // "owner" of actionpad, a inspector or the application
+            case 'inspector': {
+                const inspectorId = lbs.common.getURLParameter('apownerid')
+                if (inspectorId) {
+                    lbs.activeInspector = lbs.limeDataConnection.Inspectors.Lookup(inspectorId)
+                }
+                break
+            }
+            case 'application':
+                lbs.activeInspector = null
+                break
+            default: // no inspectorid support, using fallback
+                lbs.activeInspector = lbs.limeDataConnection.ActiveInspector
+            }
+            // set references
+        }
+    },
+
+    setWrapper() {
+        switch (lbs.common.getURLParameter('type')) {
+        case 'tab':
+            lbs.wrapperType = 'wrapperTab'
+            $('#wrapper').removeClass('content-container').addClass('content-container-tab')
+            break
+        case 'inline':
+            lbs.wrapperType = 'wrapperInline'
+            $('#wrapper').removeClass('content-container').addClass('content-container-inline')
+            break
+        default:
+            lbs.wrapperType = 'wrapperActionpad'
+        }
+    },
     /**
     Find database and server
     */
     setActiveDBandServer() {
-        if (lbs.hasLimeConnection) {
+        lbs.activeServer = lbs.common.getURLParameter('server')
+        if (!lbs.activeServer && lbs.hasLimeConnection) {
             lbs.activeServer = lbs.limeDataConnection.Database.ActiveServerName
+        } else if (!lbs.activeServer) {
+            throw new SetupError('Could not set active server')
+        }
+
+        lbs.activeDatabase = lbs.common.getURLParameter('database')
+        if (!lbs.activeDatabase && lbs.hasLimeConnection) {
             lbs.activeDatabase = lbs.limeDataConnection.Database.Name
-        } else {
-            lbs.activeServer = lbs.common.getURLParameter('server')
-            lbs.activeDatabase = lbs.common.getURLParameter('database')
+        } else if (!lbs.activeDatabase) {
+            throw new SetupError('Could not set active database')
         }
-        if (!lbs.activeServer || !lbs.activeDatabase) {
-            lbs.log.warn('Could not set active server and database')
-        } else {
-            lbs.log.info(`Active Server, Database: ${lbs.activeServer}, ${lbs.activeDatabase}`)
-        }
+
+        lbs.log.info(`Active Server, Database: ${lbs.activeServer}, ${lbs.activeDatabase}`)
     },
 
     setSkin() {
-        try {
-            // var skin = lbs.common.executeVba("ActionPadTools.GetSkin");
-            const skin = lbs.hasLimeConnection ? lbs.limeDataConnection.application.Theme : 1
-            if (skin === 1) {
-                lbs.log.info('Silver skin is used')
-                $('body').addClass('silver')
-            } else if (skin === 2) {
-                lbs.log.info("Skin: I'm Britney bitch!")
-                $('body').addClass('britney')
-            }
-        } catch (e) {
-            lbs.log.warn('Could not set the skin')
+        let skin = parseInt(lbs.common.getURLParameter('skin'), 10)
+        if (!skin && lbs.hasLimeConnection) {
+            skin = lbs.limeDataConnection.application.Theme
+        }
+        switch (skin) {
+        case 1:
+            lbs.log.info('Silver skin is used')
+            $('body').addClass('silver')
+            break
+        case 2:
+            lbs.log.info("Skin: I'm Britney bitch!")
+            $('body').addClass('britney')
+            break
+        default:
+            lbs.log.info('Skin: Default')
         }
     },
 
