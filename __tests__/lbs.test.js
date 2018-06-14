@@ -7,7 +7,7 @@ lbs.externalConfig = config
 beforeAll(async () => {
     window.lbs = lbs
     // see issue https://github.com/facebook/jest/issues/5124 for window.location
-    window.history.pushState({}, '', '?id=1001&session=123-abc-567&server=lime-core&database=core#company')
+    window.history.pushState({}, '', '?id=1001&session=123-abc-567&server=lime-core&database=core&ap=company&limeobjectid=123&locale=en_us')
     lbs.setActionPadEnvironment()
 })
 
@@ -29,3 +29,8 @@ test('URL parameters for server should be parsed', () => {
 test('URL parameters for database should be parsed', () => {
     expect(lbs.activeDatabase).toEqual('core')
 })
+
+test('Language should be set', () => {
+    expect(lbs.locale).toEqual('en_us')
+})
+
