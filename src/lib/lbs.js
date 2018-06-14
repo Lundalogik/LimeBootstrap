@@ -98,7 +98,7 @@ const lbs = {
         this.processConfiguration()
 
         // set moment language
-        moment.locale(lbs.common.executeVba('Localize.GetLanguage'))
+        moment.locale(lbs.locale)
 
         // load datasources
         this.vm = await lbs.loader.loadDataSources(this.vm, this.config.dataSources, false)
@@ -151,7 +151,7 @@ const lbs = {
     },
 
     /**
-    Initialize a neat little loading spinner
+    * Initialize a neat little loading spinner
     */
     setupLoader() {
         lbs.loading.showLoader = ko.observable(true)
@@ -160,7 +160,7 @@ const lbs = {
     },
 
     /**
-    Fetch variables required to run system
+    * Fetch variables required to run system
     */
     setSystemOperationParameters() {
         // ajax should be async
@@ -180,14 +180,14 @@ const lbs = {
     },
 
     /**
-    Finds and sets
-        - reference to ActiveInspetor
-        - Id of ActiveInspector
-        - Name of LimeType (class), might also be 'index' indicating no class
-        - locale
-        - session
-        - limeobject id
-        - wrapper type
+    * Finds and sets
+    *    - reference to ActiveInspetor
+    *    - Id of ActiveInspector
+    *    - Name of LimeType (class), might also be 'index' indicating no class
+    *    - locale
+    *    - session
+    *    - limeobject id
+    *    - wrapper type
     */
     setActionPadEnvironment() {
         lbs.setActiveInspectorReference()
@@ -198,9 +198,9 @@ const lbs = {
         this.activeClass = lbs.common.getURLParameter('ap')
         if (!this.activeClass && window.location.hash !== '') {
             lbs.activeClass = window.location.hash.substring(1)
-        } else if (lbs.activeInspector) {
+        } else if (!this.activeClass && lbs.activeInspector) {
             lbs.activeClass = lbs.activeInspector.class.Name
-        } else { // all else fails, go for Index
+        } else if (!this.activeClass) { // all else fails, go for Index
             lbs.activeClass = 'index'
         }
 
