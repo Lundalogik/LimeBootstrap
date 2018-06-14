@@ -1,4 +1,4 @@
-import NotYetImplementedError from '../lbs.errors'
+import { NotYetImplementedError } from '../lbs.errors'
 
 export default class DataSource {
     constructor({

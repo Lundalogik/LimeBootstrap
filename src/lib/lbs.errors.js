@@ -1,12 +1,21 @@
-class NotYetImplementedError extends Error {
-    constructor(
-        message = 'The method you tried invoking has not yet been implemented... Go make a pull request!',
-    ) {
-        super()
-        this.name = 'Not yet implemented...'
-        this.message = message
-        Error.captureStackTrace(this, NotYetImplementedError)
+class ExtendableError extends Error {
+    constructor(message) {
+        super(message)
+        this.name = this.constructor.name
+        if (typeof Error.captureStackTrace === 'function') {
+            Error.captureStackTrace(this, this.constructor)
+        } else {
+            this.stack = (new Error(message)).stack
+        }
     }
 }
 
-export default NotYetImplementedError
+export class NotYetImplementedError extends ExtendableError {
+    constructor(
+        message = 'The method you tried invoking has not yet been implemented... Go make a pull request!',
+    ) {
+        super(message)
+    }
+}
+
+export class SetupError extends ExtendableError {}
