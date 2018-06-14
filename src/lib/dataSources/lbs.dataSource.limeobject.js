@@ -2,9 +2,17 @@ import dataSource from './lbs.dataSource'
 
 // Represents a request for data of a LimeObject from the rest API
 export default class LimeObject extends dataSource {
-    /*
-    * @param {number} id ID of the LimeObject
-    */
+
+    /**
+     *Creates an instance of LimeObject.
+     * @param {*} {
+     *         id, limetype, embed, ...rest
+     *     }
+     * @param {string} session
+     * @param {string} server
+     * @param {string} database
+     * @memberof LimeObject
+     */
     constructor({
         id, limetype, embed, ...rest
     }, session, server, database) {
@@ -14,6 +22,12 @@ export default class LimeObject extends dataSource {
         this.embed = embed || []
     }
 
+    /**
+     *
+     * @readonly
+     * @memberof LimeObject
+     * @returns {string} The url to be used when fetchning
+     */
     get url() {
         let url = `${super.serverURL}/api/v1/limeobject/${this.limetype}/${this.id}/`
         this.embed.forEach((element, index, array) => {
@@ -28,6 +42,12 @@ export default class LimeObject extends dataSource {
         return url
     }
 
+    /**
+     * Fetch data from the Lime CRM REST api
+     *
+     * @returns {Promise<object>} A Promise containing requested data
+     * @memberof LimeObject
+     */
     async fetch() {
         const response = await super._fetch(this.url)
 

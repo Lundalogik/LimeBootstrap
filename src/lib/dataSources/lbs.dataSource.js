@@ -1,5 +1,12 @@
 import { NotYetImplementedError } from '../lbs.errors'
 
+/**
+ *
+ * @interface
+ * @mixin
+ * @export
+ * @class DataSource
+ */
 export default class DataSource {
     constructor({
         type, source, alias = '', protocol = 'https',
@@ -18,6 +25,14 @@ export default class DataSource {
         return `${this.protocol}://${this.serverURLComponent}/${this.databaseURLComponent}`
     }
 
+    /**
+     *
+     * @private
+     * @param {string} [url='']
+     * @param {*} [settings={}]
+     * @returns
+     * @memberof DataSource
+     */
     async _fetch(url = '', settings = {}) {
         const { method = 'GET' } = settings
         const _settings = {
@@ -37,7 +52,17 @@ export default class DataSource {
         }
     }
 
-    static fetch() {
+
+
+    /**
+     * Should return a promise to the data from the datasource
+     * @async
+     * @static
+     * @abstract
+     * @memberof DataSource
+     * @returns {Promise<object>}
+     */
+    static async fetch() {
         throw new NotYetImplementedError('Should be implemented by subclass')
     }
 }
