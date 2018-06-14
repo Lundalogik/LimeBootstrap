@@ -218,7 +218,7 @@ export class lfx {
      * @memberof lfx
      */
     static createTranslations(owner, locale) {
-        const l = locale || lbs.locale
+        const l = locale || lbs.activeLocale
         return new Translations({ owner, l },
             lbs.session,
             lbs.activeServer,

@@ -98,7 +98,7 @@ const lbs = {
         this.processConfiguration()
 
         // set moment language
-        moment.locale(lbs.locale)
+        moment.locale(lbs.activeLocale)
 
         // load datasources
         this.vm = await lbs.loader.loadDataSources(this.vm, this.config.dataSources, false)
@@ -211,28 +211,13 @@ const lbs = {
             lbs.log.warn('Could not set active inspector id!')
         }
 
-<<<<<<< HEAD
-        // override sys-view
-        if (lbs.common.getURLParameter('sv') !== null) {
-            this.activeClass = 'system/view/{0}'.format(lbs.common.getURLParameter('sv'))
-        }
-
-        if (lbs.common.getURLParameter('id') !== null) {
-            lbs.activeInspectorId = parseInt(lbs.common.getURLParameter('id'), 10)
-        }
-
-        if (lbs.common.getURLParameter('locale') !== null) {
-            lbs.activeLocale = lbs.common.getURLParameter('locale').replace('-', '_')
-        } else {
-            lbs.activeLocale = lbs.common.executeVba('LBSHelper.getLocale').replace('-', '_')
-=======
         lbs.activeLocale = lbs.common.getURLParameter('locale')
         if (!lbs.activeLocale && lbs.hasLimeConnection) {
             lbs.activeLocale = lbs.common.executeVba('LBSHelper.getLocale')
         } else if (!lbs.activeLocale) {
             lbs.log.warn('Could not set locale! Default "en_us" will be used')
->>>>>>> Rewritten setup of AP env
         }
+        lbs.activeLocale = lbs.activeLocale.replace('-', '_') // Lime is inconsistent in useage of locale strings
 
         lbs.session = lbs.common.getURLParameter('session')
         if (!lbs.session && lbs.hasLimeConnection) {
