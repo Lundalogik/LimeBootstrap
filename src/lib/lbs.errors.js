@@ -19,3 +19,5 @@ export class NotYetImplementedError extends ExtendableError {
 }
 
 export class SetupError extends ExtendableError {}
+
+export class StupidVBAParameterError extends ExtendableError {}
