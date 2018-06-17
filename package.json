@@ -57,6 +57,6 @@
     "xml2json-light": "^1.0.6"
   },
   "jest": {
-    "testURL": "https://www.lime-bootstrap.com/lbs.html#company"
+    "testURL": "https://www.lime-bootstrap.com/lbs.html?apait=company"
   }
 }

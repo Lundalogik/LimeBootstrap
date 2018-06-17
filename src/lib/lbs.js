@@ -33,9 +33,11 @@ const lbs = {
     activeClass: '',
     activeDatabase: '',
     activeServer: '',
+    activeLimeObjectId: null,
     activeInspector: null,
     activeInspectorId: null,
     activeLocale: 'en_us',
+    activeUser: null,
     session: null,
     wrapperType: 'actionpad',
     apps: {},
@@ -195,20 +197,17 @@ const lbs = {
          If we are not viewing an inspector we are viewing the index actionpad.
          Used to load appropriate view
         */
-        this.activeClass = lbs.common.getURLParameter('ap')
-        if (!this.activeClass && window.location.hash !== '') {
-            lbs.activeClass = window.location.hash.substring(1)
-        } else if (!this.activeClass && lbs.activeInspector) {
-            lbs.activeClass = lbs.activeInspector.class.Name
-        } else if (!this.activeClass) { // all else fails, go for Index
-            lbs.activeClass = 'index'
-        }
 
-        lbs.activeInspectorId = parseInt(lbs.common.getURLParameter('id'), 10)
-        if (!lbs.activeInspectorId && lbs.activeInspector) {
-            lbs.activeInspectorId = lbs.activeInspector.Id
-        } else if (!lbs.activeInspectorId) {
-            lbs.log.warn('Could not set active inspector id!')
+        // Get name of the LimeType
+        lbs.activeClass = lbs.common.getURLParameter('apait')
+        if (!lbs.activeClass) {
+            lbs.activeClass = window.location.hash.substring(1)
+        } else if (!lbs.activeClass) {
+            lbs.activeClass = lbs.common.getURLParameter('ap') // legacy way
+        } else if (!lbs.activeClass && lbs.activeInspector) {
+            lbs.activeClass = lbs.activeInspector.class.Name
+        } else if (!lbs.activeClass) { // all else fails, go for Index
+            lbs.activeClass = 'index'
         }
 
         lbs.activeLocale = lbs.common.getURLParameter('locale')
@@ -219,14 +218,15 @@ const lbs = {
         }
         lbs.activeLocale = lbs.activeLocale.replace('-', '_') // Lime is inconsistent in useage of locale strings
 
-        lbs.session = lbs.common.getURLParameter('session')
+        // Get session
+        lbs.session = lbs.common.getURLParameter('apsid')
         if (!lbs.session && lbs.hasLimeConnection) {
             lbs.session = lbs.common.executeVba('LBSHelper.GetSessionID')
         } else if (!lbs.session) {
             throw new SetupError('Could not get users active session')
         }
 
-        lbs.activeLimeObjectId = lbs.common.getURLParameter('limeobjectid')
+        lbs.activeLimeObjectId = parseInt(lbs.common.getURLParameter('limeobjectid'), 10)
         if (!lbs.activeLimeObjectId && lbs.activeInspector) {
             lbs.activeLimeObjectId = lbs.activeInspector.record.ID
         } else if (!lbs.activeLimeObjectId && lbs.activeClass !== 'index') {
@@ -237,6 +237,7 @@ const lbs = {
         lbs.setWrapper()
         lbs.setActiveDBandServer()
         lbs.setSkin()
+        lbs.setActiveUser()
 
         document.title += `: ${this.activeClass}`
         lbs.log.info(`Using wrapper type: ${lbs.wrapperType}`)
@@ -268,6 +269,17 @@ const lbs = {
         }
     },
 
+    setActiveUser() {
+        let activeUser = lbs.common.getURLParameter('apusr')
+        if (!activeUser && lbs.hasLimeConnection) {
+            activeUser = lbs.common.executeVba('lbsHelper.getActiveUser')
+        } else if (!activeUser) {
+            throw new SetupError('Could not get active user')
+        }
+
+        lbs.activeUser = JSON.parse(activeUser)
+    },
+
     setWrapper() {
         switch (lbs.common.getURLParameter('type')) {
         case 'tab':
@@ -286,14 +298,16 @@ const lbs = {
     Find database and server
     */
     setActiveDBandServer() {
-        lbs.activeServer = lbs.common.getURLParameter('server')
+        // set active server
+        lbs.activeServer = lbs.common.getURLParameter('apsrv')
         if (!lbs.activeServer && lbs.hasLimeConnection) {
             lbs.activeServer = lbs.limeDataConnection.Database.ActiveServerName
         } else if (!lbs.activeServer) {
             throw new SetupError('Could not set active server')
         }
 
-        lbs.activeDatabase = lbs.common.getURLParameter('database')
+        // Set active database
+        lbs.activeDatabase = lbs.common.getURLParameter('apdb')
         if (!lbs.activeDatabase && lbs.hasLimeConnection) {
             lbs.activeDatabase = lbs.limeDataConnection.Database.Name
         } else if (!lbs.activeDatabase) {
