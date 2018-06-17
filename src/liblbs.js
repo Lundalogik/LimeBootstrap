@@ -9,8 +9,12 @@ import LimeObjects from './lib/dataSources/lbs.dataSource.limeobjects'
 import CustomEndpoint from './lib/dataSources/lbs.dataSource.customEndpoint'
 import Translations from './lib/dataSources/lbs.dataSource.translations'
 import { StupidVBAParameterError } from './lib/lbs.errors'
+import User from './lib/models/lbs.Users'
 
 export const activeInspector = { lbs }
+
+/** @type {User} */
+export const activeUser = { lbs }
 
 /**
  * log is lbs internal logging tool. The output
@@ -236,18 +240,5 @@ export class lfx {
      */
     static createLimeLink(limeTypeName, limeObjectId) {
         return lbs.common.createLimeLink(limeTypeName, limeObjectId)
-    }
-
-    /**
-     * Checks if a users is member of any of the supplied groups
-     *
-     * @static
-     * @param {Array<string>} groupsToCheckMembershipOf
-     * @param {Array<string>} usersMemberships
-     * @memberof lfx
-     * @returns {Boolean}
-     */
-    static userMemberOfGroups(groupsToCheckMembershipOf, usersMemberships) {
-        return lbs.common.checkGroup(groupsToCheckMembershipOf, usersMemberships)
     }
 }

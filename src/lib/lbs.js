@@ -18,6 +18,7 @@ import Bakery from './lbs.bakery'
 import registerCustomBindings from './lbs.bindings'
 import ComponentLoader from './lbs.componentLoader'
 import { SetupError } from './lbs.errors'
+import User from './models/lbs.Users'
 /**
 Objekt container
 */
@@ -270,14 +271,31 @@ const lbs = {
     },
 
     setActiveUser() {
-        let activeUser = lbs.common.getURLParameter('apusr')
-        if (!activeUser && lbs.hasLimeConnection) {
-            activeUser = lbs.common.executeVba('lbsHelper.getActiveUser')
+        let activeUser = null
+        if (lbs.common.getURLParameter('apusr')) {
+            activeUser = JSON.parse(lbs.common.getURLParameter('apusr'))
+            const groups = activeUser.groups.map(group => group.name)
+            lbs.activeUser = new User(
+                activeUser.name,
+                activeUser.id, activeUser.isAdmin,
+                activeUser.isSuperUser,
+                groups,
+            )
+        } else if (lbs.hasLimeConnection) {
+            activeUser = JSON.parse(lbs.common.executeVba('lbsHelper.getActiveUser')).ActiveUser
+            const groups = activeUser.groups.map(group => group.Name)
+            lbs.activeUser = new User(
+                activeUser.Name,
+                activeUser.ID,
+                activeUser.isAdmin,
+                activeUser.isSuperUser,
+                groups,
+            )
         } else if (!activeUser) {
             throw new SetupError('Could not get active user')
         }
 
-        lbs.activeUser = JSON.parse(activeUser)
+
     },
 
     setWrapper() {
