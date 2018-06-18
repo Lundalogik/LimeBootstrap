@@ -28,7 +28,7 @@ export default class User {
     }
 
     /**
-     * Checks if users is member of one of the supplied
+     * Checks if users is member of one of the supplied groups
      *
      * @param {Array<string>} groups Array of group names
      * @returns {Boolean} Returns true if user is member of one of the groups
