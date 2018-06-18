@@ -16,10 +16,24 @@ export default class User {
         this.groups = groups
     }
 
+    /**
+     * Checks if user is member of the supplied group name
+     *
+     * @param {string} group Name of group
+     * @returns {Boolean} Returns true if user is member of group
+     * @memberof User
+     */
     isMemberOfGroup(group) {
         return this.groups.includes(group)
     }
 
+    /**
+     * Checks if users is member of one of the supplied
+     *
+     * @param {Array<string>} groups Array of group names
+     * @returns {Boolean} Returns true if user is member of one of the groups
+     * @memberof User
+     */
     isMemberInOneOf(groups) {
         return groups.some(v => this.groups.includes(v))
     }
