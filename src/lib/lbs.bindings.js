@@ -193,6 +193,7 @@ export default function registerCustomBindings() {
     */
     ko.bindingHandlers.vbaVisible = {
         init(element, valueAccessor) {
+            lbs.log.warn('[Deprecation] The vbaVisible is depricated because of performance. Use the `lbs-guard` component or `visible`-bindning')
             const visible = lbs.common.executeVba(ko.unwrap(valueAccessor()))
             if (visible) {
                 $(element).show()
