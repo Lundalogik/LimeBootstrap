@@ -81,7 +81,7 @@ const apploader = {
 
         return this
     },
-    
+
     /**
     Copy global viewmodel to app and add the datasources for the app
     */
@@ -89,10 +89,14 @@ const apploader = {
         $.each(lbs.apps, (key, app) => {
             // to-be viewmodel
             let vm = {}
-            vm.localize = lbs.vm.localize
-
             // load data
             vm = lbs.loader.loadDataSources(vm, app.instance.config.dataSources)
+            if (lbs.vm.localize) {
+                vm.localize = lbs.vm.localize
+            } else { // Localize is not garanteed to be loaded anymore
+                vm.localize = lbs.loader._loadDataSource({ type: 'localization' })
+            }
+
             lbs.apps[key].vm = vm
         })
     },
