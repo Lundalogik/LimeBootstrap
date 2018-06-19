@@ -206,11 +206,14 @@ const lbs = {
         lbs.activeClass = lbs.common.getURLParameter('apait')
         if (!lbs.activeClass) {
             lbs.activeClass = window.location.hash.substring(1)
-        } else if (!lbs.activeClass) {
+        }
+        if (!lbs.activeClass) {
             lbs.activeClass = lbs.common.getURLParameter('ap') // legacy way
-        } else if (!lbs.activeClass && lbs.activeInspector) {
+        }
+        if (!lbs.activeClass && lbs.activeInspector) {
             lbs.activeClass = lbs.activeInspector.class.Name
-        } else if (!lbs.activeClass) { // all else fails, go for Index
+        }
+        if (!lbs.activeClass) { // all else fails, go for Index
             lbs.activeClass = 'index'
         }
 
@@ -297,8 +300,6 @@ const lbs = {
         } else if (!activeUser) {
             throw new SetupError('Could not get active user')
         }
-
-
     },
 
     setWrapper() {
