@@ -27,6 +27,7 @@ const lbs = {
     Properties
     */
     debug: false,
+    debugVm: { warnings: ko.observable(0), errors: ko.observable(0) },
     verboseLevel: null,
     limeDataConnection: window.external,
     limeVersion: {},
@@ -66,7 +67,8 @@ const lbs = {
 
         // Enable or disable debug-mode
         this.debug = lbs.externalConfig.debug
-        ko.applyBindings({ enabled: this.debug }, $('#debug').get(0))
+        lbs.debugVm.enabled = true
+        ko.applyBindings(lbs.debugVm, $('#debug').get(0))
 
         // set contextmenu enables/disabled
         this.SetTouchEnabled(false)

@@ -46,11 +46,13 @@ class Log {
         }
     }
     warn(args) {
+        lbs.debugVm.warnings(lbs.debugVm.warnings() + 1)
         if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.warn) {
             console.warn(args)
         }
     }
     error(args) {
+        lbs.debugVm.errors(lbs.debugVm.errors() + 1)
         if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.error) {
             console.error(args)
         }
