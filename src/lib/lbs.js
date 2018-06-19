@@ -50,23 +50,8 @@ const lbs = {
     apploader,
     bakery: null,
     log: new Log(),
+    config: null,
     VmFactory: () => {},
-
-    /**
-    config
-    */
-    config: {
-        dataSources: [
-            { type: 'activeInspector', source: '' },
-            { type: 'localization', source: '' },
-        ],
-        resources: {
-            scripts: [],
-            styles: [],
-            libs: [],
-        },
-        autorefresh: false,
-    },
 
     /**
     Setup
@@ -146,9 +131,27 @@ const lbs = {
     Set properties when not standard
     */
     processConfiguration() {
+        let defaultConfig = null
+        const dataSources = lbs.externalConfig.dataSources || lbs.externalConfig.config
+        if (lbs.externalConfig.defaultRestDataSources) {
+            defaultConfig = {
+                dataSources: [
+                    { type: 'activeLimeObject' },
+                    { type: 'translations', owner: `actionpad_${lbs.activeClass}` },
+                ],
+            }
+        } else {
+            defaultConfig = {
+                dataSources: [
+                    { type: 'activeInspector', source: '' },
+                    { type: 'localization', source: '' },
+                ],
+            }
+        }
+
         this.config = lbs.loader.loadExternalConfig(
-            this.config,
-            this.externalConfig.config,
+            defaultConfig,
+            dataSources,
             this.activeClass,
         )
     },
