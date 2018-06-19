@@ -112,7 +112,7 @@ export class lfx {
      * @returns {object} data
      */
     static loadDataSource(dataSource) {
-        return lbs.loader.loadDataSource(dataSource)
+        return lbs.loader._loadDataSource(dataSource)
     }
 
     /**

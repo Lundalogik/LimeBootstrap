@@ -265,7 +265,7 @@ const loader = {
             if (lbs.loader.asyncDataSources.includes(source.type)) {
                 data = await lbs.loader.loadAsyncDataSource(source)
             } else if (lbs.loader.legacyDataSources.includes(source.type)) {
-                data = lbs.loader.loadDataSource(source)
+                data = lbs.loader._loadDataSource(source)
             } else {
                 lbs.log.warn(`Data source type ${source.type} is invalid`)
             }
@@ -286,7 +286,28 @@ const loader = {
     /**
     Load a datasource to the selected viewmodel
     */
-    loadDataSource(dataSource) {
+
+    loadDataSource(...args) {
+        lbs.log.warn(args)
+        if (args.length === 1) {
+            return this._loadDataSource(args[0])
+        } else if (args.length === 3) {
+            return this._loadDataSourceLegacy(args[0], args[1], args[2])
+        }
+        return null
+    },
+
+    _loadDataSourceLegacy(vm, dataSource, overrideExisting) {
+        const data = this._loadDataSource(dataSource)
+        vm = lbs.common.mergeOptions(vm, data || {}, overrideExisting)
+        return vm
+    },
+
+    _loadDataSource(dataSource) {
+        if (Object.keys(dataSource).length === 0 && dataSource.constructor === Object) {
+            lbs.log.error('Empty dataSource supplied to loadDataSource. This is probably due to legacy usage')
+            return null
+        }
         let data = {}
 
         lbs.log.debug(`Loading data source: ${dataSource.type}:${dataSource.source}`)
@@ -640,7 +661,7 @@ const loader = {
     xmlToJSON(xml, _alias) {
         const json = {}
         const alias = _alias || 'xmlSource'
-        json[alias] = xml2json.xml2json(xml)
+        json[alias] = xml2json(xml)
 
         return json
     },
