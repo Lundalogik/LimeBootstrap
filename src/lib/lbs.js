@@ -91,7 +91,7 @@ const lbs = {
         moment.locale(lbs.activeLocale)
 
         // load datasources
-        this.vm = await lbs.loader.loadDataSources(this.vm, this.config.dataSources, false)
+        this.vm = await lbs.loader.loadDataSources(this.config.dataSources)
 
         // load view
         if (lbs.activeClass) {

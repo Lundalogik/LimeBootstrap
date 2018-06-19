@@ -230,9 +230,8 @@ const loader = {
     /**
     Load all datasources in set to the selected viewmodel
     */
-    async loadDataSources(_vm, _dataSources, overrideExisting) {
+    async loadDataSources(_dataSources) {
         let dataSources = _dataSources
-        let vm = _vm
         const filterRemoveRelated = item => item.type !== 'relatedRecord'
         const filterRemoveInspector = item => item.type !== 'activeInspector'
         const filterGetInspector = item => item.type === 'activeInspector'
@@ -259,17 +258,23 @@ const loader = {
             // add new source to collection
             dataSources.push(activeInspector)
         }
-        // load soruces
+        // load sources
+        const vm = {}
         await Promise.all(dataSources.map(async (source) => {
-            let data = {}
             if (lbs.loader.asyncDataSources.includes(source.type)) {
-                data = await lbs.loader.loadAsyncDataSource(source)
+                vm[source.alias] = await lbs.loader.loadAsyncDataSource(source)
             } else if (lbs.loader.legacyDataSources.includes(source.type)) {
-                data = lbs.loader._loadDataSource(source)
+                const data = lbs.loader._loadDataSource(source)
+                if (data) {
+                    /*
+                    * Legacy datasources named-spaced them selfs.
+                    * To merge them into the vm we must do this ugly hack
+                    * */
+                    vm[Object.keys(data)[0]] = data[Object.keys(data)[0]]
+                }
             } else {
                 lbs.log.warn(`Data source type ${source.type} is invalid`)
             }
-            vm = lbs.common.mergeOptions(vm, data, overrideExisting)
         }))
 
         return vm
@@ -277,10 +282,8 @@ const loader = {
 
     async loadAsyncDataSource(dataSourceLiteral) {
         const dataSource = lbs.loader.createDataSource(dataSourceLiteral)
-        const key = dataSourceLiteral.alias ? dataSourceLiteral.alias : dataSourceLiteral.type
-        lbs.log.info(`Fetching data source: ${key}`)
-        const data = { [key]: await dataSource.fetch() }
-        return data
+        lbs.log.info(`Fetching data source: ${dataSourceLiteral.alias}`)
+        return dataSource.fetch()
     },
 
     /**

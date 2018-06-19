@@ -87,10 +87,9 @@ const apploader = {
     */
     buildApps() {
         $.each(lbs.apps, (key, app) => {
-            // to-be viewmodel
-            let vm = {}
+            // to-be viewmode
             // load data
-            vm = lbs.loader.loadDataSources(vm, app.instance.config.dataSources)
+            const vm = lbs.loader.loadDataSources(app.instance.config.dataSources)
             if (lbs.vm.localize) {
                 vm.localize = lbs.vm.localize
             } else { // Localize is not garanteed to be loaded anymore
