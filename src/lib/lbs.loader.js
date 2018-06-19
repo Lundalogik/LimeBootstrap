@@ -288,10 +288,10 @@ const loader = {
     */
 
     loadDataSource(...args) {
-        lbs.log.warn(args)
         if (args.length === 1) {
             return this._loadDataSource(args[0])
         } else if (args.length === 3) {
+            lbs.log.warn(`[Deprication] Data source '${args[1].type}' is being used in a legacy way! Change to passing one parameter and expecting a return value`)
             return this._loadDataSourceLegacy(args[0], args[1], args[2])
         }
         return null
