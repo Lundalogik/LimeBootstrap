@@ -28,7 +28,7 @@ const apploader = {
         let instance
         let guid
 
-        $('[data-app]').each((index, element) => {
+        $('[data-app]').each((_, element) => {
             try {
                 // try to parse input to app from view
                 try {
