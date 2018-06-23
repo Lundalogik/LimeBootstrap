@@ -120,7 +120,7 @@ export class lfx {
      *
      * @static
      * @param {string} callsign - Module and function name
-     * @param {} args - Arguments
+     * @param {*} args - Arguments
      * @memberof lfx
      * @returns {string | null}
      */
