@@ -26,28 +26,28 @@
     </head>
     <body  data-bind="event: { keydown: lbs.GlobalEventHandler.OnKeydown }">
         <!-- ko stopBinding: true -->
-        <div id="debug" class="hidden" data-bind="css: {hidden: !enabled}">
-        <!-- ko if: enabled  -->
-            <ul id="debugConsole">
-                <li class="header">Debug
-                    <span class="badge pull-right" onclick="location.reload(true)"> <lbs-icon params="icon: 'fa-refresh'"></lbs-icon> </span>
-                    <span data-bind="text: 'w:' + warnings(), tooltip:{text: 'Number of warnings', placement:'down'}"></span>
-                    <span data-bind="text: 'e:' + errors(), tooltip:{text: 'Number of errors', placement:'down'}"></span>
-                </li>
-            </ul>
-        <!-- /ko -->
-
-        </div>
-
-        <div id="wrapper" class="content-container">
-                <div id="content"></div>
-        </div>
-
-        <div id="loadingIndicator">
-            <!-- ko if: showLoader() -->
-            <i class="fa fa-spinner fa-spin"></i>
+            <div id="debug" class="hidden" data-bind="css: {hidden: !enabled}">
+            <!-- ko if: enabled  -->
+                <ul id="debugConsole">
+                    <li class="header">Debug
+                        <span class="badge pull-right" onclick="location.reload(true)"> <lbs-icon params="icon: 'fa-refresh'"></lbs-icon> </span>
+                        <span data-bind="text: 'w:' + warnings(), tooltip:{text: 'Number of warnings', placement:'down'}"></span>
+                        <span data-bind="text: 'e:' + errors(), tooltip:{text: 'Number of errors', placement:'down'}"></span>
+                    </li>
+                </ul>
             <!-- /ko -->
-        </div>
+
+            </div>
+
+            <div id="wrapper" class="content-container">
+                    <div id="content"></div>
+            </div>
+
+            <div id="loadingIndicator">
+                <!-- ko if: showLoader() -->
+                <i class="fa fa-spinner fa-spin"></i>
+                <!-- /ko -->
+            </div>
         <!-- /ko -->
 
         <script src="system/js/templates.js" type="text/javascript"></script>
