@@ -60,7 +60,8 @@ const lbs = {
     async setup() {
         // register custom bindnings
         registerCustomBindings()
-        ko.options.deferUpdates = true
+        lbs.configureKnockout()
+
 
         // system param
         this.setSystemOperationParameters()
@@ -129,6 +130,15 @@ const lbs = {
         lbs.log.stopTimer('LBS total load time')
     },
 
+    configureKnockout() {
+        ko.options.deferUpdates = true
+        ko.onError = () => {
+            lbs.debugVm.errors(lbs.debugVm.errors() + 1)
+        }
+        ko.punches.interpolationMarkup.enable()
+        ko.punches.attributeInterpolationMarkup.enable()
+        ko.punches.textFilter.enableForBinding('text')
+    },
     /**
     Set properties when not standard
     */
@@ -385,23 +395,7 @@ const lbs = {
     Apply knockout bindings to actionpad, note: no apps will be effected
     */
     applyContentBindings() {
-        ko.punches.interpolationMarkup.enable()
-        ko.punches.attributeInterpolationMarkup.enable()
-        ko.punches.textFilter.enableForBinding('text')
-
-        try {
-            ko.applyBindings(lbs.vm, $('#content').get(0))
-        } catch (e) {
-            lbs.log.warn('Binding of data ActionPad failed! \n Displaying mapping attributes', e)
-        }
-
-        try {
-            if (lbs.activeClass) {
-                ko.applyBindings(lbs.vm, $('body').get(0))
-            }
-        } catch (e) {
-            lbs.log.warn('Binding of body bindings failed!', e)
-        }
+        ko.applyBindings(lbs.vm, $('#content').get(0))
     },
 }
 
