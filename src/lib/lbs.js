@@ -333,10 +333,12 @@ const lbs = {
     */
     setActiveDBandServer() {
         // set active server
-        lbs.activeServer = lbs.common.getURLParameter('apsrv')
-        if (!lbs.activeServer && lbs.hasLimeConnection) {
-            lbs.activeServer = lbs.limeDataConnection.Database.ActiveServerName
-        } else if (!lbs.activeServer) {
+
+        if (lbs.common.getURLParameter('apsrv')) {
+            lbs.activeServer = lbs.common.getURLParameter('apsrv').split('://')[1]
+        } else if (lbs.hasLimeConnection) {
+            lbs.activeServer = lbs.limeDataConnection.Database.FullActiveServerName.split('://')[1]
+        } else {
             throw new SetupError('Could not set active server')
         }
 
