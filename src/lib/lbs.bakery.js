@@ -7,13 +7,13 @@ class Bakery {
 
     setCookie(name, value, days = 9999) {
         const exdays = parseInt(days, 10)
-        Cookies.set(name, value, { expires: exdays, path: this.activeClass })
+        Cookies.set(`${this.activeClass}-${name}`, value, { expires: exdays })
     }
     getCookie(name) {
-        return Cookies.get(name)
+        return Cookies.get(`${this.activeClass}-${name}`)
     }
     getCookieJSON(name) {
-        return Cookies.getJSON(name)
+        return Cookies.getJSON(`${this.activeClass}-${name}`)
     }
 }
 
