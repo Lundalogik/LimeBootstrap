@@ -241,4 +241,47 @@ export class lfx {
     static createLimeLink(limeTypeName, limeObjectId) {
         return lbs.common.createLimeLink(limeTypeName, limeObjectId)
     }
+
+    /**
+     * Gets a cookie. All cookies are automatically
+     * namedspace with the name of the active actionpad
+     *
+     * @static
+     * @param {string} name
+     * @returns {string}
+     * @memberof lfx
+     */
+    static getCookie(name) {
+        return lbs.bakery.getCookie(name)
+    }
+
+
+    /**
+     * Sets a cookie. All cookies are automatically
+     * namedspace with the name of the active actionpad.
+     * This can be used to store UI state between reloads
+     *
+     * @static
+     * @param {string} name
+     * @param {string | number} value
+     * @param {number} expiry number of days untill cookie expires, default 9999
+     * @returns {string | number}
+     * @memberof lfx
+     */
+    static setCookie(name, value, expiry) {
+        return lbs.bakery.setCookie(name, value, expiry)
+    }
+
+    /**
+     * Gets the JSON value of a set cookie. All cookies are automatically
+     * namedspace with the name of the active actionpad
+     *
+     * @static
+     * @param {string} name
+     * @returns {object}
+     * @memberof lfx
+     */
+    static getCookieJSON(name) {
+        return lbs.bakery.getCookieJSON(name)
+    }
 }
