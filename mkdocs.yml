@@ -13,11 +13,13 @@ pages:
     - 'Alert': 'components/lbs-alert.md'
     - 'Button components': 'components/lbs-buttons.md'
     - 'Card': 'components/lbs-card.md'
+    - 'Guard': 'components/lbs-guard.md'
     - 'Hero': 'components/lbs-hero.md'
     - 'Icon': 'components/lbs-icon.md'
     - 'List components': 'components/lbs-lists.md'
     - 'Loading indicator': 'components/lbs-loading-indicator.md'
     - 'Menu': 'components/lbs-menu.md'
+    - 'Search': 'components/lbs-search.md'
     - 'Time components': 'components/lbs-time.md'
   - 'Changelog':
     - 'LBS 2': 'changelog/2.x.md'
