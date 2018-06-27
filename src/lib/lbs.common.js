@@ -52,7 +52,7 @@ class Common {
     Fetch the url parameters from the GET-URL
     */
     static getURLParameter(name) {
-        const param = decodeURIComponent((RegExp(`${name}=(.+?)(&|$)`).exec(window.location.search) || [null, null])[1])
+        const param = unescape((RegExp(`${name}=(.+?)(&|$)`).exec(window.location.search) || [null, null])[1])
         return (param === 'null' ? null : param)
     }
 
