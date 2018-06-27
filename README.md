@@ -8,16 +8,16 @@ npm install
 npm run serve
 ```
 
-We are using Bable to transpile and [brunch.io](brunch.io) to bundle.
+We are using Babel to transpile and [brunch.io](https://brunch.io) to bundle.
 
 [Jest](https://facebook.github.io/jest/) is used for tests: `npm run test`
 
 [Eslint](https://eslint.org) is our linter overlord. We are using a slightly modified version of [Airbnbs style](https://github.com/airbnb/javascript/).
 
-Using VSCode with eslint (dbaeumer.vscode-eslint) and jest (Orta.vscode-jest) extensions are recommenden
+Using VSCode with eslint (dbaeumer.vscode-eslint) and jest (Orta.vscode-jest) extensions are recommended.
 
 
-## Creating a relase
+## Creating a release
 1. Create a build
 ```bash
 npm install
