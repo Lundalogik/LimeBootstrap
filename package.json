@@ -1,5 +1,5 @@
 {
-  "name": "lime-bootstrap",
+  "name": "@limetech/lime-bootstrap",
   "version": "2.0.0-rc.1",
   "description": "",
   "main": "src/liblbs.js",
