@@ -22,19 +22,20 @@ lbs.externalConfig = {
 
     ],
 
-    config: {
+    defaultRestDataSources: false,
+
+    dataSources: {
         index: {
             dataSources: [
                 { type: 'localization', source: '' },
             ],
-            autorefresh: false,
         },
         company: {
             dataSources: [
-                { type: 'activeLimeObject', embed: ['coworker'], protocol: 'http' },
-                { type: 'relatedLimeObjects', limetype: 'person', alias: 'persons', protocol: 'http' },
-                { type: 'translations', owner: 'company', alias: 'txt', protocol: 'http' },
-                { type: 'customEndpoint', relativeUrl: 'person/expired/', alias: 'gdpr', protocol: 'http' },
+                { type: 'activeLimeObject', embed: ['coworker'], protocol: 'https' },
+                { type: 'relatedLimeObjects', limetype: 'person', alias: 'persons', protocol: 'https' },
+                { type: 'translations', owner: 'company', alias: 'txt', protocol: 'https' },
+                { type: 'customEndpoint', relativeUrl: 'person/expired/', alias: 'gdpr', protocol: 'https' },
             ],
         },
     },
