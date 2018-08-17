@@ -37,6 +37,7 @@ const lbs = {
     activeServer: '',
     activeLimeObjectId: null,
     activeInspector: null,
+    activeExplorer: null,
     activeInspectorId: null,
     activeLocale: 'en_us',
     activeUser: null,
@@ -229,6 +230,8 @@ const lbs = {
             lbs.activeClass = 'index'
         }
 
+        lbs.setActiveExplorerRef()
+
         lbs.activeLocale = lbs.common.getURLParameter('locale')
         if (!lbs.activeLocale && lbs.hasLimeConnection) {
             lbs.activeLocale = lbs.common.executeVba('LBSHelper.getLocale')
@@ -285,6 +288,18 @@ const lbs = {
                 lbs.activeInspector = lbs.limeDataConnection.ActiveInspector
             }
             // set references
+        }
+    },
+
+    setActiveExplorerRef() {
+        if (lbs.hasLimeConnection) {
+            if (lbs.activeInspector) {
+                lbs.activeExplorer = lbs.activeInspector.ActiveExplorer
+            } else if (lbs.activeClass === 'index') {
+                lbs.activeExplorer = lbs.limeDataConnection.ActiveExplorer
+            } else {
+                lbs.activeExplorer = null
+            }
         }
     },
 

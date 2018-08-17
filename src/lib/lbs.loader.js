@@ -673,6 +673,17 @@ const loader = {
         return lbs.common.executeVba('lbsHelper.CreateUpdateTranslation,', [owner, code, text, culture])
     },
 
+    loadSelectedLimeObjects() {
+        if (lbs.activeExplorer) {
+            if (lbs.activeExplorer.Selection.Count) {
+
+            } else {
+                lbs.log.info('No current selection')
+            }
+        } else {
+            lbs.log.warn('The ActiveExplorer reference is not set, could not load selection')
+        }
+    },
 }
 
 export default loader
