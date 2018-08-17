@@ -1,14 +1,14 @@
 <lbs-hero params="header: company.name, menuItems: [{ label: 'My hero item', icon: 'fa-bowling-ball' }]">
     <lbs-list-item params="text: company.visitingcity, icon: 'fa-map-marker'" data-bind="openMap: company.fullvisitingaddress"></lbs-list-item>
     <lbs-list-item params="text: company.phone, call: company.phone, icon: 'fa-phone'" data-bind="call: company.phone"></lbs-list-item>
-    <lbs-list-item params="text: company.www, openURL: company.www, icon: 'fa-globe'" data-bind="openURL: company.www"></lbs-list-item>
+    <lbs-list-item params="text: company.www2, openURL: company.www, icon: 'fa-globe'" data-bind="openURL: company.www"></lbs-list-item>
 </lbs-hero>
 
 <!-- <lbs-alert params="alertType: 'danger'">
     <lbs-icon params="icon: 'fa-exclamation'"></lbs-icon>
     <span>{{company.name}}</span>
 </lbs-alert> -->
-
+<a data-bind="text: 'hepp', icon:'fa-map-marker'"></a>
 <!--
 <lbs-dropdown-menu params="title: 'Check this out!', items: persons.map((person) => {return {label: person.name, icon: 'fa-cog'} } )">
     <lbs-list-item params="text: 'Additional item!', icon: 'fa-calendar'" data-bind="click: () => alert('hepp')"></lbs-list-item>
@@ -52,9 +52,24 @@
 <lbs-card params="title: 'My card'">
     <div> My data here! </div>
 </lbs-card>
-
+<lbs-guard params="activeUserIsMemberInOneOfGroups: ['Administrators', 'Testers']">
+    <lime-do></lime-do>
+</lbs-guard>
 <!-- <lbs-relative-time params="time:'2019-05-26' "></lbs-relative-time>
 <div>
 <checklist params="msg: 'hepp'"></checklist>
 
+
 </div> -->
+
+<lbs-lwc-wrapper
+    params="name: 'lwc-creditinfo-credit-info'"
+></lbs-lwc-wrapper>
+
+<lbs-lwc-wrapper
+    params="name: 'lwc-stencil-zero-1-hello-world'"
+></lbs-lwc-wrapper>
+
+<lbs-lwc-wrapper
+    params="name: 'lwc-stencil-zero-2-hello-world', attributes: { label: 'My Dynamic Label'}"
+></lbs-lwc-wrapper>

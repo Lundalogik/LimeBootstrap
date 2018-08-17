@@ -1,6 +1,7 @@
 import ko from 'knockout'
 import _ from 'underscore'
 import $ from 'jquery'
+import WebComponents from './dataSources/lbs.dataSource.webComponents'
 
 export default class ComponentLoader {
     static async loadComponents(globalComponents, localComponents) {
@@ -18,4 +19,35 @@ export default class ComponentLoader {
             }
         }))
     }
+    
+    static async loadWebComponents() {
+        const dataSourceWebComponents = new WebComponents(
+            { type: 'webComponents', alias: 'webcomponents' },
+            lbs.session,
+            lbs.activeServer,
+            lbs.activeDatabase,
+        )
+        const plugins = await dataSourceWebComponents.fetch()
+
+        const baseElement = document.createElement('base')
+        baseElement.setAttribute('href', 'https://localhost/')
+        document.head.appendChild(baseElement)
+
+        await Promise.all(plugins.scripts.map(script => {
+            return loadScript(script);
+        }))
+
+        function loadScript(script) {
+            return new Promise(success => {
+                const scriptElement = document.createElement('script')
+                scriptElement.onload = () => {
+                    success()
+                };
+
+                document.body.appendChild(scriptElement)
+                scriptElement.setAttribute('src', script)
+            });
+        }
+    }
 }
+

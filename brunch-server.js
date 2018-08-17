@@ -43,6 +43,7 @@ app.get('/core/person/expired/', (req, res) => {
     res.send(JSON.stringify(gdprResponses.bulkConsentPayload))
 })
 
+
 // Export the module like this for Brunch.
 module.exports = (config, callback) => {
     // Server config is passed within the `config` variable.

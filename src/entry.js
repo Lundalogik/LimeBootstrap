@@ -7,6 +7,7 @@ import xml2json from 'xml2json-light'
 import lbs from './lib/lbs'
 import './components/lbs.components'
 
+
 window.lbs = lbs
 
 // Hack to be compatible with old global version of this functionality
