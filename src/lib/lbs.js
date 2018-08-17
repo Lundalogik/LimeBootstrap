@@ -20,6 +20,7 @@ import ComponentLoader from './lbs.componentLoader'
 import { SetupError } from './lbs.errors'
 import User from './models/lbs.Users'
 import xml2json from './lbs.xml2json'
+import LWCPlatform from './lwcServices/platform'
 /**
 Objekt container
 */
@@ -105,12 +106,16 @@ const lbs = {
         // load view
         this.loader.loadView(lbs.activeView, $('#content'))
 
+        lbs.lwcPlatform = new LWCPlatform()
 
         let localComponents = []
         if (lbs.externalConfig[lbs.activeView] && lbs.externalConfig[lbs.activeView].components) {
             localComponents = lbs.externalConfig[lbs.activeView].components
         }
         await ComponentLoader.loadComponents(lbs.externalConfig.components, localComponents)
+
+        await ComponentLoader.loadWebComponents()
+
         // load apps
         this.apploader.identifyApps()
 

@@ -11,7 +11,8 @@
     "build": "brunch build",
     "watch": "brunch watch -s",
     "docs": "mkdocs serve",
-    "publish-docs": "mkdocs gh-deploy"
+    "publish-docs": "mkdocs gh-deploy",
+    "postinstall": "cp -R node_modules/lime-elements/dist dist/system/lime-elements && cp -R node_modules/lime-elements/dist/collection/assets dist/"
   },
   "repository": {
     "type": "git",
@@ -52,6 +53,7 @@
     "knockout": "^3.5.1",
     "knockout-mapping": "^2.6.0",
     "knockout-punches": "^0.5.1",
+    "lime-elements": "^21.0.4",
     "moment": "^2.24.0",
     "pickadate": "^5.0.0-alpha.3",
     "underscore": "^1.10.2",
