@@ -19,6 +19,7 @@ import registerCustomBindings from './lbs.bindings'
 import ComponentLoader from './lbs.componentLoader'
 import { SetupError } from './lbs.errors'
 import User from './models/lbs.Users'
+import LWCPlatform from './lwcServices/platform'
 import xml2json from './lbs.xml2json'
 import LWCPlatform from './lwcServices/platform'
 /**
@@ -59,6 +60,7 @@ const lbs = {
     VmFactory: class VmFactory {},
     lwcPlatform: null,
     xml2json,
+    lwcPlatform: null,
 
     /**
     Setup
