@@ -301,7 +301,7 @@ const lbs = {
             )
         } else if (lbs.hasLimeConnection) {
             activeUser = JSON.parse(lbs.common.executeVba('lbsHelper.getActiveUser')).ActiveUser
-            const groups = activeUser.groups.map(group => group.Name)
+            const groups = activeUser.Groups.map(group => group.Name)
             lbs.activeUser = new User(
                 activeUser.Name,
                 activeUser.ID,
