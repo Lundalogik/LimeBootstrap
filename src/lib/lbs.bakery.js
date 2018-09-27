@@ -1,19 +1,19 @@
 import Cookies from 'js-cookie'
 
 class Bakery {
-    constructor(activeClass) {
-        this.activeClass = activeClass
+    constructor(activeView) {
+        this.activeView = activeView
     }
 
     setCookie(name, value, days = 9999) {
         const exdays = parseInt(days, 10)
-        Cookies.set(`${this.activeClass}-${name}`, value, { expires: exdays })
+        Cookies.set(`${this.activeView}-${name}`, value, { expires: exdays })
     }
     getCookie(name) {
-        return Cookies.get(`${this.activeClass}-${name}`)
+        return Cookies.get(`${this.activeView}-${name}`)
     }
     getCookieJSON(name) {
-        return Cookies.getJSON(`${this.activeClass}-${name}`)
+        return Cookies.getJSON(`${this.activeView}-${name}`)
     }
 }
 

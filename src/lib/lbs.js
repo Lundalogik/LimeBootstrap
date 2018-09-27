@@ -32,6 +32,7 @@ const lbs = {
     limeDataConnection: window.external,
     limeVersion: {},
     hasLimeConnection: false,
+    activeView: '',
     activeClass: '',
     activeDatabase: '',
     activeServer: '',
@@ -96,7 +97,7 @@ const lbs = {
 
         // load view
         if (lbs.activeClass) {
-            this.loader.loadView(lbs.activeClass, $('#content'))
+            this.loader.loadView(lbs.activeView, $('#content'))
         }
 
         let localComponents = []
@@ -199,6 +200,7 @@ const lbs = {
 
     /**
     * Finds and sets
+    *    - the view to use
     *    - reference to ActiveInspetor
     *    - Id of ActiveInspector
     *    - Name of LimeType (class), might also be 'index' indicating no class
@@ -214,19 +216,17 @@ const lbs = {
          Used to load appropriate view
         */
 
+        lbs.activeView = lbs.common.getURLParameter('ap')
+        if (!lbs.activeView) { // all else fails, go for Index
+            lbs.activeView = 'index'
+        } else if (!lbs.activeView) {
+            throw new SetupError('Could not get the active view')
+        }
+
         // Get name of the LimeType
         lbs.activeClass = lbs.common.getURLParameter('apait')
-        if (!lbs.activeClass) {
-            lbs.activeClass = window.location.hash.substring(1)
-        }
-        if (!lbs.activeClass) {
-            lbs.activeClass = lbs.common.getURLParameter('ap') // legacy way
-        }
         if (!lbs.activeClass && lbs.activeInspector) {
             lbs.activeClass = lbs.activeInspector.class.Name
-        }
-        if (!lbs.activeClass) { // all else fails, go for Index
-            lbs.activeClass = 'index'
         }
 
         lbs.activeLocale = lbs.common.getURLParameter('locale')
@@ -248,7 +248,7 @@ const lbs = {
         lbs.activeLimeObjectId = parseInt(lbs.common.getURLParameter('limeobjectid'), 10)
         if (!lbs.activeLimeObjectId && lbs.activeInspector) {
             lbs.activeLimeObjectId = lbs.activeInspector.record.ID
-        } else if (!lbs.activeLimeObjectId && lbs.activeClass !== 'index') {
+        } else if (!lbs.activeLimeObjectId && !lbs.activeClass) {
             throw new SetupError('Could not get the active LimeObjects id')
         }
 
@@ -258,9 +258,9 @@ const lbs = {
         lbs.setSkin()
         lbs.setActiveUser()
 
-        document.title += `: ${this.activeClass}`
+        document.title += `: ${this.activeView}`
         lbs.log.info(`Using wrapper type: ${lbs.wrapperType}`)
-        lbs.log.info(`Using view: ${lbs.activeClass || 'No view supplied'}`)
+        lbs.log.info(`Using view: ${lbs.activeView || 'No view supplied'}`)
     },
 
     setActiveInspectorReference() {

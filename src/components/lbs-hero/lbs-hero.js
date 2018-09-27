@@ -8,7 +8,7 @@ class LBSHeroVM extends LBSBaseComponent {
         const {
             header = '',
             color = 'turquoise',
-            img = `${lbs.activeClass}.png`,
+            img = `${lbs.activeView}.png`,
             menuItems = [],
         } = params
 
