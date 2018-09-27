@@ -1,0 +1,60 @@
+<lbs-hero params="header: company.name, menuItems: [{ label: 'My hero item', icon: 'fa-bowling-ball' }]">
+    <lbs-list-item params="text: company.visitingcity, icon: 'fa-map-marker'" data-bind="openMap: company.fullvisitingaddress"></lbs-list-item>
+    <lbs-list-item params="text: company.phone, call: company.phone, icon: 'fa-phone'" data-bind="call: company.phone"></lbs-list-item>
+    <lbs-list-item params="text: company.www, openURL: company.www, icon: 'fa-globe'" data-bind="openURL: company.www"></lbs-list-item>
+</lbs-hero>
+
+<!-- <lbs-alert params="alertType: 'danger'">
+    <lbs-icon params="icon: 'fa-exclamation'"></lbs-icon>
+    <span>{{company.name}}</span>
+</lbs-alert> -->
+
+<!--
+<lbs-dropdown-menu params="title: 'Check this out!', items: persons.map((person) => {return {label: person.name, icon: 'fa-cog'} } )">
+    <lbs-list-item params="text: 'Additional item!', icon: 'fa-calendar'" data-bind="click: () => alert('hepp')"></lbs-list-item>
+</lbs-dropdown-menu> -->
+
+
+<!-- <lbs-split-button>
+    <lbs-button params="text: 'My button', color: 'magenta', icon: 'fa-money'" data-bind="click: () => alert('hepp')"></lbs-button>
+    <lbs-button params="text: 'My button 2', color: 'orange', icon: 'fa-calendar'"></lbs-button>
+</lbs-split-button>
+
+<lbs-icon params="icon: 'fa-user', options: 'fa-5x'"></lbs-icon> -->
+
+<!-- <lbs-menu params="title: 'My Menu'">
+    <lbs-list-item params="text: 'Item 1', icon: 'fa-calendar'" data-bind="click: () => alert('hepp')"></lbs-list-item>
+    <lbs-list-item params="text: 'Item 2', icon: 'fa-calendar'" data-bind="click: () => alert('hepp')"></lbs-list-item>
+    <lbs-list-item params="text: 'Item 3', icon: 'fa-calendar'" data-bind="click: () => alert('hepp')"></lbs-list-item>
+    <lbs-list-item params="text: 'Item 4', icon: 'fa-calendar'" data-bind="click: () => alert('hepp')"></lbs-list-item>
+</lbs-menu> -->
+
+<!-- <lbs-alert params="text: 'This customer is crazy', alertType: 'danger'"></lbs-alert>
+<lbs-alert params="text: 'This customer is angry', alertType: 'warning'"></lbs-alert>
+<lbs-alert params="text: 'This customer is satisfied', alertType: 'success'"></lbs-alert>
+<lbs-alert params="text: 'This customer is a tea pot', alertType: 'info'"></lbs-alert> -->
+
+<!-- <lbs-button params="text: 'My button', color: 'magenta', icon: 'fa-money'"></lbs-button>
+<lbs-button params="text: 'My alternative button', color: 'lime-green', icon: 'fa-money', alternative: true"></lbs-button>
+<lbs-button params="text: 'My borderless button', color: 'purple', icon: 'fa-money', borderless: true"></lbs-button>
+<lbs-button params="text: 'My borderless alternative button', color: 'orange', icon: 'fa-money', borderless: true, alternative: true"></lbs-button> -->
+
+<!-- <lbs-button-group>
+        <lbs-button params="text: 'My button', color: 'magenta', icon: 'fa-money'"></lbs-button>
+        <lbs-button params="text: 'My button 2', color: 'orange', icon: 'fa-calendar'"></lbs-button>
+</lbs-button-group> -->
+
+<!-- <lbs-split-button>
+        <lbs-button params="text: 'My button', color: 'magenta', icon: 'fa-money'"></lbs-button>
+        <lbs-button params="text: 'My button 2', color: 'orange', icon: 'fa-calendar'"></lbs-button>
+</lbs-split-button> -->
+
+<lbs-card params="title: 'My card'">
+    <div> My data here! </div>
+</lbs-card>
+
+<!-- <lbs-relative-time params="time:'2019-05-26' "></lbs-relative-time>
+<div>
+<checklist params="msg: 'hepp'"></checklist>
+
+</div> -->

@@ -1,0 +1,13 @@
+__mocks__/
+__tests__/
+dist/
+docs/
+site/
+venv/
+VBA/
+src/assets/
+src/vendor/
+src/entry.js
+brunch-config.js
+brunch-server.js
+mkdocs.yml

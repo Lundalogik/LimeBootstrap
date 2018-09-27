@@ -1,0 +1,139 @@
+@import '../../css/variables';
+
+@mixin header-container-color($color){
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD')";
+    /* For IE 5.5 - 7 */
+    background-color: $color;
+    border-bottom: 1px solid darken($color, 10%);
+    color: white;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#B2B4BD');
+
+    &:before {
+        border-color: darken($color, 25%) transparent transparent transparent;
+    }
+
+    ul.info-links li:hover {
+        background-color: lighten($color, 5%);
+    }
+}
+
+.header-container {
+
+    box-shadow: -2px 1px 2px rgba(0, 0, 0, 0.4);
+    cursor:default;
+    margin: -10px -20px 10px -10px;
+    padding: 30px 0 15px 0;
+    position: relative;
+    z-index: 10;
+
+    &:before {
+        background-color: #E0EEFF;
+        border-style: solid;
+        border-width: 10px 10px 0 0;
+        bottom: -10px;
+        content: " ";
+        height: 0;
+        position: absolute;
+        right: 0;
+        width: 0;
+    }
+
+    img {
+        display: block;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+
+    .header-icon-container {
+        background: no-repeat 50% top;
+        font-size: 65px;
+        margin-bottom: 10px;
+    }
+
+    .header-icon-invis{
+        visibility: hidden;
+    }
+
+    ul.info-links li:hover {
+        cursor: default;
+    }
+
+    ul.info-links {
+        text-decoration: none;
+    }
+
+    h2 {
+        font-size: 18px;
+        font-weight: lighter;
+        letter-spacing: -3;
+        margin: 0 0 5px 10px;
+        overflow: hidden;
+        padding: 0 0 0 0px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    ul.info-links {
+        list-style: none;
+        padding: 0;
+    }
+
+    ul.info-links li {
+        list-style-position: inside;
+        margin: 0;
+        overflow: hidden;
+        padding: 0 0 0 15px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+    }
+
+    &.blue {
+        @include header-container-color($blue);
+    }
+    &.yellow {
+        @include header-container-color($yellow);
+    }
+    &.green {
+        @include header-container-color($green);
+    }
+    &.lime-green {
+        @include header-container-color($lime-green);
+    }
+    &.orange {
+        @include header-container-color($orange);
+    }
+    &.dark-grey, .darkgrey {
+        @include header-container-color($dark-grey);
+    }
+    &.white {
+        @include header-container-color($white);
+    }
+    &.purple {
+        @include header-container-color($purple);
+    }
+    &.red {
+        @include header-container-color($red);
+    }
+    &.turquoise {
+        @include header-container-color($turquoise);
+    }
+    &.citrus {
+        @include header-container-color($citrus);
+    }
+    &.clean-green {
+        @include header-container-color($clean-green);
+    }
+    &.deep-red {
+        @include header-container-color($deep-red);
+    }
+    &.light-grey {
+        @include header-container-color($light-grey);
+    }
+    &.purple-rain {
+        @include header-container-color($purple-rain);
+    }
+    &.magenta {
+        @include header-container-color($magenta);
+    }
+}

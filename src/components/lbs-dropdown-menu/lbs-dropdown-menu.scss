@@ -1,0 +1,41 @@
+@import '../../css/variables.scss';
+
+lbs-dropdown-menu {
+    > div.dropdown {
+        border-top-left-radius: none;
+        border-top-right-radius: none;
+        box-shadow: none;
+
+        > ul.dropdown-menu {
+            min-width: 100px;
+            width: auto;
+
+            li {
+                color: $main-text-color;
+                cursor: default;
+                font-size: 14px;
+                overflow: hidden;
+                padding-left: 12px;
+                padding-right: 20px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+                &.divider {
+                    height: 1px;
+                    margin-bottom: 3px;
+                }
+
+                &:hover {
+                    background-color: #EEEEEE;
+                    background-image: none;
+                }
+            }
+        }
+
+        &.top-right {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+        }
+    }
+}

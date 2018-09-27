@@ -1,0 +1,206 @@
+﻿/*******************
+STANDARDIZED ITEMS
+*******************/
+
+@import './variables.scss';
+
+html {
+    cursor: default;
+    height: 100%;
+    height: 100%;
+    margin:0 !important;
+    padding:0 !important;
+    width: 100%;
+}
+
+html.notouch{
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+body {
+    background-color: #E0EEFF;
+    color: $main-text-color;
+    font-size: 13px;
+    font-weight: lighter;
+    height: inherit !important;
+    margin:0 !important;
+    overflow: hidden;
+    padding: 0 !important;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+i {
+    margin-right: 5px;
+}
+#content {
+    height:100vh;
+}
+
+
+/*******************
+CONTENT
+*******************/
+#wrapper{
+    height: 100%;
+}
+
+.content-container {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5')";
+    background-color: #F1F6FF;
+    box-shadow: 1px 0 2px #BEC8D5;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5');
+    height: 100%;
+    margin-right: 10px;
+    padding-left: 0px;
+    padding-right: 10px;
+    padding-top: 10px;
+    position: relative;
+}
+
+.content-container-inline {
+    box-shadow: 0px;
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    position: relative;
+}
+
+
+#content{
+    margin-left: 10px;
+
+}
+
+
+.content-container-inline #content{
+    margin-left: 0px;
+}
+
+
+
+/*******************
+APP AREA
+*******************/
+.app-area {
+    background-color: #A8A8A8;
+    background-image: -ms-linear-gradient(left, #A8A8A8 0%, #A8A8A8 100%);
+    bottom: 0;
+    color: #FFF;
+    height: 200px;
+    margin-right: 10px;
+    position: absolute;
+    width: 100%;
+}
+
+.carousel {
+    margin-left: 8px;
+    white-space: normal;
+    width: 90%;
+}
+
+.carousel h3 {
+    white-space: nowrap;
+}
+
+
+/*******************
+INFO
+*******************/
+.alert {
+     white-space:normal;
+}
+
+
+.info {
+    bottom:0;
+    margin-bottom: 0px !important;
+    margin:0;
+    position:fixed;
+}
+
+.info i {
+   float:left;
+   font-size:30px;
+   margin-right:5px;
+}
+
+/*******************
+Loader
+*******************/
+
+#loadingIndicator{
+    font-size: 40px;
+    left: 40%;
+    position: absolute;
+    top: 40%;
+}
+
+/*******************
+Logo
+*******************/
+
+.lime-logo-bottom{
+    background: url(../../resources/logo.png) no-repeat center bottom;
+    bottom :18px;
+    height:120px;
+    left:0;
+    margin-left:auto;
+    margin-right:auto;
+    position:   absolute;
+    right:0;
+    width:  93px;
+}
+
+/*******************
+Misc tools
+*******************/
+.pull-text-left{
+    text-align: left;
+}
+
+.pull-text-right{
+    text-align: right;
+}
+
+.pull-text-center{
+    text-align: center;
+}
+
+/*******************
+Popover
+*******************/
+.message-header {
+  height: 50px;
+  font-size: 18px;
+  line-height: 50px;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 15px;
+  position: relative;
+  margin-left: -15px;
+  margin-right: -15.5px;
+  margin-top: -15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.popover-content {
+  padding-bottom: 15px;
+}
+
+@each $key, $colors in $colors-list {
+    .#{$key} {
+        background-color: nth($colors, 1)
+    }
+}

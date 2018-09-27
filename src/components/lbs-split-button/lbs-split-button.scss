@@ -1,0 +1,26 @@
+$first-width: calc(80% - 4px);
+$second-width: calc(20%);
+
+.btn-lime-split {
+    display: block;
+    margin: 5px 0px 5px 0px;
+
+    > :first-child{
+        width: $first-width;
+    }
+
+
+    > :nth-child(2){
+        width: $second-width;
+    }
+
+    > *:first-child,
+    > *:nth-child(2) {
+        box-sizing: border-box;
+        display: inline-block;
+    }
+
+    > * > * {
+        margin: 0 !important;
+    }
+}

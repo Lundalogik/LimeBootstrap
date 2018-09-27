@@ -1,18 +1,51 @@
-site_name: LimeBootstrap
+site_name: Lime Bootstrap
 pages:
-- 'Home': 'index.md'
-- 'Philosophy': 'philosophy.md'
-- 'Basic Usage': 'basicUsage.md'
-- 'Components': 'components.md'
-- 'Bindnings & Filters': 'bindingsAndFilters.md'
-- 'Data sources': 'dataSources.md'
-- 'Building Apps': 'buildingApps.md'
-- 'Advanced': 'advanced.md'
-- 'Changelog': 'changelog.md'
-- 'Technical Platform': 'technicalPlatform.md'
+  - 'Documentation':
+    - 'Introduction': 'index.md'
+    - 'Installation': 'install.md'
+    - 'Getting started': 'getting_started.md'
+    - 'Included components': 'included_components.md'
+    - 'Bindnings & filters': 'bindings_and_filters.md'
+    - 'Data sources': 'datasources.md'
+    - 'Custom components': 'custom_components.md'
+    - 'Advanced': 'advanced.md'
+  - 'Components':
+    - 'Alert': 'components/lbs-alert.md'
+    - 'Button components': 'components/lbs-buttons.md'
+    - 'Card': 'components/lbs-card.md'
+    - 'Guard': 'components/lbs-guard.md'
+    - 'Hero': 'components/lbs-hero.md'
+    - 'Icon': 'components/lbs-icon.md'
+    - 'List components': 'components/lbs-lists.md'
+    - 'Loading indicator': 'components/lbs-loading-indicator.md'
+    - 'Menu': 'components/lbs-menu.md'
+    - 'Search': 'components/lbs-search.md'
+    - 'Time components': 'components/lbs-time.md'
+  - 'Changelog':
+    - 'LBS 2': 'changelog/2.x.md'
+    - 'LBS 1': 'changelog/1.x.md'
 theme: readthedocs
 repo_url: https://github.com/Lundalogik/LimeBootstrap
-site_description: LimeBootstrap dokumentation
-site_author: Lundalogik AB
+repo_name: 'Lundalogik/LimeBootstrap'
+site_description: Lime Bootstrap documentation
+site_author: Lime Technologies AB
 docs_dir: docs
-dev_addr: 127.0.0.1:8000
+dev_addr: localhost:3002
+extra_css:
+  - 'assets/stylesheets/custom.css'
+theme:
+  name: 'material'
+  custom_dir: 'docs/theme'
+  logo:
+    icon: 'home'
+  feature:
+    tabs: true
+  palette:
+    primary: 'teal'
+    accent: 'teal'
+  favicon: 'assets/images/favicon.ico'
+markdown_extensions:
+- codehilite
+- admonition
+- meta
+
