@@ -69,8 +69,13 @@ const lbs = {
 
         // Enable or disable debug-mode
         this.debug = lbs.externalConfig.debug
-        lbs.debugVm.enabled = true
+        lbs.debugVm.enabled = this.debug
         ko.applyBindings(lbs.debugVm, $('#debug').get(0))
+        if (this.debug) {
+            $.getScript('system/js/firebug-lite-compressed.js', (data, textStatus, jqxhr) => {
+                window.firebug.init()
+            })
+        }
 
         // set contextmenu enables/disabled
         this.SetTouchEnabled(false)
@@ -194,8 +199,8 @@ const lbs = {
         this.hasLimeConnection = Boolean(lbs.limeDataConnection && typeof lbs.limeDataConnection.Application !== 'undefined')
 
         // getVersion
-        this.limeVersion = lbs.hasLimeConnection ?
-            lbs.common.parseVersion(lbs.limeDataConnection.Version) : lbs.common.parseVersion('0.0.0')
+        this.limeVersion = lbs.hasLimeConnection
+            ? lbs.common.parseVersion(lbs.limeDataConnection.Version) : lbs.common.parseVersion('0.0.0')
     },
 
     /**
