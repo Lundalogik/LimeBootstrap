@@ -72,7 +72,7 @@ const lbs = {
         lbs.debugVm.enabled = this.debug
         ko.applyBindings(lbs.debugVm, $('#debug').get(0))
         if (this.debug) {
-            $.getScript('system/js/firebug-lite-compressed.js', (data, textStatus, jqxhr) => {
+            $.getScript('system/js/firebug-lite-compressed.js', () => {
                 window.firebug.init()
             })
         }
