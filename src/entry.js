@@ -1,3 +1,4 @@
+import '@babel/polyfill'
 import $ from 'jquery'
 import 'bootstrap3'
 import 'underscore'
