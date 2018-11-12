@@ -1,13 +1,13 @@
+Attribute VB_Name = "lbsHelper"
 
-' NOTE THAT THE CODE IN THIS MODULE IS A PART OF THE LIME PRO BASIC DATABASE AND MAY NOT BE CHANGED.
+' NOTE THAT THE CODE IN THIS MODULE IS A PART OF THE LIME BOOTSTRAP FRAMEWORK AND MAY NOT BE CHANGED.
 ' ANY CUSTOMIZATIONS OR ADDED FUNCTIONALITY SHOULD BE DONE IN SEPARATE FORMS, MODULES AND CLASS MODULES.
 ' IF YOU CHOOSE TO IGNORE THIS WARNING AND CHANGE THE CODE IN THIS MODULE, SUPPORT OR VERSION COMPATIBILITY IS
 ' NO LONGER GUARANTEED.
-'
-' //THE LIME CORE GROUP AT LUNDALOGIK
 
 Option Explicit
 Private locAvalibleActionpads As Scripting.Dictionary
+
 
 '=============================================
 ' Sets correct actionpad settings for all inspectors and the main AP
@@ -16,7 +16,7 @@ Private locAvalibleActionpads As Scripting.Dictionary
 ' the settings are not supported by the client GUI in the current versions
 '=============================================
 Public Sub setDefaultActionpads(Optional ByVal bPublishable As Boolean = False)
-On Error GoTo ErrorHandler
+    On Error GoTo ErrorHandler
 
     Dim oClass As LDE.Class
     Dim bShouldExist As Boolean
@@ -34,23 +34,24 @@ On Error GoTo ErrorHandler
     'set main actionpad
     Call lbsHelper.setDefaultActionpad("index", True, bPublishable)
 
-Exit Sub
+    Exit Sub
 ErrorHandler:
-    Call UI.ShowError("lbsHelper.setActionpads")
+    Call LC_UI.ShowError("lbsHelper.setActionpads")
 End Sub
 
 '=============================================
 ' Wrapper for "setActionpads" with "publishable" set to true
 '=============================================
 Public Sub setDefaultActionpadsPublishable()
-On Error GoTo ErrorHandler
+    On Error GoTo ErrorHandler
 
     Call lbsHelper.setDefaultActionpads(True)
 
-Exit Sub
+    Exit Sub
 ErrorHandler:
-    Call UI.ShowError("lbsHelper.setActionpadsPublishable")
+    Call LC_UI.ShowError("lbsHelper.setActionpadsPublishable")
 End Sub
+
 
 '=============================================
 ' Apply settings for a specific actionpad
@@ -58,7 +59,7 @@ End Sub
 ' Sets without get params if "bPublishable" is true
 '=============================================
 Public Sub setDefaultActionpad(ByVal sClass As String, ByVal bShouldExist As Boolean, Optional ByVal bPublishable As Boolean = False)
-On Error GoTo ErrorHandler
+    On Error GoTo ErrorHandler
 
     Dim oSettings As LDE.Settings
     Dim sInspectorGUID As String
@@ -89,9 +90,9 @@ On Error GoTo ErrorHandler
         End If
     End If
 
-Exit Sub
+    Exit Sub
 ErrorHandler:
-    Call UI.ShowError("lbsHelper.setActionpad")
+    Call LC_UI.ShowError("lbsHelper.setActionpad")
 End Sub
 
 
@@ -125,10 +126,11 @@ On Error GoTo ErrorHandler
     
     Debug.Print (sUrl)
 
-Exit Sub
+    Exit Sub
 ErrorHandler:
-    Call UI.ShowError("lbsHelper.setActionpad")
+    Call LC_UI.ShowError("lbsHelper.setActionpad")
 End Sub
+
 
 '=============================================
 ' Collects all avalible actionpad views in a dictionary
@@ -159,8 +161,9 @@ On Error GoTo ErrorHandler
     
 Exit Function
 ErrorHandler:
-    Call UI.ShowError("lbsHelper.getAvaliableActionpads")
+    Call LC_UI.ShowError("lbsHelper.getAvaliableActionpads")
 End Function
+
 
 '=============================================
 ' Load file as if from webserver
@@ -177,6 +180,7 @@ Exit Function
 ErrorHandler:
     loadHTTPResource = ""
 End Function
+
 
 '=============================================
 ' Load JSON as if from webserver
@@ -200,7 +204,7 @@ Public Function GetSessionID() As String
     GetSessionID = ActiveUser.Database.SessionID
     Exit Function
 ErrorHandler:
-    Call UI.ShowError("LBSHelper.GetSessionID")
+    Call LC_UI.ShowError("LBSHelper.GetSessionID")
 End Function
 
 
@@ -255,6 +259,7 @@ Public Sub saveFile(FilePath As String, Content As String)
     Close #fnum1
 End Sub
 
+
 '=============================================
 ' Load XML from SOAP webservice
 '=============================================
@@ -262,23 +267,23 @@ Public Function loadFromSOAP(WebPath As String, SOAPAction As String, XML As Str
     On Error GoTo ErrorHandler
     Dim oXHTTP As MSXML2.XMLHTTP60
     Dim s As String
-      Set oXHTTP = New MSXML2.XMLHTTP60
-        ' POST
-        Call oXHTTP.Open("POST", WebPath, False)
-        ' Content-Type
-        Call oXHTTP.setRequestHeader("Content-Type", "text/xml; charset=utf-8")
-        ' SOAPAction
-        Call oXHTTP.setRequestHeader("SOAPAction", SOAPAction)
-        'Get RequestXML
+    Set oXHTTP = New MSXML2.XMLHTTP60
+    ' POST
+    Call oXHTTP.Open("POST", WebPath, False)
+    ' Content-Type
+    Call oXHTTP.setRequestHeader("Content-Type", "text/xml; charset=utf-8")
+    ' SOAPAction
+    Call oXHTTP.setRequestHeader("SOAPAction", SOAPAction)
+    'Get RequestXML
     
-        Call oXHTTP.Send(XML)
-    
-   
+    Call oXHTTP.Send(XML)
+
     loadFromSOAP = oXHTTP.responseText
 Exit Function
 ErrorHandler:
     loadFromSOAP = ""
 End Function
+
 
 '=============================================
 ' Load Xml from storedProcedure
@@ -297,6 +302,7 @@ Exit Function
 ErrorHandler:
     loadXmlFromStoredProcedure = ""
 End Function
+
 
 '=============================================
 ' Load related record
@@ -339,8 +345,9 @@ Public Function Test() As LDE.Record
     
 Exit Function
 ErrorHandler:
-    Call UI.ShowError("test")
+    Call LC_UI.ShowError("test")
 End Function
+
 
 '=============================================
 ' Add translation to db
@@ -352,7 +359,7 @@ Public Sub CreateUpdateTranslation(ByVal sOwner As String, ByVal sCode As String
     Dim oRecord As New LDE.Record
 
     If Application.Classes("localize").Fields.Exists(sLanguage) = False Then
-        Call Application.MessageBox("FÃ¤ltet '" & sLanguage & "' finns inte i tabellen '" & Application.Classes("localize").LocalName & "'.")
+        Call Application.MessageBox("Fältet '" & sLanguage & "' finns inte i tabellen '" & Application.Classes("localize").LocalName & "'.")
         Exit Sub
     End If
 
@@ -364,7 +371,7 @@ Public Sub CreateUpdateTranslation(ByVal sOwner As String, ByVal sCode As String
     Call oView.Add("code")
     Call oView.Add(sLanguage)
 
-    If oFilter.HitCount(Application.Classes("localize")) = 1 Then
+    If oFilter.hitCount(Application.Classes("localize")) = 1 Then
         Call oRecord.Open(Application.Classes("localize"), oFilter, oView)
         oRecord.Value(sLanguage) = sLocalName
         oRecord.Update
@@ -379,8 +386,9 @@ Public Sub CreateUpdateTranslation(ByVal sOwner As String, ByVal sCode As String
 
     Exit Sub
 ErrorHandler:
-    Call UI.ShowError("CreateUpdateTranslation")
+    Call LC_UI.ShowError("CreateUpdateTranslation")
 End Sub
+
 
 '=============================================
 ' Log to LIME Pro infolog tab.
@@ -404,12 +412,13 @@ Public Sub logToInfolog(strType As String, message As String)
     message = VBA.Replace(message, "!@!", ",")
     message = VBA.Replace(message, "%&%", "'")
     
-    Call Application.log.Add(lngType, "LIME Bootstrap", "JavaScript", , message)
+    Call Application.Log.Add(lngType, "LIME Bootstrap", "JavaScript", , message)
     
     Exit Sub
 ErrorHandler:
-    Call UI.ShowError("LBSHelper.logToInfolog")
+    Call LC_UI.ShowError("LBSHelper.logToInfolog")
 End Sub
+
 
 Public Function getActiveUser() As String
 On Error GoTo ErrorHandler
@@ -430,18 +439,20 @@ On Error GoTo ErrorHandler
     "}"
         
     getActiveUser = sActiveUserJSON
+    
     Exit Function
 ErrorHandler:
-    Call UI.ShowError("LBSHelper.getActiveUser")
+    Call LC_UI.ShowError("LBSHelper.getActiveUser")
 End Function
-
 
 
 Public Function getLocale() As String
     On Error GoTo ErrorHandler
+    
     getLocale = ThisApplication.Locale
+    
     Exit Function
 ErrorHandler:
-    Call UI.ShowError("LBSHelper.getLocale")
+    Call LC_UI.ShowError("LBSHelper.getLocale")
 End Function
 
