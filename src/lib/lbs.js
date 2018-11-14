@@ -224,8 +224,6 @@ const lbs = {
         lbs.activeView = lbs.common.getURLParameter('ap')
         if (!lbs.activeView) { // all else fails, go for Index
             lbs.activeView = 'index'
-        } else if (!lbs.activeView) {
-            throw new SetupError('Could not get the active view')
         }
 
         // Get name of the LimeType
@@ -253,7 +251,7 @@ const lbs = {
         lbs.activeLimeObjectId = parseInt(lbs.common.getURLParameter('limeobjectid'), 10)
         if (!lbs.activeLimeObjectId && lbs.activeInspector) {
             lbs.activeLimeObjectId = lbs.activeInspector.record.ID
-        } else if (!lbs.activeLimeObjectId && !lbs.activeClass) {
+        } else if (!lbs.activeLimeObjectId && !lbs.activeClass && !lbs.activeView === 'index') {
             throw new SetupError('Could not get the active LimeObjects id')
         }
 
