@@ -72,9 +72,8 @@ const lbs = {
         lbs.debugVm.enabled = this.debug
         ko.applyBindings(lbs.debugVm, $('#debug').get(0))
         if (this.debug) {
-            $.getScript('system/js/firebug-lite-compressed.js', () => {
-                window.firebug.init()
-            })
+            $('#FirebugIFrame').attr('style', 'display: inline !important') // this is ugly, but that's life
+            $('#Firebug').attr('style', 'display: inline !important')
         }
 
         // set contextmenu enables/disabled
