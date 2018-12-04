@@ -86,7 +86,7 @@ const lbs = {
         // get AP class etc
         this.setActionPadEnvironment()
 
-        lbs.bakery = new Bakery(lbs.activeClass)
+        lbs.bakery = new Bakery(lbs.activeView)
         // load loader (sic!)
         this.setupLoader()
 
@@ -100,13 +100,12 @@ const lbs = {
         this.vm = await lbs.loader.loadDataSources(this.config.dataSources)
 
         // load view
-        if (lbs.activeClass) {
-            this.loader.loadView(lbs.activeView, $('#content'))
-        }
+        this.loader.loadView(lbs.activeView, $('#content'))
+
 
         let localComponents = []
-        if (lbs.externalConfig[lbs.activeClass] && lbs.externalConfig[lbs.activeClass].components) {
-            localComponents = lbs.externalConfig[lbs.activeClass].components
+        if (lbs.externalConfig[lbs.activeView] && lbs.externalConfig[lbs.activeView].components) {
+            localComponents = lbs.externalConfig[lbs.activeView].components
         }
         await ComponentLoader.loadComponents(lbs.externalConfig.components, localComponents)
         // load apps
@@ -154,7 +153,7 @@ const lbs = {
             defaultConfig = {
                 dataSources: [
                     { type: 'activeLimeObject' },
-                    { type: 'translations', owner: `actionpad_${lbs.activeClass}` },
+                    { type: 'translations', owner: `actionpad_${lbs.activeView}` },
                 ],
             }
         } else {
@@ -169,7 +168,7 @@ const lbs = {
         this.config = lbs.loader.loadExternalConfig(
             defaultConfig,
             dataSources,
-            this.activeClass,
+            this.activeView,
         )
     },
 
