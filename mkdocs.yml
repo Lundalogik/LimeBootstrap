@@ -44,6 +44,7 @@ theme:
     primary: 'teal'
     accent: 'teal'
   favicon: 'assets/images/favicon.ico'
+site_url: 'https://www.lime-bootstrap.com'
 markdown_extensions:
 - codehilite
 - admonition
