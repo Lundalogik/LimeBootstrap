@@ -69,8 +69,12 @@ const lbs = {
 
         // Enable or disable debug-mode
         this.debug = lbs.externalConfig.debug
-        lbs.debugVm.enabled = true
+        lbs.debugVm.enabled = this.debug
         ko.applyBindings(lbs.debugVm, $('#debug').get(0))
+        if (this.debug) {
+            $('#FirebugIFrame').attr('style', 'display: inline !important') // this is ugly, but that's life
+            $('#Firebug').attr('style', 'display: inline !important')
+        }
 
         // set contextmenu enables/disabled
         this.SetTouchEnabled(false)
@@ -82,7 +86,7 @@ const lbs = {
         // get AP class etc
         this.setActionPadEnvironment()
 
-        lbs.bakery = new Bakery(lbs.activeClass)
+        lbs.bakery = new Bakery(lbs.activeView)
         // load loader (sic!)
         this.setupLoader()
 
@@ -96,13 +100,12 @@ const lbs = {
         this.vm = await lbs.loader.loadDataSources(this.config.dataSources)
 
         // load view
-        if (lbs.activeClass) {
-            this.loader.loadView(lbs.activeView, $('#content'))
-        }
+        this.loader.loadView(lbs.activeView, $('#content'))
+
 
         let localComponents = []
-        if (lbs.externalConfig[lbs.activeClass] && lbs.externalConfig[lbs.activeClass].components) {
-            localComponents = lbs.externalConfig[lbs.activeClass].components
+        if (lbs.externalConfig[lbs.activeView] && lbs.externalConfig[lbs.activeView].components) {
+            localComponents = lbs.externalConfig[lbs.activeView].components
         }
         await ComponentLoader.loadComponents(lbs.externalConfig.components, localComponents)
         // load apps
@@ -150,7 +153,7 @@ const lbs = {
             defaultConfig = {
                 dataSources: [
                     { type: 'activeLimeObject' },
-                    { type: 'translations', owner: `actionpad_${lbs.activeClass}` },
+                    { type: 'translations', owner: `actionpad_${lbs.activeView}` },
                 ],
             }
         } else {
@@ -165,7 +168,7 @@ const lbs = {
         this.config = lbs.loader.loadExternalConfig(
             defaultConfig,
             dataSources,
-            this.activeClass,
+            this.activeView,
         )
     },
 
@@ -194,8 +197,8 @@ const lbs = {
         this.hasLimeConnection = Boolean(lbs.limeDataConnection && typeof lbs.limeDataConnection.Application !== 'undefined')
 
         // getVersion
-        this.limeVersion = lbs.hasLimeConnection ?
-            lbs.common.parseVersion(lbs.limeDataConnection.Version) : lbs.common.parseVersion('0.0.0')
+        this.limeVersion = lbs.hasLimeConnection
+            ? lbs.common.parseVersion(lbs.limeDataConnection.Version) : lbs.common.parseVersion('0.0.0')
     },
 
     /**
@@ -219,8 +222,6 @@ const lbs = {
         lbs.activeView = lbs.common.getURLParameter('ap')
         if (!lbs.activeView) { // all else fails, go for Index
             lbs.activeView = 'index'
-        } else if (!lbs.activeView) {
-            throw new SetupError('Could not get the active view')
         }
 
         // Get name of the LimeType
@@ -248,7 +249,7 @@ const lbs = {
         lbs.activeLimeObjectId = parseInt(lbs.common.getURLParameter('limeobjectid'), 10)
         if (!lbs.activeLimeObjectId && lbs.activeInspector) {
             lbs.activeLimeObjectId = lbs.activeInspector.record.ID
-        } else if (!lbs.activeLimeObjectId && !lbs.activeClass) {
+        } else if (!lbs.activeLimeObjectId && !lbs.activeClass && !lbs.activeView === 'index') {
             throw new SetupError('Could not get the active LimeObjects id')
         }
 

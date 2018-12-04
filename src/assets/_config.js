@@ -19,7 +19,7 @@ lbs.externalConfig = {
     * */
 
     components: [
-        { name: 'checklist', path: 'http://localhost:3334/' }
+
     ],
 
     config: {

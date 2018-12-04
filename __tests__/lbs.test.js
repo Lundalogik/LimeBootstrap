@@ -33,4 +33,3 @@ test('URL parameters for database should be parsed', () => {
 test('Language should be set', () => {
     expect(lbs.activeLocale).toEqual('en_us')
 })
-
