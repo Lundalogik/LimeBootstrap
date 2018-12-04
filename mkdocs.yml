@@ -1,5 +1,5 @@
 site_name: Lime Bootstrap
-pages:
+nav:
   - 'Documentation':
     - 'Introduction': 'index.md'
     - 'Installation': 'install.md'
