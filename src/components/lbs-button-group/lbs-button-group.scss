@@ -27,3 +27,18 @@
         border-radius: 0px;
     }
 }
+
+.btn-group>.btn-lime,
+.btn-lime-split>.btn{
+    float: none;
+}
+
+.btn-lime-split > .btn:first-child{
+    box-sizing: border-box;
+    width:80%;
+}
+
+.btn-lime-split > .btn:nth-child(2){
+    box-sizing: border-box;
+    width:20%;
+}
