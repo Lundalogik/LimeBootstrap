@@ -16,6 +16,7 @@ Lime Bootstrap is included in the Lime Core database and nothing is needs to be 
 1.	Copy all the folders, `lbs.html` and `_config.js` to the Actionpad-folder
 2.	Add the VBA module `lbshelper` found in `vba`-folder.
 3.	Change the URL of all Actionpads in Lime CRM to `lbs.html`
+4.  Make sure to add ´Call lbsHelper.setDefaultActionpads(False)´ to `ThisApplication.Setup`
 
 If you'll like the some basic ActionPad views to start with you can find some [here](https://github.com/Lundalogik/LimeBootstrapBaseActionpads)
 
