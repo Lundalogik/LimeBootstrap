@@ -23,7 +23,7 @@
     getEllapsedTime() {
         if (this.running && this.startTime) { // Timer still running
             return performance.now() - this.startTime
-        } else if (!this.running && this.endTime) {
+        } if (!this.running && this.endTime) {
             return this.endTime - this.startTime
         }
         return null
@@ -40,23 +40,30 @@ class Log {
         }
         this.timers = {}
     }
+
     info(args) {
         if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.info) {
             console.info(args)
+            this._logToWindowsEventLog(args, 0)
         }
     }
+
     warn(args) {
         lbs.debugVm.warnings(lbs.debugVm.warnings() + 1)
         if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.warn) {
             console.warn(args)
+            this._logToWindowsEventLog(args, 2)
         }
     }
+
     error(args) {
         lbs.debugVm.errors(lbs.debugVm.errors() + 1)
         if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.error) {
             console.error(args)
+            this._logToWindowsEventLog(args, 1)
         }
     }
+
     debug(args) {
         if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.debug) {
             console.debug(args)
@@ -100,6 +107,13 @@ class Log {
         default:
             lbs.verboseLevel = this.verboseLevelEnum.warn
             break
+        }
+    }
+
+    static _logToWindowsEventLog(msg, level) {
+        if (lbs.hasLimeConnection) {
+            const logMsg = `${lbs.activeView}.html: ${msg}`
+            lbs.common.executeVba(`LBSHelper.WriteEventLog,${btoa(logMsg)},${level}`)
         }
     }
 }

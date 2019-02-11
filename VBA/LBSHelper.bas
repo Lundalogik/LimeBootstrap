@@ -21,16 +21,16 @@ Public Sub setDefaultActionpads(Optional ByVal bPublishable As Boolean = False)
     Dim oClass As LDE.Class
     Dim bShouldExist As Boolean
     Dim oFiles As Scripting.Dictionary
-    
+
     'get avalible actionpad files
     Set oFiles = lbsHelper.getAvaliableActionpads
-    
+
     'set inspector actionpads
     For Each oClass In ThisApplication.Database.Classes
         bShouldExist = oFiles.Exists(oClass.Name)
         Call lbsHelper.setDefaultActionpad(oClass.Name, bShouldExist, bPublishable)
     Next oClass
-    
+
     'set main actionpad
     Call lbsHelper.setDefaultActionpad("index", True, bPublishable)
 
@@ -67,12 +67,12 @@ Public Sub setDefaultActionpad(ByVal sClass As String, ByVal bShouldExist As Boo
     Dim sUrlSuffix As String
     Dim sUrl As String
     Dim lVisible As Long
-    
+
     sUrlBase = ThisApplication.WebFolder + "lbs.html"
     sUrlSuffix = IIf(bPublishable, "", "?ap=" + sClass)
     sUrl = IIf(bShouldExist, sUrlBase + sUrlSuffix, "")
     lVisible = IIf(VBA.Len(sUrl) > 0, 1, 0)
-    
+
     'index gets special treetment as it is not reloaded frequently and handle is avalible
     If sClass = "index" Then
         ThisApplication.WebBar.url = sUrl
@@ -107,14 +107,14 @@ On Error GoTo ErrorHandler
     Dim sUrl As String
     Dim lVisible As Long
     Dim sClass As String
-    
+
     sClass = oInspector.Class.Name
-    
+
     sUrlBase = ThisApplication.WebFolder + "lbs.html"
     sUrlSuffix = "?ap=" + sClass + "&db=" + ThisApplication.DatabaseName
     sUrl = IIf(locAvalibleActionpads.Exists(sClass), sUrlBase + sUrlSuffix, "")
     lVisible = IIf(VBA.Len(sUrl) > 0, 1, 0)
-    
+
     'index gets special treetment as it is not reloaded frequently and handle is avalible
     If sClass = "index" Then
         ThisApplication.WebBar.url = sUrl
@@ -123,7 +123,7 @@ On Error GoTo ErrorHandler
         oInspector.WebBar.url = sUrl
         oInspector.WebBar.Visible = lVisible
     End If
-    
+
     Debug.Print (sUrl)
 
     Exit Sub
@@ -137,13 +137,13 @@ End Sub
 '=============================================
 Public Function getAvaliableActionpads() As Scripting.Dictionary
 On Error GoTo ErrorHandler
-    
+
     Dim sFileName As String
     Dim sClassName As String
     Dim oFiles As New Scripting.Dictionary
-    
+
     If (locAvalibleActionpads Is Nothing) Then
-    
+
         sFileName = Dir(ThisApplication.WebFolder + "\*.html")
         Do While Len(sFileName) > 0
             sClassName = VBA.Left(sFileName, VBA.Len(sFileName) - 5)
@@ -153,12 +153,12 @@ On Error GoTo ErrorHandler
             End If
             sFileName = Dir
         Loop
-        
+
         Set locAvalibleActionpads = oFiles
     End If
-        
+
     Set getAvaliableActionpads = locAvalibleActionpads
-    
+
 Exit Function
 ErrorHandler:
     Call LC_UI.ShowError("lbsHelper.getAvaliableActionpads")
@@ -213,7 +213,7 @@ Public Function CRMEndpoint(WebPath As String, Method As String, Optional b64Pay
     Dim oXHTTP As Object
     Dim s As String
     Dim sPayload As String
-    
+
     Set oXHTTP = CreateObject("MSXML2.XMLHTTP")
     oXHTTP.Open Method, WebPath, False
     oXHTTP.setRequestHeader "sessionid", ActiveUser.Database.SessionID
@@ -234,7 +234,7 @@ End Function
 Private Function DecodeBase64(ByVal strData As String) As String
     Dim objXML As MSXML2.DOMDocument60
     Dim objNode As MSXML2.IXMLDOMElement
-    
+
     ' help from MSXML
     Set objXML = New MSXML2.DOMDocument60
     Set objNode = objXML.createElement("b64")
@@ -275,7 +275,7 @@ Public Function loadFromSOAP(WebPath As String, SOAPAction As String, XML As Str
     ' SOAPAction
     Call oXHTTP.setRequestHeader("SOAPAction", SOAPAction)
     'Get RequestXML
-    
+
     Call oXHTTP.Send(XML)
 
     loadFromSOAP = oXHTTP.responseText
@@ -309,7 +309,7 @@ End Function
 '=============================================
 Public Function loadRelatedRecord(sClass As String, lId As Long, Optional sViewString As String) As LDE.Record
     On Error GoTo ErrorHandler
-    
+
     Dim oRecords As New LDE.Records
     Dim oView As New LDE.View
     Dim oFilter As New LDE.Filter
@@ -320,32 +320,18 @@ Public Function loadRelatedRecord(sClass As String, lId As Long, Optional sViewS
     For Each sViewItem In Split(sViewString, ";", -1, vbTextCompare)
         Call oView.Add(sViewItem)
     Next sViewItem
-    
+
     Call oRecords.Open(Database.Classes(sClass), oFilter, oView, 1)
-    
+
     If oRecords.Count = 1 Then
         Set loadRelatedRecord = oRecords.Item(1)
     Else
         Set loadRelatedRecord = Nothing
     End If
-    
+
 Exit Function
 ErrorHandler:
     Set loadRelatedRecord = Nothing
-End Function
-
-
-'=============================================
-' test
-'=============================================
-Public Function Test() As LDE.Record
-    On Error GoTo ErrorHandler
-    
-    Set Test = ActiveInspector.Record
-    
-Exit Function
-ErrorHandler:
-    Call LC_UI.ShowError("test")
 End Function
 
 
@@ -359,7 +345,7 @@ Public Sub CreateUpdateTranslation(ByVal sOwner As String, ByVal sCode As String
     Dim oRecord As New LDE.Record
 
     If Application.Classes("localize").Fields.Exists(sLanguage) = False Then
-        Call Application.MessageBox("Fältet '" & sLanguage & "' finns inte i tabellen '" & Application.Classes("localize").LocalName & "'.")
+        Call Application.MessageBox("Fï¿½ltet '" & sLanguage & "' finns inte i tabellen '" & Application.Classes("localize").LocalName & "'.")
         Exit Sub
     End If
 
@@ -391,12 +377,12 @@ End Sub
 
 
 '=============================================
-' Log to LIME Pro infolog tab.
+' Log to Lime CRM infolog tab.
 ' logType should be one of: "info", "warning" or "error".
 '=============================================
 Public Sub logToInfolog(strType As String, message As String)
     On Error GoTo ErrorHandler
-    
+
     Dim lngType As Long
     If strType = "info" Then
         lngType = lkLogTypeInformation
@@ -407,13 +393,13 @@ Public Sub logToInfolog(strType As String, message As String)
     Else
         lngType = lkLogTypeInformation
     End If
-    
+
     ' Change back to , instead of !@! and ' instead of %&%
     message = VBA.Replace(message, "!@!", ",")
     message = VBA.Replace(message, "%&%", "'")
-    
+
     Call Application.Log.Add(lngType, "LIME Bootstrap", "JavaScript", , message)
-    
+
     Exit Sub
 ErrorHandler:
     Call LC_UI.ShowError("LBSHelper.logToInfolog")
@@ -422,24 +408,24 @@ End Sub
 
 Public Function getActiveUser() As String
 On Error GoTo ErrorHandler
-    
+
     Dim sActiveUserJSON As String
     Dim sGroups As String
     Dim sGroupsTrimed As String
     Dim group As Object
-    
+
     For Each group In ActiveUser.MemberOfGroups
         sGroups = sGroups + "{""Name"":""" + group.Name + """},"
     Next group
-    
+
     sGroupsTrimed = Left(sGroups, Len(sGroups) - 1)
-    
+
     sActiveUserJSON = "{""ActiveUser"": {""Name"":" + """" + ActiveUser.Name + """" + ", ""ID"":" + CStr(ActiveUser.ID) + ", ""isAdmin"":" + LCase(CStr(ActiveUser.Administrator)) + ", ""isSuperUser"":" + LCase(CStr(ActiveUser.SuperUser)) + "," & _
     """Groups"":[" + sGroupsTrimed + " ]}" & _
     "}"
-        
+
     getActiveUser = sActiveUserJSON
-    
+
     Exit Function
 ErrorHandler:
     Call LC_UI.ShowError("LBSHelper.getActiveUser")
@@ -448,11 +434,27 @@ End Function
 
 Public Function getLocale() As String
     On Error GoTo ErrorHandler
-    
+
     getLocale = ThisApplication.Locale
-    
+
     Exit Function
 ErrorHandler:
     Call LC_UI.ShowError("LBSHelper.getLocale")
 End Function
 
+'=============================================
+' Debug helper
+'=============================================
+
+Sub WriteEventLog(ByVal sLogMessage As String, ByVal iLevel As Integer)
+    Dim msg As String
+    msg = base64.Decode64(sLogMessage)
+
+    If iLevel = 2 Then
+        Call Application.LoggerFactory.CreateLogger("General", "LimeBootstrap").LogWarning(msg)
+    ElseIf iLevel = 1 Then
+        Call Application.LoggerFactory.CreateLogger("General", "LimeBootstrap").LogError(msg)
+    Else
+        Call Application.LoggerFactory.CreateLogger("General", "LimeBootstrap").Log(msg)
+    End If
+End Sub
