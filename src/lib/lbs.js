@@ -71,10 +71,6 @@ const lbs = {
         this.debug = lbs.externalConfig.debug
         lbs.debugVm.enabled = this.debug
         ko.applyBindings(lbs.debugVm, $('#debug').get(0))
-        if (this.debug) {
-            $('#FirebugIFrame').attr('style', 'display: inline !important') // this is ugly, but that's life
-            $('#Firebug').attr('style', 'display: inline !important')
-        }
 
         // set contextmenu enables/disabled
         this.SetTouchEnabled(false)
