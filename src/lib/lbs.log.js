@@ -67,6 +67,7 @@ class Log {
     debug(args) {
         if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.debug) {
             console.debug(args)
+            Log._logToWindowsEventLog(args, 0)
         }
     }
 
