@@ -458,3 +458,7 @@ Sub WriteEventLog(ByVal sLogMessage As String, ByVal iLevel As Integer)
         Call Application.LoggerFactory.CreateLogger("General", "LimeBootstrap").Log(msg)
     End If
 End Sub
+
+Sub OpenEventViewer()
+    ThisApplication.Shell "eventvwr"
+End Sub

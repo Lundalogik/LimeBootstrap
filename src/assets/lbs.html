@@ -31,6 +31,7 @@
                 <ul id="debugConsole">
                     <li class="header">Debug
                         <span class="badge pull-right" onclick="location.reload(true)"> <lbs-icon params="icon: 'fa-refresh'"></lbs-icon> </span>
+                        <span class="badge pull-right" data-bind="vba: 'LBSHelper.OpenEventViewer'"> <lbs-icon params="icon: 'fa-file-text-o'"></lbs-icon> </span>
                         <span data-bind="text: 'w:' + warnings(), tooltip:{text: 'Number of warnings', placement:'down'}"></span>
                         <span data-bind="text: 'e:' + errors(), tooltip:{text: 'Number of errors', placement:'down'}"></span>
                     </li>
