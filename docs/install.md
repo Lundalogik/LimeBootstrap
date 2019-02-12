@@ -14,7 +14,7 @@ Older versions of IE __won't__ work!
 Lime Bootstrap is included in the Lime Core database and nothing is needs to be done in this case. If installing Lime Bootstrap from scratch:
 
 1.	Copy all the folders, `lbs.html` and `_config.js` to the Actionpad-folder
-2.	Add the VBA module `lbshelper` found in `vba`-folder.
+2.	Add the VBA modules `lbshelper` and `base64` found in `vba`-folder.
 3.	Change the URL of all Actionpads in Lime CRM to `lbs.html`
 4.  Make sure to add `Call lbsHelper.setDefaultActionpads(False)` to `ThisApplication.Setup`
 
