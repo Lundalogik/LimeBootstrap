@@ -44,7 +44,7 @@ class Log {
     info(args) {
         if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.info) {
             console.info(args)
-            this._logToWindowsEventLog(args, 0)
+            Log._logToWindowsEventLog(args, 0)
         }
     }
 
@@ -52,7 +52,7 @@ class Log {
         lbs.debugVm.warnings(lbs.debugVm.warnings() + 1)
         if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.warn) {
             console.warn(args)
-            this._logToWindowsEventLog(args, 2)
+            Log._logToWindowsEventLog(args, 2)
         }
     }
 
@@ -60,7 +60,7 @@ class Log {
         lbs.debugVm.errors(lbs.debugVm.errors() + 1)
         if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.error) {
             console.error(args)
-            this._logToWindowsEventLog(args, 1)
+            Log._logToWindowsEventLog(args, 1)
         }
     }
 
