@@ -1,5 +1,5 @@
 site_name: LimeBootstrap
-pages:
+nav:
 - 'Home': 'index.md'
 - 'Philosophy': 'philosophy.md'
 - 'Basic Usage': 'basicUsage.md'
