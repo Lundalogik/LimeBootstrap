@@ -329,14 +329,15 @@ const loader = {
 
                     // find data without alias
                     const dataNode = data[Object.keys(data)[0]]
-
-                    dataSource.relatedRecords.forEach((item) => {
-                        const relatedRecord = item
-                        relatedRecord.class = dataNode[item.source].class
-                        relatedRecord.idrecord = dataNode[item.source].value
-                        const relatedData = lbs.loader.loadDataSource(relatedRecord)
-                        data = lbs.common.mergeOptions(data, relatedData, true)
-                    })
+                    if(dataSource.relatedRecords) {
+                        dataSource.relatedRecords.forEach((item) => {
+                            const relatedRecord = item
+                            relatedRecord.class = dataNode[item.source].class
+                            relatedRecord.idrecord = dataNode[item.source].value
+                            const relatedData = lbs.loader.loadDataSource(relatedRecord)
+                            data = lbs.common.mergeOptions(data, relatedData, true)
+                        })
+                    }
                 } catch (e) {
                     lbs.log.warn(`Failed to load datasource: ${dataSource.type}:${dataSource.source}`, e)
                 }
