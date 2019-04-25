@@ -53,3 +53,5 @@ exports.server = {
     // hostname: '0.0.0.0',
     indexPath: 'lbs.html',
 }
+
+exports.sourceMaps = 'inline'
