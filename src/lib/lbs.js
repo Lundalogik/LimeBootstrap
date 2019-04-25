@@ -73,7 +73,11 @@ const lbs = {
         ko.applyBindings(lbs.debugVm, $('#debug').get(0))
 
         // set contextmenu enables/disabled
-        this.SetTouchEnabled(false)
+        if (lbs.debug) {
+            this.SetTouchEnabled(true)
+        } else {
+            this.SetTouchEnabled(false)
+        }
 
         // init the log
         this.log.setVerboseLevel()
