@@ -221,7 +221,7 @@ const lbs = {
         }
 
         // Get name of the LimeType
-        lbs.activeClass = lbs.common.getURLParameter('apait')
+        lbs.activeClass = lbs.common.getURLParameter('activeclass')
         if (!lbs.activeClass && lbs.activeInspector) {
             lbs.activeClass = lbs.activeInspector.class.Name
         }
@@ -235,7 +235,7 @@ const lbs = {
         lbs.activeLocale = lbs.activeLocale.replace('-', '_') // Lime is inconsistent in useage of locale strings
 
         // Get session
-        lbs.session = lbs.common.getURLParameter('apsid')
+        lbs.session = lbs.common.getURLParameter('sessionid')
         if (!lbs.session && lbs.hasLimeConnection) {
             lbs.session = lbs.common.executeVba('LBSHelper.GetSessionID')
         } else if (!lbs.session) {
@@ -287,8 +287,8 @@ const lbs = {
 
     setActiveUser() {
         let activeUser = null
-        if (lbs.common.getURLParameter('apusr')) {
-            activeUser = JSON.parse(lbs.common.getURLParameter('apusr'))
+        if (lbs.common.getURLParameter('user')) {
+            activeUser = JSON.parse(lbs.common.getURLParameter('user'))
             const groups = activeUser.groups.map(group => group.name)
             lbs.activeUser = new User(
                 activeUser.name,
@@ -331,8 +331,8 @@ const lbs = {
     setActiveDBandServer() {
         // set active server
 
-        if (lbs.common.getURLParameter('apsrv')) {
-            lbs.activeServer = lbs.common.getURLParameter('apsrv').split('://')[1]
+        if (lbs.common.getURLParameter('server')) {
+            lbs.activeServer = lbs.common.getURLParameter('server').split('://')[1]
         } else if (lbs.hasLimeConnection) {
             lbs.activeServer = lbs.limeDataConnection.Database.FullActiveServerName.split('://')[1]
         } else {
@@ -340,7 +340,7 @@ const lbs = {
         }
 
         // Set active database
-        lbs.activeDatabase = lbs.common.getURLParameter('apdb')
+        lbs.activeDatabase = lbs.common.getURLParameter('database')
         if (!lbs.activeDatabase && lbs.hasLimeConnection) {
             lbs.activeDatabase = lbs.limeDataConnection.Database.Name
         } else if (!lbs.activeDatabase) {
