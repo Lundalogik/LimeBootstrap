@@ -18,8 +18,18 @@ export default class LWCPlatform {
         }
 
         this.notifications = {
-            alert: () => { throw new NotYetImplementedError(); },
-            confirm: () => { throw new NotYetImplementedError(); },
+            alert: (title, message) => {
+                alert(`${title}
+
+                ${message}`);
+            },
+            confirm: (title, message) => {
+                return new Promise((resolve, reject) => {
+                    resolve(confirm(`${title}
+
+                    ${message}`));
+                });
+            },
             notify: () => { throw new NotYetImplementedError(); },
         }
 
