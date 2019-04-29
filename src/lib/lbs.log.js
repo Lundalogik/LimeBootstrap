@@ -42,32 +42,48 @@ class Log {
     }
 
     info(args) {
-        if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.info) {
-            console.info(args)
-            Log._logToWindowsEventLog(args, 0)
+        try {
+            if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.info) {
+                console.info(args)
+                Log._logToWindowsEventLog(args, 0)
+            }
+        } catch (e) {
+            console.error(e)
         }
     }
 
     warn(args) {
-        lbs.debugVm.warnings(lbs.debugVm.warnings() + 1)
-        if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.warn) {
-            console.warn(args)
-            Log._logToWindowsEventLog(args, 2)
+        try {
+            lbs.debugVm.warnings(lbs.debugVm.warnings() + 1)
+            if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.warn) {
+                console.warn(args)
+                Log._logToWindowsEventLog(args, 2)
+            }
+        } catch (e) {
+            console.error(e)
         }
     }
 
     error(args) {
-        lbs.debugVm.errors(lbs.debugVm.errors() + 1)
-        if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.error) {
-            console.error(args)
-            Log._logToWindowsEventLog(args, 1)
+        try {
+            lbs.debugVm.errors(lbs.debugVm.errors() + 1)
+            if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.error) {
+                console.error(args)
+                Log._logToWindowsEventLog(args, 1)
+            }
+        } catch (e) {
+            console.error(e)
         }
     }
 
     debug(args) {
-        if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.debug) {
-            console.debug(args)
-            Log._logToWindowsEventLog(args, 0)
+        try {
+            if (lbs.debug && lbs.verboseLevel >= this.verboseLevelEnum.debug) {
+                console.debug(args)
+                Log._logToWindowsEventLog(args, 0)
+            }
+        } catch (e) {
+            console.error(e)
         }
     }
 
@@ -91,8 +107,8 @@ class Log {
         }
     }
 
-    setVerboseLevel() {
-        switch (lbs.externalConfig.verboseLevel) {
+    setVerboseLevel(verboseLevel) {
+        switch (verboseLevel) {
         case 'debug':
             lbs.verboseLevel = this.verboseLevelEnum.debug
             break
@@ -107,14 +123,19 @@ class Log {
             break
         default:
             lbs.verboseLevel = this.verboseLevelEnum.warn
+            lbs.log.warn('Unknown verbosity level, setting level to "warn"')
             break
         }
     }
 
     static _logToWindowsEventLog(msg, level) {
-        if (lbs.hasLimeConnection) {
-            const logMsg = `${lbs.activeView}.html: ${msg}`
-            lbs.common.executeVba(`LBSHelper.WriteEventLog,${btoa(logMsg)},${level}`)
+        if (lbs.hasLimeConnection && lbs.debugLogToEventViewer) {
+            try {
+                const logMsg = `${lbs.activeView}.html: ${msg}`
+                lbs.limeDataConnection.Run(`'LBSHelper.WriteEventLog','${btoa(logMsg)}','${level}'`)
+            } catch (e) {
+                console.error('Failed to write to Windows EventLog', e)
+            }
         }
     }
 }

@@ -29,6 +29,7 @@ const lbs = {
     debug: false,
     debugVm: { warnings: ko.observable(0), errors: ko.observable(0) },
     verboseLevel: null,
+    debugLogToEventViewer: !window.chrome, // only log to event viewer in IE
     limeDataConnection: window.external,
     limeVersion: {},
     hasLimeConnection: false,
@@ -78,9 +79,8 @@ const lbs = {
         } else {
             this.SetTouchEnabled(false)
         }
-
         // init the log
-        this.log.setVerboseLevel()
+        this.log.setVerboseLevel(lbs.externalConfig.verboseLevel)
 
         lbs.log.startTimer('LBS total load time')
         // get AP class etc
