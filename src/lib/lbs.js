@@ -116,7 +116,7 @@ const lbs = {
 
         lbs.log.startTimer('Apps total load time')
         // apps vm
-        this.apploader.buildApps()
+        await this.apploader.buildApps()
 
         // setup bindings
         this.applyContentBindings()

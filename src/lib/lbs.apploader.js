@@ -85,11 +85,11 @@ const apploader = {
     /**
     Copy global viewmodel to app and add the datasources for the app
     */
-    buildApps() {
-        $.each(lbs.apps, (key, app) => {
+    async buildApps() {
+        $.each(lbs.apps, async (key, app) => {
             // to-be viewmode
             // load data
-            const vm = lbs.loader.loadDataSources(app.instance.config.dataSources)
+            const vm = await lbs.loader.loadDataSources(app.instance.config.dataSources)
             if (lbs.vm.localize) {
                 vm.localize = lbs.vm.localize
             } else { // Localize is not garanteed to be loaded anymore
