@@ -43,4 +43,20 @@ $colors-list:(
     magenta: ($magenta#FFF),
 );
 
-$main-text-color: #6985B7;
+// Themes
+
+$britney-inspector-color: #FCECFF;
+$brintney-text-color: darken($britney-inspector-color, 90%);
+$brintney-content-container-color: darken($britney-inspector-color, 3%);
+
+$silver-inspector-color: #E8EAED;
+$silver-text-color: #545B68;
+$silver-content-container-color: #F4F4F4;
+
+$blue-inspector-color: #E0EEFF;
+$blue-text-color: #6985B7;
+$blue-content-container-color: #F1F6FF;
+
+$lime-crm-inspector-color: #F2F2F2;
+$lime-crm-text-color: #232323;
+$lime-crm-content-container-color: darken($lime-crm-inspector-color, 1%);

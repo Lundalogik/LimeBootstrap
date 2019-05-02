@@ -137,3 +137,16 @@
         @include header-container-color($magenta);
     }
 }
+
+body.silver .header-container:before{
+    background-color:$silver-inspector-color;
+}
+body.britney .header-container:before{
+    background-color: $britney-inspector-color;
+}
+body.blue .header-container:before{
+    background-color: $blue-inspector-color;
+}
+.lime-crm .header-container:before{
+    background-color: $lime-crm-inspector-color;
+}

@@ -1,85 +1,132 @@
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+@import '../../css/variables.scss';
+
+.menu {
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+    .fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    }
+
+    &.expandable {
+        margin: 0px -10px 0 -10px;
+        padding-bottom: 10px;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 10px;
+
+        li.menu-header {
+            margin-left: 0px;
+            margin-right: -5px;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+            cursor: default;
+            font-size: 14px;
+            font-weight: lighter;
+            overflow: hidden;
+            padding: 3px 15px 0 3px;
+            text-overflow: ellipsis;
+            text-transform: none;
+            white-space: nowrap;
+        }
+
+        li.divider {
+            height: 1px;
+            margin-bottom: 3px;
+            margin: 0 15px 0 10px;
+            overflow: hidden;
+        }
+
+        [class^="icon-"],
+        [class*=" icon-"] {
+            margin-right: 2px;
+        }
+
+        li.menu-header {
+            padding-left: 6px;
+        }
+
+        li {
+            padding-left: 10px;
+            cursor: default;
+        }
+
+        li:not(.menu-header):not(.divider) {
+            color: #6985B7;
+            font-size: 12px;
+            font-weight: lighter;
+            overflow: hidden;
+            padding-bottom: 0;
+            padding-top: 0;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        &.lime-menu:not(.expanded) li:not(.menu-header):not(.divider) {
+            display: none;
+            animation-name: fadeOut;
+            animation-duration: 0.3s;
+        }
+        &.lime-menu.expanded li:not(.menu-header):not(.divider) {
+            display: block;
+            animation-name: fadeIn;
+            animation-duration: 0.3s;
+        }
+    }
 }
 
-@keyframes fadeOut {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
-}
+// support skins
 
-.fadeIn {
-  -webkit-animation-name: fadeIn;
-  animation-name: fadeIn;
-}
-
-.expandable {
-    margin: 0px -10px 0 -10px;
-    padding-bottom: 10px;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 10px;
-
-    li.menu-header {
-        margin-left: 0px;
-        margin-right: -5px;
-        text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
-        color: #425899;
-        cursor: default;
-        font-size: 14px;
-        font-weight: lighter;
-        overflow: hidden;
-        padding: 3px 15px 0 3px;
-        text-overflow: ellipsis;
-        text-transform: none;
-        white-space: nowrap;
-    }
-
-    li.divider {
-        background-color: #D2E4FF;
-        height: 1px;
-        margin-bottom: 3px;
-        margin: 0 15px 0 10px;
-        overflow: hidden;
-    }
-
-    [class^="icon-"],
-    [class*=" icon-"] {
-        margin-right: 2px;
-    }
-
-    li.menu-header {
-        padding-left: 6px;
-    }
-
+body.blue #wrapper.content-container .menu{
     li {
-        padding-left: 10px;
-        cursor: default;
+        color:#425899;
     }
-
-    li:not(.menu-header):not(.divider) {
-        color: #6985B7;
-        font-size: 12px;
-        font-weight: lighter;
-        overflow: hidden;
-        padding-bottom: 0;
-        padding-top: 0;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    &.lime-menu:not(.expanded) li:not(.menu-header):not(.divider) {
-        display: none;
-        animation-name: fadeOut;
-        animation-duration: 0.3s;
-    }
-    &.lime-menu.expanded li:not(.menu-header):not(.divider) {
-        display: block;
-        animation-name: fadeIn;
-        animation-duration: 0.3s;
-    }
-
     li:not(.menu-header):not(.divider):hover {
-        background-color: #E0EEFF;
+        background-color:#E0EEFF;
+    }
+    .divider{
+        background-color:#D2E4FF;
+    }
+}
+
+body.silver #wrapper.content-container .menu{
+    li {
+        color: $silver-text-color;
+    }
+    li:not(.menu-header):not(.divider):hover {
+        background-color:#D8D8D8;
+    }
+    .divider{
+        background-color:#D8D8D8;
+    }
+}
+
+body.brintney #wrapper.content-container .menu{
+    li {
+        color:$brintney-text-color;
+    }
+    li:not(.menu-header):not(.divider):hover {
+        background-color:#E0EEFF;
+    }
+    .divider{
+        background-color:#D2E4FF;
+    }
+}
+
+body.lime-crm #wrapper.content-container .menu{
+    li {
+        color:$lime-crm-text-color;
+    }
+    li:not(.menu-header):not(.divider):hover {
+        background-color:rgb(224, 224, 224);
+    }
+    .divider{
+        background-color:#D8D8D8;
     }
 }

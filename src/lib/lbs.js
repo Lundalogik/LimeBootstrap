@@ -360,16 +360,23 @@ const lbs = {
             skin = lbs.limeDataConnection.application.Theme
         }
         switch (skin) {
-        case 1:
-            lbs.log.info('Silver skin is used')
-            $('body').addClass('silver')
+        case 0:
+            lbs.log.info('Blue skin is used')
+            $('body').addClass('blue')
+            break
+        case 1: // this is the default skin
+            lbs.log.info('Lime CRM skin is used')
             break
         case 2:
             lbs.log.info("Skin: I'm Britney bitch!")
             $('body').addClass('britney')
             break
+        case 3:
+            lbs.log.info('Silver skin is used')
+            $('body').addClass('silver')
+            break
         default:
-            lbs.log.info('Skin: Default')
+            lbs.log.error('Unknown skin id supplied! Lime CRM skin is used')
         }
     },
 

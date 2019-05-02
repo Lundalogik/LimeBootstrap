@@ -23,8 +23,6 @@ html.notouch{
 }
 
 body {
-    background-color: #E0EEFF;
-    color: $main-text-color;
     font-size: 13px;
     font-weight: lighter;
     height: inherit !important;
@@ -58,7 +56,7 @@ CONTENT
 
 .content-container {
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5')";
-    background-color: #F1F6FF;
+    // background-color: #F1F6FF;
     box-shadow: 1px 0 2px #BEC8D5;
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color='#BEC8D5');
     height: 100%;
