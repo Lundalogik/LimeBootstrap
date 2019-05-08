@@ -88,7 +88,7 @@ const lbs = {
 
         lbs.bakery = new Bakery(lbs.activeView)
         // load loader (sic!)
-        this.setupLoader()
+        // this.setupLoader()
 
         // configure
         this.processConfiguration()
@@ -129,7 +129,7 @@ const lbs = {
         $('#content').trigger('load.complete')
 
         // Loading complete
-        lbs.loading.showLoader(false)
+        // lbs.loading.showLoader(false)
 
         lbs.log.stopTimer('LBS total load time')
     },
