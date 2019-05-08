@@ -13,7 +13,7 @@ import 'knockout-punches'
 import Log from './lbs.log'
 import loader from './lbs.loader'
 import Common from './lbs.common'
-import apploader from './lbs.apploader'
+import AppLoader from './lbs.apploader'
 import Bakery from './lbs.bakery'
 import registerCustomBindings from './lbs.bindings'
 import ComponentLoader from './lbs.componentLoader'
@@ -50,11 +50,11 @@ const lbs = {
     loading: {},
     loader,
     common: Common,
-    apploader,
+    apploader: new AppLoader(),
     bakery: null,
     log: new Log(),
     config: null,
-    VmFactory: () => {},
+    VmFactory: class VmFactory {},
 
     /**
     Setup
@@ -97,7 +97,8 @@ const lbs = {
         moment.locale(lbs.activeLocale)
 
         // load datasources
-        this.vm = await lbs.loader.loadDataSources(this.config.dataSources)
+
+        this.vm = await this.loader._loadBothAsyncAndLegacyDataSources(this.config.dataSources)
 
         // load view
         this.loader.loadView(lbs.activeView, $('#content'))
@@ -405,7 +406,14 @@ const lbs = {
     Apply knockout bindings to actionpad, note: no apps will be effected
     */
     applyContentBindings() {
-        ko.applyBindings(lbs.vm, $('#content').get(0))
+        try {
+            ko.applyBindings(lbs.vm, $('#content').get(0))
+        } catch (e) {
+            lbs.log.error(`Bidning of data from data sources to view failed!
+    Reason: ${e.message}
+    Current ViewModel: `)
+            lbs.log.debug(lbs.vm)
+        }
     },
 }
 

@@ -1,42 +1,50 @@
 import $ from 'jquery'
 import ko from 'knockout'
 
-const apploader = {
 
+export default class AppLoader {
     /**
     holds a reference to all factory methods
     */
-    appFactory: {},
+    constructor() {
+        this.appFactory = {}
+        this.apps = {}
+    }
 
     /**
     Register app
     */
     register(name, func) {
         this.appFactory[name] = func
-        lbs.log.debug("App '{0}' has been succesfully registered".format(name))
-    },
+        lbs.log.debug(`AppLoader: App '${name}' has been succesfully registered`)
+    }
 
     /**
     load all app configurations
     */
     identifyApps() {
-        let path
-        let htmlNode
-        let instanceConfig
-        let binding
-        let appName
-        let instance
-        let guid
-
         $('[data-app]').each((_, element) => {
+            let path
+            let htmlNode
+            let instanceConfig
+            let binding
+            let appName
+            let instance
+            let guid
+            let appAttributeValue
             try {
+                lbs.log.warn('[Deprecation] AppLoader: You are using the legacy app binding ("data-app"), please change to the "<lbs-app>" component')
                 // try to parse input to app from view
                 try {
-                    eval(`binding = ${$(element).attr('data-app')}`)
+                    appAttributeValue = $(element).attr('data-app')
+                    eval(`binding = ${appAttributeValue}`)
                     appName = binding.app
-                    instanceConfig = binding.config
+                    instanceConfig = binding.config || {}
                 } catch (e1) {
-                    e1.message = `App definition invalid\n${e1.message}`
+                    lbs.log.error(`AppLoader: 'data-app=' has a syntax error: ${e1.message}.
+                        Your value: ${appAttributeValue}
+                        Expected format: '{app:'app-name', config:{}}'
+                    `)
                     throw e1
                 }
 
@@ -46,14 +54,14 @@ const apploader = {
                 guid = lbs.common.generateGuid()
 
                 // load app
-                if (!lbs.apploader.appFactory[appName]) {
+                if (!this.appFactory[appName]) {
                     if (!lbs.loader.loadScript(`${path}app.js`)) {
-                        throw new Error(`Could not find app ${appName}`)
+                        throw new Error(`AppLoader: Could not find app ${appName}`)
                     }
                 }
 
                 // create an instance
-                instance = new lbs.apploader.appFactory[appName]()
+                instance = new this.appFactory[appName]()
 
                 // merge instance with app config
                 if (instanceConfig) {
@@ -69,36 +77,39 @@ const apploader = {
                 lbs.loader.pushResources(instance.config.resources, path)
 
                 // add app instance to lbs
-                lbs.apps[guid] = lbs.apps[guid] || {}
-                lbs.apps[guid].name = appName
-                lbs.apps[guid].path = path
-                lbs.apps[guid].node = htmlNode
-                lbs.apps[guid].instance = instance
+                this.apps[guid] = {
+                    name: appName,
+                    path,
+                    node: htmlNode,
+                    instance,
+                }
             } catch (e) {
-                lbs.log.warn('Could not load app', e)
+                lbs.log.error(`AppLoader: Could not load app ${appName}`, e)
             }
         })
 
-        return this
-    },
+        return this.appFactory
+    }
 
     /**
     Copy global viewmodel to app and add the datasources for the app
     */
     async buildApps() {
-        $.each(lbs.apps, async (key, app) => {
+        if (!Object.keys(this.apps)) {
+            return
+        }
+        await Promise.all(Object.keys(this.apps).map(async (key) => {
             // to-be viewmode
             // load data
-            const vm = await lbs.loader.loadDataSources(app.instance.config.dataSources)
+            const vm = await lbs.loader._loadBothAsyncAndLegacyDataSources(this.apps[key].instance.config.dataSources)
             if (lbs.vm.localize) {
                 vm.localize = lbs.vm.localize
             } else { // Localize is not garanteed to be loaded anymore
                 vm.localize = lbs.loader._loadDataSource({ type: 'localization' })
             }
-
-            lbs.apps[key].vm = vm
-        })
-    },
+            this.apps[key].vm = vm
+        }))
+    }
 
     /**
     Initialize the app
@@ -108,12 +119,11 @@ const apploader = {
     initializeApps() {
         let appName
         let htmlNode
-
-        $.each(lbs.apps, (key, app) => {
+        $.each(this.apps, (key, app) => {
             appName = app.name
             const { path } = app
             htmlNode = app.node
-            let { vm } = lbs.apps[key]
+            let { vm } = this.apps[key]
 
             // load view
             lbs.loader.loadView(`${path}app`, htmlNode)
@@ -121,22 +131,20 @@ const apploader = {
             // run initialize
             try {
                 vm = app.instance.initialize(htmlNode, vm)
-                lbs.apps[key].vm = vm
+                this.apps[key].vm = vm
             } catch (e) {
-                lbs.apps[key].vm = vm
-                lbs.log.error(`Could not intialize app: ${appName}`, e)
+                this.apps[key].vm = vm
+                lbs.log.error(`AppLoader: Could not intialize app: ${appName}`, e)
+                throw e
             }
 
             // apply bindings
             try {
                 ko.applyBindings(vm, htmlNode.get(0))
             } catch (e) {
-                lbs.log.warn(lbs.common.nl2br(`Binding of data to view failed for app: ${appName}\n Displaying mapping attributes`))
+                lbs.log.error(lbs.common.nl2br(`AppLoader: Binding of data to view failed for app: ${appName}`))
                 lbs.log.error(e)
             }
         })
-    },
-
+    }
 }
-
-export default apploader

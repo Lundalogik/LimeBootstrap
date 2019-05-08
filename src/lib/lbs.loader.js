@@ -6,6 +6,7 @@ import LimeObjects from './dataSources/lbs.dataSource.limeobjects'
 import Translations from './dataSources/lbs.dataSource.translations'
 import CustomEndpoint from './dataSources/lbs.dataSource.customEndpoint'
 
+import { DataSourceLoadError, ResourceLoadError, UnknownDataSourceType, EmptyDataSourceSet } from './lbs.errors'
 
 const loader = {
 
@@ -91,7 +92,7 @@ const loader = {
     /**
     Fetch and run a script from disk
     */
-    loadScript(filename) {
+    loadScript(filename, useFallBack = true) {
         let retval = false
         try {
             $.getScript(filename)
@@ -104,21 +105,25 @@ const loader = {
                 })
             retval = true
         } catch (e) {
-            try {
-                lbs.log.info(`Script "${filename}" could not be loaded, using fallback loading through LWS`)
-                let s = ''
-                s = lbs.common.executeVba(`LBSHelper.loadHTTPResource,${filename}`)
-                if (s && s !== '') {
-                    window.eval(s)
-                    lbs.log.info(`Script "${filename}" loaded successfully`)
-                    retval = true
-                } else {
-                    throw new Error(`Script "${filename}" returned empty`)
+            if (useFallBack) {
+                try {
+                    lbs.log.info(`Script "${filename}" could not be loaded, using fallback loading through LWS`)
+                    let s = ''
+                    s = lbs.common.executeVba(`LBSHelper.loadHTTPResource,${filename}`)
+                    if (s && s !== '') {
+                        window.eval(s)
+                        lbs.log.info(`Script "${filename}" loaded successfully`)
+                        retval = true
+                    } else {
+                        throw new Error(`Script "${filename}" returned empty`)
+                    }
+                } catch (e2) {
+                    lbs.log.error(`Script "${filename}" could not be loaded though browser`, e)
+                    lbs.log.error(`Script "${filename}" could not be loaded through LBSHelper`, e2)
+                    retval = false
                 }
-            } catch (e2) {
-                lbs.log.error(`Script "${filename}" could not be loaded though browser`, e)
-                lbs.log.error(`Script "${filename}" could not be loaded through LWS`, e2)
-                retval = false
+            } else {
+                throw new ResourceLoadError(filename)
             }
         }
 
@@ -230,8 +235,45 @@ const loader = {
     /**
     Load all datasources in set to the selected viewmodel
     */
-    async loadDataSources(_dataSources) {
-        let dataSources = _dataSources
+    async _loadBothAsyncAndLegacyDataSources(dataSources) {
+        const legacyDataSources = this.__filterLegacyDataSources(dataSources)
+        const asyncDataSources = this.__filterAsyncDataSources(dataSources)
+        let legacyVM = {}
+        let asyncVM = {}
+        if (legacyDataSources.length) {
+            legacyVM = this._loadLegacyDataSources(legacyDataSources)
+        }
+        if (asyncDataSources.length) {
+            asyncVM = await this.loadAsyncDataSources(asyncDataSources)
+        }
+        return { ...legacyVM, ...asyncVM }
+    },
+
+    __filterLegacyDataSources(dataSources) {
+        return dataSources.filter(item => this.legacyDataSources.includes(item.type))
+    },
+
+    __filterAsyncDataSources(dataSources) {
+        return dataSources.filter(item => this.asyncDataSources.includes(item.type))
+    },
+
+    loadDataSources(...args) {
+        if (args.length === 1) {
+            const dataSources = args[0]
+            const legacyDataSources = this.__filterLegacyDataSources(dataSources)
+            if (!legacyDataSources.length) {
+                throw new EmptyDataSourceSet(this.legacyDataSources)
+            }
+            return this._loadLegacyDataSources(legacyDataSources)
+        }
+        if (args.length === 2) {
+            lbs.log.warn('"lbs.loader.loadDataSources" is being used in a legacy way with two parameters!')
+            return { ...args[0], ...this._loadLegacyDataSources(args[1]) }
+        }
+        throw new Error('Too many parameters')
+    },
+
+    _loadLegacyDataSources(dataSources) {
         const filterRemoveRelated = item => item.type !== 'relatedRecord'
         const filterRemoveInspector = item => item.type !== 'activeInspector'
         const filterGetInspector = item => item.type === 'activeInspector'
@@ -242,29 +284,28 @@ const loader = {
         const activeInspectorExists = dataSources.filter(
             filterRemoveInspector,
         ).length !== dataSources.length
+        let legacyDataSources = dataSources
 
         // check for activeInspector if using relatedRecord
         if (relatedRecordExists && !activeInspectorExists) {
             // remove related record
-            dataSources = dataSources.filter(filterRemoveRelated)
+            legacyDataSources = legacyDataSources.filter(filterRemoveRelated)
             lbs.log.warn("Failed to load datasource 'RelatedRecord', activeInspector is not loaded")
         } else if (relatedRecordExists) { // add properties to inspector source
             // get inspector source
-            const activeInspector = dataSources.filter(filterGetInspector)[0]
+            const activeInspector = legacyDataSources.filter(filterGetInspector)[0]
             // set related sources to inspector source
-            activeInspector.relatedRecords = dataSources.filter(filterGetRelated)
+            activeInspector.relatedRecords = legacyDataSources.filter(filterGetRelated)
             // remove previous sources collection
-            dataSources = dataSources.filter(filterRemoveRelated).filter(filterRemoveInspector)
+            legacyDataSources = legacyDataSources.filter(filterRemoveRelated).filter(filterRemoveInspector)
             // add new source to collection
-            dataSources.push(activeInspector)
+            legacyDataSources.push(activeInspector)
         }
         // load sources
         const vm = {}
-        await Promise.all(dataSources.map(async (source) => {
-            if (lbs.loader.asyncDataSources.includes(source.type)) {
-                vm[source.alias] = await lbs.loader.loadAsyncDataSource(source)
-            } else if (lbs.loader.legacyDataSources.includes(source.type)) {
-                const data = lbs.loader._loadDataSource(source)
+        legacyDataSources.forEach((dataSourceLiteral) => {
+            if (this.legacyDataSources.includes(dataSourceLiteral.type)) {
+                const data = lbs.loader._loadLegacyDataSource(dataSourceLiteral)
                 if (data) {
                     /*
                     * Legacy datasources named-spaced them selfs.
@@ -273,17 +314,38 @@ const loader = {
                     vm[Object.keys(data)[0]] = data[Object.keys(data)[0]]
                 }
             } else {
-                lbs.log.warn(`Data source type ${source.type} is invalid`)
+                lbs.log.warn(`Data source type ${dataSourceLiteral.type} is invalid`)
             }
-        }))
+        })
 
         return vm
     },
 
-    async loadAsyncDataSource(dataSourceLiteral) {
-        const dataSource = lbs.loader.createDataSource(dataSourceLiteral)
-        lbs.log.info(`Fetching data source: ${dataSourceLiteral.alias}`)
-        return dataSource.fetch()
+    async loadAsyncDataSources(dataSourceLiterals) {
+        const pureAsyncDataSourceLiterals = this.__filterAsyncDataSources(dataSourceLiterals)
+        if (!pureAsyncDataSourceLiterals.length) {
+            throw new EmptyDataSourceSet(this.asyncDataSources)
+        }
+        return pureAsyncDataSourceLiterals.reduce(async (map, dataSourceLiteral) => {
+            const resolvedMap = await map
+            const dataSource = lbs.loader.createDataSource(dataSourceLiteral)
+            const tmpVm = {}
+            const data = await this.loadAsyncDataSource(dataSource)
+            tmpVm[dataSource.alias] = data
+            return Promise.resolve({ ...resolvedMap, ...tmpVm })
+        }, Promise.resolve({}))
+    },
+
+    async loadAsyncDataSource(dataSource) {
+        if (!this.asyncDataSources.includes(dataSource.type)) {
+            throw new UnknownDataSourceType(dataSource.type)
+        }
+        try {
+            lbs.log.info(`Fetching data source: '${JSON.stringify(dataSource)}'`)
+            return await dataSource.fetch()
+        } catch (e) {
+            throw new DataSourceLoadError(dataSource)
+        }
     },
 
     /**
@@ -292,21 +354,21 @@ const loader = {
 
     loadDataSource(...args) {
         if (args.length === 1) {
-            return this._loadDataSource(args[0])
-        } else if (args.length === 3) {
-            lbs.log.warn(`[Deprication] Data source '${args[1].type}' is being used in a legacy way! Change to passing one parameter and expecting a return value`)
-            return this._loadDataSourceLegacy(args[0], args[1], args[2])
+            return this._loadLegacyDataSource(args[0])
+        }
+        if (args.length === 3) {
+            lbs.log.warn(`[Deprecation] Data source '${args[1].type}' is being used in a legacy way! Change to passing one parameter and expecting a return value`)
+            return this._loadLegacyDataSourceLegacy(args[0], args[1], args[2])
         }
         return null
     },
 
-    _loadDataSourceLegacy(vm, dataSource, overrideExisting) {
-        const data = this._loadDataSource(dataSource)
-        vm = lbs.common.mergeOptions(vm, data || {}, overrideExisting)
-        return vm
+    _loadLegacyDataSourceLegacy(vm, dataSource, overrideExisting) {
+        const data = this._loadLegacyDataSource(dataSource)
+        return lbs.common.mergeOptions(vm, data || {}, overrideExisting)
     },
 
-    _loadDataSource(dataSource) {
+    _loadLegacyDataSource(dataSource) {
         if (Object.keys(dataSource).length === 0 && dataSource.constructor === Object) {
             lbs.log.error('Empty dataSource supplied to loadDataSource. This is probably due to legacy usage')
             return null
@@ -314,7 +376,7 @@ const loader = {
         let data = {}
 
         lbs.log.debug(`Loading data source: ${dataSource.type}:${dataSource.source}`)
-        lbs.log.startTimer(`${JSON.stringify(dataSource)}`)
+        lbs.log.startTimer(`Datasource: ${JSON.stringify(dataSource)}`)
 
         try {
             switch (dataSource.type) {
@@ -329,7 +391,7 @@ const loader = {
 
                     // find data without alias
                     const dataNode = data[Object.keys(data)[0]]
-                    if(dataSource.relatedRecords) {
+                    if (dataSource.relatedRecords) {
                         dataSource.relatedRecords.forEach((item) => {
                             const relatedRecord = item
                             relatedRecord.class = dataNode[item.source].class
@@ -487,9 +549,9 @@ const loader = {
                 lbs.log.warn(`Supplied datasource ${dataSource.type} not recognized. Please see docs for supported sources`)
             }
         } catch (e) {
-            lbs.log.warn(`Failed to load datasource: ${dataSource.type}:${dataSource.source}`, e)
+            throw new DataSourceLoadError(dataSource)
         } finally {
-            lbs.log.stopTimer(`${JSON.stringify(dataSource)}`)
+            lbs.log.stopTimer(`Datasource: ${JSON.stringify(dataSource)}`)
         }
 
         return data
