@@ -38,22 +38,14 @@ export default class DataSource {
         const _settings = {
             mode: 'cors',
             headers: { sessionid: this.session },
+            method,
         }
-        try {
-            const response = await fetch(url, { ...settings, ..._settings })
-            return response
-        } catch (e) {
-            lbs.log.info(`Using VBA fallback method for data source ${this.type}`)
-            const payload = settings.body ? `, ${btoa(settings.body)}` : ''
-            return {
-                json: async () => JSON.parse(lbs.common.executeVba(`LBSHelper.CRMEndpoint, ${url}, ${method}${payload}`)),
-                status: 'Fetched through VBA... No idea',
-            }
+        const response = await fetch(url, { ...settings, ..._settings })
+        if (!response.ok) {
+            throw new Error()
         }
+        return response
     }
-
-
-
     /**
      * Should return a promise to the data from the datasource
      * @async
