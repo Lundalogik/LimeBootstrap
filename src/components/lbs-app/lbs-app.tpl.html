@@ -1,0 +1,9 @@
+<lbs-loading-indicator params="loading: loading(), size: 'lg'">
+    <div data-bind="component:component"></div>
+    <lbs-alert data-bind="visible:error()" params="
+        text:errorMsg,
+        alertType: 'danger',
+        icon: 'fa-exclamation-triangle'
+        ">
+    </lbs-alert>
+</lbs-loading-indicator>
