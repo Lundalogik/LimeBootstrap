@@ -1,3 +1,4 @@
+import HttpService from './services/httpService'
 import NotYetImplementedError from '../lbs.errors'
 
 export default class LWCPlatform {
@@ -9,13 +10,7 @@ export default class LWCPlatform {
             register: () => { throw new NotYetImplementedError(); },
         }
 
-        this.http = {
-            delete: () => { throw new NotYetImplementedError(); },
-            get: () => { throw new NotYetImplementedError(); },
-            patch: () => { throw new NotYetImplementedError(); },
-            post: () => { throw new NotYetImplementedError(); },
-            put: () => { throw new NotYetImplementedError(); },
-        }
+        this.http = HttpService
 
         this.notifications = {
             alert: (title, message) => {
