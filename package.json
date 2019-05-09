@@ -54,6 +54,7 @@
     "knockout-mapping": "^2.6.0",
     "knockout-punches": "^0.5.1",
     "lime-elements": "^21.0.4",
+    "messageformat": "^2.2.0",
     "moment": "^2.24.0",
     "pickadate": "^5.0.0-alpha.3",
     "underscore": "^1.10.2",
