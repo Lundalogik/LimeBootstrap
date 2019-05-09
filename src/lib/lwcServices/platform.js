@@ -1,4 +1,5 @@
 import HttpService from './services/httpService'
+import TranslateService from './services/translateService'
 import NotYetImplementedError from '../lbs.errors'
 
 export default class LWCPlatform {
@@ -38,8 +39,6 @@ export default class LWCPlatform {
             subscribe: () => { throw new NotYetImplementedError(); },
         }
 
-        this.translate = {
-            get: () => { throw new NotYetImplementedError(); },
-        }
+        this.translate = new TranslateService(lbs.activeLocale || 'en')
     }
 }
