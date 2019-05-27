@@ -140,6 +140,7 @@ export default class AppLoader {
 
             // apply bindings
             try {
+                ko.cleanNode(htmlNode.get(0))
                 ko.applyBindings(vm, htmlNode.get(0))
             } catch (e) {
                 lbs.log.error(lbs.common.nl2br(`AppLoader: Binding of data to view failed for app: ${appName}`))
