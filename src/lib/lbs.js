@@ -19,6 +19,7 @@ import registerCustomBindings from './lbs.bindings'
 import ComponentLoader from './lbs.componentLoader'
 import { SetupError } from './lbs.errors'
 import User from './models/lbs.Users'
+import xml2json from './lbs.xml2json'
 /**
 Objekt container
 */
@@ -55,6 +56,7 @@ const lbs = {
     log: new Log(),
     config: null,
     VmFactory: class VmFactory {},
+    xml2json,
 
     /**
     Setup
@@ -229,6 +231,8 @@ const lbs = {
         lbs.activeClass = lbs.common.getURLParameter('activeclass')
         if (!lbs.activeClass && lbs.activeInspector) {
             lbs.activeClass = lbs.activeInspector.class.Name
+        } else if (lbs.activeView === 'index') { // this is here to provide backwards compatability with LBS1
+            lbs.activeClass = 'index'
         }
 
         lbs.activeLocale = lbs.common.getURLParameter('locale')

@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { xml2json } from 'xml2json-light'
+import xml2json from './lbs.xml2json'
 
 import LimeObject from './dataSources/lbs.dataSource.limeobject'
 import LimeObjects from './dataSources/lbs.dataSource.limeobjects'
@@ -727,8 +727,8 @@ const loader = {
     xmlToJSON(xml, _alias) {
         const json = {}
         const alias = _alias || 'xmlSource'
-        json[alias] = xml2json(xml)
 
+        json[alias] = $.parseJSON(xml2json($.parseXML(xml), ''))
         return json
     },
 
