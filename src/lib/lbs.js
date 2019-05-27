@@ -57,6 +57,7 @@ const lbs = {
     log: new Log(),
     config: null,
     VmFactory: class VmFactory {},
+    lwcPlatform: null,
     xml2json,
 
     /**
