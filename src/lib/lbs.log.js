@@ -132,7 +132,7 @@ class Log {
         if (lbs.hasLimeConnection && lbs.debugLogToEventViewer) {
             try {
                 const logMsg = `${lbs.activeView}.html: ${msg}`
-                lbs.limeDataConnection.Run(`'LBSHelper.WriteEventLog','${btoa(logMsg)}','${level}'`)
+                lbs.limeDataConnection.Run('LBSHelper.writeEventLog', `'${btoa(logMsg)}'`, `'${level}'`)
             } catch (e) {
                 console.error('Failed to write to Windows EventLog', e)
             }
