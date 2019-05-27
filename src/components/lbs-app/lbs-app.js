@@ -31,8 +31,10 @@ class LBSApp extends LBSBaseComponent {
         this.errorMsg = ko.observable(`${this.appName} encountered an fatal error: `)
 
         this.appPath = `apps/${this.appName}/`
-
+        lbs.log.info(`<lbs-app>: Initializing app "${this.appName}"`)
+        lbs.log.startTimer(`<lbs-app>: Init of ${this.appName}`)
         this.initApp()
+        lbs.log.stopTimer(`<lbs-app>: Init of ${this.appName}`)
     }
 
     async initApp() {
@@ -96,7 +98,13 @@ class LBSApp extends LBSBaseComponent {
 
     async _loadAppDatasources(appInstance) {
         try {
-            return await lbs.loader._loadBothAsyncAndLegacyDataSources(appInstance.config.dataSources)
+            const appVM = await lbs.loader._loadBothAsyncAndLegacyDataSources(appInstance.config.dataSources)
+            if (lbs.vm.localize) {
+                appVM.localize = lbs.vm.localize
+            } else { // Localize is not garanteed to be loaded anymore
+                appVM.localize = lbs.loader._loadDataSource({ type: 'localization' })
+            }
+            return appVM
         } catch (e) {
             throw new AppDataSourceLoadError(this.appName, e.dataSource)
         }
