@@ -79,14 +79,14 @@ lbs.externalConfig = {
 
 ## Components
 
-Components are self contained specialized html elements, for example `<lbs-hero>`. We are using [knockout components](http://knockoutjs.com/documentation/component-overview.html) behind the scenes to create the components, but in essens it is very inspired of the emerging webstandard of web components. Several components are [included](included_components) but you have also the ability to [build your own components](custom_components) or download community components from the [AppStore](https://appstore.lime-bootstrap.com)
+Components are self contained specialized html elements, for example `<lbs-hero>`. We are using [knockout components](http://knockoutjs.com/documentation/component-overview.html) behind the scenes to create the components, but in essens it is very inspired of the emerging webstandard of web components. Several components are [included](included_components) but you have also the ability to [build your own components](custom_components) or download community components from [Lime Store](https://store.lime-crm.com).
 
-See all our components [here](/en/latest/components)
+See all our components [here](components/lbs-alert.md).
 
 ## Custom Components and Apps
 Lime Bootstraps allows you to create and custom components, as a compliment to the included components. Lime Bootstrap 1 had the concept of creating small apps. These apps still run fine in Lime Bootstrap 2.0, but it is prefered to use components.
 
-Components and Apps can be found [here](http://limebootstrap.lundalogik.com/web/appstore/index.html)
+Components and Apps can be found [here](https://store.lime-crm.com).
 
 A Custom Component is added in `_config.js` and can then be used in the same way as any included component.
 
@@ -146,7 +146,7 @@ Instead you can load additional data by requesting data sources in `_config.js`.
 
 The loaded data can then be access by:
 
-All avialable data sources can be found [here](datasources)
+All avialable data sources can be found [here](datasources.md).
 
 ```html
 <!-- Loading person and company info on a helpdesk actionpad-->
@@ -156,11 +156,9 @@ All avialable data sources can be found [here](datasources)
 <li data-bind="text:company.phone.text"></li>
 ```
 
-
 ## Keyboard shortcuts
 The different view can be opened with shortcuts provided the actionpad is in focus.
 
 |   Function  |   Command   |
 |   ---    | ---       |
 |   Reload actionpad | ctrl + shift + r |
-
