@@ -12,13 +12,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Set up complier
-      run: sudo apt-get install gcc g++ build-essential
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - name: npm install, build, and test
+    - name: Force node-sass
+      run: sudo npm install --unsafe-perm node-sass
+    - name: npm install and build
       run: |
         npm install
         npm run build --if-present
