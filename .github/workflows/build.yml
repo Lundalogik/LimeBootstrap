@@ -23,7 +23,7 @@ jobs:
         sudo npm install
         sudo npm run build --if-present
     - name: setup semantic release
-       env:
+      env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         sudo npm install -g semantic-release/semantic-release@master
