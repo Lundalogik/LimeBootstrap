@@ -26,6 +26,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        sudo npm install -g semantic-release/semantic-release@master
+        sudo npm install -g semantic-release/semantic-release#master
         semantic-release
  
