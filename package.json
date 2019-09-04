@@ -66,8 +66,7 @@
       "@semantic-release/release-notes-generator",
       ["@semantic-release/github", {
         "assets": [
-          {"path": "dist/**", "label": "Actionpads"},
-          {"path": "VBA/**", "label": "VBA"}
+          {"path": "LBS.zip", "label": "LBS"}
         ]
       }]
     ]
