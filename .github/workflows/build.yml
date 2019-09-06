@@ -27,6 +27,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         sudo npm install -g semantic-release/semantic-release#master
-        zip LBS.zip dist VBA 
+        zip -r LBS dist VBA 
         semantic-release
  
