@@ -1,0 +1,26 @@
+name: Test PRs of LBS
+
+on:
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Force node-sass
+      run: sudo npm install --unsafe-perm node-sass
+    - name: npm install, test and build
+      run: |
+        sudo npm install
+        sudo npm run test
+        sudo npm run build
+ 

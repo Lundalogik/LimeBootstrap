@@ -1,0 +1,32 @@
+name: Build LBS
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Force node-sass
+      run: sudo npm install --unsafe-perm node-sass
+    - name: npm install and build
+      run: |
+        sudo npm install
+        sudo npm run build --if-present
+    - name: setup semantic release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        sudo npm install -g semantic-release/semantic-release#master
+        zip -r LBS dist VBA 
+        semantic-release
+ 

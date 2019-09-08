@@ -59,5 +59,16 @@
   },
   "jest": {
     "testURL": "https://www.lime-bootstrap.com/lbs.html?apait=company"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      ["@semantic-release/github", {
+        "assets": [
+          {"path": "LBS.zip", "label": "LBS"}
+        ]
+      }]
+    ]
   }
 }
