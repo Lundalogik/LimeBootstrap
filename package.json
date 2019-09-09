@@ -45,6 +45,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "bootstrap3": "^3.3.5",
+    "core-js": "^2.6.9",
     "daemonite-material": "^4.1.1",
     "jquery": "^3.4.1",
     "js-cookie": "^2.2.0",
@@ -58,17 +59,26 @@
     "xml2json-light": "^1.0.6"
   },
   "jest": {
-    "testURL": "https://www.lime-bootstrap.com/lbs.html?apait=company"
+    "testURL": "https://www.lime-bootstrap.com/lbs.html?apait=company",
+    "setupFiles": [
+      "./jest.init.js"
+    ]
   },
   "release": {
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
-      ["@semantic-release/github", {
-        "assets": [
-          {"path": "LBS.zip", "label": "LBS"}
-        ]
-      }]
+      [
+        "@semantic-release/github",
+        {
+          "assets": [
+            {
+              "path": "LBS.zip",
+              "label": "LBS"
+            }
+          ]
+        }
+      ]
     ]
   }
 }
