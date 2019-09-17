@@ -23,6 +23,66 @@ A data source can either be specified in `_config.js` or programtically created 
 
 ## Data sources
 
+### limeObject
+Fetch data from the Lime CRM api for a selected LimeObject
+
+| Param              | Description                         | Default                    | Required |
+|--------------------|-------------------------------------|------------------------    |----------|
+| type               | Type of the data source             |                            | true     |
+| embed              | Related objects to embed            | []                         | false    |
+| alias              | Name of node in the ViewModel       | Name of active Lime Object | false    |
+| protocol           | Protocol of fetch                   | https                      | false    |
+| limetype           | type of object to fetch             |                            | true     |
+Embed fetches data from related objects. It only works for `belongs_to` properties.
+
+!!! Note
+    The returned data is almost identical to the answer from the Lime CRM API with one important exception, embedded objects. To make embedded data easier to use directly in a View we push the data from the `_embeded`-node to a `[your object here]`-node.
+
+
+```
+{ type: 'limeObject', alias: 'personOne', limetype: 'person'}
+```
+
+For programtic use
+
+```javascript
+const dataSource =lbs.loader.createDataSource({ type: 'limeObject', alias: 'personOne', limetype: 'person'})
+const data = await dataSource.fetch()
+```
+
+### limeObjects
+Fetch data from the Lime CRM api for a selected LimeObject
+
+| Param              | Description                                         | Default                    | Required |
+|--------------------|-----------------------------------------------------|----------------------------|----------|
+| type               | Type of the data source                             |                            | true     |
+| embed              | Related objects to embed                            | []                         | false    |
+| alias              | Name of node in the ViewModel                       | Name of active Lime Object | false    |
+| fetchAll           | Fetches all related data instead of only first page | true                       | false    |
+| protocol           | Protocol of fetch                                   | https                      | false    |
+| sort               | Property to sort result on                          |                            | false    |
+| sortOrder          | 'asc' or 'desc'                                     | desc                       | false    |
+| embed              | Related objects to embed                            | []                         | false    |
+| filter             | A filter string                                     | []                         | false    |
+| size               | Number of items in fetch                            | 0                          | false    |
+| limetype           | type of objects to fetch                            |                            | true     |
+Embed fetches data from related objects. It only works for `belongs_to` properties.
+
+!!! Note
+    The returned data is almost identical to the answer from the Lime CRM API with one important exception, embedded objects. To make embedded data easier to use directly in a View we push the data from the `_embeded`-node to a `[your object here]`-node.
+
+
+```
+{ type: 'limeObjects', alias: 'personOne', limetype: 'person'}
+```
+
+For programtic use
+
+```javascript
+const dataSource =lbs.loader.createDataSource({ type: 'limeObjects', alias: 'personPlural', limetype: 'person'})
+const data = await dataSource.fetch()
+```
+
 ### activeLimeObject
 Fetch data from the Lime CRM api for the currently active LimeObject
 
