@@ -13,7 +13,7 @@ export default class CustomEndpoint extends dataSource {
         if (this.relativeUrl.charAt(0) !== '/') { // Prepend slash
             url = `/${url}`
         }
-        if (this.relativeUrl.charAt(this.relativeUrl.length - 1) !== '/') { // Append slash
+        if (this.relativeUrl.charAt(this.relativeUrl.length - 1) !== '/' && !url.indexOf('?')) { // Append slash
             url = `${url}/`
         }
         if (this.params) {
