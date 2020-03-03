@@ -8,7 +8,7 @@ Lime Bootstrap is only meant to be used inside Lime Crm, but for debugging reaso
 
 Older versions of IE __won't__ work!
 
-*	Lime 10.12 or greater
+*	Lime 12.51 or greater
 
 ## Install
 Lime Bootstrap is included in the Lime Core database and nothing is needs to be done in this case. If installing Lime Bootstrap from scratch:

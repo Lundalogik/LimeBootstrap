@@ -16,11 +16,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - name: Force node-sass
-      run: sudo npm install --unsafe-perm node-sass
     - name: npm install, test and build
       run: |
-        sudo npm install
-        sudo npm run test
-        sudo npm run build
+        npm install
+        npm run test
+        npm run build
  
