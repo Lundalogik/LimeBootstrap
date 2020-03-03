@@ -242,6 +242,9 @@ const lbs = {
             lbs.log.warn('Could not set locale! Default "en_us" will be used')
         }
         lbs.activeLocale = lbs.activeLocale.replace('-', '_') // Lime is inconsistent in useage of locale strings
+        if (lbs.activeLocale === 'no') { // Norwegian is problematic, defaulting to "Bokmål"
+            lbs.activeLocale = 'nb'
+        }
 
         // Get session
         lbs.session = lbs.common.getURLParameter('sessionid')
