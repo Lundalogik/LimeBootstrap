@@ -5,6 +5,7 @@ import LimeObject from './dataSources/lbs.dataSource.limeobject'
 import LimeObjects from './dataSources/lbs.dataSource.limeobjects'
 import Translations from './dataSources/lbs.dataSource.translations'
 import CustomEndpoint from './dataSources/lbs.dataSource.customEndpoint'
+import RuntimeConfig from './dataSources/lbs.dataSource.runtimeConfig'
 
 import { DataSourceLoadError, ResourceLoadError, UnknownDataSourceType, EmptyDataSourceSet } from './lbs.errors'
 
@@ -35,6 +36,7 @@ const loader = {
         'limeObjects',
         'activeLimeObject',
         'customEndpoint',
+        'runtimeConfig',
         'translations',
         'relatedLimeObjects',
     ],
@@ -222,6 +224,13 @@ const loader = {
         }
         case 'customEndpoint':
             return new CustomEndpoint(
+                dataSourceLiteral,
+                lbs.session,
+                lbs.activeServer,
+                lbs.activeDatabase,
+            )
+        case 'runtimeConfig':
+            return new RuntimeConfig(
                 dataSourceLiteral,
                 lbs.session,
                 lbs.activeServer,
