@@ -198,6 +198,35 @@ const data4 = await dataSource.put(payload)
 
 ```
 
+### runtimeConfig
+
+GET the RuntimeConfig for a specific package or all configs
+
+
+| Param              | Description                                            | Default                  | Required |
+|--------------------|-------------------------------------                   |----------                |----------|
+| type               | Type of the data source                                |                          | true     |
+| alias              | Name of node in the ViewModel                          | ''                       | true     |
+| packageName        | Name of the package                                    |                          | false    |
+| protocol           | Protocol of fetch                                      | https                    | false    |
+
+```javascript
+{ type: 'runtimeConfig', alias: 'myConfig', packageName: 'limepkg_pizza' }
+```
+
+For programmatic use
+
+```javascript
+const dataSource = lbs.loader.createDataSource({ type: 'runtimeConfig', alias: 'myConfig', packageName: 'limepkg_pizza'})
+
+// To get all configs, skip the optinal packageName
+const dataSource = lbs.loader.createDataSource({ type: 'runtimeConfig', alias: 'allConfigs'})
+
+// GET
+const data = await dataSource.get()
+
+```
+
 ## Legacy data sources
 
 The legacy datasources fetches data through the use of VBA or directly through the COM-bridge. These datasources are slower, blocking and less compatible with future directions. Avoyd using them or limit your use as much as possible
