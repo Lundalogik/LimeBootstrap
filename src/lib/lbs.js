@@ -1,7 +1,7 @@
 /**
-* This is the default Lime CRM javascript lib for actionpad functions.
-* It contains many functions to make the world a little better place.
-*/
+ * This is the default Lime CRM javascript lib for actionpad functions.
+ * It contains many functions to make the world a little better place.
+ */
 
 import moment from 'moment'
 import $ from 'jquery'
@@ -19,6 +19,7 @@ import registerCustomBindings from './lbs.bindings'
 import ComponentLoader from './lbs.componentLoader'
 import { SetupError } from './lbs.errors'
 import User from './models/lbs.Users'
+import LWCPlatform from './lwcServices/platform'
 import xml2json from './lbs.xml2json'
 /**
 Objekt container
@@ -56,16 +57,17 @@ const lbs = {
     log: new Log(),
     config: null,
     VmFactory: class VmFactory {},
+    lwcPlatform: null,
     xml2json,
+    lwcPlatform: null,
 
     /**
     Setup
     */
     async setup() {
-        // register custom bindnings
+    // register custom bindnings
         registerCustomBindings()
         lbs.configureKnockout()
-
 
         // system param
         this.setSystemOperationParameters()
@@ -100,17 +102,29 @@ const lbs = {
 
         // load datasources
 
-        this.vm = await this.loader._loadBothAsyncAndLegacyDataSources(this.config.dataSources)
+        this.vm = await this.loader._loadBothAsyncAndLegacyDataSources(
+            this.config.dataSources,
+        )
 
         // load view
         this.loader.loadView(lbs.activeView, $('#content'))
 
+        lbs.lwcPlatform = new LWCPlatform()
 
         let localComponents = []
-        if (lbs.externalConfig[lbs.activeView] && lbs.externalConfig[lbs.activeView].components) {
+        if (
+            lbs.externalConfig[lbs.activeView]
+      && lbs.externalConfig[lbs.activeView].components
+        ) {
             localComponents = lbs.externalConfig[lbs.activeView].components
         }
-        await ComponentLoader.loadComponents(lbs.externalConfig.components, localComponents)
+        await ComponentLoader.loadComponents(
+            lbs.externalConfig.components,
+            localComponents,
+        )
+
+        await ComponentLoader.loadWebComponents()
+
         // load apps
         this.apploader.identifyApps()
 
@@ -176,8 +190,8 @@ const lbs = {
     },
 
     /**
-    * Initialize a neat little loading spinner
-    */
+   * Initialize a neat little loading spinner
+   */
     setupLoader() {
         lbs.loading.showLoader = ko.observable(true)
         lbs.loading = ko.mapping.fromJS(lbs.loading)
@@ -185,10 +199,10 @@ const lbs = {
     },
 
     /**
-    * Fetch variables required to run system
-    */
+   * Fetch variables required to run system
+   */
     setSystemOperationParameters() {
-        // ajax should be async
+    // ajax should be async
         $.ajaxSetup({
             async: false,
         })
@@ -197,24 +211,28 @@ const lbs = {
         this.vm = new lbs.VmFactory()
 
         // check connection to Lime
-        this.hasLimeConnection = Boolean(lbs.limeDataConnection && typeof lbs.limeDataConnection.Application !== 'undefined')
+        this.hasLimeConnection = Boolean(
+            lbs.limeDataConnection
+        && typeof lbs.limeDataConnection.Application !== 'undefined',
+        )
 
         // getVersion
         this.limeVersion = lbs.hasLimeConnection
-            ? lbs.common.parseVersion(lbs.limeDataConnection.Version) : lbs.common.parseVersion('0.0.0')
+            ? lbs.common.parseVersion(lbs.limeDataConnection.Version)
+            : lbs.common.parseVersion('0.0.0')
     },
 
     /**
-    * Finds and sets
-    *    - the view to use
-    *    - reference to ActiveInspetor
-    *    - Id of ActiveInspector
-    *    - Name of LimeType (class), might also be 'index' indicating no class
-    *    - locale
-    *    - session
-    *    - limeobject id
-    *    - wrapper type
-    */
+   * Finds and sets
+   *    - the view to use
+   *    - reference to ActiveInspetor
+   *    - Id of ActiveInspector
+   *    - Name of LimeType (class), might also be 'index' indicating no class
+   *    - locale
+   *    - session
+   *    - limeobject id
+   *    - wrapper type
+   */
     setActionPadEnvironment() {
         lbs.setActiveInspectorReference()
         /* Find out the name of the LimeType (class) we are viewing.
@@ -223,7 +241,8 @@ const lbs = {
         */
 
         lbs.activeView = lbs.common.getURLParameter('ap')
-        if (!lbs.activeView) { // all else fails, go for Index
+        if (!lbs.activeView) {
+            // all else fails, go for Index
             lbs.activeView = 'index'
         }
 
@@ -231,7 +250,8 @@ const lbs = {
         lbs.activeClass = lbs.common.getURLParameter('activeclass')
         if (!lbs.activeClass && lbs.activeInspector) {
             lbs.activeClass = lbs.activeInspector.class.Name
-        } else if (lbs.activeView === 'index') { // this is here to provide backwards compatability with LBS1
+        } else if (lbs.activeView === 'index') {
+            // this is here to provide backwards compatability with LBS1
             lbs.activeClass = 'index'
         }
 
@@ -242,7 +262,8 @@ const lbs = {
             lbs.log.warn('Could not set locale! Default "en_us" will be used')
         }
         lbs.activeLocale = lbs.activeLocale.replace('-', '_') // Lime is inconsistent in useage of locale strings
-        if (lbs.activeLocale === 'no') { // Norwegian is problematic, defaulting to "Bokmål"
+        if (lbs.activeLocale === 'no') {
+            // Norwegian is problematic, defaulting to "Bokmål"
             lbs.activeLocale = 'nb'
         }
 
@@ -254,13 +275,19 @@ const lbs = {
             throw new SetupError('Could not get users active session')
         }
 
-        lbs.activeLimeObjectId = parseInt(lbs.common.getURLParameter('limeobjectid'), 10)
+        lbs.activeLimeObjectId = parseInt(
+            lbs.common.getURLParameter('limeobjectid'),
+            10,
+        )
         if (!lbs.activeLimeObjectId && lbs.activeInspector) {
             lbs.activeLimeObjectId = lbs.activeInspector.record.ID
-        } else if (!lbs.activeLimeObjectId && !lbs.activeClass && !lbs.activeView === 'index') {
+        } else if (
+            !lbs.activeLimeObjectId
+      && !lbs.activeClass
+      && !lbs.activeView === 'index'
+        ) {
             throw new SetupError('Could not get the active LimeObjects id')
         }
-
 
         lbs.setWrapper()
         lbs.setActiveDBandServer()
@@ -283,14 +310,17 @@ const lbs = {
             case 'inspector': {
                 const inspectorId = lbs.common.getURLParameter('apownerid')
                 if (inspectorId) {
-                    lbs.activeInspector = lbs.limeDataConnection.Inspectors.Lookup(inspectorId)
+                    lbs.activeInspector = lbs.limeDataConnection.Inspectors.Lookup(
+                        inspectorId,
+                    )
                 }
                 break
             }
             case 'application':
                 lbs.activeInspector = null
                 break
-            default: // no inspectorid support, using fallback
+            default:
+                // no inspectorid support, using fallback
                 lbs.activeInspector = lbs.limeDataConnection.ActiveInspector
             }
             // set references
@@ -301,16 +331,18 @@ const lbs = {
         let activeUser = null
         if (lbs.common.getURLParameter('user')) {
             activeUser = JSON.parse(lbs.common.getURLParameter('user'))
-            const groups = activeUser.groups.map(group => group.name)
+            const groups = activeUser.groups.map((group) => group.name)
             lbs.activeUser = new User(
                 activeUser.name,
-                activeUser.id, activeUser.isAdmin,
+                activeUser.id,
+                activeUser.isAdmin,
                 activeUser.isSuperUser,
                 groups,
             )
         } else if (lbs.hasLimeConnection) {
-            activeUser = JSON.parse(lbs.common.executeVba('lbsHelper.getActiveUser')).ActiveUser
-            const groups = activeUser.Groups.map(group => group.Name)
+            activeUser = JSON.parse(lbs.common.executeVba('lbsHelper.getActiveUser'))
+                .ActiveUser
+            const groups = activeUser.Groups.map((group) => group.Name)
             lbs.activeUser = new User(
                 activeUser.Name,
                 activeUser.ID,
@@ -327,11 +359,15 @@ const lbs = {
         switch (lbs.common.getURLParameter('type')) {
         case 'tab':
             lbs.wrapperType = 'wrapperTab'
-            $('#wrapper').removeClass('content-container').addClass('content-container-tab')
+            $('#wrapper')
+                .removeClass('content-container')
+                .addClass('content-container-tab')
             break
         case 'inline':
             lbs.wrapperType = 'wrapperInline'
-            $('#wrapper').removeClass('content-container').addClass('content-container-inline')
+            $('#wrapper')
+                .removeClass('content-container')
+                .addClass('content-container-inline')
             break
         default:
             lbs.wrapperType = 'wrapperActionpad'
@@ -341,12 +377,14 @@ const lbs = {
     Find database and server
     */
     setActiveDBandServer() {
-        // set active server
+    // set active server
 
         if (lbs.common.getURLParameter('server')) {
             lbs.activeServer = lbs.common.getURLParameter('server').split('://')[1]
         } else if (lbs.hasLimeConnection) {
-            lbs.activeServer = lbs.limeDataConnection.Database.FullActiveServerName.split('://')[1]
+            lbs.activeServer = lbs.limeDataConnection.Database.FullActiveServerName.split(
+                '://',
+            )[1]
         } else {
             throw new SetupError('Could not set active server')
         }
@@ -359,7 +397,9 @@ const lbs = {
             throw new SetupError('Could not set active database')
         }
 
-        lbs.log.info(`Active Server, Database: ${lbs.activeServer}, ${lbs.activeDatabase}`)
+        lbs.log.info(
+            `Active Server, Database: ${lbs.activeServer}, ${lbs.activeDatabase}`,
+        )
     },
 
     setSkin() {
@@ -389,9 +429,9 @@ const lbs = {
     },
 
     /**
-    * On click handlers. Executes events when clicked, such as running VBA or manipulating the DOM
-    *
-    * */
+   * On click handlers. Executes events when clicked, such as running VBA or manipulating the DOM
+   *
+   * */
 
     GlobalEventHandler: {
         OnKeydown(data, e) {
@@ -405,7 +445,10 @@ const lbs = {
     },
 
     SetTouchEnabled(enable) {
-        $('html').attr('oncontextmenu', 'return {0}'.format(enable ? 'true' : 'false'))
+        $('html').attr(
+            'oncontextmenu',
+            'return {0}'.format(enable ? 'true' : 'false'),
+        )
         $('html').toggleClass('notouch', !enable)
     },
 

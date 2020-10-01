@@ -8,10 +8,11 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "brunch build",
+    "build": "brunch build && cp -R node_modules/@limetech/lime-elements/dist dist/system/lime-elements",
     "watch": "brunch watch -s",
     "docs": "mkdocs serve",
-    "publish-docs": "mkdocs gh-deploy"
+    "publish-docs": "mkdocs gh-deploy",
+    "postinstall": ""
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
+    "@limetech/lime-elements": "^26.13.0",
     "bootstrap3": "^3.3.5",
     "core-js": "^2.6.11",
     "daemonite-material": "^4.1.1",
@@ -52,6 +54,7 @@
     "knockout": "^3.5.1",
     "knockout-mapping": "^2.6.0",
     "knockout-punches": "^0.5.1",
+    "messageformat": "^2.3.0",
     "moment": "^2.24.0",
     "pickadate": "^5.0.0-alpha.3",
     "underscore": "^1.10.2",

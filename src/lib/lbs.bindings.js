@@ -295,6 +295,12 @@ export default function registerCustomBindings() {
         },
     }
 
+    ko.bindingHandlers.lwc = {
+        update(element, valueAccessor) {
+            ko.bindingHandlers.attr.update(element, () => ({ src: valueAccessor() }))
+        },
+    }
+
     ko.filters.number = (value, nbrOfDecimals = 2) => {
         const filteredValue = Number(`${Math.round(`${value}e${nbrOfDecimals}`)}e-${nbrOfDecimals}`)
         return filteredValue.toLocaleString()

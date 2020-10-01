@@ -1,6 +1,5 @@
 import dataSource from './lbs.dataSource'
 
-// Represents a request for data of a LimeObject from the rest API
 export default class CustomEndpoint extends dataSource {
     constructor({ relativeUrl, params, ...rest }, session, server, database) {
         super(rest, session, server, database)
