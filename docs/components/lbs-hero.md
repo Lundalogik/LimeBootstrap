@@ -13,7 +13,7 @@ header          | Header text for the hero                      | 'Lime Technolo
 img             | Name of the header image                      | 'fa-calendar'                 |
 menuItems       | Array with objects defining a context menu.   | [See below](#context-menu)    | []
 
-<img src="https://raw.githubusercontent.com/Lundalogik/LimeBootstrapServices/master/web/assets/img/Bootstrap_colors.png">
+![LBS Colors](../assets/images/lbs-colors.png)
 
 ## Context menu
 The context menu is automatically added to the lbs-hero component if the array `menuItems` is supplied and has more than 0 elements. Each element in the array has the following options:
