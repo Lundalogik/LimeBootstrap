@@ -1,26 +1,52 @@
-hero: A Lime CRM ActionPad web framework
-
-# Introduction
-Lime Bootstrap is made to make it easier, better and faster working with Actionpads in Lime CRM. The framework relies heavily on Knockout.js and Twitter Bootstrap, styled and adapted to Lime CRM. The framework is mainly used by simple configuration in combination with  many built in convinience functions but it is also very expandable through the use of custom components.
-
-The framework is "opininated and convention over configuration", meaning there should be one and only one way to do things. If you find yourself writing lots of code to do something, or god forbid, needing to modify ANY file in the systems folder, you're propably doing it wrong. The framework is there to guide and help you.
-
-These few steps can  act as a guide
-
-1. The systems folder or `lbs.html` should never, ever be modified. You can achieve cool and smart functions without ever touching it.
-
-3. Follow the design guidelines:
-	1. The design should be flat, free from gradients and focused on content.
-	2. The actionpad is very narrow (~250px), use the height and not the width of the actionpad.
-	3. Use appropriate colors
-	4. Use appropriate icons
-	5. Don't "brand" the solution with customers logo and colors.
-
-5. Keep ActionPad views free from advanced logic, use components for anything advanced
-
-6. Contribute to a better framework, any improvements, errors or bugfixes will be committed to this git repository.
+#Lime Bootstrap
+The Lime Bootstrap (LBS) is made to make it easier, better and faster working with Actionpads in Lime CRM Desktop. The framework relies heavily on Knockout.js and Twitter Bootstrap but with custom styling and a simple, yet powerful script called `lbs.js`. The framework contains several built in functions and third 
+party libraries, but is also expandable through custom apps. 
 
 
-Happy coding!
+LBS is only meant to be used inside Lime CRM Desktop, but for debugging reasons all functionality (except the data connections) should work in any browser.
 
-![logo](assets/images/hans-olof-the-great.png)
+##Requirements
+
+*	Internet Explorer 9 <- With some design quirks
+*	Internet Explorer 10
+*	Internet Explorer 11
+*	WebView 2
+
+Older versions of IE __won't__ work!
+
+*	Lime CRM Desktop 10.11 or greater
+
+note
+On Lime CRM Desktop 10.10 the data from activeinspector can not be trusted and there are some quirks when publishing actionpads.
+
+
+##Install
+LBS is included in the Lime CRM Base Solution and nothing is needs to be done in this case. If installing LBS from scratch:
+
+1.	Copy all the folders, `lbs.html` and `_config.js` to the Actionpad-folder.
+2.	Import the two VBA modules found in the `VBA` folder.
+3.	Change the URL of all Actionpads in Lime CRM to `lbs.html`.
+4.  Save VBA and Publish Actionpads.
+
+If you'll like the some basic views to start with you should copy them from the latest Lime CRM Base Solution acionpad folder.
+
+##Update
+Updating LBS is done by downloading the lastest version and replacing some files and updating some VBA. Remember to check if you need to unblock the zip file (right click>Properties>Unblock>OK).
+
+1.	Check the `_config.js` for customizations and add those to the new `_config.js` file.
+2.  Copy all the folders, `lbs.html` and `_config.js` to the Actionpad-folder.
+3.	Delete the VBA modules `Localize` and `lbsHelper` and import the VBA modules found in the `VBA` folder.
+4.  Save VBA and Publish Actionpads.
+
+##Custom CSS in LBS
+Our recommendation and the basic principle are to avoid the use of self-written CSS in LBS since we can not guarantee how this will affect future versions of LBS. The purpose of LBS is to standardize Actionpads and to be able to deliver updates without worrying for failures.
+
+We  cannot prevent customers to add their own written CSS. If you really have to you SHOULD NOT update lime.css or add a custom CSS file in system / css folder. This is very risky since an update will replace the entire system folder. To avoid disasters where custom css is removed when updating LBS you should follow the below instructions.
+
+Create a folder called custom in the actionpad folder, in this folder create a CSS file called custom.css
+
+This file is not maintained by Lundalogik and we can not guarantee that the custom CSS will work with future LBS updates, but it will not get overwritten or removed. In addition to this they have to include it in lbs.html, which it does with the following line of code in the css section:
+
+`<link rel="stylesheet" type="text/css" href"custom/custom.css" />`
+
+IMPORTANT: The recommendation is to avoid custom CSS.

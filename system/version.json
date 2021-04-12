@@ -1,0 +1,80 @@
+{
+	"versions":[
+		{
+			"version": 1.12,
+			"info": "Added ActiveUser datasource. Deprecated use of vbaVisible. Added help function lbs.common.checkGroups. Fixed issues with version handling.",
+			"date": "2016-09-16"
+		},
+		{
+			"version": 1.11,
+			"info": "Changed colours, icons and some layout to reflect the new brand.",
+			"date": "2016-06-13"
+		},
+		{
+			"version": 1.9,
+			"info": "Improved and selectable watch, new currency binding, support for cookies and more. Font Awesome 4.4.",
+			"date": "2015-10-19"
+		},
+		{
+			"version": 1.8,
+			"info": "Possibility to search for data in the watch. Improved log functionality. Minified CSS and JavaScript. Knockout 3.3. Fontawesome 4.3. Moment 2.10.3. Twitter Bootstrap 3.3.5",
+			"date": "2015-07-07"
+		},
+		{
+			"version": 1.7,
+			"info": "Added data carousel and new colours for Actionpads. Improved popover data-bind. Added updates for Font Awesome and Bootstrap. Added utility file Jotnar.js.",
+			"date": "2014-11-21"
+		},
+		{
+			"version": 1.6,
+			"info": "Posibility to pass inspectorId to datasources. Support for unlocalized databases. Improved datasource: relatedRecord",
+			"date":"2014-09-17"
+		},
+		{
+			"version": 1.5,
+			"info": "Shortkeys. Alot of new bindings. Knockout 3.1. Knockout punches. Fontawesome 4.1.",
+			"date":"2014-07-22"
+		},
+		{
+			"version": 1.4,
+			"info": "Better watch management. Linting and errorhandling. Bug fixes.",
+			"date":"2014-07-21"
+		},
+		{
+			"version": 1.3,
+			"info": "Updated log. New config solution. Joshua"
+		},
+		{
+			"version": 1.2,
+			"info": "Viewmode viewer implemented. bugfixes"
+		},
+		{
+			"version": 1.1,
+			"info": "Important bugfixes"
+		},
+		{
+			"version": 1.0,
+			"info": "The Big 1.0!"
+		},
+		{
+			"version": 0.9,
+			"info": "Now in Twitter Bootstrap 3.1, Handeling of inline and tab views have been improved"
+		},
+		{
+			"version": 0.8,
+			"info": "Bugs have been eaten!"
+		},
+		{
+			"version": 0.7,
+			"info": "Added version checking. If debug is turned on the version of the installed framework is compared with the current version on GitHub. The user is notified and can download a new version. Added a method to the VBA method 'lbsHelper'. If upgrading, replace old version with new"
+		},
+		{
+			"version": 0.6,
+			"info": "Added support for insepctorId param in 10.11, Added global config, removed inline config, Inline config entries in 'comment-style' should be moved to _config.js"
+		},
+		{
+			"version": 0.5,
+			"info": "Bugfix: The styling of the menu hover-effekt is imporoved, Bugfix: Header icon is now properly aligned"
+		}
+	] 
+}
