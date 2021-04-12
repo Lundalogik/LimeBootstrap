@@ -1,6 +1,0 @@
-dist/
-docs/
-node_modules/
-__mocks__/
-brunch-server.js
-_config.js
