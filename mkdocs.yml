@@ -1,11 +1,12 @@
 site_name: Lime Bootstrap
 nav:
-  - 'Docs':
-    - 'Overview': 'index.md'
+  - 'Documentation':
+    - 'Introduction': 'index.md'
+    - 'Philosophy': 'philosophy.md'
     - 'Basic Usage': 'basicUsage.md'
     - 'Components': 'components.md'
     - 'Bindnings & Filters': 'bindingsAndFilters.md'
-    - 'Data sources': 'dataSources.md'
+    - 'Data sources': 'datasources.md'
     - 'Building Apps': 'buildingApps.md'
     - 'Advanced': 'advanced.md'
     - 'Technical Platform': 'technicalPlatform.md'
