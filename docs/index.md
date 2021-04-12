@@ -12,9 +12,8 @@ LBS is only meant to be used inside Lime CRM Desktop, but for debugging reasons 
 ## Install
 LBS is included in the Lime CRM Base Solution and nothing is needs to be done in this case. If installing LBS from scratch:
 
-1.	Copy all the folders, `lbs.html` and `_config.js` to the Actionpad-folder.
+1.	Copy the `system` and `resources` folders, `lbs.html` and `_config.js` to the Actionpad-folder.
 2.	Import the two VBA modules found in the `VBA` folder.
-3.	Change the URL of all Actionpads in Lime CRM to `lbs.html`.
 4.  Save VBA and Publish Actionpads.
 
 If you'll like the some basic views to start with you should copy them from the latest Lime CRM Base Solution acionpad folder.
@@ -23,7 +22,7 @@ If you'll like the some basic views to start with you should copy them from the 
 Upgrading LBS is done by downloading the lastest version and replacing some files and VBA. Remember to check if you need to unblock the zip file (right click>Properties>Unblock>OK).
 
 1.	Check the `_config.js` for customizations and add those to the new `_config.js` file.
-2.  Copy all the folders, `lbs.html` and `_config.js` to the Actionpad-folder.
+2.  Copy the `system` and `resources` folders, `lbs.html` and `_config.js` to the Actionpad-folder.
 3.	Delete the VBA modules `Localize` and `lbsHelper` and import the VBA modules found in the `VBA` folder.
 4.  Save VBA and Publish Actionpads.
 
