@@ -1,4 +1,4 @@
-#Bindings
+# Bindings
 ##vbaVisible: Hiding or showing elements
 
 It is common that some elements only should be visible for certain users or when specific conditions apply. It can be done in two different ways. Either use the Lime Bootstrap data-binding `vbaVisible:` or use the knockout binding `visible:`.

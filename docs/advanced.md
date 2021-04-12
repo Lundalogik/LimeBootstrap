@@ -1,7 +1,7 @@
 Advanced
 ======================
 
-##How does it work?
+## How does it work?
 
 The new Actionpads are inspired of how a single page application work. Views (basically html-templates) and data(usually JSON) are loaded via AJAX (an asyncrounous javacript call) by the the web application. The template is then rendered by applying the data and the result is shown to the user.
 
@@ -25,7 +25,7 @@ Basic flow in LBS:
 
 6.	The viewmodel is applied to the now complete view and rendered.
 
-##Loading views
+## Loading views
 As metioned lbs.html is the real engine and all HTML things should be loaded trough lbs.html. This is achieved by supplying a query string
 
 `[URL to Actionpad folder]/lbs.html?ap=[path to your view/view name]`
@@ -36,7 +36,7 @@ Loading the company Actionpad (company.html):
 
 `lbs.html?ap=company`
 
-#The console and debugging your applications
+# The console and debugging your applications
 The framework has been blessed with a virtual console, to use for debugging. It is activated through changing `debug: true,` in `_config.js`. The console will allways automagically appeare if a critical error is logged. If you make syntacic errors in the wrong place, even the viritual console will crash. You can easily use the console when building apps, read more abot this in the app readme. The console is limited to 30 messages by default.
 
 When working with more advanced stuff you might like to have access to a real console. Modern browsers won't allow dynamically loadings scripts from the local file system, due to security concerns. Dynamically loading scripts and html views are core concepts in LBS. In Lime CRM a small VBA function acts as the loader. However in `system/bin/` you will find a `.bat-file` which will restart Google Chrome in a debug mode, allowing you to inspect the CSS and JS. If you dislike this approach a small HTTP-server will do the trick. With Python3 just go to the actionpad folder and write this in your terminal:
@@ -65,7 +65,7 @@ When working with tabs, fields or dialogs it is easiest to use VBA to set the UR
     ActiveInspector.Controls.SetValue("htmlfield", WebFolder & "lbs.html?ap=foo&type=inline")
 ```
 
-##Settings and loading more data - _config.js
+## Settings and loading more data - _config.js
 
 For loading additional data or enabling the debug mode you have a file called `_config.js`.
 
@@ -93,7 +93,7 @@ lbs.configure({
 })
 ```
 
-##Logic in bindnings
+## Logic in bindnings
 Knockout lets you write JavaScript expressions directly in the bindnings. This is a really simple and powerful way of doing cool stuff. Word of advice: Too much logic in the view isn't nice at all. If you need to do a little more advanced stuff, build an app!
 
 Example:
@@ -110,16 +110,16 @@ Example:
 
 Please note that you can put the bindings on separate rows to increase readability
 
-##Cookies
+## Cookies
 Cookies are used to store values from the actionpads and apps. Every cookie is locally stored in the actionpad folder and is unique for every computer and database (not user). There are two methods that you can use to handle a cookie: 
 
-###Get cookie
+### Get cookie
 To get the value in a cookie use the method lbs.bakery.getCookie(name)
 
 ```javascript
 var mycookievalue = lbs.bakery.getCookie(“gingerbread”)
 ```
-###Set Cookie
+### Set Cookie
 To set a cookie just call the function lbs.bakery.setCookie(name,value,days). See example below. 
 
 ```javascript

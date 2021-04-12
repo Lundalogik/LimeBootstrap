@@ -1,7 +1,7 @@
 Basic usage
 ======================
 
-##A Lime Bootstrap Actionpad
+## A Lime Bootstrap Actionpad
 
 An Actionpad built with Lime Bootstrap has the following structure:
 
@@ -29,7 +29,7 @@ An Actionpad built with Lime Bootstrap has the following structure:
 
 ```
 
-##Components
+## Components
 Lime bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the [Twitter bootstrap](http://getbootstrap.com/components/) documentation for all cool stuff you have access to.
 
 We also supply the following components:
@@ -41,7 +41,7 @@ We also supply the following components:
 
 See all our components [here](/en/latest/components)
 
-##Functions and Apps
+## Functions and Apps
 All Twitter bootstrap functions are included, please see the [Twitter bootstrap documentation](http://getbootstrap.com/javascript/)
 Lime Bootstraps allows you to load small components we call apps, as a compliment to Twitter Bootstraps components. Apps can be found [here](http://limebootstrap.lundalogik.com/web/appstore/index.html)
 
@@ -58,7 +58,7 @@ To start an app add this HTML to your view:
 
 Each app has it's own instructions how to start and install them. Some apps require VBA and/or stored procedures to be added.
 
-##Bindings and filters
+## Bindings and filters
 As we relay heavily on knockout their `data-bind=""` syntax is used through out the framework. The `data-bind=""` syntax is a used as a property on an html element. In a `data-bind` you add `bindings`, actions or triggers, to perform actions. All Knockout bindings are available, but also a few custom bindings to make your life easier.
 Read more about bindings and Knockout [here](http://knockoutjs.com/documentation/introduction.html) and try the tutorial [here](http://learn.knockoutjs.com)
 
@@ -90,7 +90,7 @@ Some of the more common and useful bindings
 *   __attr__ - _Set value of any html attribute_
 *   __foreach:__ - _Loop through an array_
 
-###Custom bindings
+### Custom bindings
 To make your life easier we have implemented a few custom bindnings.
 List of custom handlers:
 
@@ -107,7 +107,7 @@ List of custom handlers:
 *   __tooltip:__ - _Displays a bootstrap tooltip_
 
 
-###Filters
+### Filters
 Filters are a smart and easy way to format your data in a binding
 A filter is a function transforming your binding data and outputting a formated version of it.
 

@@ -1,4 +1,4 @@
-##The header section
+## The header section
 The header section is the colorful header of each actionpad. The following colors are provided:
 
 <img src="https://raw.githubusercontent.com/Lundalogik/LimeBootstrapServices/master/web/assets/img/Bootstrap_colors.png">
@@ -8,7 +8,7 @@ Usage:
 ```html
 <div class="header-container [insert color here]">
 ```
-##The menu
+## The menu
 A menu can be created by the following HTML:
 
 ```html
@@ -24,7 +24,7 @@ A menu has two properties, __Expandable__ and __collapsed__. The are added in th
 __Expandable:__ The menu can be collapsed by clicking the header
 __Collapsed:__ The menu is collapsed when the actionpad is loaded. Stupid to use without using Expandable...
 
-##Dropdown button:
+## Dropdown button:
 
 A dropdown button can contain many options, while taking up very little space.
 
@@ -46,7 +46,7 @@ A dropdown button can contain many options, while taking up very little space.
 </div>
 ```
 
-##Data carousel
+## Data carousel
 Creates a data carousel that can be used when your actionpad is full of stuff. The carousel will build a pages for every first level child regardless of type. OBS! You always need to set height.
 
    * __Examples__
