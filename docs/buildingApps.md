@@ -1,7 +1,7 @@
 Building apps
 ==============
 
-##Basics
+## Basics
 Apps are small standalone tools, used for customer customisations. They are loaded dynamically and added only through a single line of HTML in the Actionpad. The business logic and dataconnection is allways performed by the VBA. This functionallity should be inside a single module. 
 
 The general idea of an app is to implement:

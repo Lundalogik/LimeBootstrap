@@ -1,20 +1,10 @@
-#Changelog
+# Changelog
 
-#Updates
-We continuously relase new versions of Lime Bootstrap. From version 0.7 the framework automatically checks for new versions only and notifies you if updates are available. Please install them ;)
+### 1.12
+This is the last release of LBS. Further updates will be included in Lime CRM Desktop. To make sure a solution will work with Lime CRM Desktop 11.0 or greater, Please make sure LBS 1.12 is installed.
+[Download LBS 1.12](https://github.com/Lundalogik/LimeBootstrap/releases/tag/v1.12)
 
-# Upgrade instructions
-For most solutions you can just replace the existing files in the actionpad folder with their new version.
-
-You may however want to exclude `config.js` and anything in the `resorces` folder and review those manually if you have done any customizations in them.
-
-`Please check the changelog for exceptions.`
-
-`IMPORTANT: When downloading a new version of Lime Bootstrap or any Lime Bootstrap app you will get a .zip file. You must right click this file, choose preferenses and then Unblock it to make it work after unzipping.`
-
-#Changelog
-
-###1.9
+### 1.9
 * Cookies
 * Currency filter
 * Selectable watch
@@ -27,7 +17,7 @@ You may however want to exclude `config.js` and anything in the `resorces` folde
 * Info about load time for apps and LBS
 
 
-###1.8
+### 1.8
 * Search for data in the watch
 * Improved log functionality
 * Minified CSS and JavaScript
@@ -35,7 +25,6 @@ You may however want to exclude `config.js` and anything in the `resorces` folde
 * Fontawesome 4.3
 * Moment 2.10.3
 * Twitter Bootstrap 3.3.5
-
 
 ### 1.7
 * New data carousel
