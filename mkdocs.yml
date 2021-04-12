@@ -22,7 +22,6 @@ extra_css:
   - 'assets/stylesheets/custom.css'
 theme:
   name: 'material'
-  custom_dir: 'docs/theme'
   logo:
     icon: 'home'
   feature:
@@ -30,7 +29,7 @@ theme:
   palette:
     primary: 'teal'
     accent: 'teal'
-  favicon: 'assets/images/favicon.ico'
+  favicon: 'images/favicon.ico'
 site_url: 'https://www.lime-bootstrap.com'
 markdown_extensions:
 - codehilite
