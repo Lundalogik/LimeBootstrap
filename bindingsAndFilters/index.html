@@ -1,0 +1,892 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Lime Bootstrap documentation">
+      
+      
+        <link rel="canonical" href="https://www.lime-bootstrap.com/bindingsAndFilters/">
+      
+      
+        <meta name="author" content="Lime Technologies AB">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Bindnings & Filters - Lime Bootstrap</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/custom.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#bindings" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://www.lime-bootstrap.com/" title="Lime Bootstrap" aria-label="Lime Bootstrap" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">home</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Lime Bootstrap
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Bindnings & Filters
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/Lundalogik/LimeBootstrap" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Lundalogik/LimeBootstrap
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        <!-- Determine class according to level -->
+
+
+  
+
+
+<!-- Tabs with outline -->
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+        <ul class="md-tabs__list">
+            
+                
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href=".." class="md-tabs__link md-tabs__link--active">
+          Documentation
+        </a>
+      
+    </li>
+  
+
+            
+                
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../changelog/" class="md-tabs__link">
+          Changelog
+        </a>
+      
+    </li>
+  
+
+            
+            <li class="md-tabs__item" id="lbs-dowload">
+                <a class="md-tabs__link" data-md-color-primary="white" href="https://github.com/Lundalogik/LimeBootstrap/releases/tag/v1.12" target="_blank"><i class="md-icon">save_alt</i>Download</a>
+            </li>
+            <li class="md-tabs__item" id="lbs-limestore">
+                <a target="_blank" href="https://www.lime-technologies.com/add-ons/" title="Lime Add-ons" class="md-tabs__link">Lime Store</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://www.lime-bootstrap.com/" title="Lime Bootstrap" class="md-nav__button md-logo">
+      
+        <i class="md-icon">home</i>
+      
+    </a>
+    Lime Bootstrap
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/Lundalogik/LimeBootstrap" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Lundalogik/LimeBootstrap
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      Documentation
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Documentation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../philosophy/" title="Philosophy" class="md-nav__link">
+      Philosophy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../basicUsage/" title="Basic Usage" class="md-nav__link">
+      Basic Usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../components/" title="Components" class="md-nav__link">
+      Components
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Bindnings & Filters
+      </label>
+    
+    <a href="./" title="Bindnings & Filters" class="md-nav__link md-nav__link--active">
+      Bindnings & Filters
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vbavisible-hiding-or-showing-elements" class="md-nav__link">
+    vbaVisible: Hiding or showing elements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vba-executing-vba-functions-and-specific-actions" class="md-nav__link">
+    vba: Executing VBA-functions and specific actions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#call-call-a-phone-number" class="md-nav__link">
+    Call: Call a phone number
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openurl-go-to-a-website" class="md-nav__link">
+    openURL: Go to a website
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limelink-go-to-another-lime-record" class="md-nav__link">
+    limeLink: Go to another Lime Record
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#email-send-an-email" class="md-nav__link">
+    email: Send an email
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appinvoke-start-an-app" class="md-nav__link">
+    appInvoke: Start an app
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#popover-show-additional-info" class="md-nav__link">
+    popover: Show additional info
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tooltip-show-a-helping-tooltip" class="md-nav__link">
+    tooltip: Show a helping tooltip
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../datasources/" title="Data sources" class="md-nav__link">
+      Data sources
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../buildingApps/" title="Building Apps" class="md-nav__link">
+      Building Apps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/" title="Advanced" class="md-nav__link">
+      Advanced
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../technicalPlatform/" title="Technical Platform" class="md-nav__link">
+      Technical Platform
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Changelog
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Changelog
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../changelog/" title="Changelog" class="md-nav__link">
+      Changelog
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vbavisible-hiding-or-showing-elements" class="md-nav__link">
+    vbaVisible: Hiding or showing elements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vba-executing-vba-functions-and-specific-actions" class="md-nav__link">
+    vba: Executing VBA-functions and specific actions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#call-call-a-phone-number" class="md-nav__link">
+    Call: Call a phone number
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openurl-go-to-a-website" class="md-nav__link">
+    openURL: Go to a website
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limelink-go-to-another-lime-record" class="md-nav__link">
+    limeLink: Go to another Lime Record
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#email-send-an-email" class="md-nav__link">
+    email: Send an email
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appinvoke-start-an-app" class="md-nav__link">
+    appInvoke: Start an app
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#popover-show-additional-info" class="md-nav__link">
+    popover: Show additional info
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tooltip-show-a-helping-tooltip" class="md-nav__link">
+    tooltip: Show a helping tooltip
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/Lundalogik/LimeBootstrap/edit/master/docs/bindingsAndFilters.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="bindings">Bindings</h1>
+<h2 id="vbavisible-hiding-or-showing-elements">vbaVisible: Hiding or showing elements</h2>
+<p>It is common that some elements only should be visible for certain users or when specific conditions apply. It can be done in two different ways. Either use the Lime Bootstrap data-binding <code>vbaVisible:</code> or use the knockout binding <code>visible:</code>.</p>
+<p>The <code>vbaVisible:</code> is used as follows. A VBA function is called, handling the logic whether the element should be visible or not, returning a boolean.
+<strong>true:</strong> Element is visible
+<strong>false:</strong> Element hidden</p>
+<p>In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required.</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;vbaVisible:&#39;ActionPad_Helpdesk.HideLinks, take&#39;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>You can also use knockout's built in handler <code>visible:</code> to hide or show elements. Any valid Javascript will be evaluated. Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="cm">&lt;!-- Shows an bootstrap alert if the todo is late. Moment.js is used to parse and handle dates.--&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;alert alert-error&quot;</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;</span>
+<span class="s">   visible: todo.endtime.value !== null &amp;&amp; (moment(todo.endtime.value) &lt; moment() &amp;&amp; todo.done.value != 1),</span>
+<span class="s">   text: &#39;The task is &#39; + (todo.endtime.value != null ? moment(todo.endtime.value).fromNow(true) : &#39;&#39; )+ &#39; late!&#39;,</span>
+<span class="s">   icon:&#39;fa-bell&#39;&quot;</span> <span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>The binding <code>vbaVisible:</code> is only able to execute a given VBA function that returns true or false. If you need to add some kind of code on top of that VBA function, use the original knockout binding <code>visible:</code> instead. This example uses the opposite of the function result, but any other javascript code would also work fine.</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;visible:!lbs.common.executeVba(&#39;App_MoveDate.moveDaysPossible&#39;)&quot;</span><span class="p">&gt;</span>
+...
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h2 id="vba-executing-vba-functions-and-specific-actions">vba: Executing VBA-functions and specific actions</h2>
+<p><code>vba:</code> is used to trigger VBA-functions and specific actions on click. To call a VBA function simply use:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;vba:&#39;ActionPad_Helpdesk.Take&#39;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>Input parameters are provided by simply separating them by commas.</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;vba:&#39;ActionPad_Helpdesk.Park, 1, t_park_1_hour&#39;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>You can also use any available data in the actionpad as an input to the function through concatenating a string</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;vba:&#39;ActionPad_Helpdesk.DoSomethingWithTheRecord,&#39; + helpdesk.idhelpdesk.value&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+ ```
+
+
+##showOnMap: Showing an address on a map
+
+*   __showOnMap:__ - Searches Google Maps for the provided address.
+
+```html
+    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text:company.postalcity.text, showOnMap: company.fullpostaladdress.text, icon: &#39;fa-map-marker&#39;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h2 id="call-call-a-phone-number">Call: Call a phone number</h2>
+<ul>
+<li><strong>call:</strong> - Ads an tel: link to the HTML wich triggers an built in softphone software.</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text: company.phone.text, call: company.phone.text, icon: &#39;fa-phone&#39;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h2 id="openurl-go-to-a-website">openURL: Go to a website</h2>
+<ul>
+<li><strong>openURL:</strong> - Opens the suplied URL in an external browser</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>     <span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text:company.www.text, openURL: company.www.text, icon: &#39;fa-globe&#39;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h2 id="limelink-go-to-another-lime-record">limeLink: Go to another Lime Record</h2>
+<ul>
+<li><strong>limeLink</strong> - Tries to create an Lime link to the object provided, please note that the root node of the object is used and not a specific property.</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text:todo.company.text, limeLink:todo.company, icon:&#39;fa-flag&#39;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h2 id="email-send-an-email">email: Send an email</h2>
+<ul>
+<li><strong>email</strong> - Creates an email. TODO: Should use Lime's built in email factory.</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text:person.email.text, email:person.email.text, icon:&#39;fa-envelope&#39;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h2 id="appinvoke-start-an-app">appInvoke: Start an app</h2>
+<ul>
+<li><strong>appInvoke</strong></li>
+</ul>
+<div class="codehilite"><pre><span></span><code>    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;appInvoke: &#39;textfileimport&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h2 id="popover-show-additional-info">popover: Show additional info</h2>
+<ul>
+<li><strong>popover</strong> - Gives you a small overlayer of context that you can design as you like. In its simplest form, it can be used to display informative texts. It can also be initialized as an object with one or several adjustable attributes, allowing for styling both header icon and title. There are also a few pre-defined types with their own set designs.</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;popover: &#39;This is a popover&#39;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="k">If</span> <span class="nv">the</span> <span class="nv">popover</span> <span class="nv">is</span> <span class="nv">initialized</span> <span class="nv">as</span> <span class="nv">an</span> <span class="nv">object</span>, <span class="nv">the</span> <span class="nv">following</span> <span class="nv">attributes</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">configured</span>:
+
+<span class="o">*</span> <span class="nv">__icon__</span>
+
+<span class="nv">Any</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">icons</span> <span class="nv">available</span> <span class="nv">from</span> <span class="nv">Font</span> <span class="nv">Awesome</span>.
+
+<span class="o">*</span> <span class="nv">__text__</span>
+
+<span class="nv">Text</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">displayed</span>.
+
+<span class="o">*</span> <span class="nv">__title__</span>
+
+<span class="nv">Title</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">displayed</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">header</span> <span class="nv">section</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">popover</span>.
+
+<span class="o">*</span> <span class="nv">__color__</span>
+
+<span class="nv">Background</span> <span class="nv">color</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">header</span> <span class="nv">section</span>. <span class="nv">All</span> <span class="nv">header</span><span class="o">-</span><span class="nv">colors</span> <span class="nv">are</span> <span class="nv">avalible</span>.
+
+<span class="o">*</span> <span class="nv">__trigger__</span>
+
+<span class="nv">What</span> <span class="nv">event</span> <span class="nv">will</span> <span class="nv">trigger</span> <span class="nv">the</span> <span class="nv">event</span>. <span class="nv">Only</span> <span class="nv">two</span> <span class="nv">values</span> <span class="nv">are</span> <span class="nv">valid</span> <span class="nv">here</span>:
+<span class="o">*</span>   <span class="nv">hover</span>
+<span class="o">*</span>   <span class="nv">click</span>
+
+<span class="nv">where</span> <span class="nv">the</span> <span class="nv">default</span> <span class="nv">value</span> <span class="nv">is</span> <span class="s1">&#39;</span><span class="s">hover</span><span class="s1">&#39;</span>.
+
+<span class="o">*</span> <span class="nv">__placement__</span>
+
+<span class="nv">Where</span> <span class="nv">the</span> <span class="nv">popover</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">displayed</span> <span class="nv">in</span> <span class="nv">relation</span> <span class="nv">to</span> <span class="nv">its</span> <span class="nv">parent</span> <span class="nv">element</span>. <span class="nv">The</span> <span class="nv">following</span> <span class="nv">values</span> <span class="nv">are</span> <span class="nv">valid</span> <span class="nv">here</span>:
+<span class="o">*</span>   <span class="nv">top</span>
+<span class="o">*</span>   <span class="nv">right</span>
+<span class="o">*</span>   <span class="nv">bottom</span>
+<span class="o">*</span>   <span class="nv">left</span>
+
+<span class="nv">where</span> <span class="nv">the</span> <span class="nv">default</span> <span class="nv">value</span> <span class="nv">is</span> <span class="s1">&#39;</span><span class="s">top</span><span class="s1">&#39;</span>.
+
+<span class="o">*</span> <span class="nv">__type__</span>
+
+<span class="nv">What</span> <span class="nv">template</span> <span class="ss">(</span><span class="k">if</span> <span class="nv">any</span><span class="ss">)</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">used</span>. <span class="nv">Only</span> <span class="nv">the</span> <span class="nv">following</span> <span class="nv">values</span> <span class="nv">are</span> <span class="nv">valid</span>:
+<span class="o">*</span>   <span class="nv">success</span>
+<span class="o">*</span>   <span class="nv">info</span>
+<span class="o">*</span>   <span class="nv">error</span>
+<span class="o">*</span>   <span class="nv">warning</span>
+<span class="o">*</span>   <span class="nv">custom</span>
+
+<span class="nv">where</span> <span class="nv">the</span> <span class="nv">default</span> <span class="nv">value</span> <span class="nv">is</span> <span class="s1">&#39;</span><span class="s">custom</span><span class="s1">&#39;</span>. <span class="nv">The</span> <span class="nv">top</span> <span class="nv">four</span> <span class="nv">alternatives</span> <span class="nv">will</span> <span class="nv">override</span> <span class="nv">all</span> <span class="nv">values</span> <span class="k">for</span> <span class="s1">&#39;</span><span class="s">color</span><span class="s1">&#39;</span>, <span class="s1">&#39;</span><span class="s">title</span><span class="s1">&#39;</span> <span class="nv">and</span> <span class="s1">&#39;</span><span class="s">icon</span><span class="s1">&#39;</span>. <span class="nv">These</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">replaced</span> <span class="nv">by</span> <span class="nv">template</span> <span class="nv">ones</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">specific</span> <span class="nv">types</span>.
+
+<span class="o">*</span> <span class="nv">__Example</span> <span class="nv">without</span> <span class="nv">template__</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>            <span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span> <span class="s">popover:{</span>
+                        <span class="na">text:</span><span class="err">&#39;</span><span class="na">This</span> <span class="na">is</span> <span class="na">a</span> <span class="na">popover</span><span class="err">&#39;,</span>
+                        <span class="na">title:</span> <span class="err">&#39;</span><span class="na">LBS</span> <span class="na">rules</span><span class="err">&#39;,</span>
+                        <span class="na">type:</span> <span class="err">&#39;</span><span class="na">custom</span><span class="err">&#39;,</span>
+                        <span class="na">color:</span><span class="err">&#39;</span><span class="na">magenta</span><span class="err">&#39;,</span>
+                        <span class="na">trigger:</span> <span class="err">&#39;</span><span class="na">click</span><span class="err">&#39;,</span>
+                        <span class="na">icon:</span> <span class="err">&#39;</span><span class="na">fa-check</span><span class="err">&#39;,</span>
+                        <span class="na">placement:</span> <span class="err">&#39;</span><span class="na">top</span><span class="err">&#39;</span>
+                    <span class="err">},</span> <span class="na">text:</span> <span class="err">&#39;</span><span class="na">Popoverclick</span><span class="err">&#39;&quot;</span><span class="p">&gt;</span>&quot;&gt;<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>* __Example with template__
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>            <span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;popover:{text:&#39;This is a popover.&#39;,type:&#39;info&#39;}&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h2 id="tooltip-show-a-helping-tooltip">tooltip: Show a helping tooltip</h2>
+<ul>
+<li><strong>tooltip</strong> - Gives you a good looking tooltip. <a href="http://getbootstrap.com/javascript/#tooltips">Bootstrap</a>. You can design where you like the tooltip to show by sending a object with a placement.</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>        <span class="p">&lt;</span><span class="nt">a</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text:&#39;Andreas&#39;, tooltip: &#39;Konsult&#39;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">a</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text:&#39;Andreas&#39;, tooltip: {text:&#39;Konsult&#39;,placement:&#39;right&#39;}&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h1 id="filters">Filters</h1>
+<p>A filter in knockout punches is a way of 'piping' a text binding through a pre-defined filter to format the value in a desired way. The filter is initiated using the | sign followed by the name of the filter and any necessary parameter inputs to the filter.</p>
+<h2 id="currency">Currency</h2>
+<p>The currency filter can be combined with a text data-bind to format a number as a currency. The filter takes two optional parameters - currency and divider. The currency is the unit in which you want to present the formatted number, e.g. $ or GBP or SEK. The divider lets you decide what delimiter to use for formatting the number.</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text: 100000 | currency:&#39;$&#39;:&#39;,&#39;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>This filter will format the number 100000 as $100,000. The following code</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text: 100000 | currency:&#39;SEK&#39;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>will result in the formatted value 100 000 SEK.</p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../components/" title="Components" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Components
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../datasources/" title="Data sources" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Data sources
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.3.0",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>

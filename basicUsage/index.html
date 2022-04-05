@@ -1,0 +1,1011 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Lime Bootstrap documentation">
+      
+      
+        <link rel="canonical" href="https://www.lime-bootstrap.com/basicUsage/">
+      
+      
+        <meta name="author" content="Lime Technologies AB">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Basic Usage - Lime Bootstrap</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/custom.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#basic-usage" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://www.lime-bootstrap.com/" title="Lime Bootstrap" aria-label="Lime Bootstrap" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">home</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Lime Bootstrap
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Basic Usage
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/Lundalogik/LimeBootstrap" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Lundalogik/LimeBootstrap
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        <!-- Determine class according to level -->
+
+
+  
+
+
+<!-- Tabs with outline -->
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+        <ul class="md-tabs__list">
+            
+                
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href=".." class="md-tabs__link md-tabs__link--active">
+          Documentation
+        </a>
+      
+    </li>
+  
+
+            
+                
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../changelog/" class="md-tabs__link">
+          Changelog
+        </a>
+      
+    </li>
+  
+
+            
+            <li class="md-tabs__item" id="lbs-dowload">
+                <a class="md-tabs__link" data-md-color-primary="white" href="https://github.com/Lundalogik/LimeBootstrap/releases/tag/v1.12" target="_blank"><i class="md-icon">save_alt</i>Download</a>
+            </li>
+            <li class="md-tabs__item" id="lbs-limestore">
+                <a target="_blank" href="https://www.lime-technologies.com/add-ons/" title="Lime Add-ons" class="md-tabs__link">Lime Store</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://www.lime-bootstrap.com/" title="Lime Bootstrap" class="md-nav__button md-logo">
+      
+        <i class="md-icon">home</i>
+      
+    </a>
+    Lime Bootstrap
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/Lundalogik/LimeBootstrap" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Lundalogik/LimeBootstrap
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      Documentation
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Documentation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../philosophy/" title="Philosophy" class="md-nav__link">
+      Philosophy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Basic Usage
+      </label>
+    
+    <a href="./" title="Basic Usage" class="md-nav__link md-nav__link--active">
+      Basic Usage
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-lime-bootstrap-actionpad" class="md-nav__link">
+    A Lime Bootstrap Actionpad
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    Components
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions-and-apps" class="md-nav__link">
+    Functions and Apps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bindings-and-filters" class="md-nav__link">
+    Bindings and filters
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#knockout-bindings" class="md-nav__link">
+    Knockout bindings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-bindings" class="md-nav__link">
+    Custom bindings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filters" class="md-nav__link">
+    Filters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#translation-handling-multiple-languages" class="md-nav__link">
+    Translation: Handling multiple languages
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#technical-notes" class="md-nav__link">
+    Technical notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fetching-data-from-fields-in-lime-crm" class="md-nav__link">
+    Fetching data from fields in Lime CRM
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#going-beyond-the-activeinspector-loading-additional-data" class="md-nav__link">
+    Going beyond the ActiveInspector - Loading additional data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-time-and-dates" class="md-nav__link">
+    Working with time and dates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-logwatch" class="md-nav__link">
+    The log/watch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keyboard-shortcuts" class="md-nav__link">
+    Keyboard shortcuts
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../components/" title="Components" class="md-nav__link">
+      Components
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bindingsAndFilters/" title="Bindnings & Filters" class="md-nav__link">
+      Bindnings & Filters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../datasources/" title="Data sources" class="md-nav__link">
+      Data sources
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../buildingApps/" title="Building Apps" class="md-nav__link">
+      Building Apps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/" title="Advanced" class="md-nav__link">
+      Advanced
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../technicalPlatform/" title="Technical Platform" class="md-nav__link">
+      Technical Platform
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Changelog
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Changelog
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../changelog/" title="Changelog" class="md-nav__link">
+      Changelog
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-lime-bootstrap-actionpad" class="md-nav__link">
+    A Lime Bootstrap Actionpad
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    Components
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions-and-apps" class="md-nav__link">
+    Functions and Apps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bindings-and-filters" class="md-nav__link">
+    Bindings and filters
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#knockout-bindings" class="md-nav__link">
+    Knockout bindings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-bindings" class="md-nav__link">
+    Custom bindings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filters" class="md-nav__link">
+    Filters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#translation-handling-multiple-languages" class="md-nav__link">
+    Translation: Handling multiple languages
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#technical-notes" class="md-nav__link">
+    Technical notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fetching-data-from-fields-in-lime-crm" class="md-nav__link">
+    Fetching data from fields in Lime CRM
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#going-beyond-the-activeinspector-loading-additional-data" class="md-nav__link">
+    Going beyond the ActiveInspector - Loading additional data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-time-and-dates" class="md-nav__link">
+    Working with time and dates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-logwatch" class="md-nav__link">
+    The log/watch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keyboard-shortcuts" class="md-nav__link">
+    Keyboard shortcuts
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/Lundalogik/LimeBootstrap/edit/master/docs/basicUsage.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="basic-usage">Basic usage</h1>
+<h2 id="a-lime-bootstrap-actionpad">A Lime Bootstrap Actionpad</h2>
+<p>An Actionpad built with Lime Bootstrap has the following structure:</p>
+<div class="codehilite"><pre><span></span><code><span class="cm">&lt;!-- Header section, The colorfull thing at the top  --&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;header-container [color]&quot;</span><span class="p">&gt;</span> <span class="cm">&lt;!-- Specify the color of the header. Please see color section for available colors  --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;header-icon&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>  <span class="cm">&lt;!-- Specify the icon of the header. Please see icon section for available special icons  --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h2</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;info-links&quot;</span><span class="p">&gt;</span>         
+            <span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            ...
+        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>      
+
+
+<span class="cm">&lt;!-- /Header section  --&gt;</span>
+<span class="cm">&lt;!-- Body section  --&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;menu&quot;</span><span class="p">&gt;</span> <span class="cm">&lt;!-- Menu  --&gt;</span>
+
+
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="cm">&lt;!-- /Body section  --&gt;</span>
+</code></pre></div>
+
+<h2 id="components">Components</h2>
+<p>Lime bootstrap supports all Twitter bootstrap elements but has also a few special elements. Please see the <a href="http://getbootstrap.com/components/">Twitter bootstrap</a> documentation for all cool stuff you have access to.</p>
+<p>We also supply the following components:</p>
+<ul>
+<li><strong>Menu:</strong> - <em>A menu to hold actions</em></li>
+<li><strong>Dropdown button:</strong> - <em>A dropdown button styled for Lime CRM</em></li>
+<li><strong>Header section:</strong> - <em>The top section of every actionpad</em></li>
+<li><strong>Data carousel:</strong> - <em>A rotating object to hold more objects</em></li>
+</ul>
+<p>See all our components <a href="/en/latest/components">here</a></p>
+<h2 id="functions-and-apps">Functions and Apps</h2>
+<p>All Twitter bootstrap functions are included, please see the <a href="http://getbootstrap.com/javascript/">Twitter bootstrap documentation</a>
+Lime Bootstraps allows you to load small components we call apps, as a compliment to Twitter Bootstraps components.</p>
+<p>To start an app add this HTML to your view:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-app</span><span class="o">=</span><span class="s">&quot;{app:&#39;[Name of app]&#39;,</span>
+<span class="s">                config:{</span>
+<span class="s">                  [App config]</span>
+<span class="s">            }}&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>Each app has it's own instructions how to start and install them. Some apps require VBA and/or stored procedures to be added.</p>
+<h2 id="bindings-and-filters">Bindings and filters</h2>
+<p>As we relay heavily on knockout their <code>data-bind=""</code> syntax is used through out the framework. The <code>data-bind=""</code> syntax is a used as a property on an html element. In a <code>data-bind</code> you add <code>bindings</code>, actions or triggers, to perform actions. All Knockout bindings are available, but also a few custom bindings to make your life easier.
+Read more about bindings and Knockout <a href="http://knockoutjs.com/documentation/introduction.html">here</a> and try the tutorial <a href="http://learn.knockoutjs.com">here</a></p>
+<p>A basic example of use of a knockout binding:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text:company.name&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>You can also use a short hand for bindnings, using brackets. The above example can also be written as</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>{{company.name}}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>You can read more about this short hand syntax <a href="https://mbest.github.io/knockout.punches/">here</a></p>
+<p>As default you only have access to the data of the ActiveInspector!</p>
+<h3 id="knockout-bindings">Knockout bindings</h3>
+<p>Knockout supplies a large set of bindings, which all can be found <a href="http://knockoutjs.com/documentation/introduction.html">here</a>
+Our full documentation can be found <a href="/en/latest/bindingsAndFilters/">here</a></p>
+<p>Some of the more common and useful bindings</p>
+<ul>
+<li><strong>visible:</strong> - <em>hides or shows a html element based on an boolean expression</em></li>
+<li><strong>text:</strong> - <em>Displays a variable as text</em></li>
+<li><strong>html:</strong> - <em>Prepends the supplied font awesome icon to the html element</em></li>
+<li><strong>css:</strong> - <em>Add or remove CSS classes</em></li>
+<li><strong>style:</strong> - <em>Add styling attributes</em></li>
+<li><strong>attr</strong> - <em>Set value of any html attribute</em></li>
+<li><strong>foreach:</strong> - <em>Loop through an array</em></li>
+</ul>
+<h3 id="custom-bindings">Custom bindings</h3>
+<p>To make your life easier we have implemented a few custom bindnings.
+List of custom handlers:</p>
+<ul>
+<li><strong>call:</strong> - <em>Tries to call the provided phone number</em></li>
+<li><strong>email:</strong> - <em>Tries to email the provided address</em></li>
+<li><strong>icon:</strong> - <em>Prepends the supplied font awesome icon to the html element</em></li>
+<li><strong>limeLink:</strong> - <em>Creates an Lime link from a provided relationship field, for example person.company</em></li>
+<li><strong>openURL:</strong> - <em>Opens the supplied URL in a external browser</em></li>
+<li><strong>showOnMap:</strong> - <em>Opens Google Maps with the supplied data as a search query</em></li>
+<li><strong>vba:</strong> - <em>Provide an string of an VBA function with it's parameters separated by commas</em></li>
+<li><strong>vbaVisible:</strong> - <em>Extends knockouts 'visible:' by executing the supplied Boolean VBA function</em></li>
+<li><strong>appInvoke:</strong> - <em>Invokes an old-style actionpad app like textfileimport or duplicatemerge</em></li>
+<li><strong>popover:</strong> - <em>Displays a popover</em></li>
+<li><strong>tooltip:</strong> - <em>Displays a bootstrap tooltip</em></li>
+</ul>
+<h3 id="filters">Filters</h3>
+<p>Filters are a smart and easy way to format your data in a binding
+A filter is a function transforming your binding data and outputting a formated version of it.</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text:deal.value | currency: SEK&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>{{deal.value | currency: SEK}}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>This will produce a nicely formated value of a deal, example: "10 000SEK"</p>
+<p>List of filters:</p>
+<ul>
+<li><strong>default:<defaultValue></strong> - If the value is blank, null, or an empty array, replace it with the given default value.</li>
+<li><strong>fit:<length>[:<replacement>][:<where>]</strong> - Trim the value if it’s longer than the given length. The trimmed portion is replaced with ... or the replacement value, if given. By default, the value is trimmed on the right but can be changed to left or middle through the where option. For example: name | fit:10::'middle' will convert Shakespeare to Shak...are.</li>
+<li><strong>json[:space]</strong> - Convert the value to a JSON string using ko.toJSON. You can give a space value to format the JSON output.</li>
+<li><strong>lowercase</strong> - Convert the value to lowercase.</li>
+<li><strong>number:<numberOfDecimals></strong> - Rounds a number of desired number of decimals</li>
+<li><strong>replace:<search>:<replace></strong> - Perform a search and replace on the value using String#replace.</li>
+<li><strong>uppercase</strong> - Convert the value to uppercase.</li>
+<li><strong>currency:<currencyName>:<divider></strong> - Formats a number with to a currency with a space a separate every <divider> number. Default 1000</li>
+<li><strong>percent:</strong> - Formats a decimal number as percent 0,01 &gt; 1%</li>
+<li><strong>fromNow:</strong> - Formats a date as a human readable text as for how long ago the date was. Example 2000-01-01 &gt; "Over ten years ago"</li>
+</ul>
+<h2 id="translation-handling-multiple-languages">Translation: Handling multiple languages</h2>
+<p>All available translations from the Localization table are automatically available in the actionpad context. The same language as the logged in user uses is automatically used. The translations are cached in a dictionary to increase speed, but requires you to run <code>ThisApplication.Setup</code> to rebuild the dictionary if you add translations or make changes.</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text:localize.ActionPad_Todo.addTodo&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>The example below uses the versatile knockout binding <code>attr</code> to add a tooltip with localization support. It also uses the custom Lime Bootstrap bindings <code>vba</code> and <code>icon</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;vba:&#39;Actionpad_Person.newComment&#39;, text:localize.Actionpad_Person.t_newcomment, icon:&#39;fa-comment&#39;, attr: { title: localize.Actionpad_Person.tooltip_newcomment }&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h3 id="technical-notes">Technical notes</h3>
+<p>The translations are added to the global view model and are thus available in your apps.</p>
+<p>Note that it is not possible to use localization in the standard way, e.g., <code>localize.Actionpad_Person.t_newcomment</code> within a block where you are using the knockout binding <code>with</code>.</p>
+<h2 id="fetching-data-from-fields-in-lime-crm">Fetching data from fields in Lime CRM</h2>
+<p>All fields from the ActiveInspector are automagically available for you to use in your view. The syntax is <code>[Record class name].[field database name].[property]</code>.</p>
+<p>The available properties are (in order of relevance):
+*   <strong>.text</strong>
+*   <strong>.value</strong>
+*   <strong>.key</strong>  - <strong>available for set and list fields_
+*   </strong>.class__ - <em>available for relation fields</em></p>
+<div class="codehilite"><pre><span></span><code><span class="cm">&lt;!-- Company Actionpad showing the name of the company--&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text:company.name.text&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="cm">&lt;!-- Shorthand--&gt;</span><span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>{{company.name.text}}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="cm">&lt;!-- Person Actionpad using the id of the company relation as a parameter to a VBA-function. Note the Javascript syntax in the Knockout bindning  --&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;vba:&#39;SomeFunction,&#39; + person.company.value&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="cm">&lt;!-- Business Actionpad showing the optionKey from a set-list --&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text:business.businesstatus.key&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h3 id="going-beyond-the-activeinspector-loading-additional-data">Going beyond the ActiveInspector - Loading additional data</h3>
+<p>It is common to use data from more than the ActiveInspector and the following syntax will NOT work <code>&lt;li data-bind="text:person.company.phone.text"&gt;&lt;/li&gt;</code></p>
+<p>Instead you can load additional data by requesting data sources in <code>_config.js</code>. You'll find more information about this in the advanced section.</p>
+<p>The loaded data can then be access by:</p>
+<div class="codehilite"><pre><span></span><code><span class="cm">&lt;!-- Loading person and company info on a helpdesk actionpad--&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text:helpdesk.company.text&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>                    
+<span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text:person.phone.text&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text:person.mobilephone.text&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>                      
+<span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">&quot;text:company.phone.text&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>   
+</code></pre></div>
+
+<h2 id="working-with-time-and-dates">Working with time and dates</h2>
+<p>Dates are a hassle, except when you have the awesome library <a href="http://momentjs.com">Moment.js</a>.</p>
+<p>To create a iso-date:
+<code>moment()</code></p>
+<p>To parse almost any date format:
+<code>moment([CRAZY DATE FORMAT])</code></p>
+<p>Moment even makes time and dates readable to people.
+<code>moment().timeAgo(2011-01-01)</code> will give you, "A few years ago"</p>
+<p>Moment is automagically setup to use the same language and date-format as the language of the Lime CRM desktop client.
+Remember to use it and check out it further!</p>
+<h2 id="the-logwatch">The log/watch</h2>
+<p>Bootstap will give you some debug- and log views to help you out.</p>
+<h2 id="keyboard-shortcuts">Keyboard shortcuts</h2>
+<p>The different view can be opened with shortcuts provided the actionpad is in focus.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reload actionpad</td>
+<td>ctrl + shift + r</td>
+</tr>
+<tr>
+<td>Open log</td>
+<td>ctrl + shift + l</td>
+</tr>
+<tr>
+<td>Open watch</td>
+<td>ctrl + shift + w</td>
+</tr>
+<tr>
+<td>Close log/watch window</td>
+<td>q</td>
+</tr>
+</tbody>
+</table>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../philosophy/" title="Philosophy" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Philosophy
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../components/" title="Components" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Components
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.3.0",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>

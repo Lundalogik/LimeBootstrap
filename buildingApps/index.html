@@ -1,0 +1,1896 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Lime Bootstrap documentation">
+      
+      
+        <link rel="canonical" href="https://www.lime-bootstrap.com/buildingApps/">
+      
+      
+        <meta name="author" content="Lime Technologies AB">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Building Apps - Lime Bootstrap</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/custom.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#building-apps" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://www.lime-bootstrap.com/" title="Lime Bootstrap" aria-label="Lime Bootstrap" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">home</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Lime Bootstrap
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Building Apps
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/Lundalogik/LimeBootstrap" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Lundalogik/LimeBootstrap
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        <!-- Determine class according to level -->
+
+
+  
+
+
+<!-- Tabs with outline -->
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+        <ul class="md-tabs__list">
+            
+                
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href=".." class="md-tabs__link md-tabs__link--active">
+          Documentation
+        </a>
+      
+    </li>
+  
+
+            
+                
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../changelog/" class="md-tabs__link">
+          Changelog
+        </a>
+      
+    </li>
+  
+
+            
+            <li class="md-tabs__item" id="lbs-dowload">
+                <a class="md-tabs__link" data-md-color-primary="white" href="https://github.com/Lundalogik/LimeBootstrap/releases/tag/v1.12" target="_blank"><i class="md-icon">save_alt</i>Download</a>
+            </li>
+            <li class="md-tabs__item" id="lbs-limestore">
+                <a target="_blank" href="https://www.lime-technologies.com/add-ons/" title="Lime Add-ons" class="md-tabs__link">Lime Store</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://www.lime-bootstrap.com/" title="Lime Bootstrap" class="md-nav__button md-logo">
+      
+        <i class="md-icon">home</i>
+      
+    </a>
+    Lime Bootstrap
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/Lundalogik/LimeBootstrap" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Lundalogik/LimeBootstrap
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      Documentation
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Documentation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../philosophy/" title="Philosophy" class="md-nav__link">
+      Philosophy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../basicUsage/" title="Basic Usage" class="md-nav__link">
+      Basic Usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../components/" title="Components" class="md-nav__link">
+      Components
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bindingsAndFilters/" title="Bindnings & Filters" class="md-nav__link">
+      Bindnings & Filters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../datasources/" title="Data sources" class="md-nav__link">
+      Data sources
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Building Apps
+      </label>
+    
+    <a href="./" title="Building Apps" class="md-nav__link md-nav__link--active">
+      Building Apps
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basics" class="md-nav__link">
+    Basics
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-javascript-app-structure" class="md-nav__link">
+    The javascript app structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-definitions" class="md-nav__link">
+    Object definitions
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datasouce" class="md-nav__link">
+    DataSouce
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limeversion" class="md-nav__link">
+    LimeVersion
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#library-attributes" class="md-nav__link">
+    Library attributes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#library-helper-functions" class="md-nav__link">
+    Library helper functions
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lbsheperloaddatasorces" class="md-nav__link">
+    lbs.heper.loadDataSorces()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbsheperloaddatasorce" class="md-nav__link">
+    lbs.heper.loadDataSorce()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_1" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbscommongeterrortext" class="md-nav__link">
+    lbs.common.getErrorText()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_2" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#return" class="md-nav__link">
+    Return
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbscommonescapehtml" class="md-nav__link">
+    lbs.common.escapeHtml()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_3" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_2" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbscommoncreatelimelink" class="md-nav__link">
+    lbs.common.createLimeLink()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_4" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_3" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbscommongeturlparameter" class="md-nav__link">
+    lbs.common.getURLParameter()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_5" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_4" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbscommonexecutevba" class="md-nav__link">
+    lbs.common.executeVba()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_6" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_5" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbscommonnl2br" class="md-nav__link">
+    lbs.common.nl2br
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_7" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_6" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stringformat" class="md-nav__link">
+    string.format()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_8" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_7" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbslogdebug" class="md-nav__link">
+    lbs.log.debug
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_9" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_8" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbslogdebug_1" class="md-nav__link">
+    lbs.log.debug
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_10" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_9" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbslogwarn" class="md-nav__link">
+    lbs.log.warn
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_11" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_10" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbslogerror" class="md-nav__link">
+    lbs.log.error
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_12" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_11" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/" title="Advanced" class="md-nav__link">
+      Advanced
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../technicalPlatform/" title="Technical Platform" class="md-nav__link">
+      Technical Platform
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Changelog
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Changelog
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../changelog/" title="Changelog" class="md-nav__link">
+      Changelog
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basics" class="md-nav__link">
+    Basics
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-javascript-app-structure" class="md-nav__link">
+    The javascript app structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-definitions" class="md-nav__link">
+    Object definitions
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datasouce" class="md-nav__link">
+    DataSouce
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limeversion" class="md-nav__link">
+    LimeVersion
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#library-attributes" class="md-nav__link">
+    Library attributes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#library-helper-functions" class="md-nav__link">
+    Library helper functions
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lbsheperloaddatasorces" class="md-nav__link">
+    lbs.heper.loadDataSorces()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbsheperloaddatasorce" class="md-nav__link">
+    lbs.heper.loadDataSorce()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_1" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbscommongeterrortext" class="md-nav__link">
+    lbs.common.getErrorText()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_2" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#return" class="md-nav__link">
+    Return
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbscommonescapehtml" class="md-nav__link">
+    lbs.common.escapeHtml()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_3" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_2" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbscommoncreatelimelink" class="md-nav__link">
+    lbs.common.createLimeLink()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_4" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_3" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbscommongeturlparameter" class="md-nav__link">
+    lbs.common.getURLParameter()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_5" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_4" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbscommonexecutevba" class="md-nav__link">
+    lbs.common.executeVba()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_6" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_5" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbscommonnl2br" class="md-nav__link">
+    lbs.common.nl2br
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_7" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_6" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stringformat" class="md-nav__link">
+    string.format()
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_8" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_7" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbslogdebug" class="md-nav__link">
+    lbs.log.debug
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_9" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_8" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbslogdebug_1" class="md-nav__link">
+    lbs.log.debug
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_10" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_9" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbslogwarn" class="md-nav__link">
+    lbs.log.warn
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_11" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_10" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lbslogerror" class="md-nav__link">
+    lbs.log.error
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax_12" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_11" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/Lundalogik/LimeBootstrap/edit/master/docs/buildingApps.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="building-apps">Building apps</h1>
+<h2 id="basics">Basics</h2>
+<p>Apps are small standalone tools, used for customer customisations. They are loaded dynamically and added only through a single line of HTML in the Actionpad. The business logic and dataconnection is allways performed by the VBA. This functionallity should be inside a single module. </p>
+<p>The general idea of an app is to implement:</p>
+<ol>
+<li>A function or procedure to deliver data. VBA or SQL, can deliver data as xml, record or records.</li>
+<li>A view - An html template with the structure of your app.</li>
+<li>A view-model - the viewmodel holds a rednering and frontend logic</li>
+</ol>
+<p>An app is initilaized as:
+1. The app is loaded and the config of the app is parsed
+2. Data is loaded from Lime CRM, from your supplied function
+3. The data is converted to a view-model (In this case the view model is just a JSON represenation of the data)
+4. Additional resources are loaded to the app
+5. The view-model is supplied to the app and cam be modified
+6. The app view is loaded from app.html.
+7. The view and view-model is rendered and injected to the actionpad </p>
+<p>Initiation of an app is executed by the <code>lbs.apploader.js</code> module and triggered by an <code>data-app:</code>-attribute.</p>
+<p>The data can be provided as XML, record or records and limebootstrap will then supply the app with an View-model based on the data, free for you to work with. In the view model you will also find all translations and avilable data from the current actionpad viewmodel.   </p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-app</span><span class="o">=</span><span class="s">&quot;{app:&#39;checklist&#39;,config:{canBeUnchecked:true,allowRemove:true, canAddTask:true}} &quot;</span> <span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p><strong>Please note that you can not have a <code>data-app</code> and <code>data-bind</code> attribute in the same element</strong></p>
+<h3 id="the-javascript-app-structure">The javascript app structure</h3>
+<div class="codehilite"><pre><span></span><code><span class="nx">lbs</span><span class="p">.</span><span class="nx">apploader</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">&#39;template&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="c1">//Insert name of app here</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+    <span class="c1">//config</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">dataSources</span><span class="o">:</span> <span class="p">[</span> <span class="c1">//Either provide your data source here, or let the user of your app supplie it</span>
+
+        <span class="p">],</span>
+        <span class="nx">resources</span><span class="o">:</span> <span class="p">{</span> <span class="c1">//Add any extra resources that should be loadad. The paths are realtive your app folder, exept libs which are loaded from system/js/</span>
+            <span class="nx">scripts</span><span class="o">:</span> <span class="p">[],</span>
+            <span class="nx">styles</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;app.css&#39;</span><span class="p">],</span>
+            <span class="nx">libs</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;json2xml.js&#39;</span><span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="c1">//initialize</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">initialize</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">viewModel</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">//Use this method to setup you app. </span>
+        <span class="c1">//</span>
+        <span class="c1">//The data you requested along with activeInspector are delivered in the variable viewModel.</span>
+        <span class="c1">//You may make any modifications you please to it or replace is with a entirely new one before returning it.</span>
+        <span class="c1">//The returned viewmodel will be used to build your app.</span>
+
+
+        <span class="k">return</span> <span class="nx">viewModel</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div>
+
+<h3 id="object-definitions">Object definitions</h3>
+<h4 id="datasouce">DataSouce</h4>
+<p><code>{type: '', source: '', alias:''}</code></p>
+<h5 id="limeversion">LimeVersion</h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>comparable</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>full</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>major</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>minor</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>build</td>
+<td>int</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="library-attributes">Library attributes</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lbs.debug</td>
+<td>int</td>
+<td>if debug modes has been triggered</td>
+</tr>
+<tr>
+<td>lbs.limeVersion</td>
+<td>LimeVersion</td>
+<td></td>
+</tr>
+<tr>
+<td>lbs.limeDataConnection</td>
+<td>object</td>
+<td>reference to window.external</td>
+</tr>
+<tr>
+<td>lbs.hasLimeConnection</td>
+<td>boolean</td>
+<td>has reference to lime?</td>
+</tr>
+<tr>
+<td>lbs.activeClass</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>lbs.activeDatabase</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>lbs.activeServer</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>lbs.common.iconTemplate</td>
+<td>string</td>
+<td>template for icon html</td>
+</tr>
+</tbody>
+</table>
+<h3 id="library-helper-functions">Library helper functions</h3>
+<h5 id="lbsheperloaddatasorces">lbs.heper.loadDataSorces()</h5>
+<p>Loads multiple datasources into a JSON objekt</p>
+<h6 id="syntax">Syntax</h6>
+<p><code>lbs.heper.loadDataSorces(viewModel, DataSources, [override])</code></p>
+<h6 id="parameters">Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>viewModel</td>
+<td>array</td>
+<td>object to assign values to</td>
+</tr>
+<tr>
+<td>DataSources</td>
+<td>Array</td>
+<td>sources</td>
+</tr>
+<tr>
+<td>Override</td>
+<td>boolean</td>
+<td>if duplicate values should be overriden or thrown away</td>
+</tr>
+</tbody>
+</table>
+<h5 id="lbsheperloaddatasorce">lbs.heper.loadDataSorce()</h5>
+<p>Loads a datasources into a JSON objekt</p>
+<h6 id="syntax_1">Syntax</h6>
+<p><code>lbs.heper.loadDataSorce(viewModel, DataSource, [override])</code></p>
+<h6 id="parameters_1">Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>viewModel</td>
+<td>array</td>
+<td>object to assign values to</td>
+</tr>
+<tr>
+<td>DataSource</td>
+<td>DataSouce</td>
+<td>source</td>
+</tr>
+<tr>
+<td>Override</td>
+<td>boolean</td>
+<td>if duplicate values should be overriden or thrown away</td>
+</tr>
+</tbody>
+</table>
+<h5 id="lbscommongeterrortext">lbs.common.getErrorText()</h5>
+<p>Returnes a funny error adjective :)</p>
+<h6 id="syntax_2">Syntax</h6>
+<p><code>lbs.common.getErrorText()</code></p>
+<h6 id="return">Return</h6>
+<p>string</p>
+<h5 id="lbscommonescapehtml">lbs.common.escapeHtml()</h5>
+<p>Escape html</p>
+<h6 id="syntax_3">Syntax</h6>
+<p><code>lbs.common.escapeHtml(html)</code></p>
+<h6 id="parameters_2">Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>html</td>
+<td>string</td>
+</tr>
+<tr>
+<td>###### Return</td>
+<td></td>
+</tr>
+<tr>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="lbscommoncreatelimelink">lbs.common.createLimeLink()</h5>
+<p>Create limelink</p>
+<h6 id="syntax_4">Syntax</h6>
+<p><code>lbs.common.createLimeLink(class,id)</code></p>
+<h6 id="parameters_3">Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>class</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>###### Return</td>
+<td></td>
+</tr>
+<tr>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="lbscommongeturlparameter">lbs.common.getURLParameter()</h5>
+<p>Extract URL parameter from GET variable</p>
+<h6 id="syntax_5">Syntax</h6>
+<p><code>lbs.common.getURLParameter(name)</code></p>
+<h6 id="parameters_4">Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>###### Return</td>
+<td></td>
+</tr>
+<tr>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="lbscommonexecutevba">lbs.common.executeVba()</h5>
+<p>Execute VBA code, same as old VBA.run()</p>
+<h6 id="syntax_6">Syntax</h6>
+<p><code>lbs.common.executeVba(proc,params)</code></p>
+<h6 id="parameters_5">Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proc</td>
+<td>string</td>
+</tr>
+<tr>
+<td>params</td>
+<td>string</td>
+</tr>
+<tr>
+<td>###### Return</td>
+<td></td>
+</tr>
+<tr>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="lbscommonnl2br">lbs.common.nl2br</h4>
+<p>replace nl chars with html rowbreaks</p>
+<h5 id="syntax_7">Syntax</h5>
+<p><code>lbs.common.nl2br(data)</code></p>
+<h5 id="parameters_6">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>string</td>
+</tr>
+<tr>
+<td>##### Return</td>
+<td></td>
+</tr>
+<tr>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="stringformat">string.format()</h4>
+<p>Implementation of c# String.Format()</p>
+<h5 id="syntax_8">Syntax</h5>
+<p><code>string.format(format,var1,[var2])</code></p>
+<h5 id="parameters_7">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>format</td>
+<td>string</td>
+</tr>
+<tr>
+<td>var</td>
+<td>replacement varibles</td>
+</tr>
+<tr>
+<td>##### Return</td>
+<td></td>
+</tr>
+<tr>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="lbslogdebug">lbs.log.debug</h4>
+<p>Log message at debug level</p>
+<h5 id="syntax_9">Syntax</h5>
+<p><code>lbs.log.debug(msg)</code></p>
+<h5 id="parameters_8">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>msg</td>
+<td>message</td>
+</tr>
+</tbody>
+</table>
+<h4 id="lbslogdebug_1">lbs.log.debug</h4>
+<p>Log message at info level</p>
+<h5 id="syntax_10">Syntax</h5>
+<p><code>lbs.log.info(msg)</code></p>
+<h5 id="parameters_9">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>msg</td>
+<td>message</td>
+</tr>
+</tbody>
+</table>
+<h4 id="lbslogwarn">lbs.log.warn</h4>
+<p>Log message at warn level</p>
+<h5 id="syntax_11">Syntax</h5>
+<p><code>lbs.log.warn(msg, [e])</code></p>
+<h5 id="parameters_10">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>msg</td>
+<td>message</td>
+</tr>
+<tr>
+<td>e</td>
+<td>Execption (optional)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="lbslogerror">lbs.log.error</h4>
+<p>Log message at error level</p>
+<h5 id="syntax_12">Syntax</h5>
+<p><code>lbs.log.error(msg, [e])</code></p>
+<h5 id="parameters_11">Parameters</h5>
+<p>|Parameters|Type|
+|---|---|---|
+|msg|message|
+|e|Execption (optional)|</p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../datasources/" title="Data sources" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Data sources
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../advanced/" title="Advanced" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Advanced
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.3.0",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>

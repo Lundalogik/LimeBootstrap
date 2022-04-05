@@ -1,0 +1,22 @@
+<!-- Determine class according to level -->
+{% set class = "md-tabs" %}
+{% if page.ancestors | length > 0 %}
+  {% set class = "md-tabs md-tabs--active" %}
+{% endif %}
+
+<!-- Tabs with outline -->
+<nav class="{{ class }}" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+        <ul class="md-tabs__list">
+            {% for nav_item in nav %}
+                {% include "partials/tabs-item.html" %}
+            {% endfor %}
+            <li class="md-tabs__item" id="lbs-dowload">
+                <a class="md-tabs__link" data-md-color-primary="white" href="https://github.com/Lundalogik/LimeBootstrap/releases/tag/v1.12" target="_blank"><i class="md-icon">save_alt</i>Download</a>
+            </li>
+            <li class="md-tabs__item" id="lbs-limestore">
+                <a target="_blank" href="https://www.lime-technologies.com/add-ons/" title="Lime Add-ons" class="md-tabs__link">Lime Store</a>
+            </li>
+        </ul>
+    </div>
+</nav>
