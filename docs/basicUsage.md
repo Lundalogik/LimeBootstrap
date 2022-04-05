@@ -43,7 +43,7 @@ See all our components [here](/en/latest/components)
 
 ## Functions and Apps
 All Twitter bootstrap functions are included, please see the [Twitter bootstrap documentation](http://getbootstrap.com/javascript/)
-Lime Bootstraps allows you to load small components we call apps, as a compliment to Twitter Bootstraps components. Apps can be found [here](http://limebootstrap.lundalogik.com/web/appstore/index.html)
+Lime Bootstraps allows you to load small components we call apps, as a compliment to Twitter Bootstraps components.
 
 To start an app add this HTML to your view:
 ```html
